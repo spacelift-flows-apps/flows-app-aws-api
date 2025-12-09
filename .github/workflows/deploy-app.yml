@@ -98,5 +98,5 @@ jobs:
           cd ..
           mv ${{ inputs.app_name }} aws-api-${{ inputs.app_name }}
           cd aws-api-${{ inputs.app_name }}
-          curl -o index-app-versions.cjs https://raw.githubusercontent.com/spacelift-io/flows-core-registry/refs/heads/main/.github/scripts/index-app-versions.cjs
+          curl -o index-app-versions.cjs https://raw.githubusercontent.com/spacelift-flows-apps/flows-core-registry/refs/heads/main/.github/scripts/index-app-versions.cjs
           node index-app-versions.cjs
