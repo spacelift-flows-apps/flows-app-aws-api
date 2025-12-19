@@ -3,11 +3,11 @@ import {
   CloudWatchClient,
   TagResourceCommand,
 } from "@aws-sdk/client-cloudwatch";
+import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const tagResource: AppBlock = {
   name: "Tag Resource",
-  description:
-    "Assigns one or more tags (key-value pairs) to the specified CloudWatch resource.",
+  description: `Assigns one or more tags (key-value pairs) to the specified CloudWatch resource.`,
   inputs: {
     default: {
       config: {
@@ -16,6 +16,13 @@ const tagResource: AppBlock = {
           description: "AWS region for this operation",
           type: "string",
           required: true,
+        },
+        assumeRoleArn: {
+          name: "Assume Role ARN",
+          description:
+            "Optional IAM role ARN to assume before executing this operation. If provided, the block will use STS to assume this role and use the temporary credentials.",
+          type: "string",
+          required: false,
         },
         ResourceARN: {
           name: "Resource ARN",
@@ -48,15 +55,48 @@ const tagResource: AppBlock = {
         },
       },
       onEvent: async (input) => {
-        const { region, ...commandInput } = input.event.inputConfig;
+        const { region, assumeRoleArn, ...commandInput } =
+          input.event.inputConfig;
 
-        const client = new CloudWatchClient({
-          region: region,
-          credentials: {
+        // Determine credentials to use
+        let credentials;
+        if (assumeRoleArn) {
+          // Use STS to assume the specified role
+          const stsClient = new STSClient({
+            region: region,
+            credentials: {
+              accessKeyId: input.app.config.accessKeyId,
+              secretAccessKey: input.app.config.secretAccessKey,
+              sessionToken: input.app.config.sessionToken,
+            },
+            ...(input.app.config.endpoint && {
+              endpoint: input.app.config.endpoint,
+            }),
+          });
+
+          const assumeRoleCommand = new AssumeRoleCommand({
+            RoleArn: assumeRoleArn,
+            RoleSessionName: `flows-session-${Date.now()}`,
+          });
+
+          const assumeRoleResponse = await stsClient.send(assumeRoleCommand);
+          credentials = {
+            accessKeyId: assumeRoleResponse.Credentials!.AccessKeyId!,
+            secretAccessKey: assumeRoleResponse.Credentials!.SecretAccessKey!,
+            sessionToken: assumeRoleResponse.Credentials!.SessionToken!,
+          };
+        } else {
+          // Use app-level credentials
+          credentials = {
             accessKeyId: input.app.config.accessKeyId,
             secretAccessKey: input.app.config.secretAccessKey,
             sessionToken: input.app.config.sessionToken,
-          },
+          };
+        }
+
+        const client = new CloudWatchClient({
+          region: region,
+          credentials: credentials,
           ...(input.app.config.endpoint && {
             endpoint: input.app.config.endpoint,
           }),

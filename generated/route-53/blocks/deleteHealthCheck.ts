@@ -3,10 +3,11 @@ import {
   Route53Client,
   DeleteHealthCheckCommand,
 } from "@aws-sdk/client-route-53";
+import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const deleteHealthCheck: AppBlock = {
   name: "Delete Health Check",
-  description: "Deletes a health check.",
+  description: `Deletes a health check.`,
   inputs: {
     default: {
       config: {
@@ -16,6 +17,13 @@ const deleteHealthCheck: AppBlock = {
           type: "string",
           required: true,
         },
+        assumeRoleArn: {
+          name: "Assume Role ARN",
+          description:
+            "Optional IAM role ARN to assume before executing this operation. If provided, the block will use STS to assume this role and use the temporary credentials.",
+          type: "string",
+          required: false,
+        },
         HealthCheckId: {
           name: "Health Check Id",
           description: "The ID of the health check that you want to delete.",
@@ -24,15 +32,48 @@ const deleteHealthCheck: AppBlock = {
         },
       },
       onEvent: async (input) => {
-        const { region, ...commandInput } = input.event.inputConfig;
+        const { region, assumeRoleArn, ...commandInput } =
+          input.event.inputConfig;
 
-        const client = new Route53Client({
-          region: region,
-          credentials: {
+        // Determine credentials to use
+        let credentials;
+        if (assumeRoleArn) {
+          // Use STS to assume the specified role
+          const stsClient = new STSClient({
+            region: region,
+            credentials: {
+              accessKeyId: input.app.config.accessKeyId,
+              secretAccessKey: input.app.config.secretAccessKey,
+              sessionToken: input.app.config.sessionToken,
+            },
+            ...(input.app.config.endpoint && {
+              endpoint: input.app.config.endpoint,
+            }),
+          });
+
+          const assumeRoleCommand = new AssumeRoleCommand({
+            RoleArn: assumeRoleArn,
+            RoleSessionName: `flows-session-${Date.now()}`,
+          });
+
+          const assumeRoleResponse = await stsClient.send(assumeRoleCommand);
+          credentials = {
+            accessKeyId: assumeRoleResponse.Credentials!.AccessKeyId!,
+            secretAccessKey: assumeRoleResponse.Credentials!.SecretAccessKey!,
+            sessionToken: assumeRoleResponse.Credentials!.SessionToken!,
+          };
+        } else {
+          // Use app-level credentials
+          credentials = {
             accessKeyId: input.app.config.accessKeyId,
             secretAccessKey: input.app.config.secretAccessKey,
             sessionToken: input.app.config.sessionToken,
-          },
+          };
+        }
+
+        const client = new Route53Client({
+          region: region,
+          credentials: credentials,
           ...(input.app.config.endpoint && {
             endpoint: input.app.config.endpoint,
           }),
