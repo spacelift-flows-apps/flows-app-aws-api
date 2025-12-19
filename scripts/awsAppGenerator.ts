@@ -9,7 +9,7 @@
 
 import fs from "fs";
 import path from "path";
-import { spawn } from "child_process";
+import {spawn} from "child_process";
 
 // Types for Smithy JSON AST structure
 interface SmithyModel {
@@ -87,7 +87,7 @@ class AWSAppGenerator {
     }
 
     const services = fs
-      .readdirSync(servicesDir, { withFileTypes: true })
+      .readdirSync(servicesDir, {withFileTypes: true})
       .filter((dirent) => dirent.isDirectory())
       .map((dirent) => dirent.name);
 
@@ -110,6 +110,70 @@ class AWSAppGenerator {
 
     // Load service breakdown configurations
     await this.loadBreakdownConfigurations();
+  }
+
+  /**
+   * Generate Flows app for a specific AWS service
+   */
+  async generateServiceApp(serviceName: string, outputDir: string) {
+    const service = this.models.get(serviceName);
+    if (!service) {
+      throw new Error(`Service model not loaded: ${serviceName}`);
+    }
+
+    const breakdown = this.breakdowns.get(serviceName);
+
+    if (breakdown) {
+      console.log(
+        `Found breakdown configuration for ${serviceName}, generating ${
+          Object.keys(breakdown.apps).length
+        } separate apps...`
+      );
+
+      // Generate separate directories for each breakdown category
+      for (const [appKey, appConfig] of Object.entries(breakdown.apps)) {
+        await this.generateBreakdownApp(
+          service,
+          breakdown,
+          appKey,
+          appConfig,
+          outputDir
+        );
+      }
+
+      console.log(
+        `✓ Generated ${
+          Object.keys(breakdown.apps).length
+        } separate apps for ${serviceName}`
+      );
+    } else {
+      console.log(
+        `Generating single app for ${service.metadata.serviceFullName}...`
+      );
+
+      // Generate single app as before
+      const appDir = path.join(outputDir, serviceName);
+      fs.mkdirSync(appDir, {recursive: true});
+
+      await this.generateMainApp(service, appDir);
+      const blocksDir = path.join(appDir, "blocks");
+      fs.mkdirSync(blocksDir, {recursive: true});
+
+      // Generate utility files for S3 service
+      if (service.metadata.serviceId === "S3") {
+        const utilsDir = path.join(appDir, "utils");
+        fs.mkdirSync(utilsDir, {recursive: true});
+        await this.generateS3SerializeUtility(utilsDir);
+      }
+
+      await this.generateActionBlocks(service, blocksDir);
+      await this.generatePackageJson(service, appDir);
+      await this.generateConfigs(appDir);
+      await this.generateVersionFile(appDir);
+      await this.formatCode(service, appDir);
+
+      console.log(`✓ Generated ${serviceName} app in ${appDir}`);
+    }
   }
 
   /**
@@ -167,7 +231,7 @@ class AWSAppGenerator {
     }
 
     const versions = fs
-      .readdirSync(servicePath, { withFileTypes: true })
+      .readdirSync(servicePath, {withFileTypes: true})
       .filter((dirent) => dirent.isDirectory())
       .map((dirent) => dirent.name)
       .sort()
@@ -226,10 +290,10 @@ class AWSAppGenerator {
         protocol: serviceShape.traits?.["aws.protocols#restJson1"]
           ? "rest-json"
           : serviceShape.traits?.["aws.protocols#awsJson1_1"]
-          ? "aws-json-1.1"
-          : serviceShape.traits?.["aws.protocols#awsQuery"]
-          ? "aws-query"
-          : "unknown",
+            ? "aws-json-1.1"
+            : serviceShape.traits?.["aws.protocols#awsQuery"]
+              ? "aws-query"
+              : "unknown",
         serviceFullName: metadata.serviceFullName || serviceName,
         serviceId: metadata.sdkId || serviceName,
         signatureVersion: "v4",
@@ -237,70 +301,6 @@ class AWSAppGenerator {
       operations,
       shapes: model.shapes,
     };
-  }
-
-  /**
-   * Generate Flows app for a specific AWS service
-   */
-  async generateServiceApp(serviceName: string, outputDir: string) {
-    const service = this.models.get(serviceName);
-    if (!service) {
-      throw new Error(`Service model not loaded: ${serviceName}`);
-    }
-
-    const breakdown = this.breakdowns.get(serviceName);
-
-    if (breakdown) {
-      console.log(
-        `Found breakdown configuration for ${serviceName}, generating ${
-          Object.keys(breakdown.apps).length
-        } separate apps...`
-      );
-
-      // Generate separate directories for each breakdown category
-      for (const [appKey, appConfig] of Object.entries(breakdown.apps)) {
-        await this.generateBreakdownApp(
-          service,
-          breakdown,
-          appKey,
-          appConfig,
-          outputDir
-        );
-      }
-
-      console.log(
-        `✓ Generated ${
-          Object.keys(breakdown.apps).length
-        } separate apps for ${serviceName}`
-      );
-    } else {
-      console.log(
-        `Generating single app for ${service.metadata.serviceFullName}...`
-      );
-
-      // Generate single app as before
-      const appDir = path.join(outputDir, serviceName);
-      fs.mkdirSync(appDir, { recursive: true });
-
-      await this.generateMainApp(service, appDir);
-      const blocksDir = path.join(appDir, "blocks");
-      fs.mkdirSync(blocksDir, { recursive: true });
-      
-      // Generate utility files for S3 service
-      if (service.metadata.serviceId === "S3") {
-        const utilsDir = path.join(appDir, "utils");
-        fs.mkdirSync(utilsDir, { recursive: true });
-        await this.generateS3SerializeUtility(utilsDir);
-      }
-      
-      await this.generateActionBlocks(service, blocksDir);
-      await this.generatePackageJson(service, appDir);
-      await this.generateConfigs(appDir);
-      await this.generateVersionFile(appDir);
-      await this.formatCode(service, appDir);
-
-      console.log(`✓ Generated ${serviceName} app in ${appDir}`);
-    }
   }
 
   /**
@@ -317,7 +317,7 @@ class AWSAppGenerator {
 
     // Create directory for this breakdown app
     const appDir = path.join(outputDir, appKey);
-    fs.mkdirSync(appDir, { recursive: true });
+    fs.mkdirSync(appDir, {recursive: true});
 
     // Filter operations for this breakdown app
     const filteredOperations: Record<string, Operation> = {};
@@ -382,7 +382,7 @@ export const app = defineApp({
 
     // Generate blocks directory with only filtered operations
     const blocksDir = path.join(appDir, "blocks");
-    fs.mkdirSync(blocksDir, { recursive: true });
+    fs.mkdirSync(blocksDir, {recursive: true});
     await this.generateActionBlocks(filteredService, blocksDir);
 
     // Generate package.json and configs for this app
@@ -479,12 +479,14 @@ export const app = defineApp({
     const outputType = this.generateOutputType(service, operation);
 
     const isS3Service = service.metadata.serviceId === "S3";
-    const imports = isS3Service 
+    const imports = isS3Service
       ? `import { AppBlock, events } from "@slflows/sdk/v1";
 import { ${clientName}, ${commandName} } from "${packageName}";
+import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";`
       : `import { AppBlock, events } from "@slflows/sdk/v1";
-import { ${clientName}, ${commandName} } from "${packageName}";`;
+import { ${clientName}, ${commandName} } from "${packageName}";
+import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";`;
 
     const content = `${imports}
 
@@ -495,26 +497,56 @@ const ${this.camelCase(operation.name)}: AppBlock = {
     default: {
       config: ${JSON.stringify(inputConfig, null, 8).replace(/"/g, '"')},
       onEvent: async (input) => {
-        const { region, ...commandInput } = input.event.inputConfig;
-        
-        const client = new ${clientName}({
-          region: region,
-          credentials: {
+        const { region, assumeRoleArn, ...commandInput } = input.event.inputConfig;
+
+        // Determine credentials to use
+        let credentials;
+        if (assumeRoleArn) {
+          // Use STS to assume the specified role
+          const stsClient = new STSClient({
+            region: region,
+            credentials: {
+              accessKeyId: input.app.config.accessKeyId,
+              secretAccessKey: input.app.config.secretAccessKey,
+              sessionToken: input.app.config.sessionToken,
+            },
+            ...(input.app.config.endpoint && { endpoint: input.app.config.endpoint }),
+          });
+
+          const assumeRoleCommand = new AssumeRoleCommand({
+            RoleArn: assumeRoleArn,
+            RoleSessionName: \`flows-session-\${Date.now()}\`,
+          });
+
+          const assumeRoleResponse = await stsClient.send(assumeRoleCommand);
+          credentials = {
+            accessKeyId: assumeRoleResponse.Credentials!.AccessKeyId!,
+            secretAccessKey: assumeRoleResponse.Credentials!.SecretAccessKey!,
+            sessionToken: assumeRoleResponse.Credentials!.SessionToken!,
+          };
+        } else {
+          // Use app-level credentials
+          credentials = {
             accessKeyId: input.app.config.accessKeyId,
             secretAccessKey: input.app.config.secretAccessKey,
             sessionToken: input.app.config.sessionToken,
-          },
+          };
+        }
+
+        const client = new ${clientName}({
+          region: region,
+          credentials: credentials,
           ...(input.app.config.endpoint && { endpoint: input.app.config.endpoint }),
         });
 
         const command = new ${commandName}(commandInput as any);
         const response = await client.send(command);
 
-        ${isS3Service 
-          ? `// Safely serialize response by handling circular references and streams
+        ${isS3Service
+      ? `// Safely serialize response by handling circular references and streams
         const safeResponse = await serializeAWSResponse(response);
         await events.emit(safeResponse || {});`
-          : `await events.emit(response || {});`}
+      : `await events.emit(response || {});`}
       },
     },
   },
@@ -545,6 +577,12 @@ export default ${this.camelCase(operation.name)};
         type: "string",
         required: true,
       },
+      assumeRoleArn: {
+        name: "Assume Role ARN",
+        description: "Optional IAM role ARN to assume before executing this operation. If provided, the block will use STS to assume this role and use the temporary credentials.",
+        type: "string",
+        required: false,
+      },
     };
 
     if (operation.input?.target) {
@@ -570,12 +608,12 @@ export default ${this.camelCase(operation.name)};
     operation: Operation
   ): any {
     if (!operation.output?.target) {
-      return { type: "object", additionalProperties: true };
+      return {type: "object", additionalProperties: true};
     }
 
     const outputShape = service.shapes[operation.output.target];
     if (!outputShape?.members) {
-      return { type: "object", additionalProperties: true };
+      return {type: "object", additionalProperties: true};
     }
 
     const properties: Record<string, any> = {};
@@ -606,7 +644,7 @@ export default ${this.camelCase(operation.name)};
     return {
       type: "object",
       properties,
-      ...(required.length > 0 ? { required } : { additionalProperties: true }),
+      ...(required.length > 0 ? {required} : {additionalProperties: true}),
     };
   }
 
@@ -622,6 +660,7 @@ export default ${this.camelCase(operation.name)};
       dependencies: {
         "@slflows/sdk": "*",
         [packageName]: "^3.0.0",
+        "@aws-sdk/client-sts": "^3.0.0",
       },
       devDependencies: {
         typescript: "^5.0.0",
@@ -689,13 +728,13 @@ export default ${this.camelCase(operation.name)};
 
   private async generateVersionFile(appDir: string) {
     const versionFile = path.join(appDir, "VERSION");
-    
+
     // Check if VERSION file already exists
     if (fs.existsSync(versionFile)) {
       console.log(`VERSION file already exists in ${appDir}, skipping...`);
       return;
     }
-    
+
     // Create new VERSION file with default version
     fs.writeFileSync(versionFile, "0.1.0\n");
     console.log(`✓ Created VERSION file with 0.1.0 in ${appDir}`);
@@ -733,7 +772,7 @@ export default ${this.camelCase(operation.name)};
   private async formatCode(service: ParsedService, appDir: string) {
     console.log(`Formatting code for ${service.metadata.serviceId}...`);
 
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<void>((resolve) => {
       const prettierFormat = spawn("npm", ["run", "format"], {
         cwd: appDir,
         stdio: "pipe",
@@ -905,7 +944,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
     if (!shape) return "string";
 
     // Prevent infinite recursion
-    if (depth > 3) return { type: "object", additionalProperties: true };
+    if (depth > 3) return {type: "object", additionalProperties: true};
 
     switch (shape.type) {
       case "string":
@@ -914,7 +953,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
           const enumValues = shape.traits["smithy.api#enum"].map(
             (e: any) => e.value
           );
-          return { type: "string", enum: enumValues };
+          return {type: "string", enum: enumValues};
         }
         return "string";
 
@@ -932,7 +971,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
       case "list":
         // Try to get more specific item type
         const memberTarget = shape.member?.target;
-        let itemType = { type: "any" };
+        let itemType = {type: "any"};
         if (memberTarget && service) {
           const memberShape = service.shapes[memberTarget];
           if (memberShape) {
@@ -945,7 +984,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
         }
         return {
           type: "array",
-          items: typeof itemType === "string" ? { type: itemType } : itemType,
+          items: typeof itemType === "string" ? {type: itemType} : itemType,
         };
 
       case "map":
@@ -992,7 +1031,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
         // Fallback to generic object
         return {
           type: "object",
-          additionalProperties: { type: "object" },
+          additionalProperties: {type: "object"},
         };
 
       case "structure":
@@ -1011,7 +1050,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
 
             // Ensure we always return proper JsonSchema objects for structure properties
             if (typeof memberType === "string") {
-              properties[memberName] = { type: memberType };
+              properties[memberName] = {type: memberType};
             } else {
               properties[memberName] = memberType;
             }
@@ -1024,11 +1063,11 @@ export async function serializeAWSResponse(response: any): Promise<any> {
           return {
             type: "object",
             properties,
-            ...(required.length > 0 ? { required } : {}),
+            ...(required.length > 0 ? {required} : {}),
             additionalProperties: false,
           };
         }
-        return { type: "object", additionalProperties: true };
+        return {type: "object", additionalProperties: true};
 
       case "timestamp":
         return "string";
@@ -1134,8 +1173,4 @@ async function main() {
   }
 }
 
-if (require.main === module) {
-  main();
-}
-
-export { AWSAppGenerator };
+main();
