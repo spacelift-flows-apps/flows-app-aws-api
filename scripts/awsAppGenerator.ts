@@ -9,7 +9,7 @@
 
 import fs from "fs";
 import path from "path";
-import {spawn} from "child_process";
+import { spawn } from "child_process";
 
 // Types for Smithy JSON AST structure
 interface SmithyModel {
@@ -87,7 +87,7 @@ class AWSAppGenerator {
     }
 
     const services = fs
-      .readdirSync(servicesDir, {withFileTypes: true})
+      .readdirSync(servicesDir, { withFileTypes: true })
       .filter((dirent) => dirent.isDirectory())
       .map((dirent) => dirent.name);
 
@@ -127,7 +127,7 @@ class AWSAppGenerator {
       console.log(
         `Found breakdown configuration for ${serviceName}, generating ${
           Object.keys(breakdown.apps).length
-        } separate apps...`
+        } separate apps...`,
       );
 
       // Generate separate directories for each breakdown category
@@ -137,43 +137,43 @@ class AWSAppGenerator {
           breakdown,
           appKey,
           appConfig,
-          outputDir
+          outputDir,
         );
       }
 
       console.log(
         `✓ Generated ${
           Object.keys(breakdown.apps).length
-        } separate apps for ${serviceName}`
+        } separate apps for ${serviceName}`,
       );
-    } else {
-      console.log(
-        `Generating single app for ${service.metadata.serviceFullName}...`
-      );
-
-      // Generate single app as before
-      const appDir = path.join(outputDir, serviceName);
-      fs.mkdirSync(appDir, {recursive: true});
-
-      await this.generateMainApp(service, appDir);
-      const blocksDir = path.join(appDir, "blocks");
-      fs.mkdirSync(blocksDir, {recursive: true});
-
-      // Generate utility files for S3 service
-      if (service.metadata.serviceId === "S3") {
-        const utilsDir = path.join(appDir, "utils");
-        fs.mkdirSync(utilsDir, {recursive: true});
-        await this.generateS3SerializeUtility(utilsDir);
-      }
-
-      await this.generateActionBlocks(service, blocksDir);
-      await this.generatePackageJson(service, appDir);
-      await this.generateConfigs(appDir);
-      await this.generateVersionFile(appDir);
-      await this.formatCode(service, appDir);
-
-      console.log(`✓ Generated ${serviceName} app in ${appDir}`);
+      return;
     }
+    console.log(
+      `Generating single app for ${service.metadata.serviceFullName}...`,
+    );
+
+    // Generate single app as before
+    const appDir = path.join(outputDir, serviceName);
+    fs.mkdirSync(appDir, { recursive: true });
+
+    await this.generateMainApp(service, appDir);
+    const blocksDir = path.join(appDir, "blocks");
+    fs.mkdirSync(blocksDir, { recursive: true });
+
+    // Generate utility files for S3 service
+    if (service.metadata.serviceId === "S3") {
+      const utilsDir = path.join(appDir, "utils");
+      fs.mkdirSync(utilsDir, { recursive: true });
+      await this.generateS3SerializeUtility(utilsDir);
+    }
+
+    await this.generateActionBlocks(service, blocksDir);
+    await this.generatePackageJson(service, appDir);
+    await this.generateConfigs(appDir);
+    await this.generateVersionFile(appDir);
+    await this.formatCode(service, appDir);
+
+    console.log(`✓ Generated ${serviceName} app in ${appDir}`);
   }
 
   /**
@@ -188,7 +188,7 @@ class AWSAppGenerator {
     try {
       if (!fs.existsSync(breakdownsDir)) {
         console.log(
-          "No breakdowns directory found, proceeding without breakdowns"
+          "No breakdowns directory found, proceeding without breakdowns",
         );
         return;
       }
@@ -204,25 +204,25 @@ class AWSAppGenerator {
           const breakdown: ServiceBreakdown = JSON.parse(content);
           this.breakdowns.set(breakdown.service, breakdown);
           console.log(
-            `✓ Loaded breakdown configuration for ${breakdown.service}`
+            `✓ Loaded breakdown configuration for ${breakdown.service}`,
           );
         } catch (error: any) {
           console.warn(
             `⚠ Failed to load breakdown file ${file}:`,
-            error.message
+            error.message,
           );
         }
       }
     } catch (error: any) {
       console.log(
-        "Error reading breakdowns directory, proceeding without breakdowns"
+        "Error reading breakdowns directory, proceeding without breakdowns",
       );
     }
   }
 
   private async loadServiceModel(
     servicesDir: string,
-    serviceName: string
+    serviceName: string,
   ): Promise<ParsedService | null> {
     const servicePath = path.join(servicesDir, serviceName, "service");
 
@@ -231,7 +231,7 @@ class AWSAppGenerator {
     }
 
     const versions = fs
-      .readdirSync(servicePath, {withFileTypes: true})
+      .readdirSync(servicePath, { withFileTypes: true })
       .filter((dirent) => dirent.isDirectory())
       .map((dirent) => dirent.name)
       .sort()
@@ -245,7 +245,7 @@ class AWSAppGenerator {
     const modelPath = path.join(
       servicePath,
       latestVersion,
-      `${serviceName}-${latestVersion}.json`
+      `${serviceName}-${latestVersion}.json`,
     );
 
     if (!fs.existsSync(modelPath)) {
@@ -257,7 +257,7 @@ class AWSAppGenerator {
 
     // Extract service metadata and operations
     const serviceShapeId = Object.keys(model.shapes).find(
-      (id) => model.shapes[id].type === "service"
+      (id) => model.shapes[id].type === "service",
     );
 
     if (!serviceShapeId) {
@@ -311,13 +311,13 @@ class AWSAppGenerator {
     breakdown: ServiceBreakdown,
     appKey: string,
     appConfig: { name: string; description: string; operations: string[] },
-    outputDir: string
+    outputDir: string,
   ) {
     console.log(`Generating ${appConfig.name} app...`);
 
     // Create directory for this breakdown app
     const appDir = path.join(outputDir, appKey);
-    fs.mkdirSync(appDir, {recursive: true});
+    fs.mkdirSync(appDir, { recursive: true });
 
     // Filter operations for this breakdown app
     const filteredOperations: Record<string, Operation> = {};
@@ -329,7 +329,7 @@ class AWSAppGenerator {
         filteredBlocks.push(this.camelCase(opName));
       } else {
         console.warn(
-          `⚠ Operation ${opName} not found in ${breakdown.service} service`
+          `⚠ Operation ${opName} not found in ${breakdown.service} service`,
         );
       }
     }
@@ -382,7 +382,7 @@ export const app = defineApp({
 
     // Generate blocks directory with only filtered operations
     const blocksDir = path.join(appDir, "blocks");
-    fs.mkdirSync(blocksDir, {recursive: true});
+    fs.mkdirSync(blocksDir, { recursive: true });
     await this.generateActionBlocks(filteredService, blocksDir);
 
     // Generate package.json and configs for this app
@@ -437,7 +437,7 @@ export const app = defineApp({
 
   private async generateActionBlocks(
     service: ParsedService,
-    blocksDir: string
+    blocksDir: string,
   ) {
     const operations = Object.values(service.operations);
     const blocks: string[] = [];
@@ -450,7 +450,7 @@ export const app = defineApp({
       await this.generateActionBlock(
         service,
         operation,
-        path.join(blocksDir, fileName)
+        path.join(blocksDir, fileName),
       );
       blocks.push(blockName);
     }
@@ -468,7 +468,7 @@ export const app = defineApp({
   private async generateActionBlock(
     service: ParsedService,
     operation: Operation,
-    filePath: string
+    filePath: string,
   ) {
     const clientName = this.getClientName(service.metadata.serviceId);
     const commandName = `${operation.name}Command`;
@@ -499,8 +499,13 @@ const ${this.camelCase(operation.name)}: AppBlock = {
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } = input.event.inputConfig;
 
+        let credentials = {
+            accessKeyId: input.app.config.accessKeyId,
+            secretAccessKey: input.app.config.secretAccessKey,
+            sessionToken: input.app.config.sessionToken,
+        };
+        
         // Determine credentials to use
-        let credentials;
         if (assumeRoleArn) {
           // Use STS to assume the specified role
           const stsClient = new STSClient({
@@ -524,15 +529,8 @@ const ${this.camelCase(operation.name)}: AppBlock = {
             secretAccessKey: assumeRoleResponse.Credentials!.SecretAccessKey!,
             sessionToken: assumeRoleResponse.Credentials!.SessionToken!,
           };
-        } else {
-          // Use app-level credentials
-          credentials = {
-            accessKeyId: input.app.config.accessKeyId,
-            secretAccessKey: input.app.config.secretAccessKey,
-            sessionToken: input.app.config.sessionToken,
-          };
-        }
-
+        } 
+        
         const client = new ${clientName}({
           region: region,
           credentials: credentials,
@@ -542,11 +540,13 @@ const ${this.camelCase(operation.name)}: AppBlock = {
         const command = new ${commandName}(commandInput as any);
         const response = await client.send(command);
 
-        ${isS3Service
-      ? `// Safely serialize response by handling circular references and streams
+        ${
+          isS3Service
+            ? `// Safely serialize response by handling circular references and streams
         const safeResponse = await serializeAWSResponse(response);
         await events.emit(safeResponse || {});`
-      : `await events.emit(response || {});`}
+            : `await events.emit(response || {});`
+        }
       },
     },
   },
@@ -568,7 +568,7 @@ export default ${this.camelCase(operation.name)};
 
   private generateInputConfig(
     service: ParsedService,
-    operation: Operation
+    operation: Operation,
   ): Record<string, any> {
     const config: Record<string, any> = {
       region: {
@@ -579,7 +579,8 @@ export default ${this.camelCase(operation.name)};
       },
       assumeRoleArn: {
         name: "Assume Role ARN",
-        description: "Optional IAM role ARN to assume before executing this operation. If provided, the block will use STS to assume this role and use the temporary credentials.",
+        description:
+          "Optional IAM role ARN to assume before executing this operation. If provided, the block will use STS to assume this role and use the temporary credentials.",
         type: "string",
         required: false,
       },
@@ -605,15 +606,15 @@ export default ${this.camelCase(operation.name)};
 
   private generateOutputType(
     service: ParsedService,
-    operation: Operation
+    operation: Operation,
   ): any {
     if (!operation.output?.target) {
-      return {type: "object", additionalProperties: true};
+      return { type: "object", additionalProperties: true };
     }
 
     const outputShape = service.shapes[operation.output.target];
     if (!outputShape?.members) {
-      return {type: "object", additionalProperties: true};
+      return { type: "object", additionalProperties: true };
     }
 
     const properties: Record<string, any> = {};
@@ -644,7 +645,7 @@ export default ${this.camelCase(operation.name)};
     return {
       type: "object",
       properties,
-      ...(required.length > 0 ? {required} : {additionalProperties: true}),
+      ...(required.length > 0 ? { required } : { additionalProperties: true }),
     };
   }
 
@@ -675,7 +676,7 @@ export default ${this.camelCase(operation.name)};
 
     fs.writeFileSync(
       path.join(appDir, "package.json"),
-      JSON.stringify(packageJson, null, 2)
+      JSON.stringify(packageJson, null, 2),
     );
 
     // Run npm install
@@ -699,12 +700,12 @@ export default ${this.camelCase(operation.name)};
       npmInstall.on("close", (code) => {
         if (code === 0) {
           console.log(
-            `✓ Dependencies installed for ${service.metadata.serviceId}`
+            `✓ Dependencies installed for ${service.metadata.serviceId}`,
           );
           // Show what version was installed
           try {
             const packageLock = JSON.parse(
-              fs.readFileSync(path.join(appDir, "package-lock.json"), "utf8")
+              fs.readFileSync(path.join(appDir, "package-lock.json"), "utf8"),
             );
             const sdkVersion =
               packageLock.packages?.["node_modules/@slflows/sdk"]?.version;
@@ -717,7 +718,7 @@ export default ${this.camelCase(operation.name)};
           resolve();
         } else {
           console.error(
-            `✗ npm install failed for ${service.metadata.serviceId}:`
+            `✗ npm install failed for ${service.metadata.serviceId}:`,
           );
           console.error(output);
           reject(new Error(`npm install failed with code ${code}`));
@@ -765,7 +766,7 @@ export default ${this.camelCase(operation.name)};
 
     fs.writeFileSync(
       path.join(appDir, "tsconfig.json"),
-      JSON.stringify(tsConfig, null, 2)
+      JSON.stringify(tsConfig, null, 2),
     );
   }
 
@@ -793,7 +794,7 @@ export default ${this.camelCase(operation.name)};
           resolve();
         } else {
           console.warn(
-            `⚠ Code formatting failed for ${service.metadata.serviceId}:`
+            `⚠ Code formatting failed for ${service.metadata.serviceId}:`,
           );
           console.warn(output);
           // Don't fail the whole generation for formatting issues
@@ -889,7 +890,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
 
   private getShapeDescription(
     member: SmithyMember,
-    shape?: SmithyShape
+    shape?: SmithyShape,
   ): string {
     // Try to get description from member traits first
     if (member.traits?.["smithy.api#documentation"]) {
@@ -909,7 +910,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
     // Try to get from operation traits
     if (operation.traits?.["smithy.api#documentation"]) {
       return this.cleanDocumentation(
-        operation.traits["smithy.api#documentation"]
+        operation.traits["smithy.api#documentation"],
       );
     }
 
@@ -939,21 +940,21 @@ export async function serializeAWSResponse(response: any): Promise<any> {
   private mapSmithyTypeToFlows(
     shape?: SmithyShape,
     service?: ParsedService,
-    depth = 0
+    depth = 0,
   ): any {
     if (!shape) return "string";
 
     // Prevent infinite recursion
-    if (depth > 3) return {type: "object", additionalProperties: true};
+    if (depth > 3) return { type: "object", additionalProperties: true };
 
     switch (shape.type) {
       case "string":
         // Check for enum values
         if (shape.traits?.["smithy.api#enum"]) {
           const enumValues = shape.traits["smithy.api#enum"].map(
-            (e: any) => e.value
+            (e: any) => e.value,
           );
-          return {type: "string", enum: enumValues};
+          return { type: "string", enum: enumValues };
         }
         return "string";
 
@@ -971,20 +972,20 @@ export async function serializeAWSResponse(response: any): Promise<any> {
       case "list":
         // Try to get more specific item type
         const memberTarget = shape.member?.target;
-        let itemType = {type: "any"};
+        let itemType = { type: "any" };
         if (memberTarget && service) {
           const memberShape = service.shapes[memberTarget];
           if (memberShape) {
             itemType = this.mapSmithyTypeToFlows(
               memberShape,
               service,
-              depth + 1
+              depth + 1,
             );
           }
         }
         return {
           type: "array",
-          items: typeof itemType === "string" ? {type: itemType} : itemType,
+          items: typeof itemType === "string" ? { type: itemType } : itemType,
         };
 
       case "map":
@@ -996,7 +997,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
             const mappedType = this.mapSmithyTypeToFlows(
               valueShape,
               service,
-              depth + 1
+              depth + 1,
             );
             // If it's a simple type, use it
             if (typeof mappedType === "string") {
@@ -1031,7 +1032,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
         // Fallback to generic object
         return {
           type: "object",
-          additionalProperties: {type: "object"},
+          additionalProperties: { type: "object" },
         };
 
       case "structure":
@@ -1045,12 +1046,12 @@ export async function serializeAWSResponse(response: any): Promise<any> {
             const memberType = this.mapSmithyTypeToFlows(
               memberShape,
               service,
-              depth + 1
+              depth + 1,
             );
 
             // Ensure we always return proper JsonSchema objects for structure properties
             if (typeof memberType === "string") {
-              properties[memberName] = {type: memberType};
+              properties[memberName] = { type: memberType };
             } else {
               properties[memberName] = memberType;
             }
@@ -1063,11 +1064,11 @@ export async function serializeAWSResponse(response: any): Promise<any> {
           return {
             type: "object",
             properties,
-            ...(required.length > 0 ? {required} : {}),
+            ...(required.length > 0 ? { required } : {}),
             additionalProperties: false,
           };
         }
-        return {type: "object", additionalProperties: true};
+        return { type: "object", additionalProperties: true };
 
       case "timestamp":
         return "string";
@@ -1140,8 +1141,10 @@ async function main() {
     if (serviceName) {
       // Generate single service
       if (!SERVICES_TO_GENERATE.includes(serviceName as any)) {
-        console.error(`❌ Service '${serviceName}' is not in the supported services list.`);
-        console.log(`Supported services: ${SERVICES_TO_GENERATE.join(', ')}`);
+        console.error(
+          `❌ Service '${serviceName}' is not in the supported services list.`,
+        );
+        console.log(`Supported services: ${SERVICES_TO_GENERATE.join(", ")}`);
         process.exit(1);
       }
 
@@ -1151,7 +1154,7 @@ async function main() {
     } else {
       // Generate all services
       console.log(
-        `Generating apps for ${SERVICES_TO_GENERATE.length} AWS services...`
+        `Generating apps for ${SERVICES_TO_GENERATE.length} AWS services...`,
       );
 
       for (const serviceName of SERVICES_TO_GENERATE) {
