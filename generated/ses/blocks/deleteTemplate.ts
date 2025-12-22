@@ -1,9 +1,10 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { SESClient, DeleteTemplateCommand } from "@aws-sdk/client-ses";
+import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const deleteTemplate: AppBlock = {
   name: "Delete Template",
-  description: "Deletes an email template.",
+  description: `Deletes an email template.`,
   inputs: {
     default: {
       config: {
@@ -13,6 +14,13 @@ const deleteTemplate: AppBlock = {
           type: "string",
           required: true,
         },
+        assumeRoleArn: {
+          name: "Assume Role ARN",
+          description:
+            "Optional IAM role ARN to assume before executing this operation. If provided, the block will use STS to assume this role and use the temporary credentials.",
+          type: "string",
+          required: false,
+        },
         TemplateName: {
           name: "Template Name",
           description: "The name of the template to be deleted.",
@@ -21,15 +29,42 @@ const deleteTemplate: AppBlock = {
         },
       },
       onEvent: async (input) => {
-        const { region, ...commandInput } = input.event.inputConfig;
+        const { region, assumeRoleArn, ...commandInput } =
+          input.event.inputConfig;
+
+        let credentials = {
+          accessKeyId: input.app.config.accessKeyId,
+          secretAccessKey: input.app.config.secretAccessKey,
+          sessionToken: input.app.config.sessionToken,
+        };
+
+        // Determine credentials to use
+        if (assumeRoleArn) {
+          // Use STS to assume the specified role
+          const stsClient = new STSClient({
+            region: region,
+            credentials: credentials,
+            ...(input.app.config.endpoint && {
+              endpoint: input.app.config.endpoint,
+            }),
+          });
+
+          const assumeRoleCommand = new AssumeRoleCommand({
+            RoleArn: assumeRoleArn,
+            RoleSessionName: `flows-session-${Date.now()}`,
+          });
+
+          const assumeRoleResponse = await stsClient.send(assumeRoleCommand);
+          credentials = {
+            accessKeyId: assumeRoleResponse.Credentials!.AccessKeyId!,
+            secretAccessKey: assumeRoleResponse.Credentials!.SecretAccessKey!,
+            sessionToken: assumeRoleResponse.Credentials!.SessionToken!,
+          };
+        }
 
         const client = new SESClient({
           region: region,
-          credentials: {
-            accessKeyId: input.app.config.accessKeyId,
-            secretAccessKey: input.app.config.secretAccessKey,
-            sessionToken: input.app.config.sessionToken,
-          },
+          credentials: credentials,
           ...(input.app.config.endpoint && {
             endpoint: input.app.config.endpoint,
           }),

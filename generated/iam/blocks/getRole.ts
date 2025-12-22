@@ -1,10 +1,10 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { IAMClient, GetRoleCommand } from "@aws-sdk/client-iam";
+import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const getRole: AppBlock = {
   name: "Get Role",
-  description:
-    "Retrieves information about the specified role, including the role's path, GUID, ARN, and the role's trust policy that grants permission to assume the role.",
+  description: `Retrieves information about the specified role, including the role's path, GUID, ARN, and the role's trust policy that grants permission to assume the role.`,
   inputs: {
     default: {
       config: {
@@ -14,6 +14,13 @@ const getRole: AppBlock = {
           type: "string",
           required: true,
         },
+        assumeRoleArn: {
+          name: "Assume Role ARN",
+          description:
+            "Optional IAM role ARN to assume before executing this operation. If provided, the block will use STS to assume this role and use the temporary credentials.",
+          type: "string",
+          required: false,
+        },
         RoleName: {
           name: "Role Name",
           description: "The name of the IAM role to get information about.",
@@ -22,15 +29,42 @@ const getRole: AppBlock = {
         },
       },
       onEvent: async (input) => {
-        const { region, ...commandInput } = input.event.inputConfig;
+        const { region, assumeRoleArn, ...commandInput } =
+          input.event.inputConfig;
+
+        let credentials = {
+          accessKeyId: input.app.config.accessKeyId,
+          secretAccessKey: input.app.config.secretAccessKey,
+          sessionToken: input.app.config.sessionToken,
+        };
+
+        // Determine credentials to use
+        if (assumeRoleArn) {
+          // Use STS to assume the specified role
+          const stsClient = new STSClient({
+            region: region,
+            credentials: credentials,
+            ...(input.app.config.endpoint && {
+              endpoint: input.app.config.endpoint,
+            }),
+          });
+
+          const assumeRoleCommand = new AssumeRoleCommand({
+            RoleArn: assumeRoleArn,
+            RoleSessionName: `flows-session-${Date.now()}`,
+          });
+
+          const assumeRoleResponse = await stsClient.send(assumeRoleCommand);
+          credentials = {
+            accessKeyId: assumeRoleResponse.Credentials!.AccessKeyId!,
+            secretAccessKey: assumeRoleResponse.Credentials!.SecretAccessKey!,
+            sessionToken: assumeRoleResponse.Credentials!.SessionToken!,
+          };
+        }
 
         const client = new IAMClient({
           region: region,
-          credentials: {
-            accessKeyId: input.app.config.accessKeyId,
-            secretAccessKey: input.app.config.secretAccessKey,
-            sessionToken: input.app.config.sessionToken,
-          },
+          credentials: credentials,
           ...(input.app.config.endpoint && {
             endpoint: input.app.config.endpoint,
           }),

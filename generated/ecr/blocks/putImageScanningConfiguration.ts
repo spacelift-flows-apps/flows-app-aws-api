@@ -3,11 +3,11 @@ import {
   ECRClient,
   PutImageScanningConfigurationCommand,
 } from "@aws-sdk/client-ecr";
+import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const putImageScanningConfiguration: AppBlock = {
   name: "Put Image Scanning Configuration",
-  description:
-    "The PutImageScanningConfiguration API is being deprecated, in favor of specifying the image scanning configuration at the registry level.",
+  description: `The PutImageScanningConfiguration API is being deprecated, in favor of specifying the image scanning configuration at the registry level.`,
   inputs: {
     default: {
       config: {
@@ -16,6 +16,13 @@ const putImageScanningConfiguration: AppBlock = {
           description: "AWS region for this operation",
           type: "string",
           required: true,
+        },
+        assumeRoleArn: {
+          name: "Assume Role ARN",
+          description:
+            "Optional IAM role ARN to assume before executing this operation. If provided, the block will use STS to assume this role and use the temporary credentials.",
+          type: "string",
+          required: false,
         },
         registryId: {
           name: "registry Id",
@@ -47,15 +54,42 @@ const putImageScanningConfiguration: AppBlock = {
         },
       },
       onEvent: async (input) => {
-        const { region, ...commandInput } = input.event.inputConfig;
+        const { region, assumeRoleArn, ...commandInput } =
+          input.event.inputConfig;
+
+        let credentials = {
+          accessKeyId: input.app.config.accessKeyId,
+          secretAccessKey: input.app.config.secretAccessKey,
+          sessionToken: input.app.config.sessionToken,
+        };
+
+        // Determine credentials to use
+        if (assumeRoleArn) {
+          // Use STS to assume the specified role
+          const stsClient = new STSClient({
+            region: region,
+            credentials: credentials,
+            ...(input.app.config.endpoint && {
+              endpoint: input.app.config.endpoint,
+            }),
+          });
+
+          const assumeRoleCommand = new AssumeRoleCommand({
+            RoleArn: assumeRoleArn,
+            RoleSessionName: `flows-session-${Date.now()}`,
+          });
+
+          const assumeRoleResponse = await stsClient.send(assumeRoleCommand);
+          credentials = {
+            accessKeyId: assumeRoleResponse.Credentials!.AccessKeyId!,
+            secretAccessKey: assumeRoleResponse.Credentials!.SecretAccessKey!,
+            sessionToken: assumeRoleResponse.Credentials!.SessionToken!,
+          };
+        }
 
         const client = new ECRClient({
           region: region,
-          credentials: {
-            accessKeyId: input.app.config.accessKeyId,
-            secretAccessKey: input.app.config.secretAccessKey,
-            sessionToken: input.app.config.sessionToken,
-          },
+          credentials: credentials,
           ...(input.app.config.endpoint && {
             endpoint: input.app.config.endpoint,
           }),
