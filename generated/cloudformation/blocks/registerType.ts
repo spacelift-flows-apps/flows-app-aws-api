@@ -92,11 +92,7 @@ const registerType: AppBlock = {
           // Use STS to assume the specified role
           const stsClient = new STSClient({
             region: region,
-            credentials: {
-              accessKeyId: input.app.config.accessKeyId,
-              secretAccessKey: input.app.config.secretAccessKey,
-              sessionToken: input.app.config.sessionToken,
-            },
+            credentials: credentials,
             ...(input.app.config.endpoint && {
               endpoint: input.app.config.endpoint,
             }),
