@@ -172,8 +172,13 @@ const updateDistributionTenant: AppBlock = {
         const { region, assumeRoleArn, ...commandInput } =
           input.event.inputConfig;
 
+        let credentials = {
+          accessKeyId: input.app.config.accessKeyId,
+          secretAccessKey: input.app.config.secretAccessKey,
+          sessionToken: input.app.config.sessionToken,
+        };
+
         // Determine credentials to use
-        let credentials;
         if (assumeRoleArn) {
           // Use STS to assume the specified role
           const stsClient = new STSClient({
@@ -198,13 +203,6 @@ const updateDistributionTenant: AppBlock = {
             accessKeyId: assumeRoleResponse.Credentials!.AccessKeyId!,
             secretAccessKey: assumeRoleResponse.Credentials!.SecretAccessKey!,
             sessionToken: assumeRoleResponse.Credentials!.SessionToken!,
-          };
-        } else {
-          // Use app-level credentials
-          credentials = {
-            accessKeyId: input.app.config.accessKeyId,
-            secretAccessKey: input.app.config.secretAccessKey,
-            sessionToken: input.app.config.sessionToken,
           };
         }
 
