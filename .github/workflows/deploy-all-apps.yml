@@ -1,0 +1,50 @@
+name: Deploy All AWS API Apps
+
+on:
+  workflow_dispatch:
+
+jobs:
+  list-apps:
+    name: List all apps to deploy
+    runs-on: ubuntu-latest
+    outputs:
+      apps: ${{ steps.list.outputs.apps }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: List all apps
+        id: list
+        run: |
+          cd generated
+          apps=$(ls -d */ | sed 's#/##' | jq -R -s -c 'split("\n")[:-1]')
+          echo "apps=$apps" >> $GITHUB_OUTPUT
+
+  deploy:
+    name: Deploy ${{ matrix.app_name }}
+    needs: list-apps
+    strategy:
+      max-parallel: 10
+      fail-fast: false
+      matrix:
+        app_name: ${{ fromJson(needs.list-apps.outputs.apps) }}
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: ${{ matrix.app_name }}
+    secrets: inherit
+
+  summary:
+    name: Deployment Summary
+    if: always()
+    needs: [ list-apps, deploy ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report deployment status
+        run: |
+          if [ "${{ needs.deploy.result }}" == "success" ]; then
+            echo "✅ All apps deployed successfully"
+          elif [ "${{ needs.deploy.result }}" == "failure" ]; then
+            echo "❌ Some apps failed to deploy. Check individual job logs for details."
+            exit 1
+          else
+            echo "⚠️  Deployment completed with issues"
+          fi
