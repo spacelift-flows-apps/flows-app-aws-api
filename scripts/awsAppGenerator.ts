@@ -1098,6 +1098,7 @@ const SERVICES_TO_GENERATE = [
   "cloudfront",
   "cloudtrail",
   "cloudwatch",
+  "cloudwatch-logs",
   "dynamodb",
   "ec2",
   "ecr",
