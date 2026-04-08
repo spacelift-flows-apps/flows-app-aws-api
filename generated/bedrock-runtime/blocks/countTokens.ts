@@ -34,7 +34,152 @@ const countTokens: AppBlock = {
         input: {
           name: "input",
           description: "The input for which to count tokens.",
-          type: "string",
+          type: {
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  invokeModel: {
+                    type: "object",
+                    properties: {
+                      body: {
+                        type: "string",
+                      },
+                    },
+                    required: ["body"],
+                    additionalProperties: false,
+                  },
+                },
+                required: ["invokeModel"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  converse: {
+                    type: "object",
+                    properties: {
+                      messages: {
+                        type: "array",
+                        items: {
+                          type: "object",
+                          properties: {
+                            role: {
+                              type: "object",
+                              additionalProperties: true,
+                            },
+                            content: {
+                              type: "object",
+                              additionalProperties: true,
+                            },
+                          },
+                          required: ["role", "content"],
+                          additionalProperties: false,
+                        },
+                      },
+                      system: {
+                        type: "array",
+                        items: {
+                          oneOf: [
+                            {
+                              type: "object",
+                              properties: {
+                                text: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["text"],
+                              additionalProperties: false,
+                            },
+                            {
+                              type: "object",
+                              properties: {
+                                guardContent: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["guardContent"],
+                              additionalProperties: false,
+                            },
+                            {
+                              type: "object",
+                              properties: {
+                                cachePoint: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["cachePoint"],
+                              additionalProperties: false,
+                            },
+                          ],
+                        },
+                      },
+                      toolConfig: {
+                        type: "object",
+                        properties: {
+                          tools: {
+                            type: "array",
+                            items: {
+                              type: "object",
+                              additionalProperties: true,
+                            },
+                          },
+                          toolChoice: {
+                            oneOf: [
+                              {
+                                type: "object",
+                                properties: {
+                                  auto: {
+                                    type: "object",
+                                    additionalProperties: true,
+                                  },
+                                },
+                                required: ["auto"],
+                                additionalProperties: false,
+                              },
+                              {
+                                type: "object",
+                                properties: {
+                                  any: {
+                                    type: "object",
+                                    additionalProperties: true,
+                                  },
+                                },
+                                required: ["any"],
+                                additionalProperties: false,
+                              },
+                              {
+                                type: "object",
+                                properties: {
+                                  tool: {
+                                    type: "object",
+                                    additionalProperties: true,
+                                  },
+                                },
+                                required: ["tool"],
+                                additionalProperties: false,
+                              },
+                            ],
+                          },
+                        },
+                        required: ["tools"],
+                        additionalProperties: false,
+                      },
+                      additionalModelRequestFields: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["converse"],
+                additionalProperties: false,
+              },
+            ],
+          },
           required: true,
         },
       },

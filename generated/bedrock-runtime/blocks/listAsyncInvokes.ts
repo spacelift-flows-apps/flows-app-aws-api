@@ -161,7 +161,34 @@ const listAsyncInvokes: AppBlock = {
                   type: "string",
                 },
                 outputDataConfig: {
-                  type: "string",
+                  oneOf: [
+                    {
+                      type: "object",
+                      properties: {
+                        s3OutputDataConfig: {
+                          type: "object",
+                          properties: {
+                            s3Uri: {
+                              type: "object",
+                              additionalProperties: true,
+                            },
+                            kmsKeyId: {
+                              type: "object",
+                              additionalProperties: true,
+                            },
+                            bucketOwner: {
+                              type: "object",
+                              additionalProperties: true,
+                            },
+                          },
+                          required: ["s3Uri"],
+                          additionalProperties: false,
+                        },
+                      },
+                      required: ["s3OutputDataConfig"],
+                      additionalProperties: false,
+                    },
+                  ],
                 },
               },
               required: [

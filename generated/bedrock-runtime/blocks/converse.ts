@@ -45,7 +45,139 @@ const converse: AppBlock = {
                 content: {
                   type: "array",
                   items: {
-                    type: "string",
+                    oneOf: [
+                      {
+                        type: "object",
+                        properties: {
+                          text: {
+                            type: "string",
+                          },
+                        },
+                        required: ["text"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          image: {
+                            type: "object",
+                            additionalProperties: true,
+                          },
+                        },
+                        required: ["image"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          document: {
+                            type: "object",
+                            additionalProperties: true,
+                          },
+                        },
+                        required: ["document"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          video: {
+                            type: "object",
+                            additionalProperties: true,
+                          },
+                        },
+                        required: ["video"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          audio: {
+                            type: "object",
+                            additionalProperties: true,
+                          },
+                        },
+                        required: ["audio"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          toolUse: {
+                            type: "object",
+                            additionalProperties: true,
+                          },
+                        },
+                        required: ["toolUse"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          toolResult: {
+                            type: "object",
+                            additionalProperties: true,
+                          },
+                        },
+                        required: ["toolResult"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          guardContent: {
+                            type: "object",
+                            additionalProperties: true,
+                          },
+                        },
+                        required: ["guardContent"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          cachePoint: {
+                            type: "object",
+                            additionalProperties: true,
+                          },
+                        },
+                        required: ["cachePoint"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          reasoningContent: {
+                            type: "object",
+                            additionalProperties: true,
+                          },
+                        },
+                        required: ["reasoningContent"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          citationsContent: {
+                            type: "object",
+                            additionalProperties: true,
+                          },
+                        },
+                        required: ["citationsContent"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          searchResult: {
+                            type: "object",
+                            additionalProperties: true,
+                          },
+                        },
+                        required: ["searchResult"],
+                        additionalProperties: false,
+                      },
+                    ],
                   },
                 },
               },
@@ -62,7 +194,92 @@ const converse: AppBlock = {
           type: {
             type: "array",
             items: {
-              type: "string",
+              oneOf: [
+                {
+                  type: "object",
+                  properties: {
+                    text: {
+                      type: "string",
+                    },
+                  },
+                  required: ["text"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    guardContent: {
+                      oneOf: [
+                        {
+                          type: "object",
+                          properties: {
+                            text: {
+                              type: "object",
+                              properties: {
+                                text: {
+                                  type: "string",
+                                },
+                                qualifiers: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["text"],
+                              additionalProperties: false,
+                            },
+                          },
+                          required: ["text"],
+                          additionalProperties: false,
+                        },
+                        {
+                          type: "object",
+                          properties: {
+                            image: {
+                              type: "object",
+                              properties: {
+                                format: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                                source: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["format", "source"],
+                              additionalProperties: false,
+                            },
+                          },
+                          required: ["image"],
+                          additionalProperties: false,
+                        },
+                      ],
+                    },
+                  },
+                  required: ["guardContent"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    cachePoint: {
+                      type: "object",
+                      properties: {
+                        type: {
+                          type: "string",
+                        },
+                        ttl: {
+                          type: "string",
+                        },
+                      },
+                      required: ["type"],
+                      additionalProperties: false,
+                    },
+                  },
+                  required: ["cachePoint"],
+                  additionalProperties: false,
+                },
+              ],
             },
           },
           required: false,
@@ -103,11 +320,123 @@ const converse: AppBlock = {
               tools: {
                 type: "array",
                 items: {
-                  type: "string",
+                  oneOf: [
+                    {
+                      type: "object",
+                      properties: {
+                        toolSpec: {
+                          type: "object",
+                          properties: {
+                            name: {
+                              type: "object",
+                              additionalProperties: true,
+                            },
+                            description: {
+                              type: "object",
+                              additionalProperties: true,
+                            },
+                            inputSchema: {
+                              type: "object",
+                              additionalProperties: true,
+                            },
+                            strict: {
+                              type: "string",
+                            },
+                          },
+                          required: ["name", "inputSchema"],
+                          additionalProperties: false,
+                        },
+                      },
+                      required: ["toolSpec"],
+                      additionalProperties: false,
+                    },
+                    {
+                      type: "object",
+                      properties: {
+                        systemTool: {
+                          type: "object",
+                          properties: {
+                            name: {
+                              type: "object",
+                              additionalProperties: true,
+                            },
+                          },
+                          required: ["name"],
+                          additionalProperties: false,
+                        },
+                      },
+                      required: ["systemTool"],
+                      additionalProperties: false,
+                    },
+                    {
+                      type: "object",
+                      properties: {
+                        cachePoint: {
+                          type: "object",
+                          properties: {
+                            type: {
+                              type: "object",
+                              additionalProperties: true,
+                            },
+                            ttl: {
+                              type: "object",
+                              additionalProperties: true,
+                            },
+                          },
+                          required: ["type"],
+                          additionalProperties: false,
+                        },
+                      },
+                      required: ["cachePoint"],
+                      additionalProperties: false,
+                    },
+                  ],
                 },
               },
               toolChoice: {
-                type: "string",
+                oneOf: [
+                  {
+                    type: "object",
+                    properties: {
+                      auto: {
+                        type: "object",
+                        properties: {},
+                        additionalProperties: false,
+                      },
+                    },
+                    required: ["auto"],
+                    additionalProperties: false,
+                  },
+                  {
+                    type: "object",
+                    properties: {
+                      any: {
+                        type: "object",
+                        properties: {},
+                        additionalProperties: false,
+                      },
+                    },
+                    required: ["any"],
+                    additionalProperties: false,
+                  },
+                  {
+                    type: "object",
+                    properties: {
+                      tool: {
+                        type: "object",
+                        properties: {
+                          name: {
+                            type: "string",
+                          },
+                        },
+                        required: ["name"],
+                        additionalProperties: false,
+                      },
+                    },
+                    required: ["tool"],
+                    additionalProperties: false,
+                  },
+                ],
               },
             },
             required: ["tools"],
@@ -150,7 +479,7 @@ const converse: AppBlock = {
           type: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
           },
           required: false,
@@ -161,9 +490,7 @@ const converse: AppBlock = {
             "Additional model parameters field paths to return in the response.",
           type: {
             type: "array",
-            items: {
-              type: "any",
-            },
+            items: {},
           },
           required: false,
         },
@@ -222,7 +549,31 @@ const converse: AppBlock = {
                     type: "string",
                   },
                   structure: {
-                    type: "string",
+                    oneOf: [
+                      {
+                        type: "object",
+                        properties: {
+                          jsonSchema: {
+                            type: "object",
+                            properties: {
+                              schema: {
+                                type: "string",
+                              },
+                              name: {
+                                type: "string",
+                              },
+                              description: {
+                                type: "string",
+                              },
+                            },
+                            required: ["schema"],
+                            additionalProperties: false,
+                          },
+                        },
+                        required: ["jsonSchema"],
+                        additionalProperties: false,
+                      },
+                    ],
                   },
                 },
                 required: ["type", "structure"],
@@ -292,7 +643,163 @@ const converse: AppBlock = {
         type: "object",
         properties: {
           output: {
-            type: "string",
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  message: {
+                    type: "object",
+                    properties: {
+                      role: {
+                        type: "string",
+                      },
+                      content: {
+                        type: "array",
+                        items: {
+                          oneOf: [
+                            {
+                              type: "object",
+                              properties: {
+                                text: {
+                                  type: "string",
+                                },
+                              },
+                              required: ["text"],
+                              additionalProperties: false,
+                            },
+                            {
+                              type: "object",
+                              properties: {
+                                image: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["image"],
+                              additionalProperties: false,
+                            },
+                            {
+                              type: "object",
+                              properties: {
+                                document: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["document"],
+                              additionalProperties: false,
+                            },
+                            {
+                              type: "object",
+                              properties: {
+                                video: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["video"],
+                              additionalProperties: false,
+                            },
+                            {
+                              type: "object",
+                              properties: {
+                                audio: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["audio"],
+                              additionalProperties: false,
+                            },
+                            {
+                              type: "object",
+                              properties: {
+                                toolUse: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["toolUse"],
+                              additionalProperties: false,
+                            },
+                            {
+                              type: "object",
+                              properties: {
+                                toolResult: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["toolResult"],
+                              additionalProperties: false,
+                            },
+                            {
+                              type: "object",
+                              properties: {
+                                guardContent: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["guardContent"],
+                              additionalProperties: false,
+                            },
+                            {
+                              type: "object",
+                              properties: {
+                                cachePoint: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["cachePoint"],
+                              additionalProperties: false,
+                            },
+                            {
+                              type: "object",
+                              properties: {
+                                reasoningContent: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["reasoningContent"],
+                              additionalProperties: false,
+                            },
+                            {
+                              type: "object",
+                              properties: {
+                                citationsContent: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["citationsContent"],
+                              additionalProperties: false,
+                            },
+                            {
+                              type: "object",
+                              properties: {
+                                searchResult: {
+                                  type: "object",
+                                  additionalProperties: true,
+                                },
+                              },
+                              required: ["searchResult"],
+                              additionalProperties: false,
+                            },
+                          ],
+                        },
+                      },
+                    },
+                    required: ["role", "content"],
+                    additionalProperties: false,
+                  },
+                },
+                required: ["message"],
+                additionalProperties: false,
+              },
+            ],
             description: "The result from the call to Converse.",
           },
           stopReason: {

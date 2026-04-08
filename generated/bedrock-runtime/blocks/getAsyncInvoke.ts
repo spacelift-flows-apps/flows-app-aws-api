@@ -121,7 +121,31 @@ const getAsyncInvoke: AppBlock = {
             description: "When the invocation ended.",
           },
           outputDataConfig: {
-            type: "string",
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  s3OutputDataConfig: {
+                    type: "object",
+                    properties: {
+                      s3Uri: {
+                        type: "string",
+                      },
+                      kmsKeyId: {
+                        type: "string",
+                      },
+                      bucketOwner: {
+                        type: "string",
+                      },
+                    },
+                    required: ["s3Uri"],
+                    additionalProperties: false,
+                  },
+                },
+                required: ["s3OutputDataConfig"],
+                additionalProperties: false,
+              },
+            ],
             description: "Output data settings.",
           },
         },

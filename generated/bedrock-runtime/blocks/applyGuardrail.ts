@@ -52,7 +52,63 @@ const applyGuardrail: AppBlock = {
           type: {
             type: "array",
             items: {
-              type: "string",
+              oneOf: [
+                {
+                  type: "object",
+                  properties: {
+                    text: {
+                      type: "object",
+                      properties: {
+                        text: {
+                          type: "string",
+                        },
+                        qualifiers: {
+                          type: "array",
+                          items: {
+                            type: "object",
+                            additionalProperties: true,
+                          },
+                        },
+                      },
+                      required: ["text"],
+                      additionalProperties: false,
+                    },
+                  },
+                  required: ["text"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    image: {
+                      type: "object",
+                      properties: {
+                        format: {
+                          type: "string",
+                        },
+                        source: {
+                          oneOf: [
+                            {
+                              type: "object",
+                              properties: {
+                                bytes: {
+                                  type: "string",
+                                },
+                              },
+                              required: ["bytes"],
+                              additionalProperties: false,
+                            },
+                          ],
+                        },
+                      },
+                      required: ["format", "source"],
+                      additionalProperties: false,
+                    },
+                  },
+                  required: ["image"],
+                  additionalProperties: false,
+                },
+              ],
             },
           },
           required: true,

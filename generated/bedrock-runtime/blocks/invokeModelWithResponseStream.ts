@@ -145,7 +145,126 @@ const invokeModelWithResponseStream: AppBlock = {
         type: "object",
         properties: {
           body: {
-            type: "string",
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  chunk: {
+                    type: "object",
+                    properties: {
+                      bytes: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["chunk"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  internalServerException: {
+                    type: "object",
+                    properties: {
+                      message: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["internalServerException"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  modelStreamErrorException: {
+                    type: "object",
+                    properties: {
+                      message: {
+                        type: "string",
+                      },
+                      originalStatusCode: {
+                        type: "number",
+                      },
+                      originalMessage: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["modelStreamErrorException"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  validationException: {
+                    type: "object",
+                    properties: {
+                      message: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["validationException"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  throttlingException: {
+                    type: "object",
+                    properties: {
+                      message: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["throttlingException"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  modelTimeoutException: {
+                    type: "object",
+                    properties: {
+                      message: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["modelTimeoutException"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  serviceUnavailableException: {
+                    type: "object",
+                    properties: {
+                      message: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["serviceUnavailableException"],
+                additionalProperties: false,
+              },
+            ],
             description:
               "Inference response from the model in the format specified by the contentType header.",
           },
