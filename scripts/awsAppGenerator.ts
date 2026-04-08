@@ -1093,6 +1093,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
 
 // Hardcoded list of services to generate
 const SERVICES_TO_GENERATE = [
+  "bedrock-runtime",
   "cloudcontrol",
   "cloudformation",
   "cloudfront",
