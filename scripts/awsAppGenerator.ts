@@ -968,7 +968,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
       case "list":
         // Try to get more specific item type
         const memberTarget = shape.member?.target;
-        let itemType = { type: "any" };
+        let itemType: any = {};
         if (memberTarget && service) {
           const memberShape = service.shapes[memberTarget];
           if (memberShape) {
@@ -1063,6 +1063,29 @@ export async function serializeAWSResponse(response: any): Promise<any> {
             ...(required.length > 0 ? { required } : {}),
             additionalProperties: false,
           };
+        }
+        return { type: "object", additionalProperties: true };
+
+      case "union":
+        if (shape.members && service) {
+          const variants: any[] = [];
+          for (const [memberName, member] of Object.entries(shape.members)) {
+            const memberShape = service.shapes[member.target];
+            const memberType = this.mapSmithyTypeToFlows(
+              memberShape,
+              service,
+              depth + 1,
+            );
+            const prop =
+              typeof memberType === "string" ? { type: memberType } : memberType;
+            variants.push({
+              type: "object",
+              properties: { [memberName]: prop },
+              required: [memberName],
+              additionalProperties: false,
+            });
+          }
+          return { oneOf: variants };
         }
         return { type: "object", additionalProperties: true };
 
