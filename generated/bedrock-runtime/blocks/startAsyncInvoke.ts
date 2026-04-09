@@ -1,0 +1,168 @@
+import { AppBlock, events } from "@slflows/sdk/v1";
+import {
+  BedrockRuntimeClient,
+  StartAsyncInvokeCommand,
+} from "@aws-sdk/client-bedrock-runtime";
+import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+
+const startAsyncInvoke: AppBlock = {
+  name: "Start Async Invoke",
+  description: `Starts an asynchronous invocation.`,
+  inputs: {
+    default: {
+      config: {
+        region: {
+          name: "Region",
+          description: "AWS region for this operation",
+          type: "string",
+          required: true,
+        },
+        assumeRoleArn: {
+          name: "Assume Role ARN",
+          description:
+            "Optional IAM role ARN to assume before executing this operation. If provided, the block will use STS to assume this role and use the temporary credentials.",
+          type: "string",
+          required: false,
+        },
+        clientRequestToken: {
+          name: "client Request Token",
+          description:
+            "Specify idempotency token to ensure that requests are not duplicated.",
+          type: "string",
+          required: false,
+        },
+        modelId: {
+          name: "model Id",
+          description: "The model to invoke.",
+          type: "string",
+          required: true,
+        },
+        modelInput: {
+          name: "model Input",
+          description: "Input to send to the model.",
+          type: "string",
+          required: true,
+        },
+        outputDataConfig: {
+          name: "output Data Config",
+          description: "Where to store the output.",
+          type: {
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  s3OutputDataConfig: {
+                    type: "object",
+                    properties: {
+                      s3Uri: {
+                        type: "string",
+                      },
+                      kmsKeyId: {
+                        type: "string",
+                      },
+                      bucketOwner: {
+                        type: "string",
+                      },
+                    },
+                    required: ["s3Uri"],
+                    additionalProperties: false,
+                  },
+                },
+                required: ["s3OutputDataConfig"],
+                additionalProperties: false,
+              },
+            ],
+          },
+          required: true,
+        },
+        tags: {
+          name: "tags",
+          description: "Tags to apply to the invocation.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                key: {
+                  type: "string",
+                },
+                value: {
+                  type: "string",
+                },
+              },
+              required: ["key", "value"],
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
+      },
+      onEvent: async (input) => {
+        const { region, assumeRoleArn, ...commandInput } =
+          input.event.inputConfig;
+
+        let credentials = {
+          accessKeyId: input.app.config.accessKeyId,
+          secretAccessKey: input.app.config.secretAccessKey,
+          sessionToken: input.app.config.sessionToken,
+        };
+
+        // Determine credentials to use
+        if (assumeRoleArn) {
+          // Use STS to assume the specified role
+          const stsClient = new STSClient({
+            region: region,
+            credentials: credentials,
+            ...(input.app.config.endpoint && {
+              endpoint: input.app.config.endpoint,
+            }),
+          });
+
+          const assumeRoleCommand = new AssumeRoleCommand({
+            RoleArn: assumeRoleArn,
+            RoleSessionName: `flows-session-${Date.now()}`,
+          });
+
+          const assumeRoleResponse = await stsClient.send(assumeRoleCommand);
+          credentials = {
+            accessKeyId: assumeRoleResponse.Credentials!.AccessKeyId!,
+            secretAccessKey: assumeRoleResponse.Credentials!.SecretAccessKey!,
+            sessionToken: assumeRoleResponse.Credentials!.SessionToken!,
+          };
+        }
+
+        const client = new BedrockRuntimeClient({
+          region: region,
+          credentials: credentials,
+          ...(input.app.config.endpoint && {
+            endpoint: input.app.config.endpoint,
+          }),
+        });
+
+        const command = new StartAsyncInvokeCommand(commandInput as any);
+        const response = await client.send(command);
+
+        await events.emit(response || {});
+      },
+    },
+  },
+  outputs: {
+    default: {
+      name: "Start Async Invoke Result",
+      description: "Result from StartAsyncInvoke operation",
+      possiblePrimaryParents: ["default"],
+      type: {
+        type: "object",
+        properties: {
+          invocationArn: {
+            type: "string",
+            description: "The ARN of the invocation.",
+          },
+        },
+        required: ["invocationArn"],
+      },
+    },
+  },
+};
+
+export default startAsyncInvoke;
