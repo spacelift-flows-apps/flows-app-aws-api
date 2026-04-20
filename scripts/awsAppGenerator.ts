@@ -160,12 +160,7 @@ class AWSAppGenerator {
     const blocksDir = path.join(appDir, "blocks");
     fs.mkdirSync(blocksDir, { recursive: true });
 
-    // Generate utility files for S3 service
-    if (service.metadata.serviceId === "S3") {
-      const utilsDir = path.join(appDir, "utils");
-      fs.mkdirSync(utilsDir, { recursive: true });
-      await this.generateS3SerializeUtility(utilsDir);
-    }
+    await this.generateUtilities(service, appDir);
 
     await this.generateActionBlocks(service, blocksDir);
     await this.generatePackageJson(service, appDir);
@@ -383,6 +378,9 @@ export const app = defineApp({
     // Generate blocks directory with only filtered operations
     const blocksDir = path.join(appDir, "blocks");
     fs.mkdirSync(blocksDir, { recursive: true });
+
+    await this.generateUtilities(filteredService, appDir);
+
     await this.generateActionBlocks(filteredService, blocksDir);
 
     // Generate package.json and configs for this app
@@ -480,14 +478,23 @@ export const app = defineApp({
     const timestampFields = this.collectTimestampFields(service, operation);
 
     const isS3Service = service.metadata.serviceId === "S3";
-    const imports = isS3Service
-      ? `import { AppBlock, events } from "@slflows/sdk/v1";
-import { ${clientName}, ${commandName} } from "${packageName}";
-import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
-import { serializeAWSResponse } from "../utils/serialize";`
-      : `import { AppBlock, events } from "@slflows/sdk/v1";
-import { ${clientName}, ${commandName} } from "${packageName}";
-import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";`;
+    const hasTimestamps = timestampFields.size > 0;
+    const importLines = [
+      `import { AppBlock, events } from "@slflows/sdk/v1";`,
+      `import { ${clientName}, ${commandName} } from "${packageName}";`,
+      `import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";`,
+    ];
+    if (isS3Service) {
+      importLines.push(
+        `import { serializeAWSResponse } from "../utils/serialize";`,
+      );
+    }
+    if (hasTimestamps) {
+      importLines.push(
+        `import { convertTimestamps } from "../utils/convertTimestamps";`,
+      );
+    }
+    const imports = importLines.join("\n");
 
     const content = `${imports}
 
@@ -535,20 +542,8 @@ const ${this.camelCase(operation.name)}: AppBlock = {
         });
 
         ${
-          timestampFields.size > 0
-            ? `// Convert timestamp strings to Date objects for AWS SDK compatibility
-        const tsFields = new Set(${JSON.stringify([...timestampFields])});
-        const convertTs = (obj: any): any => {
-          if (!obj || typeof obj !== "object") return obj;
-          if (Array.isArray(obj)) return obj.map(convertTs);
-          return Object.fromEntries(
-            Object.entries(obj).map(([k, v]) => [
-              k,
-              tsFields.has(k) && typeof v === "string" ? new Date(v) : typeof v === "object" ? convertTs(v) : v,
-            ]),
-          );
-        };
-        const command = new ${commandName}(convertTs(commandInput) as any);`
+          hasTimestamps
+            ? `const command = new ${commandName}(convertTimestamps(commandInput, new Set(${JSON.stringify([...timestampFields])})) as any);`
             : `const command = new ${commandName}(commandInput as any);`
         }
         const response = await client.send(command);
@@ -815,6 +810,47 @@ export default ${this.camelCase(operation.name)};
         }
       });
     });
+  }
+
+  private async generateUtilities(service: ParsedService, appDir: string) {
+    const isS3 = service.metadata.serviceId === "S3";
+    const hasTimestamps = this.serviceHasTimestamps(service);
+    if (!isS3 && !hasTimestamps) return;
+
+    const utilsDir = path.join(appDir, "utils");
+    fs.mkdirSync(utilsDir, { recursive: true });
+    if (isS3) await this.generateS3SerializeUtility(utilsDir);
+    if (hasTimestamps) await this.generateConvertTimestampsUtility(utilsDir);
+  }
+
+  private serviceHasTimestamps(service: ParsedService): boolean {
+    for (const operation of Object.values(service.operations)) {
+      if (this.collectTimestampFields(service, operation).size > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private async generateConvertTimestampsUtility(utilsDir: string) {
+    const content = `// Recursively convert string timestamp fields to Date objects for AWS SDK compatibility
+export function convertTimestamps(obj: any, fields: Set<string>): any {
+  if (!obj || typeof obj !== "object") return obj;
+  if (Array.isArray(obj)) return obj.map((item) => convertTimestamps(item, fields));
+  return Object.fromEntries(
+    Object.entries(obj).map(([k, v]) => [
+      k,
+      fields.has(k) && typeof v === "string"
+        ? new Date(v)
+        : typeof v === "object"
+          ? convertTimestamps(v, fields)
+          : v,
+    ]),
+  );
+}
+`;
+
+    fs.writeFileSync(path.join(utilsDir, "convertTimestamps.ts"), content);
   }
 
   private async generateS3SerializeUtility(utilsDir: string) {
