@@ -4,6 +4,7 @@ import {
   StartReplayCommand,
 } from "@aws-sdk/client-eventbridge";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const startReplay: AppBlock = {
   name: "Start Replay",
@@ -119,23 +120,12 @@ const startReplay: AppBlock = {
           }),
         });
 
-        // Convert timestamp strings to Date objects for AWS SDK compatibility
-        const tsFields = new Set(["EventStartTime", "EventEndTime"]);
-        const convertTs = (obj: any): any => {
-          if (!obj || typeof obj !== "object") return obj;
-          if (Array.isArray(obj)) return obj.map(convertTs);
-          return Object.fromEntries(
-            Object.entries(obj).map(([k, v]) => [
-              k,
-              tsFields.has(k) && typeof v === "string"
-                ? new Date(v)
-                : typeof v === "object"
-                  ? convertTs(v)
-                  : v,
-            ]),
-          );
-        };
-        const command = new StartReplayCommand(convertTs(commandInput) as any);
+        const command = new StartReplayCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["EventStartTime", "EventEndTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});
