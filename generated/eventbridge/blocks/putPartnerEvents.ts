@@ -99,7 +99,25 @@ const putPartnerEvents: AppBlock = {
           }),
         });
 
-        const command = new PutPartnerEventsCommand(commandInput as any);
+        // Convert timestamp strings to Date objects for AWS SDK compatibility
+        const tsFields = new Set(["Time"]);
+        const convertTs = (obj: any): any => {
+          if (!obj || typeof obj !== "object") return obj;
+          if (Array.isArray(obj)) return obj.map(convertTs);
+          return Object.fromEntries(
+            Object.entries(obj).map(([k, v]) => [
+              k,
+              tsFields.has(k) && typeof v === "string"
+                ? new Date(v)
+                : typeof v === "object"
+                  ? convertTs(v)
+                  : v,
+            ]),
+          );
+        };
+        const command = new PutPartnerEventsCommand(
+          convertTs(commandInput) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});
