@@ -477,6 +477,7 @@ export const app = defineApp({
     // Get input shape details
     const inputConfig = this.generateInputConfig(service, operation);
     const outputType = this.generateOutputType(service, operation);
+    const timestampFields = this.collectTimestampFields(service, operation);
 
     const isS3Service = service.metadata.serviceId === "S3";
     const imports = isS3Service
@@ -533,7 +534,23 @@ const ${this.camelCase(operation.name)}: AppBlock = {
           ...(input.app.config.endpoint && { endpoint: input.app.config.endpoint }),
         });
 
-        const command = new ${commandName}(commandInput as any);
+        ${
+          timestampFields.size > 0
+            ? `// Convert timestamp strings to Date objects for AWS SDK compatibility
+        const tsFields = new Set(${JSON.stringify([...timestampFields])});
+        const convertTs = (obj: any): any => {
+          if (!obj || typeof obj !== "object") return obj;
+          if (Array.isArray(obj)) return obj.map(convertTs);
+          return Object.fromEntries(
+            Object.entries(obj).map(([k, v]) => [
+              k,
+              tsFields.has(k) && typeof v === "string" ? new Date(v) : typeof v === "object" ? convertTs(v) : v,
+            ]),
+          );
+        };
+        const command = new ${commandName}(convertTs(commandInput) as any);`
+            : `const command = new ${commandName}(commandInput as any);`
+        }
         const response = await client.send(command);
 
         ${
@@ -1111,6 +1128,44 @@ export async function serializeAWSResponse(response: any): Promise<any> {
     }
 
     return false;
+  }
+
+  private collectTimestampFields(
+    service: ParsedService,
+    operation: Operation,
+  ): Set<string> {
+    const fields = new Set<string>();
+    if (!operation.input?.target) return fields;
+
+    const visited = new Set<string>();
+    const collect = (shapeId: string) => {
+      if (visited.has(shapeId)) return;
+      visited.add(shapeId);
+
+      const shape = service.shapes[shapeId];
+      if (!shape) return;
+
+      if (shape.type === "structure" && shape.members) {
+        for (const [memberName, member] of Object.entries(shape.members)) {
+          const targetShape = service.shapes[member.target];
+          if (targetShape?.type === "timestamp") {
+            fields.add(memberName);
+          }
+          collect(member.target);
+        }
+      } else if (shape.type === "list" && shape.member?.target) {
+        collect(shape.member.target);
+      } else if (shape.type === "map" && shape.value?.target) {
+        collect(shape.value.target);
+      } else if (shape.type === "union" && shape.members) {
+        for (const member of Object.values(shape.members)) {
+          collect(member.target);
+        }
+      }
+    };
+
+    collect(operation.input.target);
+    return fields;
   }
 }
 
