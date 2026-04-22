@@ -160,12 +160,7 @@ class AWSAppGenerator {
     const blocksDir = path.join(appDir, "blocks");
     fs.mkdirSync(blocksDir, { recursive: true });
 
-    // Generate utility files for S3 service
-    if (service.metadata.serviceId === "S3") {
-      const utilsDir = path.join(appDir, "utils");
-      fs.mkdirSync(utilsDir, { recursive: true });
-      await this.generateS3SerializeUtility(utilsDir);
-    }
+    await this.generateUtilities(service, appDir);
 
     await this.generateActionBlocks(service, blocksDir);
     await this.generatePackageJson(service, appDir);
@@ -383,6 +378,9 @@ export const app = defineApp({
     // Generate blocks directory with only filtered operations
     const blocksDir = path.join(appDir, "blocks");
     fs.mkdirSync(blocksDir, { recursive: true });
+
+    await this.generateUtilities(filteredService, appDir);
+
     await this.generateActionBlocks(filteredService, blocksDir);
 
     // Generate package.json and configs for this app
@@ -477,16 +475,26 @@ export const app = defineApp({
     // Get input shape details
     const inputConfig = this.generateInputConfig(service, operation);
     const outputType = this.generateOutputType(service, operation);
+    const timestampFields = this.collectTimestampFields(service, operation);
 
     const isS3Service = service.metadata.serviceId === "S3";
-    const imports = isS3Service
-      ? `import { AppBlock, events } from "@slflows/sdk/v1";
-import { ${clientName}, ${commandName} } from "${packageName}";
-import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
-import { serializeAWSResponse } from "../utils/serialize";`
-      : `import { AppBlock, events } from "@slflows/sdk/v1";
-import { ${clientName}, ${commandName} } from "${packageName}";
-import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";`;
+    const hasTimestamps = timestampFields.size > 0;
+    const importLines = [
+      `import { AppBlock, events } from "@slflows/sdk/v1";`,
+      `import { ${clientName}, ${commandName} } from "${packageName}";`,
+      `import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";`,
+    ];
+    if (isS3Service) {
+      importLines.push(
+        `import { serializeAWSResponse } from "../utils/serialize";`,
+      );
+    }
+    if (hasTimestamps) {
+      importLines.push(
+        `import { convertTimestamps } from "../utils/convertTimestamps";`,
+      );
+    }
+    const imports = importLines.join("\n");
 
     const content = `${imports}
 
@@ -533,7 +541,11 @@ const ${this.camelCase(operation.name)}: AppBlock = {
           ...(input.app.config.endpoint && { endpoint: input.app.config.endpoint }),
         });
 
-        const command = new ${commandName}(commandInput as any);
+        ${
+          hasTimestamps
+            ? `const command = new ${commandName}(convertTimestamps(commandInput, new Set(${JSON.stringify([...timestampFields])})) as any);`
+            : `const command = new ${commandName}(commandInput as any);`
+        }
         const response = await client.send(command);
 
         ${
@@ -798,6 +810,47 @@ export default ${this.camelCase(operation.name)};
         }
       });
     });
+  }
+
+  private async generateUtilities(service: ParsedService, appDir: string) {
+    const isS3 = service.metadata.serviceId === "S3";
+    const hasTimestamps = this.serviceHasTimestamps(service);
+    if (!isS3 && !hasTimestamps) return;
+
+    const utilsDir = path.join(appDir, "utils");
+    fs.mkdirSync(utilsDir, { recursive: true });
+    if (isS3) await this.generateS3SerializeUtility(utilsDir);
+    if (hasTimestamps) await this.generateConvertTimestampsUtility(utilsDir);
+  }
+
+  private serviceHasTimestamps(service: ParsedService): boolean {
+    for (const operation of Object.values(service.operations)) {
+      if (this.collectTimestampFields(service, operation).size > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private async generateConvertTimestampsUtility(utilsDir: string) {
+    const content = `// Recursively convert string timestamp fields to Date objects for AWS SDK compatibility
+export function convertTimestamps(obj: any, fields: Set<string>): any {
+  if (!obj || typeof obj !== "object") return obj;
+  if (Array.isArray(obj)) return obj.map((item) => convertTimestamps(item, fields));
+  return Object.fromEntries(
+    Object.entries(obj).map(([k, v]) => [
+      k,
+      fields.has(k) && typeof v === "string"
+        ? new Date(v)
+        : typeof v === "object"
+          ? convertTimestamps(v, fields)
+          : v,
+    ]),
+  );
+}
+`;
+
+    fs.writeFileSync(path.join(utilsDir, "convertTimestamps.ts"), content);
   }
 
   private async generateS3SerializeUtility(utilsDir: string) {
@@ -1111,6 +1164,44 @@ export async function serializeAWSResponse(response: any): Promise<any> {
     }
 
     return false;
+  }
+
+  private collectTimestampFields(
+    service: ParsedService,
+    operation: Operation,
+  ): Set<string> {
+    const fields = new Set<string>();
+    if (!operation.input?.target) return fields;
+
+    const visited = new Set<string>();
+    const collect = (shapeId: string) => {
+      if (visited.has(shapeId)) return;
+      visited.add(shapeId);
+
+      const shape = service.shapes[shapeId];
+      if (!shape) return;
+
+      if (shape.type === "structure" && shape.members) {
+        for (const [memberName, member] of Object.entries(shape.members)) {
+          const targetShape = service.shapes[member.target];
+          if (targetShape?.type === "timestamp") {
+            fields.add(memberName);
+          }
+          collect(member.target);
+        }
+      } else if (shape.type === "list" && shape.member?.target) {
+        collect(shape.member.target);
+      } else if (shape.type === "map" && shape.value?.target) {
+        collect(shape.value.target);
+      } else if (shape.type === "union" && shape.members) {
+        for (const member of Object.values(shape.members)) {
+          collect(member.target);
+        }
+      }
+    };
+
+    collect(operation.input.target);
+    return fields;
   }
 }
 

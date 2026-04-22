@@ -4,6 +4,7 @@ import {
   PutEventsCommand,
 } from "@aws-sdk/client-eventbridge";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const putEvents: AppBlock = {
   name: "Put Events",
@@ -111,7 +112,9 @@ const putEvents: AppBlock = {
           }),
         });
 
-        const command = new PutEventsCommand(commandInput as any);
+        const command = new PutEventsCommand(
+          convertTimestamps(commandInput, new Set(["Time"])) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

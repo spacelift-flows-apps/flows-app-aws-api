@@ -4,6 +4,7 @@ import {
   StartReplayCommand,
 } from "@aws-sdk/client-eventbridge";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const startReplay: AppBlock = {
   name: "Start Replay",
@@ -119,7 +120,12 @@ const startReplay: AppBlock = {
           }),
         });
 
-        const command = new StartReplayCommand(commandInput as any);
+        const command = new StartReplayCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["EventStartTime", "EventEndTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

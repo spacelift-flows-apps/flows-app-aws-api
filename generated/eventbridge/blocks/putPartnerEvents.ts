@@ -4,6 +4,7 @@ import {
   PutPartnerEventsCommand,
 } from "@aws-sdk/client-eventbridge";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const putPartnerEvents: AppBlock = {
   name: "Put Partner Events",
@@ -99,7 +100,9 @@ const putPartnerEvents: AppBlock = {
           }),
         });
 
-        const command = new PutPartnerEventsCommand(commandInput as any);
+        const command = new PutPartnerEventsCommand(
+          convertTimestamps(commandInput, new Set(["Time"])) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});
