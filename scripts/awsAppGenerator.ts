@@ -1223,6 +1223,7 @@ const SERVICES_TO_GENERATE = [
   "iam",
   "kms",
   "lambda",
+  "organizations",
   "rds",
   "redshift",
   "redshift-data",
