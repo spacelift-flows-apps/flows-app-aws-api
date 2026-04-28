@@ -1214,6 +1214,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
 const SERVICES_TO_GENERATE = [
   "acm",
   "application-auto-scaling",
+  "athena",
   "auto-scaling",
   "backup",
   "bedrock-runtime",
