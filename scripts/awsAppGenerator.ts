@@ -1210,6 +1210,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
 
 // Hardcoded list of services to generate
 const SERVICES_TO_GENERATE = [
+  "acm",
   "application-auto-scaling",
   "auto-scaling",
   "bedrock-runtime",
