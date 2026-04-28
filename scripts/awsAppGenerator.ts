@@ -1133,7 +1133,9 @@ export async function serializeAWSResponse(response: any): Promise<any> {
               depth + 1,
             );
             const prop =
-              typeof memberType === "string" ? { type: memberType } : memberType;
+              typeof memberType === "string"
+                ? { type: memberType }
+                : memberType;
             variants.push({
               type: "object",
               properties: { [memberName]: prop },
@@ -1239,6 +1241,7 @@ const SERVICES_TO_GENERATE = [
   "s3",
   "secrets-manager",
   "ses",
+  "sfn",
   "sns",
   "sqs",
   "ssm",
