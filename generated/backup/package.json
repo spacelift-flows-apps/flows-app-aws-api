@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "typecheck": "npx tsc --noEmit",
+    "format": "npx prettier --write .",
+    "bundle": "npx flowctl version bundle -e main.ts"
+  },
+  "dependencies": {
+    "@slflows/sdk": "*",
+    "@aws-sdk/client-backup": "^3.0.0",
+    "@aws-sdk/client-sts": "^3.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "prettier": "^3.0.0",
+    "@types/node": "^20.0.0",
+    "@useflows/flowctl": "^0.1.1"
+  },
+  "peerDependencies": {
+    "@slflows/sdk": "*"
+  }
+}

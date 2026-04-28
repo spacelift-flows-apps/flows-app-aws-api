@@ -915,14 +915,17 @@ export async function serializeAWSResponse(response: any): Promise<any> {
   }
 
   private getClientName(serviceId: string): string {
-    // Convert service ID to a valid client name by removing spaces and special characters
+    // Convert service ID to a valid client name. Uppercase the first letter of
+    // every whitespace-separated word so that e.g. "Elastic Load Balancing v2"
+    // becomes "ElasticLoadBalancingV2Client" (matching the AWS SDK export),
+    // not "ElasticLoadBalancingv2Client".
     const normalizedServiceId = serviceId
-      .replace(/\s+/g, "") // Remove spaces
-      .replace(/[^a-zA-Z0-9]/g, ""); // Remove special characters except alphanumeric
+      .split(/\s+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join("")
+      .replace(/[^a-zA-Z0-9]/g, "");
 
-    return `${normalizedServiceId
-      .charAt(0)
-      .toUpperCase()}${normalizedServiceId.slice(1)}Client`;
+    return `${normalizedServiceId}Client`;
   }
 
   private getSDKPackageName(serviceId: string): string {
@@ -1130,7 +1133,9 @@ export async function serializeAWSResponse(response: any): Promise<any> {
               depth + 1,
             );
             const prop =
-              typeof memberType === "string" ? { type: memberType } : memberType;
+              typeof memberType === "string"
+                ? { type: memberType }
+                : memberType;
             variants.push({
               type: "object",
               properties: { [memberName]: prop },
@@ -1207,6 +1212,11 @@ export async function serializeAWSResponse(response: any): Promise<any> {
 
 // Hardcoded list of services to generate
 const SERVICES_TO_GENERATE = [
+  "acm",
+  "application-auto-scaling",
+  "athena",
+  "auto-scaling",
+  "backup",
   "bedrock-runtime",
   "cloudcontrol",
   "cloudformation",
@@ -1219,7 +1229,9 @@ const SERVICES_TO_GENERATE = [
   "ecr",
   "ecs",
   "eks",
+  "elastic-load-balancing-v2",
   "eventbridge",
+  "health",
   "iam",
   "kms",
   "lambda",
@@ -1231,6 +1243,7 @@ const SERVICES_TO_GENERATE = [
   "s3",
   "secrets-manager",
   "ses",
+  "sfn",
   "sns",
   "sqs",
   "ssm",
