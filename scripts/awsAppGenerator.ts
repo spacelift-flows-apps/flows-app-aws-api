@@ -1215,6 +1215,7 @@ const SERVICES_TO_GENERATE = [
   "acm",
   "application-auto-scaling",
   "auto-scaling",
+  "backup",
   "bedrock-runtime",
   "cloudcontrol",
   "cloudformation",
