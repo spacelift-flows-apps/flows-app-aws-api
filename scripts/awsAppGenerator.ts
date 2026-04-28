@@ -1221,6 +1221,7 @@ const SERVICES_TO_GENERATE = [
   "ecr",
   "ecs",
   "eks",
+  "elastic-load-balancing-v2",
   "eventbridge",
   "iam",
   "kms",
