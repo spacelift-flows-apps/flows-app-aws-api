@@ -915,14 +915,17 @@ export async function serializeAWSResponse(response: any): Promise<any> {
   }
 
   private getClientName(serviceId: string): string {
-    // Convert service ID to a valid client name by removing spaces and special characters
+    // Convert service ID to a valid client name. Uppercase the first letter of
+    // every whitespace-separated word so that e.g. "Elastic Load Balancing v2"
+    // becomes "ElasticLoadBalancingV2Client" (matching the AWS SDK export),
+    // not "ElasticLoadBalancingv2Client".
     const normalizedServiceId = serviceId
-      .replace(/\s+/g, "") // Remove spaces
-      .replace(/[^a-zA-Z0-9]/g, ""); // Remove special characters except alphanumeric
+      .split(/\s+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join("")
+      .replace(/[^a-zA-Z0-9]/g, "");
 
-    return `${normalizedServiceId
-      .charAt(0)
-      .toUpperCase()}${normalizedServiceId.slice(1)}Client`;
+    return `${normalizedServiceId}Client`;
   }
 
   private getSDKPackageName(serviceId: string): string {
