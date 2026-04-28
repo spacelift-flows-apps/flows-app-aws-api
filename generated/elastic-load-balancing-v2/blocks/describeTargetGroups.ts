@@ -1,6 +1,6 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import {
-  ElasticLoadBalancingv2Client,
+  ElasticLoadBalancingV2Client,
   DescribeTargetGroupsCommand,
 } from "@aws-sdk/client-elastic-load-balancing-v2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
@@ -100,7 +100,7 @@ const describeTargetGroups: AppBlock = {
           };
         }
 
-        const client = new ElasticLoadBalancingv2Client({
+        const client = new ElasticLoadBalancingV2Client({
           region: region,
           credentials: credentials,
           ...(input.app.config.endpoint && {
