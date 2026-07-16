@@ -34,7 +34,10 @@ const modifyAvailabilityZoneGroup: AppBlock = {
         OptInStatus: {
           name: "Opt In Status",
           description: "Indicates whether to opt in to the zone group.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["opted-in", "not-opted-in"],
+          },
           required: true,
         },
         DryRun: {

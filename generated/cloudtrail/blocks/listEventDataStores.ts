@@ -112,6 +112,14 @@ const listEventDataStores: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "CREATED",
+                    "ENABLED",
+                    "PENDING_DELETION",
+                    "STARTING_INGESTION",
+                    "STOPPING_INGESTION",
+                    "STOPPED_INGESTION",
+                  ],
                 },
                 AdvancedEventSelectors: {
                   type: "array",

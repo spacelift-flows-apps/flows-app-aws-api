@@ -152,6 +152,17 @@ const searchTransitGatewayMulticastGroups: AppBlock = {
                 },
                 ResourceType: {
                   type: "string",
+                  enum: [
+                    "vpc",
+                    "vpn",
+                    "vpn-concentrator",
+                    "direct-connect-gateway",
+                    "connect",
+                    "peering",
+                    "tgw-peering",
+                    "network-function",
+                    "client-vpn",
+                  ],
                 },
                 ResourceOwnerId: {
                   type: "string",
@@ -167,9 +178,11 @@ const searchTransitGatewayMulticastGroups: AppBlock = {
                 },
                 MemberType: {
                   type: "string",
+                  enum: ["static", "igmp"],
                 },
                 SourceType: {
                   type: "string",
+                  enum: ["static", "igmp"],
                 },
               },
               additionalProperties: false,

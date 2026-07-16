@@ -72,7 +72,10 @@ const describeLogGroups: AppBlock = {
           name: "log Group Class",
           description:
             "Use this parameter to limit the results to only those log groups in the specified log group class.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["STANDARD", "INFREQUENT_ACCESS", "DELIVERY"],
+          },
           required: false,
         },
         logGroupIdentifiers: {
@@ -173,15 +176,18 @@ const describeLogGroups: AppBlock = {
                 },
                 dataProtectionStatus: {
                   type: "string",
+                  enum: ["ACTIVATED", "DELETED", "ARCHIVED", "DISABLED"],
                 },
                 inheritedProperties: {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["ACCOUNT_DATA_PROTECTION"],
                   },
                 },
                 logGroupClass: {
                   type: "string",
+                  enum: ["STANDARD", "INFREQUENT_ACCESS", "DELIVERY"],
                 },
                 logGroupArn: {
                   type: "string",

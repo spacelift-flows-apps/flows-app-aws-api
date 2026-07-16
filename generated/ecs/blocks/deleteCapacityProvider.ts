@@ -107,6 +107,7 @@ const deleteCapacityProvider: AppBlock = {
               },
               status: {
                 type: "string",
+                enum: ["PROVISIONING", "ACTIVE", "DEPROVISIONING", "INACTIVE"],
               },
               autoScalingGroupProvider: {
                 type: "object",
@@ -119,6 +120,7 @@ const deleteCapacityProvider: AppBlock = {
                     properties: {
                       status: {
                         type: "string",
+                        enum: ["ENABLED", "DISABLED"],
                       },
                       targetCapacity: {
                         type: "number",
@@ -137,9 +139,11 @@ const deleteCapacityProvider: AppBlock = {
                   },
                   managedTerminationProtection: {
                     type: "string",
+                    enum: ["ENABLED", "DISABLED"],
                   },
                   managedDraining: {
                     type: "string",
+                    enum: ["ENABLED", "DISABLED"],
                   },
                 },
                 required: ["autoScalingGroupArn"],
@@ -191,9 +195,11 @@ const deleteCapacityProvider: AppBlock = {
                       },
                       monitoring: {
                         type: "string",
+                        enum: ["BASIC", "DETAILED"],
                       },
                       capacityOptionType: {
                         type: "string",
+                        enum: ["ON_DEMAND", "SPOT", "RESERVED"],
                       },
                       instanceMetadataTagsPropagation: {
                         type: "boolean",
@@ -247,9 +253,11 @@ const deleteCapacityProvider: AppBlock = {
                           },
                           bareMetal: {
                             type: "string",
+                            enum: ["included", "required", "excluded"],
                           },
                           burstablePerformance: {
                             type: "string",
+                            enum: ["included", "required", "excluded"],
                           },
                           requireHibernateSupport: {
                             type: "boolean",
@@ -264,6 +272,7 @@ const deleteCapacityProvider: AppBlock = {
                           },
                           localStorage: {
                             type: "string",
+                            enum: ["included", "required", "excluded"],
                           },
                           localStorageTypes: {
                             type: "array",
@@ -343,6 +352,11 @@ const deleteCapacityProvider: AppBlock = {
                           },
                           reservationPreference: {
                             type: "string",
+                            enum: [
+                              "RESERVATIONS_ONLY",
+                              "RESERVATIONS_FIRST",
+                              "RESERVATIONS_EXCLUDED",
+                            ],
                           },
                         },
                         additionalProperties: false,
@@ -353,6 +367,7 @@ const deleteCapacityProvider: AppBlock = {
                   },
                   propagateTags: {
                     type: "string",
+                    enum: ["CAPACITY_PROVIDER", "NONE"],
                   },
                   infrastructureOptimization: {
                     type: "object",
@@ -368,6 +383,7 @@ const deleteCapacityProvider: AppBlock = {
                     properties: {
                       actionsStatus: {
                         type: "string",
+                        enum: ["ENABLED", "DISABLED"],
                       },
                     },
                     additionalProperties: false,
@@ -377,6 +393,17 @@ const deleteCapacityProvider: AppBlock = {
               },
               updateStatus: {
                 type: "string",
+                enum: [
+                  "CREATE_IN_PROGRESS",
+                  "CREATE_COMPLETE",
+                  "CREATE_FAILED",
+                  "DELETE_IN_PROGRESS",
+                  "DELETE_COMPLETE",
+                  "DELETE_FAILED",
+                  "UPDATE_IN_PROGRESS",
+                  "UPDATE_COMPLETE",
+                  "UPDATE_FAILED",
+                ],
               },
               updateStatusReason: {
                 type: "string",
@@ -398,6 +425,12 @@ const deleteCapacityProvider: AppBlock = {
               },
               type: {
                 type: "string",
+                enum: [
+                  "EC2_AUTOSCALING",
+                  "MANAGED_INSTANCES",
+                  "FARGATE",
+                  "FARGATE_SPOT",
+                ],
               },
             },
             additionalProperties: false,

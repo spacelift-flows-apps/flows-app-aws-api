@@ -27,7 +27,10 @@ const listHookResults: AppBlock = {
         TargetType: {
           name: "Target Type",
           description: "Filters results by target type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["CHANGE_SET", "STACK", "RESOURCE", "CLOUD_CONTROL"],
+          },
           required: false,
         },
         TargetId: {
@@ -46,7 +49,15 @@ const listHookResults: AppBlock = {
         Status: {
           name: "Status",
           description: "Filters results by the status of Hook invocations.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "HOOK_IN_PROGRESS",
+              "HOOK_COMPLETE_SUCCEEDED",
+              "HOOK_COMPLETE_FAILED",
+              "HOOK_FAILED",
+            ],
+          },
           required: false,
         },
         NextToken: {
@@ -115,6 +126,7 @@ const listHookResults: AppBlock = {
         properties: {
           TargetType: {
             type: "string",
+            enum: ["CHANGE_SET", "STACK", "RESOURCE", "CLOUD_CONTROL"],
             description: "The target type.",
           },
           TargetId: {
@@ -131,9 +143,11 @@ const listHookResults: AppBlock = {
                 },
                 InvocationPoint: {
                   type: "string",
+                  enum: ["PRE_PROVISION"],
                 },
                 FailureMode: {
                   type: "string",
+                  enum: ["FAIL", "WARN"],
                 },
                 TypeName: {
                   type: "string",
@@ -146,6 +160,12 @@ const listHookResults: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "HOOK_IN_PROGRESS",
+                    "HOOK_COMPLETE_SUCCEEDED",
+                    "HOOK_COMPLETE_FAILED",
+                    "HOOK_FAILED",
+                  ],
                 },
                 HookStatusReason: {
                   type: "string",
@@ -155,6 +175,7 @@ const listHookResults: AppBlock = {
                 },
                 TargetType: {
                   type: "string",
+                  enum: ["CHANGE_SET", "STACK", "RESOURCE", "CLOUD_CONTROL"],
                 },
                 TargetId: {
                   type: "string",

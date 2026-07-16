@@ -47,6 +47,7 @@ const describeServices: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["TAGS"],
             },
           },
           required: false,
@@ -189,6 +190,7 @@ const describeServices: AppBlock = {
                 },
                 launchType: {
                   type: "string",
+                  enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                 },
                 capacityProviderStrategy: {
                   type: "array",
@@ -259,6 +261,7 @@ const describeServices: AppBlock = {
                     },
                     strategy: {
                       type: "string",
+                      enum: ["ROLLING", "BLUE_GREEN", "LINEAR", "CANARY"],
                     },
                     bakeTimeInMinutes: {
                       type: "number",
@@ -349,6 +352,12 @@ const describeServices: AppBlock = {
                       },
                       launchType: {
                         type: "string",
+                        enum: [
+                          "EC2",
+                          "FARGATE",
+                          "EXTERNAL",
+                          "MANAGED_INSTANCES",
+                        ],
                       },
                       capacityProviderStrategy: {
                         type: "array",
@@ -385,6 +394,7 @@ const describeServices: AppBlock = {
                       },
                       stabilityStatus: {
                         type: "string",
+                        enum: ["STEADY_STATE", "STABILIZING"],
                       },
                       stabilityStatusAt: {
                         type: "string",
@@ -442,6 +452,12 @@ const describeServices: AppBlock = {
                       },
                       launchType: {
                         type: "string",
+                        enum: [
+                          "EC2",
+                          "FARGATE",
+                          "EXTERNAL",
+                          "MANAGED_INSTANCES",
+                        ],
                       },
                       platformVersion: {
                         type: "string",
@@ -458,6 +474,7 @@ const describeServices: AppBlock = {
                       },
                       rolloutState: {
                         type: "string",
+                        enum: ["COMPLETED", "FAILED", "IN_PROGRESS"],
                       },
                       rolloutStateReason: {
                         type: "string",
@@ -552,6 +569,7 @@ const describeServices: AppBlock = {
                     properties: {
                       type: {
                         type: "string",
+                        enum: ["distinctInstance", "memberOf"],
                       },
                       expression: {
                         type: "string",
@@ -567,6 +585,7 @@ const describeServices: AppBlock = {
                     properties: {
                       type: {
                         type: "string",
+                        enum: ["random", "spread", "binpack"],
                       },
                       field: {
                         type: "string",
@@ -591,6 +610,7 @@ const describeServices: AppBlock = {
                         },
                         assignPublicIp: {
                           type: "string",
+                          enum: ["ENABLED", "DISABLED"],
                         },
                       },
                       required: ["subnets"],
@@ -604,12 +624,14 @@ const describeServices: AppBlock = {
                 },
                 schedulingStrategy: {
                   type: "string",
+                  enum: ["REPLICA", "DAEMON"],
                 },
                 deploymentController: {
                   type: "object",
                   properties: {
                     type: {
                       type: "string",
+                      enum: ["ECS", "CODE_DEPLOY", "EXTERNAL"],
                     },
                   },
                   required: ["type"],
@@ -638,15 +660,18 @@ const describeServices: AppBlock = {
                 },
                 propagateTags: {
                   type: "string",
+                  enum: ["TASK_DEFINITION", "SERVICE", "NONE"],
                 },
                 enableExecuteCommand: {
                   type: "boolean",
                 },
                 availabilityZoneRebalancing: {
                   type: "string",
+                  enum: ["ENABLED", "DISABLED"],
                 },
                 resourceManagementType: {
                   type: "string",
+                  enum: ["CUSTOMER", "ECS"],
                 },
               },
               additionalProperties: false,

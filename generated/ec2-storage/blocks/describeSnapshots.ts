@@ -190,18 +190,21 @@ const describeSnapshots: AppBlock = {
                 },
                 StorageTier: {
                   type: "string",
+                  enum: ["archive", "standard"],
                 },
                 RestoreExpiryTime: {
                   type: "string",
                 },
                 SseType: {
                   type: "string",
+                  enum: ["sse-ebs", "sse-kms", "none"],
                 },
                 AvailabilityZone: {
                   type: "string",
                 },
                 TransferType: {
                   type: "string",
+                  enum: ["time-based", "standard"],
                 },
                 CompletionDurationMinutes: {
                   type: "number",
@@ -220,6 +223,13 @@ const describeSnapshots: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "pending",
+                    "completed",
+                    "error",
+                    "recoverable",
+                    "recovering",
+                  ],
                 },
                 StateMessage: {
                   type: "string",

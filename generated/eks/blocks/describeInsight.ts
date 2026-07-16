@@ -102,6 +102,7 @@ const describeInsight: AppBlock = {
               },
               category: {
                 type: "string",
+                enum: ["UPGRADE_READINESS", "MISCONFIGURATION"],
               },
               kubernetesVersion: {
                 type: "string",
@@ -120,6 +121,7 @@ const describeInsight: AppBlock = {
                 properties: {
                   status: {
                     type: "string",
+                    enum: ["PASSING", "WARNING", "ERROR", "UNKNOWN"],
                   },
                   reason: {
                     type: "string",
@@ -146,6 +148,7 @@ const describeInsight: AppBlock = {
                       properties: {
                         status: {
                           type: "string",
+                          enum: ["PASSING", "WARNING", "ERROR", "UNKNOWN"],
                         },
                         reason: {
                           type: "string",

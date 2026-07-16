@@ -89,6 +89,11 @@ const createStackSet: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "CAPABILITY_IAM",
+                "CAPABILITY_NAMED_IAM",
+                "CAPABILITY_AUTO_EXPAND",
+              ],
             },
           },
           required: false,
@@ -133,7 +138,10 @@ const createStackSet: AppBlock = {
           name: "Permission Model",
           description:
             "Describes how the IAM roles required for StackSet operations are created.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SERVICE_MANAGED", "SELF_MANAGED"],
+          },
           required: false,
         },
         AutoDeployment: {
@@ -164,7 +172,10 @@ const createStackSet: AppBlock = {
           name: "Call As",
           description:
             "Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SELF", "DELEGATED_ADMIN"],
+          },
           required: false,
         },
         ClientRequestToken: {

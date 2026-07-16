@@ -31,6 +31,16 @@ const listAssociations: AppBlock = {
               properties: {
                 key: {
                   type: "string",
+                  enum: [
+                    "InstanceId",
+                    "Name",
+                    "AssociationId",
+                    "AssociationStatusName",
+                    "LastExecutedBefore",
+                    "LastExecutedAfter",
+                    "AssociationName",
+                    "ResourceGroupName",
+                  ],
                 },
                 value: {
                   type: "string",

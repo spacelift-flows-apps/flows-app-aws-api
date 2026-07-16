@@ -196,6 +196,14 @@ const describeRules: AppBlock = {
                     properties: {
                       Type: {
                         type: "string",
+                        enum: [
+                          "forward",
+                          "authenticate-oidc",
+                          "authenticate-cognito",
+                          "redirect",
+                          "fixed-response",
+                          "jwt-validation",
+                        ],
                       },
                       TargetGroupArn: {
                         type: "string",
@@ -303,6 +311,7 @@ const describeRules: AppBlock = {
                     properties: {
                       Type: {
                         type: "string",
+                        enum: ["host-header-rewrite", "url-rewrite"],
                       },
                       HostHeaderRewriteConfig: {
                         type: "object",

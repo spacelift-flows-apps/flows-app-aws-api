@@ -95,6 +95,23 @@ const getPatchBaseline: AppBlock = {
           },
           OperatingSystem: {
             type: "string",
+            enum: [
+              "WINDOWS",
+              "AMAZON_LINUX",
+              "AMAZON_LINUX_2",
+              "AMAZON_LINUX_2022",
+              "UBUNTU",
+              "REDHAT_ENTERPRISE_LINUX",
+              "SUSE",
+              "CENTOS",
+              "ORACLE_LINUX",
+              "DEBIAN",
+              "MACOS",
+              "RASPBIAN",
+              "ROCKY_LINUX",
+              "ALMA_LINUX",
+              "AMAZON_LINUX_2023",
+            ],
             description:
               "Returns the operating system specified for the patch baseline.",
           },
@@ -108,6 +125,27 @@ const getPatchBaseline: AppBlock = {
                   properties: {
                     Key: {
                       type: "string",
+                      enum: [
+                        "ARCH",
+                        "ADVISORY_ID",
+                        "BUGZILLA_ID",
+                        "PATCH_SET",
+                        "PRODUCT",
+                        "PRODUCT_FAMILY",
+                        "CLASSIFICATION",
+                        "CVE_ID",
+                        "EPOCH",
+                        "MSRC_SEVERITY",
+                        "NAME",
+                        "PATCH_ID",
+                        "SECTION",
+                        "PRIORITY",
+                        "REPOSITORY",
+                        "RELEASE",
+                        "SEVERITY",
+                        "SECURITY",
+                        "VERSION",
+                      ],
                     },
                     Values: {
                       type: "array",
@@ -147,6 +185,14 @@ const getPatchBaseline: AppBlock = {
                     },
                     ComplianceLevel: {
                       type: "string",
+                      enum: [
+                        "CRITICAL",
+                        "HIGH",
+                        "MEDIUM",
+                        "LOW",
+                        "INFORMATIONAL",
+                        "UNSPECIFIED",
+                      ],
                     },
                     ApproveAfterDays: {
                       type: "number",
@@ -178,6 +224,14 @@ const getPatchBaseline: AppBlock = {
           },
           ApprovedPatchesComplianceLevel: {
             type: "string",
+            enum: [
+              "CRITICAL",
+              "HIGH",
+              "MEDIUM",
+              "LOW",
+              "INFORMATIONAL",
+              "UNSPECIFIED",
+            ],
             description:
               "Returns the specified compliance severity level for approved patches in the patch baseline.",
           },
@@ -196,6 +250,7 @@ const getPatchBaseline: AppBlock = {
           },
           RejectedPatchesAction: {
             type: "string",
+            enum: ["ALLOW_AS_DEPENDENCY", "BLOCK"],
             description:
               "The action specified to take on patches included in the RejectedPatches list.",
           },
@@ -244,6 +299,7 @@ const getPatchBaseline: AppBlock = {
           },
           AvailableSecurityUpdatesComplianceStatus: {
             type: "string",
+            enum: ["COMPLIANT", "NON_COMPLIANT"],
             description:
               "Indicates the compliance status of managed nodes for which security-related patches are available but were not approved.",
           },

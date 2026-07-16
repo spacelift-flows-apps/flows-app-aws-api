@@ -141,9 +141,11 @@ const describePlacementGroups: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["pending", "available", "deleting", "deleted"],
                 },
                 Strategy: {
                   type: "string",
+                  enum: ["cluster", "spread", "partition"],
                 },
                 PartitionCount: {
                   type: "number",
@@ -171,6 +173,7 @@ const describePlacementGroups: AppBlock = {
                 },
                 SpreadLevel: {
                   type: "string",
+                  enum: ["host", "rack"],
                 },
                 LinkedGroupId: {
                   type: "string",

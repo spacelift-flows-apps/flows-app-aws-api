@@ -71,7 +71,10 @@ const listIndexedRecoveryPoints: AppBlock = {
           name: "Index Status",
           description:
             "Include this parameter to filter the returned list by the indicated statuses.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["PENDING", "ACTIVE", "FAILED", "DELETING"],
+          },
           required: false,
         },
       },
@@ -162,6 +165,7 @@ const listIndexedRecoveryPoints: AppBlock = {
                 },
                 IndexStatus: {
                   type: "string",
+                  enum: ["PENDING", "ACTIVE", "FAILED", "DELETING"],
                 },
                 IndexStatusMessage: {
                   type: "string",

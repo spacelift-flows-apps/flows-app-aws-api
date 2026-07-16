@@ -86,7 +86,10 @@ const createLoadBalancer: AppBlock = {
           name: "Scheme",
           description:
             "The nodes of an Internet-facing load balancer have public IP addresses.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["internet-facing", "internal"],
+          },
           required: false,
         },
         Tags: {
@@ -113,13 +116,19 @@ const createLoadBalancer: AppBlock = {
         Type: {
           name: "Type",
           description: "The type of load balancer.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["application", "network", "gateway"],
+          },
           required: false,
         },
         IpAddressType: {
           name: "Ip Address Type",
           description: "The IP address type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ipv4", "dualstack", "dualstack-without-public-ipv4"],
+          },
           required: false,
         },
         CustomerOwnedIpv4Pool: {
@@ -133,7 +142,10 @@ const createLoadBalancer: AppBlock = {
           name: "Enable Prefix For Ipv6Source Nat",
           description:
             "[Network Load Balancers with UDP listeners] Indicates whether to use an IPv6 prefix from each subnet for source NAT.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["on", "off"],
+          },
           required: false,
         },
         IpamPools: {
@@ -231,6 +243,7 @@ const createLoadBalancer: AppBlock = {
                 },
                 Scheme: {
                   type: "string",
+                  enum: ["internet-facing", "internal"],
                 },
                 VpcId: {
                   type: "string",
@@ -240,6 +253,12 @@ const createLoadBalancer: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: [
+                        "active",
+                        "provisioning",
+                        "active_impaired",
+                        "failed",
+                      ],
                     },
                     Reason: {
                       type: "string",
@@ -249,6 +268,7 @@ const createLoadBalancer: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: ["application", "network", "gateway"],
                 },
                 AvailabilityZones: {
                   type: "array",
@@ -284,6 +304,7 @@ const createLoadBalancer: AppBlock = {
                 },
                 IpAddressType: {
                   type: "string",
+                  enum: ["ipv4", "dualstack", "dualstack-without-public-ipv4"],
                 },
                 CustomerOwnedIpv4Pool: {
                   type: "string",
@@ -293,6 +314,7 @@ const createLoadBalancer: AppBlock = {
                 },
                 EnablePrefixForIpv6SourceNat: {
                   type: "string",
+                  enum: ["on", "off"],
                 },
                 IpamPools: {
                   type: "object",

@@ -157,6 +157,15 @@ const describeIntegrations: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "creating",
+                    "active",
+                    "modifying",
+                    "failed",
+                    "deleting",
+                    "syncing",
+                    "needs_attention",
+                  ],
                 },
                 Tags: {
                   type: "array",

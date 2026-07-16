@@ -39,6 +39,7 @@ const updateRegexPatternSet: AppBlock = {
               properties: {
                 Action: {
                   type: "string",
+                  enum: ["INSERT", "DELETE"],
                 },
                 RegexPatternString: {
                   type: "string",

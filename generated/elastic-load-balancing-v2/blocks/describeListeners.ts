@@ -128,6 +128,17 @@ const describeListeners: AppBlock = {
                 },
                 Protocol: {
                   type: "string",
+                  enum: [
+                    "HTTP",
+                    "HTTPS",
+                    "TCP",
+                    "TLS",
+                    "UDP",
+                    "TCP_UDP",
+                    "GENEVE",
+                    "QUIC",
+                    "TCP_QUIC",
+                  ],
                 },
                 Certificates: {
                   type: "array",
@@ -154,6 +165,14 @@ const describeListeners: AppBlock = {
                     properties: {
                       Type: {
                         type: "string",
+                        enum: [
+                          "forward",
+                          "authenticate-oidc",
+                          "authenticate-cognito",
+                          "redirect",
+                          "fixed-response",
+                          "jwt-validation",
+                        ],
                       },
                       TargetGroupArn: {
                         type: "string",
@@ -271,9 +290,11 @@ const describeListeners: AppBlock = {
                     },
                     TrustStoreAssociationStatus: {
                       type: "string",
+                      enum: ["active", "removed"],
                     },
                     AdvertiseTrustStoreCaNames: {
                       type: "string",
+                      enum: ["on", "off"],
                     },
                   },
                   additionalProperties: false,

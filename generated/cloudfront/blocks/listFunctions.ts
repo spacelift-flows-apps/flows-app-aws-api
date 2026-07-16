@@ -42,7 +42,10 @@ const listFunctions: AppBlock = {
           name: "Stage",
           description:
             "An optional filter to return only the functions that are in the specified stage, either DEVELOPMENT or LIVE.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["DEVELOPMENT", "LIVE"],
+          },
           required: false,
         },
       },
@@ -134,6 +137,7 @@ const listFunctions: AppBlock = {
                         },
                         Runtime: {
                           type: "string",
+                          enum: ["cloudfront-js-1.0", "cloudfront-js-2.0"],
                         },
                         KeyValueStoreAssociations: {
                           type: "object",
@@ -156,6 +160,7 @@ const listFunctions: AppBlock = {
                         },
                         Stage: {
                           type: "string",
+                          enum: ["DEVELOPMENT", "LIVE"],
                         },
                         CreatedTime: {
                           type: "string",

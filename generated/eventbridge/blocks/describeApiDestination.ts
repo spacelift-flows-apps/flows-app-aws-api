@@ -102,6 +102,7 @@ const describeApiDestination: AppBlock = {
           },
           ApiDestinationState: {
             type: "string",
+            enum: ["ACTIVE", "INACTIVE"],
             description: "The state of the API destination retrieved.",
           },
           ConnectionArn: {
@@ -115,6 +116,7 @@ const describeApiDestination: AppBlock = {
           },
           HttpMethod: {
             type: "string",
+            enum: ["POST", "GET", "HEAD", "OPTIONS", "PUT", "PATCH", "DELETE"],
             description: "The method to use to connect to the HTTP endpoint.",
           },
           InvocationRateLimitPerSecond: {

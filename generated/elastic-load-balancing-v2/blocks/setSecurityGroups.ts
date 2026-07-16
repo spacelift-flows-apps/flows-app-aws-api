@@ -45,7 +45,10 @@ const setSecurityGroups: AppBlock = {
           name: "Enforce Security Group Inbound Rules On Private Link Traffic",
           description:
             "Indicates whether to evaluate inbound security group rules for traffic sent to a Network Load Balancer through Amazon Web Services PrivateLink.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["on", "off"],
+          },
           required: false,
         },
       },
@@ -116,6 +119,7 @@ const setSecurityGroups: AppBlock = {
           },
           EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic: {
             type: "string",
+            enum: ["on", "off"],
             description:
               "Indicates whether to evaluate inbound security group rules for traffic sent to a Network Load Balancer through Amazon Web Services PrivateLink.",
           },

@@ -114,6 +114,7 @@ const updateMaintenanceWindowTask: AppBlock = {
                   },
                   DocumentHashType: {
                     type: "string",
+                    enum: ["Sha256", "Sha1"],
                   },
                   DocumentVersion: {
                     type: "string",
@@ -128,10 +129,19 @@ const updateMaintenanceWindowTask: AppBlock = {
                         type: "array",
                         items: {
                           type: "string",
+                          enum: [
+                            "All",
+                            "InProgress",
+                            "Success",
+                            "TimedOut",
+                            "Cancelled",
+                            "Failed",
+                          ],
                         },
                       },
                       NotificationType: {
                         type: "string",
+                        enum: ["Command", "Invocation"],
                       },
                     },
                     additionalProperties: false,
@@ -266,7 +276,10 @@ const updateMaintenanceWindowTask: AppBlock = {
           name: "Cutoff Behavior",
           description:
             "Indicates whether tasks should continue to run after the cutoff time specified in the maintenance windows is reached.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["CONTINUE_TASK", "CANCEL_TASK"],
+          },
           required: false,
         },
         AlarmConfiguration: {
@@ -428,6 +441,7 @@ const updateMaintenanceWindowTask: AppBlock = {
                   },
                   DocumentHashType: {
                     type: "string",
+                    enum: ["Sha256", "Sha1"],
                   },
                   DocumentVersion: {
                     type: "string",
@@ -442,10 +456,19 @@ const updateMaintenanceWindowTask: AppBlock = {
                         type: "array",
                         items: {
                           type: "string",
+                          enum: [
+                            "All",
+                            "InProgress",
+                            "Success",
+                            "TimedOut",
+                            "Cancelled",
+                            "Failed",
+                          ],
                         },
                       },
                       NotificationType: {
                         type: "string",
+                        enum: ["Command", "Invocation"],
                       },
                     },
                     additionalProperties: false,
@@ -556,6 +579,7 @@ const updateMaintenanceWindowTask: AppBlock = {
           },
           CutoffBehavior: {
             type: "string",
+            enum: ["CONTINUE_TASK", "CANCEL_TASK"],
             description:
               "The specification for whether tasks should continue to run after the cutoff time specified in the maintenance windows is reached.",
           },

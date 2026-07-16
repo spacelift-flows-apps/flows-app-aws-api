@@ -117,6 +117,7 @@ const listTargetsForPolicy: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: ["ACCOUNT", "ORGANIZATIONAL_UNIT", "ROOT"],
                 },
               },
               additionalProperties: false,

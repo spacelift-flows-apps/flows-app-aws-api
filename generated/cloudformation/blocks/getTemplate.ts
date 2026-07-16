@@ -42,7 +42,10 @@ const getTemplate: AppBlock = {
           name: "Template Stage",
           description:
             "For templates that include transforms, the stage of the template that CloudFormation returns.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Original", "Processed"],
+          },
           required: false,
         },
       },
@@ -111,6 +114,7 @@ const getTemplate: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["Original", "Processed"],
             },
             description: "The stage of the template that you can retrieve.",
           },

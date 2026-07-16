@@ -53,6 +53,13 @@ const getScheduledQueryHistory: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "Running",
+                "InvalidQuery",
+                "Complete",
+                "Failed",
+                "Timeout",
+              ],
             },
           },
           required: false,
@@ -147,6 +154,13 @@ const getScheduledQueryHistory: AppBlock = {
                 },
                 executionStatus: {
                   type: "string",
+                  enum: [
+                    "Running",
+                    "InvalidQuery",
+                    "Complete",
+                    "Failed",
+                    "Timeout",
+                  ],
                 },
                 triggeredTimestamp: {
                   type: "number",
@@ -161,12 +175,19 @@ const getScheduledQueryHistory: AppBlock = {
                     properties: {
                       destinationType: {
                         type: "string",
+                        enum: ["S3"],
                       },
                       destinationIdentifier: {
                         type: "string",
                       },
                       status: {
                         type: "string",
+                        enum: [
+                          "IN_PROGRESS",
+                          "CLIENT_ERROR",
+                          "FAILED",
+                          "COMPLETE",
+                        ],
                       },
                       processedIdentifier: {
                         type: "string",

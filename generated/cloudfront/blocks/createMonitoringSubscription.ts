@@ -42,6 +42,7 @@ const createMonitoringSubscription: AppBlock = {
                 properties: {
                   RealtimeMetricsSubscriptionStatus: {
                     type: "string",
+                    enum: ["Enabled", "Disabled"],
                   },
                 },
                 required: ["RealtimeMetricsSubscriptionStatus"],
@@ -120,6 +121,7 @@ const createMonitoringSubscription: AppBlock = {
                 properties: {
                   RealtimeMetricsSubscriptionStatus: {
                     type: "string",
+                    enum: ["Enabled", "Disabled"],
                   },
                 },
                 required: ["RealtimeMetricsSubscriptionStatus"],

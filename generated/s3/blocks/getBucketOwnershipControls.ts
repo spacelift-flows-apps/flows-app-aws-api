@@ -110,6 +110,11 @@ const getBucketOwnershipControls: AppBlock = {
                   properties: {
                     ObjectOwnership: {
                       type: "string",
+                      enum: [
+                        "BucketOwnerPreferred",
+                        "ObjectWriter",
+                        "BucketOwnerEnforced",
+                      ],
                     },
                   },
                   required: ["ObjectOwnership"],

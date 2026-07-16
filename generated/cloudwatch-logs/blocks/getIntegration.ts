@@ -95,10 +95,12 @@ const getIntegration: AppBlock = {
           },
           integrationType: {
             type: "string",
+            enum: ["OPENSEARCH"],
             description: "The type of integration.",
           },
           integrationStatus: {
             type: "string",
+            enum: ["PROVISIONING", "ACTIVE", "FAILED"],
             description: "The current status of this integration.",
           },
           integrationDetails: {
@@ -120,6 +122,7 @@ const getIntegration: AppBlock = {
                             properties: {
                               status: {
                                 type: "string",
+                                enum: ["ACTIVE", "NOT_FOUND", "ERROR"],
                               },
                               statusMessage: {
                                 type: "string",
@@ -147,6 +150,7 @@ const getIntegration: AppBlock = {
                             properties: {
                               status: {
                                 type: "string",
+                                enum: ["ACTIVE", "NOT_FOUND", "ERROR"],
                               },
                               statusMessage: {
                                 type: "string",
@@ -171,6 +175,7 @@ const getIntegration: AppBlock = {
                             properties: {
                               status: {
                                 type: "string",
+                                enum: ["ACTIVE", "NOT_FOUND", "ERROR"],
                               },
                               statusMessage: {
                                 type: "string",
@@ -192,6 +197,7 @@ const getIntegration: AppBlock = {
                             properties: {
                               status: {
                                 type: "string",
+                                enum: ["ACTIVE", "NOT_FOUND", "ERROR"],
                               },
                               statusMessage: {
                                 type: "string",
@@ -213,6 +219,7 @@ const getIntegration: AppBlock = {
                             properties: {
                               status: {
                                 type: "string",
+                                enum: ["ACTIVE", "NOT_FOUND", "ERROR"],
                               },
                               statusMessage: {
                                 type: "string",
@@ -234,6 +241,7 @@ const getIntegration: AppBlock = {
                             properties: {
                               status: {
                                 type: "string",
+                                enum: ["ACTIVE", "NOT_FOUND", "ERROR"],
                               },
                               statusMessage: {
                                 type: "string",
@@ -255,6 +263,7 @@ const getIntegration: AppBlock = {
                             properties: {
                               status: {
                                 type: "string",
+                                enum: ["ACTIVE", "NOT_FOUND", "ERROR"],
                               },
                               statusMessage: {
                                 type: "string",
@@ -276,6 +285,7 @@ const getIntegration: AppBlock = {
                             properties: {
                               status: {
                                 type: "string",
+                                enum: ["ACTIVE", "NOT_FOUND", "ERROR"],
                               },
                               statusMessage: {
                                 type: "string",

@@ -47,7 +47,10 @@ const getObjectLegalHold: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         ExpectedBucketOwner: {
@@ -121,6 +124,7 @@ const getObjectLegalHold: AppBlock = {
             properties: {
               Status: {
                 type: "string",
+                enum: ["ON", "OFF"],
               },
             },
             additionalProperties: false,

@@ -27,7 +27,10 @@ const listCapacityProviders: AppBlock = {
         State: {
           name: "State",
           description: "Filter capacity providers by their current state.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Pending", "Active", "Failed", "Deleting"],
+          },
           required: false,
         },
         Marker: {
@@ -111,6 +114,7 @@ const listCapacityProviders: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["Pending", "Active", "Failed", "Deleting"],
                 },
                 VpcConfig: {
                   type: "object",
@@ -148,6 +152,7 @@ const listCapacityProviders: AppBlock = {
                       type: "array",
                       items: {
                         type: "string",
+                        enum: ["x86_64", "arm64"],
                       },
                     },
                     AllowedInstanceTypes: {
@@ -173,6 +178,7 @@ const listCapacityProviders: AppBlock = {
                     },
                     ScalingMode: {
                       type: "string",
+                      enum: ["Auto", "Manual"],
                     },
                     ScalingPolicies: {
                       type: "array",

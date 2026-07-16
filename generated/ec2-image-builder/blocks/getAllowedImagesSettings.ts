@@ -145,6 +145,7 @@ const getAllowedImagesSettings: AppBlock = {
           },
           ManagedBy: {
             type: "string",
+            enum: ["account", "declarative-policy"],
             description: "The entity that manages the Allowed AMIs settings.",
           },
         },

@@ -34,6 +34,17 @@ const describeInstanceProperties: AppBlock = {
               properties: {
                 key: {
                   type: "string",
+                  enum: [
+                    "InstanceIds",
+                    "AgentVersion",
+                    "PingStatus",
+                    "PlatformTypes",
+                    "DocumentName",
+                    "ActivationIds",
+                    "IamRole",
+                    "ResourceType",
+                    "AssociationStatus",
+                  ],
                 },
                 valueSet: {
                   type: "array",
@@ -67,6 +78,13 @@ const describeInstanceProperties: AppBlock = {
                 },
                 Operator: {
                   type: "string",
+                  enum: [
+                    "Equal",
+                    "NotEqual",
+                    "BeginWith",
+                    "LessThan",
+                    "GreaterThan",
+                  ],
                 },
               },
               required: ["Key", "Values"],
@@ -182,6 +200,7 @@ const describeInstanceProperties: AppBlock = {
                 },
                 PingStatus: {
                   type: "string",
+                  enum: ["Online", "ConnectionLost", "Inactive"],
                 },
                 LastPingDateTime: {
                   type: "string",
@@ -191,6 +210,7 @@ const describeInstanceProperties: AppBlock = {
                 },
                 PlatformType: {
                   type: "string",
+                  enum: ["Windows", "Linux", "MacOS"],
                 },
                 PlatformName: {
                   type: "string",
@@ -242,6 +262,11 @@ const describeInstanceProperties: AppBlock = {
                 },
                 SourceType: {
                   type: "string",
+                  enum: [
+                    "AWS::EC2::Instance",
+                    "AWS::IoT::Thing",
+                    "AWS::SSM::ManagedInstance",
+                  ],
                 },
               },
               additionalProperties: false,

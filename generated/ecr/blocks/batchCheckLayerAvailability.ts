@@ -119,6 +119,7 @@ const batchCheckLayerAvailability: AppBlock = {
                 },
                 layerAvailability: {
                   type: "string",
+                  enum: ["AVAILABLE", "UNAVAILABLE", "ARCHIVED"],
                 },
                 layerSize: {
                   type: "number",
@@ -142,6 +143,7 @@ const batchCheckLayerAvailability: AppBlock = {
                 },
                 failureCode: {
                   type: "string",
+                  enum: ["InvalidLayerDigest", "MissingLayerDigest"],
                 },
                 failureReason: {
                   type: "string",

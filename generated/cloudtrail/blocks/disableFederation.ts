@@ -96,6 +96,7 @@ const disableFederation: AppBlock = {
           },
           FederationStatus: {
             type: "string",
+            enum: ["ENABLING", "ENABLED", "DISABLING", "DISABLED"],
             description: "The federation status.",
           },
         },

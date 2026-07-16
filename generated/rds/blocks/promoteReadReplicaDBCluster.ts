@@ -183,6 +183,7 @@ const promoteReadReplicaDBCluster: AppBlock = {
               },
               UpgradeRolloutOrder: {
                 type: "string",
+                enum: ["first", "second", "last"],
               },
               ReplicationSourceIdentifier: {
                 type: "string",
@@ -258,6 +259,7 @@ const promoteReadReplicaDBCluster: AppBlock = {
               },
               StorageEncryptionType: {
                 type: "string",
+                enum: ["none", "sse-kms", "sse-rds"],
               },
               KmsKeyId: {
                 type: "string",
@@ -366,6 +368,7 @@ const promoteReadReplicaDBCluster: AppBlock = {
                       },
                       ReplicaMode: {
                         type: "string",
+                        enum: ["open-read-only", "mounted"],
                       },
                     },
                     additionalProperties: false,
@@ -426,6 +429,7 @@ const promoteReadReplicaDBCluster: AppBlock = {
                   },
                   ReplicaMode: {
                     type: "string",
+                    enum: ["open-read-only", "mounted"],
                   },
                 },
                 additionalProperties: false,
@@ -459,9 +463,11 @@ const promoteReadReplicaDBCluster: AppBlock = {
               },
               ActivityStreamMode: {
                 type: "string",
+                enum: ["sync", "async"],
               },
               ActivityStreamStatus: {
                 type: "string",
+                enum: ["stopped", "starting", "started", "stopping"],
               },
               ActivityStreamKmsKeyId: {
                 type: "string",
@@ -528,6 +534,13 @@ const promoteReadReplicaDBCluster: AppBlock = {
               },
               GlobalWriteForwardingStatus: {
                 type: "string",
+                enum: [
+                  "enabled",
+                  "disabled",
+                  "enabling",
+                  "disabling",
+                  "unknown",
+                ],
               },
               GlobalWriteForwardingRequested: {
                 type: "boolean",
@@ -564,6 +577,7 @@ const promoteReadReplicaDBCluster: AppBlock = {
               },
               DatabaseInsightsMode: {
                 type: "string",
+                enum: ["standard", "advanced"],
               },
               PerformanceInsightsEnabled: {
                 type: "boolean",
@@ -594,6 +608,13 @@ const promoteReadReplicaDBCluster: AppBlock = {
               },
               LocalWriteForwardingStatus: {
                 type: "string",
+                enum: [
+                  "enabled",
+                  "disabled",
+                  "enabling",
+                  "disabling",
+                  "requested",
+                ],
               },
               AwsBackupRecoveryPointArn: {
                 type: "string",
@@ -603,6 +624,16 @@ const promoteReadReplicaDBCluster: AppBlock = {
                 properties: {
                   Status: {
                     type: "string",
+                    enum: [
+                      "active",
+                      "not-in-use",
+                      "enabled",
+                      "disabled",
+                      "enabling",
+                      "disabling",
+                      "modifying-max-capacity",
+                      "error",
+                    ],
                   },
                   MinRequiredACU: {
                     type: "number",
@@ -612,6 +643,7 @@ const promoteReadReplicaDBCluster: AppBlock = {
               },
               ClusterScalabilityType: {
                 type: "string",
+                enum: ["standard", "limitless"],
               },
               CertificateDetails: {
                 type: "object",

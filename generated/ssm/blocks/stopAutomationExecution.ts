@@ -30,7 +30,10 @@ const stopAutomationExecution: AppBlock = {
         Type: {
           name: "Type",
           description: "The stop request type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Complete", "Cancel"],
+          },
           required: false,
         },
       },

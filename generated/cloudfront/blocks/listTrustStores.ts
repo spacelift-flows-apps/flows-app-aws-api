@@ -116,6 +116,7 @@ const listTrustStores: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["pending", "active", "failed"],
                 },
                 NumberOfCaCertificates: {
                   type: "number",

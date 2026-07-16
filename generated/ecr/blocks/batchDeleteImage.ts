@@ -148,6 +148,19 @@ const batchDeleteImage: AppBlock = {
                 },
                 failureCode: {
                   type: "string",
+                  enum: [
+                    "InvalidImageDigest",
+                    "InvalidImageTag",
+                    "ImageTagDoesNotMatchDigest",
+                    "ImageNotFound",
+                    "MissingDigestAndTag",
+                    "ImageReferencedByManifestList",
+                    "KmsError",
+                    "UpstreamAccessDenied",
+                    "UpstreamTooManyRequests",
+                    "UpstreamUnavailable",
+                    "ImageInaccessible",
+                  ],
                 },
                 failureReason: {
                   type: "string",

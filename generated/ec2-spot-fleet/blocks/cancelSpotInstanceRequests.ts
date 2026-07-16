@@ -112,6 +112,7 @@ const cancelSpotInstanceRequests: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["active", "open", "closed", "cancelled", "completed"],
                 },
               },
               additionalProperties: false,

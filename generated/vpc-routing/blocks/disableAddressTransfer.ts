@@ -112,6 +112,7 @@ const disableAddressTransfer: AppBlock = {
               },
               AddressTransferStatus: {
                 type: "string",
+                enum: ["pending", "disabled", "accepted"],
               },
             },
             additionalProperties: false,

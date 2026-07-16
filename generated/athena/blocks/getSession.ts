@@ -232,6 +232,7 @@ const getSession: AppBlock = {
                 properties: {
                   EncryptionOption: {
                     type: "string",
+                    enum: ["SSE_S3", "SSE_KMS", "CSE_KMS"],
                   },
                   KmsKey: {
                     type: "string",
@@ -262,6 +263,16 @@ const getSession: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "CREATING",
+                  "CREATED",
+                  "IDLE",
+                  "BUSY",
+                  "TERMINATING",
+                  "TERMINATED",
+                  "DEGRADED",
+                  "FAILED",
+                ],
               },
               StateChangeReason: {
                 type: "string",

@@ -28,7 +28,10 @@ const listResponseHeadersPolicies: AppBlock = {
           name: "Type",
           description:
             "A filter to get only the specified kind of response headers policies.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["managed", "custom"],
+          },
           required: false,
         },
         Marker: {
@@ -124,6 +127,7 @@ const listResponseHeadersPolicies: AppBlock = {
                   properties: {
                     Type: {
                       type: "string",
+                      enum: ["managed", "custom"],
                     },
                     ResponseHeadersPolicy: {
                       type: "object",

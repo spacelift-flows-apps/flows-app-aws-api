@@ -73,6 +73,7 @@ const createTaskSet: AppBlock = {
                   },
                   assignPublicIp: {
                     type: "string",
+                    enum: ["ENABLED", "DISABLED"],
                   },
                 },
                 required: ["subnets"],
@@ -158,7 +159,10 @@ const createTaskSet: AppBlock = {
         launchType: {
           name: "launch Type",
           description: "The launch type that new tasks in the task set uses.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
+          },
           required: false,
         },
         capacityProviderStrategy: {
@@ -205,6 +209,7 @@ const createTaskSet: AppBlock = {
               },
               unit: {
                 type: "string",
+                enum: ["PERCENT"],
               },
             },
             additionalProperties: false,
@@ -341,6 +346,7 @@ const createTaskSet: AppBlock = {
               },
               launchType: {
                 type: "string",
+                enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
               },
               capacityProviderStrategy: {
                 type: "array",
@@ -387,6 +393,7 @@ const createTaskSet: AppBlock = {
                       },
                       assignPublicIp: {
                         type: "string",
+                        enum: ["ENABLED", "DISABLED"],
                       },
                     },
                     required: ["subnets"],
@@ -463,12 +470,14 @@ const createTaskSet: AppBlock = {
                   },
                   unit: {
                     type: "string",
+                    enum: ["PERCENT"],
                   },
                 },
                 additionalProperties: false,
               },
               stabilityStatus: {
                 type: "string",
+                enum: ["STEADY_STATE", "STABILIZING"],
               },
               stabilityStatusAt: {
                 type: "string",

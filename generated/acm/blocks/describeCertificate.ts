@@ -102,6 +102,7 @@ const describeCertificate: AppBlock = {
               },
               ManagedBy: {
                 type: "string",
+                enum: ["CLOUDFRONT"],
               },
               DomainValidationOptions: {
                 type: "array",
@@ -122,6 +123,7 @@ const describeCertificate: AppBlock = {
                     },
                     ValidationStatus: {
                       type: "string",
+                      enum: ["PENDING_VALIDATION", "SUCCESS", "FAILED"],
                     },
                     ResourceRecord: {
                       type: "object",
@@ -131,6 +133,7 @@ const describeCertificate: AppBlock = {
                         },
                         Type: {
                           type: "string",
+                          enum: ["CNAME"],
                         },
                         Value: {
                           type: "string",
@@ -153,6 +156,7 @@ const describeCertificate: AppBlock = {
                     },
                     ValidationMethod: {
                       type: "string",
+                      enum: ["EMAIL", "DNS", "HTTP"],
                     },
                   },
                   required: ["DomainName"],
@@ -179,12 +183,34 @@ const describeCertificate: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: [
+                  "PENDING_VALIDATION",
+                  "ISSUED",
+                  "INACTIVE",
+                  "EXPIRED",
+                  "VALIDATION_TIMED_OUT",
+                  "REVOKED",
+                  "FAILED",
+                ],
               },
               RevokedAt: {
                 type: "string",
               },
               RevocationReason: {
                 type: "string",
+                enum: [
+                  "UNSPECIFIED",
+                  "KEY_COMPROMISE",
+                  "CA_COMPROMISE",
+                  "AFFILIATION_CHANGED",
+                  "SUPERCEDED",
+                  "SUPERSEDED",
+                  "CESSATION_OF_OPERATION",
+                  "CERTIFICATE_HOLD",
+                  "REMOVE_FROM_CRL",
+                  "PRIVILEGE_WITHDRAWN",
+                  "A_A_COMPROMISE",
+                ],
               },
               NotBefore: {
                 type: "string",
@@ -194,6 +220,15 @@ const describeCertificate: AppBlock = {
               },
               KeyAlgorithm: {
                 type: "string",
+                enum: [
+                  "RSA_1024",
+                  "RSA_2048",
+                  "RSA_3072",
+                  "RSA_4096",
+                  "EC_prime256v1",
+                  "EC_secp384r1",
+                  "EC_secp521r1",
+                ],
               },
               SignatureAlgorithm: {
                 type: "string",
@@ -206,15 +241,41 @@ const describeCertificate: AppBlock = {
               },
               FailureReason: {
                 type: "string",
+                enum: [
+                  "NO_AVAILABLE_CONTACTS",
+                  "ADDITIONAL_VERIFICATION_REQUIRED",
+                  "DOMAIN_NOT_ALLOWED",
+                  "INVALID_PUBLIC_DOMAIN",
+                  "DOMAIN_VALIDATION_DENIED",
+                  "CAA_ERROR",
+                  "PCA_LIMIT_EXCEEDED",
+                  "PCA_INVALID_ARN",
+                  "PCA_INVALID_STATE",
+                  "PCA_REQUEST_FAILED",
+                  "PCA_NAME_CONSTRAINTS_VALIDATION",
+                  "PCA_RESOURCE_NOT_FOUND",
+                  "PCA_INVALID_ARGS",
+                  "PCA_INVALID_DURATION",
+                  "PCA_ACCESS_DENIED",
+                  "SLR_NOT_FOUND",
+                  "OTHER",
+                ],
               },
               Type: {
                 type: "string",
+                enum: ["IMPORTED", "AMAZON_ISSUED", "PRIVATE"],
               },
               RenewalSummary: {
                 type: "object",
                 properties: {
                   RenewalStatus: {
                     type: "string",
+                    enum: [
+                      "PENDING_AUTO_RENEWAL",
+                      "PENDING_VALIDATION",
+                      "SUCCESS",
+                      "FAILED",
+                    ],
                   },
                   DomainValidationOptions: {
                     type: "array",
@@ -233,6 +294,7 @@ const describeCertificate: AppBlock = {
                         },
                         ValidationStatus: {
                           type: "string",
+                          enum: ["PENDING_VALIDATION", "SUCCESS", "FAILED"],
                         },
                         ResourceRecord: {
                           type: "object",
@@ -254,6 +316,7 @@ const describeCertificate: AppBlock = {
                         },
                         ValidationMethod: {
                           type: "string",
+                          enum: ["EMAIL", "DNS", "HTTP"],
                         },
                       },
                       required: ["DomainName"],
@@ -262,6 +325,25 @@ const describeCertificate: AppBlock = {
                   },
                   RenewalStatusReason: {
                     type: "string",
+                    enum: [
+                      "NO_AVAILABLE_CONTACTS",
+                      "ADDITIONAL_VERIFICATION_REQUIRED",
+                      "DOMAIN_NOT_ALLOWED",
+                      "INVALID_PUBLIC_DOMAIN",
+                      "DOMAIN_VALIDATION_DENIED",
+                      "CAA_ERROR",
+                      "PCA_LIMIT_EXCEEDED",
+                      "PCA_INVALID_ARN",
+                      "PCA_INVALID_STATE",
+                      "PCA_REQUEST_FAILED",
+                      "PCA_NAME_CONSTRAINTS_VALIDATION",
+                      "PCA_RESOURCE_NOT_FOUND",
+                      "PCA_INVALID_ARGS",
+                      "PCA_INVALID_DURATION",
+                      "PCA_ACCESS_DENIED",
+                      "SLR_NOT_FOUND",
+                      "OTHER",
+                    ],
                   },
                   UpdatedAt: {
                     type: "string",
@@ -281,6 +363,19 @@ const describeCertificate: AppBlock = {
                   properties: {
                     Name: {
                       type: "string",
+                      enum: [
+                        "DIGITAL_SIGNATURE",
+                        "NON_REPUDIATION",
+                        "KEY_ENCIPHERMENT",
+                        "DATA_ENCIPHERMENT",
+                        "KEY_AGREEMENT",
+                        "CERTIFICATE_SIGNING",
+                        "CRL_SIGNING",
+                        "ENCIPHER_ONLY",
+                        "DECIPHER_ONLY",
+                        "ANY",
+                        "CUSTOM",
+                      ],
                     },
                   },
                   additionalProperties: false,
@@ -293,6 +388,20 @@ const describeCertificate: AppBlock = {
                   properties: {
                     Name: {
                       type: "string",
+                      enum: [
+                        "TLS_WEB_SERVER_AUTHENTICATION",
+                        "TLS_WEB_CLIENT_AUTHENTICATION",
+                        "CODE_SIGNING",
+                        "EMAIL_PROTECTION",
+                        "TIME_STAMPING",
+                        "OCSP_SIGNING",
+                        "IPSEC_END_SYSTEM",
+                        "IPSEC_TUNNEL",
+                        "IPSEC_USER",
+                        "ANY",
+                        "NONE",
+                        "CUSTOM",
+                      ],
                     },
                     OID: {
                       type: "string",
@@ -306,15 +415,18 @@ const describeCertificate: AppBlock = {
               },
               RenewalEligibility: {
                 type: "string",
+                enum: ["ELIGIBLE", "INELIGIBLE"],
               },
               Options: {
                 type: "object",
                 properties: {
                   CertificateTransparencyLoggingPreference: {
                     type: "string",
+                    enum: ["ENABLED", "DISABLED"],
                   },
                   Export: {
                     type: "string",
+                    enum: ["ENABLED", "DISABLED"],
                   },
                 },
                 additionalProperties: false,

@@ -71,7 +71,10 @@ const exportTableToPointInTime: AppBlock = {
           name: "S3Sse Algorithm",
           description:
             "Type of encryption used on the bucket where export data will be stored.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["AES256", "KMS"],
+          },
           required: false,
         },
         S3SseKmsKeyId: {
@@ -84,14 +87,20 @@ const exportTableToPointInTime: AppBlock = {
         ExportFormat: {
           name: "Export Format",
           description: "The format for the exported data.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["DYNAMODB_JSON", "ION"],
+          },
           required: false,
         },
         ExportType: {
           name: "Export Type",
           description:
             "Choice of whether to execute as a full export or incremental export.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["FULL_EXPORT", "INCREMENTAL_EXPORT"],
+          },
           required: false,
         },
         IncrementalExportSpecification: {
@@ -109,6 +118,7 @@ const exportTableToPointInTime: AppBlock = {
               },
               ExportViewType: {
                 type: "string",
+                enum: ["NEW_IMAGE", "NEW_AND_OLD_IMAGES"],
               },
             },
             additionalProperties: false,
@@ -186,6 +196,7 @@ const exportTableToPointInTime: AppBlock = {
               },
               ExportStatus: {
                 type: "string",
+                enum: ["IN_PROGRESS", "COMPLETED", "FAILED"],
               },
               StartTime: {
                 type: "string",
@@ -219,6 +230,7 @@ const exportTableToPointInTime: AppBlock = {
               },
               S3SseAlgorithm: {
                 type: "string",
+                enum: ["AES256", "KMS"],
               },
               S3SseKmsKeyId: {
                 type: "string",
@@ -231,6 +243,7 @@ const exportTableToPointInTime: AppBlock = {
               },
               ExportFormat: {
                 type: "string",
+                enum: ["DYNAMODB_JSON", "ION"],
               },
               BilledSizeBytes: {
                 type: "number",
@@ -240,6 +253,7 @@ const exportTableToPointInTime: AppBlock = {
               },
               ExportType: {
                 type: "string",
+                enum: ["FULL_EXPORT", "INCREMENTAL_EXPORT"],
               },
               IncrementalExportSpecification: {
                 type: "object",
@@ -252,6 +266,7 @@ const exportTableToPointInTime: AppBlock = {
                   },
                   ExportViewType: {
                     type: "string",
+                    enum: ["NEW_IMAGE", "NEW_AND_OLD_IMAGES"],
                   },
                 },
                 additionalProperties: false,

@@ -64,7 +64,10 @@ const selectObjectContent: AppBlock = {
           name: "Expression Type",
           description:
             "The type of the provided expression (for example, SQL).",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SQL"],
+          },
           required: true,
         },
         RequestProgress: {
@@ -94,6 +97,7 @@ const selectObjectContent: AppBlock = {
                 properties: {
                   FileHeaderInfo: {
                     type: "string",
+                    enum: ["USE", "IGNORE", "NONE"],
                   },
                   Comments: {
                     type: "string",
@@ -118,12 +122,14 @@ const selectObjectContent: AppBlock = {
               },
               CompressionType: {
                 type: "string",
+                enum: ["NONE", "GZIP", "BZIP2"],
               },
               JSON: {
                 type: "object",
                 properties: {
                   Type: {
                     type: "string",
+                    enum: ["DOCUMENT", "LINES"],
                   },
                 },
                 additionalProperties: false,
@@ -150,6 +156,7 @@ const selectObjectContent: AppBlock = {
                 properties: {
                   QuoteFields: {
                     type: "string",
+                    enum: ["ALWAYS", "ASNEEDED"],
                   },
                   QuoteEscapeCharacter: {
                     type: "string",

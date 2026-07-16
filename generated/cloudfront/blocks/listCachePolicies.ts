@@ -28,7 +28,10 @@ const listCachePolicies: AppBlock = {
           name: "Type",
           description:
             "A filter to return only the specified kinds of cache policies.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["managed", "custom"],
+          },
           required: false,
         },
         Marker: {
@@ -122,6 +125,7 @@ const listCachePolicies: AppBlock = {
                   properties: {
                     Type: {
                       type: "string",
+                      enum: ["managed", "custom"],
                     },
                     CachePolicy: {
                       type: "object",

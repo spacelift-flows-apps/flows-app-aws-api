@@ -51,6 +51,14 @@ const listStackInstanceResourceDrifts: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "IN_SYNC",
+                "MODIFIED",
+                "DELETED",
+                "NOT_CHECKED",
+                "UNKNOWN",
+                "UNSUPPORTED",
+              ],
             },
           },
           required: false,
@@ -79,7 +87,10 @@ const listStackInstanceResourceDrifts: AppBlock = {
           name: "Call As",
           description:
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SELF", "DELEGATED_ADMIN"],
+          },
           required: false,
         },
       },
@@ -191,6 +202,7 @@ const listStackInstanceResourceDrifts: AppBlock = {
                       },
                       DifferenceType: {
                         type: "string",
+                        enum: ["ADD", "REMOVE", "NOT_EQUAL"],
                       },
                     },
                     required: [
@@ -204,6 +216,14 @@ const listStackInstanceResourceDrifts: AppBlock = {
                 },
                 StackResourceDriftStatus: {
                   type: "string",
+                  enum: [
+                    "IN_SYNC",
+                    "MODIFIED",
+                    "DELETED",
+                    "NOT_CHECKED",
+                    "UNKNOWN",
+                    "UNSUPPORTED",
+                  ],
                 },
                 Timestamp: {
                   type: "string",

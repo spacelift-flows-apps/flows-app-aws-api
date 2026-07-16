@@ -122,12 +122,21 @@ const listDelegatedAdministrators: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["ACTIVE", "SUSPENDED", "PENDING_CLOSURE"],
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "PENDING_ACTIVATION",
+                    "ACTIVE",
+                    "SUSPENDED",
+                    "PENDING_CLOSURE",
+                    "CLOSED",
+                  ],
                 },
                 JoinedMethod: {
                   type: "string",
+                  enum: ["INVITED", "CREATED"],
                 },
                 JoinedTimestamp: {
                   type: "string",

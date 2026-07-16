@@ -304,7 +304,10 @@ const modifyDBInstance: AppBlock = {
           name: "Database Insights Mode",
           description:
             "Specifies the mode of Database Insights to enable for the DB instance.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["standard", "advanced"],
+          },
           required: false,
         },
         EnablePerformanceInsights: {
@@ -404,13 +407,19 @@ const modifyDBInstance: AppBlock = {
         ReplicaMode: {
           name: "Replica Mode",
           description: "The open mode of a replica database.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["open-read-only", "mounted"],
+          },
           required: false,
         },
         AutomationMode: {
           name: "Automation Mode",
           description: "The automation mode of the RDS Custom DB instance.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["full", "all-paused"],
+          },
           required: false,
         },
         ResumeFullAutomationModeMinutes: {
@@ -554,7 +563,10 @@ const modifyDBInstance: AppBlock = {
         MasterUserAuthenticationType: {
           name: "Master User Authentication Type",
           description: "Specifies the authentication type for the master user.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["password", "iam-db-auth"],
+          },
           required: false,
         },
       },
@@ -772,6 +784,7 @@ const modifyDBInstance: AppBlock = {
               },
               UpgradeRolloutOrder: {
                 type: "string",
+                enum: ["first", "second", "last"],
               },
               PendingModifiedValues: {
                 type: "object",
@@ -853,6 +866,7 @@ const modifyDBInstance: AppBlock = {
                   },
                   AutomationMode: {
                     type: "string",
+                    enum: ["full", "all-paused"],
                   },
                   ResumeFullAutomationModeTime: {
                     type: "string",
@@ -929,6 +943,7 @@ const modifyDBInstance: AppBlock = {
               },
               ReplicaMode: {
                 type: "string",
+                enum: ["open-read-only", "mounted"],
               },
               LicenseModel: {
                 type: "string",
@@ -992,6 +1007,7 @@ const modifyDBInstance: AppBlock = {
               },
               StorageEncryptionType: {
                 type: "string",
+                enum: ["none", "sse-kms", "sse-rds"],
               },
               TdeCredentialArn: {
                 type: "string",
@@ -1073,6 +1089,7 @@ const modifyDBInstance: AppBlock = {
               },
               DatabaseInsightsMode: {
                 type: "string",
+                enum: ["standard", "advanced"],
               },
               PerformanceInsightsEnabled: {
                 type: "boolean",
@@ -1160,6 +1177,7 @@ const modifyDBInstance: AppBlock = {
               },
               AutomationMode: {
                 type: "string",
+                enum: ["full", "all-paused"],
               },
               ResumeFullAutomationModeTime: {
                 type: "string",
@@ -1172,6 +1190,7 @@ const modifyDBInstance: AppBlock = {
               },
               ActivityStreamStatus: {
                 type: "string",
+                enum: ["stopped", "starting", "started", "stopping"],
               },
               ActivityStreamKmsKeyId: {
                 type: "string",
@@ -1181,6 +1200,7 @@ const modifyDBInstance: AppBlock = {
               },
               ActivityStreamMode: {
                 type: "string",
+                enum: ["sync", "async"],
               },
               ActivityStreamEngineNativeAuditFieldsIncluded: {
                 type: "boolean",
@@ -1211,6 +1231,12 @@ const modifyDBInstance: AppBlock = {
               },
               ActivityStreamPolicyStatus: {
                 type: "string",
+                enum: [
+                  "locked",
+                  "unlocked",
+                  "locking-policy",
+                  "unlocking-policy",
+                ],
               },
               CertificateDetails: {
                 type: "object",

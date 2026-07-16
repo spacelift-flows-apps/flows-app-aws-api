@@ -42,11 +42,13 @@ const putInsightSelectors: AppBlock = {
               properties: {
                 InsightType: {
                   type: "string",
+                  enum: ["ApiCallRateInsight", "ApiErrorRateInsight"],
                 },
                 EventCategories: {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["Management", "Data"],
                   },
                 },
               },
@@ -139,11 +141,13 @@ const putInsightSelectors: AppBlock = {
               properties: {
                 InsightType: {
                   type: "string",
+                  enum: ["ApiCallRateInsight", "ApiErrorRateInsight"],
                 },
                 EventCategories: {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["Management", "Data"],
                   },
                 },
               },

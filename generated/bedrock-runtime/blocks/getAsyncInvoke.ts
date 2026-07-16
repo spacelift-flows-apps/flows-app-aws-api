@@ -102,6 +102,7 @@ const getAsyncInvoke: AppBlock = {
           },
           status: {
             type: "string",
+            enum: ["InProgress", "Completed", "Failed"],
             description: "The invocation's status.",
           },
           failureMessage: {

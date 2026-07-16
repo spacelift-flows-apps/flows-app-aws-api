@@ -98,9 +98,11 @@ const createAssociationBatch: AppBlock = {
                 },
                 ComplianceSeverity: {
                   type: "string",
+                  enum: ["CRITICAL", "HIGH", "MEDIUM", "LOW", "UNSPECIFIED"],
                 },
                 SyncCompliance: {
                   type: "string",
+                  enum: ["AUTO", "MANUAL"],
                 },
                 ApplyOnlyAtCronInterval: {
                   type: "boolean",
@@ -299,6 +301,7 @@ const createAssociationBatch: AppBlock = {
                     },
                     Name: {
                       type: "string",
+                      enum: ["Pending", "Success", "Failed"],
                     },
                     Message: {
                       type: "string",
@@ -400,9 +403,11 @@ const createAssociationBatch: AppBlock = {
                 },
                 ComplianceSeverity: {
                   type: "string",
+                  enum: ["CRITICAL", "HIGH", "MEDIUM", "LOW", "UNSPECIFIED"],
                 },
                 SyncCompliance: {
                   type: "string",
+                  enum: ["AUTO", "MANUAL"],
                 },
                 ApplyOnlyAtCronInterval: {
                   type: "boolean",
@@ -511,6 +516,7 @@ const createAssociationBatch: AppBlock = {
                       },
                       State: {
                         type: "string",
+                        enum: ["UNKNOWN", "ALARM"],
                       },
                     },
                     required: ["Name", "State"],
@@ -591,9 +597,17 @@ const createAssociationBatch: AppBlock = {
                     },
                     ComplianceSeverity: {
                       type: "string",
+                      enum: [
+                        "CRITICAL",
+                        "HIGH",
+                        "MEDIUM",
+                        "LOW",
+                        "UNSPECIFIED",
+                      ],
                     },
                     SyncCompliance: {
                       type: "string",
+                      enum: ["AUTO", "MANUAL"],
                     },
                     ApplyOnlyAtCronInterval: {
                       type: "boolean",
@@ -662,6 +676,7 @@ const createAssociationBatch: AppBlock = {
                 },
                 Fault: {
                   type: "string",
+                  enum: ["Client", "Server", "Unknown"],
                 },
               },
               additionalProperties: false,

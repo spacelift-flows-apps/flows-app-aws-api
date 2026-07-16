@@ -151,6 +151,7 @@ const describeTransitGatewayConnectPeers: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["pending", "available", "deleting", "deleted"],
                 },
                 CreationTime: {
                   type: "string",
@@ -172,6 +173,7 @@ const describeTransitGatewayConnectPeers: AppBlock = {
                     },
                     Protocol: {
                       type: "string",
+                      enum: ["gre"],
                     },
                     BgpConfigurations: {
                       type: "array",

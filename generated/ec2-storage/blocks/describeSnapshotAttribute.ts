@@ -27,7 +27,10 @@ const describeSnapshotAttribute: AppBlock = {
         Attribute: {
           name: "Attribute",
           description: "The snapshot attribute you would like to view.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["productCodes", "createVolumePermission"],
+          },
           required: true,
         },
         SnapshotId: {
@@ -113,6 +116,7 @@ const describeSnapshotAttribute: AppBlock = {
                 },
                 ProductCodeType: {
                   type: "string",
+                  enum: ["devpay", "marketplace"],
                 },
               },
               additionalProperties: false,
@@ -133,6 +137,7 @@ const describeSnapshotAttribute: AppBlock = {
                 },
                 Group: {
                   type: "string",
+                  enum: ["all"],
                 },
               },
               additionalProperties: false,

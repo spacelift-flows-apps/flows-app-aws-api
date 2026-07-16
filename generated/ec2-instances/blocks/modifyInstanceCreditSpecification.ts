@@ -146,6 +146,12 @@ const modifyInstanceCreditSpecification: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: [
+                        "InvalidInstanceID.Malformed",
+                        "InvalidInstanceID.NotFound",
+                        "IncorrectInstanceState",
+                        "InstanceCreditSpecification.NotSupported",
+                      ],
                     },
                     Message: {
                       type: "string",

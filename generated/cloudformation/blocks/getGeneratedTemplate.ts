@@ -28,7 +28,10 @@ const getGeneratedTemplate: AppBlock = {
           name: "Format",
           description:
             "The language to use to retrieve for the generated template.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["JSON", "YAML"],
+          },
           required: false,
         },
         GeneratedTemplateName: {
@@ -98,6 +101,16 @@ const getGeneratedTemplate: AppBlock = {
         properties: {
           Status: {
             type: "string",
+            enum: [
+              "CREATE_PENDING",
+              "UPDATE_PENDING",
+              "DELETE_PENDING",
+              "CREATE_IN_PROGRESS",
+              "UPDATE_IN_PROGRESS",
+              "DELETE_IN_PROGRESS",
+              "FAILED",
+              "COMPLETE",
+            ],
             description: "The status of the template generation.",
           },
           TemplateBody: {

@@ -41,6 +41,7 @@ const createDashboard: AppBlock = {
                 properties: {
                   Unit: {
                     type: "string",
+                    enum: ["HOURS", "DAYS"],
                   },
                   Value: {
                     type: "number",
@@ -50,6 +51,7 @@ const createDashboard: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
               TimeOfDay: {
                 type: "string",
@@ -185,6 +187,7 @@ const createDashboard: AppBlock = {
           },
           Type: {
             type: "string",
+            enum: ["MANAGED", "CUSTOM"],
             description: "The dashboard type.",
           },
           Widgets: {
@@ -240,6 +243,7 @@ const createDashboard: AppBlock = {
                 properties: {
                   Unit: {
                     type: "string",
+                    enum: ["HOURS", "DAYS"],
                   },
                   Value: {
                     type: "number",
@@ -249,6 +253,7 @@ const createDashboard: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
               TimeOfDay: {
                 type: "string",

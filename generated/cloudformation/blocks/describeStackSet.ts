@@ -35,7 +35,10 @@ const describeStackSet: AppBlock = {
           name: "Call As",
           description:
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SELF", "DELEGATED_ADMIN"],
+          },
           required: false,
         },
       },
@@ -110,6 +113,7 @@ const describeStackSet: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["ACTIVE", "DELETED"],
               },
               TemplateBody: {
                 type: "string",
@@ -139,6 +143,11 @@ const describeStackSet: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "CAPABILITY_IAM",
+                    "CAPABILITY_NAMED_IAM",
+                    "CAPABILITY_AUTO_EXPAND",
+                  ],
                 },
               },
               Tags: {
@@ -171,9 +180,17 @@ const describeStackSet: AppBlock = {
                 properties: {
                   DriftStatus: {
                     type: "string",
+                    enum: ["DRIFTED", "IN_SYNC", "NOT_CHECKED"],
                   },
                   DriftDetectionStatus: {
                     type: "string",
+                    enum: [
+                      "COMPLETED",
+                      "FAILED",
+                      "PARTIAL_SUCCESS",
+                      "IN_PROGRESS",
+                      "STOPPED",
+                    ],
                   },
                   LastDriftCheckTimestamp: {
                     type: "string",
@@ -216,6 +233,7 @@ const describeStackSet: AppBlock = {
               },
               PermissionModel: {
                 type: "string",
+                enum: ["SERVICE_MANAGED", "SELF_MANAGED"],
               },
               OrganizationalUnitIds: {
                 type: "array",

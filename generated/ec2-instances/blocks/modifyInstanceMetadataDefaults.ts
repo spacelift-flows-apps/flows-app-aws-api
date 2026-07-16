@@ -27,7 +27,10 @@ const modifyInstanceMetadataDefaults: AppBlock = {
         HttpTokens: {
           name: "Http Tokens",
           description: "Indicates whether IMDSv2 is required.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["optional", "required", "no-preference"],
+          },
           required: false,
         },
         HttpPutResponseHopLimit: {
@@ -40,14 +43,20 @@ const modifyInstanceMetadataDefaults: AppBlock = {
         HttpEndpoint: {
           name: "Http Endpoint",
           description: "Enables or disables the IMDS endpoint on an instance.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["disabled", "enabled", "no-preference"],
+          },
           required: false,
         },
         InstanceMetadataTags: {
           name: "Instance Metadata Tags",
           description:
             "Enables or disables access to an instance's tags from the instance metadata.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["disabled", "enabled", "no-preference"],
+          },
           required: false,
         },
         DryRun: {
@@ -61,7 +70,10 @@ const modifyInstanceMetadataDefaults: AppBlock = {
           name: "Http Tokens Enforced",
           description:
             "Specifies whether to enforce the requirement of IMDSv2 on an instance at the time of launch.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["disabled", "enabled", "no-preference"],
+          },
           required: false,
         },
       },

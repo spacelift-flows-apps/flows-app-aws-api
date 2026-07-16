@@ -140,6 +140,16 @@ const describeMaintenanceWindowExecutions: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "PENDING",
+                    "IN_PROGRESS",
+                    "SUCCESS",
+                    "FAILED",
+                    "TIMED_OUT",
+                    "CANCELLING",
+                    "CANCELLED",
+                    "SKIPPED_OVERLAPPING",
+                  ],
                 },
                 StatusDetails: {
                   type: "string",

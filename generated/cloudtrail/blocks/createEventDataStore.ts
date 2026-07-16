@@ -152,7 +152,10 @@ const createEventDataStore: AppBlock = {
           name: "Billing Mode",
           description:
             "The billing mode for the event data store determines the cost for ingesting events and the default and maximum retention period for the event data store.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["EXTENDABLE_RETENTION_PRICING", "FIXED_RETENTION_PRICING"],
+          },
           required: false,
         },
       },
@@ -223,6 +226,14 @@ const createEventDataStore: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: [
+              "CREATED",
+              "ENABLED",
+              "PENDING_DELETION",
+              "STARTING_INGESTION",
+              "STOPPING_INGESTION",
+              "STOPPED_INGESTION",
+            ],
             description: "The status of event data store creation.",
           },
           AdvancedEventSelectors: {
@@ -331,6 +342,7 @@ const createEventDataStore: AppBlock = {
           },
           BillingMode: {
             type: "string",
+            enum: ["EXTENDABLE_RETENTION_PRICING", "FIXED_RETENTION_PRICING"],
             description: "The billing mode for the event data store.",
           },
         },

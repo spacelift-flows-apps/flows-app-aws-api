@@ -39,14 +39,26 @@ const putAccountPolicy: AppBlock = {
         policyType: {
           name: "policy Type",
           description: "The type of policy that you're creating or updating.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "DATA_PROTECTION_POLICY",
+              "SUBSCRIPTION_FILTER_POLICY",
+              "FIELD_INDEX_POLICY",
+              "TRANSFORMER_POLICY",
+              "METRIC_EXTRACTION_POLICY",
+            ],
+          },
           required: true,
         },
         scope: {
           name: "scope",
           description:
             "Currently the only valid value for this parameter is ALL, which specifies that the data protection policy applies to all log groups in the account.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ALL"],
+          },
           required: false,
         },
         selectionCriteria: {
@@ -128,9 +140,17 @@ const putAccountPolicy: AppBlock = {
               },
               policyType: {
                 type: "string",
+                enum: [
+                  "DATA_PROTECTION_POLICY",
+                  "SUBSCRIPTION_FILTER_POLICY",
+                  "FIELD_INDEX_POLICY",
+                  "TRANSFORMER_POLICY",
+                  "METRIC_EXTRACTION_POLICY",
+                ],
               },
               scope: {
                 type: "string",
+                enum: ["ALL"],
               },
               selectionCriteria: {
                 type: "string",

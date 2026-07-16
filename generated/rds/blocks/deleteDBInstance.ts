@@ -264,6 +264,7 @@ const deleteDBInstance: AppBlock = {
               },
               UpgradeRolloutOrder: {
                 type: "string",
+                enum: ["first", "second", "last"],
               },
               PendingModifiedValues: {
                 type: "object",
@@ -345,6 +346,7 @@ const deleteDBInstance: AppBlock = {
                   },
                   AutomationMode: {
                     type: "string",
+                    enum: ["full", "all-paused"],
                   },
                   ResumeFullAutomationModeTime: {
                     type: "string",
@@ -421,6 +423,7 @@ const deleteDBInstance: AppBlock = {
               },
               ReplicaMode: {
                 type: "string",
+                enum: ["open-read-only", "mounted"],
               },
               LicenseModel: {
                 type: "string",
@@ -484,6 +487,7 @@ const deleteDBInstance: AppBlock = {
               },
               StorageEncryptionType: {
                 type: "string",
+                enum: ["none", "sse-kms", "sse-rds"],
               },
               TdeCredentialArn: {
                 type: "string",
@@ -565,6 +569,7 @@ const deleteDBInstance: AppBlock = {
               },
               DatabaseInsightsMode: {
                 type: "string",
+                enum: ["standard", "advanced"],
               },
               PerformanceInsightsEnabled: {
                 type: "boolean",
@@ -652,6 +657,7 @@ const deleteDBInstance: AppBlock = {
               },
               AutomationMode: {
                 type: "string",
+                enum: ["full", "all-paused"],
               },
               ResumeFullAutomationModeTime: {
                 type: "string",
@@ -664,6 +670,7 @@ const deleteDBInstance: AppBlock = {
               },
               ActivityStreamStatus: {
                 type: "string",
+                enum: ["stopped", "starting", "started", "stopping"],
               },
               ActivityStreamKmsKeyId: {
                 type: "string",
@@ -673,6 +680,7 @@ const deleteDBInstance: AppBlock = {
               },
               ActivityStreamMode: {
                 type: "string",
+                enum: ["sync", "async"],
               },
               ActivityStreamEngineNativeAuditFieldsIncluded: {
                 type: "boolean",
@@ -703,6 +711,12 @@ const deleteDBInstance: AppBlock = {
               },
               ActivityStreamPolicyStatus: {
                 type: "string",
+                enum: [
+                  "locked",
+                  "unlocked",
+                  "locking-policy",
+                  "unlocking-policy",
+                ],
               },
               CertificateDetails: {
                 type: "object",

@@ -52,7 +52,16 @@ const listContainerInstances: AppBlock = {
         status: {
           name: "status",
           description: "Filters the container instances by status.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "ACTIVE",
+              "DRAINING",
+              "REGISTERING",
+              "DEREGISTERING",
+              "REGISTRATION_FAILED",
+            ],
+          },
           required: false,
         },
       },

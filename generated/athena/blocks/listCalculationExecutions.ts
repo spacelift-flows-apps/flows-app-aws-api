@@ -33,7 +33,19 @@ const listCalculationExecutions: AppBlock = {
         StateFilter: {
           name: "State Filter",
           description: "A filter for a specific calculation execution state.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CREATING",
+              "CREATED",
+              "QUEUED",
+              "RUNNING",
+              "CANCELING",
+              "CANCELED",
+              "COMPLETED",
+              "FAILED",
+            ],
+          },
           required: false,
         },
         MaxResults: {
@@ -137,6 +149,16 @@ const listCalculationExecutions: AppBlock = {
                     },
                     State: {
                       type: "string",
+                      enum: [
+                        "CREATING",
+                        "CREATED",
+                        "QUEUED",
+                        "RUNNING",
+                        "CANCELING",
+                        "CANCELED",
+                        "COMPLETED",
+                        "FAILED",
+                      ],
                     },
                     StateChangeReason: {
                       type: "string",

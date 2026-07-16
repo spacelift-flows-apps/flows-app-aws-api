@@ -98,7 +98,10 @@ const modifySubnetAttribute: AppBlock = {
           name: "Private Dns Hostname Type On Launch",
           description:
             "The type of hostname to assign to instances in the subnet at launch.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ip-name", "resource-name"],
+          },
           required: false,
         },
         EnableResourceNameDnsARecordOnLaunch: {

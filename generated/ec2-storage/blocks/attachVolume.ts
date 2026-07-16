@@ -143,6 +143,7 @@ const attachVolume: AppBlock = {
           },
           State: {
             type: "string",
+            enum: ["attaching", "attached", "detaching", "detached", "busy"],
             description: "The attachment state of the volume.",
           },
           AttachTime: {

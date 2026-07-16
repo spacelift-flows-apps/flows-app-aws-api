@@ -63,6 +63,7 @@ const updateCodeSigningConfig: AppBlock = {
             properties: {
               UntrustedArtifactOnDeployment: {
                 type: "string",
+                enum: ["Warn", "Enforce"],
               },
             },
             additionalProperties: false,
@@ -157,6 +158,7 @@ const updateCodeSigningConfig: AppBlock = {
                 properties: {
                   UntrustedArtifactOnDeployment: {
                     type: "string",
+                    enum: ["Warn", "Enforce"],
                   },
                 },
                 additionalProperties: false,

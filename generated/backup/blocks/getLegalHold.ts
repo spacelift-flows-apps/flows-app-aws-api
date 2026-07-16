@@ -91,6 +91,7 @@ const getLegalHold: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["CREATING", "ACTIVE", "CANCELING", "CANCELED"],
             description: "The status of the legal hold.",
           },
           Description: {

@@ -123,6 +123,7 @@ const listProvisionedConcurrencyConfigs: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["IN_PROGRESS", "READY", "FAILED"],
                 },
                 StatusReason: {
                   type: "string",

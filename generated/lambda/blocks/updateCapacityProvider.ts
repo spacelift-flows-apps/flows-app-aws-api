@@ -42,6 +42,7 @@ const updateCapacityProvider: AppBlock = {
               },
               ScalingMode: {
                 type: "string",
+                enum: ["Auto", "Manual"],
               },
               ScalingPolicies: {
                 type: "array",
@@ -50,6 +51,7 @@ const updateCapacityProvider: AppBlock = {
                   properties: {
                     PredefinedMetricType: {
                       type: "string",
+                      enum: ["LambdaCapacityProviderAverageCPUUtilization"],
                     },
                     TargetValue: {
                       type: "number",
@@ -130,6 +132,7 @@ const updateCapacityProvider: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["Pending", "Active", "Failed", "Deleting"],
               },
               VpcConfig: {
                 type: "object",
@@ -167,6 +170,7 @@ const updateCapacityProvider: AppBlock = {
                     type: "array",
                     items: {
                       type: "string",
+                      enum: ["x86_64", "arm64"],
                     },
                   },
                   AllowedInstanceTypes: {
@@ -192,6 +196,7 @@ const updateCapacityProvider: AppBlock = {
                   },
                   ScalingMode: {
                     type: "string",
+                    enum: ["Auto", "Manual"],
                   },
                   ScalingPolicies: {
                     type: "array",
@@ -200,6 +205,7 @@ const updateCapacityProvider: AppBlock = {
                       properties: {
                         PredefinedMetricType: {
                           type: "string",
+                          enum: ["LambdaCapacityProviderAverageCPUUtilization"],
                         },
                         TargetValue: {
                           type: "number",

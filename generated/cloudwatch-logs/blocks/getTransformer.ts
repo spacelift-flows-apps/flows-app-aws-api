@@ -250,6 +250,7 @@ const getTransformer: AppBlock = {
                     },
                     flattenedElement: {
                       type: "string",
+                      enum: ["first", "last"],
                     },
                   },
                   required: ["source", "key"],
@@ -353,9 +354,17 @@ const getTransformer: AppBlock = {
                     },
                     eventSource: {
                       type: "string",
+                      enum: [
+                        "CloudTrail",
+                        "Route53Resolver",
+                        "VPCFlow",
+                        "EKSAudit",
+                        "AWSWAF",
+                      ],
                     },
                     ocsfVersion: {
                       type: "string",
+                      enum: ["V1.1", "V1.5"],
                     },
                     mappingVersion: {
                       type: "string",

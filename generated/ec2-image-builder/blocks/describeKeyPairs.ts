@@ -148,6 +148,7 @@ const describeKeyPairs: AppBlock = {
                 },
                 KeyType: {
                   type: "string",
+                  enum: ["rsa", "ed25519"],
                 },
                 Tags: {
                   type: "array",

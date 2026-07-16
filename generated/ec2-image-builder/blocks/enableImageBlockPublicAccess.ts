@@ -28,7 +28,10 @@ const enableImageBlockPublicAccess: AppBlock = {
           name: "Image Block Public Access State",
           description:
             "Specify block-new-sharing to enable block public access for AMIs at the account level in the specified Region.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["block-new-sharing"],
+          },
           required: true,
         },
         DryRun: {
@@ -100,6 +103,7 @@ const enableImageBlockPublicAccess: AppBlock = {
         properties: {
           ImageBlockPublicAccessState: {
             type: "string",
+            enum: ["block-new-sharing"],
             description:
               "Returns block-new-sharing if the request succeeds; otherwise, it returns an error.",
           },

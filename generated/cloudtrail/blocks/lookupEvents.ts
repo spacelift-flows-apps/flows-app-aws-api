@@ -35,6 +35,16 @@ const lookupEvents: AppBlock = {
               properties: {
                 AttributeKey: {
                   type: "string",
+                  enum: [
+                    "EventId",
+                    "EventName",
+                    "ReadOnly",
+                    "Username",
+                    "ResourceType",
+                    "ResourceName",
+                    "EventSource",
+                    "AccessKeyId",
+                  ],
                 },
                 AttributeValue: {
                   type: "string",
@@ -63,7 +73,10 @@ const lookupEvents: AppBlock = {
         EventCategory: {
           name: "Event Category",
           description: "Specifies the event category.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["insight"],
+          },
           required: false,
         },
         MaxResults: {

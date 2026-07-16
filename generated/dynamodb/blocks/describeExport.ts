@@ -97,6 +97,7 @@ const describeExport: AppBlock = {
               },
               ExportStatus: {
                 type: "string",
+                enum: ["IN_PROGRESS", "COMPLETED", "FAILED"],
               },
               StartTime: {
                 type: "string",
@@ -130,6 +131,7 @@ const describeExport: AppBlock = {
               },
               S3SseAlgorithm: {
                 type: "string",
+                enum: ["AES256", "KMS"],
               },
               S3SseKmsKeyId: {
                 type: "string",
@@ -142,6 +144,7 @@ const describeExport: AppBlock = {
               },
               ExportFormat: {
                 type: "string",
+                enum: ["DYNAMODB_JSON", "ION"],
               },
               BilledSizeBytes: {
                 type: "number",
@@ -151,6 +154,7 @@ const describeExport: AppBlock = {
               },
               ExportType: {
                 type: "string",
+                enum: ["FULL_EXPORT", "INCREMENTAL_EXPORT"],
               },
               IncrementalExportSpecification: {
                 type: "object",
@@ -163,6 +167,7 @@ const describeExport: AppBlock = {
                   },
                   ExportViewType: {
                     type: "string",
+                    enum: ["NEW_IMAGE", "NEW_AND_OLD_IMAGES"],
                   },
                 },
                 additionalProperties: false,

@@ -116,11 +116,13 @@ const listOriginationNumbers: AppBlock = {
                 },
                 RouteType: {
                   type: "string",
+                  enum: ["Transactional", "Promotional", "Premium"],
                 },
                 NumberCapabilities: {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["SMS", "MMS", "VOICE"],
                   },
                 },
               },

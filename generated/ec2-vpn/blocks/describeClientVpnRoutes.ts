@@ -153,6 +153,7 @@ const describeClientVpnRoutes: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: ["creating", "active", "failed", "deleting"],
                     },
                     Message: {
                       type: "string",

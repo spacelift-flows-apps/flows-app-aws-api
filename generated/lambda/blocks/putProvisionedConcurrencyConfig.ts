@@ -117,6 +117,7 @@ const putProvisionedConcurrencyConfig: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["IN_PROGRESS", "READY", "FAILED"],
             description: "The status of the allocation process.",
           },
           StatusReason: {

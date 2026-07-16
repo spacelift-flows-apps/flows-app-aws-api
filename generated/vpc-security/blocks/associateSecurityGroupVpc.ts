@@ -105,6 +105,14 @@ const associateSecurityGroupVpc: AppBlock = {
         properties: {
           State: {
             type: "string",
+            enum: [
+              "associating",
+              "associated",
+              "association-failed",
+              "disassociating",
+              "disassociated",
+              "disassociation-failed",
+            ],
             description: "The state of the association.",
           },
         },

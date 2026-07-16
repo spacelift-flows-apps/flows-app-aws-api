@@ -35,7 +35,16 @@ const describeEvents: AppBlock = {
         SourceType: {
           name: "Source Type",
           description: "The event source to retrieve events for.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "cluster",
+              "cluster-parameter-group",
+              "cluster-security-group",
+              "cluster-snapshot",
+              "scheduled-action",
+            ],
+          },
           required: false,
         },
         StartTime: {
@@ -151,6 +160,13 @@ const describeEvents: AppBlock = {
                 },
                 SourceType: {
                   type: "string",
+                  enum: [
+                    "cluster",
+                    "cluster-parameter-group",
+                    "cluster-security-group",
+                    "cluster-snapshot",
+                    "scheduled-action",
+                  ],
                 },
                 Message: {
                   type: "string",

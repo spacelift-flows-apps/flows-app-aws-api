@@ -43,6 +43,7 @@ const generateRandom: AppBlock = {
             properties: {
               KeyEncryptionAlgorithm: {
                 type: "string",
+                enum: ["RSAES_OAEP_SHA_256"],
               },
               AttestationDocument: {
                 type: "string",

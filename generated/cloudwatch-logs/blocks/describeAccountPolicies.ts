@@ -28,7 +28,16 @@ const describeAccountPolicies: AppBlock = {
           name: "policy Type",
           description:
             "Use this parameter to limit the returned policies to only the policies that match the policy type that you specify.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "DATA_PROTECTION_POLICY",
+              "SUBSCRIPTION_FILTER_POLICY",
+              "FIELD_INDEX_POLICY",
+              "TRANSFORMER_POLICY",
+              "METRIC_EXTRACTION_POLICY",
+            ],
+          },
           required: true,
         },
         policyName: {
@@ -130,9 +139,17 @@ const describeAccountPolicies: AppBlock = {
                 },
                 policyType: {
                   type: "string",
+                  enum: [
+                    "DATA_PROTECTION_POLICY",
+                    "SUBSCRIPTION_FILTER_POLICY",
+                    "FIELD_INDEX_POLICY",
+                    "TRANSFORMER_POLICY",
+                    "METRIC_EXTRACTION_POLICY",
+                  ],
                 },
                 scope: {
                   type: "string",
+                  enum: ["ALL"],
                 },
                 selectionCriteria: {
                   type: "string",

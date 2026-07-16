@@ -153,6 +153,7 @@ const deregisterCluster: AppBlock = {
                   },
                   ipFamily: {
                     type: "string",
+                    enum: ["ipv4", "ipv6"],
                   },
                   elasticLoadBalancing: {
                     type: "object",
@@ -205,6 +206,14 @@ const deregisterCluster: AppBlock = {
               },
               status: {
                 type: "string",
+                enum: [
+                  "CREATING",
+                  "ACTIVE",
+                  "DELETING",
+                  "FAILED",
+                  "UPDATING",
+                  "PENDING",
+                ],
               },
               certificateAuthority: {
                 type: "object",
@@ -285,6 +294,27 @@ const deregisterCluster: AppBlock = {
                       properties: {
                         code: {
                           type: "string",
+                          enum: [
+                            "AccessDenied",
+                            "ClusterUnreachable",
+                            "ConfigurationConflict",
+                            "InternalFailure",
+                            "ResourceLimitExceeded",
+                            "ResourceNotFound",
+                            "IamRoleNotFound",
+                            "VpcNotFound",
+                            "InsufficientFreeAddresses",
+                            "Ec2ServiceNotSubscribed",
+                            "Ec2SubnetNotFound",
+                            "Ec2SecurityGroupNotFound",
+                            "KmsGrantRevoked",
+                            "KmsKeyNotFound",
+                            "KmsKeyMarkedForDeletion",
+                            "KmsKeyDisabled",
+                            "StsRegionalEndpointDisabled",
+                            "UnsupportedVersion",
+                            "Other",
+                          ],
                         },
                         message: {
                           type: "string",
@@ -333,6 +363,7 @@ const deregisterCluster: AppBlock = {
                   },
                   authenticationMode: {
                     type: "string",
+                    enum: ["API", "API_AND_CONFIG_MAP", "CONFIG_MAP"],
                   },
                 },
                 additionalProperties: false,
@@ -342,6 +373,7 @@ const deregisterCluster: AppBlock = {
                 properties: {
                   supportType: {
                     type: "string",
+                    enum: ["STANDARD", "EXTENDED"],
                   },
                 },
                 additionalProperties: false,
@@ -428,6 +460,13 @@ const deregisterCluster: AppBlock = {
                 properties: {
                   tier: {
                     type: "string",
+                    enum: [
+                      "standard",
+                      "tier-xl",
+                      "tier-2xl",
+                      "tier-4xl",
+                      "tier-8xl",
+                    ],
                   },
                 },
                 additionalProperties: false,

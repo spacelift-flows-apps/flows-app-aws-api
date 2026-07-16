@@ -40,7 +40,10 @@ const describeFpgaImageAttribute: AppBlock = {
         Attribute: {
           name: "Attribute",
           description: "The AFI attribute.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["description", "name", "loadPermission", "productCodes"],
+          },
           required: true,
         },
       },
@@ -125,6 +128,7 @@ const describeFpgaImageAttribute: AppBlock = {
                     },
                     Group: {
                       type: "string",
+                      enum: ["all"],
                     },
                   },
                   additionalProperties: false,
@@ -140,6 +144,7 @@ const describeFpgaImageAttribute: AppBlock = {
                     },
                     ProductCodeType: {
                       type: "string",
+                      enum: ["devpay", "marketplace"],
                     },
                   },
                   additionalProperties: false,

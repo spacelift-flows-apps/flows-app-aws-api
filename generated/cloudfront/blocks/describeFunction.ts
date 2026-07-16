@@ -34,7 +34,10 @@ const describeFunction: AppBlock = {
         Stage: {
           name: "Stage",
           description: "The function's stage, either DEVELOPMENT or LIVE.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["DEVELOPMENT", "LIVE"],
+          },
           required: false,
         },
       },
@@ -112,6 +115,7 @@ const describeFunction: AppBlock = {
                   },
                   Runtime: {
                     type: "string",
+                    enum: ["cloudfront-js-1.0", "cloudfront-js-2.0"],
                   },
                   KeyValueStoreAssociations: {
                     type: "object",
@@ -146,6 +150,7 @@ const describeFunction: AppBlock = {
                   },
                   Stage: {
                     type: "string",
+                    enum: ["DEVELOPMENT", "LIVE"],
                   },
                   CreatedTime: {
                     type: "string",

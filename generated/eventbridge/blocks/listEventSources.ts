@@ -125,6 +125,7 @@ const listEventSources: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["PENDING", "ACTIVE", "DELETED"],
                 },
               },
               additionalProperties: false,

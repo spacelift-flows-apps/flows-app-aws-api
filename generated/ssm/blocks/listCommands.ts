@@ -59,6 +59,13 @@ const listCommands: AppBlock = {
               properties: {
                 key: {
                   type: "string",
+                  enum: [
+                    "InvokedAfter",
+                    "InvokedBefore",
+                    "Status",
+                    "ExecutionStage",
+                    "DocumentName",
+                  ],
                 },
                 value: {
                   type: "string",
@@ -181,6 +188,15 @@ const listCommands: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "Pending",
+                    "InProgress",
+                    "Success",
+                    "Cancelled",
+                    "Failed",
+                    "TimedOut",
+                    "Cancelling",
+                  ],
                 },
                 StatusDetails: {
                   type: "string",
@@ -225,10 +241,19 @@ const listCommands: AppBlock = {
                       type: "array",
                       items: {
                         type: "string",
+                        enum: [
+                          "All",
+                          "InProgress",
+                          "Success",
+                          "TimedOut",
+                          "Cancelled",
+                          "Failed",
+                        ],
                       },
                     },
                     NotificationType: {
                       type: "string",
+                      enum: ["Command", "Invocation"],
                     },
                   },
                   additionalProperties: false,
@@ -279,6 +304,7 @@ const listCommands: AppBlock = {
                       },
                       State: {
                         type: "string",
+                        enum: ["UNKNOWN", "ALARM"],
                       },
                     },
                     required: ["Name", "State"],

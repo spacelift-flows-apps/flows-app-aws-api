@@ -31,6 +31,13 @@ const getAccountAuthorizationDetails: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "User",
+                "Role",
+                "Group",
+                "LocalManagedPolicy",
+                "AWSManagedPolicy",
+              ],
             },
           },
           required: false,
@@ -170,6 +177,7 @@ const getAccountAuthorizationDetails: AppBlock = {
                   properties: {
                     PermissionsBoundaryType: {
                       type: "string",
+                      enum: ["PermissionsBoundaryPolicy"],
                     },
                     PermissionsBoundaryArn: {
                       type: "string",
@@ -351,6 +359,7 @@ const getAccountAuthorizationDetails: AppBlock = {
                   properties: {
                     PermissionsBoundaryType: {
                       type: "string",
+                      enum: ["PermissionsBoundaryPolicy"],
                     },
                     PermissionsBoundaryArn: {
                       type: "string",

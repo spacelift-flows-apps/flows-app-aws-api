@@ -31,6 +31,7 @@ const describeParameters: AppBlock = {
               properties: {
                 Key: {
                   type: "string",
+                  enum: ["Name", "Type", "KeyId"],
                 },
                 Values: {
                   type: "array",
@@ -161,6 +162,7 @@ const describeParameters: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: ["String", "StringList", "SecureString"],
                 },
                 KeyId: {
                   type: "string",
@@ -182,6 +184,7 @@ const describeParameters: AppBlock = {
                 },
                 Tier: {
                   type: "string",
+                  enum: ["Standard", "Advanced", "Intelligent-Tiering"],
                 },
                 Policies: {
                   type: "array",

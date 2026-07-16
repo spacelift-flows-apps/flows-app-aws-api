@@ -130,6 +130,16 @@ const startCalculationExecution: AppBlock = {
           },
           State: {
             type: "string",
+            enum: [
+              "CREATING",
+              "CREATED",
+              "QUEUED",
+              "RUNNING",
+              "CANCELING",
+              "CANCELED",
+              "COMPLETED",
+              "FAILED",
+            ],
             description:
               "CREATING - The calculation is in the process of being created.",
           },

@@ -152,6 +152,7 @@ const describeEndpoint: AppBlock = {
             properties: {
               State: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
             },
             additionalProperties: false,
@@ -190,6 +191,15 @@ const describeEndpoint: AppBlock = {
           },
           State: {
             type: "string",
+            enum: [
+              "ACTIVE",
+              "CREATING",
+              "UPDATING",
+              "DELETING",
+              "CREATE_FAILED",
+              "UPDATE_FAILED",
+              "DELETE_FAILED",
+            ],
             description:
               "The current state of the endpoint you asked for information about.",
           },

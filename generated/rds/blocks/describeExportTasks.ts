@@ -77,7 +77,10 @@ const describeExportTasks: AppBlock = {
         SourceType: {
           name: "Source Type",
           description: "The type of source for the export.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SNAPSHOT", "CLUSTER"],
+          },
           required: false,
         },
       },
@@ -198,6 +201,7 @@ const describeExportTasks: AppBlock = {
                 },
                 SourceType: {
                   type: "string",
+                  enum: ["SNAPSHOT", "CLUSTER"],
                 },
               },
               additionalProperties: false,

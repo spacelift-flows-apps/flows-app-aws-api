@@ -121,9 +121,17 @@ const listAccountsForParent: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["ACTIVE", "SUSPENDED", "PENDING_CLOSURE"],
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "PENDING_ACTIVATION",
+                    "ACTIVE",
+                    "SUSPENDED",
+                    "PENDING_CLOSURE",
+                    "CLOSED",
+                  ],
                 },
                 Paths: {
                   type: "array",
@@ -133,6 +141,7 @@ const listAccountsForParent: AppBlock = {
                 },
                 JoinedMethod: {
                   type: "string",
+                  enum: ["INVITED", "CREATED"],
                 },
                 JoinedTimestamp: {
                   type: "string",

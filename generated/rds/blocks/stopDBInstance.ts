@@ -249,6 +249,7 @@ const stopDBInstance: AppBlock = {
               },
               UpgradeRolloutOrder: {
                 type: "string",
+                enum: ["first", "second", "last"],
               },
               PendingModifiedValues: {
                 type: "object",
@@ -330,6 +331,7 @@ const stopDBInstance: AppBlock = {
                   },
                   AutomationMode: {
                     type: "string",
+                    enum: ["full", "all-paused"],
                   },
                   ResumeFullAutomationModeTime: {
                     type: "string",
@@ -406,6 +408,7 @@ const stopDBInstance: AppBlock = {
               },
               ReplicaMode: {
                 type: "string",
+                enum: ["open-read-only", "mounted"],
               },
               LicenseModel: {
                 type: "string",
@@ -469,6 +472,7 @@ const stopDBInstance: AppBlock = {
               },
               StorageEncryptionType: {
                 type: "string",
+                enum: ["none", "sse-kms", "sse-rds"],
               },
               TdeCredentialArn: {
                 type: "string",
@@ -550,6 +554,7 @@ const stopDBInstance: AppBlock = {
               },
               DatabaseInsightsMode: {
                 type: "string",
+                enum: ["standard", "advanced"],
               },
               PerformanceInsightsEnabled: {
                 type: "boolean",
@@ -637,6 +642,7 @@ const stopDBInstance: AppBlock = {
               },
               AutomationMode: {
                 type: "string",
+                enum: ["full", "all-paused"],
               },
               ResumeFullAutomationModeTime: {
                 type: "string",
@@ -649,6 +655,7 @@ const stopDBInstance: AppBlock = {
               },
               ActivityStreamStatus: {
                 type: "string",
+                enum: ["stopped", "starting", "started", "stopping"],
               },
               ActivityStreamKmsKeyId: {
                 type: "string",
@@ -658,6 +665,7 @@ const stopDBInstance: AppBlock = {
               },
               ActivityStreamMode: {
                 type: "string",
+                enum: ["sync", "async"],
               },
               ActivityStreamEngineNativeAuditFieldsIncluded: {
                 type: "boolean",
@@ -688,6 +696,12 @@ const stopDBInstance: AppBlock = {
               },
               ActivityStreamPolicyStatus: {
                 type: "string",
+                enum: [
+                  "locked",
+                  "unlocked",
+                  "locking-policy",
+                  "unlocking-policy",
+                ],
               },
               CertificateDetails: {
                 type: "object",

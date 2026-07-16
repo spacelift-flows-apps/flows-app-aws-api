@@ -280,6 +280,38 @@ const describeAutoScalingGroups: AppBlock = {
                       },
                       LifecycleState: {
                         type: "string",
+                        enum: [
+                          "Pending",
+                          "Pending:Wait",
+                          "Pending:Proceed",
+                          "Quarantined",
+                          "InService",
+                          "Terminating",
+                          "Terminating:Wait",
+                          "Terminating:Proceed",
+                          "Terminating:Retained",
+                          "Terminated",
+                          "Detaching",
+                          "Detached",
+                          "EnteringStandby",
+                          "Standby",
+                          "ReplacingRootVolume",
+                          "ReplacingRootVolume:Wait",
+                          "ReplacingRootVolume:Proceed",
+                          "RootVolumeReplaced",
+                          "Warmed:Pending",
+                          "Warmed:Pending:Wait",
+                          "Warmed:Pending:Proceed",
+                          "Warmed:Pending:Retained",
+                          "Warmed:Terminating",
+                          "Warmed:Terminating:Wait",
+                          "Warmed:Terminating:Proceed",
+                          "Warmed:Terminating:Retained",
+                          "Warmed:Terminated",
+                          "Warmed:Stopped",
+                          "Warmed:Running",
+                          "Warmed:Hibernated",
+                        ],
                       },
                       HealthStatus: {
                         type: "string",
@@ -411,9 +443,11 @@ const describeAutoScalingGroups: AppBlock = {
                     },
                     PoolState: {
                       type: "string",
+                      enum: ["Stopped", "Running", "Hibernated"],
                     },
                     Status: {
                       type: "string",
+                      enum: ["PendingDelete"],
                     },
                     InstanceReusePolicy: {
                       type: "object",
@@ -469,12 +503,18 @@ const describeAutoScalingGroups: AppBlock = {
                 },
                 DeletionProtection: {
                   type: "string",
+                  enum: [
+                    "none",
+                    "prevent-force-deletion",
+                    "prevent-all-deletion",
+                  ],
                 },
                 AvailabilityZoneDistribution: {
                   type: "object",
                   properties: {
                     CapacityDistributionStrategy: {
                       type: "string",
+                      enum: ["balanced-only", "balanced-best-effort"],
                     },
                   },
                   additionalProperties: false,
@@ -487,6 +527,7 @@ const describeAutoScalingGroups: AppBlock = {
                     },
                     ImpairedZoneHealthCheckBehavior: {
                       type: "string",
+                      enum: ["ReplaceUnhealthy", "IgnoreUnhealthy"],
                     },
                   },
                   additionalProperties: false,
@@ -496,6 +537,12 @@ const describeAutoScalingGroups: AppBlock = {
                   properties: {
                     CapacityReservationPreference: {
                       type: "string",
+                      enum: [
+                        "capacity-reservations-only",
+                        "capacity-reservations-first",
+                        "none",
+                        "default",
+                      ],
                     },
                     CapacityReservationTarget: {
                       type: "object",
@@ -522,6 +569,7 @@ const describeAutoScalingGroups: AppBlock = {
                       properties: {
                         TerminateHookAbandon: {
                           type: "string",
+                          enum: ["retain", "terminate"],
                         },
                       },
                       additionalProperties: false,

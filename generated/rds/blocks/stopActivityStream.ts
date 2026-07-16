@@ -105,6 +105,7 @@ const stopActivityStream: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["stopped", "starting", "started", "stopping"],
             description: "The status of the database activity stream.",
           },
         },

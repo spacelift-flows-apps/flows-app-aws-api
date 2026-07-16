@@ -50,7 +50,10 @@ const createCustomKeyStore: AppBlock = {
         CustomKeyStoreType: {
           name: "Custom Key Store Type",
           description: "Specifies the type of custom key store.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["AWS_CLOUDHSM", "EXTERNAL_KEY_STORE"],
+          },
           required: false,
         },
         XksProxyUriEndpoint: {
@@ -104,7 +107,10 @@ const createCustomKeyStore: AppBlock = {
           name: "Xks Proxy Connectivity",
           description:
             "Indicates how KMS communicates with the external key store proxy.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["PUBLIC_ENDPOINT", "VPC_ENDPOINT_SERVICE"],
+          },
           required: false,
         },
       },

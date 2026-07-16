@@ -46,7 +46,10 @@ const startScanJob: AppBlock = {
           name: "Malware Scanner",
           description:
             "Specifies the malware scanner used during the scan job.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["GUARDDUTY"],
+          },
           required: true,
         },
         RecoveryPointArn: {
@@ -66,7 +69,10 @@ const startScanJob: AppBlock = {
         ScanMode: {
           name: "Scan Mode",
           description: "Specifies the scan type use for the scan job.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["FULL_SCAN", "INCREMENTAL_SCAN"],
+          },
           required: true,
         },
         ScannerRoleArn: {

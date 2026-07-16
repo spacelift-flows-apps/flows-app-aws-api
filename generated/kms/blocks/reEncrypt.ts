@@ -69,14 +69,30 @@ const reEncrypt: AppBlock = {
           name: "Source Encryption Algorithm",
           description:
             "Specifies the encryption algorithm that KMS will use to decrypt the ciphertext before it is reencrypted.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "SYMMETRIC_DEFAULT",
+              "RSAES_OAEP_SHA_1",
+              "RSAES_OAEP_SHA_256",
+              "SM2PKE",
+            ],
+          },
           required: false,
         },
         DestinationEncryptionAlgorithm: {
           name: "Destination Encryption Algorithm",
           description:
             "Specifies the encryption algorithm that KMS will use to reecrypt the data after it has decrypted it.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "SYMMETRIC_DEFAULT",
+              "RSAES_OAEP_SHA_1",
+              "RSAES_OAEP_SHA_256",
+              "SM2PKE",
+            ],
+          },
           required: false,
         },
         GrantTokens: {
@@ -104,6 +120,7 @@ const reEncrypt: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["IGNORE_CIPHERTEXT"],
             },
           },
           required: false,
@@ -182,11 +199,23 @@ const reEncrypt: AppBlock = {
           },
           SourceEncryptionAlgorithm: {
             type: "string",
+            enum: [
+              "SYMMETRIC_DEFAULT",
+              "RSAES_OAEP_SHA_1",
+              "RSAES_OAEP_SHA_256",
+              "SM2PKE",
+            ],
             description:
               "The encryption algorithm that was used to decrypt the ciphertext before it was reencrypted.",
           },
           DestinationEncryptionAlgorithm: {
             type: "string",
+            enum: [
+              "SYMMETRIC_DEFAULT",
+              "RSAES_OAEP_SHA_1",
+              "RSAES_OAEP_SHA_256",
+              "SM2PKE",
+            ],
             description:
               "The encryption algorithm that was used to reencrypt the data.",
           },

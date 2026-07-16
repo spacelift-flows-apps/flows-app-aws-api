@@ -85,6 +85,7 @@ const getCredentialReport: AppBlock = {
           },
           ReportFormat: {
             type: "string",
+            enum: ["text/csv"],
             description: "The format (MIME type) of the credential report.",
           },
           GeneratedTime: {

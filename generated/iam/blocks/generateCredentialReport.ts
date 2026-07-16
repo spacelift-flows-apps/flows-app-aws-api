@@ -86,6 +86,7 @@ const generateCredentialReport: AppBlock = {
         properties: {
           State: {
             type: "string",
+            enum: ["STARTED", "INPROGRESS", "COMPLETE"],
             description:
               "Information about the state of the credential report.",
           },

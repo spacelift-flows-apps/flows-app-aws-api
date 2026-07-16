@@ -238,14 +238,20 @@ const writeGetObjectResponse: AppBlock = {
           name: "Object Lock Mode",
           description:
             "Indicates whether an object stored in Amazon S3 has Object Lock enabled.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["GOVERNANCE", "COMPLIANCE"],
+          },
           required: false,
         },
         ObjectLockLegalHoldStatus: {
           name: "Object Lock Legal Hold Status",
           description:
             "Indicates whether an object stored in Amazon S3 has an active legal hold.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ON", "OFF"],
+          },
           required: false,
         },
         ObjectLockRetainUntilDate: {
@@ -265,14 +271,20 @@ const writeGetObjectResponse: AppBlock = {
           name: "Replication Status",
           description:
             "Indicates if request involves bucket that is either a source or destination in a Replication rule.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["COMPLETE", "PENDING", "FAILED", "REPLICA", "COMPLETED"],
+          },
           required: false,
         },
         RequestCharged: {
           name: "Request Charged",
           description:
             "If present, indicates that the requester was successfully charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         Restore: {
@@ -286,7 +298,10 @@ const writeGetObjectResponse: AppBlock = {
           name: "Server Side Encryption",
           description:
             "The server-side encryption algorithm used when storing requested object in Amazon S3 or Amazon FSx.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["AES256", "aws:fsx", "aws:kms", "aws:kms:dsse"],
+          },
           required: false,
         },
         SSECustomerAlgorithm: {
@@ -313,7 +328,24 @@ const writeGetObjectResponse: AppBlock = {
         StorageClass: {
           name: "Storage Class",
           description: "Provides storage class information of the object.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "STANDARD",
+              "REDUCED_REDUNDANCY",
+              "STANDARD_IA",
+              "ONEZONE_IA",
+              "INTELLIGENT_TIERING",
+              "GLACIER",
+              "DEEP_ARCHIVE",
+              "OUTPOSTS",
+              "GLACIER_IR",
+              "SNOW",
+              "EXPRESS_ONEZONE",
+              "FSX_OPENZFS",
+              "FSX_ONTAP",
+            ],
+          },
           required: false,
         },
         TagCount: {

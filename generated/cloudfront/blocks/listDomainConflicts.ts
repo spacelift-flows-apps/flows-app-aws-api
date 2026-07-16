@@ -127,6 +127,7 @@ const listDomainConflicts: AppBlock = {
                 },
                 ResourceType: {
                   type: "string",
+                  enum: ["distribution", "distribution-tenant"],
                 },
                 ResourceId: {
                   type: "string",

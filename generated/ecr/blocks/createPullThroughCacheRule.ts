@@ -48,7 +48,20 @@ const createPullThroughCacheRule: AppBlock = {
         upstreamRegistry: {
           name: "upstream Registry",
           description: "The name of the upstream registry.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "ecr",
+              "ecr-public",
+              "quay",
+              "k8s",
+              "docker-hub",
+              "github-container-registry",
+              "azure-container-registry",
+              "gitlab-container-registry",
+              "chainguard",
+            ],
+          },
           required: false,
         },
         credentialArn: {
@@ -153,6 +166,17 @@ const createPullThroughCacheRule: AppBlock = {
           },
           upstreamRegistry: {
             type: "string",
+            enum: [
+              "ecr",
+              "ecr-public",
+              "quay",
+              "k8s",
+              "docker-hub",
+              "github-container-registry",
+              "azure-container-registry",
+              "gitlab-container-registry",
+              "chainguard",
+            ],
             description:
               "The name of the upstream registry associated with the pull through cache rule.",
           },

@@ -87,6 +87,16 @@ const terminateSession: AppBlock = {
         properties: {
           State: {
             type: "string",
+            enum: [
+              "CREATING",
+              "CREATED",
+              "IDLE",
+              "BUSY",
+              "TERMINATING",
+              "TERMINATED",
+              "DEGRADED",
+              "FAILED",
+            ],
             description: "The state of the session.",
           },
         },

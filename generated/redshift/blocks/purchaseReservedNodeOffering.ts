@@ -151,6 +151,7 @@ const purchaseReservedNodeOffering: AppBlock = {
               },
               ReservedNodeOfferingType: {
                 type: "string",
+                enum: ["Regular", "Upgradable"],
               },
             },
             additionalProperties: false,

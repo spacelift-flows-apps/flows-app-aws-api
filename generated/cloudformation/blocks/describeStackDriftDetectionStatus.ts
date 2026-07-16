@@ -102,11 +102,17 @@ const describeStackDriftDetectionStatus: AppBlock = {
           },
           StackDriftStatus: {
             type: "string",
+            enum: ["DRIFTED", "IN_SYNC", "UNKNOWN", "NOT_CHECKED"],
             description:
               "Status of the stack's actual configuration compared to its expected configuration.",
           },
           DetectionStatus: {
             type: "string",
+            enum: [
+              "DETECTION_IN_PROGRESS",
+              "DETECTION_FAILED",
+              "DETECTION_COMPLETE",
+            ],
             description: "The status of the stack drift detection operation.",
           },
           DetectionStatusReason: {

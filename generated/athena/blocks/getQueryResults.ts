@@ -45,7 +45,10 @@ const getQueryResults: AppBlock = {
           name: "Query Result Type",
           description:
             "When you set this to DATA_ROWS or empty, GetQueryResults returns the query results in rows.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["DATA_MANIFEST", "DATA_ROWS"],
+          },
           required: false,
         },
       },
@@ -167,6 +170,7 @@ const getQueryResults: AppBlock = {
                         },
                         Nullable: {
                           type: "string",
+                          enum: ["NOT_NULL", "NULLABLE", "UNKNOWN"],
                         },
                         CaseSensitive: {
                           type: "boolean",

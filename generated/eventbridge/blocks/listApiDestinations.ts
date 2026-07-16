@@ -122,6 +122,7 @@ const listApiDestinations: AppBlock = {
                 },
                 ApiDestinationState: {
                   type: "string",
+                  enum: ["ACTIVE", "INACTIVE"],
                 },
                 ConnectionArn: {
                   type: "string",
@@ -131,6 +132,15 @@ const listApiDestinations: AppBlock = {
                 },
                 HttpMethod: {
                   type: "string",
+                  enum: [
+                    "POST",
+                    "GET",
+                    "HEAD",
+                    "OPTIONS",
+                    "PUT",
+                    "PATCH",
+                    "DELETE",
+                  ],
                 },
                 InvocationRateLimitPerSecond: {
                   type: "number",

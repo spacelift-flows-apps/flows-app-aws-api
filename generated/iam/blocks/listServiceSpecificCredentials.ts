@@ -129,6 +129,7 @@ const listServiceSpecificCredentials: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["Active", "Inactive", "Expired"],
                 },
                 ServiceUserName: {
                   type: "string",

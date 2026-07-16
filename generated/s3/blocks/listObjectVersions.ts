@@ -39,7 +39,10 @@ const listObjectVersions: AppBlock = {
           name: "Encoding Type",
           description:
             "Encoding type used by Amazon S3 to encode the object keys in the response.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["url"],
+          },
           required: false,
         },
         KeyMarker: {
@@ -80,7 +83,10 @@ const listObjectVersions: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         OptionalObjectAttributes: {
@@ -91,6 +97,7 @@ const listObjectVersions: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["RestoreStatus"],
             },
           },
           required: false,
@@ -191,16 +198,30 @@ const listObjectVersions: AppBlock = {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: [
+                      "CRC32",
+                      "CRC32C",
+                      "SHA1",
+                      "SHA256",
+                      "CRC64NVME",
+                      "SHA512",
+                      "MD5",
+                      "XXHASH64",
+                      "XXHASH3",
+                      "XXHASH128",
+                    ],
                   },
                 },
                 ChecksumType: {
                   type: "string",
+                  enum: ["COMPOSITE", "FULL_OBJECT"],
                 },
                 Size: {
                   type: "number",
                 },
                 StorageClass: {
                   type: "string",
+                  enum: ["STANDARD"],
                 },
                 Key: {
                   type: "string",
@@ -310,11 +331,13 @@ const listObjectVersions: AppBlock = {
           },
           EncodingType: {
             type: "string",
+            enum: ["url"],
             description:
               "Encoding type used by Amazon S3 to encode object key names in the XML response.",
           },
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },

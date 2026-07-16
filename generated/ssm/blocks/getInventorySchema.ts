@@ -131,6 +131,7 @@ const getInventorySchema: AppBlock = {
                       },
                       DataType: {
                         type: "string",
+                        enum: ["string", "number"],
                       },
                     },
                     required: ["Name", "DataType"],

@@ -45,7 +45,10 @@ const putParameter: AppBlock = {
         Type: {
           name: "Type",
           description: "The type of parameter that you want to create.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["String", "StringList", "SecureString"],
+          },
           required: false,
         },
         KeyId: {
@@ -92,7 +95,10 @@ const putParameter: AppBlock = {
         Tier: {
           name: "Tier",
           description: "The parameter tier to assign to a parameter.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Standard", "Advanced", "Intelligent-Tiering"],
+          },
           required: false,
         },
         Policies: {
@@ -171,6 +177,7 @@ const putParameter: AppBlock = {
           },
           Tier: {
             type: "string",
+            enum: ["Standard", "Advanced", "Intelligent-Tiering"],
             description: "The tier assigned to the parameter.",
           },
         },

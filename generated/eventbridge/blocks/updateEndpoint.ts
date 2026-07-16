@@ -85,6 +85,7 @@ const updateEndpoint: AppBlock = {
             properties: {
               State: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
             },
             additionalProperties: false,
@@ -224,6 +225,7 @@ const updateEndpoint: AppBlock = {
             properties: {
               State: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
             },
             additionalProperties: false,
@@ -260,6 +262,15 @@ const updateEndpoint: AppBlock = {
           },
           State: {
             type: "string",
+            enum: [
+              "ACTIVE",
+              "CREATING",
+              "UPDATING",
+              "DELETING",
+              "CREATE_FAILED",
+              "UPDATE_FAILED",
+              "DELETE_FAILED",
+            ],
             description:
               "The state of the endpoint you updated in this request.",
           },

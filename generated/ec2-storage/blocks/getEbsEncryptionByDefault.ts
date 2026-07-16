@@ -97,6 +97,7 @@ const getEbsEncryptionByDefault: AppBlock = {
           },
           SseType: {
             type: "string",
+            enum: ["sse-ebs", "sse-kms", "none"],
             description: "Reserved for future use.",
           },
         },

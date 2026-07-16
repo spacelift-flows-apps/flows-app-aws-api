@@ -154,6 +154,13 @@ const describeClientVpnEndpoints: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: [
+                        "pending-associate",
+                        "available",
+                        "deleting",
+                        "deleted",
+                        "pending",
+                      ],
                     },
                     Message: {
                       type: "string",
@@ -184,9 +191,11 @@ const describeClientVpnEndpoints: AppBlock = {
                 },
                 VpnProtocol: {
                   type: "string",
+                  enum: ["openvpn"],
                 },
                 TransportProtocol: {
                   type: "string",
+                  enum: ["tcp", "udp"],
                 },
                 VpnPort: {
                   type: "number",
@@ -201,6 +210,7 @@ const describeClientVpnEndpoints: AppBlock = {
                       },
                       NetworkType: {
                         type: "string",
+                        enum: ["vpc"],
                       },
                     },
                     additionalProperties: false,
@@ -216,6 +226,11 @@ const describeClientVpnEndpoints: AppBlock = {
                     properties: {
                       Type: {
                         type: "string",
+                        enum: [
+                          "certificate-authentication",
+                          "directory-service-authentication",
+                          "federated-authentication",
+                        ],
                       },
                       ActiveDirectory: {
                         type: "object",
@@ -299,6 +314,7 @@ const describeClientVpnEndpoints: AppBlock = {
                       properties: {
                         Code: {
                           type: "string",
+                          enum: ["applying", "applied"],
                         },
                         Message: {
                           type: "string",
@@ -338,9 +354,11 @@ const describeClientVpnEndpoints: AppBlock = {
                 },
                 EndpointIpAddressType: {
                   type: "string",
+                  enum: ["ipv4", "ipv6", "dual-stack"],
                 },
                 TrafficIpAddressType: {
                   type: "string",
+                  enum: ["ipv4", "ipv6", "dual-stack"],
                 },
                 TransitGatewayConfiguration: {
                   type: "object",

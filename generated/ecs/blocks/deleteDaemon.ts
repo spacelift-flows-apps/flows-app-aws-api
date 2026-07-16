@@ -92,6 +92,7 @@ const deleteDaemon: AppBlock = {
           },
           status: {
             type: "string",
+            enum: ["ACTIVE", "DELETE_IN_PROGRESS"],
             description: "The status of the daemon.",
           },
           createdAt: {

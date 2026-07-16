@@ -57,9 +57,11 @@ const listImages: AppBlock = {
             properties: {
               tagStatus: {
                 type: "string",
+                enum: ["TAGGED", "UNTAGGED", "ANY"],
               },
               imageStatus: {
                 type: "string",
+                enum: ["ACTIVE", "ARCHIVED", "ACTIVATING", "ANY"],
               },
             },
             additionalProperties: false,

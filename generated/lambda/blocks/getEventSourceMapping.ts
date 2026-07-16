@@ -94,6 +94,7 @@ const getEventSourceMapping: AppBlock = {
           },
           StartingPosition: {
             type: "string",
+            enum: ["TRIM_HORIZON", "LATEST", "AT_TIMESTAMP"],
             description:
               "The position in a stream from which to start reading.",
           },
@@ -212,6 +213,16 @@ const getEventSourceMapping: AppBlock = {
               properties: {
                 Type: {
                   type: "string",
+                  enum: [
+                    "BASIC_AUTH",
+                    "VPC_SUBNET",
+                    "VPC_SECURITY_GROUP",
+                    "SASL_SCRAM_512_AUTH",
+                    "SASL_SCRAM_256_AUTH",
+                    "VIRTUAL_HOST",
+                    "CLIENT_CERTIFICATE_TLS_AUTH",
+                    "SERVER_ROOT_CA_CERTIFICATE",
+                  ],
                 },
                 URI: {
                   type: "string",
@@ -260,6 +271,7 @@ const getEventSourceMapping: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["ReportBatchItemFailures"],
             },
             description:
               "(Kinesis, DynamoDB Streams, Amazon MSK, self-managed Apache Kafka, and Amazon SQS) A list of current response type enums applied to the event source mapping.",
@@ -278,6 +290,7 @@ const getEventSourceMapping: AppBlock = {
                   },
                   EventRecordFormat: {
                     type: "string",
+                    enum: ["JSON", "SOURCE"],
                   },
                   AccessConfigs: {
                     type: "array",
@@ -286,6 +299,11 @@ const getEventSourceMapping: AppBlock = {
                       properties: {
                         Type: {
                           type: "string",
+                          enum: [
+                            "BASIC_AUTH",
+                            "CLIENT_CERTIFICATE_TLS_AUTH",
+                            "SERVER_ROOT_CA_CERTIFICATE",
+                          ],
                         },
                         URI: {
                           type: "string",
@@ -301,6 +319,7 @@ const getEventSourceMapping: AppBlock = {
                       properties: {
                         Attribute: {
                           type: "string",
+                          enum: ["KEY", "VALUE"],
                         },
                       },
                       additionalProperties: false,
@@ -328,6 +347,7 @@ const getEventSourceMapping: AppBlock = {
                   },
                   EventRecordFormat: {
                     type: "string",
+                    enum: ["JSON", "SOURCE"],
                   },
                   AccessConfigs: {
                     type: "array",
@@ -336,6 +356,11 @@ const getEventSourceMapping: AppBlock = {
                       properties: {
                         Type: {
                           type: "string",
+                          enum: [
+                            "BASIC_AUTH",
+                            "CLIENT_CERTIFICATE_TLS_AUTH",
+                            "SERVER_ROOT_CA_CERTIFICATE",
+                          ],
                         },
                         URI: {
                           type: "string",
@@ -351,6 +376,7 @@ const getEventSourceMapping: AppBlock = {
                       properties: {
                         Attribute: {
                           type: "string",
+                          enum: ["KEY", "VALUE"],
                         },
                       },
                       additionalProperties: false,
@@ -386,6 +412,7 @@ const getEventSourceMapping: AppBlock = {
               },
               FullDocument: {
                 type: "string",
+                enum: ["UpdateLookup", "Default"],
               },
             },
             additionalProperties: false,
@@ -423,6 +450,7 @@ const getEventSourceMapping: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["EventCount", "ErrorCount", "KafkaMetrics"],
                 },
               },
             },
@@ -434,6 +462,7 @@ const getEventSourceMapping: AppBlock = {
             properties: {
               SystemLogLevel: {
                 type: "string",
+                enum: ["DEBUG", "INFO", "WARN"],
               },
             },
             additionalProperties: false,

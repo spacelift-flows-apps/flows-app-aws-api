@@ -67,7 +67,27 @@ const modifyInstanceAttribute: AppBlock = {
         Attribute: {
           name: "Attribute",
           description: "The name of the attribute to modify.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "instanceType",
+              "kernel",
+              "ramdisk",
+              "userData",
+              "disableApiTermination",
+              "instanceInitiatedShutdownBehavior",
+              "rootDeviceName",
+              "blockDeviceMapping",
+              "productCodes",
+              "sourceDestCheck",
+              "groupSet",
+              "ebsOptimized",
+              "sriovNetSupport",
+              "enaSupport",
+              "enclaveOptions",
+              "disableApiStop",
+            ],
+          },
           required: false,
         },
         Value: {

@@ -63,6 +63,7 @@ const purchaseReservedInstancesOffering: AppBlock = {
               },
               CurrencyCode: {
                 type: "string",
+                enum: ["USD"],
               },
             },
             additionalProperties: false,

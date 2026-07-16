@@ -59,7 +59,10 @@ const restoreTableToPointInTime: AppBlock = {
         BillingModeOverride: {
           name: "Billing Mode Override",
           description: "The billing mode of the restored table.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["PROVISIONED", "PAY_PER_REQUEST"],
+          },
           required: false,
         },
         GlobalSecondaryIndexOverride: {
@@ -84,6 +87,7 @@ const restoreTableToPointInTime: AppBlock = {
                       },
                       KeyType: {
                         type: "string",
+                        enum: ["HASH", "RANGE"],
                       },
                     },
                     required: ["AttributeName", "KeyType"],
@@ -95,6 +99,7 @@ const restoreTableToPointInTime: AppBlock = {
                   properties: {
                     ProjectionType: {
                       type: "string",
+                      enum: ["ALL", "KEYS_ONLY", "INCLUDE"],
                     },
                     NonKeyAttributes: {
                       type: "array",
@@ -171,6 +176,7 @@ const restoreTableToPointInTime: AppBlock = {
                       },
                       KeyType: {
                         type: "string",
+                        enum: ["HASH", "RANGE"],
                       },
                     },
                     required: ["AttributeName", "KeyType"],
@@ -182,6 +188,7 @@ const restoreTableToPointInTime: AppBlock = {
                   properties: {
                     ProjectionType: {
                       type: "string",
+                      enum: ["ALL", "KEYS_ONLY", "INCLUDE"],
                     },
                     NonKeyAttributes: {
                       type: "array",
@@ -248,6 +255,7 @@ const restoreTableToPointInTime: AppBlock = {
               },
               SSEType: {
                 type: "string",
+                enum: ["AES256", "KMS"],
               },
               KMSMasterKeyId: {
                 type: "string",
@@ -330,6 +338,7 @@ const restoreTableToPointInTime: AppBlock = {
                     },
                     AttributeType: {
                       type: "string",
+                      enum: ["S", "N", "B"],
                     },
                   },
                   required: ["AttributeName", "AttributeType"],
@@ -349,6 +358,7 @@ const restoreTableToPointInTime: AppBlock = {
                     },
                     KeyType: {
                       type: "string",
+                      enum: ["HASH", "RANGE"],
                     },
                   },
                   required: ["AttributeName", "KeyType"],
@@ -357,6 +367,16 @@ const restoreTableToPointInTime: AppBlock = {
               },
               TableStatus: {
                 type: "string",
+                enum: [
+                  "CREATING",
+                  "UPDATING",
+                  "DELETING",
+                  "ACTIVE",
+                  "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                  "ARCHIVING",
+                  "ARCHIVED",
+                  "REPLICATION_NOT_AUTHORIZED",
+                ],
               },
               CreationDateTime: {
                 type: "string",
@@ -399,6 +419,7 @@ const restoreTableToPointInTime: AppBlock = {
                 properties: {
                   BillingMode: {
                     type: "string",
+                    enum: ["PROVISIONED", "PAY_PER_REQUEST"],
                   },
                   LastUpdateToPayPerRequestDateTime: {
                     type: "string",
@@ -431,6 +452,7 @@ const restoreTableToPointInTime: AppBlock = {
                       properties: {
                         ProjectionType: {
                           type: "string",
+                          enum: ["ALL", "KEYS_ONLY", "INCLUDE"],
                         },
                         NonKeyAttributes: {
                           type: "array",
@@ -477,6 +499,7 @@ const restoreTableToPointInTime: AppBlock = {
                       properties: {
                         ProjectionType: {
                           type: "string",
+                          enum: ["ALL", "KEYS_ONLY", "INCLUDE"],
                         },
                         NonKeyAttributes: {
                           type: "array",
@@ -487,6 +510,7 @@ const restoreTableToPointInTime: AppBlock = {
                     },
                     IndexStatus: {
                       type: "string",
+                      enum: ["CREATING", "UPDATING", "DELETING", "ACTIVE"],
                     },
                     Backfilling: {
                       type: "boolean",
@@ -544,6 +568,7 @@ const restoreTableToPointInTime: AppBlock = {
                         },
                         Status: {
                           type: "string",
+                          enum: ["CREATING", "UPDATING", "DELETING", "ACTIVE"],
                         },
                       },
                       additionalProperties: false,
@@ -560,6 +585,12 @@ const restoreTableToPointInTime: AppBlock = {
                   },
                   StreamViewType: {
                     type: "string",
+                    enum: [
+                      "NEW_IMAGE",
+                      "OLD_IMAGE",
+                      "NEW_AND_OLD_IMAGES",
+                      "KEYS_ONLY",
+                    ],
                   },
                 },
                 required: ["StreamEnabled"],
@@ -584,6 +615,18 @@ const restoreTableToPointInTime: AppBlock = {
                     },
                     ReplicaStatus: {
                       type: "string",
+                      enum: [
+                        "CREATING",
+                        "CREATION_FAILED",
+                        "UPDATING",
+                        "DELETING",
+                        "ACTIVE",
+                        "REGION_DISABLED",
+                        "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                        "ARCHIVING",
+                        "ARCHIVED",
+                        "REPLICATION_NOT_AUTHORIZED",
+                      ],
                     },
                     ReplicaArn: {
                       type: "string",
@@ -626,6 +669,16 @@ const restoreTableToPointInTime: AppBlock = {
                         },
                         Status: {
                           type: "string",
+                          enum: [
+                            "CREATING",
+                            "UPDATING",
+                            "DELETING",
+                            "ACTIVE",
+                            "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                            "ARCHIVING",
+                            "ARCHIVED",
+                            "REPLICATION_NOT_AUTHORIZED",
+                          ],
                         },
                       },
                       additionalProperties: false,
@@ -651,6 +704,7 @@ const restoreTableToPointInTime: AppBlock = {
                       properties: {
                         TableClass: {
                           type: "string",
+                          enum: ["STANDARD", "STANDARD_INFREQUENT_ACCESS"],
                         },
                         LastUpdateDateTime: {
                           type: "string",
@@ -660,6 +714,7 @@ const restoreTableToPointInTime: AppBlock = {
                     },
                     GlobalTableSettingsReplicationMode: {
                       type: "string",
+                      enum: ["ENABLED", "DISABLED", "ENABLED_WITH_OVERRIDES"],
                     },
                   },
                   additionalProperties: false,
@@ -675,6 +730,7 @@ const restoreTableToPointInTime: AppBlock = {
                     },
                     WitnessStatus: {
                       type: "string",
+                      enum: ["CREATING", "DELETING", "ACTIVE"],
                     },
                   },
                   additionalProperties: false,
@@ -682,6 +738,7 @@ const restoreTableToPointInTime: AppBlock = {
               },
               GlobalTableSettingsReplicationMode: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED", "ENABLED_WITH_OVERRIDES"],
               },
               RestoreSummary: {
                 type: "object",
@@ -707,9 +764,17 @@ const restoreTableToPointInTime: AppBlock = {
                 properties: {
                   Status: {
                     type: "string",
+                    enum: [
+                      "ENABLING",
+                      "ENABLED",
+                      "DISABLING",
+                      "DISABLED",
+                      "UPDATING",
+                    ],
                   },
                   SSEType: {
                     type: "string",
+                    enum: ["AES256", "KMS"],
                   },
                   KMSMasterKeyArn: {
                     type: "string",
@@ -740,6 +805,7 @@ const restoreTableToPointInTime: AppBlock = {
                 properties: {
                   TableClass: {
                     type: "string",
+                    enum: ["STANDARD", "STANDARD_INFREQUENT_ACCESS"],
                   },
                   LastUpdateDateTime: {
                     type: "string",
@@ -773,12 +839,23 @@ const restoreTableToPointInTime: AppBlock = {
                   },
                   Status: {
                     type: "string",
+                    enum: [
+                      "CREATING",
+                      "UPDATING",
+                      "DELETING",
+                      "ACTIVE",
+                      "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                      "ARCHIVING",
+                      "ARCHIVED",
+                      "REPLICATION_NOT_AUTHORIZED",
+                    ],
                   },
                 },
                 additionalProperties: false,
               },
               MultiRegionConsistency: {
                 type: "string",
+                enum: ["EVENTUAL", "STRONG"],
               },
             },
             additionalProperties: false,

@@ -121,6 +121,14 @@ const describeReservedNodeExchangeStatus: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "REQUESTED",
+                    "PENDING",
+                    "IN_PROGRESS",
+                    "RETRYING",
+                    "SUCCEEDED",
+                    "FAILED",
+                  ],
                 },
                 RequestTime: {
                   type: "string",

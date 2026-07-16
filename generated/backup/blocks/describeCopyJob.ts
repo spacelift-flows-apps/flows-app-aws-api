@@ -129,6 +129,7 @@ const describeCopyJob: AppBlock = {
                   },
                   DeleteAfterEvent: {
                     type: "string",
+                    enum: ["DELETE_AFTER_COPY"],
                   },
                 },
                 additionalProperties: false,
@@ -144,6 +145,7 @@ const describeCopyJob: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["CREATED", "RUNNING", "COMPLETED", "FAILED", "PARTIAL"],
               },
               StatusMessage: {
                 type: "string",

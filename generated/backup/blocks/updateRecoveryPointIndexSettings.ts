@@ -49,7 +49,10 @@ const updateRecoveryPointIndexSettings: AppBlock = {
           name: "Index",
           description:
             "Index can have 1 of 2 possible values, either ENABLED or DISABLED.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ENABLED", "DISABLED"],
+          },
           required: true,
         },
       },
@@ -124,11 +127,13 @@ const updateRecoveryPointIndexSettings: AppBlock = {
           },
           IndexStatus: {
             type: "string",
+            enum: ["PENDING", "ACTIVE", "FAILED", "DELETING"],
             description:
               "This is the current status for the backup index associated with the specified recovery point.",
           },
           Index: {
             type: "string",
+            enum: ["ENABLED", "DISABLED"],
             description:
               "Index can have 1 of 2 possible values, either ENABLED or DISABLED.",
           },

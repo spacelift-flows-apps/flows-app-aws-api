@@ -43,7 +43,21 @@ const updateBucketMetadataJournalTableConfiguration: AppBlock = {
           name: "Checksum Algorithm",
           description:
             "The checksum algorithm to use with your journal table configuration.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CRC32",
+              "CRC32C",
+              "SHA1",
+              "SHA256",
+              "CRC64NVME",
+              "SHA512",
+              "MD5",
+              "XXHASH64",
+              "XXHASH3",
+              "XXHASH128",
+            ],
+          },
           required: false,
         },
         JournalTableConfiguration: {
@@ -57,6 +71,7 @@ const updateBucketMetadataJournalTableConfiguration: AppBlock = {
                 properties: {
                   Expiration: {
                     type: "string",
+                    enum: ["ENABLED", "DISABLED"],
                   },
                   Days: {
                     type: "number",

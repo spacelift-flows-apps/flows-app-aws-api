@@ -38,6 +38,23 @@ const listNodes: AppBlock = {
               properties: {
                 Key: {
                   type: "string",
+                  enum: [
+                    "AgentType",
+                    "AgentVersion",
+                    "ComputerName",
+                    "InstanceId",
+                    "InstanceStatus",
+                    "IpAddress",
+                    "ManagedStatus",
+                    "PlatformName",
+                    "PlatformType",
+                    "PlatformVersion",
+                    "ResourceType",
+                    "OrganizationalUnitId",
+                    "OrganizationalUnitPath",
+                    "Region",
+                    "AccountId",
+                  ],
                 },
                 Values: {
                   type: "array",
@@ -47,6 +64,7 @@ const listNodes: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: ["Equal", "NotEqual", "BeginWith"],
                 },
               },
               required: ["Key", "Values"],
@@ -179,9 +197,11 @@ const listNodes: AppBlock = {
                             },
                             ManagedStatus: {
                               type: "string",
+                              enum: ["All", "Managed", "Unmanaged"],
                             },
                             PlatformType: {
                               type: "string",
+                              enum: ["Windows", "Linux", "MacOS"],
                             },
                             PlatformName: {
                               type: "string",
@@ -191,6 +211,7 @@ const listNodes: AppBlock = {
                             },
                             ResourceType: {
                               type: "string",
+                              enum: ["ManagedInstance", "EC2Instance"],
                             },
                           },
                           additionalProperties: false,

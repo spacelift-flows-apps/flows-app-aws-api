@@ -117,6 +117,16 @@ const putFunctionScalingConfig: AppBlock = {
         properties: {
           FunctionState: {
             type: "string",
+            enum: [
+              "Pending",
+              "Active",
+              "Inactive",
+              "Failed",
+              "Deactivating",
+              "Deactivated",
+              "ActiveNonInvocable",
+              "Deleting",
+            ],
             description:
               "The current state of the function after applying the scaling configuration.",
           },

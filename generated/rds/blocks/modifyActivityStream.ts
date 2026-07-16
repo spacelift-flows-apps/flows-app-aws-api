@@ -31,7 +31,10 @@ const modifyActivityStream: AppBlock = {
         AuditPolicyState: {
           name: "Audit Policy State",
           description: "The audit policy state.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["locked", "unlocked"],
+          },
           required: false,
         },
       },
@@ -104,11 +107,13 @@ const modifyActivityStream: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["stopped", "starting", "started", "stopping"],
             description:
               "The status of the modification to the database activity stream.",
           },
           Mode: {
             type: "string",
+            enum: ["sync", "async"],
             description: "The mode of the database activity stream.",
           },
           EngineNativeAuditFieldsIncluded: {
@@ -118,6 +123,7 @@ const modifyActivityStream: AppBlock = {
           },
           PolicyStatus: {
             type: "string",
+            enum: ["locked", "unlocked", "locking-policy", "unlocking-policy"],
             description:
               "The status of the modification to the policy state of the database activity stream.",
           },

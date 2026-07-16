@@ -119,6 +119,15 @@ const listLoggingConfigurations: AppBlock = {
                     properties: {
                       Type: {
                         type: "string",
+                        enum: [
+                          "URI",
+                          "QUERY_STRING",
+                          "HEADER",
+                          "METHOD",
+                          "BODY",
+                          "SINGLE_QUERY_ARG",
+                          "ALL_QUERY_ARGS",
+                        ],
                       },
                       Data: {
                         type: "string",

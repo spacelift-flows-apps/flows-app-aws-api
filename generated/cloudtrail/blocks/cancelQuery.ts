@@ -107,6 +107,14 @@ const cancelQuery: AppBlock = {
           },
           QueryStatus: {
             type: "string",
+            enum: [
+              "QUEUED",
+              "RUNNING",
+              "FINISHED",
+              "FAILED",
+              "CANCELLED",
+              "TIMED_OUT",
+            ],
             description:
               "Shows the status of a query after a CancelQuery request.",
           },

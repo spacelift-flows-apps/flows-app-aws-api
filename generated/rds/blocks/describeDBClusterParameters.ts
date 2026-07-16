@@ -170,6 +170,7 @@ const describeDBClusterParameters: AppBlock = {
                 },
                 ApplyMethod: {
                   type: "string",
+                  enum: ["immediate", "pending-reboot"],
                 },
                 SupportedEngineModes: {
                   type: "array",

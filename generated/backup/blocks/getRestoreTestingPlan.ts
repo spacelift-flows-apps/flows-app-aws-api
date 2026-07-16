@@ -108,6 +108,7 @@ const getRestoreTestingPlan: AppBlock = {
                 properties: {
                   Algorithm: {
                     type: "string",
+                    enum: ["LATEST_WITHIN_WINDOW", "RANDOM_WITHIN_WINDOW"],
                   },
                   ExcludeVaults: {
                     type: "array",
@@ -125,6 +126,7 @@ const getRestoreTestingPlan: AppBlock = {
                     type: "array",
                     items: {
                       type: "string",
+                      enum: ["CONTINUOUS", "SNAPSHOT"],
                     },
                   },
                   SelectionWindowDays: {

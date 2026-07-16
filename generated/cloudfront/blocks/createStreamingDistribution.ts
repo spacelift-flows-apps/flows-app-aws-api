@@ -103,6 +103,12 @@ const createStreamingDistribution: AppBlock = {
               },
               PriceClass: {
                 type: "string",
+                enum: [
+                  "PriceClass_100",
+                  "PriceClass_200",
+                  "PriceClass_All",
+                  "None",
+                ],
               },
               Enabled: {
                 type: "boolean",
@@ -306,6 +312,12 @@ const createStreamingDistribution: AppBlock = {
                   },
                   PriceClass: {
                     type: "string",
+                    enum: [
+                      "PriceClass_100",
+                      "PriceClass_200",
+                      "PriceClass_All",
+                      "None",
+                    ],
                   },
                   Enabled: {
                     type: "boolean",

@@ -55,6 +55,7 @@ const restoreObject: AppBlock = {
                 properties: {
                   Tier: {
                     type: "string",
+                    enum: ["Standard", "Bulk", "Expedited"],
                   },
                 },
                 required: ["Tier"],
@@ -62,9 +63,11 @@ const restoreObject: AppBlock = {
               },
               Type: {
                 type: "string",
+                enum: ["SELECT"],
               },
               Tier: {
                 type: "string",
+                enum: ["Standard", "Bulk", "Expedited"],
               },
               Description: {
                 type: "string",
@@ -80,6 +83,7 @@ const restoreObject: AppBlock = {
                         properties: {
                           FileHeaderInfo: {
                             type: "string",
+                            enum: ["USE", "IGNORE", "NONE"],
                           },
                           Comments: {
                             type: "string",
@@ -104,12 +108,14 @@ const restoreObject: AppBlock = {
                       },
                       CompressionType: {
                         type: "string",
+                        enum: ["NONE", "GZIP", "BZIP2"],
                       },
                       JSON: {
                         type: "object",
                         properties: {
                           Type: {
                             type: "string",
+                            enum: ["DOCUMENT", "LINES"],
                           },
                         },
                         additionalProperties: false,
@@ -124,6 +130,7 @@ const restoreObject: AppBlock = {
                   },
                   ExpressionType: {
                     type: "string",
+                    enum: ["SQL"],
                   },
                   Expression: {
                     type: "string",
@@ -136,6 +143,7 @@ const restoreObject: AppBlock = {
                         properties: {
                           QuoteFields: {
                             type: "string",
+                            enum: ["ALWAYS", "ASNEEDED"],
                           },
                           QuoteEscapeCharacter: {
                             type: "string",
@@ -190,6 +198,12 @@ const restoreObject: AppBlock = {
                         properties: {
                           EncryptionType: {
                             type: "string",
+                            enum: [
+                              "AES256",
+                              "aws:fsx",
+                              "aws:kms",
+                              "aws:kms:dsse",
+                            ],
                           },
                           KMSKeyId: {
                             type: "string",
@@ -203,6 +217,15 @@ const restoreObject: AppBlock = {
                       },
                       CannedACL: {
                         type: "string",
+                        enum: [
+                          "private",
+                          "public-read",
+                          "public-read-write",
+                          "authenticated-read",
+                          "aws-exec-read",
+                          "bucket-owner-read",
+                          "bucket-owner-full-control",
+                        ],
                       },
                       AccessControlList: {
                         type: "array",
@@ -239,6 +262,21 @@ const restoreObject: AppBlock = {
                       },
                       StorageClass: {
                         type: "string",
+                        enum: [
+                          "STANDARD",
+                          "REDUCED_REDUNDANCY",
+                          "STANDARD_IA",
+                          "ONEZONE_IA",
+                          "INTELLIGENT_TIERING",
+                          "GLACIER",
+                          "DEEP_ARCHIVE",
+                          "OUTPOSTS",
+                          "GLACIER_IR",
+                          "SNOW",
+                          "EXPRESS_ONEZONE",
+                          "FSX_OPENZFS",
+                          "FSX_ONTAP",
+                        ],
                       },
                     },
                     required: ["BucketName", "Prefix"],
@@ -256,14 +294,31 @@ const restoreObject: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         ChecksumAlgorithm: {
           name: "Checksum Algorithm",
           description:
             "Indicates the algorithm used to create the checksum for the object when you use the SDK.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CRC32",
+              "CRC32C",
+              "SHA1",
+              "SHA256",
+              "CRC64NVME",
+              "SHA512",
+              "MD5",
+              "XXHASH64",
+              "XXHASH3",
+              "XXHASH128",
+            ],
+          },
           required: false,
         },
         ExpectedBucketOwner: {
@@ -334,6 +389,7 @@ const restoreObject: AppBlock = {
         properties: {
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },

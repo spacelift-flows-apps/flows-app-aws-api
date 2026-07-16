@@ -129,9 +129,11 @@ const describeClusterSnapshots: AppBlock = {
               properties: {
                 Attribute: {
                   type: "string",
+                  enum: ["SOURCE_TYPE", "TOTAL_SIZE", "CREATE_TIME"],
                 },
                 SortOrder: {
                   type: "string",
+                  enum: ["ASC", "DESC"],
                 },
               },
               required: ["Attribute"],

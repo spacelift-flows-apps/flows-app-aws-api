@@ -47,7 +47,10 @@ const listAggregateLogGroupSummaries: AppBlock = {
           name: "log Group Class",
           description:
             "Filters the results by log group class to include only log groups of the specified class.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["STANDARD", "INFREQUENT_ACCESS", "DELIVERY"],
+          },
           required: false,
         },
         logGroupNamePattern: {
@@ -82,7 +85,13 @@ const listAggregateLogGroupSummaries: AppBlock = {
         groupBy: {
           name: "group By",
           description: "Specifies how to group the log groups in the summary.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "DATA_SOURCE_NAME_TYPE_AND_FORMAT",
+              "DATA_SOURCE_NAME_AND_TYPE",
+            ],
+          },
           required: true,
         },
         nextToken: {

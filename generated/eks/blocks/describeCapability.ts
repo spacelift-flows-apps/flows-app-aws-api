@@ -106,12 +106,22 @@ const describeCapability: AppBlock = {
               },
               type: {
                 type: "string",
+                enum: ["ACK", "KRO", "ARGOCD"],
               },
               roleArn: {
                 type: "string",
               },
               status: {
                 type: "string",
+                enum: [
+                  "CREATING",
+                  "CREATE_FAILED",
+                  "UPDATING",
+                  "DELETING",
+                  "DELETE_FAILED",
+                  "ACTIVE",
+                  "DEGRADED",
+                ],
               },
               version: {
                 type: "string",
@@ -187,6 +197,7 @@ const describeCapability: AppBlock = {
                       properties: {
                         code: {
                           type: "string",
+                          enum: ["AccessDenied", "ClusterUnreachable"],
                         },
                         message: {
                           type: "string",
@@ -206,6 +217,7 @@ const describeCapability: AppBlock = {
               },
               deletePropagationPolicy: {
                 type: "string",
+                enum: ["RETAIN"],
               },
             },
             additionalProperties: false,

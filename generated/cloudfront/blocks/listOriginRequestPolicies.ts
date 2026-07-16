@@ -28,7 +28,10 @@ const listOriginRequestPolicies: AppBlock = {
           name: "Type",
           description:
             "A filter to return only the specified kinds of origin request policies.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["managed", "custom"],
+          },
           required: false,
         },
         Marker: {
@@ -124,6 +127,7 @@ const listOriginRequestPolicies: AppBlock = {
                   properties: {
                     Type: {
                       type: "string",
+                      enum: ["managed", "custom"],
                     },
                     OriginRequestPolicy: {
                       type: "object",

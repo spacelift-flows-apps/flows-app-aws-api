@@ -299,7 +299,10 @@ const restoreDBInstanceFromS3: AppBlock = {
           name: "Database Insights Mode",
           description:
             "Specifies the mode of Database Insights to enable for the DB instance.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["standard", "advanced"],
+          },
           required: false,
         },
         EnablePerformanceInsights: {
@@ -699,6 +702,7 @@ const restoreDBInstanceFromS3: AppBlock = {
               },
               UpgradeRolloutOrder: {
                 type: "string",
+                enum: ["first", "second", "last"],
               },
               PendingModifiedValues: {
                 type: "object",
@@ -780,6 +784,7 @@ const restoreDBInstanceFromS3: AppBlock = {
                   },
                   AutomationMode: {
                     type: "string",
+                    enum: ["full", "all-paused"],
                   },
                   ResumeFullAutomationModeTime: {
                     type: "string",
@@ -856,6 +861,7 @@ const restoreDBInstanceFromS3: AppBlock = {
               },
               ReplicaMode: {
                 type: "string",
+                enum: ["open-read-only", "mounted"],
               },
               LicenseModel: {
                 type: "string",
@@ -919,6 +925,7 @@ const restoreDBInstanceFromS3: AppBlock = {
               },
               StorageEncryptionType: {
                 type: "string",
+                enum: ["none", "sse-kms", "sse-rds"],
               },
               TdeCredentialArn: {
                 type: "string",
@@ -1000,6 +1007,7 @@ const restoreDBInstanceFromS3: AppBlock = {
               },
               DatabaseInsightsMode: {
                 type: "string",
+                enum: ["standard", "advanced"],
               },
               PerformanceInsightsEnabled: {
                 type: "boolean",
@@ -1087,6 +1095,7 @@ const restoreDBInstanceFromS3: AppBlock = {
               },
               AutomationMode: {
                 type: "string",
+                enum: ["full", "all-paused"],
               },
               ResumeFullAutomationModeTime: {
                 type: "string",
@@ -1099,6 +1108,7 @@ const restoreDBInstanceFromS3: AppBlock = {
               },
               ActivityStreamStatus: {
                 type: "string",
+                enum: ["stopped", "starting", "started", "stopping"],
               },
               ActivityStreamKmsKeyId: {
                 type: "string",
@@ -1108,6 +1118,7 @@ const restoreDBInstanceFromS3: AppBlock = {
               },
               ActivityStreamMode: {
                 type: "string",
+                enum: ["sync", "async"],
               },
               ActivityStreamEngineNativeAuditFieldsIncluded: {
                 type: "boolean",
@@ -1138,6 +1149,12 @@ const restoreDBInstanceFromS3: AppBlock = {
               },
               ActivityStreamPolicyStatus: {
                 type: "string",
+                enum: [
+                  "locked",
+                  "unlocked",
+                  "locking-policy",
+                  "unlocking-policy",
+                ],
               },
               CertificateDetails: {
                 type: "object",

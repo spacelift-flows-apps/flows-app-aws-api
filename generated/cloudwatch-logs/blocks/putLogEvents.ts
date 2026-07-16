@@ -170,6 +170,15 @@ const putLogEvents: AppBlock = {
             properties: {
               errorType: {
                 type: "string",
+                enum: [
+                  "InvalidEntity",
+                  "InvalidTypeValue",
+                  "InvalidKeyAttributes",
+                  "InvalidAttributes",
+                  "EntitySizeTooLarge",
+                  "UnsupportedLogGroupType",
+                  "MissingRequiredFields",
+                ],
               },
             },
             required: ["errorType"],

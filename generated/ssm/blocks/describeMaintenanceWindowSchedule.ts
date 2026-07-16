@@ -59,7 +59,10 @@ const describeMaintenanceWindowSchedule: AppBlock = {
           name: "Resource Type",
           description:
             "The type of resource you want to retrieve information about.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["INSTANCE", "RESOURCE_GROUP"],
+          },
           required: false,
         },
         Filters: {

@@ -61,7 +61,10 @@ const putSubscriptionFilter: AppBlock = {
           name: "distribution",
           description:
             "The method used to distribute log data to the destination.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Random", "ByLogStream"],
+          },
           required: false,
         },
         applyOnTransformedLogs: {

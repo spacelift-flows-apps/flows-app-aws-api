@@ -151,6 +151,7 @@ const getAlarmMuteRule: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["SCHEDULED", "ACTIVE", "EXPIRED"],
             description: "The current status of the alarm mute rule.",
           },
           LastUpdatedTimestamp: {

@@ -179,6 +179,12 @@ const describeClientVpnConnections: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: [
+                        "active",
+                        "failed-to-terminate",
+                        "terminating",
+                        "terminated",
+                      ],
                     },
                     Message: {
                       type: "string",

@@ -53,7 +53,10 @@ const updateApiDestination: AppBlock = {
         HttpMethod: {
           name: "Http Method",
           description: "The method to use for the API destination.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["POST", "GET", "HEAD", "OPTIONS", "PUT", "PATCH", "DELETE"],
+          },
           required: false,
         },
         InvocationRateLimitPerSecond: {
@@ -127,6 +130,7 @@ const updateApiDestination: AppBlock = {
           },
           ApiDestinationState: {
             type: "string",
+            enum: ["ACTIVE", "INACTIVE"],
             description: "The state of the API destination that was updated.",
           },
           CreationTime: {

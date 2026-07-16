@@ -261,7 +261,10 @@ const createCluster: AppBlock = {
         AquaConfigurationStatus: {
           name: "Aqua Configuration Status",
           description: "This parameter is retired.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["enabled", "disabled", "auto"],
+          },
           required: false,
         },
         DefaultIamRoleArn: {
@@ -759,6 +762,7 @@ const createCluster: AppBlock = {
               },
               SnapshotScheduleState: {
                 type: "string",
+                enum: ["MODIFYING", "ACTIVE", "FAILED"],
               },
               ExpectedNextSnapshotScheduleTime: {
                 type: "string",
@@ -795,9 +799,11 @@ const createCluster: AppBlock = {
                 properties: {
                   AquaStatus: {
                     type: "string",
+                    enum: ["enabled", "disabled", "applying"],
                   },
                   AquaConfigurationStatus: {
                     type: "string",
+                    enum: ["enabled", "disabled", "auto"],
                   },
                 },
                 additionalProperties: false,
@@ -813,6 +819,14 @@ const createCluster: AppBlock = {
                   },
                   Status: {
                     type: "string",
+                    enum: [
+                      "REQUESTED",
+                      "PENDING",
+                      "IN_PROGRESS",
+                      "RETRYING",
+                      "SUCCEEDED",
+                      "FAILED",
+                    ],
                   },
                   RequestTime: {
                     type: "string",

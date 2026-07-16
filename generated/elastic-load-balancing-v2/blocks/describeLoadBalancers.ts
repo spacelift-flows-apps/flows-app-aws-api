@@ -139,6 +139,7 @@ const describeLoadBalancers: AppBlock = {
                 },
                 Scheme: {
                   type: "string",
+                  enum: ["internet-facing", "internal"],
                 },
                 VpcId: {
                   type: "string",
@@ -148,6 +149,12 @@ const describeLoadBalancers: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: [
+                        "active",
+                        "provisioning",
+                        "active_impaired",
+                        "failed",
+                      ],
                     },
                     Reason: {
                       type: "string",
@@ -157,6 +164,7 @@ const describeLoadBalancers: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: ["application", "network", "gateway"],
                 },
                 AvailabilityZones: {
                   type: "array",
@@ -192,6 +200,7 @@ const describeLoadBalancers: AppBlock = {
                 },
                 IpAddressType: {
                   type: "string",
+                  enum: ["ipv4", "dualstack", "dualstack-without-public-ipv4"],
                 },
                 CustomerOwnedIpv4Pool: {
                   type: "string",
@@ -201,6 +210,7 @@ const describeLoadBalancers: AppBlock = {
                 },
                 EnablePrefixForIpv6SourceNat: {
                   type: "string",
+                  enum: ["on", "off"],
                 },
                 IpamPools: {
                   type: "object",

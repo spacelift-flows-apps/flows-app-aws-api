@@ -165,6 +165,31 @@ const describeStacks: AppBlock = {
                 },
                 StackStatus: {
                   type: "string",
+                  enum: [
+                    "CREATE_IN_PROGRESS",
+                    "CREATE_FAILED",
+                    "CREATE_COMPLETE",
+                    "ROLLBACK_IN_PROGRESS",
+                    "ROLLBACK_FAILED",
+                    "ROLLBACK_COMPLETE",
+                    "DELETE_IN_PROGRESS",
+                    "DELETE_FAILED",
+                    "DELETE_COMPLETE",
+                    "UPDATE_IN_PROGRESS",
+                    "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS",
+                    "UPDATE_COMPLETE",
+                    "UPDATE_FAILED",
+                    "UPDATE_ROLLBACK_IN_PROGRESS",
+                    "UPDATE_ROLLBACK_FAILED",
+                    "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS",
+                    "UPDATE_ROLLBACK_COMPLETE",
+                    "REVIEW_IN_PROGRESS",
+                    "IMPORT_IN_PROGRESS",
+                    "IMPORT_COMPLETE",
+                    "IMPORT_ROLLBACK_IN_PROGRESS",
+                    "IMPORT_ROLLBACK_FAILED",
+                    "IMPORT_ROLLBACK_COMPLETE",
+                  ],
                 },
                 StackStatusReason: {
                   type: "string",
@@ -185,6 +210,11 @@ const describeStacks: AppBlock = {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: [
+                      "CAPABILITY_IAM",
+                      "CAPABILITY_NAMED_IAM",
+                      "CAPABILITY_AUTO_EXPAND",
+                    ],
                   },
                 },
                 Outputs: {
@@ -241,6 +271,7 @@ const describeStacks: AppBlock = {
                   properties: {
                     StackDriftStatus: {
                       type: "string",
+                      enum: ["DRIFTED", "IN_SYNC", "UNKNOWN", "NOT_CHECKED"],
                     },
                     LastCheckTimestamp: {
                       type: "string",
@@ -254,9 +285,11 @@ const describeStacks: AppBlock = {
                 },
                 DeletionMode: {
                   type: "string",
+                  enum: ["STANDARD", "FORCE_DELETE_STACK"],
                 },
                 DetailedStatus: {
                   type: "string",
+                  enum: ["CONFIGURATION_COMPLETE", "VALIDATION_FAILED"],
                 },
                 LastOperations: {
                   type: "array",
@@ -265,6 +298,14 @@ const describeStacks: AppBlock = {
                     properties: {
                       OperationType: {
                         type: "string",
+                        enum: [
+                          "CREATE_STACK",
+                          "UPDATE_STACK",
+                          "DELETE_STACK",
+                          "CONTINUE_ROLLBACK",
+                          "ROLLBACK",
+                          "CREATE_CHANGESET",
+                        ],
                       },
                       OperationId: {
                         type: "string",

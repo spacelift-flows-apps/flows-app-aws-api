@@ -154,6 +154,7 @@ const describeImageSigningStatus: AppBlock = {
                 },
                 status: {
                   type: "string",
+                  enum: ["IN_PROGRESS", "COMPLETE", "FAILED"],
                 },
               },
               additionalProperties: false,

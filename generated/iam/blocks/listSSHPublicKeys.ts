@@ -112,6 +112,7 @@ const listSSHPublicKeys: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["Active", "Inactive", "Expired"],
                 },
                 UploadDate: {
                   type: "string",

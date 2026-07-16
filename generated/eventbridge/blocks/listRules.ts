@@ -124,6 +124,11 @@ const listRules: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "ENABLED",
+                    "DISABLED",
+                    "ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS",
+                  ],
                 },
                 Description: {
                   type: "string",

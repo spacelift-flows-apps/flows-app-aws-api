@@ -235,6 +235,16 @@ const describeDaemonTaskDefinition: AppBlock = {
                       properties: {
                         logDriver: {
                           type: "string",
+                          enum: [
+                            "json-file",
+                            "syslog",
+                            "journald",
+                            "gelf",
+                            "fluentd",
+                            "awslogs",
+                            "splunk",
+                            "awsfirelens",
+                          ],
                         },
                         options: {
                           type: "object",
@@ -255,6 +265,7 @@ const describeDaemonTaskDefinition: AppBlock = {
                       properties: {
                         type: {
                           type: "string",
+                          enum: ["fluentd", "fluentbit"],
                         },
                         options: {
                           type: "object",
@@ -396,6 +407,7 @@ const describeDaemonTaskDefinition: AppBlock = {
               },
               status: {
                 type: "string",
+                enum: ["ACTIVE", "DELETE_IN_PROGRESS", "DELETED"],
               },
               registeredAt: {
                 type: "string",

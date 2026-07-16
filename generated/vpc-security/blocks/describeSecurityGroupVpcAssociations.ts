@@ -143,6 +143,14 @@ const describeSecurityGroupVpcAssociations: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "associating",
+                    "associated",
+                    "association-failed",
+                    "disassociating",
+                    "disassociated",
+                    "disassociation-failed",
+                  ],
                 },
                 StateReason: {
                   type: "string",

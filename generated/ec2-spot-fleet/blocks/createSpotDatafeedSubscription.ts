@@ -130,6 +130,7 @@ const createSpotDatafeedSubscription: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["Active", "Inactive"],
               },
             },
             additionalProperties: false,

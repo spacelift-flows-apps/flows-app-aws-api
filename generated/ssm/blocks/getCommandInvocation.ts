@@ -144,6 +144,16 @@ const getCommandInvocation: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: [
+              "Pending",
+              "InProgress",
+              "Delayed",
+              "Success",
+              "Cancelled",
+              "TimedOut",
+              "Failed",
+              "Cancelling",
+            ],
             description: "The status of this invocation plugin.",
           },
           StatusDetails: {

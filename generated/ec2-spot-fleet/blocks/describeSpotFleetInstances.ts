@@ -127,6 +127,7 @@ const describeSpotFleetInstances: AppBlock = {
                 },
                 InstanceHealth: {
                   type: "string",
+                  enum: ["healthy", "unhealthy"],
                 },
               },
               additionalProperties: false,

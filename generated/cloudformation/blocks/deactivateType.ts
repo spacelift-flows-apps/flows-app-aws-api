@@ -34,7 +34,10 @@ const deactivateType: AppBlock = {
         Type: {
           name: "Type",
           description: "The extension type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["RESOURCE", "MODULE", "HOOK"],
+          },
           required: false,
         },
         Arn: {

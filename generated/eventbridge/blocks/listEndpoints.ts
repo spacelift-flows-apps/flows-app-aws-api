@@ -158,6 +158,7 @@ const listEndpoints: AppBlock = {
                   properties: {
                     State: {
                       type: "string",
+                      enum: ["ENABLED", "DISABLED"],
                     },
                   },
                   additionalProperties: false,
@@ -186,6 +187,15 @@ const listEndpoints: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "ACTIVE",
+                    "CREATING",
+                    "UPDATING",
+                    "DELETING",
+                    "CREATE_FAILED",
+                    "UPDATE_FAILED",
+                    "DELETE_FAILED",
+                  ],
                 },
                 StateReason: {
                   type: "string",

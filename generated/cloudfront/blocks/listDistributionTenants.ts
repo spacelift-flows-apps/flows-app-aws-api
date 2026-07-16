@@ -144,6 +144,7 @@ const listDistributionTenants: AppBlock = {
                       },
                       Status: {
                         type: "string",
+                        enum: ["active", "inactive"],
                       },
                     },
                     required: ["Domain"],
@@ -161,6 +162,7 @@ const listDistributionTenants: AppBlock = {
                       properties: {
                         Action: {
                           type: "string",
+                          enum: ["override", "disable"],
                         },
                         Arn: {
                           type: "string",
@@ -184,6 +186,7 @@ const listDistributionTenants: AppBlock = {
                       properties: {
                         RestrictionType: {
                           type: "string",
+                          enum: ["blacklist", "whitelist", "none"],
                         },
                         Locations: {
                           type: "array",

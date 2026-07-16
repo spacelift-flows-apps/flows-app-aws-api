@@ -112,6 +112,7 @@ const listImportFailures: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["FAILED", "RETRY", "SUCCEEDED"],
                 },
                 ErrorType: {
                   type: "string",

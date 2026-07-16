@@ -39,6 +39,7 @@ const listInsights: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["UPGRADE_READINESS", "MISCONFIGURATION"],
                 },
               },
               kubernetesVersions: {
@@ -51,6 +52,7 @@ const listInsights: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["PASSING", "WARNING", "ERROR", "UNKNOWN"],
                 },
               },
             },
@@ -143,6 +145,7 @@ const listInsights: AppBlock = {
                 },
                 category: {
                   type: "string",
+                  enum: ["UPGRADE_READINESS", "MISCONFIGURATION"],
                 },
                 kubernetesVersion: {
                   type: "string",
@@ -161,6 +164,7 @@ const listInsights: AppBlock = {
                   properties: {
                     status: {
                       type: "string",
+                      enum: ["PASSING", "WARNING", "ERROR", "UNKNOWN"],
                     },
                     reason: {
                       type: "string",

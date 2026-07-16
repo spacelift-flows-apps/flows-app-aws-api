@@ -111,9 +111,27 @@ const deleteFleets: AppBlock = {
               properties: {
                 CurrentFleetState: {
                   type: "string",
+                  enum: [
+                    "submitted",
+                    "active",
+                    "deleted",
+                    "failed",
+                    "deleted_running",
+                    "deleted_terminating",
+                    "modifying",
+                  ],
                 },
                 PreviousFleetState: {
                   type: "string",
+                  enum: [
+                    "submitted",
+                    "active",
+                    "deleted",
+                    "failed",
+                    "deleted_running",
+                    "deleted_terminating",
+                    "modifying",
+                  ],
                 },
                 FleetId: {
                   type: "string",
@@ -134,6 +152,12 @@ const deleteFleets: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: [
+                        "fleetIdDoesNotExist",
+                        "fleetIdMalformed",
+                        "fleetNotInDeletableState",
+                        "unexpectedError",
+                      ],
                     },
                     Message: {
                       type: "string",

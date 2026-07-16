@@ -136,6 +136,18 @@ const updateGlobalTable: AppBlock = {
                     },
                     ReplicaStatus: {
                       type: "string",
+                      enum: [
+                        "CREATING",
+                        "CREATION_FAILED",
+                        "UPDATING",
+                        "DELETING",
+                        "ACTIVE",
+                        "REGION_DISABLED",
+                        "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                        "ARCHIVING",
+                        "ARCHIVED",
+                        "REPLICATION_NOT_AUTHORIZED",
+                      ],
                     },
                     ReplicaArn: {
                       type: "string",
@@ -178,6 +190,16 @@ const updateGlobalTable: AppBlock = {
                         },
                         Status: {
                           type: "string",
+                          enum: [
+                            "CREATING",
+                            "UPDATING",
+                            "DELETING",
+                            "ACTIVE",
+                            "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                            "ARCHIVING",
+                            "ARCHIVED",
+                            "REPLICATION_NOT_AUTHORIZED",
+                          ],
                         },
                       },
                       additionalProperties: false,
@@ -203,6 +225,7 @@ const updateGlobalTable: AppBlock = {
                       properties: {
                         TableClass: {
                           type: "string",
+                          enum: ["STANDARD", "STANDARD_INFREQUENT_ACCESS"],
                         },
                         LastUpdateDateTime: {
                           type: "string",
@@ -212,6 +235,7 @@ const updateGlobalTable: AppBlock = {
                     },
                     GlobalTableSettingsReplicationMode: {
                       type: "string",
+                      enum: ["ENABLED", "DISABLED", "ENABLED_WITH_OVERRIDES"],
                     },
                   },
                   additionalProperties: false,
@@ -225,6 +249,7 @@ const updateGlobalTable: AppBlock = {
               },
               GlobalTableStatus: {
                 type: "string",
+                enum: ["CREATING", "ACTIVE", "DELETING", "UPDATING"],
               },
               GlobalTableName: {
                 type: "string",

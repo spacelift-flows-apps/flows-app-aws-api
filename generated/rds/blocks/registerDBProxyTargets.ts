@@ -136,18 +136,38 @@ const registerDBProxyTargets: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: [
+                    "RDS_INSTANCE",
+                    "RDS_SERVERLESS_ENDPOINT",
+                    "TRACKED_CLUSTER",
+                  ],
                 },
                 Role: {
                   type: "string",
+                  enum: ["READ_WRITE", "READ_ONLY", "UNKNOWN"],
                 },
                 TargetHealth: {
                   type: "object",
                   properties: {
                     State: {
                       type: "string",
+                      enum: [
+                        "REGISTERING",
+                        "AVAILABLE",
+                        "UNAVAILABLE",
+                        "UNUSED",
+                      ],
                     },
                     Reason: {
                       type: "string",
+                      enum: [
+                        "UNREACHABLE",
+                        "CONNECTION_FAILED",
+                        "AUTH_FAILURE",
+                        "PENDING_PROXY_CAPACITY",
+                        "INVALID_REPLICATION_STATE",
+                        "PROMOTED",
+                      ],
                     },
                     Description: {
                       type: "string",

@@ -45,7 +45,10 @@ const registerTaskDefinition: AppBlock = {
           name: "network Mode",
           description:
             "The Docker networking mode to use for the containers in the task.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["bridge", "host", "awsvpc", "none"],
+          },
           required: false,
         },
         containerDefinitions: {
@@ -101,12 +104,14 @@ const registerTaskDefinition: AppBlock = {
                       },
                       protocol: {
                         type: "string",
+                        enum: ["tcp", "udp"],
                       },
                       name: {
                         type: "string",
                       },
                       appProtocol: {
                         type: "string",
+                        enum: ["http", "http2", "grpc"],
                       },
                       containerPortRange: {
                         type: "string",
@@ -174,6 +179,7 @@ const registerTaskDefinition: AppBlock = {
                       },
                       type: {
                         type: "string",
+                        enum: ["s3"],
                       },
                     },
                     required: ["value", "type"],
@@ -297,6 +303,7 @@ const registerTaskDefinition: AppBlock = {
                       },
                       condition: {
                         type: "string",
+                        enum: ["START", "COMPLETE", "SUCCESS", "HEALTHY"],
                       },
                     },
                     required: ["containerName", "condition"],
@@ -311,6 +318,7 @@ const registerTaskDefinition: AppBlock = {
                 },
                 versionConsistency: {
                   type: "string",
+                  enum: ["enabled", "disabled"],
                 },
                 hostname: {
                   type: "string",
@@ -383,6 +391,23 @@ const registerTaskDefinition: AppBlock = {
                     properties: {
                       name: {
                         type: "string",
+                        enum: [
+                          "core",
+                          "cpu",
+                          "data",
+                          "fsize",
+                          "locks",
+                          "memlock",
+                          "msgqueue",
+                          "nice",
+                          "nofile",
+                          "nproc",
+                          "rss",
+                          "rtprio",
+                          "rttime",
+                          "sigpending",
+                          "stack",
+                        ],
                       },
                       softLimit: {
                         type: "number",
@@ -400,6 +425,16 @@ const registerTaskDefinition: AppBlock = {
                   properties: {
                     logDriver: {
                       type: "string",
+                      enum: [
+                        "json-file",
+                        "syslog",
+                        "journald",
+                        "gelf",
+                        "fluentd",
+                        "awslogs",
+                        "splunk",
+                        "awsfirelens",
+                      ],
                     },
                     options: {
                       type: "object",
@@ -473,6 +508,7 @@ const registerTaskDefinition: AppBlock = {
                       },
                       type: {
                         type: "string",
+                        enum: ["GPU", "InferenceAccelerator"],
                       },
                     },
                     required: ["value", "type"],
@@ -484,6 +520,7 @@ const registerTaskDefinition: AppBlock = {
                   properties: {
                     type: {
                       type: "string",
+                      enum: ["fluentd", "fluentbit"],
                     },
                     options: {
                       type: "object",
@@ -533,6 +570,7 @@ const registerTaskDefinition: AppBlock = {
                   properties: {
                     scope: {
                       type: "string",
+                      enum: ["task", "shared"],
                     },
                     autoprovision: {
                       type: "boolean",
@@ -566,6 +604,7 @@ const registerTaskDefinition: AppBlock = {
                     },
                     transitEncryption: {
                       type: "string",
+                      enum: ["ENABLED", "DISABLED"],
                     },
                     transitEncryptionPort: {
                       type: "number",
@@ -578,6 +617,7 @@ const registerTaskDefinition: AppBlock = {
                         },
                         iam: {
                           type: "string",
+                          enum: ["ENABLED", "DISABLED"],
                         },
                       },
                       additionalProperties: false,
@@ -655,6 +695,7 @@ const registerTaskDefinition: AppBlock = {
               properties: {
                 type: {
                   type: "string",
+                  enum: ["memberOf"],
                 },
                 expression: {
                   type: "string",
@@ -673,6 +714,7 @@ const registerTaskDefinition: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
             },
           },
           required: false,
@@ -714,14 +756,20 @@ const registerTaskDefinition: AppBlock = {
           name: "pid Mode",
           description:
             "The process namespace to use for the containers in the task.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["host", "task"],
+          },
           required: false,
         },
         ipcMode: {
           name: "ipc Mode",
           description:
             "The IPC resource namespace to use for the containers in the task.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["host", "task", "none"],
+          },
           required: false,
         },
         proxyConfiguration: {
@@ -732,6 +780,7 @@ const registerTaskDefinition: AppBlock = {
             properties: {
               type: {
                 type: "string",
+                enum: ["APPMESH"],
               },
               containerName: {
                 type: "string",
@@ -804,9 +853,22 @@ const registerTaskDefinition: AppBlock = {
             properties: {
               cpuArchitecture: {
                 type: "string",
+                enum: ["X86_64", "ARM64"],
               },
               operatingSystemFamily: {
                 type: "string",
+                enum: [
+                  "WINDOWS_SERVER_2019_FULL",
+                  "WINDOWS_SERVER_2019_CORE",
+                  "WINDOWS_SERVER_2016_FULL",
+                  "WINDOWS_SERVER_2004_CORE",
+                  "WINDOWS_SERVER_2022_CORE",
+                  "WINDOWS_SERVER_2022_FULL",
+                  "WINDOWS_SERVER_2025_CORE",
+                  "WINDOWS_SERVER_2025_FULL",
+                  "WINDOWS_SERVER_20H2_CORE",
+                  "LINUX",
+                ],
               },
             },
             additionalProperties: false,
@@ -1079,6 +1141,7 @@ const registerTaskDefinition: AppBlock = {
                     },
                     versionConsistency: {
                       type: "string",
+                      enum: ["enabled", "disabled"],
                     },
                     hostname: {
                       type: "string",
@@ -1158,6 +1221,16 @@ const registerTaskDefinition: AppBlock = {
                       properties: {
                         logDriver: {
                           type: "string",
+                          enum: [
+                            "json-file",
+                            "syslog",
+                            "journald",
+                            "gelf",
+                            "fluentd",
+                            "awslogs",
+                            "splunk",
+                            "awsfirelens",
+                          ],
                         },
                         options: {
                           type: "object",
@@ -1224,6 +1297,7 @@ const registerTaskDefinition: AppBlock = {
                       properties: {
                         type: {
                           type: "string",
+                          enum: ["fluentd", "fluentbit"],
                         },
                         options: {
                           type: "object",
@@ -1256,6 +1330,7 @@ const registerTaskDefinition: AppBlock = {
               },
               networkMode: {
                 type: "string",
+                enum: ["bridge", "host", "awsvpc", "none"],
               },
               revision: {
                 type: "number",
@@ -1282,6 +1357,7 @@ const registerTaskDefinition: AppBlock = {
                       properties: {
                         scope: {
                           type: "string",
+                          enum: ["task", "shared"],
                         },
                         autoprovision: {
                           type: "boolean",
@@ -1315,6 +1391,7 @@ const registerTaskDefinition: AppBlock = {
                         },
                         transitEncryption: {
                           type: "string",
+                          enum: ["ENABLED", "DISABLED"],
                         },
                         transitEncryptionPort: {
                           type: "number",
@@ -1385,6 +1462,7 @@ const registerTaskDefinition: AppBlock = {
               },
               status: {
                 type: "string",
+                enum: ["ACTIVE", "INACTIVE", "DELETE_IN_PROGRESS"],
               },
               requiresAttributes: {
                 type: "array",
@@ -1399,6 +1477,7 @@ const registerTaskDefinition: AppBlock = {
                     },
                     targetType: {
                       type: "string",
+                      enum: ["container-instance"],
                     },
                     targetId: {
                       type: "string",
@@ -1415,6 +1494,7 @@ const registerTaskDefinition: AppBlock = {
                   properties: {
                     type: {
                       type: "string",
+                      enum: ["memberOf"],
                     },
                     expression: {
                       type: "string",
@@ -1427,6 +1507,7 @@ const registerTaskDefinition: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                 },
               },
               runtimePlatform: {
@@ -1434,9 +1515,22 @@ const registerTaskDefinition: AppBlock = {
                 properties: {
                   cpuArchitecture: {
                     type: "string",
+                    enum: ["X86_64", "ARM64"],
                   },
                   operatingSystemFamily: {
                     type: "string",
+                    enum: [
+                      "WINDOWS_SERVER_2019_FULL",
+                      "WINDOWS_SERVER_2019_CORE",
+                      "WINDOWS_SERVER_2016_FULL",
+                      "WINDOWS_SERVER_2004_CORE",
+                      "WINDOWS_SERVER_2022_CORE",
+                      "WINDOWS_SERVER_2022_FULL",
+                      "WINDOWS_SERVER_2025_CORE",
+                      "WINDOWS_SERVER_2025_FULL",
+                      "WINDOWS_SERVER_20H2_CORE",
+                      "LINUX",
+                    ],
                   },
                 },
                 additionalProperties: false,
@@ -1445,6 +1539,7 @@ const registerTaskDefinition: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                 },
               },
               cpu: {
@@ -1471,15 +1566,18 @@ const registerTaskDefinition: AppBlock = {
               },
               pidMode: {
                 type: "string",
+                enum: ["host", "task"],
               },
               ipcMode: {
                 type: "string",
+                enum: ["host", "task", "none"],
               },
               proxyConfiguration: {
                 type: "object",
                 properties: {
                   type: {
                     type: "string",
+                    enum: ["APPMESH"],
                   },
                   containerName: {
                     type: "string",

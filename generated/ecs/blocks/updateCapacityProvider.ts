@@ -46,6 +46,7 @@ const updateCapacityProvider: AppBlock = {
                 properties: {
                   status: {
                     type: "string",
+                    enum: ["ENABLED", "DISABLED"],
                   },
                   targetCapacity: {
                     type: "number",
@@ -64,9 +65,11 @@ const updateCapacityProvider: AppBlock = {
               },
               managedTerminationProtection: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
               managedDraining: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
             },
             additionalProperties: false,
@@ -130,6 +133,7 @@ const updateCapacityProvider: AppBlock = {
                   },
                   monitoring: {
                     type: "string",
+                    enum: ["BASIC", "DETAILED"],
                   },
                   instanceRequirements: {
                     type: "object",
@@ -164,6 +168,7 @@ const updateCapacityProvider: AppBlock = {
                         type: "array",
                         items: {
                           type: "string",
+                          enum: ["intel", "amd", "amazon-web-services"],
                         },
                       },
                       memoryGiBPerVCpu: {
@@ -188,6 +193,7 @@ const updateCapacityProvider: AppBlock = {
                         type: "array",
                         items: {
                           type: "string",
+                          enum: ["current", "previous"],
                         },
                       },
                       spotMaxPricePercentageOverLowestPrice: {
@@ -198,9 +204,11 @@ const updateCapacityProvider: AppBlock = {
                       },
                       bareMetal: {
                         type: "string",
+                        enum: ["included", "required", "excluded"],
                       },
                       burstablePerformance: {
                         type: "string",
+                        enum: ["included", "required", "excluded"],
                       },
                       requireHibernateSupport: {
                         type: "boolean",
@@ -219,11 +227,13 @@ const updateCapacityProvider: AppBlock = {
                       },
                       localStorage: {
                         type: "string",
+                        enum: ["included", "required", "excluded"],
                       },
                       localStorageTypes: {
                         type: "array",
                         items: {
                           type: "string",
+                          enum: ["hdd", "ssd"],
                         },
                       },
                       totalLocalStorageGB: {
@@ -254,6 +264,7 @@ const updateCapacityProvider: AppBlock = {
                         type: "array",
                         items: {
                           type: "string",
+                          enum: ["gpu", "fpga", "inference"],
                         },
                       },
                       acceleratorCount: {
@@ -272,12 +283,33 @@ const updateCapacityProvider: AppBlock = {
                         type: "array",
                         items: {
                           type: "string",
+                          enum: [
+                            "amazon-web-services",
+                            "amd",
+                            "nvidia",
+                            "xilinx",
+                            "habana",
+                          ],
                         },
                       },
                       acceleratorNames: {
                         type: "array",
                         items: {
                           type: "string",
+                          enum: [
+                            "a100",
+                            "inferentia",
+                            "k520",
+                            "k80",
+                            "m60",
+                            "radeon-pro-v520",
+                            "t4",
+                            "vu9p",
+                            "v100",
+                            "a10g",
+                            "h100",
+                            "t4g",
+                          ],
                         },
                       },
                       acceleratorTotalMemoryMiB: {
@@ -325,6 +357,11 @@ const updateCapacityProvider: AppBlock = {
                       },
                       reservationPreference: {
                         type: "string",
+                        enum: [
+                          "RESERVATIONS_ONLY",
+                          "RESERVATIONS_FIRST",
+                          "RESERVATIONS_EXCLUDED",
+                        ],
                       },
                     },
                     additionalProperties: false,
@@ -334,6 +371,7 @@ const updateCapacityProvider: AppBlock = {
               },
               propagateTags: {
                 type: "string",
+                enum: ["CAPACITY_PROVIDER", "NONE"],
               },
               infrastructureOptimization: {
                 type: "object",
@@ -349,6 +387,7 @@ const updateCapacityProvider: AppBlock = {
                 properties: {
                   actionsStatus: {
                     type: "string",
+                    enum: ["ENABLED", "DISABLED"],
                   },
                 },
                 additionalProperties: false,
@@ -431,6 +470,7 @@ const updateCapacityProvider: AppBlock = {
               },
               status: {
                 type: "string",
+                enum: ["PROVISIONING", "ACTIVE", "DEPROVISIONING", "INACTIVE"],
               },
               autoScalingGroupProvider: {
                 type: "object",
@@ -443,6 +483,7 @@ const updateCapacityProvider: AppBlock = {
                     properties: {
                       status: {
                         type: "string",
+                        enum: ["ENABLED", "DISABLED"],
                       },
                       targetCapacity: {
                         type: "number",
@@ -461,9 +502,11 @@ const updateCapacityProvider: AppBlock = {
                   },
                   managedTerminationProtection: {
                     type: "string",
+                    enum: ["ENABLED", "DISABLED"],
                   },
                   managedDraining: {
                     type: "string",
+                    enum: ["ENABLED", "DISABLED"],
                   },
                 },
                 required: ["autoScalingGroupArn"],
@@ -515,9 +558,11 @@ const updateCapacityProvider: AppBlock = {
                       },
                       monitoring: {
                         type: "string",
+                        enum: ["BASIC", "DETAILED"],
                       },
                       capacityOptionType: {
                         type: "string",
+                        enum: ["ON_DEMAND", "SPOT", "RESERVED"],
                       },
                       instanceMetadataTagsPropagation: {
                         type: "boolean",
@@ -571,9 +616,11 @@ const updateCapacityProvider: AppBlock = {
                           },
                           bareMetal: {
                             type: "string",
+                            enum: ["included", "required", "excluded"],
                           },
                           burstablePerformance: {
                             type: "string",
+                            enum: ["included", "required", "excluded"],
                           },
                           requireHibernateSupport: {
                             type: "boolean",
@@ -588,6 +635,7 @@ const updateCapacityProvider: AppBlock = {
                           },
                           localStorage: {
                             type: "string",
+                            enum: ["included", "required", "excluded"],
                           },
                           localStorageTypes: {
                             type: "array",
@@ -667,6 +715,11 @@ const updateCapacityProvider: AppBlock = {
                           },
                           reservationPreference: {
                             type: "string",
+                            enum: [
+                              "RESERVATIONS_ONLY",
+                              "RESERVATIONS_FIRST",
+                              "RESERVATIONS_EXCLUDED",
+                            ],
                           },
                         },
                         additionalProperties: false,
@@ -677,6 +730,7 @@ const updateCapacityProvider: AppBlock = {
                   },
                   propagateTags: {
                     type: "string",
+                    enum: ["CAPACITY_PROVIDER", "NONE"],
                   },
                   infrastructureOptimization: {
                     type: "object",
@@ -692,6 +746,7 @@ const updateCapacityProvider: AppBlock = {
                     properties: {
                       actionsStatus: {
                         type: "string",
+                        enum: ["ENABLED", "DISABLED"],
                       },
                     },
                     additionalProperties: false,
@@ -701,6 +756,17 @@ const updateCapacityProvider: AppBlock = {
               },
               updateStatus: {
                 type: "string",
+                enum: [
+                  "CREATE_IN_PROGRESS",
+                  "CREATE_COMPLETE",
+                  "CREATE_FAILED",
+                  "DELETE_IN_PROGRESS",
+                  "DELETE_COMPLETE",
+                  "DELETE_FAILED",
+                  "UPDATE_IN_PROGRESS",
+                  "UPDATE_COMPLETE",
+                  "UPDATE_FAILED",
+                ],
               },
               updateStatusReason: {
                 type: "string",
@@ -722,6 +788,12 @@ const updateCapacityProvider: AppBlock = {
               },
               type: {
                 type: "string",
+                enum: [
+                  "EC2_AUTOSCALING",
+                  "MANAGED_INSTANCES",
+                  "FARGATE",
+                  "FARGATE_SPOT",
+                ],
               },
             },
             additionalProperties: false,

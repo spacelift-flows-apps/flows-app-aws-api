@@ -25,7 +25,10 @@ const resetImageAttribute: AppBlock = {
           name: "Attribute",
           description:
             "The attribute to reset (currently you can only reset the launch permission attribute).",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["launchPermission"],
+          },
           required: true,
         },
         ImageId: {

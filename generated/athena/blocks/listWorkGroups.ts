@@ -103,6 +103,7 @@ const listWorkGroups: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["ENABLED", "DISABLED"],
                 },
                 Description: {
                   type: "string",

@@ -357,7 +357,10 @@ const createDBInstance: AppBlock = {
           name: "Database Insights Mode",
           description:
             "The mode of Database Insights to enable for the DB instance.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["standard", "advanced"],
+          },
           required: false,
         },
         EnablePerformanceInsights: {
@@ -573,7 +576,10 @@ const createDBInstance: AppBlock = {
         MasterUserAuthenticationType: {
           name: "Master User Authentication Type",
           description: "Specifies the authentication type for the master user.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["password", "iam-db-auth"],
+          },
           required: false,
         },
       },
@@ -791,6 +797,7 @@ const createDBInstance: AppBlock = {
               },
               UpgradeRolloutOrder: {
                 type: "string",
+                enum: ["first", "second", "last"],
               },
               PendingModifiedValues: {
                 type: "object",
@@ -872,6 +879,7 @@ const createDBInstance: AppBlock = {
                   },
                   AutomationMode: {
                     type: "string",
+                    enum: ["full", "all-paused"],
                   },
                   ResumeFullAutomationModeTime: {
                     type: "string",
@@ -948,6 +956,7 @@ const createDBInstance: AppBlock = {
               },
               ReplicaMode: {
                 type: "string",
+                enum: ["open-read-only", "mounted"],
               },
               LicenseModel: {
                 type: "string",
@@ -1011,6 +1020,7 @@ const createDBInstance: AppBlock = {
               },
               StorageEncryptionType: {
                 type: "string",
+                enum: ["none", "sse-kms", "sse-rds"],
               },
               TdeCredentialArn: {
                 type: "string",
@@ -1092,6 +1102,7 @@ const createDBInstance: AppBlock = {
               },
               DatabaseInsightsMode: {
                 type: "string",
+                enum: ["standard", "advanced"],
               },
               PerformanceInsightsEnabled: {
                 type: "boolean",
@@ -1179,6 +1190,7 @@ const createDBInstance: AppBlock = {
               },
               AutomationMode: {
                 type: "string",
+                enum: ["full", "all-paused"],
               },
               ResumeFullAutomationModeTime: {
                 type: "string",
@@ -1191,6 +1203,7 @@ const createDBInstance: AppBlock = {
               },
               ActivityStreamStatus: {
                 type: "string",
+                enum: ["stopped", "starting", "started", "stopping"],
               },
               ActivityStreamKmsKeyId: {
                 type: "string",
@@ -1200,6 +1213,7 @@ const createDBInstance: AppBlock = {
               },
               ActivityStreamMode: {
                 type: "string",
+                enum: ["sync", "async"],
               },
               ActivityStreamEngineNativeAuditFieldsIncluded: {
                 type: "boolean",
@@ -1230,6 +1244,12 @@ const createDBInstance: AppBlock = {
               },
               ActivityStreamPolicyStatus: {
                 type: "string",
+                enum: [
+                  "locked",
+                  "unlocked",
+                  "locking-policy",
+                  "unlocking-policy",
+                ],
               },
               CertificateDetails: {
                 type: "object",

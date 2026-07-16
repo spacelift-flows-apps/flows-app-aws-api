@@ -130,6 +130,7 @@ const describeSubscriptionFilters: AppBlock = {
                 },
                 distribution: {
                   type: "string",
+                  enum: ["Random", "ByLogStream"],
                 },
                 applyOnTransformedLogs: {
                   type: "boolean",

@@ -34,7 +34,22 @@ const listCopyJobSummaries: AppBlock = {
           name: "State",
           description:
             "This parameter returns the job count for jobs with the specified state.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CREATED",
+              "RUNNING",
+              "ABORTING",
+              "ABORTED",
+              "COMPLETING",
+              "COMPLETED",
+              "FAILING",
+              "FAILED",
+              "PARTIAL",
+              "AGGREGATE_ALL",
+              "ANY",
+            ],
+          },
           required: false,
         },
         ResourceType: {
@@ -53,7 +68,10 @@ const listCopyJobSummaries: AppBlock = {
         AggregationPeriod: {
           name: "Aggregation Period",
           description: "The period for the returned results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ONE_DAY", "SEVEN_DAYS", "FOURTEEN_DAYS"],
+          },
           required: false,
         },
         MaxResults: {
@@ -141,6 +159,19 @@ const listCopyJobSummaries: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "CREATED",
+                    "RUNNING",
+                    "ABORTING",
+                    "ABORTED",
+                    "COMPLETING",
+                    "COMPLETED",
+                    "FAILING",
+                    "FAILED",
+                    "PARTIAL",
+                    "AGGREGATE_ALL",
+                    "ANY",
+                  ],
                 },
                 ResourceType: {
                   type: "string",

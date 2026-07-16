@@ -98,6 +98,7 @@ const describeTable: AppBlock = {
                     },
                     AttributeType: {
                       type: "string",
+                      enum: ["S", "N", "B"],
                     },
                   },
                   required: ["AttributeName", "AttributeType"],
@@ -117,6 +118,7 @@ const describeTable: AppBlock = {
                     },
                     KeyType: {
                       type: "string",
+                      enum: ["HASH", "RANGE"],
                     },
                   },
                   required: ["AttributeName", "KeyType"],
@@ -125,6 +127,16 @@ const describeTable: AppBlock = {
               },
               TableStatus: {
                 type: "string",
+                enum: [
+                  "CREATING",
+                  "UPDATING",
+                  "DELETING",
+                  "ACTIVE",
+                  "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                  "ARCHIVING",
+                  "ARCHIVED",
+                  "REPLICATION_NOT_AUTHORIZED",
+                ],
               },
               CreationDateTime: {
                 type: "string",
@@ -167,6 +179,7 @@ const describeTable: AppBlock = {
                 properties: {
                   BillingMode: {
                     type: "string",
+                    enum: ["PROVISIONED", "PAY_PER_REQUEST"],
                   },
                   LastUpdateToPayPerRequestDateTime: {
                     type: "string",
@@ -199,6 +212,7 @@ const describeTable: AppBlock = {
                       properties: {
                         ProjectionType: {
                           type: "string",
+                          enum: ["ALL", "KEYS_ONLY", "INCLUDE"],
                         },
                         NonKeyAttributes: {
                           type: "array",
@@ -245,6 +259,7 @@ const describeTable: AppBlock = {
                       properties: {
                         ProjectionType: {
                           type: "string",
+                          enum: ["ALL", "KEYS_ONLY", "INCLUDE"],
                         },
                         NonKeyAttributes: {
                           type: "array",
@@ -255,6 +270,7 @@ const describeTable: AppBlock = {
                     },
                     IndexStatus: {
                       type: "string",
+                      enum: ["CREATING", "UPDATING", "DELETING", "ACTIVE"],
                     },
                     Backfilling: {
                       type: "boolean",
@@ -312,6 +328,7 @@ const describeTable: AppBlock = {
                         },
                         Status: {
                           type: "string",
+                          enum: ["CREATING", "UPDATING", "DELETING", "ACTIVE"],
                         },
                       },
                       additionalProperties: false,
@@ -328,6 +345,12 @@ const describeTable: AppBlock = {
                   },
                   StreamViewType: {
                     type: "string",
+                    enum: [
+                      "NEW_IMAGE",
+                      "OLD_IMAGE",
+                      "NEW_AND_OLD_IMAGES",
+                      "KEYS_ONLY",
+                    ],
                   },
                 },
                 required: ["StreamEnabled"],
@@ -352,6 +375,18 @@ const describeTable: AppBlock = {
                     },
                     ReplicaStatus: {
                       type: "string",
+                      enum: [
+                        "CREATING",
+                        "CREATION_FAILED",
+                        "UPDATING",
+                        "DELETING",
+                        "ACTIVE",
+                        "REGION_DISABLED",
+                        "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                        "ARCHIVING",
+                        "ARCHIVED",
+                        "REPLICATION_NOT_AUTHORIZED",
+                      ],
                     },
                     ReplicaArn: {
                       type: "string",
@@ -394,6 +429,16 @@ const describeTable: AppBlock = {
                         },
                         Status: {
                           type: "string",
+                          enum: [
+                            "CREATING",
+                            "UPDATING",
+                            "DELETING",
+                            "ACTIVE",
+                            "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                            "ARCHIVING",
+                            "ARCHIVED",
+                            "REPLICATION_NOT_AUTHORIZED",
+                          ],
                         },
                       },
                       additionalProperties: false,
@@ -419,6 +464,7 @@ const describeTable: AppBlock = {
                       properties: {
                         TableClass: {
                           type: "string",
+                          enum: ["STANDARD", "STANDARD_INFREQUENT_ACCESS"],
                         },
                         LastUpdateDateTime: {
                           type: "string",
@@ -428,6 +474,7 @@ const describeTable: AppBlock = {
                     },
                     GlobalTableSettingsReplicationMode: {
                       type: "string",
+                      enum: ["ENABLED", "DISABLED", "ENABLED_WITH_OVERRIDES"],
                     },
                   },
                   additionalProperties: false,
@@ -443,6 +490,7 @@ const describeTable: AppBlock = {
                     },
                     WitnessStatus: {
                       type: "string",
+                      enum: ["CREATING", "DELETING", "ACTIVE"],
                     },
                   },
                   additionalProperties: false,
@@ -450,6 +498,7 @@ const describeTable: AppBlock = {
               },
               GlobalTableSettingsReplicationMode: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED", "ENABLED_WITH_OVERRIDES"],
               },
               RestoreSummary: {
                 type: "object",
@@ -475,9 +524,17 @@ const describeTable: AppBlock = {
                 properties: {
                   Status: {
                     type: "string",
+                    enum: [
+                      "ENABLING",
+                      "ENABLED",
+                      "DISABLING",
+                      "DISABLED",
+                      "UPDATING",
+                    ],
                   },
                   SSEType: {
                     type: "string",
+                    enum: ["AES256", "KMS"],
                   },
                   KMSMasterKeyArn: {
                     type: "string",
@@ -508,6 +565,7 @@ const describeTable: AppBlock = {
                 properties: {
                   TableClass: {
                     type: "string",
+                    enum: ["STANDARD", "STANDARD_INFREQUENT_ACCESS"],
                   },
                   LastUpdateDateTime: {
                     type: "string",
@@ -541,12 +599,23 @@ const describeTable: AppBlock = {
                   },
                   Status: {
                     type: "string",
+                    enum: [
+                      "CREATING",
+                      "UPDATING",
+                      "DELETING",
+                      "ACTIVE",
+                      "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                      "ARCHIVING",
+                      "ARCHIVED",
+                      "REPLICATION_NOT_AUTHORIZED",
+                    ],
                   },
                 },
                 additionalProperties: false,
               },
               MultiRegionConsistency: {
                 type: "string",
+                enum: ["EVENTUAL", "STRONG"],
               },
             },
             additionalProperties: false,

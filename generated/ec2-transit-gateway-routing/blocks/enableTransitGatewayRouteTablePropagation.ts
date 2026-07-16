@@ -122,12 +122,24 @@ const enableTransitGatewayRouteTablePropagation: AppBlock = {
               },
               ResourceType: {
                 type: "string",
+                enum: [
+                  "vpc",
+                  "vpn",
+                  "vpn-concentrator",
+                  "direct-connect-gateway",
+                  "connect",
+                  "peering",
+                  "tgw-peering",
+                  "network-function",
+                  "client-vpn",
+                ],
               },
               TransitGatewayRouteTableId: {
                 type: "string",
               },
               State: {
                 type: "string",
+                enum: ["enabling", "enabled", "disabling", "disabled"],
               },
               TransitGatewayRouteTableAnnouncementId: {
                 type: "string",

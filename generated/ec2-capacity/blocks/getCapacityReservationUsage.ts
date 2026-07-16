@@ -135,6 +135,20 @@ const getCapacityReservationUsage: AppBlock = {
           },
           State: {
             type: "string",
+            enum: [
+              "active",
+              "expired",
+              "cancelled",
+              "pending",
+              "failed",
+              "scheduled",
+              "payment-pending",
+              "payment-failed",
+              "assessing",
+              "delayed",
+              "unsupported",
+              "unavailable",
+            ],
             description: "The current state of the Capacity Reservation.",
           },
           InstanceUsages: {
@@ -169,12 +183,21 @@ const getCapacityReservationUsage: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: [
+                  "pending",
+                  "active",
+                  "updating",
+                  "canceling",
+                  "canceled",
+                  "failed",
+                ],
               },
               InterruptibleCapacityReservationId: {
                 type: "string",
               },
               InterruptionType: {
                 type: "string",
+                enum: ["adhoc"],
               },
             },
             additionalProperties: false,
@@ -189,6 +212,7 @@ const getCapacityReservationUsage: AppBlock = {
               },
               InterruptionType: {
                 type: "string",
+                enum: ["adhoc"],
               },
             },
             additionalProperties: false,

@@ -80,7 +80,10 @@ const sendCommand: AppBlock = {
         DocumentHashType: {
           name: "Document Hash Type",
           description: "Sha256 or Sha1.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Sha256", "Sha1"],
+          },
           required: false,
         },
         TimeoutSeconds: {
@@ -163,10 +166,19 @@ const sendCommand: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "All",
+                    "InProgress",
+                    "Success",
+                    "TimedOut",
+                    "Cancelled",
+                    "Failed",
+                  ],
                 },
               },
               NotificationType: {
                 type: "string",
+                enum: ["Command", "Invocation"],
               },
             },
             additionalProperties: false,
@@ -331,6 +343,15 @@ const sendCommand: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: [
+                  "Pending",
+                  "InProgress",
+                  "Success",
+                  "Cancelled",
+                  "Failed",
+                  "TimedOut",
+                  "Cancelling",
+                ],
               },
               StatusDetails: {
                 type: "string",
@@ -375,10 +396,19 @@ const sendCommand: AppBlock = {
                     type: "array",
                     items: {
                       type: "string",
+                      enum: [
+                        "All",
+                        "InProgress",
+                        "Success",
+                        "TimedOut",
+                        "Cancelled",
+                        "Failed",
+                      ],
                     },
                   },
                   NotificationType: {
                     type: "string",
+                    enum: ["Command", "Invocation"],
                   },
                 },
                 additionalProperties: false,
@@ -431,6 +461,7 @@ const sendCommand: AppBlock = {
                     },
                     State: {
                       type: "string",
+                      enum: ["UNKNOWN", "ALARM"],
                     },
                   },
                   required: ["Name", "State"],

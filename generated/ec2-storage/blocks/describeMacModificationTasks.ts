@@ -155,27 +155,35 @@ const describeMacModificationTasks: AppBlock = {
                   properties: {
                     AppleInternal: {
                       type: "string",
+                      enum: ["enabled", "disabled"],
                     },
                     BaseSystem: {
                       type: "string",
+                      enum: ["enabled", "disabled"],
                     },
                     DebuggingRestrictions: {
                       type: "string",
+                      enum: ["enabled", "disabled"],
                     },
                     DTraceRestrictions: {
                       type: "string",
+                      enum: ["enabled", "disabled"],
                     },
                     FilesystemProtections: {
                       type: "string",
+                      enum: ["enabled", "disabled"],
                     },
                     KextSigning: {
                       type: "string",
+                      enum: ["enabled", "disabled"],
                     },
                     NvramProtections: {
                       type: "string",
+                      enum: ["enabled", "disabled"],
                     },
                     Status: {
                       type: "string",
+                      enum: ["enabled", "disabled"],
                     },
                   },
                   additionalProperties: false,
@@ -200,9 +208,11 @@ const describeMacModificationTasks: AppBlock = {
                 },
                 TaskState: {
                   type: "string",
+                  enum: ["successful", "failed", "in-progress", "pending"],
                 },
                 TaskType: {
                   type: "string",
+                  enum: ["sip-modification", "volume-ownership-delegation"],
                 },
               },
               additionalProperties: false,

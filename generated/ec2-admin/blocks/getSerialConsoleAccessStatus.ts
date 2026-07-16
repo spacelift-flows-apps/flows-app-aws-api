@@ -98,6 +98,7 @@ const getSerialConsoleAccessStatus: AppBlock = {
           },
           ManagedBy: {
             type: "string",
+            enum: ["account", "declarative-policy"],
             description:
               "The entity that manages access to the serial console.",
           },

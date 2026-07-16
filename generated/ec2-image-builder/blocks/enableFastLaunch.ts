@@ -151,6 +151,7 @@ const enableFastLaunch: AppBlock = {
           },
           ResourceType: {
             type: "string",
+            enum: ["snapshot"],
             description:
               "The type of resource that was defined for pre-provisioning the AMI for Windows fast launch.",
           },
@@ -194,6 +195,14 @@ const enableFastLaunch: AppBlock = {
           },
           State: {
             type: "string",
+            enum: [
+              "enabling",
+              "enabling-failed",
+              "enabled",
+              "enabled-failed",
+              "disabling",
+              "disabling-failed",
+            ],
             description:
               "The current state of Windows fast launch for the specified AMI.",
           },

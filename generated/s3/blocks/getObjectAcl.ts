@@ -47,7 +47,10 @@ const getObjectAcl: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         ExpectedBucketOwner: {
@@ -151,6 +154,7 @@ const getObjectAcl: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: ["CanonicalUser", "AmazonCustomerByEmail", "Group"],
                     },
                   },
                   required: ["Type"],
@@ -158,6 +162,13 @@ const getObjectAcl: AppBlock = {
                 },
                 Permission: {
                   type: "string",
+                  enum: [
+                    "FULL_CONTROL",
+                    "WRITE",
+                    "WRITE_ACP",
+                    "READ",
+                    "READ_ACP",
+                  ],
                 },
               },
               additionalProperties: false,
@@ -166,6 +177,7 @@ const getObjectAcl: AppBlock = {
           },
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },

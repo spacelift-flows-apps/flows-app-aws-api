@@ -33,7 +33,10 @@ const getConnectionFunction: AppBlock = {
         Stage: {
           name: "Stage",
           description: "The connection function's stage.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["DEVELOPMENT", "LIVE"],
+          },
           required: false,
         },
       },

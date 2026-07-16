@@ -102,6 +102,7 @@ const deleteKeySigningKey: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["PENDING", "INSYNC"],
               },
               SubmittedAt: {
                 type: "string",

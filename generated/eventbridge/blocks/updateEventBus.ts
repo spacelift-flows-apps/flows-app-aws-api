@@ -66,9 +66,11 @@ const updateEventBus: AppBlock = {
             properties: {
               IncludeDetail: {
                 type: "string",
+                enum: ["NONE", "FULL"],
               },
               Level: {
                 type: "string",
+                enum: ["OFF", "ERROR", "INFO", "TRACE"],
               },
             },
             additionalProperties: false,
@@ -166,9 +168,11 @@ const updateEventBus: AppBlock = {
             properties: {
               IncludeDetail: {
                 type: "string",
+                enum: ["NONE", "FULL"],
               },
               Level: {
                 type: "string",
+                enum: ["OFF", "ERROR", "INFO", "TRACE"],
               },
             },
             additionalProperties: false,

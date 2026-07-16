@@ -167,12 +167,21 @@ const describeTransitGatewayRouteTableAnnouncements: AppBlock = {
                 },
                 AnnouncementDirection: {
                   type: "string",
+                  enum: ["outgoing", "incoming"],
                 },
                 TransitGatewayRouteTableId: {
                   type: "string",
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "available",
+                    "pending",
+                    "failing",
+                    "failed",
+                    "deleting",
+                    "deleted",
+                  ],
                 },
                 CreationTime: {
                   type: "string",

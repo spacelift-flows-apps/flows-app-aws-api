@@ -27,7 +27,10 @@ const listInboundResponsibilityTransfers: AppBlock = {
         Type: {
           name: "Type",
           description: "The type of responsibility.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["BILLING"],
+          },
           required: true,
         },
         Id: {
@@ -125,9 +128,18 @@ const listInboundResponsibilityTransfers: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: ["BILLING"],
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "REQUESTED",
+                    "DECLINED",
+                    "CANCELED",
+                    "EXPIRED",
+                    "ACCEPTED",
+                    "WITHDRAWN",
+                  ],
                 },
                 Source: {
                   type: "object",

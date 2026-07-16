@@ -104,6 +104,11 @@ const verifyDnsConfiguration: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "valid-configuration",
+                    "invalid-configuration",
+                    "unknown-configuration",
+                  ],
                 },
                 Reason: {
                   type: "string",

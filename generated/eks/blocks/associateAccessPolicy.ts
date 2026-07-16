@@ -48,6 +48,7 @@ const associateAccessPolicy: AppBlock = {
             properties: {
               type: {
                 type: "string",
+                enum: ["cluster", "namespace"],
               },
               namespaces: {
                 type: "array",
@@ -137,6 +138,7 @@ const associateAccessPolicy: AppBlock = {
                 properties: {
                   type: {
                     type: "string",
+                    enum: ["cluster", "namespace"],
                   },
                   namespaces: {
                     type: "array",

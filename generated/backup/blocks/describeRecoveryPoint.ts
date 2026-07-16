@@ -170,6 +170,15 @@ const describeRecoveryPoint: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: [
+              "COMPLETED",
+              "PARTIAL",
+              "DELETING",
+              "EXPIRED",
+              "AVAILABLE",
+              "STOPPED",
+              "CREATING",
+            ],
             description:
               "A status code specifying the state of the recovery point.",
           },
@@ -225,6 +234,7 @@ const describeRecoveryPoint: AppBlock = {
               },
               DeleteAfterEvent: {
                 type: "string",
+                enum: ["DELETE_AFTER_COPY"],
               },
             },
             additionalProperties: false,
@@ -243,6 +253,7 @@ const describeRecoveryPoint: AppBlock = {
           },
           StorageClass: {
             type: "string",
+            enum: ["WARM", "COLD", "DELETED"],
             description: "Specifies the storage class of the recovery point.",
           },
           LastRestoreTime: {
@@ -272,11 +283,17 @@ const describeRecoveryPoint: AppBlock = {
           },
           VaultType: {
             type: "string",
+            enum: [
+              "BACKUP_VAULT",
+              "LOGICALLY_AIR_GAPPED_BACKUP_VAULT",
+              "RESTORE_ACCESS_BACKUP_VAULT",
+            ],
             description:
               "The type of vault in which the described recovery point is stored.",
           },
           IndexStatus: {
             type: "string",
+            enum: ["PENDING", "ACTIVE", "FAILED", "DELETING"],
             description:
               "This is the current status for the backup index associated with the specified recovery point.",
           },
@@ -287,6 +304,7 @@ const describeRecoveryPoint: AppBlock = {
           },
           EncryptionKeyType: {
             type: "string",
+            enum: ["AWS_OWNED_KMS_KEY", "CUSTOMER_MANAGED_KMS_KEY"],
             description:
               "The type of encryption key used for the recovery point.",
           },
@@ -297,9 +315,16 @@ const describeRecoveryPoint: AppBlock = {
               properties: {
                 MalwareScanner: {
                   type: "string",
+                  enum: ["GUARDDUTY"],
                 },
                 ScanJobState: {
                   type: "string",
+                  enum: [
+                    "COMPLETED",
+                    "COMPLETED_WITH_ISSUES",
+                    "FAILED",
+                    "CANCELED",
+                  ],
                 },
                 LastScanTimestamp: {
                   type: "string",
@@ -308,6 +333,7 @@ const describeRecoveryPoint: AppBlock = {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["MALWARE"],
                   },
                 },
               },

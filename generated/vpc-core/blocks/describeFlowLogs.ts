@@ -167,9 +167,11 @@ const describeFlowLogs: AppBlock = {
                 },
                 TrafficType: {
                   type: "string",
+                  enum: ["ACCEPT", "REJECT", "ALL"],
                 },
                 LogDestinationType: {
                   type: "string",
+                  enum: ["cloud-watch-logs", "s3", "kinesis-data-firehose"],
                 },
                 LogDestination: {
                   type: "string",
@@ -200,6 +202,7 @@ const describeFlowLogs: AppBlock = {
                   properties: {
                     FileFormat: {
                       type: "string",
+                      enum: ["plain-text", "parquet"],
                     },
                     HiveCompatiblePartitions: {
                       type: "boolean",

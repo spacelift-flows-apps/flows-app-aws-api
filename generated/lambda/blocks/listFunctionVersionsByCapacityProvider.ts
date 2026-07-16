@@ -121,6 +121,16 @@ const listFunctionVersionsByCapacityProvider: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "Pending",
+                    "Active",
+                    "Inactive",
+                    "Failed",
+                    "Deactivating",
+                    "Deactivated",
+                    "ActiveNonInvocable",
+                    "Deleting",
+                  ],
                 },
               },
               required: ["FunctionArn", "State"],

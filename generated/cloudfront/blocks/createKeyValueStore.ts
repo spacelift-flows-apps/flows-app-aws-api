@@ -44,6 +44,7 @@ const createKeyValueStore: AppBlock = {
             properties: {
               SourceType: {
                 type: "string",
+                enum: ["S3"],
               },
               SourceARN: {
                 type: "string",

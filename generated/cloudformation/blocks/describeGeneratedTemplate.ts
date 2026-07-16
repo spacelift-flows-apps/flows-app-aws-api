@@ -119,6 +119,7 @@ const describeGeneratedTemplate: AppBlock = {
                 },
                 ResourceStatus: {
                   type: "string",
+                  enum: ["PENDING", "IN_PROGRESS", "FAILED", "COMPLETE"],
                 },
                 ResourceStatusReason: {
                   type: "string",
@@ -130,6 +131,13 @@ const describeGeneratedTemplate: AppBlock = {
                     properties: {
                       Type: {
                         type: "string",
+                        enum: [
+                          "MUTUALLY_EXCLUSIVE_PROPERTIES",
+                          "UNSUPPORTED_PROPERTIES",
+                          "MUTUALLY_EXCLUSIVE_TYPES",
+                          "EXCLUDED_PROPERTIES",
+                          "EXCLUDED_RESOURCES",
+                        ],
                       },
                       Properties: {
                         type: "array",
@@ -147,6 +155,16 @@ const describeGeneratedTemplate: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: [
+              "CREATE_PENDING",
+              "UPDATE_PENDING",
+              "DELETE_PENDING",
+              "CREATE_IN_PROGRESS",
+              "UPDATE_IN_PROGRESS",
+              "DELETE_IN_PROGRESS",
+              "FAILED",
+              "COMPLETE",
+            ],
             description: "The status of the template generation.",
           },
           StatusReason: {
@@ -192,9 +210,11 @@ const describeGeneratedTemplate: AppBlock = {
             properties: {
               DeletionPolicy: {
                 type: "string",
+                enum: ["DELETE", "RETAIN"],
               },
               UpdateReplacePolicy: {
                 type: "string",
+                enum: ["DELETE", "RETAIN"],
               },
             },
             additionalProperties: false,

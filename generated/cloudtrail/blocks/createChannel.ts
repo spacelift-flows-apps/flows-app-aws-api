@@ -47,6 +47,7 @@ const createChannel: AppBlock = {
               properties: {
                 Type: {
                   type: "string",
+                  enum: ["EVENT_DATA_STORE", "AWS_SERVICE"],
                 },
                 Location: {
                   type: "string",
@@ -156,6 +157,7 @@ const createChannel: AppBlock = {
               properties: {
                 Type: {
                   type: "string",
+                  enum: ["EVENT_DATA_STORE", "AWS_SERVICE"],
                 },
                 Location: {
                   type: "string",

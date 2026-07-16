@@ -40,7 +40,10 @@ const modifyVpcBlockPublicAccessExclusion: AppBlock = {
         InternetGatewayExclusionMode: {
           name: "Internet Gateway Exclusion Mode",
           description: "The exclusion mode for internet gateway traffic.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["allow-bidirectional", "allow-egress"],
+          },
           required: true,
         },
       },
@@ -111,12 +114,25 @@ const modifyVpcBlockPublicAccessExclusion: AppBlock = {
               },
               InternetGatewayExclusionMode: {
                 type: "string",
+                enum: ["allow-bidirectional", "allow-egress"],
               },
               ResourceArn: {
                 type: "string",
               },
               State: {
                 type: "string",
+                enum: [
+                  "create-in-progress",
+                  "create-complete",
+                  "create-failed",
+                  "update-in-progress",
+                  "update-complete",
+                  "update-failed",
+                  "delete-in-progress",
+                  "delete-complete",
+                  "disable-in-progress",
+                  "disable-complete",
+                ],
               },
               Reason: {
                 type: "string",

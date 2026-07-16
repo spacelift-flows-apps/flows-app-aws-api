@@ -31,7 +31,10 @@ const requestCertificate: AppBlock = {
           name: "Validation Method",
           description:
             "The method you want to use if you are requesting a public certificate to validate that you own or control domain.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["EMAIL", "DNS", "HTTP"],
+          },
           required: false,
         },
         SubjectAlternativeNames: {
@@ -84,9 +87,11 @@ const requestCertificate: AppBlock = {
             properties: {
               CertificateTransparencyLoggingPreference: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
               Export: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
             },
             additionalProperties: false,
@@ -126,14 +131,28 @@ const requestCertificate: AppBlock = {
           name: "Key Algorithm",
           description:
             "Specifies the algorithm of the public and private key pair that your certificate uses to encrypt data.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "RSA_1024",
+              "RSA_2048",
+              "RSA_3072",
+              "RSA_4096",
+              "EC_prime256v1",
+              "EC_secp384r1",
+              "EC_secp521r1",
+            ],
+          },
           required: false,
         },
         ManagedBy: {
           name: "Managed By",
           description:
             "Identifies the Amazon Web Services service that manages the certificate issued by ACM.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["CLOUDFRONT"],
+          },
           required: false,
         },
       },

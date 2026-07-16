@@ -177,12 +177,35 @@ const describeServiceDeployments: AppBlock = {
                 },
                 status: {
                   type: "string",
+                  enum: [
+                    "PENDING",
+                    "SUCCESSFUL",
+                    "STOPPED",
+                    "STOP_REQUESTED",
+                    "IN_PROGRESS",
+                    "ROLLBACK_REQUESTED",
+                    "ROLLBACK_IN_PROGRESS",
+                    "ROLLBACK_SUCCESSFUL",
+                    "ROLLBACK_FAILED",
+                  ],
                 },
                 statusReason: {
                   type: "string",
                 },
                 lifecycleStage: {
                   type: "string",
+                  enum: [
+                    "RECONCILE_SERVICE",
+                    "PRE_SCALE_UP",
+                    "SCALE_UP",
+                    "POST_SCALE_UP",
+                    "TEST_TRAFFIC_SHIFT",
+                    "POST_TEST_TRAFFIC_SHIFT",
+                    "PRODUCTION_TRAFFIC_SHIFT",
+                    "POST_PRODUCTION_TRAFFIC_SHIFT",
+                    "BAKE_TIME",
+                    "CLEAN_UP",
+                  ],
                 },
                 deploymentConfiguration: {
                   type: "object",
@@ -225,6 +248,7 @@ const describeServiceDeployments: AppBlock = {
                     },
                     strategy: {
                       type: "string",
+                      enum: ["ROLLING", "BLUE_GREEN", "LINEAR", "CANARY"],
                     },
                     bakeTimeInMinutes: {
                       type: "number",
@@ -289,6 +313,12 @@ const describeServiceDeployments: AppBlock = {
                   properties: {
                     status: {
                       type: "string",
+                      enum: [
+                        "TRIGGERED",
+                        "MONITORING",
+                        "MONITORING_COMPLETE",
+                        "DISABLED",
+                      ],
                     },
                     failureCount: {
                       type: "number",
@@ -304,6 +334,12 @@ const describeServiceDeployments: AppBlock = {
                   properties: {
                     status: {
                       type: "string",
+                      enum: [
+                        "TRIGGERED",
+                        "MONITORING",
+                        "MONITORING_COMPLETE",
+                        "DISABLED",
+                      ],
                     },
                     alarmNames: {
                       type: "array",

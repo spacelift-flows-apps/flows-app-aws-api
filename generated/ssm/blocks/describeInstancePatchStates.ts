@@ -167,12 +167,14 @@ const describeInstancePatchStates: AppBlock = {
                 },
                 Operation: {
                   type: "string",
+                  enum: ["Scan", "Install"],
                 },
                 LastNoRebootInstallOperationTime: {
                   type: "string",
                 },
                 RebootOption: {
                   type: "string",
+                  enum: ["RebootIfNeeded", "NoReboot"],
                 },
                 CriticalNonCompliantCount: {
                   type: "number",

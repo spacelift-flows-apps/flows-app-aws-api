@@ -119,6 +119,7 @@ const describeInventoryDeletions: AppBlock = {
                 },
                 LastStatus: {
                   type: "string",
+                  enum: ["InProgress", "Complete"],
                 },
                 LastStatusMessage: {
                   type: "string",

@@ -49,6 +49,7 @@ const updateConnectionFunction: AppBlock = {
               },
               Runtime: {
                 type: "string",
+                enum: ["cloudfront-js-1.0", "cloudfront-js-2.0"],
               },
               KeyValueStoreAssociations: {
                 type: "object",
@@ -162,6 +163,7 @@ const updateConnectionFunction: AppBlock = {
                   },
                   Runtime: {
                     type: "string",
+                    enum: ["cloudfront-js-1.0", "cloudfront-js-2.0"],
                   },
                   KeyValueStoreAssociations: {
                     type: "object",
@@ -196,6 +198,7 @@ const updateConnectionFunction: AppBlock = {
               },
               Stage: {
                 type: "string",
+                enum: ["DEVELOPMENT", "LIVE"],
               },
               CreatedTime: {
                 type: "string",

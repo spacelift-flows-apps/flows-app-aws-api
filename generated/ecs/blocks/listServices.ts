@@ -46,21 +46,30 @@ const listServices: AppBlock = {
           name: "launch Type",
           description:
             "The launch type to use when filtering the ListServices results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
+          },
           required: false,
         },
         schedulingStrategy: {
           name: "scheduling Strategy",
           description:
             "The scheduling strategy to use when filtering the ListServices results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["REPLICA", "DAEMON"],
+          },
           required: false,
         },
         resourceManagementType: {
           name: "resource Management Type",
           description:
             "The resourceManagementType type to use when filtering the ListServices results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["CUSTOMER", "ECS"],
+          },
           required: false,
         },
       },

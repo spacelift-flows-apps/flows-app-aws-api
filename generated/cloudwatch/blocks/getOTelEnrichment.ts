@@ -84,6 +84,7 @@ const getOTelEnrichment: AppBlock = {
         properties: {
           Status: {
             type: "string",
+            enum: ["Running", "Stopped"],
             description: "The status of OTel enrichment for the account.",
           },
         },

@@ -136,6 +136,17 @@ const describeTargetGroups: AppBlock = {
                 },
                 Protocol: {
                   type: "string",
+                  enum: [
+                    "HTTP",
+                    "HTTPS",
+                    "TCP",
+                    "TLS",
+                    "UDP",
+                    "TCP_UDP",
+                    "GENEVE",
+                    "QUIC",
+                    "TCP_QUIC",
+                  ],
                 },
                 Port: {
                   type: "number",
@@ -145,6 +156,17 @@ const describeTargetGroups: AppBlock = {
                 },
                 HealthCheckProtocol: {
                   type: "string",
+                  enum: [
+                    "HTTP",
+                    "HTTPS",
+                    "TCP",
+                    "TLS",
+                    "UDP",
+                    "TCP_UDP",
+                    "GENEVE",
+                    "QUIC",
+                    "TCP_QUIC",
+                  ],
                 },
                 HealthCheckPort: {
                   type: "string",
@@ -187,12 +209,14 @@ const describeTargetGroups: AppBlock = {
                 },
                 TargetType: {
                   type: "string",
+                  enum: ["instance", "ip", "lambda", "alb"],
                 },
                 ProtocolVersion: {
                   type: "string",
                 },
                 IpAddressType: {
                   type: "string",
+                  enum: ["ipv4", "ipv6"],
                 },
                 TargetControlPort: {
                   type: "number",

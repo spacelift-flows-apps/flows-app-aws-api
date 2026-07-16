@@ -44,7 +44,10 @@ const enableLogging: AppBlock = {
         LogDestinationType: {
           name: "Log Destination Type",
           description: "The log destination type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["s3", "cloudwatch"],
+          },
           required: false,
         },
         LogExports: {
@@ -144,6 +147,7 @@ const enableLogging: AppBlock = {
           },
           LogDestinationType: {
             type: "string",
+            enum: ["s3", "cloudwatch"],
             description: "The log destination type.",
           },
           LogExports: {

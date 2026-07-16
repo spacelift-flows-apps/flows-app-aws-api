@@ -40,6 +40,7 @@ const putEventSelectors: AppBlock = {
               properties: {
                 ReadWriteType: {
                   type: "string",
+                  enum: ["ReadOnly", "WriteOnly", "All"],
                 },
                 IncludeManagementEvents: {
                   type: "boolean",
@@ -197,6 +198,7 @@ const putEventSelectors: AppBlock = {
               properties: {
                 ReadWriteType: {
                   type: "string",
+                  enum: ["ReadOnly", "WriteOnly", "All"],
                 },
                 IncludeManagementEvents: {
                   type: "boolean",

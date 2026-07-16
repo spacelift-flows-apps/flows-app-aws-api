@@ -143,6 +143,13 @@ const describeFastSnapshotRestores: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "enabling",
+                    "optimizing",
+                    "enabled",
+                    "disabling",
+                    "disabled",
+                  ],
                 },
                 StateTransitionReason: {
                   type: "string",

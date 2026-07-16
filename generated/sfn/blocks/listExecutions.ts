@@ -32,7 +32,17 @@ const listExecutions: AppBlock = {
           name: "status Filter",
           description:
             "If specified, only list the executions whose current execution status matches the given filter.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "RUNNING",
+              "SUCCEEDED",
+              "FAILED",
+              "TIMED_OUT",
+              "ABORTED",
+              "PENDING_REDRIVE",
+            ],
+          },
           required: false,
         },
         maxResults: {
@@ -60,7 +70,10 @@ const listExecutions: AppBlock = {
           name: "redrive Filter",
           description:
             "Sets a filter to list executions based on whether or not they have been redriven.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["REDRIVEN", "NOT_REDRIVEN"],
+          },
           required: false,
         },
       },
@@ -137,6 +150,14 @@ const listExecutions: AppBlock = {
                 },
                 status: {
                   type: "string",
+                  enum: [
+                    "RUNNING",
+                    "SUCCEEDED",
+                    "FAILED",
+                    "TIMED_OUT",
+                    "ABORTED",
+                    "PENDING_REDRIVE",
+                  ],
                 },
                 startDate: {
                   type: "string",

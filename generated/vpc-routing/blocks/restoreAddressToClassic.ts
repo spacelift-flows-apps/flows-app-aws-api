@@ -98,6 +98,7 @@ const restoreAddressToClassic: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["MoveInProgress", "InVpc", "InClassic"],
             description: "The move status for the IP address.",
           },
         },

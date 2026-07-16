@@ -61,7 +61,15 @@ const encrypt: AppBlock = {
           name: "Encryption Algorithm",
           description:
             "Specifies the encryption algorithm that KMS will use to encrypt the plaintext message.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "SYMMETRIC_DEFAULT",
+              "RSAES_OAEP_SHA_1",
+              "RSAES_OAEP_SHA_256",
+              "SM2PKE",
+            ],
+          },
           required: false,
         },
         DryRun: {
@@ -139,6 +147,12 @@ const encrypt: AppBlock = {
           },
           EncryptionAlgorithm: {
             type: "string",
+            enum: [
+              "SYMMETRIC_DEFAULT",
+              "RSAES_OAEP_SHA_1",
+              "RSAES_OAEP_SHA_256",
+              "SM2PKE",
+            ],
             description:
               "The encryption algorithm that was used to encrypt the plaintext.",
           },

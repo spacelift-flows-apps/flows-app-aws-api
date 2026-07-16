@@ -103,6 +103,16 @@ const scheduleKeyDeletion: AppBlock = {
           },
           KeyState: {
             type: "string",
+            enum: [
+              "Creating",
+              "Enabled",
+              "Disabled",
+              "PendingDeletion",
+              "PendingImport",
+              "PendingReplicaDeletion",
+              "Unavailable",
+              "Updating",
+            ],
             description: "The current status of the KMS key.",
           },
           PendingWindowInDays: {

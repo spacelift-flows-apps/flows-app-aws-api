@@ -118,6 +118,7 @@ const putBucketAnalyticsConfiguration: AppBlock = {
                     properties: {
                       OutputSchemaVersion: {
                         type: "string",
+                        enum: ["V_1"],
                       },
                       Destination: {
                         type: "object",

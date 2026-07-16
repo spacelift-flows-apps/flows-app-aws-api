@@ -109,6 +109,7 @@ const deleteRepositoryCreationTemplate: AppBlock = {
                 properties: {
                   encryptionType: {
                     type: "string",
+                    enum: ["AES256", "KMS", "KMS_DSSE"],
                   },
                   kmsKey: {
                     type: "string",
@@ -135,6 +136,12 @@ const deleteRepositoryCreationTemplate: AppBlock = {
               },
               imageTagMutability: {
                 type: "string",
+                enum: [
+                  "MUTABLE",
+                  "IMMUTABLE",
+                  "IMMUTABLE_WITH_EXCLUSION",
+                  "MUTABLE_WITH_EXCLUSION",
+                ],
               },
               imageTagMutabilityExclusionFilters: {
                 type: "array",
@@ -143,6 +150,7 @@ const deleteRepositoryCreationTemplate: AppBlock = {
                   properties: {
                     filterType: {
                       type: "string",
+                      enum: ["WILDCARD"],
                     },
                     filter: {
                       type: "string",
@@ -162,6 +170,7 @@ const deleteRepositoryCreationTemplate: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["REPLICATION", "PULL_THROUGH_CACHE", "CREATE_ON_PUSH"],
                 },
               },
               customRoleArn: {

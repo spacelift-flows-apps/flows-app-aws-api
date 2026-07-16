@@ -28,7 +28,14 @@ const describeNodeConfigurationOptions: AppBlock = {
           name: "Action Type",
           description:
             "The action type to evaluate for possible node configurations.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "restore-cluster",
+              "recommend-node-config",
+              "resize-cluster",
+            ],
+          },
           required: true,
         },
         ClusterIdentifier: {
@@ -70,9 +77,16 @@ const describeNodeConfigurationOptions: AppBlock = {
               properties: {
                 Name: {
                   type: "string",
+                  enum: [
+                    "NodeType",
+                    "NumberOfNodes",
+                    "EstimatedDiskUtilizationPercent",
+                    "Mode",
+                  ],
                 },
                 Operator: {
                   type: "string",
+                  enum: ["eq", "lt", "gt", "le", "ge", "in", "between"],
                 },
                 Values: {
                   type: "array",
@@ -176,6 +190,7 @@ const describeNodeConfigurationOptions: AppBlock = {
                 },
                 Mode: {
                   type: "string",
+                  enum: ["standard", "high-performance"],
                 },
               },
               additionalProperties: false,

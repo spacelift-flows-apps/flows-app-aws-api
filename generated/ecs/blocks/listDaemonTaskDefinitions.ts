@@ -41,20 +41,29 @@ const listDaemonTaskDefinitions: AppBlock = {
         revision: {
           name: "revision",
           description: "The revision filter to apply.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["LAST_REGISTERED"],
+          },
           required: false,
         },
         status: {
           name: "status",
           description:
             "The daemon task definition status to filter the ListDaemonTaskDefinitions results with.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ACTIVE", "DELETE_IN_PROGRESS", "ALL"],
+          },
           required: false,
         },
         sort: {
           name: "sort",
           description: "The order to sort the results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ASC", "DESC"],
+          },
           required: false,
         },
         nextToken: {
@@ -150,6 +159,7 @@ const listDaemonTaskDefinitions: AppBlock = {
                 },
                 status: {
                   type: "string",
+                  enum: ["ACTIVE", "DELETE_IN_PROGRESS", "DELETED"],
                 },
               },
               additionalProperties: false,

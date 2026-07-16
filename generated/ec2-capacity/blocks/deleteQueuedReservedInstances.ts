@@ -126,6 +126,11 @@ const deleteQueuedReservedInstances: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: [
+                        "reserved-instances-id-invalid",
+                        "reserved-instances-not-in-queued-state",
+                        "unexpected-error",
+                      ],
                     },
                     Message: {
                       type: "string",

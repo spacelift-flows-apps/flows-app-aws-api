@@ -39,6 +39,7 @@ const modifyInstanceCapacityReservationAttributes: AppBlock = {
             properties: {
               CapacityReservationPreference: {
                 type: "string",
+                enum: ["capacity-reservations-only", "open", "none"],
               },
               CapacityReservationTarget: {
                 type: "object",

@@ -116,6 +116,20 @@ const simulatePrincipalPolicy: AppBlock = {
                 },
                 ContextKeyType: {
                   type: "string",
+                  enum: [
+                    "string",
+                    "stringList",
+                    "numeric",
+                    "numericList",
+                    "boolean",
+                    "booleanList",
+                    "ip",
+                    "ipList",
+                    "binary",
+                    "binaryList",
+                    "date",
+                    "dateList",
+                  ],
                 },
               },
               additionalProperties: false,
@@ -214,6 +228,7 @@ const simulatePrincipalPolicy: AppBlock = {
                 },
                 EvalDecision: {
                   type: "string",
+                  enum: ["allowed", "explicitDeny", "implicitDeny"],
                 },
                 MatchedStatements: {
                   type: "array",
@@ -225,6 +240,15 @@ const simulatePrincipalPolicy: AppBlock = {
                       },
                       SourcePolicyType: {
                         type: "string",
+                        enum: [
+                          "user",
+                          "group",
+                          "role",
+                          "aws-managed",
+                          "user-managed",
+                          "resource",
+                          "none",
+                        ],
                       },
                       StartPosition: {
                         type: "object",
@@ -286,6 +310,7 @@ const simulatePrincipalPolicy: AppBlock = {
                       },
                       EvalResourceDecision: {
                         type: "string",
+                        enum: ["allowed", "explicitDeny", "implicitDeny"],
                       },
                       MatchedStatements: {
                         type: "array",

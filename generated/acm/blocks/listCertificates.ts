@@ -28,6 +28,15 @@ const listCertificates: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "PENDING_VALIDATION",
+                "ISSUED",
+                "INACTIVE",
+                "EXPIRED",
+                "VALIDATION_TIMED_OUT",
+                "REVOKED",
+                "FAILED",
+              ],
             },
           },
           required: false,
@@ -42,25 +51,63 @@ const listCertificates: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "TLS_WEB_SERVER_AUTHENTICATION",
+                    "TLS_WEB_CLIENT_AUTHENTICATION",
+                    "CODE_SIGNING",
+                    "EMAIL_PROTECTION",
+                    "TIME_STAMPING",
+                    "OCSP_SIGNING",
+                    "IPSEC_END_SYSTEM",
+                    "IPSEC_TUNNEL",
+                    "IPSEC_USER",
+                    "ANY",
+                    "NONE",
+                    "CUSTOM",
+                  ],
                 },
               },
               keyUsage: {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "DIGITAL_SIGNATURE",
+                    "NON_REPUDIATION",
+                    "KEY_ENCIPHERMENT",
+                    "DATA_ENCIPHERMENT",
+                    "KEY_AGREEMENT",
+                    "CERTIFICATE_SIGNING",
+                    "CRL_SIGNING",
+                    "ENCIPHER_ONLY",
+                    "DECIPHER_ONLY",
+                    "ANY",
+                    "CUSTOM",
+                  ],
                 },
               },
               keyTypes: {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "RSA_1024",
+                    "RSA_2048",
+                    "RSA_3072",
+                    "RSA_4096",
+                    "EC_prime256v1",
+                    "EC_secp384r1",
+                    "EC_secp521r1",
+                  ],
                 },
               },
               exportOption: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
               managedBy: {
                 type: "string",
+                enum: ["CLOUDFRONT"],
               },
             },
             additionalProperties: false,
@@ -84,13 +131,19 @@ const listCertificates: AppBlock = {
         SortBy: {
           name: "Sort By",
           description: "Specifies the field to sort results by.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["CREATED_AT"],
+          },
           required: false,
         },
         SortOrder: {
           name: "Sort Order",
           description: "Specifies the order of sorted results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ASCENDING", "DESCENDING"],
+          },
           required: false,
         },
       },
@@ -178,27 +231,74 @@ const listCertificates: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "PENDING_VALIDATION",
+                    "ISSUED",
+                    "INACTIVE",
+                    "EXPIRED",
+                    "VALIDATION_TIMED_OUT",
+                    "REVOKED",
+                    "FAILED",
+                  ],
                 },
                 Type: {
                   type: "string",
+                  enum: ["IMPORTED", "AMAZON_ISSUED", "PRIVATE"],
                 },
                 KeyAlgorithm: {
                   type: "string",
+                  enum: [
+                    "RSA_1024",
+                    "RSA_2048",
+                    "RSA_3072",
+                    "RSA_4096",
+                    "EC_prime256v1",
+                    "EC_secp384r1",
+                    "EC_secp521r1",
+                  ],
                 },
                 KeyUsages: {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: [
+                      "DIGITAL_SIGNATURE",
+                      "NON_REPUDIATION",
+                      "KEY_ENCIPHERMENT",
+                      "DATA_ENCIPHERMENT",
+                      "KEY_AGREEMENT",
+                      "CERTIFICATE_SIGNING",
+                      "CRL_SIGNING",
+                      "ENCIPHER_ONLY",
+                      "DECIPHER_ONLY",
+                      "ANY",
+                      "CUSTOM",
+                    ],
                   },
                 },
                 ExtendedKeyUsages: {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: [
+                      "TLS_WEB_SERVER_AUTHENTICATION",
+                      "TLS_WEB_CLIENT_AUTHENTICATION",
+                      "CODE_SIGNING",
+                      "EMAIL_PROTECTION",
+                      "TIME_STAMPING",
+                      "OCSP_SIGNING",
+                      "IPSEC_END_SYSTEM",
+                      "IPSEC_TUNNEL",
+                      "IPSEC_USER",
+                      "ANY",
+                      "NONE",
+                      "CUSTOM",
+                    ],
                   },
                 },
                 ExportOption: {
                   type: "string",
+                  enum: ["ENABLED", "DISABLED"],
                 },
                 InUse: {
                   type: "boolean",
@@ -208,6 +308,7 @@ const listCertificates: AppBlock = {
                 },
                 RenewalEligibility: {
                   type: "string",
+                  enum: ["ELIGIBLE", "INELIGIBLE"],
                 },
                 NotBefore: {
                   type: "string",
@@ -229,6 +330,7 @@ const listCertificates: AppBlock = {
                 },
                 ManagedBy: {
                   type: "string",
+                  enum: ["CLOUDFRONT"],
                 },
               },
               additionalProperties: false,

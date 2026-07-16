@@ -67,6 +67,7 @@ const createStackInstances: AppBlock = {
               },
               AccountFilterType: {
                 type: "string",
+                enum: ["NONE", "INTERSECTION", "DIFFERENCE", "UNION"],
               },
             },
             additionalProperties: false,
@@ -121,6 +122,7 @@ const createStackInstances: AppBlock = {
             properties: {
               RegionConcurrencyType: {
                 type: "string",
+                enum: ["SEQUENTIAL", "PARALLEL"],
               },
               RegionOrder: {
                 type: "array",
@@ -142,6 +144,7 @@ const createStackInstances: AppBlock = {
               },
               ConcurrencyMode: {
                 type: "string",
+                enum: ["STRICT_FAILURE_TOLERANCE", "SOFT_FAILURE_TOLERANCE"],
               },
             },
             additionalProperties: false,
@@ -158,7 +161,10 @@ const createStackInstances: AppBlock = {
           name: "Call As",
           description:
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SELF", "DELEGATED_ADMIN"],
+          },
           required: false,
         },
       },

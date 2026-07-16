@@ -31,7 +31,10 @@ const listAttributes: AppBlock = {
         targetType: {
           name: "target Type",
           description: "The type of the target to list attributes with.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["container-instance"],
+          },
           required: true,
         },
         attributeName: {
@@ -131,6 +134,7 @@ const listAttributes: AppBlock = {
                 },
                 targetType: {
                   type: "string",
+                  enum: ["container-instance"],
                 },
                 targetId: {
                   type: "string",

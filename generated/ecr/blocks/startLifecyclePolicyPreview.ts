@@ -117,6 +117,7 @@ const startLifecyclePolicyPreview: AppBlock = {
           },
           status: {
             type: "string",
+            enum: ["IN_PROGRESS", "COMPLETE", "EXPIRED", "FAILED"],
             description: "The status of the lifecycle policy preview request.",
           },
         },

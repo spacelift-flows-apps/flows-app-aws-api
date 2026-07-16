@@ -33,7 +33,10 @@ const setIpAddressType: AppBlock = {
         IpAddressType: {
           name: "Ip Address Type",
           description: "The IP address type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ipv4", "dualstack", "dualstack-without-public-ipv4"],
+          },
           required: true,
         },
       },
@@ -96,6 +99,7 @@ const setIpAddressType: AppBlock = {
         properties: {
           IpAddressType: {
             type: "string",
+            enum: ["ipv4", "dualstack", "dualstack-without-public-ipv4"],
             description: "The IP address type.",
           },
         },

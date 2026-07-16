@@ -122,15 +122,24 @@ const listDocumentVersions: AppBlock = {
                 },
                 DocumentFormat: {
                   type: "string",
+                  enum: ["YAML", "JSON", "TEXT"],
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "Creating",
+                    "Active",
+                    "Updating",
+                    "Deleting",
+                    "Failed",
+                  ],
                 },
                 StatusInformation: {
                   type: "string",
                 },
                 ReviewStatus: {
                   type: "string",
+                  enum: ["APPROVED", "NOT_REVIEWED", "PENDING", "REJECTED"],
                 },
               },
               additionalProperties: false,

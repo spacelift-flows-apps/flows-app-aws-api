@@ -27,7 +27,10 @@ const registerType: AppBlock = {
         Type: {
           name: "Type",
           description: "The kind of extension.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["RESOURCE", "MODULE", "HOOK"],
+          },
           required: false,
         },
         TypeName: {

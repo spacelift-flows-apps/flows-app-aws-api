@@ -182,9 +182,11 @@ const describeSubnets: AppBlock = {
                       },
                       Ipv6AddressAttribute: {
                         type: "string",
+                        enum: ["public", "private"],
                       },
                       IpSource: {
                         type: "string",
+                        enum: ["amazon", "byoip", "none"],
                       },
                     },
                     additionalProperties: false,
@@ -222,6 +224,7 @@ const describeSubnets: AppBlock = {
                   properties: {
                     HostnameType: {
                       type: "string",
+                      enum: ["ip-name", "resource-name"],
                     },
                     EnableResourceNameDnsARecord: {
                       type: "boolean",
@@ -237,6 +240,7 @@ const describeSubnets: AppBlock = {
                   properties: {
                     InternetGatewayBlockMode: {
                       type: "string",
+                      enum: ["off", "block-bidirectional", "block-ingress"],
                     },
                   },
                   additionalProperties: false,
@@ -249,6 +253,13 @@ const describeSubnets: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "pending",
+                    "available",
+                    "unavailable",
+                    "failed",
+                    "failed-insufficient-capacity",
+                  ],
                 },
                 VpcId: {
                   type: "string",

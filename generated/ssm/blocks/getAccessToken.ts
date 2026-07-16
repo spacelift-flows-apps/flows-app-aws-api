@@ -113,6 +113,7 @@ const getAccessToken: AppBlock = {
           },
           AccessRequestStatus: {
             type: "string",
+            enum: ["Approved", "Rejected", "Revoked", "Expired", "Pending"],
             description: "The status of the access request.",
           },
         },

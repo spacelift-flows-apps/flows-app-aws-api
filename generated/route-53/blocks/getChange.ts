@@ -93,6 +93,7 @@ const getChange: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["PENDING", "INSYNC"],
               },
               SubmittedAt: {
                 type: "string",

@@ -99,6 +99,7 @@ const putBucketIntelligentTieringConfiguration: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["Enabled", "Disabled"],
               },
               Tierings: {
                 type: "array",
@@ -110,6 +111,7 @@ const putBucketIntelligentTieringConfiguration: AppBlock = {
                     },
                     AccessTier: {
                       type: "string",
+                      enum: ["ARCHIVE_ACCESS", "DEEP_ARCHIVE_ACCESS"],
                     },
                   },
                   required: ["Days", "AccessTier"],

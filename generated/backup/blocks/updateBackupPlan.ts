@@ -73,6 +73,7 @@ const updateBackupPlan: AppBlock = {
                         },
                         DeleteAfterEvent: {
                           type: "string",
+                          enum: ["DELETE_AFTER_COPY"],
                         },
                       },
                       additionalProperties: false,
@@ -152,6 +153,7 @@ const updateBackupPlan: AppBlock = {
                   properties: {
                     MalwareScanner: {
                       type: "string",
+                      enum: ["GUARDDUTY"],
                     },
                     ResourceTypes: {
                       type: "array",
@@ -276,6 +278,7 @@ const updateBackupPlan: AppBlock = {
               properties: {
                 MalwareScanner: {
                   type: "string",
+                  enum: ["GUARDDUTY"],
                 },
                 ResourceTypes: {
                   type: "array",

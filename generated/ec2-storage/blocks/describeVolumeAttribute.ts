@@ -24,7 +24,10 @@ const describeVolumeAttribute: AppBlock = {
         Attribute: {
           name: "Attribute",
           description: "The attribute of the volume.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["autoEnableIO", "productCodes"],
+          },
           required: true,
         },
         VolumeId: {
@@ -118,6 +121,7 @@ const describeVolumeAttribute: AppBlock = {
                 },
                 ProductCodeType: {
                   type: "string",
+                  enum: ["devpay", "marketplace"],
                 },
               },
               additionalProperties: false,

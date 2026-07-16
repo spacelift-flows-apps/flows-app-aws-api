@@ -104,12 +104,21 @@ const describeKinesisStreamingDestination: AppBlock = {
                 },
                 DestinationStatus: {
                   type: "string",
+                  enum: [
+                    "ENABLING",
+                    "ACTIVE",
+                    "DISABLING",
+                    "DISABLED",
+                    "ENABLE_FAILED",
+                    "UPDATING",
+                  ],
                 },
                 DestinationStatusDescription: {
                   type: "string",
                 },
                 ApproximateCreationDateTimePrecision: {
                   type: "string",
+                  enum: ["MILLISECOND", "MICROSECOND"],
                 },
               },
               additionalProperties: false,

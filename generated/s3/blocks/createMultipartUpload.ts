@@ -26,7 +26,18 @@ const createMultipartUpload: AppBlock = {
         ACL: {
           name: "ACL",
           description: "The canned ACL to apply to the object.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "private",
+              "public-read",
+              "public-read-write",
+              "authenticated-read",
+              "aws-exec-read",
+              "bucket-owner-read",
+              "bucket-owner-full-control",
+            ],
+          },
           required: false,
         },
         Bucket: {
@@ -126,14 +137,34 @@ const createMultipartUpload: AppBlock = {
           name: "Server Side Encryption",
           description:
             "The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["AES256", "aws:fsx", "aws:kms", "aws:kms:dsse"],
+          },
           required: false,
         },
         StorageClass: {
           name: "Storage Class",
           description:
             "By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "STANDARD",
+              "REDUCED_REDUNDANCY",
+              "STANDARD_IA",
+              "ONEZONE_IA",
+              "INTELLIGENT_TIERING",
+              "GLACIER",
+              "DEEP_ARCHIVE",
+              "OUTPOSTS",
+              "GLACIER_IR",
+              "SNOW",
+              "EXPRESS_ONEZONE",
+              "FSX_OPENZFS",
+              "FSX_ONTAP",
+            ],
+          },
           required: false,
         },
         WebsiteRedirectLocation: {
@@ -189,7 +220,10 @@ const createMultipartUpload: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         Tagging: {
@@ -202,7 +236,10 @@ const createMultipartUpload: AppBlock = {
           name: "Object Lock Mode",
           description:
             "Specifies the Object Lock mode that you want to apply to the uploaded object.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["GOVERNANCE", "COMPLIANCE"],
+          },
           required: false,
         },
         ObjectLockRetainUntilDate: {
@@ -216,7 +253,10 @@ const createMultipartUpload: AppBlock = {
           name: "Object Lock Legal Hold Status",
           description:
             "Specifies whether you want to apply a legal hold to the uploaded object.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ON", "OFF"],
+          },
           required: false,
         },
         ExpectedBucketOwner: {
@@ -229,14 +269,31 @@ const createMultipartUpload: AppBlock = {
           name: "Checksum Algorithm",
           description:
             "Indicates the algorithm that you want Amazon S3 to use to create the checksum for the object.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CRC32",
+              "CRC32C",
+              "SHA1",
+              "SHA256",
+              "CRC64NVME",
+              "SHA512",
+              "MD5",
+              "XXHASH64",
+              "XXHASH3",
+              "XXHASH128",
+            ],
+          },
           required: false,
         },
         ChecksumType: {
           name: "Checksum Type",
           description:
             "Indicates the checksum type that you want Amazon S3 to use to calculate the object’s checksum value.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["COMPOSITE", "FULL_OBJECT"],
+          },
           required: false,
         },
       },
@@ -330,6 +387,7 @@ const createMultipartUpload: AppBlock = {
           },
           ServerSideEncryption: {
             type: "string",
+            enum: ["AES256", "aws:fsx", "aws:kms", "aws:kms:dsse"],
             description:
               "The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.",
           },
@@ -360,16 +418,30 @@ const createMultipartUpload: AppBlock = {
           },
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },
           ChecksumAlgorithm: {
             type: "string",
+            enum: [
+              "CRC32",
+              "CRC32C",
+              "SHA1",
+              "SHA256",
+              "CRC64NVME",
+              "SHA512",
+              "MD5",
+              "XXHASH64",
+              "XXHASH3",
+              "XXHASH128",
+            ],
             description:
               "The algorithm that was used to create a checksum of the object.",
           },
           ChecksumType: {
             type: "string",
+            enum: ["COMPOSITE", "FULL_OBJECT"],
             description:
               "Indicates the checksum type that you want Amazon S3 to use to calculate the object’s checksum value.",
           },

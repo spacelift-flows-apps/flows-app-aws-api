@@ -117,6 +117,7 @@ const describeSpotDatafeedSubscription: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["Active", "Inactive"],
               },
             },
             additionalProperties: false,

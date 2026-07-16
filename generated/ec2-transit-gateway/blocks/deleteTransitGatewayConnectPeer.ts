@@ -108,6 +108,7 @@ const deleteTransitGatewayConnectPeer: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["pending", "available", "deleting", "deleted"],
               },
               CreationTime: {
                 type: "string",
@@ -129,6 +130,7 @@ const deleteTransitGatewayConnectPeer: AppBlock = {
                   },
                   Protocol: {
                     type: "string",
+                    enum: ["gre"],
                   },
                   BgpConfigurations: {
                     type: "array",
@@ -149,6 +151,7 @@ const deleteTransitGatewayConnectPeer: AppBlock = {
                         },
                         BgpStatus: {
                           type: "string",
+                          enum: ["up", "down"],
                         },
                       },
                       additionalProperties: false,

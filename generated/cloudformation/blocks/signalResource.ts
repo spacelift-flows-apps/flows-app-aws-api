@@ -48,7 +48,10 @@ const signalResource: AppBlock = {
           name: "Status",
           description:
             "The status of the signal, which is either success or failure.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SUCCESS", "FAILURE"],
+          },
           required: true,
         },
       },

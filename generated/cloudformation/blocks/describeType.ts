@@ -27,7 +27,10 @@ const describeType: AppBlock = {
         Type: {
           name: "Type",
           description: "The kind of extension.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["RESOURCE", "MODULE", "HOOK"],
+          },
           required: false,
         },
         TypeName: {
@@ -124,6 +127,7 @@ const describeType: AppBlock = {
           },
           Type: {
             type: "string",
+            enum: ["RESOURCE", "MODULE", "HOOK"],
             description: "The kind of extension.",
           },
           TypeName: {
@@ -141,6 +145,7 @@ const describeType: AppBlock = {
           },
           TypeTestsStatus: {
             type: "string",
+            enum: ["PASSED", "FAILED", "IN_PROGRESS", "NOT_TESTED"],
             description:
               "The contract test status of the registered extension version.",
           },
@@ -158,11 +163,13 @@ const describeType: AppBlock = {
           },
           ProvisioningType: {
             type: "string",
+            enum: ["NON_PROVISIONABLE", "IMMUTABLE", "FULLY_MUTABLE"],
             description:
               "For resource type extensions, the provisioning behavior of the resource type.",
           },
           DeprecatedStatus: {
             type: "string",
+            enum: ["LIVE", "DEPRECATED"],
             description: "The deprecation status of the extension version.",
           },
           LoggingConfig: {
@@ -213,6 +220,7 @@ const describeType: AppBlock = {
           },
           Visibility: {
             type: "string",
+            enum: ["PUBLIC", "PRIVATE"],
             description:
               "The scope at which the extension is visible and usable in CloudFormation operations.",
           },

@@ -172,6 +172,7 @@ const deleteDBInstanceAutomatedBackup: AppBlock = {
               },
               StorageEncryptionType: {
                 type: "string",
+                enum: ["none", "sse-kms", "sse-rds"],
               },
               StorageType: {
                 type: "string",

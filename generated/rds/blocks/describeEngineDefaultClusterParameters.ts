@@ -173,6 +173,7 @@ const describeEngineDefaultClusterParameters: AppBlock = {
                     },
                     ApplyMethod: {
                       type: "string",
+                      enum: ["immediate", "pending-reboot"],
                     },
                     SupportedEngineModes: {
                       type: "array",

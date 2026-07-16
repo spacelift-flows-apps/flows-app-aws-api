@@ -143,6 +143,7 @@ const registerNamespace: AppBlock = {
         properties: {
           Status: {
             type: "string",
+            enum: ["Registering", "Deregistering"],
             description:
               "The registration status of the cluster or serverless namespace.",
           },

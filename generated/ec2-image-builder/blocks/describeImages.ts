@@ -230,6 +230,7 @@ const describeImages: AppBlock = {
                 },
                 Hypervisor: {
                   type: "string",
+                  enum: ["ovm", "xen"],
                 },
                 ImageOwnerAlias: {
                   type: "string",
@@ -242,6 +243,7 @@ const describeImages: AppBlock = {
                 },
                 RootDeviceType: {
                   type: "string",
+                  enum: ["ebs", "instance-store"],
                 },
                 SriovNetSupport: {
                   type: "string",
@@ -275,18 +277,22 @@ const describeImages: AppBlock = {
                 },
                 VirtualizationType: {
                   type: "string",
+                  enum: ["hvm", "paravirtual"],
                 },
                 BootMode: {
                   type: "string",
+                  enum: ["legacy-bios", "uefi", "uefi-preferred"],
                 },
                 TpmSupport: {
                   type: "string",
+                  enum: ["v2.0"],
                 },
                 DeprecationTime: {
                   type: "string",
                 },
                 ImdsSupport: {
                   type: "string",
+                  enum: ["v2.0"],
                 },
                 SourceInstanceId: {
                   type: "string",
@@ -317,6 +323,16 @@ const describeImages: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "pending",
+                    "available",
+                    "invalid",
+                    "deregistered",
+                    "transient",
+                    "failed",
+                    "error",
+                    "disabled",
+                  ],
                 },
                 OwnerId: {
                   type: "string",
@@ -337,6 +353,7 @@ const describeImages: AppBlock = {
                       },
                       ProductCodeType: {
                         type: "string",
+                        enum: ["devpay", "marketplace"],
                       },
                     },
                     additionalProperties: false,
@@ -344,9 +361,11 @@ const describeImages: AppBlock = {
                 },
                 Architecture: {
                   type: "string",
+                  enum: ["i386", "x86_64", "arm64", "x86_64_mac", "arm64_mac"],
                 },
                 ImageType: {
                   type: "string",
+                  enum: ["machine", "kernel", "ramdisk"],
                 },
                 KernelId: {
                   type: "string",
@@ -356,6 +375,7 @@ const describeImages: AppBlock = {
                 },
                 Platform: {
                   type: "string",
+                  enum: ["Windows"],
                 },
               },
               additionalProperties: false,

@@ -34,7 +34,10 @@ const listDashboards: AppBlock = {
           name: "Type",
           description:
             "Specify a dashboard type to filter on: CUSTOM or MANAGED.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["MANAGED", "CUSTOM"],
+          },
           required: false,
         },
         NextToken: {
@@ -119,6 +122,7 @@ const listDashboards: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: ["MANAGED", "CUSTOM"],
                 },
               },
               additionalProperties: false,

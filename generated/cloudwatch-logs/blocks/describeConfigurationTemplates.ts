@@ -63,6 +63,7 @@ const describeConfigurationTemplates: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["S3", "CWL", "FH", "XRAY"],
             },
           },
           required: false,
@@ -156,6 +157,7 @@ const describeConfigurationTemplates: AppBlock = {
                 },
                 deliveryDestinationType: {
                   type: "string",
+                  enum: ["S3", "CWL", "FH", "XRAY"],
                 },
                 defaultDeliveryConfigValues: {
                   type: "object",
@@ -203,6 +205,7 @@ const describeConfigurationTemplates: AppBlock = {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["json", "plain", "w3c", "raw", "parquet"],
                   },
                 },
                 allowedActionForAllowVendedLogsDeliveryForResource: {

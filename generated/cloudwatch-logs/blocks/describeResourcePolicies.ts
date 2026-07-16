@@ -47,7 +47,10 @@ const describeResourcePolicies: AppBlock = {
         policyScope: {
           name: "policy Scope",
           description: "Specifies the scope of the resource policy.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ACCOUNT", "RESOURCE"],
+          },
           required: false,
         },
       },
@@ -126,6 +129,7 @@ const describeResourcePolicies: AppBlock = {
                 },
                 policyScope: {
                   type: "string",
+                  enum: ["ACCOUNT", "RESOURCE"],
                 },
                 resourceArn: {
                   type: "string",

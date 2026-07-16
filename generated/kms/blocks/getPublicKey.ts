@@ -108,22 +108,68 @@ const getPublicKey: AppBlock = {
           },
           CustomerMasterKeySpec: {
             type: "string",
+            enum: [
+              "RSA_2048",
+              "RSA_3072",
+              "RSA_4096",
+              "ECC_NIST_P256",
+              "ECC_NIST_P384",
+              "ECC_NIST_P521",
+              "ECC_SECG_P256K1",
+              "SYMMETRIC_DEFAULT",
+              "HMAC_224",
+              "HMAC_256",
+              "HMAC_384",
+              "HMAC_512",
+              "SM2",
+            ],
             description:
               "Instead, use the KeySpec field in the GetPublicKey response.",
           },
           KeySpec: {
             type: "string",
+            enum: [
+              "RSA_2048",
+              "RSA_3072",
+              "RSA_4096",
+              "ECC_NIST_P256",
+              "ECC_NIST_P384",
+              "ECC_NIST_P521",
+              "ECC_SECG_P256K1",
+              "SYMMETRIC_DEFAULT",
+              "HMAC_224",
+              "HMAC_256",
+              "HMAC_384",
+              "HMAC_512",
+              "SM2",
+              "ML_DSA_44",
+              "ML_DSA_65",
+              "ML_DSA_87",
+              "ECC_NIST_EDWARDS25519",
+            ],
             description:
               "The type of the of the public key that was downloaded.",
           },
           KeyUsage: {
             type: "string",
+            enum: [
+              "SIGN_VERIFY",
+              "ENCRYPT_DECRYPT",
+              "GENERATE_VERIFY_MAC",
+              "KEY_AGREEMENT",
+            ],
             description: "The permitted use of the public key.",
           },
           EncryptionAlgorithms: {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "SYMMETRIC_DEFAULT",
+                "RSAES_OAEP_SHA_1",
+                "RSAES_OAEP_SHA_256",
+                "SM2PKE",
+              ],
             },
             description:
               "The encryption algorithms that KMS supports for this key.",
@@ -132,6 +178,21 @@ const getPublicKey: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "RSASSA_PSS_SHA_256",
+                "RSASSA_PSS_SHA_384",
+                "RSASSA_PSS_SHA_512",
+                "RSASSA_PKCS1_V1_5_SHA_256",
+                "RSASSA_PKCS1_V1_5_SHA_384",
+                "RSASSA_PKCS1_V1_5_SHA_512",
+                "ECDSA_SHA_256",
+                "ECDSA_SHA_384",
+                "ECDSA_SHA_512",
+                "SM2DSA",
+                "ML_DSA_SHAKE_256",
+                "ED25519_SHA_512",
+                "ED25519_PH_SHA_512",
+              ],
             },
             description:
               "The signing algorithms that KMS supports for this key.",
@@ -140,6 +201,7 @@ const getPublicKey: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["ECDH"],
             },
             description:
               "The key agreement algorithm used to derive a shared secret.",

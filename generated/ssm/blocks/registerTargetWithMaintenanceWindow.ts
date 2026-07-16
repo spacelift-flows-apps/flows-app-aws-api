@@ -35,7 +35,10 @@ const registerTargetWithMaintenanceWindow: AppBlock = {
           name: "Resource Type",
           description:
             "The type of target being registered with the maintenance window.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["INSTANCE", "RESOURCE_GROUP"],
+          },
           required: true,
         },
         Targets: {

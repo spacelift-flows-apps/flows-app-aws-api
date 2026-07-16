@@ -47,7 +47,10 @@ const modifyInstanceCpuOptions: AppBlock = {
           name: "Nested Virtualization",
           description:
             "Indicates whether to enable or disable nested virtualization for the instance.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["enabled", "disabled"],
+          },
           required: false,
         },
         DryRun: {
@@ -133,6 +136,7 @@ const modifyInstanceCpuOptions: AppBlock = {
           },
           NestedVirtualization: {
             type: "string",
+            enum: ["enabled", "disabled"],
             description:
               "Indicates whether nested virtualization has been enabled or disabled.",
           },

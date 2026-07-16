@@ -110,9 +110,11 @@ const describeDeliveryDestinations: AppBlock = {
                 },
                 deliveryDestinationType: {
                   type: "string",
+                  enum: ["S3", "CWL", "FH", "XRAY"],
                 },
                 outputFormat: {
                   type: "string",
+                  enum: ["json", "plain", "w3c", "raw", "parquet"],
                 },
                 deliveryDestinationConfiguration: {
                   type: "object",

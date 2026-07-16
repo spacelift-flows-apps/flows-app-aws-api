@@ -42,7 +42,10 @@ const putEventConfiguration: AppBlock = {
           name: "Max Event Size",
           description:
             "The maximum allowed size for events to be stored in the specified event data store.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Standard", "Large"],
+          },
           required: false,
         },
         ContextKeySelectors: {
@@ -56,6 +59,7 @@ const putEventConfiguration: AppBlock = {
               properties: {
                 Type: {
                   type: "string",
+                  enum: ["TagContext", "RequestContext"],
                 },
                 Equals: {
                   type: "array",
@@ -83,10 +87,12 @@ const putEventConfiguration: AppBlock = {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["API_ACTIVITY", "RESOURCE_ACCESS", "USER_ACTIONS"],
                   },
                 },
                 EventCategory: {
                   type: "string",
+                  enum: ["Data"],
                 },
               },
               required: ["Templates", "EventCategory"],
@@ -165,6 +171,7 @@ const putEventConfiguration: AppBlock = {
           },
           MaxEventSize: {
             type: "string",
+            enum: ["Standard", "Large"],
             description:
               "The maximum allowed size for events stored in the specified event data store.",
           },
@@ -175,6 +182,7 @@ const putEventConfiguration: AppBlock = {
               properties: {
                 Type: {
                   type: "string",
+                  enum: ["TagContext", "RequestContext"],
                 },
                 Equals: {
                   type: "array",
@@ -198,10 +206,12 @@ const putEventConfiguration: AppBlock = {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["API_ACTIVITY", "RESOURCE_ACCESS", "USER_ACTIONS"],
                   },
                 },
                 EventCategory: {
                   type: "string",
+                  enum: ["Data"],
                 },
               },
               required: ["Templates", "EventCategory"],

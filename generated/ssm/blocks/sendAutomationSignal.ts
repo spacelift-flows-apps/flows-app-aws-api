@@ -31,7 +31,17 @@ const sendAutomationSignal: AppBlock = {
         SignalType: {
           name: "Signal Type",
           description: "The type of signal to send to an Automation execution.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "Approve",
+              "Reject",
+              "StartStep",
+              "StopStep",
+              "Resume",
+              "Revoke",
+            ],
+          },
           required: true,
         },
         Payload: {

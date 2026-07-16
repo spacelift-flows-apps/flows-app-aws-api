@@ -146,6 +146,13 @@ const describeTransitGateways: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "pending",
+                    "available",
+                    "modifying",
+                    "deleting",
+                    "deleted",
+                  ],
                 },
                 OwnerId: {
                   type: "string",
@@ -170,36 +177,49 @@ const describeTransitGateways: AppBlock = {
                     },
                     AutoAcceptSharedAttachments: {
                       type: "string",
+                      enum: ["enable", "disable"],
                     },
                     DefaultRouteTableAssociation: {
                       type: "string",
+                      enum: ["enable", "disable"],
                     },
                     AssociationDefaultRouteTableId: {
                       type: "string",
                     },
                     DefaultRouteTablePropagation: {
                       type: "string",
+                      enum: ["enable", "disable"],
                     },
                     PropagationDefaultRouteTableId: {
                       type: "string",
                     },
                     VpnEcmpSupport: {
                       type: "string",
+                      enum: ["enable", "disable"],
                     },
                     DnsSupport: {
                       type: "string",
+                      enum: ["enable", "disable"],
                     },
                     SecurityGroupReferencingSupport: {
                       type: "string",
+                      enum: ["enable", "disable"],
                     },
                     MulticastSupport: {
                       type: "string",
+                      enum: ["enable", "disable"],
                     },
                     EncryptionSupport: {
                       type: "object",
                       properties: {
                         EncryptionState: {
                           type: "string",
+                          enum: [
+                            "enabling",
+                            "enabled",
+                            "disabling",
+                            "disabled",
+                          ],
                         },
                         StateMessage: {
                           type: "string",

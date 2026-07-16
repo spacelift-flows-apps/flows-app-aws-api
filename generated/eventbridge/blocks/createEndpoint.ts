@@ -84,6 +84,7 @@ const createEndpoint: AppBlock = {
             properties: {
               State: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
             },
             additionalProperties: false,
@@ -222,6 +223,7 @@ const createEndpoint: AppBlock = {
             properties: {
               State: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
             },
             additionalProperties: false,
@@ -249,6 +251,15 @@ const createEndpoint: AppBlock = {
           },
           State: {
             type: "string",
+            enum: [
+              "ACTIVE",
+              "CREATING",
+              "UPDATING",
+              "DELETING",
+              "CREATE_FAILED",
+              "UPDATE_FAILED",
+              "DELETE_FAILED",
+            ],
             description:
               "The state of the endpoint that was created by this request.",
           },

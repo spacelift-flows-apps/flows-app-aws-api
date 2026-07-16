@@ -41,7 +41,10 @@ const testFunction: AppBlock = {
           name: "Stage",
           description:
             "The stage of the function that you are testing, either DEVELOPMENT or LIVE.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["DEVELOPMENT", "LIVE"],
+          },
           required: false,
         },
         EventObject: {
@@ -128,6 +131,7 @@ const testFunction: AppBlock = {
                       },
                       Runtime: {
                         type: "string",
+                        enum: ["cloudfront-js-1.0", "cloudfront-js-2.0"],
                       },
                       KeyValueStoreAssociations: {
                         type: "object",
@@ -155,6 +159,7 @@ const testFunction: AppBlock = {
                       },
                       Stage: {
                         type: "string",
+                        enum: ["DEVELOPMENT", "LIVE"],
                       },
                       CreatedTime: {
                         type: "string",

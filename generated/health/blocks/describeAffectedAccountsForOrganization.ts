@@ -114,6 +114,7 @@ const describeAffectedAccountsForOrganization: AppBlock = {
           },
           eventScopeCode: {
             type: "string",
+            enum: ["PUBLIC", "ACCOUNT_SPECIFIC", "NONE"],
             description:
               "This parameter specifies if the Health event is a public Amazon Web Services service event or an account-specific event.",
           },

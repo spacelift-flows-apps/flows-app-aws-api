@@ -127,9 +127,11 @@ const describeEventBus: AppBlock = {
             properties: {
               IncludeDetail: {
                 type: "string",
+                enum: ["NONE", "FULL"],
               },
               Level: {
                 type: "string",
+                enum: ["OFF", "ERROR", "INFO", "TRACE"],
               },
             },
             additionalProperties: false,

@@ -30,7 +30,10 @@ const resetAddressAttribute: AppBlock = {
         Attribute: {
           name: "Attribute",
           description: "The attribute of the IP address.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["domain-name"],
+          },
           required: true,
         },
         DryRun: {

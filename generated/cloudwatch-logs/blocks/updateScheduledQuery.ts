@@ -39,7 +39,10 @@ const updateScheduledQuery: AppBlock = {
         queryLanguage: {
           name: "query Language",
           description: "The updated query language for the scheduled query.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["CWLI", "SQL", "PPL"],
+          },
           required: true,
         },
         queryString: {
@@ -136,7 +139,10 @@ const updateScheduledQuery: AppBlock = {
         state: {
           name: "state",
           description: "The updated state of the scheduled query.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ENABLED", "DISABLED"],
+          },
           required: false,
         },
       },
@@ -211,6 +217,7 @@ const updateScheduledQuery: AppBlock = {
           },
           queryLanguage: {
             type: "string",
+            enum: ["CWLI", "SQL", "PPL"],
             description: "The query language of the updated scheduled query.",
           },
           queryString: {
@@ -267,6 +274,7 @@ const updateScheduledQuery: AppBlock = {
           },
           state: {
             type: "string",
+            enum: ["ENABLED", "DISABLED"],
             description: "The state of the updated scheduled query.",
           },
           lastTriggeredTime: {
@@ -276,6 +284,7 @@ const updateScheduledQuery: AppBlock = {
           },
           lastExecutionStatus: {
             type: "string",
+            enum: ["Running", "InvalidQuery", "Complete", "Failed", "Timeout"],
             description:
               "The status of the most recent execution of the updated scheduled query.",
           },

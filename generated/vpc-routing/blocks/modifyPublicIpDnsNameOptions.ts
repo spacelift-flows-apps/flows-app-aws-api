@@ -33,7 +33,14 @@ const modifyPublicIpDnsNameOptions: AppBlock = {
         HostnameType: {
           name: "Hostname Type",
           description: "The public hostname type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "public-dual-stack-dns-name",
+              "public-ipv4-dns-name",
+              "public-ipv6-dns-name",
+            ],
+          },
           required: true,
         },
         DryRun: {

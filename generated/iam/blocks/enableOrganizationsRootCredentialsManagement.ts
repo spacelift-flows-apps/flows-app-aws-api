@@ -93,6 +93,7 @@ const enableOrganizationsRootCredentialsManagement: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["RootCredentialsManagement", "RootSessions"],
             },
             description:
               "The features you have enabled for centralized root access.",

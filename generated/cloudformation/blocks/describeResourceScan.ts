@@ -94,6 +94,7 @@ const describeResourceScan: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["IN_PROGRESS", "FAILED", "COMPLETE", "EXPIRED"],
             description: "Status of the resource scan.",
           },
           StatusReason: {

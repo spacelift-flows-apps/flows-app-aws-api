@@ -45,6 +45,14 @@ const listEksAnywhereSubscriptions: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "CREATING",
+                "ACTIVE",
+                "UPDATING",
+                "EXPIRING",
+                "EXPIRED",
+                "DELETING",
+              ],
             },
           },
           required: false,
@@ -134,6 +142,7 @@ const listEksAnywhereSubscriptions: AppBlock = {
                 },
                 licenseType: {
                   type: "string",
+                  enum: ["Cluster"],
                 },
                 term: {
                   type: "object",
@@ -143,6 +152,7 @@ const listEksAnywhereSubscriptions: AppBlock = {
                     },
                     unit: {
                       type: "string",
+                      enum: ["MONTHS"],
                     },
                   },
                   additionalProperties: false,

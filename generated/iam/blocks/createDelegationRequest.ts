@@ -60,6 +60,7 @@ const createDelegationRequest: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: ["string", "stringList"],
                     },
                   },
                   additionalProperties: false,

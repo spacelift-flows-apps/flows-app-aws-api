@@ -27,7 +27,10 @@ const getHostedZoneLimit: AppBlock = {
         Type: {
           name: "Type",
           description: "The limit that you want to get.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["MAX_RRSETS_BY_ZONE", "MAX_VPCS_ASSOCIATED_BY_ZONE"],
+          },
           required: true,
         },
         HostedZoneId: {
@@ -100,6 +103,7 @@ const getHostedZoneLimit: AppBlock = {
             properties: {
               Type: {
                 type: "string",
+                enum: ["MAX_RRSETS_BY_ZONE", "MAX_VPCS_ASSOCIATED_BY_ZONE"],
               },
               Value: {
                 type: "number",

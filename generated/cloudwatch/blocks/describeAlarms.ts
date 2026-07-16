@@ -49,6 +49,7 @@ const describeAlarms: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["CompositeAlarm", "MetricAlarm"],
             },
           },
           required: false,
@@ -71,7 +72,10 @@ const describeAlarms: AppBlock = {
           name: "State Value",
           description:
             "Specify this parameter to receive information only about alarms that are currently in the state that you specify.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["OK", "ALARM", "INSUFFICIENT_DATA"],
+          },
           required: false,
         },
         ActionPrefix: {
@@ -204,12 +208,14 @@ const describeAlarms: AppBlock = {
                 },
                 StateValue: {
                   type: "string",
+                  enum: ["OK", "ALARM", "INSUFFICIENT_DATA"],
                 },
                 StateTransitionedTimestamp: {
                   type: "string",
                 },
                 ActionsSuppressedBy: {
                   type: "string",
+                  enum: ["WaitPeriod", "ExtensionPeriod", "Alarm"],
                 },
                 ActionsSuppressedReason: {
                   type: "string",
@@ -269,6 +275,7 @@ const describeAlarms: AppBlock = {
                 },
                 StateValue: {
                   type: "string",
+                  enum: ["OK", "ALARM", "INSUFFICIENT_DATA"],
                 },
                 StateReason: {
                   type: "string",
@@ -287,6 +294,7 @@ const describeAlarms: AppBlock = {
                 },
                 Statistic: {
                   type: "string",
+                  enum: ["SampleCount", "Average", "Sum", "Minimum", "Maximum"],
                 },
                 ExtendedStatistic: {
                   type: "string",
@@ -312,6 +320,35 @@ const describeAlarms: AppBlock = {
                 },
                 Unit: {
                   type: "string",
+                  enum: [
+                    "Seconds",
+                    "Microseconds",
+                    "Milliseconds",
+                    "Bytes",
+                    "Kilobytes",
+                    "Megabytes",
+                    "Gigabytes",
+                    "Terabytes",
+                    "Bits",
+                    "Kilobits",
+                    "Megabits",
+                    "Gigabits",
+                    "Terabits",
+                    "Percent",
+                    "Count",
+                    "Bytes/Second",
+                    "Kilobytes/Second",
+                    "Megabytes/Second",
+                    "Gigabytes/Second",
+                    "Terabytes/Second",
+                    "Bits/Second",
+                    "Kilobits/Second",
+                    "Megabits/Second",
+                    "Gigabits/Second",
+                    "Terabits/Second",
+                    "Count/Second",
+                    "None",
+                  ],
                 },
                 EvaluationPeriods: {
                   type: "number",
@@ -324,6 +361,15 @@ const describeAlarms: AppBlock = {
                 },
                 ComparisonOperator: {
                   type: "string",
+                  enum: [
+                    "GreaterThanOrEqualToThreshold",
+                    "GreaterThanThreshold",
+                    "LessThanThreshold",
+                    "LessThanOrEqualToThreshold",
+                    "LessThanLowerOrGreaterThanUpperThreshold",
+                    "LessThanLowerThreshold",
+                    "GreaterThanUpperThreshold",
+                  ],
                 },
                 TreatMissingData: {
                   type: "string",
@@ -375,6 +421,11 @@ const describeAlarms: AppBlock = {
                 },
                 EvaluationState: {
                   type: "string",
+                  enum: [
+                    "PARTIAL_DATA",
+                    "EVALUATION_FAILURE",
+                    "EVALUATION_ERROR",
+                  ],
                 },
                 StateTransitionedTimestamp: {
                   type: "string",

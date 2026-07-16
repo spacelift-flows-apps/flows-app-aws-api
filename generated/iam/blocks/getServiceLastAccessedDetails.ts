@@ -107,10 +107,12 @@ const getServiceLastAccessedDetails: AppBlock = {
         properties: {
           JobStatus: {
             type: "string",
+            enum: ["IN_PROGRESS", "COMPLETED", "FAILED"],
             description: "The status of the job.",
           },
           JobType: {
             type: "string",
+            enum: ["SERVICE_LEVEL", "ACTION_LEVEL"],
             description: "The type of job.",
           },
           JobCreationDate: {

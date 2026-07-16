@@ -106,6 +106,16 @@ const getSessionStatus: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "CREATING",
+                  "CREATED",
+                  "IDLE",
+                  "BUSY",
+                  "TERMINATING",
+                  "TERMINATED",
+                  "DEGRADED",
+                  "FAILED",
+                ],
               },
               StateChangeReason: {
                 type: "string",

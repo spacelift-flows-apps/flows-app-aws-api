@@ -82,7 +82,10 @@ const launchInstances: AppBlock = {
           name: "Retry Strategy",
           description:
             "Specifies whether to retry asynchronously if the synchronous launch fails.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["retry-with-group-configuration", "none"],
+          },
           required: false,
         },
       },

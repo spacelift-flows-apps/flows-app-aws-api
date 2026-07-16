@@ -25,7 +25,14 @@ const listBackupVaults: AppBlock = {
           name: "By Vault Type",
           description:
             "This parameter will sort the list of vaults by vault type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "BACKUP_VAULT",
+              "LOGICALLY_AIR_GAPPED_BACKUP_VAULT",
+              "RESTORE_ACCESS_BACKUP_VAULT",
+            ],
+          },
           required: false,
         },
         ByShared: {
@@ -119,9 +126,15 @@ const listBackupVaults: AppBlock = {
                 },
                 VaultType: {
                   type: "string",
+                  enum: [
+                    "BACKUP_VAULT",
+                    "LOGICALLY_AIR_GAPPED_BACKUP_VAULT",
+                    "RESTORE_ACCESS_BACKUP_VAULT",
+                  ],
                 },
                 VaultState: {
                   type: "string",
+                  enum: ["CREATING", "AVAILABLE", "FAILED"],
                 },
                 CreationDate: {
                   type: "string",
@@ -149,6 +162,7 @@ const listBackupVaults: AppBlock = {
                 },
                 EncryptionKeyType: {
                   type: "string",
+                  enum: ["AWS_OWNED_KMS_KEY", "CUSTOMER_MANAGED_KMS_KEY"],
                 },
               },
               additionalProperties: false,

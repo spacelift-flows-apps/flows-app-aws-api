@@ -144,6 +144,7 @@ const createLogicallyAirGappedBackupVault: AppBlock = {
           },
           VaultState: {
             type: "string",
+            enum: ["CREATING", "AVAILABLE", "FAILED"],
             description: "The current state of the vault.",
           },
         },

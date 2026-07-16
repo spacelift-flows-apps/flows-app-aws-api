@@ -54,6 +54,11 @@ const listStackInstances: AppBlock = {
               properties: {
                 Name: {
                   type: "string",
+                  enum: [
+                    "DETAILED_STATUS",
+                    "LAST_OPERATION_ID",
+                    "DRIFT_STATUS",
+                  ],
                 },
                 Values: {
                   type: "string",
@@ -82,7 +87,10 @@ const listStackInstances: AppBlock = {
           name: "Call As",
           description:
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SELF", "DELEGATED_ADMIN"],
+          },
           required: false,
         },
       },
@@ -162,6 +170,7 @@ const listStackInstances: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["CURRENT", "OUTDATED", "INOPERABLE"],
                 },
                 StatusReason: {
                   type: "string",
@@ -171,6 +180,16 @@ const listStackInstances: AppBlock = {
                   properties: {
                     DetailedStatus: {
                       type: "string",
+                      enum: [
+                        "PENDING",
+                        "RUNNING",
+                        "SUCCEEDED",
+                        "FAILED",
+                        "CANCELLED",
+                        "INOPERABLE",
+                        "SKIPPED_SUSPENDED_ACCOUNT",
+                        "FAILED_IMPORT",
+                      ],
                     },
                   },
                   additionalProperties: false,
@@ -180,6 +199,7 @@ const listStackInstances: AppBlock = {
                 },
                 DriftStatus: {
                   type: "string",
+                  enum: ["DRIFTED", "IN_SYNC", "UNKNOWN", "NOT_CHECKED"],
                 },
                 LastDriftCheckTimestamp: {
                   type: "string",

@@ -133,6 +133,12 @@ const describeRepositories: AppBlock = {
                 },
                 imageTagMutability: {
                   type: "string",
+                  enum: [
+                    "MUTABLE",
+                    "IMMUTABLE",
+                    "IMMUTABLE_WITH_EXCLUSION",
+                    "MUTABLE_WITH_EXCLUSION",
+                  ],
                 },
                 imageTagMutabilityExclusionFilters: {
                   type: "array",
@@ -141,6 +147,7 @@ const describeRepositories: AppBlock = {
                     properties: {
                       filterType: {
                         type: "string",
+                        enum: ["WILDCARD"],
                       },
                       filter: {
                         type: "string",
@@ -164,6 +171,7 @@ const describeRepositories: AppBlock = {
                   properties: {
                     encryptionType: {
                       type: "string",
+                      enum: ["AES256", "KMS", "KMS_DSSE"],
                     },
                     kmsKey: {
                       type: "string",

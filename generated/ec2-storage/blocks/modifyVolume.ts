@@ -43,7 +43,10 @@ const modifyVolume: AppBlock = {
         VolumeType: {
           name: "Volume Type",
           description: "The target EBS volume type of the volume.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["standard", "io1", "io2", "gp2", "sc1", "st1", "gp3"],
+          },
           required: false,
         },
         Iops: {
@@ -130,6 +133,7 @@ const modifyVolume: AppBlock = {
               },
               ModificationState: {
                 type: "string",
+                enum: ["modifying", "optimizing", "completed", "failed"],
               },
               StatusMessage: {
                 type: "string",
@@ -142,6 +146,7 @@ const modifyVolume: AppBlock = {
               },
               TargetVolumeType: {
                 type: "string",
+                enum: ["standard", "io1", "io2", "gp2", "sc1", "st1", "gp3"],
               },
               TargetThroughput: {
                 type: "number",
@@ -157,6 +162,7 @@ const modifyVolume: AppBlock = {
               },
               OriginalVolumeType: {
                 type: "string",
+                enum: ["standard", "io1", "io2", "gp2", "sc1", "st1", "gp3"],
               },
               OriginalThroughput: {
                 type: "number",

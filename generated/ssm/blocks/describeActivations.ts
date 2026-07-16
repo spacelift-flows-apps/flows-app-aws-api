@@ -31,6 +31,7 @@ const describeActivations: AppBlock = {
               properties: {
                 FilterKey: {
                   type: "string",
+                  enum: ["ActivationIds", "DefaultInstanceName", "IamRole"],
                 },
                 FilterValues: {
                   type: "array",

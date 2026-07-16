@@ -58,6 +58,13 @@ const listCommandInvocations: AppBlock = {
               properties: {
                 key: {
                   type: "string",
+                  enum: [
+                    "InvokedAfter",
+                    "InvokedBefore",
+                    "Status",
+                    "ExecutionStage",
+                    "DocumentName",
+                  ],
                 },
                 value: {
                   type: "string",
@@ -162,6 +169,16 @@ const listCommandInvocations: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "Pending",
+                    "InProgress",
+                    "Delayed",
+                    "Success",
+                    "Cancelled",
+                    "TimedOut",
+                    "Failed",
+                    "Cancelling",
+                  ],
                 },
                 StatusDetails: {
                   type: "string",
@@ -185,6 +202,14 @@ const listCommandInvocations: AppBlock = {
                       },
                       Status: {
                         type: "string",
+                        enum: [
+                          "Pending",
+                          "InProgress",
+                          "Success",
+                          "TimedOut",
+                          "Cancelled",
+                          "Failed",
+                        ],
                       },
                       StatusDetails: {
                         type: "string",
@@ -233,10 +258,19 @@ const listCommandInvocations: AppBlock = {
                       type: "array",
                       items: {
                         type: "string",
+                        enum: [
+                          "All",
+                          "InProgress",
+                          "Success",
+                          "TimedOut",
+                          "Cancelled",
+                          "Failed",
+                        ],
                       },
                     },
                     NotificationType: {
                       type: "string",
+                      enum: ["Command", "Invocation"],
                     },
                   },
                   additionalProperties: false,

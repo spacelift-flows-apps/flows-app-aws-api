@@ -216,6 +216,7 @@ const getResponseHeadersPolicy: AppBlock = {
                           },
                           FrameOption: {
                             type: "string",
+                            enum: ["DENY", "SAMEORIGIN"],
                           },
                         },
                         required: ["Override", "FrameOption"],
@@ -229,6 +230,16 @@ const getResponseHeadersPolicy: AppBlock = {
                           },
                           ReferrerPolicy: {
                             type: "string",
+                            enum: [
+                              "no-referrer",
+                              "no-referrer-when-downgrade",
+                              "origin",
+                              "origin-when-cross-origin",
+                              "same-origin",
+                              "strict-origin",
+                              "strict-origin-when-cross-origin",
+                              "unsafe-url",
+                            ],
                           },
                         },
                         required: ["Override", "ReferrerPolicy"],

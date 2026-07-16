@@ -45,7 +45,10 @@ const createNetworkInterfacePermission: AppBlock = {
         Permission: {
           name: "Permission",
           description: "The type of permission to grant.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["INSTANCE-ATTACH", "EIP-ASSOCIATE"],
+          },
           required: true,
         },
         DryRun: {
@@ -132,12 +135,14 @@ const createNetworkInterfacePermission: AppBlock = {
               },
               Permission: {
                 type: "string",
+                enum: ["INSTANCE-ATTACH", "EIP-ASSOCIATE"],
               },
               PermissionState: {
                 type: "object",
                 properties: {
                   State: {
                     type: "string",
+                    enum: ["pending", "granted", "revoking", "revoked"],
                   },
                   StatusMessage: {
                     type: "string",

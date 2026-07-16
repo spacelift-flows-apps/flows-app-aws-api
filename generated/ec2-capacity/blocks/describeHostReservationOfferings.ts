@@ -152,6 +152,7 @@ const describeHostReservationOfferings: AppBlock = {
               properties: {
                 CurrencyCode: {
                   type: "string",
+                  enum: ["USD"],
                 },
                 Duration: {
                   type: "number",
@@ -167,6 +168,7 @@ const describeHostReservationOfferings: AppBlock = {
                 },
                 PaymentOption: {
                   type: "string",
+                  enum: ["AllUpfront", "PartialUpfront", "NoUpfront"],
                 },
                 UpfrontPrice: {
                   type: "string",

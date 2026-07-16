@@ -137,7 +137,10 @@ const getObject: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         PartNumber: {
@@ -155,7 +158,10 @@ const getObject: AppBlock = {
         ChecksumMode: {
           name: "Checksum Mode",
           description: "To retrieve the checksum, this mode must be enabled.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ENABLED"],
+          },
           required: false,
         },
       },
@@ -316,6 +322,7 @@ const getObject: AppBlock = {
           },
           ChecksumType: {
             type: "string",
+            enum: ["COMPOSITE", "FULL_OBJECT"],
             description:
               "The checksum type, which determines how part-level checksums are combined to create an object-level checksum for multipart objects.",
           },
@@ -367,6 +374,7 @@ const getObject: AppBlock = {
           },
           ServerSideEncryption: {
             type: "string",
+            enum: ["AES256", "aws:fsx", "aws:kms", "aws:kms:dsse"],
             description:
               "The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.",
           },
@@ -399,15 +407,32 @@ const getObject: AppBlock = {
           },
           StorageClass: {
             type: "string",
+            enum: [
+              "STANDARD",
+              "REDUCED_REDUNDANCY",
+              "STANDARD_IA",
+              "ONEZONE_IA",
+              "INTELLIGENT_TIERING",
+              "GLACIER",
+              "DEEP_ARCHIVE",
+              "OUTPOSTS",
+              "GLACIER_IR",
+              "SNOW",
+              "EXPRESS_ONEZONE",
+              "FSX_OPENZFS",
+              "FSX_ONTAP",
+            ],
             description: "Provides storage class information of the object.",
           },
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },
           ReplicationStatus: {
             type: "string",
+            enum: ["COMPLETE", "PENDING", "FAILED", "REPLICA", "COMPLETED"],
             description:
               "Amazon S3 can return this if your request involves a bucket that is either a source or destination in a replication rule.",
           },
@@ -422,6 +447,7 @@ const getObject: AppBlock = {
           },
           ObjectLockMode: {
             type: "string",
+            enum: ["GOVERNANCE", "COMPLIANCE"],
             description:
               "The Object Lock mode that's currently in place for this object.",
           },
@@ -432,6 +458,7 @@ const getObject: AppBlock = {
           },
           ObjectLockLegalHoldStatus: {
             type: "string",
+            enum: ["ON", "OFF"],
             description:
               "Indicates whether this object has an active legal hold.",
           },

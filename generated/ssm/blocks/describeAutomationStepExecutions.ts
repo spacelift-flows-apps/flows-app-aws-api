@@ -42,6 +42,17 @@ const describeAutomationStepExecutions: AppBlock = {
               properties: {
                 Key: {
                   type: "string",
+                  enum: [
+                    "StartTimeBefore",
+                    "StartTimeAfter",
+                    "StepExecutionStatus",
+                    "StepExecutionId",
+                    "StepName",
+                    "Action",
+                    "ParentStepExecutionId",
+                    "ParentStepIteration",
+                    "ParentStepIteratorValue",
+                  ],
                 },
                 Values: {
                   type: "array",
@@ -163,6 +174,27 @@ const describeAutomationStepExecutions: AppBlock = {
                 },
                 StepStatus: {
                   type: "string",
+                  enum: [
+                    "Pending",
+                    "InProgress",
+                    "Waiting",
+                    "Success",
+                    "TimedOut",
+                    "Cancelling",
+                    "Cancelled",
+                    "Failed",
+                    "PendingApproval",
+                    "Approved",
+                    "Rejected",
+                    "Scheduled",
+                    "RunbookInProgress",
+                    "PendingChangeCalendarOverride",
+                    "ChangeCalendarOverrideApproved",
+                    "ChangeCalendarOverrideRejected",
+                    "CompletedWithSuccess",
+                    "CompletedWithFailure",
+                    "Exited",
+                  ],
                 },
                 ResponseCode: {
                   type: "string",
@@ -320,6 +352,7 @@ const describeAutomationStepExecutions: AppBlock = {
                       },
                       State: {
                         type: "string",
+                        enum: ["UNKNOWN", "ALARM"],
                       },
                     },
                     required: ["Name", "State"],

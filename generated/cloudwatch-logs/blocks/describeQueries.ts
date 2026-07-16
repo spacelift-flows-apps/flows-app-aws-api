@@ -35,7 +35,18 @@ const describeQueries: AppBlock = {
           name: "status",
           description:
             "Limits the returned queries to only those that have the specified status.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "Scheduled",
+              "Running",
+              "Complete",
+              "Failed",
+              "Cancelled",
+              "Timeout",
+              "Unknown",
+            ],
+          },
           required: false,
         },
         maxResults: {
@@ -55,7 +66,10 @@ const describeQueries: AppBlock = {
           name: "query Language",
           description:
             "Limits the returned queries to only the queries that use the specified query language.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["CWLI", "SQL", "PPL"],
+          },
           required: false,
         },
       },
@@ -123,6 +137,7 @@ const describeQueries: AppBlock = {
               properties: {
                 queryLanguage: {
                   type: "string",
+                  enum: ["CWLI", "SQL", "PPL"],
                 },
                 queryId: {
                   type: "string",
@@ -132,6 +147,15 @@ const describeQueries: AppBlock = {
                 },
                 status: {
                   type: "string",
+                  enum: [
+                    "Scheduled",
+                    "Running",
+                    "Complete",
+                    "Failed",
+                    "Cancelled",
+                    "Timeout",
+                    "Unknown",
+                  ],
                 },
                 createTime: {
                   type: "number",

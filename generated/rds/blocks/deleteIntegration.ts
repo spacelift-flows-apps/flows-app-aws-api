@@ -117,6 +117,15 @@ const deleteIntegration: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: [
+              "creating",
+              "active",
+              "modifying",
+              "failed",
+              "deleting",
+              "syncing",
+              "needs_attention",
+            ],
             description: "The current status of the integration.",
           },
           Tags: {

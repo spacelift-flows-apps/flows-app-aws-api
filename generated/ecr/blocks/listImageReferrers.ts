@@ -66,6 +66,7 @@ const listImageReferrers: AppBlock = {
               },
               artifactStatus: {
                 type: "string",
+                enum: ["ACTIVE", "ARCHIVED", "ACTIVATING", "ANY"],
               },
             },
             additionalProperties: false,
@@ -169,6 +170,7 @@ const listImageReferrers: AppBlock = {
                 },
                 artifactStatus: {
                   type: "string",
+                  enum: ["ACTIVE", "ARCHIVED", "ACTIVATING"],
                 },
               },
               required: ["digest", "mediaType", "size"],

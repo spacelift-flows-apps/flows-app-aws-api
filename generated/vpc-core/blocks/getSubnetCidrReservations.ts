@@ -149,6 +149,7 @@ const getSubnetCidrReservations: AppBlock = {
                 },
                 ReservationType: {
                   type: "string",
+                  enum: ["prefix", "explicit"],
                 },
                 OwnerId: {
                   type: "string",
@@ -192,6 +193,7 @@ const getSubnetCidrReservations: AppBlock = {
                 },
                 ReservationType: {
                   type: "string",
+                  enum: ["prefix", "explicit"],
                 },
                 OwnerId: {
                   type: "string",

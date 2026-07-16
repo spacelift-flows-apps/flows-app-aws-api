@@ -25,7 +25,15 @@ const createBucket: AppBlock = {
         ACL: {
           name: "ACL",
           description: "The canned ACL to apply to the bucket.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "private",
+              "public-read",
+              "public-read-write",
+              "authenticated-read",
+            ],
+          },
           required: false,
         },
         Bucket: {
@@ -42,12 +50,53 @@ const createBucket: AppBlock = {
             properties: {
               LocationConstraint: {
                 type: "string",
+                enum: [
+                  "af-south-1",
+                  "ap-east-1",
+                  "ap-east-2",
+                  "ap-northeast-1",
+                  "ap-northeast-2",
+                  "ap-northeast-3",
+                  "ap-south-1",
+                  "ap-south-2",
+                  "ap-southeast-1",
+                  "ap-southeast-2",
+                  "ap-southeast-3",
+                  "ap-southeast-4",
+                  "ap-southeast-5",
+                  "ap-southeast-6",
+                  "ap-southeast-7",
+                  "ca-central-1",
+                  "ca-west-1",
+                  "cn-north-1",
+                  "cn-northwest-1",
+                  "EU",
+                  "eu-central-1",
+                  "eu-central-2",
+                  "eu-north-1",
+                  "eu-south-1",
+                  "eu-south-2",
+                  "eu-west-1",
+                  "eu-west-2",
+                  "eu-west-3",
+                  "il-central-1",
+                  "me-central-1",
+                  "me-south-1",
+                  "mx-central-1",
+                  "sa-east-1",
+                  "us-east-2",
+                  "us-gov-east-1",
+                  "us-gov-west-1",
+                  "us-west-1",
+                  "us-west-2",
+                ],
               },
               Location: {
                 type: "object",
                 properties: {
                   Type: {
                     type: "string",
+                    enum: ["AvailabilityZone", "LocalZone"],
                   },
                   Name: {
                     type: "string",
@@ -60,9 +109,11 @@ const createBucket: AppBlock = {
                 properties: {
                   DataRedundancy: {
                     type: "string",
+                    enum: ["SingleAvailabilityZone", "SingleLocalZone"],
                   },
                   Type: {
                     type: "string",
+                    enum: ["Directory"],
                   },
                 },
                 additionalProperties: false,
@@ -131,14 +182,24 @@ const createBucket: AppBlock = {
           name: "Object Ownership",
           description:
             "The container element for object ownership for a bucket's ownership controls.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "BucketOwnerPreferred",
+              "ObjectWriter",
+              "BucketOwnerEnforced",
+            ],
+          },
           required: false,
         },
         BucketNamespace: {
           name: "Bucket Namespace",
           description:
             "Specifies the namespace where you want to create your general purpose bucket.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["account-regional", "global"],
+          },
           required: false,
         },
       },

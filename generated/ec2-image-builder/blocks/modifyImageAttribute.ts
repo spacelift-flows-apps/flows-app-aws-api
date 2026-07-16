@@ -69,6 +69,7 @@ const modifyImageAttribute: AppBlock = {
                     },
                     Group: {
                       type: "string",
+                      enum: ["all"],
                     },
                   },
                   additionalProperties: false,
@@ -90,6 +91,7 @@ const modifyImageAttribute: AppBlock = {
                     },
                     Group: {
                       type: "string",
+                      enum: ["all"],
                     },
                   },
                   additionalProperties: false,
@@ -103,7 +105,10 @@ const modifyImageAttribute: AppBlock = {
         OperationType: {
           name: "Operation Type",
           description: "The operation type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["add", "remove"],
+          },
           required: false,
         },
         ProductCodes: {

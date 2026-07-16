@@ -35,7 +35,17 @@ const updateLogAnomalyDetector: AppBlock = {
           name: "evaluation Frequency",
           description:
             "Specifies how often the anomaly detector runs and look for anomalies.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "ONE_MIN",
+              "FIVE_MIN",
+              "TEN_MIN",
+              "FIFTEEN_MIN",
+              "THIRTY_MIN",
+              "ONE_HOUR",
+            ],
+          },
           required: false,
         },
         filterPattern: {

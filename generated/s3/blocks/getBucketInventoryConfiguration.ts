@@ -123,6 +123,7 @@ const getBucketInventoryConfiguration: AppBlock = {
                       },
                       Format: {
                         type: "string",
+                        enum: ["CSV", "ORC", "Parquet"],
                       },
                       Prefix: {
                         type: "string",
@@ -172,11 +173,30 @@ const getBucketInventoryConfiguration: AppBlock = {
               },
               IncludedObjectVersions: {
                 type: "string",
+                enum: ["All", "Current"],
               },
               OptionalFields: {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "Size",
+                    "LastModifiedDate",
+                    "StorageClass",
+                    "ETag",
+                    "IsMultipartUploaded",
+                    "ReplicationStatus",
+                    "EncryptionStatus",
+                    "ObjectLockRetainUntilDate",
+                    "ObjectLockMode",
+                    "ObjectLockLegalHoldStatus",
+                    "IntelligentTieringAccessTier",
+                    "BucketKeyStatus",
+                    "ChecksumAlgorithm",
+                    "ObjectAccessControlList",
+                    "ObjectOwner",
+                    "LifecycleExpirationDate",
+                  ],
                 },
               },
               Schedule: {
@@ -184,6 +204,7 @@ const getBucketInventoryConfiguration: AppBlock = {
                 properties: {
                   Frequency: {
                     type: "string",
+                    enum: ["Daily", "Weekly"],
                   },
                 },
                 required: ["Frequency"],

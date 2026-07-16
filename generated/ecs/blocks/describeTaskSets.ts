@@ -55,6 +55,7 @@ const describeTaskSets: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["TAGS"],
             },
           },
           required: false,
@@ -163,6 +164,7 @@ const describeTaskSets: AppBlock = {
                 },
                 launchType: {
                   type: "string",
+                  enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                 },
                 capacityProviderStrategy: {
                   type: "array",
@@ -205,6 +207,7 @@ const describeTaskSets: AppBlock = {
                         },
                         assignPublicIp: {
                           type: "string",
+                          enum: ["ENABLED", "DISABLED"],
                         },
                       },
                       required: ["subnets"],
@@ -273,12 +276,14 @@ const describeTaskSets: AppBlock = {
                     },
                     unit: {
                       type: "string",
+                      enum: ["PERCENT"],
                     },
                   },
                   additionalProperties: false,
                 },
                 stabilityStatus: {
                   type: "string",
+                  enum: ["STEADY_STATE", "STABILIZING"],
                 },
                 stabilityStatusAt: {
                   type: "string",

@@ -35,7 +35,10 @@ const describeDataSharesForConsumer: AppBlock = {
           name: "Status",
           description:
             "An identifier giving the status of a datashare in the consumer cluster.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ACTIVE", "AVAILABLE"],
+          },
           required: false,
         },
         MaxRecords: {
@@ -136,6 +139,14 @@ const describeDataSharesForConsumer: AppBlock = {
                       },
                       Status: {
                         type: "string",
+                        enum: [
+                          "ACTIVE",
+                          "PENDING_AUTHORIZATION",
+                          "AUTHORIZED",
+                          "DEAUTHORIZED",
+                          "REJECTED",
+                          "AVAILABLE",
+                        ],
                       },
                       ConsumerRegion: {
                         type: "string",
@@ -161,6 +172,7 @@ const describeDataSharesForConsumer: AppBlock = {
                 },
                 DataShareType: {
                   type: "string",
+                  enum: ["INTERNAL"],
                 },
               },
               additionalProperties: false,

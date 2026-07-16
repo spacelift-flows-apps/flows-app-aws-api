@@ -100,7 +100,10 @@ const updateCustomKeyStore: AppBlock = {
           name: "Xks Proxy Connectivity",
           description:
             "Changes the connectivity setting for the external key store.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["PUBLIC_ENDPOINT", "VPC_ENDPOINT_SERVICE"],
+          },
           required: false,
         },
       },

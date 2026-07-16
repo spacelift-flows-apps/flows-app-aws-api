@@ -98,6 +98,7 @@ const getImageBlockPublicAccessState: AppBlock = {
           },
           ManagedBy: {
             type: "string",
+            enum: ["account", "declarative-policy"],
             description:
               "The entity that manages the state for block public access for AMIs.",
           },

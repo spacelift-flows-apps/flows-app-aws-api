@@ -144,6 +144,7 @@ const describeFleetInstances: AppBlock = {
                 },
                 InstanceHealth: {
                   type: "string",
+                  enum: ["healthy", "unhealthy"],
                 },
               },
               additionalProperties: false,

@@ -93,6 +93,7 @@ const disableSnapshotBlockPublicAccess: AppBlock = {
         properties: {
           State: {
             type: "string",
+            enum: ["block-all-sharing", "block-new-sharing", "unblocked"],
             description: "Returns unblocked if the request succeeds.",
           },
         },

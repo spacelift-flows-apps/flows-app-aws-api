@@ -34,7 +34,20 @@ const modifyTargetGroup: AppBlock = {
           name: "Health Check Protocol",
           description:
             "The protocol the load balancer uses when performing health checks on targets.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "HTTP",
+              "HTTPS",
+              "TCP",
+              "TLS",
+              "UDP",
+              "TCP_UDP",
+              "GENEVE",
+              "QUIC",
+              "TCP_QUIC",
+            ],
+          },
           required: false,
         },
         HealthCheckPort: {
@@ -174,6 +187,17 @@ const modifyTargetGroup: AppBlock = {
                 },
                 Protocol: {
                   type: "string",
+                  enum: [
+                    "HTTP",
+                    "HTTPS",
+                    "TCP",
+                    "TLS",
+                    "UDP",
+                    "TCP_UDP",
+                    "GENEVE",
+                    "QUIC",
+                    "TCP_QUIC",
+                  ],
                 },
                 Port: {
                   type: "number",
@@ -183,6 +207,17 @@ const modifyTargetGroup: AppBlock = {
                 },
                 HealthCheckProtocol: {
                   type: "string",
+                  enum: [
+                    "HTTP",
+                    "HTTPS",
+                    "TCP",
+                    "TLS",
+                    "UDP",
+                    "TCP_UDP",
+                    "GENEVE",
+                    "QUIC",
+                    "TCP_QUIC",
+                  ],
                 },
                 HealthCheckPort: {
                   type: "string",
@@ -225,12 +260,14 @@ const modifyTargetGroup: AppBlock = {
                 },
                 TargetType: {
                   type: "string",
+                  enum: ["instance", "ip", "lambda", "alb"],
                 },
                 ProtocolVersion: {
                   type: "string",
                 },
                 IpAddressType: {
                   type: "string",
+                  enum: ["ipv4", "ipv6"],
                 },
                 TargetControlPort: {
                   type: "number",

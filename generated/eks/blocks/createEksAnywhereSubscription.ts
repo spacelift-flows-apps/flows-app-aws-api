@@ -42,6 +42,7 @@ const createEksAnywhereSubscription: AppBlock = {
               },
               unit: {
                 type: "string",
+                enum: ["MONTHS"],
               },
             },
             additionalProperties: false,
@@ -58,7 +59,10 @@ const createEksAnywhereSubscription: AppBlock = {
         licenseType: {
           name: "license Type",
           description: "The license type for all licenses in the subscription.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Cluster"],
+          },
           required: false,
         },
         autoRenew: {
@@ -170,6 +174,7 @@ const createEksAnywhereSubscription: AppBlock = {
               },
               licenseType: {
                 type: "string",
+                enum: ["Cluster"],
               },
               term: {
                 type: "object",
@@ -179,6 +184,7 @@ const createEksAnywhereSubscription: AppBlock = {
                   },
                   unit: {
                     type: "string",
+                    enum: ["MONTHS"],
                   },
                 },
                 additionalProperties: false,

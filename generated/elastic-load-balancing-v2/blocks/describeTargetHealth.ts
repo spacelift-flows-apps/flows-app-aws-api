@@ -64,6 +64,7 @@ const describeTargetHealth: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["AnomalyDetection", "All"],
             },
           },
           required: false,
@@ -158,9 +159,32 @@ const describeTargetHealth: AppBlock = {
                   properties: {
                     State: {
                       type: "string",
+                      enum: [
+                        "initial",
+                        "healthy",
+                        "unhealthy",
+                        "unhealthy.draining",
+                        "unused",
+                        "draining",
+                        "unavailable",
+                      ],
                     },
                     Reason: {
                       type: "string",
+                      enum: [
+                        "Elb.RegistrationInProgress",
+                        "Elb.InitialHealthChecking",
+                        "Target.ResponseCodeMismatch",
+                        "Target.Timeout",
+                        "Target.FailedHealthChecks",
+                        "Target.NotRegistered",
+                        "Target.NotInUse",
+                        "Target.DeregistrationInProgress",
+                        "Target.InvalidState",
+                        "Target.IpUnusable",
+                        "Target.HealthCheckDisabled",
+                        "Elb.InternalError",
+                      ],
                     },
                     Description: {
                       type: "string",
@@ -173,9 +197,11 @@ const describeTargetHealth: AppBlock = {
                   properties: {
                     Result: {
                       type: "string",
+                      enum: ["anomalous", "normal"],
                     },
                     MitigationInEffect: {
                       type: "string",
+                      enum: ["yes", "no"],
                     },
                   },
                   additionalProperties: false,
@@ -185,9 +211,21 @@ const describeTargetHealth: AppBlock = {
                   properties: {
                     State: {
                       type: "string",
+                      enum: [
+                        "unknown",
+                        "no_override",
+                        "zonal_shift_active",
+                        "zonal_shift_delegated_to_dns",
+                      ],
                     },
                     Reason: {
                       type: "string",
+                      enum: [
+                        "AdministrativeOverride.Unknown",
+                        "AdministrativeOverride.NoOverride",
+                        "AdministrativeOverride.ZonalShiftActive",
+                        "AdministrativeOverride.ZonalShiftDelegatedToDns",
+                      ],
                     },
                     Description: {
                       type: "string",

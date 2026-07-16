@@ -115,6 +115,7 @@ const getServiceLastAccessedDetailsWithEntities: AppBlock = {
         properties: {
           JobStatus: {
             type: "string",
+            enum: ["IN_PROGRESS", "COMPLETED", "FAILED"],
             description: "The status of the job.",
           },
           JobCreationDate: {
@@ -143,6 +144,7 @@ const getServiceLastAccessedDetailsWithEntities: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: ["USER", "ROLE", "GROUP"],
                     },
                     Id: {
                       type: "string",

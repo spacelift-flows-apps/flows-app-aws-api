@@ -46,7 +46,10 @@ const testState: AppBlock = {
           name: "inspection Level",
           description:
             "Determines the values to return when a state is tested.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["INFO", "DEBUG", "TRACE"],
+          },
           required: false,
         },
         revealSecrets: {
@@ -94,6 +97,7 @@ const testState: AppBlock = {
               },
               fieldValidationMode: {
                 type: "string",
+                enum: ["STRICT", "PRESENT", "NONE"],
               },
             },
             additionalProperties: false,
@@ -318,6 +322,7 @@ const testState: AppBlock = {
           },
           status: {
             type: "string",
+            enum: ["SUCCEEDED", "FAILED", "RETRIABLE", "CAUGHT_ERROR"],
             description: "The execution status of the state.",
           },
         },

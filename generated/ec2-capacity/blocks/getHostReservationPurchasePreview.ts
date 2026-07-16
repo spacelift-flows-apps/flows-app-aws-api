@@ -104,6 +104,7 @@ const getHostReservationPurchasePreview: AppBlock = {
         properties: {
           CurrencyCode: {
             type: "string",
+            enum: ["USD"],
             description:
               "The currency in which the totalUpfrontPrice and totalHourlyPrice amounts are specified.",
           },
@@ -114,6 +115,7 @@ const getHostReservationPurchasePreview: AppBlock = {
               properties: {
                 CurrencyCode: {
                   type: "string",
+                  enum: ["USD"],
                 },
                 Duration: {
                   type: "number",
@@ -135,6 +137,7 @@ const getHostReservationPurchasePreview: AppBlock = {
                 },
                 PaymentOption: {
                   type: "string",
+                  enum: ["AllUpfront", "PartialUpfront", "NoUpfront"],
                 },
                 UpfrontPrice: {
                   type: "string",

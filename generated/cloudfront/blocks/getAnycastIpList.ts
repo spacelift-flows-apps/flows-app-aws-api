@@ -105,6 +105,7 @@ const getAnycastIpList: AppBlock = {
               },
               IpAddressType: {
                 type: "string",
+                enum: ["ipv4", "ipv6", "dualstack"],
               },
               IpamConfig: {
                 type: "object",
@@ -128,6 +129,20 @@ const getAnycastIpList: AppBlock = {
                         },
                         Status: {
                           type: "string",
+                          enum: [
+                            "provisioned",
+                            "failed-provision",
+                            "provisioning",
+                            "deprovisioned",
+                            "failed-deprovision",
+                            "deprovisioning",
+                            "advertised",
+                            "failed-advertise",
+                            "advertising",
+                            "withdrawn",
+                            "failed-withdraw",
+                            "withdrawing",
+                          ],
                         },
                       },
                       required: ["Cidr", "IpamPoolArn"],

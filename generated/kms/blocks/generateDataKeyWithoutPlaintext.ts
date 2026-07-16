@@ -46,7 +46,10 @@ const generateDataKeyWithoutPlaintext: AppBlock = {
         KeySpec: {
           name: "Key Spec",
           description: "The length of the data key.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["AES_256", "AES_128"],
+          },
           required: false,
         },
         NumberOfBytes: {

@@ -127,6 +127,16 @@ const describeDaemonDeployments: AppBlock = {
                 },
                 status: {
                   type: "string",
+                  enum: [
+                    "PENDING",
+                    "SUCCESSFUL",
+                    "STOPPED",
+                    "STOP_REQUESTED",
+                    "IN_PROGRESS",
+                    "ROLLBACK_IN_PROGRESS",
+                    "ROLLBACK_SUCCESSFUL",
+                    "ROLLBACK_FAILED",
+                  ],
                 },
                 statusReason: {
                   type: "string",
@@ -188,6 +198,12 @@ const describeDaemonDeployments: AppBlock = {
                     },
                     status: {
                       type: "string",
+                      enum: [
+                        "TRIGGERED",
+                        "MONITORING",
+                        "MONITORING_COMPLETE",
+                        "DISABLED",
+                      ],
                     },
                     threshold: {
                       type: "number",
@@ -200,6 +216,12 @@ const describeDaemonDeployments: AppBlock = {
                   properties: {
                     status: {
                       type: "string",
+                      enum: [
+                        "TRIGGERED",
+                        "MONITORING",
+                        "MONITORING_COMPLETE",
+                        "DISABLED",
+                      ],
                     },
                     alarmNames: {
                       type: "array",

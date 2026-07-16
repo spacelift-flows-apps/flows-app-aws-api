@@ -129,6 +129,7 @@ const getCachePolicy: AppBlock = {
                         properties: {
                           HeaderBehavior: {
                             type: "string",
+                            enum: ["none", "whitelist"],
                           },
                           Headers: {
                             type: "object",
@@ -148,6 +149,7 @@ const getCachePolicy: AppBlock = {
                         properties: {
                           CookieBehavior: {
                             type: "string",
+                            enum: ["none", "whitelist", "allExcept", "all"],
                           },
                           Cookies: {
                             type: "object",
@@ -167,6 +169,7 @@ const getCachePolicy: AppBlock = {
                         properties: {
                           QueryStringBehavior: {
                             type: "string",
+                            enum: ["none", "whitelist", "allExcept", "all"],
                           },
                           QueryStrings: {
                             type: "object",

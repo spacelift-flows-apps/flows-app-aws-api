@@ -111,6 +111,21 @@ const deleteTransitGatewayConnect: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "initiating",
+                  "initiatingRequest",
+                  "pendingAcceptance",
+                  "rollingBack",
+                  "pending",
+                  "available",
+                  "modifying",
+                  "deleting",
+                  "deleted",
+                  "failed",
+                  "rejected",
+                  "rejecting",
+                  "failing",
+                ],
               },
               CreationTime: {
                 type: "string",
@@ -120,6 +135,7 @@ const deleteTransitGatewayConnect: AppBlock = {
                 properties: {
                   Protocol: {
                     type: "string",
+                    enum: ["gre"],
                   },
                 },
                 additionalProperties: false,

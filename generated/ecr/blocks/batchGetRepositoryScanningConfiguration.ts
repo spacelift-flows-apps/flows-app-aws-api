@@ -113,6 +113,7 @@ const batchGetRepositoryScanningConfiguration: AppBlock = {
                 },
                 scanFrequency: {
                   type: "string",
+                  enum: ["SCAN_ON_PUSH", "CONTINUOUS_SCAN", "MANUAL"],
                 },
                 appliedScanFilters: {
                   type: "array",
@@ -124,6 +125,7 @@ const batchGetRepositoryScanningConfiguration: AppBlock = {
                       },
                       filterType: {
                         type: "string",
+                        enum: ["WILDCARD"],
                       },
                     },
                     required: ["filter", "filterType"],
@@ -146,6 +148,7 @@ const batchGetRepositoryScanningConfiguration: AppBlock = {
                 },
                 failureCode: {
                   type: "string",
+                  enum: ["REPOSITORY_NOT_FOUND"],
                 },
                 failureReason: {
                   type: "string",

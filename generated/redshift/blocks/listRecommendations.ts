@@ -141,6 +141,7 @@ const listRecommendations: AppBlock = {
                 },
                 ImpactRanking: {
                   type: "string",
+                  enum: ["HIGH", "MEDIUM", "LOW"],
                 },
                 RecommendationText: {
                   type: "string",
@@ -161,6 +162,7 @@ const listRecommendations: AppBlock = {
                       },
                       Type: {
                         type: "string",
+                        enum: ["SQL", "CLI"],
                       },
                     },
                     additionalProperties: false,

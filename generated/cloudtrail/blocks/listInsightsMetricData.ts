@@ -50,7 +50,10 @@ const listInsightsMetricData: AppBlock = {
           name: "Insight Type",
           description:
             "The type of CloudTrail Insights event, which is either ApiCallRateInsight or ApiErrorRateInsight.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ApiCallRateInsight", "ApiErrorRateInsight"],
+          },
           required: true,
         },
         ErrorCode: {
@@ -82,7 +85,10 @@ const listInsightsMetricData: AppBlock = {
         DataType: {
           name: "Data Type",
           description: "Type of data points to return.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["FillWithZeros", "NonZeroData"],
+          },
           required: false,
         },
         MaxResults: {
@@ -177,6 +183,7 @@ const listInsightsMetricData: AppBlock = {
           },
           InsightType: {
             type: "string",
+            enum: ["ApiCallRateInsight", "ApiErrorRateInsight"],
             description:
               "The type of CloudTrail Insights event, which is either ApiCallRateInsight or ApiErrorRateInsight.",
           },

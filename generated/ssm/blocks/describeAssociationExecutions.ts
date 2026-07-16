@@ -41,12 +41,14 @@ const describeAssociationExecutions: AppBlock = {
               properties: {
                 Key: {
                   type: "string",
+                  enum: ["ExecutionId", "Status", "CreatedTime"],
                 },
                 Value: {
                   type: "string",
                 },
                 Type: {
                   type: "string",
+                  enum: ["EQUAL", "LESS_THAN", "GREATER_THAN"],
                 },
               },
               required: ["Key", "Value", "Type"],
@@ -187,6 +189,7 @@ const describeAssociationExecutions: AppBlock = {
                       },
                       State: {
                         type: "string",
+                        enum: ["UNKNOWN", "ALARM"],
                       },
                     },
                     required: ["Name", "State"],

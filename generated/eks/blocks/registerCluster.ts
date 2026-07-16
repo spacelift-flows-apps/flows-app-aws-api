@@ -40,6 +40,17 @@ const registerCluster: AppBlock = {
               },
               provider: {
                 type: "string",
+                enum: [
+                  "EKS_ANYWHERE",
+                  "ANTHOS",
+                  "GKE",
+                  "AKS",
+                  "OPENSHIFT",
+                  "TANZU",
+                  "RANCHER",
+                  "EC2",
+                  "OTHER",
+                ],
               },
             },
             required: ["roleArn", "provider"],
@@ -192,6 +203,7 @@ const registerCluster: AppBlock = {
                   },
                   ipFamily: {
                     type: "string",
+                    enum: ["ipv4", "ipv6"],
                   },
                   elasticLoadBalancing: {
                     type: "object",
@@ -244,6 +256,14 @@ const registerCluster: AppBlock = {
               },
               status: {
                 type: "string",
+                enum: [
+                  "CREATING",
+                  "ACTIVE",
+                  "DELETING",
+                  "FAILED",
+                  "UPDATING",
+                  "PENDING",
+                ],
               },
               certificateAuthority: {
                 type: "object",
@@ -324,6 +344,27 @@ const registerCluster: AppBlock = {
                       properties: {
                         code: {
                           type: "string",
+                          enum: [
+                            "AccessDenied",
+                            "ClusterUnreachable",
+                            "ConfigurationConflict",
+                            "InternalFailure",
+                            "ResourceLimitExceeded",
+                            "ResourceNotFound",
+                            "IamRoleNotFound",
+                            "VpcNotFound",
+                            "InsufficientFreeAddresses",
+                            "Ec2ServiceNotSubscribed",
+                            "Ec2SubnetNotFound",
+                            "Ec2SecurityGroupNotFound",
+                            "KmsGrantRevoked",
+                            "KmsKeyNotFound",
+                            "KmsKeyMarkedForDeletion",
+                            "KmsKeyDisabled",
+                            "StsRegionalEndpointDisabled",
+                            "UnsupportedVersion",
+                            "Other",
+                          ],
                         },
                         message: {
                           type: "string",
@@ -372,6 +413,7 @@ const registerCluster: AppBlock = {
                   },
                   authenticationMode: {
                     type: "string",
+                    enum: ["API", "API_AND_CONFIG_MAP", "CONFIG_MAP"],
                   },
                 },
                 additionalProperties: false,
@@ -381,6 +423,7 @@ const registerCluster: AppBlock = {
                 properties: {
                   supportType: {
                     type: "string",
+                    enum: ["STANDARD", "EXTENDED"],
                   },
                 },
                 additionalProperties: false,
@@ -467,6 +510,13 @@ const registerCluster: AppBlock = {
                 properties: {
                   tier: {
                     type: "string",
+                    enum: [
+                      "standard",
+                      "tier-xl",
+                      "tier-2xl",
+                      "tier-4xl",
+                      "tier-8xl",
+                    ],
                   },
                 },
                 additionalProperties: false,

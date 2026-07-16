@@ -103,6 +103,7 @@ const getBucketWebsite: AppBlock = {
               },
               Protocol: {
                 type: "string",
+                enum: ["http", "https"],
               },
             },
             required: ["HostName"],
@@ -162,6 +163,7 @@ const getBucketWebsite: AppBlock = {
                     },
                     Protocol: {
                       type: "string",
+                      enum: ["http", "https"],
                     },
                     ReplaceKeyPrefixWith: {
                       type: "string",

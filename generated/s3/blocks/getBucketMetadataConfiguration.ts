@@ -112,6 +112,7 @@ const getBucketMetadataConfiguration: AppBlock = {
                     properties: {
                       TableBucketType: {
                         type: "string",
+                        enum: ["aws", "customer"],
                       },
                       TableBucketArn: {
                         type: "string",
@@ -151,6 +152,7 @@ const getBucketMetadataConfiguration: AppBlock = {
                         properties: {
                           Expiration: {
                             type: "string",
+                            enum: ["ENABLED", "DISABLED"],
                           },
                           Days: {
                             type: "number",
@@ -168,6 +170,7 @@ const getBucketMetadataConfiguration: AppBlock = {
                     properties: {
                       ConfigurationState: {
                         type: "string",
+                        enum: ["ENABLED", "DISABLED"],
                       },
                       TableStatus: {
                         type: "string",

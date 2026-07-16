@@ -105,6 +105,7 @@ const getObjectLockConfiguration: AppBlock = {
             properties: {
               ObjectLockEnabled: {
                 type: "string",
+                enum: ["Enabled"],
               },
               Rule: {
                 type: "object",
@@ -114,6 +115,7 @@ const getObjectLockConfiguration: AppBlock = {
                     properties: {
                       Mode: {
                         type: "string",
+                        enum: ["GOVERNANCE", "COMPLIANCE"],
                       },
                       Days: {
                         type: "number",

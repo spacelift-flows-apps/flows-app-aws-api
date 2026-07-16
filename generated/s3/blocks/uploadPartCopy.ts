@@ -135,7 +135,10 @@ const uploadPartCopy: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         ExpectedBucketOwner: {
@@ -269,6 +272,7 @@ const uploadPartCopy: AppBlock = {
           },
           ServerSideEncryption: {
             type: "string",
+            enum: ["AES256", "aws:fsx", "aws:kms", "aws:kms:dsse"],
             description:
               "The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.",
           },
@@ -294,6 +298,7 @@ const uploadPartCopy: AppBlock = {
           },
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },

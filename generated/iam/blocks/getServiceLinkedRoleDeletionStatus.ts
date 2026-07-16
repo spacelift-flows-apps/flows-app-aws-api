@@ -92,6 +92,7 @@ const getServiceLinkedRoleDeletionStatus: AppBlock = {
         properties: {
           Status: {
             type: "string",
+            enum: ["SUCCEEDED", "IN_PROGRESS", "FAILED", "NOT_STARTED"],
             description: "The status of the deletion.",
           },
           Reason: {

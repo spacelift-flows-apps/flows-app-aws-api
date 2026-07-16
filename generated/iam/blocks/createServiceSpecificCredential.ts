@@ -137,6 +137,7 @@ const createServiceSpecificCredential: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["Active", "Inactive", "Expired"],
               },
             },
             required: [

@@ -265,6 +265,7 @@ const modifyScheduledAction: AppBlock = {
           },
           State: {
             type: "string",
+            enum: ["ACTIVE", "DISABLED"],
             description: "The state of the scheduled action.",
           },
           NextInvocations: {

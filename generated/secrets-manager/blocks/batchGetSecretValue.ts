@@ -45,6 +45,15 @@ const batchGetSecretValue: AppBlock = {
               properties: {
                 Key: {
                   type: "string",
+                  enum: [
+                    "description",
+                    "name",
+                    "tag-key",
+                    "tag-value",
+                    "primary-region",
+                    "owning-service",
+                    "all",
+                  ],
                 },
                 Values: {
                   type: "array",

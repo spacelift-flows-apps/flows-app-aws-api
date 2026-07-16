@@ -99,6 +99,14 @@ const deleteDBProxyEndpoint: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: [
+                  "available",
+                  "modifying",
+                  "incompatible-network",
+                  "insufficient-resource-limits",
+                  "creating",
+                  "deleting",
+                ],
               },
               VpcId: {
                 type: "string",
@@ -123,12 +131,14 @@ const deleteDBProxyEndpoint: AppBlock = {
               },
               TargetRole: {
                 type: "string",
+                enum: ["READ_WRITE", "READ_ONLY"],
               },
               IsDefault: {
                 type: "boolean",
               },
               EndpointNetworkType: {
                 type: "string",
+                enum: ["IPV4", "IPV6", "DUAL"],
               },
             },
             additionalProperties: false,

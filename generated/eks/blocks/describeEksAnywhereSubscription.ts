@@ -113,6 +113,7 @@ const describeEksAnywhereSubscription: AppBlock = {
               },
               licenseType: {
                 type: "string",
+                enum: ["Cluster"],
               },
               term: {
                 type: "object",
@@ -122,6 +123,7 @@ const describeEksAnywhereSubscription: AppBlock = {
                   },
                   unit: {
                     type: "string",
+                    enum: ["MONTHS"],
                   },
                 },
                 additionalProperties: false,

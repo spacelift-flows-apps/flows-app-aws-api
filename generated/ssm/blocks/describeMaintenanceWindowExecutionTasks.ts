@@ -141,6 +141,16 @@ const describeMaintenanceWindowExecutionTasks: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "PENDING",
+                    "IN_PROGRESS",
+                    "SUCCESS",
+                    "FAILED",
+                    "TIMED_OUT",
+                    "CANCELLING",
+                    "CANCELLED",
+                    "SKIPPED_OVERLAPPING",
+                  ],
                 },
                 StatusDetails: {
                   type: "string",
@@ -156,6 +166,12 @@ const describeMaintenanceWindowExecutionTasks: AppBlock = {
                 },
                 TaskType: {
                   type: "string",
+                  enum: [
+                    "RUN_COMMAND",
+                    "AUTOMATION",
+                    "STEP_FUNCTIONS",
+                    "LAMBDA",
+                  ],
                 },
                 AlarmConfiguration: {
                   type: "object",
@@ -188,6 +204,7 @@ const describeMaintenanceWindowExecutionTasks: AppBlock = {
                       },
                       State: {
                         type: "string",
+                        enum: ["UNKNOWN", "ALARM"],
                       },
                     },
                     required: ["Name", "State"],

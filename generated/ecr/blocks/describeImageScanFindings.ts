@@ -157,6 +157,18 @@ const describeImageScanFindings: AppBlock = {
             properties: {
               status: {
                 type: "string",
+                enum: [
+                  "IN_PROGRESS",
+                  "COMPLETE",
+                  "FAILED",
+                  "UNSUPPORTED_IMAGE",
+                  "ACTIVE",
+                  "PENDING",
+                  "SCAN_ELIGIBILITY_EXPIRED",
+                  "FINDINGS_UNAVAILABLE",
+                  "LIMIT_EXCEEDED",
+                  "IMAGE_ARCHIVED",
+                ],
               },
               description: {
                 type: "string",
@@ -196,6 +208,14 @@ const describeImageScanFindings: AppBlock = {
                     },
                     severity: {
                       type: "string",
+                      enum: [
+                        "INFORMATIONAL",
+                        "LOW",
+                        "MEDIUM",
+                        "HIGH",
+                        "CRITICAL",
+                        "UNDEFINED",
+                      ],
                     },
                     attributes: {
                       type: "array",

@@ -114,6 +114,7 @@ const getParameterHistory: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: ["String", "StringList", "SecureString"],
                 },
                 KeyId: {
                   type: "string",
@@ -144,6 +145,7 @@ const getParameterHistory: AppBlock = {
                 },
                 Tier: {
                   type: "string",
+                  enum: ["Standard", "Advanced", "Intelligent-Tiering"],
                 },
                 Policies: {
                   type: "array",

@@ -201,6 +201,7 @@ const deleteTaskDefinitions: AppBlock = {
                       },
                       versionConsistency: {
                         type: "string",
+                        enum: ["enabled", "disabled"],
                       },
                       hostname: {
                         type: "string",
@@ -310,6 +311,7 @@ const deleteTaskDefinitions: AppBlock = {
                 },
                 networkMode: {
                   type: "string",
+                  enum: ["bridge", "host", "awsvpc", "none"],
                 },
                 revision: {
                   type: "number",
@@ -386,6 +388,7 @@ const deleteTaskDefinitions: AppBlock = {
                 },
                 status: {
                   type: "string",
+                  enum: ["ACTIVE", "INACTIVE", "DELETE_IN_PROGRESS"],
                 },
                 requiresAttributes: {
                   type: "array",
@@ -400,6 +403,7 @@ const deleteTaskDefinitions: AppBlock = {
                       },
                       targetType: {
                         type: "string",
+                        enum: ["container-instance"],
                       },
                       targetId: {
                         type: "string",
@@ -416,6 +420,7 @@ const deleteTaskDefinitions: AppBlock = {
                     properties: {
                       type: {
                         type: "string",
+                        enum: ["memberOf"],
                       },
                       expression: {
                         type: "string",
@@ -428,6 +433,7 @@ const deleteTaskDefinitions: AppBlock = {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                   },
                 },
                 runtimePlatform: {
@@ -435,9 +441,22 @@ const deleteTaskDefinitions: AppBlock = {
                   properties: {
                     cpuArchitecture: {
                       type: "string",
+                      enum: ["X86_64", "ARM64"],
                     },
                     operatingSystemFamily: {
                       type: "string",
+                      enum: [
+                        "WINDOWS_SERVER_2019_FULL",
+                        "WINDOWS_SERVER_2019_CORE",
+                        "WINDOWS_SERVER_2016_FULL",
+                        "WINDOWS_SERVER_2004_CORE",
+                        "WINDOWS_SERVER_2022_CORE",
+                        "WINDOWS_SERVER_2022_FULL",
+                        "WINDOWS_SERVER_2025_CORE",
+                        "WINDOWS_SERVER_2025_FULL",
+                        "WINDOWS_SERVER_20H2_CORE",
+                        "LINUX",
+                      ],
                     },
                   },
                   additionalProperties: false,
@@ -446,6 +465,7 @@ const deleteTaskDefinitions: AppBlock = {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                   },
                 },
                 cpu: {
@@ -472,15 +492,18 @@ const deleteTaskDefinitions: AppBlock = {
                 },
                 pidMode: {
                   type: "string",
+                  enum: ["host", "task"],
                 },
                 ipcMode: {
                   type: "string",
+                  enum: ["host", "task", "none"],
                 },
                 proxyConfiguration: {
                   type: "object",
                   properties: {
                     type: {
                       type: "string",
+                      enum: ["APPMESH"],
                     },
                     containerName: {
                       type: "string",

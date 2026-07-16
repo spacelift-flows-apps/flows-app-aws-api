@@ -108,6 +108,12 @@ const getBucketEncryption: AppBlock = {
                       properties: {
                         SSEAlgorithm: {
                           type: "string",
+                          enum: [
+                            "AES256",
+                            "aws:fsx",
+                            "aws:kms",
+                            "aws:kms:dsse",
+                          ],
                         },
                         KMSMasterKeyID: {
                           type: "string",

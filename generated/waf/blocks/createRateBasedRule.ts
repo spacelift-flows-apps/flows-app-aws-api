@@ -38,7 +38,10 @@ const createRateBasedRule: AppBlock = {
           name: "Rate Key",
           description:
             "The field that AWS WAF uses to determine if requests are likely arriving from a single source and thus subject to rate monitoring.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["IP"],
+          },
           required: true,
         },
         RateLimit: {
@@ -156,6 +159,15 @@ const createRateBasedRule: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: [
+                        "IPMatch",
+                        "ByteMatch",
+                        "SqlInjectionMatch",
+                        "GeoMatch",
+                        "SizeConstraint",
+                        "XssMatch",
+                        "RegexMatch",
+                      ],
                     },
                     DataId: {
                       type: "string",
@@ -167,6 +179,7 @@ const createRateBasedRule: AppBlock = {
               },
               RateKey: {
                 type: "string",
+                enum: ["IP"],
               },
               RateLimit: {
                 type: "number",

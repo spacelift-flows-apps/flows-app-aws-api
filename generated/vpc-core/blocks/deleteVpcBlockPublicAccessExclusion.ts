@@ -105,12 +105,25 @@ const deleteVpcBlockPublicAccessExclusion: AppBlock = {
               },
               InternetGatewayExclusionMode: {
                 type: "string",
+                enum: ["allow-bidirectional", "allow-egress"],
               },
               ResourceArn: {
                 type: "string",
               },
               State: {
                 type: "string",
+                enum: [
+                  "create-in-progress",
+                  "create-complete",
+                  "create-failed",
+                  "update-in-progress",
+                  "update-complete",
+                  "update-failed",
+                  "delete-in-progress",
+                  "delete-complete",
+                  "disable-in-progress",
+                  "disable-complete",
+                ],
               },
               Reason: {
                 type: "string",

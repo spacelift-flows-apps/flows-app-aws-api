@@ -96,6 +96,7 @@ const deleteHostedZone: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["PENDING", "INSYNC"],
               },
               SubmittedAt: {
                 type: "string",

@@ -292,6 +292,7 @@ const deregisterTaskDefinition: AppBlock = {
                     },
                     versionConsistency: {
                       type: "string",
+                      enum: ["enabled", "disabled"],
                     },
                     hostname: {
                       type: "string",
@@ -371,6 +372,16 @@ const deregisterTaskDefinition: AppBlock = {
                       properties: {
                         logDriver: {
                           type: "string",
+                          enum: [
+                            "json-file",
+                            "syslog",
+                            "journald",
+                            "gelf",
+                            "fluentd",
+                            "awslogs",
+                            "splunk",
+                            "awsfirelens",
+                          ],
                         },
                         options: {
                           type: "object",
@@ -437,6 +448,7 @@ const deregisterTaskDefinition: AppBlock = {
                       properties: {
                         type: {
                           type: "string",
+                          enum: ["fluentd", "fluentbit"],
                         },
                         options: {
                           type: "object",
@@ -469,6 +481,7 @@ const deregisterTaskDefinition: AppBlock = {
               },
               networkMode: {
                 type: "string",
+                enum: ["bridge", "host", "awsvpc", "none"],
               },
               revision: {
                 type: "number",
@@ -495,6 +508,7 @@ const deregisterTaskDefinition: AppBlock = {
                       properties: {
                         scope: {
                           type: "string",
+                          enum: ["task", "shared"],
                         },
                         autoprovision: {
                           type: "boolean",
@@ -528,6 +542,7 @@ const deregisterTaskDefinition: AppBlock = {
                         },
                         transitEncryption: {
                           type: "string",
+                          enum: ["ENABLED", "DISABLED"],
                         },
                         transitEncryptionPort: {
                           type: "number",
@@ -598,6 +613,7 @@ const deregisterTaskDefinition: AppBlock = {
               },
               status: {
                 type: "string",
+                enum: ["ACTIVE", "INACTIVE", "DELETE_IN_PROGRESS"],
               },
               requiresAttributes: {
                 type: "array",
@@ -612,6 +628,7 @@ const deregisterTaskDefinition: AppBlock = {
                     },
                     targetType: {
                       type: "string",
+                      enum: ["container-instance"],
                     },
                     targetId: {
                       type: "string",
@@ -628,6 +645,7 @@ const deregisterTaskDefinition: AppBlock = {
                   properties: {
                     type: {
                       type: "string",
+                      enum: ["memberOf"],
                     },
                     expression: {
                       type: "string",
@@ -640,6 +658,7 @@ const deregisterTaskDefinition: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                 },
               },
               runtimePlatform: {
@@ -647,9 +666,22 @@ const deregisterTaskDefinition: AppBlock = {
                 properties: {
                   cpuArchitecture: {
                     type: "string",
+                    enum: ["X86_64", "ARM64"],
                   },
                   operatingSystemFamily: {
                     type: "string",
+                    enum: [
+                      "WINDOWS_SERVER_2019_FULL",
+                      "WINDOWS_SERVER_2019_CORE",
+                      "WINDOWS_SERVER_2016_FULL",
+                      "WINDOWS_SERVER_2004_CORE",
+                      "WINDOWS_SERVER_2022_CORE",
+                      "WINDOWS_SERVER_2022_FULL",
+                      "WINDOWS_SERVER_2025_CORE",
+                      "WINDOWS_SERVER_2025_FULL",
+                      "WINDOWS_SERVER_20H2_CORE",
+                      "LINUX",
+                    ],
                   },
                 },
                 additionalProperties: false,
@@ -658,6 +690,7 @@ const deregisterTaskDefinition: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                 },
               },
               cpu: {
@@ -684,15 +717,18 @@ const deregisterTaskDefinition: AppBlock = {
               },
               pidMode: {
                 type: "string",
+                enum: ["host", "task"],
               },
               ipcMode: {
                 type: "string",
+                enum: ["host", "task", "none"],
               },
               proxyConfiguration: {
                 type: "object",
                 properties: {
                   type: {
                     type: "string",
+                    enum: ["APPMESH"],
                   },
                   containerName: {
                     type: "string",

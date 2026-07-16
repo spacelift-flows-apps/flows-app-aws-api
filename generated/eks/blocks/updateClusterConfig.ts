@@ -79,6 +79,13 @@ const updateClusterConfig: AppBlock = {
                       type: "array",
                       items: {
                         type: "string",
+                        enum: [
+                          "api",
+                          "audit",
+                          "authenticator",
+                          "controllerManager",
+                          "scheduler",
+                        ],
                       },
                     },
                     enabled: {
@@ -108,6 +115,7 @@ const updateClusterConfig: AppBlock = {
             properties: {
               authenticationMode: {
                 type: "string",
+                enum: ["API", "API_AND_CONFIG_MAP", "CONFIG_MAP"],
               },
             },
             additionalProperties: false,
@@ -123,6 +131,7 @@ const updateClusterConfig: AppBlock = {
             properties: {
               supportType: {
                 type: "string",
+                enum: ["STANDARD", "EXTENDED"],
               },
             },
             additionalProperties: false,
@@ -178,6 +187,7 @@ const updateClusterConfig: AppBlock = {
               },
               ipFamily: {
                 type: "string",
+                enum: ["ipv4", "ipv6"],
               },
               elasticLoadBalancing: {
                 type: "object",
@@ -270,6 +280,13 @@ const updateClusterConfig: AppBlock = {
             properties: {
               tier: {
                 type: "string",
+                enum: [
+                  "standard",
+                  "tier-xl",
+                  "tier-2xl",
+                  "tier-4xl",
+                  "tier-8xl",
+                ],
               },
             },
             additionalProperties: false,
@@ -342,9 +359,29 @@ const updateClusterConfig: AppBlock = {
               },
               status: {
                 type: "string",
+                enum: ["InProgress", "Failed", "Cancelled", "Successful"],
               },
               type: {
                 type: "string",
+                enum: [
+                  "VersionUpdate",
+                  "EndpointAccessUpdate",
+                  "LoggingUpdate",
+                  "ConfigUpdate",
+                  "AssociateIdentityProviderConfig",
+                  "DisassociateIdentityProviderConfig",
+                  "AssociateEncryptionConfig",
+                  "AddonUpdate",
+                  "VpcConfigUpdate",
+                  "AccessConfigUpdate",
+                  "UpgradePolicyUpdate",
+                  "ZonalShiftConfigUpdate",
+                  "AutoModeUpdate",
+                  "RemoteNetworkConfigUpdate",
+                  "DeletionProtectionUpdate",
+                  "ControlPlaneScalingConfigUpdate",
+                  "VendedLogsUpdate",
+                ],
               },
               params: {
                 type: "array",
@@ -353,6 +390,53 @@ const updateClusterConfig: AppBlock = {
                   properties: {
                     type: {
                       type: "string",
+                      enum: [
+                        "Version",
+                        "PlatformVersion",
+                        "EndpointPrivateAccess",
+                        "EndpointPublicAccess",
+                        "ClusterLogging",
+                        "DesiredSize",
+                        "LabelsToAdd",
+                        "LabelsToRemove",
+                        "TaintsToAdd",
+                        "TaintsToRemove",
+                        "MaxSize",
+                        "MinSize",
+                        "ReleaseVersion",
+                        "PublicAccessCidrs",
+                        "LaunchTemplateName",
+                        "LaunchTemplateVersion",
+                        "IdentityProviderConfig",
+                        "EncryptionConfig",
+                        "AddonVersion",
+                        "ServiceAccountRoleArn",
+                        "ResolveConflicts",
+                        "MaxUnavailable",
+                        "MaxUnavailablePercentage",
+                        "NodeRepairEnabled",
+                        "UpdateStrategy",
+                        "ConfigurationValues",
+                        "SecurityGroups",
+                        "Subnets",
+                        "AuthenticationMode",
+                        "PodIdentityAssociations",
+                        "UpgradePolicy",
+                        "ZonalShiftConfig",
+                        "ComputeConfig",
+                        "StorageConfig",
+                        "KubernetesNetworkConfig",
+                        "RemoteNetworkConfig",
+                        "DeletionProtection",
+                        "NodeRepairConfig",
+                        "UpdatedTier",
+                        "PreviousTier",
+                        "WarmPoolEnabled",
+                        "WarmPoolMaxGroupPreparedCapacity",
+                        "WarmPoolMinSize",
+                        "WarmPoolState",
+                        "WarmPoolReuseOnScaleIn",
+                      ],
                     },
                     value: {
                       type: "string",
@@ -371,6 +455,25 @@ const updateClusterConfig: AppBlock = {
                   properties: {
                     errorCode: {
                       type: "string",
+                      enum: [
+                        "SubnetNotFound",
+                        "SecurityGroupNotFound",
+                        "EniLimitReached",
+                        "IpNotAvailable",
+                        "AccessDenied",
+                        "OperationNotPermitted",
+                        "VpcIdNotFound",
+                        "Unknown",
+                        "NodeCreationFailure",
+                        "PodEvictionFailure",
+                        "InsufficientFreeAddresses",
+                        "ClusterUnreachable",
+                        "InsufficientNumberOfReplicas",
+                        "ConfigurationConflict",
+                        "AdmissionRequestDenied",
+                        "UnsupportedAddonModification",
+                        "K8sResourceNotFound",
+                      ],
                     },
                     errorMessage: {
                       type: "string",

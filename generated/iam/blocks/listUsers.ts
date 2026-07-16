@@ -127,6 +127,7 @@ const listUsers: AppBlock = {
                   properties: {
                     PermissionsBoundaryType: {
                       type: "string",
+                      enum: ["PermissionsBoundaryPolicy"],
                     },
                     PermissionsBoundaryArn: {
                       type: "string",

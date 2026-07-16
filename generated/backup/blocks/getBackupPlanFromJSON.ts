@@ -132,6 +132,7 @@ const getBackupPlanFromJSON: AppBlock = {
                         },
                         DeleteAfterEvent: {
                           type: "string",
+                          enum: ["DELETE_AFTER_COPY"],
                         },
                       },
                       additionalProperties: false,
@@ -214,6 +215,7 @@ const getBackupPlanFromJSON: AppBlock = {
                   properties: {
                     MalwareScanner: {
                       type: "string",
+                      enum: ["GUARDDUTY"],
                     },
                     ResourceTypes: {
                       type: "array",

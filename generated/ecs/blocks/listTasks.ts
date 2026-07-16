@@ -73,14 +73,20 @@ const listTasks: AppBlock = {
           name: "desired Status",
           description:
             "The task desired status to use when filtering the ListTasks results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["RUNNING", "PENDING", "STOPPED"],
+          },
           required: false,
         },
         launchType: {
           name: "launch Type",
           description:
             "The launch type to use when filtering the ListTasks results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
+          },
           required: false,
         },
         daemonName: {

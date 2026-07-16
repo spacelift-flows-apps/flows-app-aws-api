@@ -131,6 +131,7 @@ const associateTrunkInterface: AppBlock = {
               },
               InterfaceProtocol: {
                 type: "string",
+                enum: ["VLAN", "GRE"],
               },
               VlanId: {
                 type: "number",

@@ -125,6 +125,7 @@ const registerContainerInstance: AppBlock = {
                 },
                 targetType: {
                   type: "string",
+                  enum: ["container-instance"],
                 },
                 targetId: {
                   type: "string",
@@ -150,6 +151,7 @@ const registerContainerInstance: AppBlock = {
                 },
                 type: {
                   type: "string",
+                  enum: ["GPU"],
                 },
               },
               required: ["id", "type"],
@@ -346,6 +348,14 @@ const registerContainerInstance: AppBlock = {
               },
               agentUpdateStatus: {
                 type: "string",
+                enum: [
+                  "PENDING",
+                  "STAGING",
+                  "STAGED",
+                  "UPDATING",
+                  "UPDATED",
+                  "FAILED",
+                ],
               },
               attributes: {
                 type: "array",
@@ -360,6 +370,7 @@ const registerContainerInstance: AppBlock = {
                     },
                     targetType: {
                       type: "string",
+                      enum: ["container-instance"],
                     },
                     targetId: {
                       type: "string",
@@ -421,6 +432,12 @@ const registerContainerInstance: AppBlock = {
                 properties: {
                   overallStatus: {
                     type: "string",
+                    enum: [
+                      "OK",
+                      "IMPAIRED",
+                      "INSUFFICIENT_DATA",
+                      "INITIALIZING",
+                    ],
                   },
                   details: {
                     type: "array",
@@ -429,9 +446,20 @@ const registerContainerInstance: AppBlock = {
                       properties: {
                         type: {
                           type: "string",
+                          enum: [
+                            "CONTAINER_RUNTIME",
+                            "ACCELERATED_COMPUTE",
+                            "DAEMON",
+                          ],
                         },
                         status: {
                           type: "string",
+                          enum: [
+                            "OK",
+                            "IMPAIRED",
+                            "INSUFFICIENT_DATA",
+                            "INITIALIZING",
+                          ],
                         },
                         statusReason: {
                           type: "string",

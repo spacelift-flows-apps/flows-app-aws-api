@@ -142,6 +142,12 @@ const getPredictiveScalingForecast: AppBlock = {
                       properties: {
                         PredefinedMetricType: {
                           type: "string",
+                          enum: [
+                            "ASGCPUUtilization",
+                            "ASGNetworkIn",
+                            "ASGNetworkOut",
+                            "ALBRequestCount",
+                          ],
                         },
                         ResourceLabel: {
                           type: "string",
@@ -155,6 +161,12 @@ const getPredictiveScalingForecast: AppBlock = {
                       properties: {
                         PredefinedMetricType: {
                           type: "string",
+                          enum: [
+                            "ASGAverageCPUUtilization",
+                            "ASGAverageNetworkIn",
+                            "ASGAverageNetworkOut",
+                            "ALBRequestCountPerTarget",
+                          ],
                         },
                         ResourceLabel: {
                           type: "string",
@@ -168,6 +180,12 @@ const getPredictiveScalingForecast: AppBlock = {
                       properties: {
                         PredefinedMetricType: {
                           type: "string",
+                          enum: [
+                            "ASGTotalCPUUtilization",
+                            "ASGTotalNetworkIn",
+                            "ASGTotalNetworkOut",
+                            "ALBTargetGroupRequestCount",
+                          ],
                         },
                         ResourceLabel: {
                           type: "string",

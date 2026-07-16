@@ -244,6 +244,7 @@ const getDistributionConfig: AppBlock = {
                         },
                         SelectionCriteria: {
                           type: "string",
+                          enum: ["default", "media-quality-based"],
                         },
                       },
                       required: ["Id", "FailoverCriteria", "Members"],
@@ -300,6 +301,7 @@ const getDistributionConfig: AppBlock = {
                   },
                   ViewerProtocolPolicy: {
                     type: "string",
+                    enum: ["allow-all", "https-only", "redirect-to-https"],
                   },
                   AllowedMethods: {
                     type: "object",
@@ -311,6 +313,15 @@ const getDistributionConfig: AppBlock = {
                         type: "array",
                         items: {
                           type: "string",
+                          enum: [
+                            "GET",
+                            "HEAD",
+                            "POST",
+                            "PUT",
+                            "PATCH",
+                            "OPTIONS",
+                            "DELETE",
+                          ],
                         },
                       },
                       CachedMethods: {
@@ -418,6 +429,7 @@ const getDistributionConfig: AppBlock = {
                         properties: {
                           Forward: {
                             type: "string",
+                            enum: ["none", "whitelist", "all"],
                           },
                           WhitelistedNames: {
                             type: "object",
@@ -516,6 +528,11 @@ const getDistributionConfig: AppBlock = {
                         },
                         ViewerProtocolPolicy: {
                           type: "string",
+                          enum: [
+                            "allow-all",
+                            "https-only",
+                            "redirect-to-https",
+                          ],
                         },
                         AllowedMethods: {
                           type: "object",
@@ -662,6 +679,12 @@ const getDistributionConfig: AppBlock = {
               },
               PriceClass: {
                 type: "string",
+                enum: [
+                  "PriceClass_100",
+                  "PriceClass_200",
+                  "PriceClass_All",
+                  "None",
+                ],
               },
               Enabled: {
                 type: "boolean",
@@ -680,15 +703,28 @@ const getDistributionConfig: AppBlock = {
                   },
                   SSLSupportMethod: {
                     type: "string",
+                    enum: ["sni-only", "vip", "static-ip"],
                   },
                   MinimumProtocolVersion: {
                     type: "string",
+                    enum: [
+                      "SSLv3",
+                      "TLSv1",
+                      "TLSv1_2016",
+                      "TLSv1.1_2016",
+                      "TLSv1.2_2018",
+                      "TLSv1.2_2019",
+                      "TLSv1.2_2021",
+                      "TLSv1.3_2025",
+                      "TLSv1.2_2025",
+                    ],
                   },
                   Certificate: {
                     type: "string",
                   },
                   CertificateSource: {
                     type: "string",
+                    enum: ["cloudfront", "iam", "acm"],
                   },
                 },
                 additionalProperties: false,
@@ -701,6 +737,7 @@ const getDistributionConfig: AppBlock = {
                     properties: {
                       RestrictionType: {
                         type: "string",
+                        enum: ["blacklist", "whitelist", "none"],
                       },
                       Quantity: {
                         type: "number",
@@ -724,6 +761,7 @@ const getDistributionConfig: AppBlock = {
               },
               HttpVersion: {
                 type: "string",
+                enum: ["http1.1", "http2", "http3", "http2and3"],
               },
               IsIPV6Enabled: {
                 type: "boolean",
@@ -765,12 +803,14 @@ const getDistributionConfig: AppBlock = {
               },
               ConnectionMode: {
                 type: "string",
+                enum: ["direct", "tenant-only"],
               },
               ViewerMtlsConfig: {
                 type: "object",
                 properties: {
                   Mode: {
                     type: "string",
+                    enum: ["required", "optional"],
                   },
                   TrustStoreConfig: {
                     type: "object",

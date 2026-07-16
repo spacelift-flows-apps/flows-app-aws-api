@@ -80,6 +80,7 @@ const getLifecyclePolicyPreview: AppBlock = {
             properties: {
               tagStatus: {
                 type: "string",
+                enum: ["TAGGED", "UNTAGGED", "ANY"],
               },
             },
             additionalProperties: false,
@@ -160,6 +161,7 @@ const getLifecyclePolicyPreview: AppBlock = {
           },
           status: {
             type: "string",
+            enum: ["IN_PROGRESS", "COMPLETE", "EXPIRED", "FAILED"],
             description: "The status of the lifecycle policy preview request.",
           },
           nextToken: {
@@ -189,9 +191,11 @@ const getLifecyclePolicyPreview: AppBlock = {
                   properties: {
                     type: {
                       type: "string",
+                      enum: ["EXPIRE", "TRANSITION"],
                     },
                     targetStorageClass: {
                       type: "string",
+                      enum: ["ARCHIVE"],
                     },
                   },
                   additionalProperties: false,
@@ -201,6 +205,7 @@ const getLifecyclePolicyPreview: AppBlock = {
                 },
                 storageClass: {
                   type: "string",
+                  enum: ["ARCHIVE", "STANDARD"],
                 },
               },
               additionalProperties: false,
@@ -220,6 +225,7 @@ const getLifecyclePolicyPreview: AppBlock = {
                   properties: {
                     targetStorageClass: {
                       type: "string",
+                      enum: ["ARCHIVE"],
                     },
                     imageTotalCount: {
                       type: "number",

@@ -28,27 +28,39 @@ const listTypes: AppBlock = {
           name: "Visibility",
           description:
             "The scope at which the extensions are visible and usable in CloudFormation operations.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["PUBLIC", "PRIVATE"],
+          },
           required: false,
         },
         ProvisioningType: {
           name: "Provisioning Type",
           description:
             "For resource types, the provisioning behavior of the resource type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["NON_PROVISIONABLE", "IMMUTABLE", "FULLY_MUTABLE"],
+          },
           required: false,
         },
         DeprecatedStatus: {
           name: "Deprecated Status",
           description:
             "The deprecation status of the extension that you want to get summary information about.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["LIVE", "DEPRECATED"],
+          },
           required: false,
         },
         Type: {
           name: "Type",
           description: "The type of extension.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["RESOURCE", "MODULE", "HOOK"],
+          },
           required: false,
         },
         Filters: {
@@ -60,6 +72,7 @@ const listTypes: AppBlock = {
             properties: {
               Category: {
                 type: "string",
+                enum: ["REGISTERED", "ACTIVATED", "THIRD_PARTY", "AWS_TYPES"],
               },
               PublisherId: {
                 type: "string",
@@ -150,6 +163,7 @@ const listTypes: AppBlock = {
               properties: {
                 Type: {
                   type: "string",
+                  enum: ["RESOURCE", "MODULE", "HOOK"],
                 },
                 TypeName: {
                   type: "string",
@@ -180,6 +194,7 @@ const listTypes: AppBlock = {
                 },
                 PublisherIdentity: {
                   type: "string",
+                  enum: ["AWS_Marketplace", "GitHub", "Bitbucket"],
                 },
                 PublisherName: {
                   type: "string",

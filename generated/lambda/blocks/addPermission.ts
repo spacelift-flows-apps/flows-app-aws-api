@@ -93,7 +93,10 @@ const addPermission: AppBlock = {
           name: "Function Url Auth Type",
           description:
             "The type of authentication that your function URL uses.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["NONE", "AWS_IAM"],
+          },
           required: false,
         },
         InvokedViaFunctionUrl: {

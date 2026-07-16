@@ -132,6 +132,7 @@ const deleteVpcOrigin: AppBlock = {
                   },
                   OriginProtocolPolicy: {
                     type: "string",
+                    enum: ["http-only", "match-viewer", "https-only"],
                   },
                   OriginSslProtocols: {
                     type: "object",
@@ -143,6 +144,7 @@ const deleteVpcOrigin: AppBlock = {
                         type: "array",
                         items: {
                           type: "string",
+                          enum: ["SSLv3", "TLSv1", "TLSv1.1", "TLSv1.2"],
                         },
                       },
                     },

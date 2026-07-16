@@ -34,7 +34,10 @@ const putDeliveryDestination: AppBlock = {
           name: "output Format",
           description:
             "The format for the logs that this delivery destination will receive.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["json", "plain", "w3c", "raw", "parquet"],
+          },
           required: false,
         },
         deliveryDestinationConfiguration: {
@@ -56,7 +59,10 @@ const putDeliveryDestination: AppBlock = {
         deliveryDestinationType: {
           name: "delivery Destination Type",
           description: "The type of delivery destination.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["S3", "CWL", "FH", "XRAY"],
+          },
           required: false,
         },
         tags: {
@@ -140,9 +146,11 @@ const putDeliveryDestination: AppBlock = {
               },
               deliveryDestinationType: {
                 type: "string",
+                enum: ["S3", "CWL", "FH", "XRAY"],
               },
               outputFormat: {
                 type: "string",
+                enum: ["json", "plain", "w3c", "raw", "parquet"],
               },
               deliveryDestinationConfiguration: {
                 type: "object",

@@ -103,6 +103,7 @@ const deleteCarrierGateway: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["pending", "available", "deleting", "deleted"],
               },
               OwnerId: {
                 type: "string",

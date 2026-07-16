@@ -33,7 +33,10 @@ const getFunction: AppBlock = {
         Stage: {
           name: "Stage",
           description: "The function's stage, either DEVELOPMENT or LIVE.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["DEVELOPMENT", "LIVE"],
+          },
           required: false,
         },
       },

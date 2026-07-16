@@ -106,6 +106,7 @@ const attachVpnGateway: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["attaching", "attached", "detaching", "detached"],
               },
             },
             additionalProperties: false,

@@ -93,6 +93,7 @@ const disableImageBlockPublicAccess: AppBlock = {
         properties: {
           ImageBlockPublicAccessState: {
             type: "string",
+            enum: ["unblocked"],
             description:
               "Returns unblocked if the request succeeds; otherwise, it returns an error.",
           },

@@ -92,6 +92,7 @@ const listOrganizationsFeatures: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["RootCredentialsManagement", "RootSessions"],
             },
             description:
               "Specifies the features that are currently available in your organization.",

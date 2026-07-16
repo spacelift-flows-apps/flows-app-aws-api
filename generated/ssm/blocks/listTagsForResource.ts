@@ -24,7 +24,20 @@ const listTagsForResource: AppBlock = {
         ResourceType: {
           name: "Resource Type",
           description: "Returns a list of tags for a specific resource type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "Document",
+              "ManagedInstance",
+              "MaintenanceWindow",
+              "Parameter",
+              "PatchBaseline",
+              "OpsItem",
+              "OpsMetadata",
+              "Automation",
+              "Association",
+            ],
+          },
           required: true,
         },
         ResourceId: {

@@ -85,6 +85,7 @@ const submitTaskStateChange: AppBlock = {
                       },
                       protocol: {
                         type: "string",
+                        enum: ["tcp", "udp"],
                       },
                       containerPortRange: {
                         type: "string",
@@ -144,6 +145,7 @@ const submitTaskStateChange: AppBlock = {
                 },
                 managedAgentName: {
                   type: "string",
+                  enum: ["ExecuteCommandAgent"],
                 },
                 status: {
                   type: "string",

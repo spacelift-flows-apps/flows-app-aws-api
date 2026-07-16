@@ -111,9 +111,27 @@ const cancelSpotFleetRequests: AppBlock = {
               properties: {
                 CurrentSpotFleetRequestState: {
                   type: "string",
+                  enum: [
+                    "submitted",
+                    "active",
+                    "cancelled",
+                    "failed",
+                    "cancelled_running",
+                    "cancelled_terminating",
+                    "modifying",
+                  ],
                 },
                 PreviousSpotFleetRequestState: {
                   type: "string",
+                  enum: [
+                    "submitted",
+                    "active",
+                    "cancelled",
+                    "failed",
+                    "cancelled_running",
+                    "cancelled_terminating",
+                    "modifying",
+                  ],
                 },
                 SpotFleetRequestId: {
                   type: "string",
@@ -134,6 +152,12 @@ const cancelSpotFleetRequests: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: [
+                        "fleetRequestIdDoesNotExist",
+                        "fleetRequestIdMalformed",
+                        "fleetRequestNotInCancellableState",
+                        "unexpectedError",
+                      ],
                     },
                     Message: {
                       type: "string",

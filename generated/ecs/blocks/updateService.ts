@@ -119,6 +119,7 @@ const updateService: AppBlock = {
               },
               strategy: {
                 type: "string",
+                enum: ["ROLLING", "BLUE_GREEN", "LINEAR", "CANARY"],
               },
               bakeTimeInMinutes: {
                 type: "number",
@@ -138,6 +139,15 @@ const updateService: AppBlock = {
                       type: "array",
                       items: {
                         type: "string",
+                        enum: [
+                          "RECONCILE_SERVICE",
+                          "PRE_SCALE_UP",
+                          "POST_SCALE_UP",
+                          "TEST_TRAFFIC_SHIFT",
+                          "POST_TEST_TRAFFIC_SHIFT",
+                          "PRODUCTION_TRAFFIC_SHIFT",
+                          "POST_PRODUCTION_TRAFFIC_SHIFT",
+                        ],
                       },
                     },
                     hookDetails: {
@@ -180,7 +190,10 @@ const updateService: AppBlock = {
           name: "availability Zone Rebalancing",
           description:
             "Indicates whether to use Availability Zone rebalancing for the service.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ENABLED", "DISABLED"],
+          },
           required: false,
         },
         networkConfiguration: {
@@ -207,6 +220,7 @@ const updateService: AppBlock = {
                   },
                   assignPublicIp: {
                     type: "string",
+                    enum: ["ENABLED", "DISABLED"],
                   },
                 },
                 required: ["subnets"],
@@ -228,6 +242,7 @@ const updateService: AppBlock = {
               properties: {
                 type: {
                   type: "string",
+                  enum: ["distinctInstance", "memberOf"],
                 },
                 expression: {
                   type: "string",
@@ -249,6 +264,7 @@ const updateService: AppBlock = {
               properties: {
                 type: {
                   type: "string",
+                  enum: ["random", "spread", "binpack"],
                 },
                 field: {
                   type: "string",
@@ -288,6 +304,7 @@ const updateService: AppBlock = {
             properties: {
               type: {
                 type: "string",
+                enum: ["ECS", "CODE_DEPLOY", "EXTERNAL"],
               },
             },
             required: ["type"],
@@ -358,7 +375,10 @@ const updateService: AppBlock = {
           name: "propagate Tags",
           description:
             "Determines whether to propagate the tags from the task definition or the service to the task.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["TASK_DEFINITION", "SERVICE", "NONE"],
+          },
           required: false,
         },
         serviceRegistries: {
@@ -470,6 +490,16 @@ const updateService: AppBlock = {
                 properties: {
                   logDriver: {
                     type: "string",
+                    enum: [
+                      "json-file",
+                      "syslog",
+                      "journald",
+                      "gelf",
+                      "fluentd",
+                      "awslogs",
+                      "splunk",
+                      "awsfirelens",
+                    ],
                   },
                   options: {
                     type: "object",
@@ -502,9 +532,11 @@ const updateService: AppBlock = {
                 properties: {
                   format: {
                     type: "string",
+                    enum: ["TEXT", "JSON"],
                   },
                   includeQueryParameters: {
                     type: "string",
+                    enum: ["DISABLED", "ENABLED"],
                   },
                 },
                 required: ["format"],
@@ -572,6 +604,7 @@ const updateService: AppBlock = {
                     },
                     filesystemType: {
                       type: "string",
+                      enum: ["ext3", "ext4", "xfs", "ntfs"],
                     },
                   },
                   required: ["roleArn"],
@@ -753,6 +786,7 @@ const updateService: AppBlock = {
               },
               launchType: {
                 type: "string",
+                enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
               },
               capacityProviderStrategy: {
                 type: "array",
@@ -825,6 +859,7 @@ const updateService: AppBlock = {
                   },
                   strategy: {
                     type: "string",
+                    enum: ["ROLLING", "BLUE_GREEN", "LINEAR", "CANARY"],
                   },
                   bakeTimeInMinutes: {
                     type: "number",
@@ -924,6 +959,7 @@ const updateService: AppBlock = {
                     },
                     launchType: {
                       type: "string",
+                      enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                     },
                     capacityProviderStrategy: {
                       type: "array",
@@ -995,12 +1031,14 @@ const updateService: AppBlock = {
                         },
                         unit: {
                           type: "string",
+                          enum: ["PERCENT"],
                         },
                       },
                       additionalProperties: false,
                     },
                     stabilityStatus: {
                       type: "string",
+                      enum: ["STEADY_STATE", "STABILIZING"],
                     },
                     stabilityStatusAt: {
                       type: "string",
@@ -1076,6 +1114,7 @@ const updateService: AppBlock = {
                     },
                     launchType: {
                       type: "string",
+                      enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                     },
                     platformVersion: {
                       type: "string",
@@ -1101,6 +1140,7 @@ const updateService: AppBlock = {
                     },
                     rolloutState: {
                       type: "string",
+                      enum: ["COMPLETED", "FAILED", "IN_PROGRESS"],
                     },
                     rolloutStateReason: {
                       type: "string",
@@ -1245,6 +1285,7 @@ const updateService: AppBlock = {
                   properties: {
                     type: {
                       type: "string",
+                      enum: ["distinctInstance", "memberOf"],
                     },
                     expression: {
                       type: "string",
@@ -1260,6 +1301,7 @@ const updateService: AppBlock = {
                   properties: {
                     type: {
                       type: "string",
+                      enum: ["random", "spread", "binpack"],
                     },
                     field: {
                       type: "string",
@@ -1288,6 +1330,7 @@ const updateService: AppBlock = {
                       },
                       assignPublicIp: {
                         type: "string",
+                        enum: ["ENABLED", "DISABLED"],
                       },
                     },
                     required: ["subnets"],
@@ -1301,12 +1344,14 @@ const updateService: AppBlock = {
               },
               schedulingStrategy: {
                 type: "string",
+                enum: ["REPLICA", "DAEMON"],
               },
               deploymentController: {
                 type: "object",
                 properties: {
                   type: {
                     type: "string",
+                    enum: ["ECS", "CODE_DEPLOY", "EXTERNAL"],
                   },
                 },
                 required: ["type"],
@@ -1335,15 +1380,18 @@ const updateService: AppBlock = {
               },
               propagateTags: {
                 type: "string",
+                enum: ["TASK_DEFINITION", "SERVICE", "NONE"],
               },
               enableExecuteCommand: {
                 type: "boolean",
               },
               availabilityZoneRebalancing: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
               resourceManagementType: {
                 type: "string",
+                enum: ["CUSTOMER", "ECS"],
               },
             },
             additionalProperties: false,

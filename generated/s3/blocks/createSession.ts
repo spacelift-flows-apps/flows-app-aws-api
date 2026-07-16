@@ -26,7 +26,10 @@ const createSession: AppBlock = {
           name: "Session Mode",
           description:
             "Specifies the mode of the session that will be created, either ReadWrite or ReadOnly.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ReadOnly", "ReadWrite"],
+          },
           required: false,
         },
         Bucket: {
@@ -39,7 +42,10 @@ const createSession: AppBlock = {
           name: "Server Side Encryption",
           description:
             "The server-side encryption algorithm to use when you store objects in the directory bucket.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["AES256", "aws:fsx", "aws:kms", "aws:kms:dsse"],
+          },
           required: false,
         },
         SSEKMSKeyId: {
@@ -125,6 +131,7 @@ const createSession: AppBlock = {
         properties: {
           ServerSideEncryption: {
             type: "string",
+            enum: ["AES256", "aws:fsx", "aws:kms", "aws:kms:dsse"],
             description:
               "The server-side encryption algorithm used when you store objects in the directory bucket.",
           },

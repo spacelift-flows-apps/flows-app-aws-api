@@ -185,6 +185,7 @@ const describeSnapshotSchedules: AppBlock = {
                       },
                       ScheduleAssociationState: {
                         type: "string",
+                        enum: ["MODIFYING", "ACTIVE", "FAILED"],
                       },
                     },
                     additionalProperties: false,

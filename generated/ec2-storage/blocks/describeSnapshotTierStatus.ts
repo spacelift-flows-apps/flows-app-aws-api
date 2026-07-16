@@ -140,6 +140,13 @@ const describeSnapshotTierStatus: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "pending",
+                    "completed",
+                    "error",
+                    "recoverable",
+                    "recovering",
+                  ],
                 },
                 OwnerId: {
                   type: "string",
@@ -161,6 +168,7 @@ const describeSnapshotTierStatus: AppBlock = {
                 },
                 StorageTier: {
                   type: "string",
+                  enum: ["archive", "standard"],
                 },
                 LastTieringStartTime: {
                   type: "string",
@@ -170,6 +178,17 @@ const describeSnapshotTierStatus: AppBlock = {
                 },
                 LastTieringOperationStatus: {
                   type: "string",
+                  enum: [
+                    "archival-in-progress",
+                    "archival-completed",
+                    "archival-failed",
+                    "temporary-restore-in-progress",
+                    "temporary-restore-completed",
+                    "temporary-restore-failed",
+                    "permanent-restore-in-progress",
+                    "permanent-restore-completed",
+                    "permanent-restore-failed",
+                  ],
                 },
                 LastTieringOperationStatusDetail: {
                   type: "string",

@@ -220,6 +220,15 @@ const listRecoveryPointsByBackupVault: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "COMPLETED",
+                    "PARTIAL",
+                    "DELETING",
+                    "EXPIRED",
+                    "AVAILABLE",
+                    "STOPPED",
+                    "CREATING",
+                  ],
                 },
                 StatusMessage: {
                   type: "string",
@@ -262,6 +271,7 @@ const listRecoveryPointsByBackupVault: AppBlock = {
                     },
                     DeleteAfterEvent: {
                       type: "string",
+                      enum: ["DELETE_AFTER_COPY"],
                     },
                   },
                   additionalProperties: false,
@@ -289,15 +299,22 @@ const listRecoveryPointsByBackupVault: AppBlock = {
                 },
                 VaultType: {
                   type: "string",
+                  enum: [
+                    "BACKUP_VAULT",
+                    "LOGICALLY_AIR_GAPPED_BACKUP_VAULT",
+                    "RESTORE_ACCESS_BACKUP_VAULT",
+                  ],
                 },
                 IndexStatus: {
                   type: "string",
+                  enum: ["PENDING", "ACTIVE", "FAILED", "DELETING"],
                 },
                 IndexStatusMessage: {
                   type: "string",
                 },
                 EncryptionKeyType: {
                   type: "string",
+                  enum: ["AWS_OWNED_KMS_KEY", "CUSTOMER_MANAGED_KMS_KEY"],
                 },
                 AggregatedScanResult: {
                   type: "object",
@@ -309,6 +326,7 @@ const listRecoveryPointsByBackupVault: AppBlock = {
                       type: "array",
                       items: {
                         type: "string",
+                        enum: ["MALWARE"],
                       },
                     },
                     LastComputed: {

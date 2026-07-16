@@ -35,7 +35,10 @@ const setIdentityNotificationTopic: AppBlock = {
           name: "Notification Type",
           description:
             "The type of notifications that are published to the specified Amazon SNS topic.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Bounce", "Complaint", "Delivery"],
+          },
           required: true,
         },
         SnsTopic: {

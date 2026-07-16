@@ -24,7 +24,14 @@ const describeVpcAttribute: AppBlock = {
         Attribute: {
           name: "Attribute",
           description: "The VPC attribute.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "enableDnsSupport",
+              "enableDnsHostnames",
+              "enableNetworkAddressUsageMetrics",
+            ],
+          },
           required: true,
         },
         VpcId: {

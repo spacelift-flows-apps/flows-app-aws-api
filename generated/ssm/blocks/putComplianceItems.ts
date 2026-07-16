@@ -79,9 +79,18 @@ const putComplianceItems: AppBlock = {
                 },
                 Severity: {
                   type: "string",
+                  enum: [
+                    "CRITICAL",
+                    "HIGH",
+                    "MEDIUM",
+                    "LOW",
+                    "INFORMATIONAL",
+                    "UNSPECIFIED",
+                  ],
                 },
                 Status: {
                   type: "string",
+                  enum: ["COMPLIANT", "NON_COMPLIANT"],
                 },
                 Details: {
                   type: "object",
@@ -105,7 +114,10 @@ const putComplianceItems: AppBlock = {
         UploadType: {
           name: "Upload Type",
           description: "The mode for uploading compliance items.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["COMPLETE", "PARTIAL"],
+          },
           required: false,
         },
       },

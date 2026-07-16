@@ -38,7 +38,10 @@ const verify: AppBlock = {
           name: "Message Type",
           description:
             "Tells KMS whether the value of the Message parameter should be hashed as part of the signing algorithm.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["RAW", "DIGEST", "EXTERNAL_MU"],
+          },
           required: false,
         },
         Signature: {
@@ -51,7 +54,24 @@ const verify: AppBlock = {
           name: "Signing Algorithm",
           description:
             "The signing algorithm that was used to sign the message.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "RSASSA_PSS_SHA_256",
+              "RSASSA_PSS_SHA_384",
+              "RSASSA_PSS_SHA_512",
+              "RSASSA_PKCS1_V1_5_SHA_256",
+              "RSASSA_PKCS1_V1_5_SHA_384",
+              "RSASSA_PKCS1_V1_5_SHA_512",
+              "ECDSA_SHA_256",
+              "ECDSA_SHA_384",
+              "ECDSA_SHA_512",
+              "SM2DSA",
+              "ML_DSA_SHAKE_256",
+              "ED25519_SHA_512",
+              "ED25519_PH_SHA_512",
+            ],
+          },
           required: true,
         },
         GrantTokens: {
@@ -141,6 +161,21 @@ const verify: AppBlock = {
           },
           SigningAlgorithm: {
             type: "string",
+            enum: [
+              "RSASSA_PSS_SHA_256",
+              "RSASSA_PSS_SHA_384",
+              "RSASSA_PSS_SHA_512",
+              "RSASSA_PKCS1_V1_5_SHA_256",
+              "RSASSA_PKCS1_V1_5_SHA_384",
+              "RSASSA_PKCS1_V1_5_SHA_512",
+              "ECDSA_SHA_256",
+              "ECDSA_SHA_384",
+              "ECDSA_SHA_512",
+              "SM2DSA",
+              "ML_DSA_SHAKE_256",
+              "ED25519_SHA_512",
+              "ED25519_PH_SHA_512",
+            ],
             description:
               "The signing algorithm that was used to verify the signature.",
           },

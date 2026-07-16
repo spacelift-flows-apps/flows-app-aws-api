@@ -39,6 +39,7 @@ const describeExpressGatewayService: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["TAGS"],
             },
           },
           required: false,
@@ -123,6 +124,7 @@ const describeExpressGatewayService: AppBlock = {
                 properties: {
                   statusCode: {
                     type: "string",
+                    enum: ["ACTIVE", "DRAINING", "INACTIVE"],
                   },
                   statusReason: {
                     type: "string",
@@ -222,6 +224,11 @@ const describeExpressGatewayService: AppBlock = {
                         },
                         autoScalingMetric: {
                           type: "string",
+                          enum: [
+                            "AVERAGE_CPU",
+                            "AVERAGE_MEMORY",
+                            "REQUEST_COUNT_PER_TARGET",
+                          ],
                         },
                         autoScalingTargetValue: {
                           type: "number",

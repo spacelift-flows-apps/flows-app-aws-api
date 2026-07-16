@@ -34,14 +34,20 @@ const modifyInstanceMaintenanceOptions: AppBlock = {
           name: "Auto Recovery",
           description:
             "Disables the automatic recovery behavior of your instance or sets it to default.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["disabled", "default"],
+          },
           required: false,
         },
         RebootMigration: {
           name: "Reboot Migration",
           description:
             "Specifies whether to attempt reboot migration during a user-initiated reboot of an instance that has a scheduled system-reboot event: default - Amazon EC2 attempts to migrate the instance to new hardware (reboot migration).",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["disabled", "default"],
+          },
           required: false,
         },
         DryRun: {
@@ -117,11 +123,13 @@ const modifyInstanceMaintenanceOptions: AppBlock = {
           },
           AutoRecovery: {
             type: "string",
+            enum: ["disabled", "default"],
             description:
               "Provides information on the current automatic recovery behavior of your instance.",
           },
           RebootMigration: {
             type: "string",
+            enum: ["disabled", "default"],
             description:
               "Specifies whether to attempt reboot migration during a user-initiated reboot of an instance that has a scheduled system-reboot event: default - Amazon EC2 attempts to migrate the instance to new hardware (reboot migration).",
           },

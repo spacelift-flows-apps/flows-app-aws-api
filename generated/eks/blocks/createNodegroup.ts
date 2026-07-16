@@ -87,7 +87,34 @@ const createNodegroup: AppBlock = {
         amiType: {
           name: "ami Type",
           description: "The AMI type for your node group.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "AL2_x86_64",
+              "AL2_x86_64_GPU",
+              "AL2_ARM_64",
+              "CUSTOM",
+              "BOTTLEROCKET_ARM_64",
+              "BOTTLEROCKET_x86_64",
+              "BOTTLEROCKET_ARM_64_FIPS",
+              "BOTTLEROCKET_x86_64_FIPS",
+              "BOTTLEROCKET_ARM_64_NVIDIA",
+              "BOTTLEROCKET_x86_64_NVIDIA",
+              "BOTTLEROCKET_ARM_64_NVIDIA_FIPS",
+              "BOTTLEROCKET_x86_64_NVIDIA_FIPS",
+              "WINDOWS_CORE_2019_x86_64",
+              "WINDOWS_FULL_2019_x86_64",
+              "WINDOWS_CORE_2022_x86_64",
+              "WINDOWS_FULL_2022_x86_64",
+              "WINDOWS_CORE_2025_x86_64",
+              "WINDOWS_FULL_2025_x86_64",
+              "AL2023_x86_64_STANDARD",
+              "AL2023_ARM_64_STANDARD",
+              "AL2023_x86_64_NEURON",
+              "AL2023_x86_64_NVIDIA",
+              "AL2023_ARM_64_NVIDIA",
+            ],
+          },
           required: false,
         },
         remoteAccess: {
@@ -147,6 +174,7 @@ const createNodegroup: AppBlock = {
                 },
                 effect: {
                   type: "string",
+                  enum: ["NO_SCHEDULE", "NO_EXECUTE", "PREFER_NO_SCHEDULE"],
                 },
               },
               additionalProperties: false,
@@ -208,6 +236,7 @@ const createNodegroup: AppBlock = {
               },
               updateStrategy: {
                 type: "string",
+                enum: ["DEFAULT", "MINIMAL"],
               },
             },
             additionalProperties: false,
@@ -251,6 +280,7 @@ const createNodegroup: AppBlock = {
                     },
                     repairAction: {
                       type: "string",
+                      enum: ["Replace", "Reboot", "NoAction"],
                     },
                   },
                   additionalProperties: false,
@@ -264,7 +294,10 @@ const createNodegroup: AppBlock = {
         capacityType: {
           name: "capacity Type",
           description: "The capacity type for your node group.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ON_DEMAND", "SPOT", "CAPACITY_BLOCK"],
+          },
           required: false,
         },
         version: {
@@ -297,6 +330,7 @@ const createNodegroup: AppBlock = {
               },
               poolState: {
                 type: "string",
+                enum: ["STOPPED", "RUNNING", "HIBERNATED"],
               },
               reuseOnScaleIn: {
                 type: "boolean",
@@ -390,9 +424,19 @@ const createNodegroup: AppBlock = {
               },
               status: {
                 type: "string",
+                enum: [
+                  "CREATING",
+                  "ACTIVE",
+                  "UPDATING",
+                  "DELETING",
+                  "CREATE_FAILED",
+                  "DELETE_FAILED",
+                  "DEGRADED",
+                ],
               },
               capacityType: {
                 type: "string",
+                enum: ["ON_DEMAND", "SPOT", "CAPACITY_BLOCK"],
               },
               scalingConfig: {
                 type: "object",
@@ -438,6 +482,31 @@ const createNodegroup: AppBlock = {
               },
               amiType: {
                 type: "string",
+                enum: [
+                  "AL2_x86_64",
+                  "AL2_x86_64_GPU",
+                  "AL2_ARM_64",
+                  "CUSTOM",
+                  "BOTTLEROCKET_ARM_64",
+                  "BOTTLEROCKET_x86_64",
+                  "BOTTLEROCKET_ARM_64_FIPS",
+                  "BOTTLEROCKET_x86_64_FIPS",
+                  "BOTTLEROCKET_ARM_64_NVIDIA",
+                  "BOTTLEROCKET_x86_64_NVIDIA",
+                  "BOTTLEROCKET_ARM_64_NVIDIA_FIPS",
+                  "BOTTLEROCKET_x86_64_NVIDIA_FIPS",
+                  "WINDOWS_CORE_2019_x86_64",
+                  "WINDOWS_FULL_2019_x86_64",
+                  "WINDOWS_CORE_2022_x86_64",
+                  "WINDOWS_FULL_2022_x86_64",
+                  "WINDOWS_CORE_2025_x86_64",
+                  "WINDOWS_FULL_2025_x86_64",
+                  "AL2023_x86_64_STANDARD",
+                  "AL2023_ARM_64_STANDARD",
+                  "AL2023_x86_64_NEURON",
+                  "AL2023_x86_64_NVIDIA",
+                  "AL2023_ARM_64_NVIDIA",
+                ],
               },
               nodeRole: {
                 type: "string",
@@ -461,6 +530,7 @@ const createNodegroup: AppBlock = {
                     },
                     effect: {
                       type: "string",
+                      enum: ["NO_SCHEDULE", "NO_EXECUTE", "PREFER_NO_SCHEDULE"],
                     },
                   },
                   additionalProperties: false,
@@ -500,6 +570,44 @@ const createNodegroup: AppBlock = {
                       properties: {
                         code: {
                           type: "string",
+                          enum: [
+                            "AutoScalingGroupNotFound",
+                            "AutoScalingGroupInvalidConfiguration",
+                            "Ec2SecurityGroupNotFound",
+                            "Ec2SecurityGroupDeletionFailure",
+                            "Ec2LaunchTemplateNotFound",
+                            "Ec2LaunchTemplateVersionMismatch",
+                            "Ec2SubnetNotFound",
+                            "Ec2SubnetInvalidConfiguration",
+                            "IamInstanceProfileNotFound",
+                            "Ec2SubnetMissingIpv6Assignment",
+                            "IamLimitExceeded",
+                            "IamNodeRoleNotFound",
+                            "NodeCreationFailure",
+                            "AsgInstanceLaunchFailures",
+                            "InstanceLimitExceeded",
+                            "InsufficientFreeAddresses",
+                            "AccessDenied",
+                            "InternalFailure",
+                            "ClusterUnreachable",
+                            "AmiIdNotFound",
+                            "AutoScalingGroupOptInRequired",
+                            "AutoScalingGroupRateLimitExceeded",
+                            "Ec2LaunchTemplateDeletionFailure",
+                            "Ec2LaunchTemplateInvalidConfiguration",
+                            "Ec2LaunchTemplateMaxLimitExceeded",
+                            "Ec2SubnetListTooLong",
+                            "IamThrottling",
+                            "NodeTerminationFailure",
+                            "PodEvictionFailure",
+                            "SourceEc2LaunchTemplateNotFound",
+                            "LimitExceeded",
+                            "Unknown",
+                            "AutoScalingGroupInstanceRefreshActive",
+                            "KubernetesLabelInvalid",
+                            "Ec2LaunchTemplateVersionMaxLimitExceeded",
+                            "Ec2InstanceTypeDoesNotExist",
+                          ],
                         },
                         message: {
                           type: "string",
@@ -526,6 +634,7 @@ const createNodegroup: AppBlock = {
                   },
                   updateStrategy: {
                     type: "string",
+                    enum: ["DEFAULT", "MINIMAL"],
                   },
                 },
                 additionalProperties: false,
@@ -564,6 +673,7 @@ const createNodegroup: AppBlock = {
                         },
                         repairAction: {
                           type: "string",
+                          enum: ["Replace", "Reboot", "NoAction"],
                         },
                       },
                       additionalProperties: false,
@@ -607,6 +717,7 @@ const createNodegroup: AppBlock = {
                   },
                   poolState: {
                     type: "string",
+                    enum: ["STOPPED", "RUNNING", "HIBERNATED"],
                   },
                   reuseOnScaleIn: {
                     type: "boolean",

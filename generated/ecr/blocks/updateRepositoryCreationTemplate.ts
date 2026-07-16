@@ -46,6 +46,7 @@ const updateRepositoryCreationTemplate: AppBlock = {
             properties: {
               encryptionType: {
                 type: "string",
+                enum: ["AES256", "KMS", "KMS_DSSE"],
               },
               kmsKey: {
                 type: "string",
@@ -81,7 +82,15 @@ const updateRepositoryCreationTemplate: AppBlock = {
         imageTagMutability: {
           name: "image Tag Mutability",
           description: "Updates the tag mutability setting for the repository.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "MUTABLE",
+              "IMMUTABLE",
+              "IMMUTABLE_WITH_EXCLUSION",
+              "MUTABLE_WITH_EXCLUSION",
+            ],
+          },
           required: false,
         },
         imageTagMutabilityExclusionFilters: {
@@ -95,6 +104,7 @@ const updateRepositoryCreationTemplate: AppBlock = {
               properties: {
                 filterType: {
                   type: "string",
+                  enum: ["WILDCARD"],
                 },
                 filter: {
                   type: "string",
@@ -128,6 +138,7 @@ const updateRepositoryCreationTemplate: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["REPLICATION", "PULL_THROUGH_CACHE", "CREATE_ON_PUSH"],
             },
           },
           required: false,
@@ -216,6 +227,7 @@ const updateRepositoryCreationTemplate: AppBlock = {
                 properties: {
                   encryptionType: {
                     type: "string",
+                    enum: ["AES256", "KMS", "KMS_DSSE"],
                   },
                   kmsKey: {
                     type: "string",
@@ -242,6 +254,12 @@ const updateRepositoryCreationTemplate: AppBlock = {
               },
               imageTagMutability: {
                 type: "string",
+                enum: [
+                  "MUTABLE",
+                  "IMMUTABLE",
+                  "IMMUTABLE_WITH_EXCLUSION",
+                  "MUTABLE_WITH_EXCLUSION",
+                ],
               },
               imageTagMutabilityExclusionFilters: {
                 type: "array",
@@ -250,6 +268,7 @@ const updateRepositoryCreationTemplate: AppBlock = {
                   properties: {
                     filterType: {
                       type: "string",
+                      enum: ["WILDCARD"],
                     },
                     filter: {
                       type: "string",
@@ -269,6 +288,7 @@ const updateRepositoryCreationTemplate: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["REPLICATION", "PULL_THROUGH_CACHE", "CREATE_ON_PUSH"],
                 },
               },
               customRoleArn: {

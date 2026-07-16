@@ -141,6 +141,7 @@ const getBackupPlan: AppBlock = {
                         },
                         DeleteAfterEvent: {
                           type: "string",
+                          enum: ["DELETE_AFTER_COPY"],
                         },
                       },
                       additionalProperties: false,
@@ -223,6 +224,7 @@ const getBackupPlan: AppBlock = {
                   properties: {
                     MalwareScanner: {
                       type: "string",
+                      enum: ["GUARDDUTY"],
                     },
                     ResourceTypes: {
                       type: "array",
@@ -308,6 +310,7 @@ const getBackupPlan: AppBlock = {
                 },
                 RuleExecutionType: {
                   type: "string",
+                  enum: ["CONTINUOUS", "SNAPSHOTS", "CONTINUOUS_AND_SNAPSHOTS"],
                 },
               },
               additionalProperties: false,

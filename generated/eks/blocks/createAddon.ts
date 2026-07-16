@@ -50,7 +50,10 @@ const createAddon: AppBlock = {
           name: "resolve Conflicts",
           description:
             "How to resolve field value conflicts for an Amazon EKS add-on.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["OVERWRITE", "NONE", "PRESERVE"],
+          },
           required: false,
         },
         clientRequestToken: {
@@ -184,6 +187,16 @@ const createAddon: AppBlock = {
               },
               status: {
                 type: "string",
+                enum: [
+                  "CREATING",
+                  "ACTIVE",
+                  "CREATE_FAILED",
+                  "UPDATING",
+                  "DELETING",
+                  "DELETE_FAILED",
+                  "DEGRADED",
+                  "UPDATE_FAILED",
+                ],
               },
               addonVersion: {
                 type: "string",
@@ -198,6 +211,18 @@ const createAddon: AppBlock = {
                       properties: {
                         code: {
                           type: "string",
+                          enum: [
+                            "AccessDenied",
+                            "InternalFailure",
+                            "ClusterUnreachable",
+                            "InsufficientNumberOfReplicas",
+                            "ConfigurationConflict",
+                            "AdmissionRequestDenied",
+                            "UnsupportedAddonModification",
+                            "K8sResourceNotFound",
+                            "AddonSubscriptionNeeded",
+                            "AddonPermissionFailure",
+                          ],
                         },
                         message: {
                           type: "string",

@@ -116,6 +116,7 @@ const putTargets: AppBlock = {
                     },
                     LaunchType: {
                       type: "string",
+                      enum: ["EC2", "FARGATE", "EXTERNAL"],
                     },
                     NetworkConfiguration: {
                       type: "object",
@@ -182,6 +183,7 @@ const putTargets: AppBlock = {
                     },
                     PropagateTags: {
                       type: "string",
+                      enum: ["TASK_DEFINITION"],
                     },
                     ReferenceId: {
                       type: "string",

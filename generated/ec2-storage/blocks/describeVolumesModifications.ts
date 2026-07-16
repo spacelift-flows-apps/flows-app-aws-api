@@ -153,6 +153,7 @@ const describeVolumesModifications: AppBlock = {
                 },
                 ModificationState: {
                   type: "string",
+                  enum: ["modifying", "optimizing", "completed", "failed"],
                 },
                 StatusMessage: {
                   type: "string",
@@ -165,6 +166,7 @@ const describeVolumesModifications: AppBlock = {
                 },
                 TargetVolumeType: {
                   type: "string",
+                  enum: ["standard", "io1", "io2", "gp2", "sc1", "st1", "gp3"],
                 },
                 TargetThroughput: {
                   type: "number",
@@ -180,6 +182,7 @@ const describeVolumesModifications: AppBlock = {
                 },
                 OriginalVolumeType: {
                   type: "string",
+                  enum: ["standard", "io1", "io2", "gp2", "sc1", "st1", "gp3"],
                 },
                 OriginalThroughput: {
                   type: "number",

@@ -175,6 +175,7 @@ const getBucketLifecycleConfiguration: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["Enabled", "Disabled"],
                 },
                 Transitions: {
                   type: "array",
@@ -189,6 +190,14 @@ const getBucketLifecycleConfiguration: AppBlock = {
                       },
                       StorageClass: {
                         type: "string",
+                        enum: [
+                          "GLACIER",
+                          "STANDARD_IA",
+                          "ONEZONE_IA",
+                          "INTELLIGENT_TIERING",
+                          "DEEP_ARCHIVE",
+                          "GLACIER_IR",
+                        ],
                       },
                     },
                     additionalProperties: false,
@@ -204,6 +213,14 @@ const getBucketLifecycleConfiguration: AppBlock = {
                       },
                       StorageClass: {
                         type: "string",
+                        enum: [
+                          "GLACIER",
+                          "STANDARD_IA",
+                          "ONEZONE_IA",
+                          "INTELLIGENT_TIERING",
+                          "DEEP_ARCHIVE",
+                          "GLACIER_IR",
+                        ],
                       },
                       NewerNoncurrentVersions: {
                         type: "number",
@@ -241,6 +258,7 @@ const getBucketLifecycleConfiguration: AppBlock = {
           },
           TransitionDefaultMinimumObjectSize: {
             type: "string",
+            enum: ["varies_by_storage_class", "all_storage_classes_128K"],
             description:
               "Indicates which default minimum object size behavior is applied to the lifecycle configuration.",
           },

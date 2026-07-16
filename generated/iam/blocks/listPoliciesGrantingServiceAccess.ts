@@ -128,12 +128,14 @@ const listPoliciesGrantingServiceAccess: AppBlock = {
                       },
                       PolicyType: {
                         type: "string",
+                        enum: ["INLINE", "MANAGED"],
                       },
                       PolicyArn: {
                         type: "string",
                       },
                       EntityType: {
                         type: "string",
+                        enum: ["USER", "ROLE", "GROUP"],
                       },
                       EntityName: {
                         type: "string",

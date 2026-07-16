@@ -152,6 +152,7 @@ const describeTransitGatewayPolicyTables: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["pending", "available", "deleting", "deleted"],
                 },
                 CreationTime: {
                   type: "string",

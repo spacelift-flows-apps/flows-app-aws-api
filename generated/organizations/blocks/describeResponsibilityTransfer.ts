@@ -104,9 +104,18 @@ const describeResponsibilityTransfer: AppBlock = {
               },
               Type: {
                 type: "string",
+                enum: ["BILLING"],
               },
               Status: {
                 type: "string",
+                enum: [
+                  "REQUESTED",
+                  "DECLINED",
+                  "CANCELED",
+                  "EXPIRED",
+                  "ACCEPTED",
+                  "WITHDRAWN",
+                ],
               },
               Source: {
                 type: "object",

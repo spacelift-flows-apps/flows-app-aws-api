@@ -150,6 +150,12 @@ const describeInternetGateways: AppBlock = {
                     properties: {
                       State: {
                         type: "string",
+                        enum: [
+                          "attaching",
+                          "attached",
+                          "detaching",
+                          "detached",
+                        ],
                       },
                       VpcId: {
                         type: "string",

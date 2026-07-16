@@ -78,7 +78,10 @@ const getObjectAttributes: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         ExpectedBucketOwner: {
@@ -95,6 +98,13 @@ const getObjectAttributes: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "ETag",
+                "Checksum",
+                "ObjectParts",
+                "StorageClass",
+                "ObjectSize",
+              ],
             },
           },
           required: true,
@@ -174,6 +184,7 @@ const getObjectAttributes: AppBlock = {
           },
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },
@@ -217,6 +228,7 @@ const getObjectAttributes: AppBlock = {
               },
               ChecksumType: {
                 type: "string",
+                enum: ["COMPOSITE", "FULL_OBJECT"],
               },
             },
             additionalProperties: false,
@@ -292,6 +304,21 @@ const getObjectAttributes: AppBlock = {
           },
           StorageClass: {
             type: "string",
+            enum: [
+              "STANDARD",
+              "REDUCED_REDUNDANCY",
+              "STANDARD_IA",
+              "ONEZONE_IA",
+              "INTELLIGENT_TIERING",
+              "GLACIER",
+              "DEEP_ARCHIVE",
+              "OUTPOSTS",
+              "GLACIER_IR",
+              "SNOW",
+              "EXPRESS_ONEZONE",
+              "FSX_OPENZFS",
+              "FSX_ONTAP",
+            ],
             description:
               "Provides the storage class information of the object.",
           },

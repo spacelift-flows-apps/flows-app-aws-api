@@ -60,7 +60,10 @@ const createSAMLProvider: AppBlock = {
           name: "Assertion Encryption Mode",
           description:
             "Specifies the encryption setting for the SAML provider.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Required", "Allowed"],
+          },
           required: false,
         },
         AddPrivateKey: {

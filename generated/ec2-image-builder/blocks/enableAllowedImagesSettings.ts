@@ -28,7 +28,10 @@ const enableAllowedImagesSettings: AppBlock = {
           name: "Allowed Images Settings State",
           description:
             "Specify enabled to apply the image criteria specified by the Allowed AMIs settings.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["enabled", "audit-mode"],
+          },
           required: true,
         },
         DryRun: {
@@ -100,6 +103,7 @@ const enableAllowedImagesSettings: AppBlock = {
         properties: {
           AllowedImagesSettingsState: {
             type: "string",
+            enum: ["enabled", "audit-mode"],
             description:
               "Returns enabled or audit-mode if the request succeeds; otherwise, it returns an error.",
           },

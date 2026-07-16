@@ -119,6 +119,7 @@ const describeConversionTasks: AppBlock = {
                     },
                     Platform: {
                       type: "string",
+                      enum: ["Windows"],
                     },
                     Volumes: {
                       type: "array",
@@ -163,6 +164,7 @@ const describeConversionTasks: AppBlock = {
                         },
                         Format: {
                           type: "string",
+                          enum: ["VMDK", "RAW", "VHD"],
                         },
                         ImportManifestUrl: {
                           type: "string",
@@ -190,6 +192,7 @@ const describeConversionTasks: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["active", "cancelling", "cancelled", "completed"],
                 },
                 StatusMessage: {
                   type: "string",

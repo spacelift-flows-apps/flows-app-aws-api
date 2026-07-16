@@ -124,9 +124,11 @@ const describeChangeSetHooks: AppBlock = {
               properties: {
                 InvocationPoint: {
                   type: "string",
+                  enum: ["PRE_PROVISION"],
                 },
                 FailureMode: {
                   type: "string",
+                  enum: ["FAIL", "WARN"],
                 },
                 TypeName: {
                   type: "string",
@@ -142,6 +144,7 @@ const describeChangeSetHooks: AppBlock = {
                   properties: {
                     TargetType: {
                       type: "string",
+                      enum: ["RESOURCE"],
                     },
                     ResourceTargetDetails: {
                       type: "object",
@@ -154,6 +157,14 @@ const describeChangeSetHooks: AppBlock = {
                         },
                         ResourceAction: {
                           type: "string",
+                          enum: [
+                            "Add",
+                            "Modify",
+                            "Remove",
+                            "Import",
+                            "Dynamic",
+                            "SyncWithActual",
+                          ],
                         },
                       },
                       additionalProperties: false,
@@ -168,6 +179,7 @@ const describeChangeSetHooks: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["PLANNING", "PLANNED", "UNAVAILABLE"],
             description: "Provides the status of the change set Hook.",
           },
           NextToken: {

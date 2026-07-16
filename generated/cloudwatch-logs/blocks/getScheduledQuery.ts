@@ -102,6 +102,7 @@ const getScheduledQuery: AppBlock = {
           },
           queryLanguage: {
             type: "string",
+            enum: ["CWLI", "SQL", "PPL"],
             description: "The query language used by the scheduled query.",
           },
           queryString: {
@@ -159,6 +160,7 @@ const getScheduledQuery: AppBlock = {
           },
           state: {
             type: "string",
+            enum: ["ENABLED", "DISABLED"],
             description: "The current state of the scheduled query.",
           },
           lastTriggeredTime: {
@@ -168,6 +170,7 @@ const getScheduledQuery: AppBlock = {
           },
           lastExecutionStatus: {
             type: "string",
+            enum: ["Running", "InvalidQuery", "Complete", "Failed", "Timeout"],
             description:
               "The status of the most recent execution of the scheduled query.",
           },

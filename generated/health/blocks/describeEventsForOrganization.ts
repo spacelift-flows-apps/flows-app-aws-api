@@ -35,6 +35,11 @@ const describeEventsForOrganization: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "ACTION_REQUIRED",
+                    "ACTION_MAY_BE_REQUIRED",
+                    "INFORMATIONAL",
+                  ],
                 },
               },
               eventTypeCodes: {
@@ -113,18 +118,26 @@ const describeEventsForOrganization: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "issue",
+                    "accountNotification",
+                    "scheduledChange",
+                    "investigation",
+                  ],
                 },
               },
               eventStatusCodes: {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["open", "closed", "upcoming"],
                 },
               },
               personas: {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["OPERATIONS", "SECURITY", "BILLING"],
                 },
               },
             },
@@ -228,9 +241,16 @@ const describeEventsForOrganization: AppBlock = {
                 },
                 eventTypeCategory: {
                   type: "string",
+                  enum: [
+                    "issue",
+                    "accountNotification",
+                    "scheduledChange",
+                    "investigation",
+                  ],
                 },
                 eventScopeCode: {
                   type: "string",
+                  enum: ["PUBLIC", "ACCOUNT_SPECIFIC", "NONE"],
                 },
                 region: {
                   type: "string",
@@ -246,14 +266,21 @@ const describeEventsForOrganization: AppBlock = {
                 },
                 statusCode: {
                   type: "string",
+                  enum: ["open", "closed", "upcoming"],
                 },
                 actionability: {
                   type: "string",
+                  enum: [
+                    "ACTION_REQUIRED",
+                    "ACTION_MAY_BE_REQUIRED",
+                    "INFORMATIONAL",
+                  ],
                 },
                 personas: {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["OPERATIONS", "SECURITY", "BILLING"],
                   },
                 },
               },

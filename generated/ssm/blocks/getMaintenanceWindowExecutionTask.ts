@@ -118,6 +118,7 @@ const getMaintenanceWindowExecutionTask: AppBlock = {
           },
           Type: {
             type: "string",
+            enum: ["RUN_COMMAND", "AUTOMATION", "STEP_FUNCTIONS", "LAMBDA"],
             description: "The type of task that was run.",
           },
           TaskParameters: {
@@ -146,6 +147,16 @@ const getMaintenanceWindowExecutionTask: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: [
+              "PENDING",
+              "IN_PROGRESS",
+              "SUCCESS",
+              "FAILED",
+              "TIMED_OUT",
+              "CANCELLING",
+              "CANCELLED",
+              "SKIPPED_OVERLAPPING",
+            ],
             description: "The status of the task.",
           },
           StatusDetails: {
@@ -195,6 +206,7 @@ const getMaintenanceWindowExecutionTask: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["UNKNOWN", "ALARM"],
                 },
               },
               required: ["Name", "State"],

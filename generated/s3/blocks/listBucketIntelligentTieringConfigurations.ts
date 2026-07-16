@@ -168,6 +168,7 @@ const listBucketIntelligentTieringConfigurations: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["Enabled", "Disabled"],
                 },
                 Tierings: {
                   type: "array",
@@ -179,6 +180,7 @@ const listBucketIntelligentTieringConfigurations: AppBlock = {
                       },
                       AccessTier: {
                         type: "string",
+                        enum: ["ARCHIVE_ACCESS", "DEEP_ARCHIVE_ACCESS"],
                       },
                     },
                     required: ["Days", "AccessTier"],

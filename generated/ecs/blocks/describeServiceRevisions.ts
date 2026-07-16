@@ -133,6 +133,7 @@ const describeServiceRevisions: AppBlock = {
                 },
                 launchType: {
                   type: "string",
+                  enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                 },
                 platformVersion: {
                   type: "string",
@@ -208,6 +209,7 @@ const describeServiceRevisions: AppBlock = {
                         },
                         assignPublicIp: {
                           type: "string",
+                          enum: ["ENABLED", "DISABLED"],
                         },
                       },
                       required: ["subnets"],
@@ -267,6 +269,16 @@ const describeServiceRevisions: AppBlock = {
                       properties: {
                         logDriver: {
                           type: "string",
+                          enum: [
+                            "json-file",
+                            "syslog",
+                            "journald",
+                            "gelf",
+                            "fluentd",
+                            "awslogs",
+                            "splunk",
+                            "awsfirelens",
+                          ],
                         },
                         options: {
                           type: "object",
@@ -287,9 +299,11 @@ const describeServiceRevisions: AppBlock = {
                       properties: {
                         format: {
                           type: "string",
+                          enum: ["TEXT", "JSON"],
                         },
                         includeQueryParameters: {
                           type: "string",
+                          enum: ["DISABLED", "ENABLED"],
                         },
                       },
                       required: ["format"],

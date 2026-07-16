@@ -131,6 +131,7 @@ const getActiveVpnTunnelStatus: AppBlock = {
               },
               ProvisioningStatus: {
                 type: "string",
+                enum: ["available", "pending", "failed"],
               },
               ProvisioningStatusReason: {
                 type: "string",

@@ -147,6 +147,14 @@ const unassignPrivateNatGatewayAddress: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "assigning",
+                    "unassigning",
+                    "associating",
+                    "disassociating",
+                    "succeeded",
+                    "failed",
+                  ],
                 },
                 AvailabilityZone: {
                   type: "string",

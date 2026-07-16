@@ -32,7 +32,10 @@ const describeStateMachine: AppBlock = {
           name: "included Data",
           description:
             "If your state machine definition is encrypted with a KMS key, callers must have kms:Decrypt permission to decrypt the definition.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ALL_DATA", "METADATA_ONLY"],
+          },
           required: false,
         },
       },
@@ -104,6 +107,7 @@ const describeStateMachine: AppBlock = {
           },
           status: {
             type: "string",
+            enum: ["ACTIVE", "DELETING"],
             description: "The current status of the state machine.",
           },
           definition: {
@@ -118,6 +122,7 @@ const describeStateMachine: AppBlock = {
           },
           type: {
             type: "string",
+            enum: ["STANDARD", "EXPRESS"],
             description: "The type of the state machine (STANDARD or EXPRESS).",
           },
           creationDate: {
@@ -129,6 +134,7 @@ const describeStateMachine: AppBlock = {
             properties: {
               level: {
                 type: "string",
+                enum: ["ALL", "ERROR", "FATAL", "OFF"],
               },
               includeExecutionData: {
                 type: "boolean",
@@ -190,6 +196,7 @@ const describeStateMachine: AppBlock = {
               },
               type: {
                 type: "string",
+                enum: ["AWS_OWNED_KEY", "CUSTOMER_MANAGED_KMS_KEY"],
               },
             },
             required: ["type"],

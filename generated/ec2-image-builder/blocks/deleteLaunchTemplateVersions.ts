@@ -154,6 +154,14 @@ const deleteLaunchTemplateVersions: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: [
+                        "launchTemplateIdDoesNotExist",
+                        "launchTemplateIdMalformed",
+                        "launchTemplateNameDoesNotExist",
+                        "launchTemplateNameMalformed",
+                        "launchTemplateVersionDoesNotExist",
+                        "unexpectedError",
+                      ],
                     },
                     Message: {
                       type: "string",

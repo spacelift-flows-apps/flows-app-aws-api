@@ -41,7 +41,15 @@ const describeSpotFleetRequestHistory: AppBlock = {
         EventType: {
           name: "Event Type",
           description: "The type of events to describe.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "instanceChange",
+              "fleetRequestChange",
+              "error",
+              "information",
+            ],
+          },
           required: false,
         },
         StartTime: {
@@ -147,6 +155,12 @@ const describeSpotFleetRequestHistory: AppBlock = {
                 },
                 EventType: {
                   type: "string",
+                  enum: [
+                    "instanceChange",
+                    "fleetRequestChange",
+                    "error",
+                    "information",
+                  ],
                 },
                 Timestamp: {
                   type: "string",

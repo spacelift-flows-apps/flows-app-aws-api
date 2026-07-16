@@ -129,6 +129,13 @@ const restoreSnapshotFromRecycleBin: AppBlock = {
           },
           State: {
             type: "string",
+            enum: [
+              "pending",
+              "completed",
+              "error",
+              "recoverable",
+              "recovering",
+            ],
             description: "The state of the snapshot.",
           },
           VolumeId: {
@@ -142,6 +149,7 @@ const restoreSnapshotFromRecycleBin: AppBlock = {
           },
           SseType: {
             type: "string",
+            enum: ["sse-ebs", "sse-kms", "none"],
             description: "Reserved for future use.",
           },
         },

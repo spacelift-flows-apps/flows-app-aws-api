@@ -34,6 +34,16 @@ const describeInstanceInformation: AppBlock = {
               properties: {
                 key: {
                   type: "string",
+                  enum: [
+                    "InstanceIds",
+                    "AgentVersion",
+                    "PingStatus",
+                    "PlatformTypes",
+                    "ActivationIds",
+                    "IamRole",
+                    "ResourceType",
+                    "AssociationStatus",
+                  ],
                 },
                 valueSet: {
                   type: "array",
@@ -154,6 +164,7 @@ const describeInstanceInformation: AppBlock = {
                 },
                 PingStatus: {
                   type: "string",
+                  enum: ["Online", "ConnectionLost", "Inactive"],
                 },
                 LastPingDateTime: {
                   type: "string",
@@ -166,6 +177,7 @@ const describeInstanceInformation: AppBlock = {
                 },
                 PlatformType: {
                   type: "string",
+                  enum: ["Windows", "Linux", "MacOS"],
                 },
                 PlatformName: {
                   type: "string",
@@ -184,6 +196,7 @@ const describeInstanceInformation: AppBlock = {
                 },
                 ResourceType: {
                   type: "string",
+                  enum: ["ManagedInstance", "EC2Instance"],
                 },
                 Name: {
                   type: "string",
@@ -223,6 +236,11 @@ const describeInstanceInformation: AppBlock = {
                 },
                 SourceType: {
                   type: "string",
+                  enum: [
+                    "AWS::EC2::Instance",
+                    "AWS::IoT::Thing",
+                    "AWS::SSM::ManagedInstance",
+                  ],
                 },
               },
               additionalProperties: false,

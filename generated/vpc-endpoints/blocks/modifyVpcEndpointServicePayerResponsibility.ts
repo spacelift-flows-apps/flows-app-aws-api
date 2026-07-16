@@ -40,7 +40,10 @@ const modifyVpcEndpointServicePayerResponsibility: AppBlock = {
         PayerResponsibility: {
           name: "Payer Responsibility",
           description: "The entity that is responsible for the endpoint costs.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ServiceOwner"],
+          },
           required: true,
         },
       },

@@ -150,12 +150,14 @@ const describeNetworkInterfacePermissions: AppBlock = {
                 },
                 Permission: {
                   type: "string",
+                  enum: ["INSTANCE-ATTACH", "EIP-ASSOCIATE"],
                 },
                 PermissionState: {
                   type: "object",
                   properties: {
                     State: {
                       type: "string",
+                      enum: ["pending", "granted", "revoking", "revoked"],
                     },
                     StatusMessage: {
                       type: "string",

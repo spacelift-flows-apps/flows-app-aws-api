@@ -24,7 +24,22 @@ const putAccountSetting: AppBlock = {
         name: {
           name: "name",
           description: "The Amazon ECS account setting name to modify.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "serviceLongArnFormat",
+              "taskLongArnFormat",
+              "containerInstanceLongArnFormat",
+              "awsvpcTrunking",
+              "containerInsights",
+              "fargateFIPSMode",
+              "tagResourceAuthorization",
+              "fargateTaskRetirementWaitPeriod",
+              "guardDutyActivate",
+              "defaultLogDriverMode",
+              "fargateEventWindows",
+            ],
+          },
           required: true,
         },
         value: {
@@ -104,6 +119,19 @@ const putAccountSetting: AppBlock = {
             properties: {
               name: {
                 type: "string",
+                enum: [
+                  "serviceLongArnFormat",
+                  "taskLongArnFormat",
+                  "containerInstanceLongArnFormat",
+                  "awsvpcTrunking",
+                  "containerInsights",
+                  "fargateFIPSMode",
+                  "tagResourceAuthorization",
+                  "fargateTaskRetirementWaitPeriod",
+                  "guardDutyActivate",
+                  "defaultLogDriverMode",
+                  "fargateEventWindows",
+                ],
               },
               value: {
                 type: "string",
@@ -113,6 +141,7 @@ const putAccountSetting: AppBlock = {
               },
               type: {
                 type: "string",
+                enum: ["user", "aws_managed"],
               },
             },
             additionalProperties: false,

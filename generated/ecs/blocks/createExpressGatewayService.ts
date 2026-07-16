@@ -194,6 +194,11 @@ const createExpressGatewayService: AppBlock = {
               },
               autoScalingMetric: {
                 type: "string",
+                enum: [
+                  "AVERAGE_CPU",
+                  "AVERAGE_MEMORY",
+                  "REQUEST_COUNT_PER_TARGET",
+                ],
               },
               autoScalingTargetValue: {
                 type: "number",
@@ -304,6 +309,7 @@ const createExpressGatewayService: AppBlock = {
                 properties: {
                   statusCode: {
                     type: "string",
+                    enum: ["ACTIVE", "DRAINING", "INACTIVE"],
                   },
                   statusReason: {
                     type: "string",
@@ -403,6 +409,11 @@ const createExpressGatewayService: AppBlock = {
                         },
                         autoScalingMetric: {
                           type: "string",
+                          enum: [
+                            "AVERAGE_CPU",
+                            "AVERAGE_MEMORY",
+                            "REQUEST_COUNT_PER_TARGET",
+                          ],
                         },
                         autoScalingTargetValue: {
                           type: "number",

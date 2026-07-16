@@ -38,7 +38,10 @@ const getSSHPublicKey: AppBlock = {
           name: "Encoding",
           description:
             "Specifies the public key encoding format to use in the response.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SSH", "PEM"],
+          },
           required: true,
         },
       },
@@ -116,6 +119,7 @@ const getSSHPublicKey: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["Active", "Inactive", "Expired"],
               },
               UploadDate: {
                 type: "string",

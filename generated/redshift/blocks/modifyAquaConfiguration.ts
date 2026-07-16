@@ -33,7 +33,10 @@ const modifyAquaConfiguration: AppBlock = {
         AquaConfigurationStatus: {
           name: "Aqua Configuration Status",
           description: "This parameter is retired.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["enabled", "disabled", "auto"],
+          },
           required: false,
         },
       },
@@ -99,9 +102,11 @@ const modifyAquaConfiguration: AppBlock = {
             properties: {
               AquaStatus: {
                 type: "string",
+                enum: ["enabled", "disabled", "applying"],
               },
               AquaConfigurationStatus: {
                 type: "string",
+                enum: ["enabled", "disabled", "auto"],
               },
             },
             additionalProperties: false,

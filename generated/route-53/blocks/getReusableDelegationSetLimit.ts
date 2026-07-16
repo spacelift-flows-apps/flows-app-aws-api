@@ -28,7 +28,10 @@ const getReusableDelegationSetLimit: AppBlock = {
           name: "Type",
           description:
             "Specify MAX_ZONES_BY_REUSABLE_DELEGATION_SET to get the maximum number of hosted zones that you can associate with the specified reusable delegation set.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["MAX_ZONES_BY_REUSABLE_DELEGATION_SET"],
+          },
           required: true,
         },
         DelegationSetId: {
@@ -103,6 +106,7 @@ const getReusableDelegationSetLimit: AppBlock = {
             properties: {
               Type: {
                 type: "string",
+                enum: ["MAX_ZONES_BY_REUSABLE_DELEGATION_SET"],
               },
               Value: {
                 type: "number",

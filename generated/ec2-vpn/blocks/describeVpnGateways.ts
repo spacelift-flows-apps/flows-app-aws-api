@@ -148,9 +148,11 @@ const describeVpnGateways: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["pending", "available", "deleting", "deleted"],
                 },
                 Type: {
                   type: "string",
+                  enum: ["ipsec.1"],
                 },
                 AvailabilityZone: {
                   type: "string",
@@ -165,6 +167,12 @@ const describeVpnGateways: AppBlock = {
                       },
                       State: {
                         type: "string",
+                        enum: [
+                          "attaching",
+                          "attached",
+                          "detaching",
+                          "detached",
+                        ],
                       },
                     },
                     additionalProperties: false,

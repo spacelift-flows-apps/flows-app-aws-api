@@ -66,6 +66,7 @@ const countTokens: AppBlock = {
                           properties: {
                             role: {
                               type: "string",
+                              enum: ["user", "assistant"],
                             },
                             content: {
                               type: "array",

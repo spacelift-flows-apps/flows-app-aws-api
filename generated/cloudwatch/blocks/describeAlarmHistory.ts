@@ -46,6 +46,7 @@ const describeAlarmHistory: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["CompositeAlarm", "MetricAlarm"],
             },
           },
           required: false,
@@ -53,7 +54,16 @@ const describeAlarmHistory: AppBlock = {
         HistoryItemType: {
           name: "History Item Type",
           description: "The type of alarm histories to retrieve.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "ConfigurationUpdate",
+              "StateUpdate",
+              "Action",
+              "AlarmContributorStateUpdate",
+              "AlarmContributorAction",
+            ],
+          },
           required: false,
         },
         StartDate: {
@@ -86,7 +96,10 @@ const describeAlarmHistory: AppBlock = {
           name: "Scan By",
           description:
             "Specified whether to return the newest or oldest alarm history first.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["TimestampDescending", "TimestampAscending"],
+          },
           required: false,
         },
       },
@@ -165,12 +178,20 @@ const describeAlarmHistory: AppBlock = {
                 },
                 AlarmType: {
                   type: "string",
+                  enum: ["CompositeAlarm", "MetricAlarm"],
                 },
                 Timestamp: {
                   type: "string",
                 },
                 HistoryItemType: {
                   type: "string",
+                  enum: [
+                    "ConfigurationUpdate",
+                    "StateUpdate",
+                    "Action",
+                    "AlarmContributorStateUpdate",
+                    "AlarmContributorAction",
+                  ],
                 },
                 HistorySummary: {
                   type: "string",

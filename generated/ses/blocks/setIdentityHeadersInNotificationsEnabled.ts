@@ -35,7 +35,10 @@ const setIdentityHeadersInNotificationsEnabled: AppBlock = {
           name: "Notification Type",
           description:
             "The notification type for which to enable or disable headers in notifications.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Bounce", "Complaint", "Delivery"],
+          },
           required: true,
         },
         Enabled: {

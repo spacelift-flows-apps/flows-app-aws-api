@@ -111,6 +111,13 @@ const getOriginRequestPolicy: AppBlock = {
                     properties: {
                       HeaderBehavior: {
                         type: "string",
+                        enum: [
+                          "none",
+                          "whitelist",
+                          "allViewer",
+                          "allViewerAndWhitelistCloudFront",
+                          "allExcept",
+                        ],
                       },
                       Headers: {
                         type: "object",
@@ -135,6 +142,7 @@ const getOriginRequestPolicy: AppBlock = {
                     properties: {
                       CookieBehavior: {
                         type: "string",
+                        enum: ["none", "whitelist", "all", "allExcept"],
                       },
                       Cookies: {
                         type: "object",
@@ -159,6 +167,7 @@ const getOriginRequestPolicy: AppBlock = {
                     properties: {
                       QueryStringBehavior: {
                         type: "string",
+                        enum: ["none", "whitelist", "all", "allExcept"],
                       },
                       QueryStrings: {
                         type: "object",

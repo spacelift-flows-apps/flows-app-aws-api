@@ -92,6 +92,7 @@ const disableOrganizationsRootSessions: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["RootCredentialsManagement", "RootSessions"],
             },
             description:
               "The features you have enabled for centralized root access of member accounts in your organization.",

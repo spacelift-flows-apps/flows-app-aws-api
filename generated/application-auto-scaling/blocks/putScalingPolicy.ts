@@ -34,7 +34,26 @@ const putScalingPolicy: AppBlock = {
           name: "Service Namespace",
           description:
             "The namespace of the Amazon Web Services service that provides the resource.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "ecs",
+              "elasticmapreduce",
+              "ec2",
+              "appstream",
+              "dynamodb",
+              "rds",
+              "sagemaker",
+              "custom-resource",
+              "comprehend",
+              "lambda",
+              "cassandra",
+              "kafka",
+              "elasticache",
+              "neptune",
+              "workspaces",
+            ],
+          },
           required: true,
         },
         ResourceId: {
@@ -47,13 +66,44 @@ const putScalingPolicy: AppBlock = {
         ScalableDimension: {
           name: "Scalable Dimension",
           description: "The scalable dimension.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "ecs:service:DesiredCount",
+              "ec2:spot-fleet-request:TargetCapacity",
+              "elasticmapreduce:instancegroup:InstanceCount",
+              "appstream:fleet:DesiredCapacity",
+              "dynamodb:table:ReadCapacityUnits",
+              "dynamodb:table:WriteCapacityUnits",
+              "dynamodb:index:ReadCapacityUnits",
+              "dynamodb:index:WriteCapacityUnits",
+              "rds:cluster:ReadReplicaCount",
+              "sagemaker:variant:DesiredInstanceCount",
+              "custom-resource:ResourceType:Property",
+              "comprehend:document-classifier-endpoint:DesiredInferenceUnits",
+              "comprehend:entity-recognizer-endpoint:DesiredInferenceUnits",
+              "lambda:function:ProvisionedConcurrency",
+              "cassandra:table:ReadCapacityUnits",
+              "cassandra:table:WriteCapacityUnits",
+              "kafka:broker-storage:VolumeSize",
+              "elasticache:cache-cluster:Nodes",
+              "elasticache:replication-group:NodeGroups",
+              "elasticache:replication-group:Replicas",
+              "neptune:cluster:ReadReplicaCount",
+              "sagemaker:variant:DesiredProvisionedConcurrency",
+              "sagemaker:inference-component:DesiredCopyCount",
+              "workspaces:workspacespool:DesiredUserSessions",
+            ],
+          },
           required: true,
         },
         PolicyType: {
           name: "Policy Type",
           description: "The scaling policy type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["StepScaling", "TargetTrackingScaling", "PredictiveScaling"],
+          },
           required: false,
         },
         StepScalingPolicyConfiguration: {
@@ -64,6 +114,11 @@ const putScalingPolicy: AppBlock = {
             properties: {
               AdjustmentType: {
                 type: "string",
+                enum: [
+                  "ChangeInCapacity",
+                  "PercentChangeInCapacity",
+                  "ExactCapacity",
+                ],
               },
               StepAdjustments: {
                 type: "array",
@@ -92,6 +147,7 @@ const putScalingPolicy: AppBlock = {
               },
               MetricAggregationType: {
                 type: "string",
+                enum: ["Average", "Minimum", "Maximum"],
               },
             },
             additionalProperties: false,
@@ -112,6 +168,37 @@ const putScalingPolicy: AppBlock = {
                 properties: {
                   PredefinedMetricType: {
                     type: "string",
+                    enum: [
+                      "DynamoDBReadCapacityUtilization",
+                      "DynamoDBWriteCapacityUtilization",
+                      "ALBRequestCountPerTarget",
+                      "RDSReaderAverageCPUUtilization",
+                      "RDSReaderAverageDatabaseConnections",
+                      "EC2SpotFleetRequestAverageCPUUtilization",
+                      "EC2SpotFleetRequestAverageNetworkIn",
+                      "EC2SpotFleetRequestAverageNetworkOut",
+                      "SageMakerVariantInvocationsPerInstance",
+                      "ECSServiceAverageCPUUtilization",
+                      "ECSServiceAverageMemoryUtilization",
+                      "AppStreamAverageCapacityUtilization",
+                      "ComprehendInferenceUtilization",
+                      "LambdaProvisionedConcurrencyUtilization",
+                      "CassandraReadCapacityUtilization",
+                      "CassandraWriteCapacityUtilization",
+                      "KafkaBrokerStorageUtilization",
+                      "ElastiCacheEngineCPUUtilization",
+                      "ElastiCacheDatabaseMemoryUsagePercentage",
+                      "ElastiCachePrimaryEngineCPUUtilization",
+                      "ElastiCacheReplicaEngineCPUUtilization",
+                      "ElastiCacheDatabaseMemoryUsageCountedForEvictPercentage",
+                      "NeptuneReaderAverageCPUUtilization",
+                      "SageMakerVariantProvisionedConcurrencyUtilization",
+                      "ElastiCacheDatabaseCapacityUsageCountedForEvictPercentage",
+                      "SageMakerInferenceComponentInvocationsPerCopy",
+                      "WorkSpacesAverageUserSessionsCapacityUtilization",
+                      "SageMakerInferenceComponentConcurrentRequestsPerCopyHighResolution",
+                      "SageMakerVariantConcurrentRequestsPerModelHighResolution",
+                    ],
                   },
                   ResourceLabel: {
                     type: "string",
@@ -147,6 +234,13 @@ const putScalingPolicy: AppBlock = {
                   },
                   Statistic: {
                     type: "string",
+                    enum: [
+                      "Average",
+                      "Minimum",
+                      "Maximum",
+                      "SampleCount",
+                      "Sum",
+                    ],
                   },
                   Unit: {
                     type: "string",
@@ -294,12 +388,14 @@ const putScalingPolicy: AppBlock = {
               },
               Mode: {
                 type: "string",
+                enum: ["ForecastOnly", "ForecastAndScale"],
               },
               SchedulingBufferTime: {
                 type: "number",
               },
               MaxCapacityBreachBehavior: {
                 type: "string",
+                enum: ["HonorMaxCapacity", "IncreaseMaxCapacity"],
               },
               MaxCapacityBuffer: {
                 type: "number",

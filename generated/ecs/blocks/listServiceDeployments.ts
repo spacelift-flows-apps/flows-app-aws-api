@@ -41,6 +41,17 @@ const listServiceDeployments: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "PENDING",
+                "SUCCESSFUL",
+                "STOPPED",
+                "STOP_REQUESTED",
+                "IN_PROGRESS",
+                "ROLLBACK_REQUESTED",
+                "ROLLBACK_IN_PROGRESS",
+                "ROLLBACK_SUCCESSFUL",
+                "ROLLBACK_FAILED",
+              ],
             },
           },
           required: false,
@@ -165,6 +176,17 @@ const listServiceDeployments: AppBlock = {
                 },
                 status: {
                   type: "string",
+                  enum: [
+                    "PENDING",
+                    "SUCCESSFUL",
+                    "STOPPED",
+                    "STOP_REQUESTED",
+                    "IN_PROGRESS",
+                    "ROLLBACK_REQUESTED",
+                    "ROLLBACK_IN_PROGRESS",
+                    "ROLLBACK_SUCCESSFUL",
+                    "ROLLBACK_FAILED",
+                  ],
                 },
                 statusReason: {
                   type: "string",

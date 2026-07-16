@@ -32,6 +32,7 @@ const listCreateAccountStatus: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["IN_PROGRESS", "SUCCEEDED", "FAILED"],
             },
           },
           required: false,
@@ -120,6 +121,7 @@ const listCreateAccountStatus: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["IN_PROGRESS", "SUCCEEDED", "FAILED"],
                 },
                 RequestedTimestamp: {
                   type: "string",
@@ -135,6 +137,23 @@ const listCreateAccountStatus: AppBlock = {
                 },
                 FailureReason: {
                   type: "string",
+                  enum: [
+                    "ACCOUNT_LIMIT_EXCEEDED",
+                    "EMAIL_ALREADY_EXISTS",
+                    "INVALID_ADDRESS",
+                    "INVALID_EMAIL",
+                    "CONCURRENT_ACCOUNT_MODIFICATION",
+                    "INTERNAL_FAILURE",
+                    "GOVCLOUD_ACCOUNT_ALREADY_EXISTS",
+                    "MISSING_BUSINESS_VALIDATION",
+                    "FAILED_BUSINESS_VALIDATION",
+                    "PENDING_BUSINESS_VALIDATION",
+                    "INVALID_IDENTITY_FOR_BUSINESS_VALIDATION",
+                    "UNKNOWN_BUSINESS_VALIDATION",
+                    "MISSING_PAYMENT_INSTRUMENT",
+                    "INVALID_PAYMENT_INSTRUMENT",
+                    "UPDATE_EXISTING_RESOURCE_POLICY_WITH_TAGS_NOT_SUPPORTED",
+                  ],
                 },
               },
               additionalProperties: false,

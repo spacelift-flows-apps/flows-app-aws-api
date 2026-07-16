@@ -132,6 +132,12 @@ const terminateClientVpnConnections: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: [
+                        "active",
+                        "failed-to-terminate",
+                        "terminating",
+                        "terminated",
+                      ],
                     },
                     Message: {
                       type: "string",
@@ -144,6 +150,12 @@ const terminateClientVpnConnections: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: [
+                        "active",
+                        "failed-to-terminate",
+                        "terminating",
+                        "terminated",
+                      ],
                     },
                     Message: {
                       type: "string",

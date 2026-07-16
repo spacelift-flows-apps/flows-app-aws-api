@@ -120,6 +120,14 @@ const updateArchive: AppBlock = {
           },
           State: {
             type: "string",
+            enum: [
+              "ENABLED",
+              "DISABLED",
+              "CREATING",
+              "UPDATING",
+              "CREATE_FAILED",
+              "UPDATE_FAILED",
+            ],
             description: "The state of the archive.",
           },
           StateReason: {

@@ -173,6 +173,14 @@ const createRule: AppBlock = {
               properties: {
                 Type: {
                   type: "string",
+                  enum: [
+                    "forward",
+                    "authenticate-oidc",
+                    "authenticate-cognito",
+                    "redirect",
+                    "fixed-response",
+                    "jwt-validation",
+                  ],
                 },
                 TargetGroupArn: {
                   type: "string",
@@ -215,6 +223,7 @@ const createRule: AppBlock = {
                     },
                     OnUnauthenticatedRequest: {
                       type: "string",
+                      enum: ["deny", "allow", "authenticate"],
                     },
                     UseExistingClientSecret: {
                       type: "boolean",
@@ -258,6 +267,7 @@ const createRule: AppBlock = {
                     },
                     OnUnauthenticatedRequest: {
                       type: "string",
+                      enum: ["deny", "allow", "authenticate"],
                     },
                   },
                   required: [
@@ -290,6 +300,7 @@ const createRule: AppBlock = {
                     },
                     StatusCode: {
                       type: "string",
+                      enum: ["HTTP_301", "HTTP_302"],
                     },
                   },
                   required: ["StatusCode"],
@@ -405,6 +416,7 @@ const createRule: AppBlock = {
               properties: {
                 Type: {
                   type: "string",
+                  enum: ["host-header-rewrite", "url-rewrite"],
                 },
                 HostHeaderRewriteConfig: {
                   type: "object",
@@ -591,6 +603,14 @@ const createRule: AppBlock = {
                     properties: {
                       Type: {
                         type: "string",
+                        enum: [
+                          "forward",
+                          "authenticate-oidc",
+                          "authenticate-cognito",
+                          "redirect",
+                          "fixed-response",
+                          "jwt-validation",
+                        ],
                       },
                       TargetGroupArn: {
                         type: "string",
@@ -698,6 +718,7 @@ const createRule: AppBlock = {
                     properties: {
                       Type: {
                         type: "string",
+                        enum: ["host-header-rewrite", "url-rewrite"],
                       },
                       HostHeaderRewriteConfig: {
                         type: "object",

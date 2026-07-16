@@ -126,6 +126,14 @@ const terminateInstances: AppBlock = {
                     },
                     Name: {
                       type: "string",
+                      enum: [
+                        "pending",
+                        "running",
+                        "shutting-down",
+                        "terminated",
+                        "stopping",
+                        "stopped",
+                      ],
                     },
                   },
                   additionalProperties: false,
@@ -138,6 +146,14 @@ const terminateInstances: AppBlock = {
                     },
                     Name: {
                       type: "string",
+                      enum: [
+                        "pending",
+                        "running",
+                        "shutting-down",
+                        "terminated",
+                        "stopping",
+                        "stopped",
+                      ],
                     },
                   },
                   additionalProperties: false,

@@ -187,6 +187,7 @@ const describeFpgaImages: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: ["pending", "failed", "available", "unavailable"],
                     },
                     Message: {
                       type: "string",
@@ -216,6 +217,7 @@ const describeFpgaImages: AppBlock = {
                       },
                       ProductCodeType: {
                         type: "string",
+                        enum: ["devpay", "marketplace"],
                       },
                     },
                     additionalProperties: false,

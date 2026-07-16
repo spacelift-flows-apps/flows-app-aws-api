@@ -30,7 +30,10 @@ const modifyVpcTenancy: AppBlock = {
         InstanceTenancy: {
           name: "Instance Tenancy",
           description: "The instance tenancy attribute for the VPC.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["default"],
+          },
           required: true,
         },
         DryRun: {

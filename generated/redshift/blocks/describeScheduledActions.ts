@@ -34,7 +34,10 @@ const describeScheduledActions: AppBlock = {
         TargetActionType: {
           name: "Target Action Type",
           description: "The type of the scheduled actions to retrieve.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ResizeCluster", "PauseCluster", "ResumeCluster"],
+          },
           required: false,
         },
         StartTime: {
@@ -67,6 +70,7 @@ const describeScheduledActions: AppBlock = {
               properties: {
                 Name: {
                   type: "string",
+                  enum: ["cluster-identifier", "iam-role"],
                 },
                 Values: {
                   type: "array",
@@ -236,6 +240,7 @@ const describeScheduledActions: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["ACTIVE", "DISABLED"],
                 },
                 NextInvocations: {
                   type: "array",

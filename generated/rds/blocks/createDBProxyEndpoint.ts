@@ -61,7 +61,10 @@ const createDBProxyEndpoint: AppBlock = {
         TargetRole: {
           name: "Target Role",
           description: "The role of the DB proxy endpoint.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["READ_WRITE", "READ_ONLY"],
+          },
           required: false,
         },
         Tags: {
@@ -87,7 +90,10 @@ const createDBProxyEndpoint: AppBlock = {
         EndpointNetworkType: {
           name: "Endpoint Network Type",
           description: "The network type of the DB proxy endpoint.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["IPV4", "IPV6", "DUAL"],
+          },
           required: false,
         },
       },
@@ -162,6 +168,14 @@ const createDBProxyEndpoint: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: [
+                  "available",
+                  "modifying",
+                  "incompatible-network",
+                  "insufficient-resource-limits",
+                  "creating",
+                  "deleting",
+                ],
               },
               VpcId: {
                 type: "string",
@@ -186,12 +200,14 @@ const createDBProxyEndpoint: AppBlock = {
               },
               TargetRole: {
                 type: "string",
+                enum: ["READ_WRITE", "READ_ONLY"],
               },
               IsDefault: {
                 type: "boolean",
               },
               EndpointNetworkType: {
                 type: "string",
+                enum: ["IPV4", "IPV6", "DUAL"],
               },
             },
             additionalProperties: false,

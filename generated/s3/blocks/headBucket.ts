@@ -100,6 +100,7 @@ const headBucket: AppBlock = {
           },
           BucketLocationType: {
             type: "string",
+            enum: ["AvailabilityZone", "LocalZone"],
             description: "The type of location where the bucket is created.",
           },
           BucketLocationName: {

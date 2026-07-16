@@ -116,6 +116,7 @@ const describeContributorInsights: AppBlock = {
           },
           ContributorInsightsStatus: {
             type: "string",
+            enum: ["ENABLING", "ENABLED", "DISABLING", "DISABLED", "FAILED"],
             description: "Current status of contributor insights.",
           },
           LastUpdateDateTime: {
@@ -138,6 +139,7 @@ const describeContributorInsights: AppBlock = {
           },
           ContributorInsightsMode: {
             type: "string",
+            enum: ["ACCESSED_AND_THROTTLED_KEYS", "THROTTLED_KEYS"],
             description:
               "The mode of CloudWatch Contributor Insights for DynamoDB that determines which events are emitted.",
           },

@@ -97,6 +97,13 @@ const describeImport: AppBlock = {
               },
               ImportStatus: {
                 type: "string",
+                enum: [
+                  "IN_PROGRESS",
+                  "COMPLETED",
+                  "CANCELLING",
+                  "CANCELLED",
+                  "FAILED",
+                ],
               },
               TableArn: {
                 type: "string",
@@ -131,6 +138,7 @@ const describeImport: AppBlock = {
               },
               InputFormat: {
                 type: "string",
+                enum: ["DYNAMODB_JSON", "ION", "CSV"],
               },
               InputFormatOptions: {
                 type: "object",
@@ -155,6 +163,7 @@ const describeImport: AppBlock = {
               },
               InputCompressionType: {
                 type: "string",
+                enum: ["GZIP", "ZSTD", "NONE"],
               },
               TableCreationParameters: {
                 type: "object",
@@ -172,6 +181,7 @@ const describeImport: AppBlock = {
                         },
                         AttributeType: {
                           type: "string",
+                          enum: ["S", "N", "B"],
                         },
                       },
                       required: ["AttributeName", "AttributeType"],
@@ -188,6 +198,7 @@ const describeImport: AppBlock = {
                         },
                         KeyType: {
                           type: "string",
+                          enum: ["HASH", "RANGE"],
                         },
                       },
                       required: ["AttributeName", "KeyType"],
@@ -196,6 +207,7 @@ const describeImport: AppBlock = {
                   },
                   BillingMode: {
                     type: "string",
+                    enum: ["PROVISIONED", "PAY_PER_REQUEST"],
                   },
                   ProvisionedThroughput: {
                     type: "object",
@@ -230,6 +242,7 @@ const describeImport: AppBlock = {
                       },
                       SSEType: {
                         type: "string",
+                        enum: ["AES256", "KMS"],
                       },
                       KMSMasterKeyId: {
                         type: "string",

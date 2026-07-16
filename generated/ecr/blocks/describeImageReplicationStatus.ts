@@ -146,6 +146,7 @@ const describeImageReplicationStatus: AppBlock = {
                 },
                 status: {
                   type: "string",
+                  enum: ["IN_PROGRESS", "COMPLETE", "FAILED"],
                 },
                 failureCode: {
                   type: "string",

@@ -84,6 +84,7 @@ const startTask: AppBlock = {
                   },
                   assignPublicIp: {
                     type: "string",
+                    enum: ["ENABLED", "DISABLED"],
                   },
                 },
                 required: ["subnets"],
@@ -209,7 +210,10 @@ const startTask: AppBlock = {
           name: "propagate Tags",
           description:
             "Specifies whether to propagate the tags from the task definition or the service to the task.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["TASK_DEFINITION", "SERVICE", "NONE"],
+          },
           required: false,
         },
         referenceId: {
@@ -318,6 +322,7 @@ const startTask: AppBlock = {
                     },
                     filesystemType: {
                       type: "string",
+                      enum: ["ext3", "ext4", "xfs", "ntfs"],
                     },
                   },
                   required: ["roleArn"],
@@ -428,6 +433,7 @@ const startTask: AppBlock = {
                       },
                       targetType: {
                         type: "string",
+                        enum: ["container-instance"],
                       },
                       targetId: {
                         type: "string",
@@ -448,6 +454,7 @@ const startTask: AppBlock = {
                 },
                 connectivity: {
                   type: "string",
+                  enum: ["CONNECTED", "DISCONNECTED"],
                 },
                 connectivityAt: {
                   type: "string",
@@ -497,6 +504,7 @@ const startTask: AppBlock = {
                       },
                       healthStatus: {
                         type: "string",
+                        enum: ["HEALTHY", "UNHEALTHY", "UNKNOWN"],
                       },
                       managedAgents: {
                         type: "array",
@@ -539,6 +547,7 @@ const startTask: AppBlock = {
                 },
                 healthStatus: {
                   type: "string",
+                  enum: ["HEALTHY", "UNHEALTHY", "UNKNOWN"],
                 },
                 inferenceAccelerators: {
                   type: "array",
@@ -561,6 +570,7 @@ const startTask: AppBlock = {
                 },
                 launchType: {
                   type: "string",
+                  enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                 },
                 memory: {
                   type: "string",
@@ -641,6 +651,14 @@ const startTask: AppBlock = {
                 },
                 stopCode: {
                   type: "string",
+                  enum: [
+                    "TaskFailedToStart",
+                    "EssentialContainerExited",
+                    "UserInitiated",
+                    "ServiceSchedulerInitiated",
+                    "SpotInterruption",
+                    "TerminationNotice",
+                  ],
                 },
                 stoppedAt: {
                   type: "string",

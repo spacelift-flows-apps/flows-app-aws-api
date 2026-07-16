@@ -46,7 +46,10 @@ const listCopyJobs: AppBlock = {
           name: "By State",
           description:
             "Returns only copy jobs that are in the specified state.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["CREATED", "RUNNING", "COMPLETED", "FAILED", "PARTIAL"],
+          },
           required: false,
         },
         ByCreatedBefore: {
@@ -232,6 +235,7 @@ const listCopyJobs: AppBlock = {
                     },
                     DeleteAfterEvent: {
                       type: "string",
+                      enum: ["DELETE_AFTER_COPY"],
                     },
                   },
                   additionalProperties: false,
@@ -247,6 +251,13 @@ const listCopyJobs: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "CREATED",
+                    "RUNNING",
+                    "COMPLETED",
+                    "FAILED",
+                    "PARTIAL",
+                  ],
                 },
                 StatusMessage: {
                   type: "string",

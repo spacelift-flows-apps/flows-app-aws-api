@@ -49,7 +49,10 @@ const updateAnomaly: AppBlock = {
           name: "suppression Type",
           description:
             "Use this to specify whether the suppression to be temporary or infinite.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["LIMITED", "INFINITE"],
+          },
           required: false,
         },
         suppressionPeriod: {
@@ -64,6 +67,7 @@ const updateAnomaly: AppBlock = {
               },
               suppressionUnit: {
                 type: "string",
+                enum: ["SECONDS", "MINUTES", "HOURS"],
               },
             },
             additionalProperties: false,

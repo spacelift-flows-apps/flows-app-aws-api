@@ -113,9 +113,19 @@ const listCapabilities: AppBlock = {
                 },
                 type: {
                   type: "string",
+                  enum: ["ACK", "KRO", "ARGOCD"],
                 },
                 status: {
                   type: "string",
+                  enum: [
+                    "CREATING",
+                    "CREATE_FAILED",
+                    "UPDATING",
+                    "DELETING",
+                    "DELETE_FAILED",
+                    "ACTIVE",
+                    "DEGRADED",
+                  ],
                 },
                 version: {
                   type: "string",

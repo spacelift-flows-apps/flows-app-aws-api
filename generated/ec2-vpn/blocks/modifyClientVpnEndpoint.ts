@@ -124,7 +124,10 @@ const modifyClientVpnEndpoint: AppBlock = {
           name: "Self Service Portal",
           description:
             "Specify whether to enable the self-service portal for the Client VPN endpoint.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["enabled", "disabled"],
+          },
           required: false,
         },
         ClientConnectOptions: {

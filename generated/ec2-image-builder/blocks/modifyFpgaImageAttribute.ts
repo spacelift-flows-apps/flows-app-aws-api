@@ -40,13 +40,19 @@ const modifyFpgaImageAttribute: AppBlock = {
         Attribute: {
           name: "Attribute",
           description: "The name of the attribute.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["description", "name", "loadPermission", "productCodes"],
+          },
           required: false,
         },
         OperationType: {
           name: "Operation Type",
           description: "The operation type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["add", "remove"],
+          },
           required: false,
         },
         UserIds: {
@@ -95,6 +101,7 @@ const modifyFpgaImageAttribute: AppBlock = {
                   properties: {
                     Group: {
                       type: "string",
+                      enum: ["all"],
                     },
                     UserId: {
                       type: "string",
@@ -110,6 +117,7 @@ const modifyFpgaImageAttribute: AppBlock = {
                   properties: {
                     Group: {
                       type: "string",
+                      enum: ["all"],
                     },
                     UserId: {
                       type: "string",
@@ -217,6 +225,7 @@ const modifyFpgaImageAttribute: AppBlock = {
                     },
                     Group: {
                       type: "string",
+                      enum: ["all"],
                     },
                   },
                   additionalProperties: false,
@@ -232,6 +241,7 @@ const modifyFpgaImageAttribute: AppBlock = {
                     },
                     ProductCodeType: {
                       type: "string",
+                      enum: ["devpay", "marketplace"],
                     },
                   },
                   additionalProperties: false,

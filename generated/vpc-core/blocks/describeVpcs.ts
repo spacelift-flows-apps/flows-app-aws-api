@@ -148,6 +148,7 @@ const describeVpcs: AppBlock = {
                 },
                 InstanceTenancy: {
                   type: "string",
+                  enum: ["default", "dedicated", "host"],
                 },
                 Ipv6CidrBlockAssociationSet: {
                   type: "array",
@@ -176,9 +177,11 @@ const describeVpcs: AppBlock = {
                       },
                       Ipv6AddressAttribute: {
                         type: "string",
+                        enum: ["public", "private"],
                       },
                       IpSource: {
                         type: "string",
+                        enum: ["amazon", "byoip", "none"],
                       },
                     },
                     additionalProperties: false,
@@ -221,9 +224,21 @@ const describeVpcs: AppBlock = {
                     },
                     Mode: {
                       type: "string",
+                      enum: ["monitor", "enforce"],
                     },
                     State: {
                       type: "string",
+                      enum: [
+                        "enforce-in-progress",
+                        "monitor-in-progress",
+                        "enforce-failed",
+                        "monitor-failed",
+                        "deleting",
+                        "deleted",
+                        "available",
+                        "creating",
+                        "delete-failed",
+                      ],
                     },
                     StateMessage: {
                       type: "string",
@@ -332,6 +347,7 @@ const describeVpcs: AppBlock = {
                   properties: {
                     InternetGatewayBlockMode: {
                       type: "string",
+                      enum: ["off", "block-bidirectional", "block-ingress"],
                     },
                   },
                   additionalProperties: false,
@@ -341,6 +357,7 @@ const describeVpcs: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["pending", "available"],
                 },
                 CidrBlock: {
                   type: "string",

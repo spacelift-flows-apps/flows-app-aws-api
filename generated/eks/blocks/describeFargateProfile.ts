@@ -135,6 +135,13 @@ const describeFargateProfile: AppBlock = {
               },
               status: {
                 type: "string",
+                enum: [
+                  "CREATING",
+                  "ACTIVE",
+                  "DELETING",
+                  "CREATE_FAILED",
+                  "DELETE_FAILED",
+                ],
               },
               tags: {
                 type: "object",
@@ -152,6 +159,12 @@ const describeFargateProfile: AppBlock = {
                       properties: {
                         code: {
                           type: "string",
+                          enum: [
+                            "PodExecutionRoleAlreadyInUse",
+                            "AccessDenied",
+                            "ClusterUnreachable",
+                            "InternalFailure",
+                          ],
                         },
                         message: {
                           type: "string",

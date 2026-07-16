@@ -110,6 +110,7 @@ const monitorInstances: AppBlock = {
                   properties: {
                     State: {
                       type: "string",
+                      enum: ["disabled", "disabling", "enabled", "pending"],
                     },
                   },
                   additionalProperties: false,

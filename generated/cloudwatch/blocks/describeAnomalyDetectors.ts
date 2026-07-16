@@ -82,6 +82,7 @@ const describeAnomalyDetectors: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["SINGLE_METRIC", "METRIC_MATH"],
             },
           },
           required: false,
@@ -199,6 +200,11 @@ const describeAnomalyDetectors: AppBlock = {
                 },
                 StateValue: {
                   type: "string",
+                  enum: [
+                    "PENDING_TRAINING",
+                    "TRAINED_INSUFFICIENT_DATA",
+                    "TRAINED",
+                  ],
                 },
                 MetricCharacteristics: {
                   type: "object",

@@ -148,6 +148,7 @@ const acceptTransitGatewayPeeringAttachment: AppBlock = {
                 properties: {
                   DynamicRouting: {
                     type: "string",
+                    enum: ["enable", "disable"],
                   },
                 },
                 additionalProperties: false,
@@ -166,6 +167,21 @@ const acceptTransitGatewayPeeringAttachment: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "initiating",
+                  "initiatingRequest",
+                  "pendingAcceptance",
+                  "rollingBack",
+                  "pending",
+                  "available",
+                  "modifying",
+                  "deleting",
+                  "deleted",
+                  "failed",
+                  "rejected",
+                  "rejecting",
+                  "failing",
+                ],
               },
               CreationTime: {
                 type: "string",

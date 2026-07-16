@@ -74,9 +74,11 @@ const createGeneratedTemplate: AppBlock = {
             properties: {
               DeletionPolicy: {
                 type: "string",
+                enum: ["DELETE", "RETAIN"],
               },
               UpdateReplacePolicy: {
                 type: "string",
+                enum: ["DELETE", "RETAIN"],
               },
             },
             additionalProperties: false,

@@ -107,6 +107,15 @@ const getRule: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: [
+                        "IPMatch",
+                        "ByteMatch",
+                        "SqlInjectionMatch",
+                        "GeoMatch",
+                        "SizeConstraint",
+                        "XssMatch",
+                        "RegexMatch",
+                      ],
                     },
                     DataId: {
                       type: "string",

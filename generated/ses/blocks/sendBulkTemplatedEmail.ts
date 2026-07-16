@@ -229,6 +229,22 @@ const sendBulkTemplatedEmail: AppBlock = {
               properties: {
                 Status: {
                   type: "string",
+                  enum: [
+                    "Success",
+                    "MessageRejected",
+                    "MailFromDomainNotVerified",
+                    "ConfigurationSetDoesNotExist",
+                    "TemplateDoesNotExist",
+                    "AccountSuspended",
+                    "AccountThrottled",
+                    "AccountDailyQuotaExceeded",
+                    "InvalidSendingPoolName",
+                    "AccountSendingPaused",
+                    "ConfigurationSetSendingPaused",
+                    "InvalidParameterValue",
+                    "TransientFailure",
+                    "Failed",
+                  ],
                 },
                 Error: {
                   type: "string",

@@ -49,7 +49,10 @@ const describeStackInstance: AppBlock = {
           name: "Call As",
           description:
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SELF", "DELEGATED_ADMIN"],
+          },
           required: false,
         },
       },
@@ -148,12 +151,23 @@ const describeStackInstance: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["CURRENT", "OUTDATED", "INOPERABLE"],
               },
               StackInstanceStatus: {
                 type: "object",
                 properties: {
                   DetailedStatus: {
                     type: "string",
+                    enum: [
+                      "PENDING",
+                      "RUNNING",
+                      "SUCCEEDED",
+                      "FAILED",
+                      "CANCELLED",
+                      "INOPERABLE",
+                      "SKIPPED_SUSPENDED_ACCOUNT",
+                      "FAILED_IMPORT",
+                    ],
                   },
                 },
                 additionalProperties: false,
@@ -166,6 +180,7 @@ const describeStackInstance: AppBlock = {
               },
               DriftStatus: {
                 type: "string",
+                enum: ["DRIFTED", "IN_SYNC", "UNKNOWN", "NOT_CHECKED"],
               },
               LastDriftCheckTimestamp: {
                 type: "string",

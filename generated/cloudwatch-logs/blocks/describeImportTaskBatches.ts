@@ -39,6 +39,7 @@ const describeImportTaskBatches: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["IN_PROGRESS", "CANCELLED", "COMPLETED", "FAILED"],
             },
           },
           required: false,
@@ -134,6 +135,7 @@ const describeImportTaskBatches: AppBlock = {
                 },
                 status: {
                   type: "string",
+                  enum: ["IN_PROGRESS", "CANCELLED", "COMPLETED", "FAILED"],
                 },
                 errorMessage: {
                   type: "string",

@@ -150,6 +150,7 @@ const describeVpcEndpointConnectionNotifications: AppBlock = {
                 },
                 ConnectionNotificationType: {
                   type: "string",
+                  enum: ["Topic"],
                 },
                 ConnectionNotificationArn: {
                   type: "string",
@@ -162,6 +163,7 @@ const describeVpcEndpointConnectionNotifications: AppBlock = {
                 },
                 ConnectionNotificationState: {
                   type: "string",
+                  enum: ["Enabled", "Disabled"],
                 },
                 ServiceRegion: {
                   type: "string",

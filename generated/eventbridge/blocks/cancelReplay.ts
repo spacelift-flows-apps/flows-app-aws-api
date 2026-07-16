@@ -94,6 +94,14 @@ const cancelReplay: AppBlock = {
           },
           State: {
             type: "string",
+            enum: [
+              "STARTING",
+              "RUNNING",
+              "CANCELLING",
+              "COMPLETED",
+              "CANCELLED",
+              "FAILED",
+            ],
             description: "The current state of the replay.",
           },
           StateReason: {

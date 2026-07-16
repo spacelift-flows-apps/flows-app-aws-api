@@ -144,6 +144,7 @@ const getTransitGatewayAttachmentPropagations: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["enabling", "enabled", "disabling", "disabled"],
                 },
               },
               additionalProperties: false,

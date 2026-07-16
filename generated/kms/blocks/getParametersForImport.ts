@@ -32,13 +32,26 @@ const getParametersForImport: AppBlock = {
           name: "Wrapping Algorithm",
           description:
             "The algorithm you will use with the RSA public key (PublicKey) in the response to protect your key material during import.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "RSAES_PKCS1_V1_5",
+              "RSAES_OAEP_SHA_1",
+              "RSAES_OAEP_SHA_256",
+              "RSA_AES_KEY_WRAP_SHA_1",
+              "RSA_AES_KEY_WRAP_SHA_256",
+              "SM2PKE",
+            ],
+          },
           required: true,
         },
         WrappingKeySpec: {
           name: "Wrapping Key Spec",
           description: "The type of RSA public key to return in the response.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["RSA_2048", "RSA_3072", "RSA_4096", "SM2"],
+          },
           required: true,
         },
       },

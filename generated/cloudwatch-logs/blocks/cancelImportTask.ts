@@ -105,6 +105,7 @@ const cancelImportTask: AppBlock = {
           },
           importStatus: {
             type: "string",
+            enum: ["IN_PROGRESS", "CANCELLED", "COMPLETED", "FAILED"],
             description: "The final status of the import task.",
           },
           creationTime: {

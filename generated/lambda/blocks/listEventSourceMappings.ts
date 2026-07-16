@@ -121,6 +121,7 @@ const listEventSourceMappings: AppBlock = {
                 },
                 StartingPosition: {
                   type: "string",
+                  enum: ["TRIM_HORIZON", "LATEST", "AT_TIMESTAMP"],
                 },
                 StartingPositionTimestamp: {
                   type: "string",
@@ -211,6 +212,16 @@ const listEventSourceMappings: AppBlock = {
                     properties: {
                       Type: {
                         type: "string",
+                        enum: [
+                          "BASIC_AUTH",
+                          "VPC_SUBNET",
+                          "VPC_SECURITY_GROUP",
+                          "SASL_SCRAM_512_AUTH",
+                          "SASL_SCRAM_256_AUTH",
+                          "VIRTUAL_HOST",
+                          "CLIENT_CERTIFICATE_TLS_AUTH",
+                          "SERVER_ROOT_CA_CERTIFICATE",
+                        ],
                       },
                       URI: {
                         type: "string",
@@ -247,6 +258,7 @@ const listEventSourceMappings: AppBlock = {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["ReportBatchItemFailures"],
                   },
                 },
                 AmazonManagedKafkaEventSourceConfig: {
@@ -263,6 +275,7 @@ const listEventSourceMappings: AppBlock = {
                         },
                         EventRecordFormat: {
                           type: "string",
+                          enum: ["JSON", "SOURCE"],
                         },
                         AccessConfigs: {
                           type: "array",
@@ -292,6 +305,7 @@ const listEventSourceMappings: AppBlock = {
                         },
                         EventRecordFormat: {
                           type: "string",
+                          enum: ["JSON", "SOURCE"],
                         },
                         AccessConfigs: {
                           type: "array",
@@ -327,6 +341,7 @@ const listEventSourceMappings: AppBlock = {
                     },
                     FullDocument: {
                       type: "string",
+                      enum: ["UpdateLookup", "Default"],
                     },
                   },
                   additionalProperties: false,
@@ -356,6 +371,7 @@ const listEventSourceMappings: AppBlock = {
                       type: "array",
                       items: {
                         type: "string",
+                        enum: ["EventCount", "ErrorCount", "KafkaMetrics"],
                       },
                     },
                   },
@@ -366,6 +382,7 @@ const listEventSourceMappings: AppBlock = {
                   properties: {
                     SystemLogLevel: {
                       type: "string",
+                      enum: ["DEBUG", "INFO", "WARN"],
                     },
                   },
                   additionalProperties: false,

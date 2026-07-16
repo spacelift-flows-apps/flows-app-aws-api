@@ -39,7 +39,10 @@ const describeCapacityReservationBillingRequests: AppBlock = {
           name: "Role",
           description:
             "Specify one of the following: odcr-owner - If you are the Capacity Reservation owner, specify this value to view requests that you have initiated.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["odcr-owner", "unused-reservation-billing-owner"],
+          },
           required: true,
         },
         NextToken: {
@@ -170,6 +173,14 @@ const describeCapacityReservationBillingRequests: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "pending",
+                    "accepted",
+                    "rejected",
+                    "cancelled",
+                    "revoked",
+                    "expired",
+                  ],
                 },
                 StatusMessage: {
                   type: "string",
@@ -185,6 +196,7 @@ const describeCapacityReservationBillingRequests: AppBlock = {
                     },
                     Tenancy: {
                       type: "string",
+                      enum: ["default", "dedicated"],
                     },
                     AvailabilityZoneId: {
                       type: "string",
