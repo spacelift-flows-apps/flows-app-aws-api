@@ -2,6 +2,7 @@ import { AppBlock, events } from "@slflows/sdk/v1";
 import { S3Client, AbortMultipartUploadCommand } from "@aws-sdk/client-s3";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const abortMultipartUpload: AppBlock = {
   name: "Abort Multipart Upload",
@@ -104,7 +105,12 @@ const abortMultipartUpload: AppBlock = {
           }),
         });
 
-        const command = new AbortMultipartUploadCommand(commandInput as any);
+        const command = new AbortMultipartUploadCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["IfMatchInitiatedTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         // Safely serialize response by handling circular references and streams

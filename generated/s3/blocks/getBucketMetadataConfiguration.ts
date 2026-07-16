@@ -132,12 +132,10 @@ const getBucketMetadataConfiguration: AppBlock = {
                         type: "object",
                         properties: {
                           ErrorCode: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           ErrorMessage: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         additionalProperties: false,
@@ -152,12 +150,10 @@ const getBucketMetadataConfiguration: AppBlock = {
                         type: "object",
                         properties: {
                           Expiration: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           Days: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                         },
                         required: ["Expiration"],
@@ -180,12 +176,10 @@ const getBucketMetadataConfiguration: AppBlock = {
                         type: "object",
                         properties: {
                           ErrorCode: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           ErrorMessage: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         additionalProperties: false,

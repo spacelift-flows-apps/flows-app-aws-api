@@ -89,12 +89,10 @@ const putBucketWebsite: AppBlock = {
                       type: "object",
                       properties: {
                         HttpErrorCodeReturnedEquals: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KeyPrefixEquals: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -103,24 +101,19 @@ const putBucketWebsite: AppBlock = {
                       type: "object",
                       properties: {
                         HostName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         HttpRedirectCode: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Protocol: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ReplaceKeyPrefixWith: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ReplaceKeyWith: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

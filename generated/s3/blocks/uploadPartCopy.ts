@@ -2,6 +2,7 @@ import { AppBlock, events } from "@slflows/sdk/v1";
 import { S3Client, UploadPartCopyCommand } from "@aws-sdk/client-s3";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const uploadPartCopy: AppBlock = {
   name: "Upload Part Copy",
@@ -193,7 +194,15 @@ const uploadPartCopy: AppBlock = {
           }),
         });
 
-        const command = new UploadPartCopyCommand(commandInput as any);
+        const command = new UploadPartCopyCommand(
+          convertTimestamps(
+            commandInput,
+            new Set([
+              "CopySourceIfModifiedSince",
+              "CopySourceIfUnmodifiedSince",
+            ]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         // Safely serialize response by handling circular references and streams
@@ -237,6 +246,21 @@ const uploadPartCopy: AppBlock = {
                 type: "string",
               },
               ChecksumSHA256: {
+                type: "string",
+              },
+              ChecksumSHA512: {
+                type: "string",
+              },
+              ChecksumMD5: {
+                type: "string",
+              },
+              ChecksumXXHASH64: {
+                type: "string",
+              },
+              ChecksumXXHASH3: {
+                type: "string",
+              },
+              ChecksumXXHASH128: {
                 type: "string",
               },
             },

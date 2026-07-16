@@ -8,7 +8,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const listBucketInventoryConfigurations: AppBlock = {
   name: "List Bucket Inventory Configurations",
-  description: `This operation is not supported for directory buckets.`,
+  description: `Returns a list of S3 Inventory configurations for the bucket.`,
   inputs: {
     default: {
       config: {
@@ -124,24 +124,24 @@ const listBucketInventoryConfigurations: AppBlock = {
                       type: "object",
                       properties: {
                         AccountId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Bucket: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Format: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Prefix: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Encryption: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            SSES3: {},
+                            SSEKMS: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       required: ["Bucket", "Format"],

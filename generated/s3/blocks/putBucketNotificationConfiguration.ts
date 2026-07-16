@@ -52,8 +52,7 @@ const putBucketNotificationConfiguration: AppBlock = {
                     Events: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Filter: {
@@ -61,7 +60,10 @@ const putBucketNotificationConfiguration: AppBlock = {
                       properties: {
                         Key: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            FilterRules: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -85,8 +87,7 @@ const putBucketNotificationConfiguration: AppBlock = {
                     Events: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Filter: {
@@ -94,7 +95,10 @@ const putBucketNotificationConfiguration: AppBlock = {
                       properties: {
                         Key: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            FilterRules: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -118,8 +122,7 @@ const putBucketNotificationConfiguration: AppBlock = {
                     Events: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Filter: {
@@ -127,7 +130,10 @@ const putBucketNotificationConfiguration: AppBlock = {
                       properties: {
                         Key: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            FilterRules: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,

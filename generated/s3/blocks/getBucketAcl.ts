@@ -5,7 +5,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const getBucketAcl: AppBlock = {
   name: "Get Bucket Acl",
-  description: `End of support notice: Beginning October 1, 2025, Amazon S3 will stop returning DisplayName.`,
+  description: `This operation is not supported for directory buckets.`,
   inputs: {
     default: {
       config: {
@@ -105,8 +105,7 @@ const getBucketAcl: AppBlock = {
               },
             },
             additionalProperties: false,
-            description:
-              "Container for the bucket owner's display name and ID.",
+            description: "Container for the bucket owner's ID.",
           },
           Grants: {
             type: "array",

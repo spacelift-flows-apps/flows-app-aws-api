@@ -131,7 +131,58 @@ const listBucketAnalyticsConfigurations: AppBlock = {
                   type: "string",
                 },
                 Filter: {
-                  type: "string",
+                  oneOf: [
+                    {
+                      type: "object",
+                      properties: {
+                        Prefix: {
+                          type: "string",
+                        },
+                      },
+                      required: ["Prefix"],
+                      additionalProperties: false,
+                    },
+                    {
+                      type: "object",
+                      properties: {
+                        Tag: {
+                          type: "object",
+                          properties: {
+                            Key: {
+                              type: "string",
+                            },
+                            Value: {
+                              type: "string",
+                            },
+                          },
+                          required: ["Key", "Value"],
+                          additionalProperties: false,
+                        },
+                      },
+                      required: ["Tag"],
+                      additionalProperties: false,
+                    },
+                    {
+                      type: "object",
+                      properties: {
+                        And: {
+                          type: "object",
+                          properties: {
+                            Prefix: {
+                              type: "string",
+                            },
+                            Tags: {
+                              type: "array",
+                              items: {},
+                            },
+                          },
+                          additionalProperties: false,
+                        },
+                      },
+                      required: ["And"],
+                      additionalProperties: false,
+                    },
+                  ],
                 },
                 StorageClassAnalysis: {
                   type: "object",
@@ -140,12 +191,15 @@ const listBucketAnalyticsConfigurations: AppBlock = {
                       type: "object",
                       properties: {
                         OutputSchemaVersion: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Destination: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            S3BucketDestination: {},
+                          },
+                          required: ["S3BucketDestination"],
+                          additionalProperties: false,
                         },
                       },
                       required: ["OutputSchemaVersion", "Destination"],

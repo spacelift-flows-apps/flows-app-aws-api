@@ -1,11 +1,11 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
-import { S3Client, PutBucketLoggingCommand } from "@aws-sdk/client-s3";
+import { S3Client, UpdateObjectEncryptionCommand } from "@aws-sdk/client-s3";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";
 
-const putBucketLogging: AppBlock = {
-  name: "Put Bucket Logging",
-  description: `End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs).`,
+const updateObjectEncryption: AppBlock = {
+  name: "Update Object Encryption",
+  description: `This operation is not supported for directory buckets or Amazon S3 on Outposts buckets.`,
   inputs: {
     default: {
       config: {
@@ -25,94 +25,77 @@ const putBucketLogging: AppBlock = {
         Bucket: {
           name: "Bucket",
           description:
-            "The name of the bucket for which to set the logging parameters.",
+            "The name of the general purpose bucket that contains the specified object key name.",
           type: "string",
           required: true,
         },
-        BucketLoggingStatus: {
-          name: "Bucket Logging Status",
-          description: "Container for logging status information.",
-          type: {
-            type: "object",
-            properties: {
-              LoggingEnabled: {
-                type: "object",
-                properties: {
-                  TargetBucket: {
-                    type: "string",
-                  },
-                  TargetGrants: {
-                    type: "array",
-                    items: {
-                      type: "object",
-                      properties: {
-                        Grantee: {
-                          type: "object",
-                          properties: {
-                            DisplayName: {},
-                            EmailAddress: {},
-                            ID: {},
-                            URI: {},
-                            Type: {},
-                          },
-                          required: ["Type"],
-                          additionalProperties: false,
-                        },
-                        Permission: {
-                          type: "string",
-                        },
-                      },
-                      additionalProperties: false,
-                    },
-                  },
-                  TargetPrefix: {
-                    type: "string",
-                  },
-                  TargetObjectKeyFormat: {
-                    type: "object",
-                    properties: {
-                      SimplePrefix: {
-                        type: "object",
-                        properties: {},
-                        additionalProperties: false,
-                      },
-                      PartitionedPrefix: {
-                        type: "object",
-                        properties: {
-                          PartitionDateSource: {
-                            type: "string",
-                          },
-                        },
-                        additionalProperties: false,
-                      },
-                    },
-                    additionalProperties: false,
-                  },
-                },
-                required: ["TargetBucket", "TargetPrefix"],
-                additionalProperties: false,
-              },
-            },
-            additionalProperties: false,
-          },
+        Key: {
+          name: "Key",
+          description:
+            "The key name of the object that you want to update the server-side encryption type for.",
+          type: "string",
           required: true,
         },
-        ContentMD5: {
-          name: "Content MD5",
-          description: "The MD5 hash of the PutBucketLogging request body.",
+        VersionId: {
+          name: "Version Id",
+          description:
+            "The version ID of the object that you want to update the server-side encryption type for.",
           type: "string",
           required: false,
         },
-        ChecksumAlgorithm: {
-          name: "Checksum Algorithm",
+        ObjectEncryption: {
+          name: "Object Encryption",
           description:
-            "Indicates the algorithm used to create the checksum for the request when you use the SDK.",
+            "The updated server-side encryption type for this object.",
+          type: {
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  SSEKMS: {
+                    type: "object",
+                    properties: {
+                      KMSKeyArn: {
+                        type: "string",
+                      },
+                      BucketKeyEnabled: {
+                        type: "boolean",
+                      },
+                    },
+                    required: ["KMSKeyArn"],
+                    additionalProperties: false,
+                  },
+                },
+                required: ["SSEKMS"],
+                additionalProperties: false,
+              },
+            ],
+          },
+          required: true,
+        },
+        RequestPayer: {
+          name: "Request Payer",
+          description:
+            "Confirms that the requester knows that they will be charged for the request.",
           type: "string",
           required: false,
         },
         ExpectedBucketOwner: {
           name: "Expected Bucket Owner",
           description: "The account ID of the expected bucket owner.",
+          type: "string",
+          required: false,
+        },
+        ContentMD5: {
+          name: "Content MD5",
+          description: "The MD5 hash for the request body.",
+          type: "string",
+          required: false,
+        },
+        ChecksumAlgorithm: {
+          name: "Checksum Algorithm",
+          description:
+            "Indicates the algorithm used to create the checksum for the object when you use an Amazon Web Services SDK.",
           type: "string",
           required: false,
         },
@@ -159,7 +142,7 @@ const putBucketLogging: AppBlock = {
           }),
         });
 
-        const command = new PutBucketLoggingCommand(commandInput as any);
+        const command = new UpdateObjectEncryptionCommand(commandInput as any);
         const response = await client.send(command);
 
         // Safely serialize response by handling circular references and streams
@@ -170,15 +153,22 @@ const putBucketLogging: AppBlock = {
   },
   outputs: {
     default: {
-      name: "Put Bucket Logging Result",
-      description: "Result from PutBucketLogging operation",
+      name: "Update Object Encryption Result",
+      description: "Result from UpdateObjectEncryption operation",
       possiblePrimaryParents: ["default"],
       type: {
         type: "object",
+        properties: {
+          RequestCharged: {
+            type: "string",
+            description:
+              "If present, indicates that the requester was successfully charged for the request.",
+          },
+        },
         additionalProperties: true,
       },
     },
   },
 };
 
-export default putBucketLogging;
+export default updateObjectEncryption;

@@ -8,7 +8,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const putBucketMetricsConfiguration: AppBlock = {
   name: "Put Bucket Metrics Configuration",
-  description: `This operation is not supported for directory buckets.`,
+  description: `Sets a metrics configuration (specified by the metrics configuration ID) for the bucket.`,
   inputs: {
     default: {
       config: {
@@ -48,7 +48,79 @@ const putBucketMetricsConfiguration: AppBlock = {
                 type: "string",
               },
               Filter: {
-                type: "string",
+                oneOf: [
+                  {
+                    type: "object",
+                    properties: {
+                      Prefix: {
+                        type: "string",
+                      },
+                    },
+                    required: ["Prefix"],
+                    additionalProperties: false,
+                  },
+                  {
+                    type: "object",
+                    properties: {
+                      Tag: {
+                        type: "object",
+                        properties: {
+                          Key: {
+                            type: "string",
+                          },
+                          Value: {
+                            type: "string",
+                          },
+                        },
+                        required: ["Key", "Value"],
+                        additionalProperties: false,
+                      },
+                    },
+                    required: ["Tag"],
+                    additionalProperties: false,
+                  },
+                  {
+                    type: "object",
+                    properties: {
+                      AccessPointArn: {
+                        type: "string",
+                      },
+                    },
+                    required: ["AccessPointArn"],
+                    additionalProperties: false,
+                  },
+                  {
+                    type: "object",
+                    properties: {
+                      And: {
+                        type: "object",
+                        properties: {
+                          Prefix: {
+                            type: "string",
+                          },
+                          Tags: {
+                            type: "array",
+                            items: {
+                              type: "object",
+                              properties: {
+                                Key: {},
+                                Value: {},
+                              },
+                              required: ["Key", "Value"],
+                              additionalProperties: false,
+                            },
+                          },
+                          AccessPointArn: {
+                            type: "string",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                    },
+                    required: ["And"],
+                    additionalProperties: false,
+                  },
+                ],
               },
             },
             required: ["Id"],

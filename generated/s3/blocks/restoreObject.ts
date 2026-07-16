@@ -79,32 +79,25 @@ const restoreObject: AppBlock = {
                         type: "object",
                         properties: {
                           FileHeaderInfo: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           Comments: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           QuoteEscapeCharacter: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           RecordDelimiter: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           FieldDelimiter: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           QuoteCharacter: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           AllowQuotedRecordDelimiter: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                         },
                         additionalProperties: false,
@@ -116,8 +109,7 @@ const restoreObject: AppBlock = {
                         type: "object",
                         properties: {
                           Type: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         additionalProperties: false,
@@ -143,24 +135,19 @@ const restoreObject: AppBlock = {
                         type: "object",
                         properties: {
                           QuoteFields: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           QuoteEscapeCharacter: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           RecordDelimiter: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           FieldDelimiter: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           QuoteCharacter: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         additionalProperties: false,
@@ -169,8 +156,7 @@ const restoreObject: AppBlock = {
                         type: "object",
                         properties: {
                           RecordDelimiter: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         additionalProperties: false,
@@ -203,16 +189,13 @@ const restoreObject: AppBlock = {
                         type: "object",
                         properties: {
                           EncryptionType: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           KMSKeyId: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           KMSContext: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         required: ["EncryptionType"],
@@ -225,15 +208,19 @@ const restoreObject: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Grantee: {},
+                            Permission: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       Tagging: {
                         type: "object",
                         properties: {
                           TagSet: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["TagSet"],
@@ -243,7 +230,11 @@ const restoreObject: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                            Value: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       StorageClass: {

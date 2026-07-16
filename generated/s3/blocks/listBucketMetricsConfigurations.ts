@@ -8,7 +8,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const listBucketMetricsConfigurations: AppBlock = {
   name: "List Bucket Metrics Configurations",
-  description: `This operation is not supported for directory buckets.`,
+  description: `Lists the metrics configurations for the bucket.`,
   inputs: {
     default: {
       config: {
@@ -131,7 +131,71 @@ const listBucketMetricsConfigurations: AppBlock = {
                   type: "string",
                 },
                 Filter: {
-                  type: "string",
+                  oneOf: [
+                    {
+                      type: "object",
+                      properties: {
+                        Prefix: {
+                          type: "string",
+                        },
+                      },
+                      required: ["Prefix"],
+                      additionalProperties: false,
+                    },
+                    {
+                      type: "object",
+                      properties: {
+                        Tag: {
+                          type: "object",
+                          properties: {
+                            Key: {
+                              type: "string",
+                            },
+                            Value: {
+                              type: "string",
+                            },
+                          },
+                          required: ["Key", "Value"],
+                          additionalProperties: false,
+                        },
+                      },
+                      required: ["Tag"],
+                      additionalProperties: false,
+                    },
+                    {
+                      type: "object",
+                      properties: {
+                        AccessPointArn: {
+                          type: "string",
+                        },
+                      },
+                      required: ["AccessPointArn"],
+                      additionalProperties: false,
+                    },
+                    {
+                      type: "object",
+                      properties: {
+                        And: {
+                          type: "object",
+                          properties: {
+                            Prefix: {
+                              type: "string",
+                            },
+                            Tags: {
+                              type: "array",
+                              items: {},
+                            },
+                            AccessPointArn: {
+                              type: "string",
+                            },
+                          },
+                          additionalProperties: false,
+                        },
+                      },
+                      required: ["And"],
+                      additionalProperties: false,
+                    },
+                  ],
                 },
               },
               required: ["Id"],

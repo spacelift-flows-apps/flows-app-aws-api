@@ -124,8 +124,8 @@ const getBucketNotificationConfiguration: AppBlock = {
                       type: "object",
                       properties: {
                         FilterRules: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -164,8 +164,8 @@ const getBucketNotificationConfiguration: AppBlock = {
                       type: "object",
                       properties: {
                         FilterRules: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -204,8 +204,8 @@ const getBucketNotificationConfiguration: AppBlock = {
                       type: "object",
                       properties: {
                         FilterRules: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,

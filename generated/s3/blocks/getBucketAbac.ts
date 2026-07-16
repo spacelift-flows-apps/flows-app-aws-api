@@ -1,11 +1,11 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
-import { S3Client, GetBucketLocationCommand } from "@aws-sdk/client-s3";
+import { S3Client, GetBucketAbacCommand } from "@aws-sdk/client-s3";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";
 
-const getBucketLocation: AppBlock = {
-  name: "Get Bucket Location",
-  description: `Using the GetBucketLocation operation is no longer a best practice.`,
+const getBucketAbac: AppBlock = {
+  name: "Get Bucket Abac",
+  description: `Returns the attribute-based access control (ABAC) property of the general purpose bucket.`,
   inputs: {
     default: {
       config: {
@@ -24,13 +24,14 @@ const getBucketLocation: AppBlock = {
         },
         Bucket: {
           name: "Bucket",
-          description: "The name of the bucket for which to get the location.",
+          description: "The name of the general purpose bucket.",
           type: "string",
           required: true,
         },
         ExpectedBucketOwner: {
           name: "Expected Bucket Owner",
-          description: "The account ID of the expected bucket owner.",
+          description:
+            "The Amazon Web Services account ID of the general purpose bucket's owner.",
           type: "string",
           required: false,
         },
@@ -77,7 +78,7 @@ const getBucketLocation: AppBlock = {
           }),
         });
 
-        const command = new GetBucketLocationCommand(commandInput as any);
+        const command = new GetBucketAbacCommand(commandInput as any);
         const response = await client.send(command);
 
         // Safely serialize response by handling circular references and streams
@@ -88,15 +89,21 @@ const getBucketLocation: AppBlock = {
   },
   outputs: {
     default: {
-      name: "Get Bucket Location Result",
-      description: "Result from GetBucketLocation operation",
+      name: "Get Bucket Abac Result",
+      description: "Result from GetBucketAbac operation",
       possiblePrimaryParents: ["default"],
       type: {
         type: "object",
         properties: {
-          LocationConstraint: {
-            type: "string",
-            description: "Specifies the Region where the bucket resides.",
+          AbacStatus: {
+            type: "object",
+            properties: {
+              Status: {
+                type: "string",
+              },
+            },
+            additionalProperties: false,
+            description: "The ABAC status of the general purpose bucket.",
           },
         },
         additionalProperties: true,
@@ -105,4 +112,4 @@ const getBucketLocation: AppBlock = {
   },
 };
 
-export default getBucketLocation;
+export default getBucketAbac;

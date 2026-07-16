@@ -2,10 +2,11 @@ import { AppBlock, events } from "@slflows/sdk/v1";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const putObject: AppBlock = {
   name: "Put Object",
-  description: `End of support notice: Beginning October 1, 2025, Amazon S3 will discontinue support for creating new Email Grantee Access Control Lists (ACL).`,
+  description: `End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs).`,
   inputs: {
     default: {
       config: {
@@ -123,6 +124,41 @@ const putObject: AppBlock = {
         },
         ChecksumSHA256: {
           name: "Checksum SHA256",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumSHA512: {
+          name: "Checksum SHA512",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumMD5: {
+          name: "Checksum MD5",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumXXHASH64: {
+          name: "Checksum XXHASH64",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumXXHASH3: {
+          name: "Checksum XXHASH3",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumXXHASH128: {
+          name: "Checksum XXHASH128",
           description:
             "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
           type: "string",
@@ -346,7 +382,12 @@ const putObject: AppBlock = {
           }),
         });
 
-        const command = new PutObjectCommand(commandInput as any);
+        const command = new PutObjectCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["ObjectLockRetainUntilDate"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         // Safely serialize response by handling circular references and streams
@@ -396,6 +437,31 @@ const putObject: AppBlock = {
             type: "string",
             description:
               "The Base64 encoded, 256-bit SHA256 digest of the object.",
+          },
+          ChecksumSHA512: {
+            type: "string",
+            description:
+              "The Base64 encoded, 512-bit SHA512 digest of the object.",
+          },
+          ChecksumMD5: {
+            type: "string",
+            description:
+              "The Base64 encoded, 128-bit MD5 digest of the object.",
+          },
+          ChecksumXXHASH64: {
+            type: "string",
+            description:
+              "The Base64 encoded, 64-bit XXHASH64 checksum of the object.",
+          },
+          ChecksumXXHASH3: {
+            type: "string",
+            description:
+              "The Base64 encoded, 64-bit XXHASH3 checksum of the object.",
+          },
+          ChecksumXXHASH128: {
+            type: "string",
+            description:
+              "The Base64 encoded, 128-bit XXHASH128 checksum of the object.",
           },
           ChecksumType: {
             type: "string",

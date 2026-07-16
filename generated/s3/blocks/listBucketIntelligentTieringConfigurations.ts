@@ -141,12 +141,10 @@ const listBucketIntelligentTieringConfigurations: AppBlock = {
                       type: "object",
                       properties: {
                         Key: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Key", "Value"],
@@ -156,12 +154,11 @@ const listBucketIntelligentTieringConfigurations: AppBlock = {
                       type: "object",
                       properties: {
                         Prefix: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Tags: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -178,12 +175,10 @@ const listBucketIntelligentTieringConfigurations: AppBlock = {
                     type: "object",
                     properties: {
                       Days: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       AccessTier: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Days", "AccessTier"],

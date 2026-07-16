@@ -2,10 +2,11 @@ import { AppBlock, events } from "@slflows/sdk/v1";
 import { S3Client, CopyObjectCommand } from "@aws-sdk/client-s3";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const copyObject: AppBlock = {
   name: "Copy Object",
-  description: `End of support notice: Beginning October 1, 2025, Amazon S3 will discontinue support for creating new Email Grantee Access Control Lists (ACL).`,
+  description: `Creates a copy of an object that is already stored in Amazon S3.`,
   inputs: {
     default: {
       config: {
@@ -140,6 +141,20 @@ const copyObject: AppBlock = {
           name: "Grant Write ACP",
           description:
             "Allows grantee to write the ACL for the applicable object.",
+          type: "string",
+          required: false,
+        },
+        IfMatch: {
+          name: "If Match",
+          description:
+            "Copies the object if the entity tag (ETag) of the destination object matches the specified tag.",
+          type: "string",
+          required: false,
+        },
+        IfNoneMatch: {
+          name: "If None Match",
+          description:
+            "Copies the object only if the object key name at the destination does not already exist in the bucket specified.",
           type: "string",
           required: false,
         },
@@ -349,7 +364,16 @@ const copyObject: AppBlock = {
           }),
         });
 
-        const command = new CopyObjectCommand(commandInput as any);
+        const command = new CopyObjectCommand(
+          convertTimestamps(
+            commandInput,
+            new Set([
+              "CopySourceIfModifiedSince",
+              "CopySourceIfUnmodifiedSince",
+              "ObjectLockRetainUntilDate",
+            ]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         // Safely serialize response by handling circular references and streams
@@ -391,6 +415,21 @@ const copyObject: AppBlock = {
                 type: "string",
               },
               ChecksumSHA256: {
+                type: "string",
+              },
+              ChecksumSHA512: {
+                type: "string",
+              },
+              ChecksumMD5: {
+                type: "string",
+              },
+              ChecksumXXHASH64: {
+                type: "string",
+              },
+              ChecksumXXHASH3: {
+                type: "string",
+              },
+              ChecksumXXHASH128: {
                 type: "string",
               },
             },

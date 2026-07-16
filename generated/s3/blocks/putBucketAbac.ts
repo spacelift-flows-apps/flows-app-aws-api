@@ -1,11 +1,11 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
-import { S3Client, GetBucketLocationCommand } from "@aws-sdk/client-s3";
+import { S3Client, PutBucketAbacCommand } from "@aws-sdk/client-s3";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";
 
-const getBucketLocation: AppBlock = {
-  name: "Get Bucket Location",
-  description: `Using the GetBucketLocation operation is no longer a best practice.`,
+const putBucketAbac: AppBlock = {
+  name: "Put Bucket Abac",
+  description: `Sets the attribute-based access control (ABAC) property of the general purpose bucket.`,
   inputs: {
     default: {
       config: {
@@ -24,15 +24,43 @@ const getBucketLocation: AppBlock = {
         },
         Bucket: {
           name: "Bucket",
-          description: "The name of the bucket for which to get the location.",
+          description: "The name of the general purpose bucket.",
           type: "string",
           required: true,
         },
-        ExpectedBucketOwner: {
-          name: "Expected Bucket Owner",
-          description: "The account ID of the expected bucket owner.",
+        ContentMD5: {
+          name: "Content MD5",
+          description: "The MD5 hash of the PutBucketAbac request body.",
           type: "string",
           required: false,
+        },
+        ChecksumAlgorithm: {
+          name: "Checksum Algorithm",
+          description:
+            "Indicates the algorithm that you want Amazon S3 to use to create the checksum.",
+          type: "string",
+          required: false,
+        },
+        ExpectedBucketOwner: {
+          name: "Expected Bucket Owner",
+          description:
+            "The Amazon Web Services account ID of the general purpose bucket's owner.",
+          type: "string",
+          required: false,
+        },
+        AbacStatus: {
+          name: "Abac Status",
+          description: "The ABAC status of the general purpose bucket.",
+          type: {
+            type: "object",
+            properties: {
+              Status: {
+                type: "string",
+              },
+            },
+            additionalProperties: false,
+          },
+          required: true,
         },
       },
       onEvent: async (input) => {
@@ -77,7 +105,7 @@ const getBucketLocation: AppBlock = {
           }),
         });
 
-        const command = new GetBucketLocationCommand(commandInput as any);
+        const command = new PutBucketAbacCommand(commandInput as any);
         const response = await client.send(command);
 
         // Safely serialize response by handling circular references and streams
@@ -88,21 +116,15 @@ const getBucketLocation: AppBlock = {
   },
   outputs: {
     default: {
-      name: "Get Bucket Location Result",
-      description: "Result from GetBucketLocation operation",
+      name: "Put Bucket Abac Result",
+      description: "Result from PutBucketAbac operation",
       possiblePrimaryParents: ["default"],
       type: {
         type: "object",
-        properties: {
-          LocationConstraint: {
-            type: "string",
-            description: "Specifies the Region where the bucket resides.",
-          },
-        },
         additionalProperties: true,
       },
     },
   },
 };
 
-export default getBucketLocation;
+export default putBucketAbac;

@@ -5,6 +5,7 @@ import {
 } from "@aws-sdk/client-s3";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const putBucketLifecycleConfiguration: AppBlock = {
   name: "Put Bucket Lifecycle Configuration",
@@ -54,16 +55,13 @@ const putBucketLifecycleConfiguration: AppBlock = {
                       type: "object",
                       properties: {
                         Date: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Days: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ExpiredObjectDeleteMarker: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -78,24 +76,32 @@ const putBucketLifecycleConfiguration: AppBlock = {
                       type: "object",
                       properties: {
                         Prefix: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Tag: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Key: {},
+                            Value: {},
+                          },
+                          required: ["Key", "Value"],
+                          additionalProperties: false,
                         },
                         ObjectSizeGreaterThan: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ObjectSizeLessThan: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         And: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Prefix: {},
+                            Tags: {},
+                            ObjectSizeGreaterThan: {},
+                            ObjectSizeLessThan: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -107,26 +113,34 @@ const putBucketLifecycleConfiguration: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Date: {},
+                          Days: {},
+                          StorageClass: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     NoncurrentVersionTransitions: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          NoncurrentDays: {},
+                          StorageClass: {},
+                          NewerNoncurrentVersions: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     NoncurrentVersionExpiration: {
                       type: "object",
                       properties: {
                         NoncurrentDays: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         NewerNoncurrentVersions: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -135,8 +149,7 @@ const putBucketLifecycleConfiguration: AppBlock = {
                       type: "object",
                       properties: {
                         DaysAfterInitiation: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -209,7 +222,7 @@ const putBucketLifecycleConfiguration: AppBlock = {
         });
 
         const command = new PutBucketLifecycleConfigurationCommand(
-          commandInput as any,
+          convertTimestamps(commandInput, new Set(["Date"])) as any,
         );
         const response = await client.send(command);
 
