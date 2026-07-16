@@ -116,8 +116,7 @@ const listGlobalTables: AppBlock = {
                     type: "object",
                     properties: {
                       RegionName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

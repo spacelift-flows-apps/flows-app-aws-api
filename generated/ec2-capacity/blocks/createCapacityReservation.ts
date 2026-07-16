@@ -4,6 +4,7 @@ import {
   CreateCapacityReservationCommand,
 } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const createCapacityReservation: AppBlock = {
   name: "Create Capacity Reservation",
@@ -122,12 +123,10 @@ const createCapacityReservation: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -220,7 +219,10 @@ const createCapacityReservation: AppBlock = {
         });
 
         const command = new CreateCapacityReservationCommand(
-          commandInput as any,
+          convertTimestamps(
+            commandInput,
+            new Set(["EndDate", "StartDate"]),
+          ) as any,
         );
         const response = await client.send(command);
 
@@ -328,6 +330,17 @@ const createCapacityReservation: AppBlock = {
                     Count: {
                       type: "number",
                     },
+                    AllocationMetadata: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          Key: {},
+                          Value: {},
+                        },
+                        additionalProperties: false,
+                      },
+                    },
                   },
                   additionalProperties: false,
                 },
@@ -355,6 +368,42 @@ const createCapacityReservation: AppBlock = {
               },
               CapacityBlockId: {
                 type: "string",
+              },
+              Interruptible: {
+                type: "boolean",
+              },
+              InterruptibleCapacityAllocation: {
+                type: "object",
+                properties: {
+                  InstanceCount: {
+                    type: "number",
+                  },
+                  TargetInstanceCount: {
+                    type: "number",
+                  },
+                  Status: {
+                    type: "string",
+                  },
+                  InterruptibleCapacityReservationId: {
+                    type: "string",
+                  },
+                  InterruptionType: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
+              },
+              InterruptionInfo: {
+                type: "object",
+                properties: {
+                  SourceCapacityReservationId: {
+                    type: "string",
+                  },
+                  InterruptionType: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
               },
             },
             additionalProperties: false,

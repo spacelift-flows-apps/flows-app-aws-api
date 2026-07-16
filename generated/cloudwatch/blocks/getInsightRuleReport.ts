@@ -4,6 +4,7 @@ import {
   GetInsightRuleReportCommand,
 } from "@aws-sdk/client-cloudwatch";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const getInsightRuleReport: AppBlock = {
   name: "Get Insight Rule Report",
@@ -118,7 +119,12 @@ const getInsightRuleReport: AppBlock = {
           }),
         });
 
-        const command = new GetInsightRuleReportCommand(commandInput as any);
+        const command = new GetInsightRuleReportCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});
@@ -176,12 +182,10 @@ const getInsightRuleReport: AppBlock = {
                     type: "object",
                     properties: {
                       Timestamp: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ApproximateValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     required: ["Timestamp", "ApproximateValue"],

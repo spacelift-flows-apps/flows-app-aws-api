@@ -140,8 +140,7 @@ const listAssociatedAccessPolicies: AppBlock = {
                     namespaces: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

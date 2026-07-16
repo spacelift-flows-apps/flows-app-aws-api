@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const putMetricAlarm: AppBlock = {
   name: "Put Metric Alarm",
-  description: `Creates or updates an alarm and associates it with the specified metric, metric math expression, anomaly detection model, or Metrics Insights query.`,
+  description: `Creates or updates an alarm and associates it with the specified metric, metric math expression, anomaly detection model, Metrics Insights query, or PromQL query.`,
   inputs: {
     default: {
       config: {
@@ -145,7 +145,7 @@ const putMetricAlarm: AppBlock = {
           description:
             "The number of periods over which data is compared to the specified threshold.",
           type: "number",
-          required: true,
+          required: false,
         },
         DatapointsToAlarm: {
           name: "Datapoints To Alarm",
@@ -166,7 +166,7 @@ const putMetricAlarm: AppBlock = {
           description:
             "The arithmetic operation to use when comparing the specified statistic and threshold.",
           type: "string",
-          required: true,
+          required: false,
         },
         TreatMissingData: {
           name: "Treat Missing Data",
@@ -199,16 +199,14 @@ const putMetricAlarm: AppBlock = {
                       type: "object",
                       properties: {
                         Namespace: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         MetricName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Dimensions: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -274,6 +272,45 @@ const putMetricAlarm: AppBlock = {
           description:
             "If this is an alarm based on an anomaly detection model, make this value match the ID of the ANOMALY_DETECTION_BAND function.",
           type: "string",
+          required: false,
+        },
+        EvaluationCriteria: {
+          name: "Evaluation Criteria",
+          description: "The evaluation criteria for the alarm.",
+          type: {
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  PromQLCriteria: {
+                    type: "object",
+                    properties: {
+                      Query: {
+                        type: "string",
+                      },
+                      PendingPeriod: {
+                        type: "number",
+                      },
+                      RecoveryPeriod: {
+                        type: "number",
+                      },
+                    },
+                    required: ["Query"],
+                    additionalProperties: false,
+                  },
+                },
+                required: ["PromQLCriteria"],
+                additionalProperties: false,
+              },
+            ],
+          },
+          required: false,
+        },
+        EvaluationInterval: {
+          name: "Evaluation Interval",
+          description:
+            "The frequency, in seconds, at which the alarm is evaluated.",
+          type: "number",
           required: false,
         },
       },

@@ -152,6 +152,18 @@ const deleteTransitGateway: AppBlock = {
                   MulticastSupport: {
                     type: "string",
                   },
+                  EncryptionSupport: {
+                    type: "object",
+                    properties: {
+                      EncryptionState: {
+                        type: "string",
+                      },
+                      StateMessage: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
                 },
                 additionalProperties: false,
               },

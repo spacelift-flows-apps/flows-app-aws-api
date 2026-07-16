@@ -44,7 +44,7 @@ const putImageTagMutability: AppBlock = {
         imageTagMutabilityExclusionFilters: {
           name: "image Tag Mutability Exclusion Filters",
           description:
-            "Creates or updates a repository with filters that define which image tags can override the default image tag mutability setting.",
+            "A list of filters that specify which image tags should be excluded from the image tag mutability setting being applied.",
           type: {
             type: "array",
             items: {
@@ -149,7 +149,7 @@ const putImageTagMutability: AppBlock = {
               additionalProperties: false,
             },
             description:
-              "Returns a list of filters that were defined for a repository.",
+              "The list of filters that specify which image tags are excluded from the repository's image tag mutability setting.",
           },
         },
         additionalProperties: true,

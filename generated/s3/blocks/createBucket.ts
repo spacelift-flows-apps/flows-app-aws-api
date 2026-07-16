@@ -5,7 +5,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const createBucket: AppBlock = {
   name: "Create Bucket",
-  description: `End of support notice: Beginning October 1, 2025, Amazon S3 will discontinue support for creating new Email Grantee Access Control Lists (ACL).`,
+  description: `This action creates an Amazon S3 bucket.`,
   inputs: {
     default: {
       config: {
@@ -131,6 +131,13 @@ const createBucket: AppBlock = {
           name: "Object Ownership",
           description:
             "The container element for object ownership for a bucket's ownership controls.",
+          type: "string",
+          required: false,
+        },
+        BucketNamespace: {
+          name: "Bucket Namespace",
+          description:
+            "Specifies the namespace where you want to create your general purpose bucket.",
           type: "string",
           required: false,
         },

@@ -107,12 +107,10 @@ const getBucketEncryption: AppBlock = {
                       type: "object",
                       properties: {
                         SSEAlgorithm: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KMSMasterKeyID: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["SSEAlgorithm"],
@@ -120,6 +118,16 @@ const getBucketEncryption: AppBlock = {
                     },
                     BucketKeyEnabled: {
                       type: "boolean",
+                    },
+                    BlockedEncryptionTypes: {
+                      type: "object",
+                      properties: {
+                        EncryptionType: {
+                          type: "array",
+                          items: {},
+                        },
+                      },
+                      additionalProperties: false,
                     },
                   },
                   additionalProperties: false,

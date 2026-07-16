@@ -33,6 +33,13 @@ const createDBProxy: AppBlock = {
           type: "string",
           required: true,
         },
+        DefaultAuthScheme: {
+          name: "Default Auth Scheme",
+          description:
+            "The default authentication scheme that the proxy uses for client connections to the proxy and connections from the proxy to the underlying database.",
+          type: "string",
+          required: false,
+        },
         Auth: {
           name: "Auth",
           description: "The authorization mechanism that the proxy uses.",
@@ -63,7 +70,7 @@ const createDBProxy: AppBlock = {
               additionalProperties: false,
             },
           },
-          required: true,
+          required: false,
         },
         RoleArn: {
           name: "Role Arn",
@@ -113,7 +120,7 @@ const createDBProxy: AppBlock = {
         DebugLogging: {
           name: "Debug Logging",
           description:
-            "Specifies whether the proxy includes detailed information about SQL statements in its logs.",
+            "Specifies whether the proxy logs detailed connection and query information.",
           type: "boolean",
           required: false,
         },
@@ -136,6 +143,19 @@ const createDBProxy: AppBlock = {
               additionalProperties: false,
             },
           },
+          required: false,
+        },
+        EndpointNetworkType: {
+          name: "Endpoint Network Type",
+          description: "The network type of the DB proxy endpoint.",
+          type: "string",
+          required: false,
+        },
+        TargetConnectionNetworkType: {
+          name: "Target Connection Network Type",
+          description:
+            "The network type that the proxy uses to connect to the target database.",
+          type: "string",
           required: false,
         },
       },
@@ -226,6 +246,9 @@ const createDBProxy: AppBlock = {
                   type: "string",
                 },
               },
+              DefaultAuthScheme: {
+                type: "string",
+              },
               Auth: {
                 type: "array",
                 items: {
@@ -272,6 +295,12 @@ const createDBProxy: AppBlock = {
                 type: "string",
               },
               UpdatedDate: {
+                type: "string",
+              },
+              EndpointNetworkType: {
+                type: "string",
+              },
+              TargetConnectionNetworkType: {
                 type: "string",
               },
             },

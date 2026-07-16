@@ -53,8 +53,7 @@ const listTypeVersions: AppBlock = {
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "If the previous paginated request didn't return all of the remaining results, the response object's NextToken parameter value is set to a token.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },

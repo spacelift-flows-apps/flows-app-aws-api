@@ -55,8 +55,7 @@ const createFunction: AppBlock = {
                       type: "object",
                       properties: {
                         KeyValueStoreARN: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["KeyValueStoreARN"],
@@ -165,7 +164,11 @@ const createFunction: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            KeyValueStoreARN: {},
+                          },
+                          required: ["KeyValueStoreARN"],
+                          additionalProperties: false,
                         },
                       },
                     },

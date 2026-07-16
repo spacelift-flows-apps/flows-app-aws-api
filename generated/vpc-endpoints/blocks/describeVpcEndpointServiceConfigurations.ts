@@ -150,8 +150,7 @@ const describeVpcEndpointServiceConfigurations: AppBlock = {
                     type: "object",
                     properties: {
                       ServiceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -165,6 +164,12 @@ const describeVpcEndpointServiceConfigurations: AppBlock = {
                 },
                 ServiceState: {
                   type: "string",
+                },
+                AvailabilityZoneIds: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
                 },
                 AvailabilityZones: {
                   type: "array",
@@ -232,12 +237,10 @@ const describeVpcEndpointServiceConfigurations: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -249,12 +252,10 @@ const describeVpcEndpointServiceConfigurations: AppBlock = {
                     type: "object",
                     properties: {
                       Region: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ServiceState: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

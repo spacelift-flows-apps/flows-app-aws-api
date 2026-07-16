@@ -4,6 +4,7 @@ import {
   ModifyClusterMaintenanceCommand,
 } from "@aws-sdk/client-redshift";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const modifyClusterMaintenance: AppBlock = {
   name: "Modify Cluster Maintenance",
@@ -109,7 +110,10 @@ const modifyClusterMaintenance: AppBlock = {
         });
 
         const command = new ModifyClusterMaintenanceCommand(
-          commandInput as any,
+          convertTimestamps(
+            commandInput,
+            new Set(["DeferMaintenanceStartTime", "DeferMaintenanceEndTime"]),
+          ) as any,
         );
         const response = await client.send(command);
 
@@ -164,16 +168,14 @@ const modifyClusterMaintenance: AppBlock = {
                       type: "object",
                       properties: {
                         VpcEndpointId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         VpcId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NetworkInterfaces: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -236,7 +238,12 @@ const modifyClusterMaintenance: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ParameterName: {},
+                          ParameterApplyStatus: {},
+                          ParameterApplyErrorDescription: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -609,16 +616,13 @@ const modifyClusterMaintenance: AppBlock = {
                       type: "object",
                       properties: {
                         NodeRole: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PrivateIPAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PublicIPAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -626,6 +630,15 @@ const modifyClusterMaintenance: AppBlock = {
                   },
                 },
                 additionalProperties: false,
+              },
+              LakehouseRegistrationStatus: {
+                type: "string",
+              },
+              CatalogArn: {
+                type: "string",
+              },
+              ExtraComputeForAutomaticOptimization: {
+                type: "string",
               },
             },
             additionalProperties: false,

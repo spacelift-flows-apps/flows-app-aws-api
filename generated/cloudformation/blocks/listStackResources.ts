@@ -33,8 +33,7 @@ const listStackResources: AppBlock = {
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "A string that identifies the next page of stack resources that you want to retrieve.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },

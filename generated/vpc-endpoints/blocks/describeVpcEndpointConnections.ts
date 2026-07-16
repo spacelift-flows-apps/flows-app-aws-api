@@ -153,12 +153,10 @@ const describeVpcEndpointConnections: AppBlock = {
                     type: "object",
                     properties: {
                       DnsName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       HostedZoneId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -188,12 +186,10 @@ const describeVpcEndpointConnections: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

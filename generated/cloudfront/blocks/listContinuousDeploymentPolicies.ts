@@ -119,16 +119,20 @@ const listContinuousDeploymentPolicies: AppBlock = {
                       type: "object",
                       properties: {
                         Id: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LastModifiedTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ContinuousDeploymentPolicyConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            StagingDistributionDnsNames: {},
+                            Enabled: {},
+                            TrafficConfig: {},
+                          },
+                          required: ["StagingDistributionDnsNames", "Enabled"],
+                          additionalProperties: false,
                         },
                       },
                       required: [

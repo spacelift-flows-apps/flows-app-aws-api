@@ -131,15 +131,15 @@ const startActivityStream: AppBlock = {
             type: "string",
             description: "The mode of the database activity stream.",
           },
-          ApplyImmediately: {
-            type: "boolean",
-            description:
-              "Indicates whether or not the database activity stream will start as soon as possible, regardless of the maintenance window for the database.",
-          },
           EngineNativeAuditFieldsIncluded: {
             type: "boolean",
             description:
               "Indicates whether engine-native audit fields are included in the database activity stream.",
+          },
+          ApplyImmediately: {
+            type: "boolean",
+            description:
+              "Indicates whether or not the database activity stream will start as soon as possible, regardless of the maintenance window for the database.",
           },
         },
         additionalProperties: true,

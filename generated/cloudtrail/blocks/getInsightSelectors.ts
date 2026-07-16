@@ -108,11 +108,17 @@ const getInsightSelectors: AppBlock = {
                 InsightType: {
                   type: "string",
                 },
+                EventCategories: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
+                },
               },
               additionalProperties: false,
             },
             description:
-              "A JSON string that contains the Insight types you want to log on a trail or event data store.",
+              "Contains the Insights types that are enabled on a trail or event data store.",
           },
           EventDataStoreArn: {
             type: "string",

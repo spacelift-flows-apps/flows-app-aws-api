@@ -48,12 +48,10 @@ const createVpcPeeringConnection: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -167,8 +165,7 @@ const createVpcPeeringConnection: AppBlock = {
                       type: "object",
                       properties: {
                         Ipv6CidrBlock: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -180,8 +177,7 @@ const createVpcPeeringConnection: AppBlock = {
                       type: "object",
                       properties: {
                         CidrBlock: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -229,8 +225,7 @@ const createVpcPeeringConnection: AppBlock = {
                       type: "object",
                       properties: {
                         Ipv6CidrBlock: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -242,8 +237,7 @@ const createVpcPeeringConnection: AppBlock = {
                       type: "object",
                       properties: {
                         CidrBlock: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

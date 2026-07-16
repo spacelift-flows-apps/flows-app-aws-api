@@ -4,6 +4,7 @@ import {
   CreateEventSourceMappingCommand,
 } from "@aws-sdk/client-lambda";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const createEventSourceMapping: AppBlock = {
   name: "Create Event Source Mapping",
@@ -103,7 +104,7 @@ const createEventSourceMapping: AppBlock = {
         DestinationConfig: {
           name: "Destination Config",
           description:
-            "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Kafka only) A configuration object that specifies the destination of an event after Lambda processes it.",
+            "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) A configuration object that specifies the destination of an event after Lambda processes it.",
           type: {
             type: "object",
             properties: {
@@ -133,21 +134,21 @@ const createEventSourceMapping: AppBlock = {
         MaximumRecordAgeInSeconds: {
           name: "Maximum Record Age In Seconds",
           description:
-            "(Kinesis and DynamoDB Streams only) Discard records older than the specified age.",
+            "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records older than the specified age.",
           type: "number",
           required: false,
         },
         BisectBatchOnFunctionError: {
           name: "Bisect Batch On Function Error",
           description:
-            "(Kinesis and DynamoDB Streams only) If the function returns an error, split the batch in two and retry.",
+            "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) If the function returns an error, split the batch in two and retry.",
           type: "boolean",
           required: false,
         },
         MaximumRetryAttempts: {
           name: "Maximum Retry Attempts",
           description:
-            "(Kinesis and DynamoDB Streams only) Discard records after the specified number of retries.",
+            "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records after the specified number of retries.",
           type: "number",
           required: false,
         },
@@ -234,7 +235,7 @@ const createEventSourceMapping: AppBlock = {
         FunctionResponseTypes: {
           name: "Function Response Types",
           description:
-            "(Kinesis, DynamoDB Streams, and Amazon SQS) A list of current response type enums applied to the event source mapping.",
+            "(Kinesis, DynamoDB Streams, Amazon MSK, self-managed Apache Kafka, and Amazon SQS) A list of current response type enums applied to the event source mapping.",
           type: {
             type: "array",
             items: {
@@ -268,12 +269,10 @@ const createEventSourceMapping: AppBlock = {
                       type: "object",
                       properties: {
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         URI: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -285,8 +284,7 @@ const createEventSourceMapping: AppBlock = {
                       type: "object",
                       properties: {
                         Attribute: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -325,12 +323,10 @@ const createEventSourceMapping: AppBlock = {
                       type: "object",
                       properties: {
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         URI: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -342,8 +338,7 @@ const createEventSourceMapping: AppBlock = {
                       type: "object",
                       properties: {
                         Attribute: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -417,10 +412,25 @@ const createEventSourceMapping: AppBlock = {
           },
           required: false,
         },
+        LoggingConfig: {
+          name: "Logging Config",
+          description:
+            "(Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source.",
+          type: {
+            type: "object",
+            properties: {
+              SystemLogLevel: {
+                type: "string",
+              },
+            },
+            additionalProperties: false,
+          },
+          required: false,
+        },
         ProvisionedPollerConfig: {
           name: "Provisioned Poller Config",
           description:
-            "(Amazon MSK and self-managed Apache Kafka only) The provisioned mode configuration for the event source.",
+            "(Amazon SQS, Amazon MSK, and self-managed Apache Kafka only) The provisioned mode configuration for the event source.",
           type: {
             type: "object",
             properties: {
@@ -429,6 +439,9 @@ const createEventSourceMapping: AppBlock = {
               },
               MaximumPollers: {
                 type: "number",
+              },
+              PollerGroupName: {
+                type: "string",
               },
             },
             additionalProperties: false,
@@ -479,7 +492,10 @@ const createEventSourceMapping: AppBlock = {
         });
 
         const command = new CreateEventSourceMappingCommand(
-          commandInput as any,
+          convertTimestamps(
+            commandInput,
+            new Set(["StartingPositionTimestamp"]),
+          ) as any,
         );
         const response = await client.send(command);
 
@@ -595,7 +611,7 @@ const createEventSourceMapping: AppBlock = {
             },
             additionalProperties: false,
             description:
-              "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka event sources only) A configuration object that specifies the destination of an event after Lambda processes it.",
+              "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) A configuration object that specifies the destination of an event after Lambda processes it.",
           },
           Topics: {
             type: "array",
@@ -646,17 +662,17 @@ const createEventSourceMapping: AppBlock = {
           MaximumRecordAgeInSeconds: {
             type: "number",
             description:
-              "(Kinesis and DynamoDB Streams only) Discard records older than the specified age.",
+              "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records older than the specified age.",
           },
           BisectBatchOnFunctionError: {
             type: "boolean",
             description:
-              "(Kinesis and DynamoDB Streams only) If the function returns an error, split the batch in two and retry.",
+              "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) If the function returns an error, split the batch in two and retry.",
           },
           MaximumRetryAttempts: {
             type: "number",
             description:
-              "(Kinesis and DynamoDB Streams only) Discard records after the specified number of retries.",
+              "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records after the specified number of retries.",
           },
           TumblingWindowInSeconds: {
             type: "number",
@@ -669,7 +685,7 @@ const createEventSourceMapping: AppBlock = {
               type: "string",
             },
             description:
-              "(Kinesis, DynamoDB Streams, and Amazon SQS) A list of current response type enums applied to the event source mapping.",
+              "(Kinesis, DynamoDB Streams, Amazon MSK, self-managed Apache Kafka, and Amazon SQS) A list of current response type enums applied to the event source mapping.",
           },
           AmazonManagedKafkaEventSourceConfig: {
             type: "object",
@@ -692,12 +708,10 @@ const createEventSourceMapping: AppBlock = {
                       type: "object",
                       properties: {
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         URI: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -709,8 +723,7 @@ const createEventSourceMapping: AppBlock = {
                       type: "object",
                       properties: {
                         Attribute: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -745,12 +758,10 @@ const createEventSourceMapping: AppBlock = {
                       type: "object",
                       properties: {
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         URI: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -762,8 +773,7 @@ const createEventSourceMapping: AppBlock = {
                       type: "object",
                       properties: {
                         Attribute: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -842,6 +852,17 @@ const createEventSourceMapping: AppBlock = {
             additionalProperties: false,
             description: "The metrics configuration for your event source.",
           },
+          LoggingConfig: {
+            type: "object",
+            properties: {
+              SystemLogLevel: {
+                type: "string",
+              },
+            },
+            additionalProperties: false,
+            description:
+              "(Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source.",
+          },
           ProvisionedPollerConfig: {
             type: "object",
             properties: {
@@ -851,10 +872,13 @@ const createEventSourceMapping: AppBlock = {
               MaximumPollers: {
                 type: "number",
               },
+              PollerGroupName: {
+                type: "string",
+              },
             },
             additionalProperties: false,
             description:
-              "(Amazon MSK and self-managed Apache Kafka only) The provisioned mode configuration for the event source.",
+              "(Amazon SQS, Amazon MSK, and self-managed Apache Kafka only) The provisioned mode configuration for the event source.",
           },
         },
         additionalProperties: true,

@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const listStackInstances: AppBlock = {
   name: "List Stack Instances",
-  description: `Returns summary information about stack instances that are associated with the specified stack set.`,
+  description: `Returns summary information about stack instances that are associated with the specified StackSet.`,
   inputs: {
     default: {
       config: {
@@ -27,14 +27,13 @@ const listStackInstances: AppBlock = {
         StackSetName: {
           name: "Stack Set Name",
           description:
-            "The name or unique ID of the stack set that you want to list stack instances for.",
+            "The name or unique ID of the StackSet that you want to list stack instances for.",
           type: "string",
           required: true,
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "If the previous request didn't return all the remaining results, the response's NextToken parameter value is set to a token.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },

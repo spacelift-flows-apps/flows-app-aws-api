@@ -100,9 +100,36 @@ const deleteCustomDBEngineVersion: AppBlock = {
             type: "string",
             description: "The name of the database engine.",
           },
+          MajorEngineVersion: {
+            type: "string",
+            description: "The major engine version of the CEV.",
+          },
           EngineVersion: {
             type: "string",
             description: "The version number of the database engine.",
+          },
+          DatabaseInstallationFilesS3BucketName: {
+            type: "string",
+            description:
+              "The name of the Amazon S3 bucket that contains your database installation files.",
+          },
+          DatabaseInstallationFilesS3Prefix: {
+            type: "string",
+            description:
+              "The Amazon S3 directory that contains the database installation files.",
+          },
+          DatabaseInstallationFiles: {
+            type: "array",
+            items: {
+              type: "string",
+            },
+            description:
+              "The database installation files (ISO and EXE) uploaded to Amazon S3 for your database engine version to import to Amazon RDS.",
+          },
+          CustomDBEngineVersionManifest: {
+            type: "string",
+            description:
+              "JSON string that lists the installation files and parameters that RDS Custom uses to create a custom engine version (CEV).",
           },
           DBParameterGroupFamily: {
             type: "string",
@@ -112,6 +139,10 @@ const deleteCustomDBEngineVersion: AppBlock = {
           DBEngineDescription: {
             type: "string",
             description: "The description of the database engine.",
+          },
+          DBEngineVersionArn: {
+            type: "string",
+            description: "The ARN of the custom engine version.",
           },
           DBEngineVersionDescription: {
             type: "string",
@@ -131,6 +162,11 @@ const deleteCustomDBEngineVersion: AppBlock = {
             description:
               "The default character set for new instances of this engine version, if the CharacterSetName parameter of the CreateDBInstance API isn't specified.",
           },
+          FailureReason: {
+            type: "string",
+            description:
+              "The reason that the custom engine version creation for sqlserver-dev-ee failed with an incompatible-installation-media status.",
+          },
           Image: {
             type: "object",
             properties: {
@@ -148,6 +184,15 @@ const deleteCustomDBEngineVersion: AppBlock = {
             type: "string",
             description:
               "A value that indicates the source media provider of the AMI based on the usage operation.",
+          },
+          KMSKeyId: {
+            type: "string",
+            description:
+              "The Amazon Web Services KMS key identifier for an encrypted CEV.",
+          },
+          CreateTime: {
+            type: "string",
+            description: "The creation time of the DB engine version.",
           },
           SupportedCharacterSets: {
             type: "array",
@@ -294,33 +339,6 @@ const deleteCustomDBEngineVersion: AppBlock = {
             description:
               "Indicates whether you can use Aurora global databases with a specific DB engine version.",
           },
-          MajorEngineVersion: {
-            type: "string",
-            description: "The major engine version of the CEV.",
-          },
-          DatabaseInstallationFilesS3BucketName: {
-            type: "string",
-            description:
-              "The name of the Amazon S3 bucket that contains your database installation files.",
-          },
-          DatabaseInstallationFilesS3Prefix: {
-            type: "string",
-            description:
-              "The Amazon S3 directory that contains the database installation files.",
-          },
-          DBEngineVersionArn: {
-            type: "string",
-            description: "The ARN of the custom engine version.",
-          },
-          KMSKeyId: {
-            type: "string",
-            description:
-              "The Amazon Web Services KMS key identifier for an encrypted CEV.",
-          },
-          CreateTime: {
-            type: "string",
-            description: "The creation time of the DB engine version.",
-          },
           TagList: {
             type: "array",
             items: {
@@ -341,11 +359,6 @@ const deleteCustomDBEngineVersion: AppBlock = {
             type: "boolean",
             description:
               "Indicates whether the engine version supports Babelfish for Aurora PostgreSQL.",
-          },
-          CustomDBEngineVersionManifest: {
-            type: "string",
-            description:
-              "JSON string that lists the installation files and parameters that RDS Custom uses to create a custom engine version (CEV).",
           },
           SupportsLimitlessDatabase: {
             type: "boolean",

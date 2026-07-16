@@ -26,8 +26,7 @@ const deletePolicy: AppBlock = {
         },
         PolicyId: {
           name: "Policy Id",
-          description:
-            "The unique identifier (ID) of the policy that you want to delete.",
+          description: "ID for the policy that you want to delete.",
           type: "string",
           required: true,
         },

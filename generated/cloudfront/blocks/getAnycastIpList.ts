@@ -103,6 +103,41 @@ const getAnycastIpList: AppBlock = {
               Arn: {
                 type: "string",
               },
+              IpAddressType: {
+                type: "string",
+              },
+              IpamConfig: {
+                type: "object",
+                properties: {
+                  Quantity: {
+                    type: "number",
+                  },
+                  IpamCidrConfigs: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      properties: {
+                        Cidr: {
+                          type: "string",
+                        },
+                        IpamPoolArn: {
+                          type: "string",
+                        },
+                        AnycastIp: {
+                          type: "string",
+                        },
+                        Status: {
+                          type: "string",
+                        },
+                      },
+                      required: ["Cidr", "IpamPoolArn"],
+                      additionalProperties: false,
+                    },
+                  },
+                },
+                required: ["Quantity", "IpamCidrConfigs"],
+                additionalProperties: false,
+              },
               AnycastIps: {
                 type: "array",
                 items: {

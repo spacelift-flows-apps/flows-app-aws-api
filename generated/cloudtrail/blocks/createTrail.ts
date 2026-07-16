@@ -89,7 +89,7 @@ const createTrail: AppBlock = {
         KmsKeyId: {
           name: "Kms Key Id",
           description:
-            "Specifies the KMS key ID to use to encrypt the logs delivered by CloudTrail.",
+            "Specifies the KMS key ID to use to encrypt the logs and digest files delivered by CloudTrail.",
           type: "string",
           required: false,
         },

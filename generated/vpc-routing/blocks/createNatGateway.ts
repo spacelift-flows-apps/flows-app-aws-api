@@ -21,6 +21,13 @@ const createNatGateway: AppBlock = {
           type: "string",
           required: false,
         },
+        AvailabilityMode: {
+          name: "Availability Mode",
+          description:
+            "Specifies whether to create a zonal (single-AZ) or regional (multi-AZ) NAT gateway.",
+          type: "string",
+          required: false,
+        },
         AllocationId: {
           name: "Allocation Id",
           description:
@@ -47,7 +54,41 @@ const createNatGateway: AppBlock = {
           description:
             "The ID of the subnet in which to create the NAT gateway.",
           type: "string",
-          required: true,
+          required: false,
+        },
+        VpcId: {
+          name: "Vpc Id",
+          description:
+            "The ID of the VPC where you want to create a regional NAT gateway.",
+          type: "string",
+          required: false,
+        },
+        AvailabilityZoneAddresses: {
+          name: "Availability Zone Addresses",
+          description:
+            "For regional NAT gateways only: Specifies which Availability Zones you want the NAT gateway to support and the Elastic IP addresses (EIPs) to use in each AZ.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                AvailabilityZone: {
+                  type: "string",
+                },
+                AvailabilityZoneId: {
+                  type: "string",
+                },
+                AllocationIds: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
+                },
+              },
+              additionalProperties: false,
+            },
+          },
+          required: false,
         },
         TagSpecifications: {
           name: "Tag Specifications",
@@ -66,12 +107,10 @@ const createNatGateway: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -232,6 +271,12 @@ const createNatGateway: AppBlock = {
                     Status: {
                       type: "string",
                     },
+                    AvailabilityZone: {
+                      type: "string",
+                    },
+                    AvailabilityZoneId: {
+                      type: "string",
+                    },
                   },
                   additionalProperties: false,
                 },
@@ -285,6 +330,48 @@ const createNatGateway: AppBlock = {
                 },
               },
               ConnectivityType: {
+                type: "string",
+              },
+              AvailabilityMode: {
+                type: "string",
+              },
+              AutoScalingIps: {
+                type: "string",
+              },
+              AutoProvisionZones: {
+                type: "string",
+              },
+              AttachedAppliances: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    Type: {
+                      type: "string",
+                    },
+                    ApplianceArn: {
+                      type: "string",
+                    },
+                    VpcEndpointId: {
+                      type: "string",
+                    },
+                    AttachmentState: {
+                      type: "string",
+                    },
+                    ModificationState: {
+                      type: "string",
+                    },
+                    FailureCode: {
+                      type: "string",
+                    },
+                    FailureMessage: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              RouteTableId: {
                 type: "string",
               },
             },

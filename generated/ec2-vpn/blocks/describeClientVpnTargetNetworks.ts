@@ -179,6 +179,18 @@ const describeClientVpnTargetNetworks: AppBlock = {
                     type: "string",
                   },
                 },
+                AvailabilityZones: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
+                },
+                AvailabilityZoneIds: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
+                },
               },
               additionalProperties: false,
             },

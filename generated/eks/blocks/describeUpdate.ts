@@ -47,6 +47,13 @@ const describeUpdate: AppBlock = {
           type: "string",
           required: false,
         },
+        capabilityName: {
+          name: "capability Name",
+          description:
+            "The name of the capability for which you want to describe updates.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -149,8 +156,7 @@ const describeUpdate: AppBlock = {
                     resourceIds: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

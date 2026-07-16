@@ -143,6 +143,9 @@ const deleteLaunchTemplate: AppBlock = {
                   Principal: {
                     type: "string",
                   },
+                  HiddenByDefault: {
+                    type: "boolean",
+                  },
                 },
                 additionalProperties: false,
               },

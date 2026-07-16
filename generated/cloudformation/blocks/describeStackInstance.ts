@@ -27,7 +27,7 @@ const describeStackInstance: AppBlock = {
         StackSetName: {
           name: "Stack Set Name",
           description:
-            "The name or the unique stack ID of the stack set that you want to get stack instance information for.",
+            "The name or the unique stack ID of the StackSet that you want to get stack instance information for.",
           type: "string",
           required: true,
         },

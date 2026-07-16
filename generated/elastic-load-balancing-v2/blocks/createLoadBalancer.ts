@@ -256,24 +256,21 @@ const createLoadBalancer: AppBlock = {
                     type: "object",
                     properties: {
                       ZoneName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SubnetId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       OutpostId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       LoadBalancerAddresses: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       SourceNatIpv6Prefixes: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,

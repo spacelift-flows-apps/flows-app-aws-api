@@ -160,6 +160,9 @@ const createDBSnapshot: AppBlock = {
               Iops: {
                 type: "number",
               },
+              StorageThroughput: {
+                type: "number",
+              },
               OptionGroupName: {
                 type: "string",
               },
@@ -180,6 +183,15 @@ const createDBSnapshot: AppBlock = {
               },
               Encrypted: {
                 type: "boolean",
+              },
+              StorageEncryptionType: {
+                type: "string",
+              },
+              BackupRetentionPeriod: {
+                type: "number",
+              },
+              PreferredBackupWindow: {
+                type: "string",
               },
               KmsKeyId: {
                 type: "string",
@@ -226,26 +238,51 @@ const createDBSnapshot: AppBlock = {
                   additionalProperties: false,
                 },
               },
+              SnapshotTarget: {
+                type: "string",
+              },
               OriginalSnapshotCreateTime: {
                 type: "string",
               },
               SnapshotDatabaseTime: {
                 type: "string",
               },
-              SnapshotTarget: {
-                type: "string",
-              },
-              StorageThroughput: {
-                type: "number",
-              },
               DBSystemId: {
                 type: "string",
+              },
+              MultiTenant: {
+                type: "boolean",
               },
               DedicatedLogVolume: {
                 type: "boolean",
               },
-              MultiTenant: {
-                type: "boolean",
+              AdditionalStorageVolumes: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    VolumeName: {
+                      type: "string",
+                    },
+                    AllocatedStorage: {
+                      type: "number",
+                    },
+                    IOPS: {
+                      type: "number",
+                    },
+                    MaxAllocatedStorage: {
+                      type: "number",
+                    },
+                    StorageThroughput: {
+                      type: "number",
+                    },
+                    StorageType: {
+                      type: "string",
+                    },
+                  },
+                  required: ["VolumeName"],
+                  additionalProperties: false,
+                },
               },
               SnapshotAvailabilityZone: {
                 type: "string",

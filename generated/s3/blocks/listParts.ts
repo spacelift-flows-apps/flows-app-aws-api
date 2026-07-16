@@ -5,7 +5,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const listParts: AppBlock = {
   name: "List Parts",
-  description: `End of support notice: Beginning October 1, 2025, Amazon S3 will stop returning DisplayName.`,
+  description: `Lists the parts that have been uploaded for a specific multipart upload.`,
   inputs: {
     default: {
       config: {
@@ -222,6 +222,21 @@ const listParts: AppBlock = {
                   type: "string",
                 },
                 ChecksumSHA256: {
+                  type: "string",
+                },
+                ChecksumSHA512: {
+                  type: "string",
+                },
+                ChecksumMD5: {
+                  type: "string",
+                },
+                ChecksumXXHASH64: {
+                  type: "string",
+                },
+                ChecksumXXHASH3: {
+                  type: "string",
+                },
+                ChecksumXXHASH128: {
                   type: "string",
                 },
               },

@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const getEventConfiguration: AppBlock = {
   name: "Get Event Configuration",
-  description: `Retrieves the current event configuration settings for the specified event data store, including details about maximum event size and context key selectors configured for the event data store.`,
+  description: `Retrieves the current event configuration settings for the specified event data store or trail.`,
   inputs: {
     default: {
       config: {
@@ -21,6 +21,13 @@ const getEventConfiguration: AppBlock = {
           name: "Assume Role ARN",
           description:
             "Optional IAM role ARN to assume before executing this operation. If provided, the block will use STS to assume this role and use the temporary credentials.",
+          type: "string",
+          required: false,
+        },
+        TrailName: {
+          name: "Trail Name",
+          description:
+            "The name of the trail for which you want to retrieve event configuration settings.",
           type: "string",
           required: false,
         },
@@ -89,6 +96,11 @@ const getEventConfiguration: AppBlock = {
       type: {
         type: "object",
         properties: {
+          TrailARN: {
+            type: "string",
+            description:
+              "The Amazon Resource Name (ARN) of the trail for which the event configuration settings are returned.",
+          },
           EventDataStoreArn: {
             type: "string",
             description:
@@ -119,6 +131,27 @@ const getEventConfiguration: AppBlock = {
             },
             description:
               "The list of context key selectors that are configured for the event data store.",
+          },
+          AggregationConfigurations: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                Templates: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
+                },
+                EventCategory: {
+                  type: "string",
+                },
+              },
+              required: ["Templates", "EventCategory"],
+              additionalProperties: false,
+            },
+            description:
+              "The list of aggregation configurations that are configured for the trail.",
           },
         },
         additionalProperties: true,

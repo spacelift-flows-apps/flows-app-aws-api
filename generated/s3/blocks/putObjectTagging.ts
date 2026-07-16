@@ -91,7 +91,7 @@ const putObjectTagging: AppBlock = {
         RequestPayer: {
           name: "Request Payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request.",
+            "Confirms that the requester knows that she or he will be charged for the tagging object request.",
           type: "string",
           required: false,
         },

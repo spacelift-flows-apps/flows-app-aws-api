@@ -137,7 +137,7 @@ const getSession: AppBlock = {
                     Properties: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                   },

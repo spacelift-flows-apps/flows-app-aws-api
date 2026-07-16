@@ -131,11 +131,19 @@ const listEndpoints: AppBlock = {
                       properties: {
                         Primary: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            HealthCheck: {},
+                          },
+                          required: ["HealthCheck"],
+                          additionalProperties: false,
                         },
                         Secondary: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Route: {},
+                          },
+                          required: ["Route"],
+                          additionalProperties: false,
                         },
                       },
                       required: ["Primary", "Secondary"],
@@ -160,8 +168,7 @@ const listEndpoints: AppBlock = {
                     type: "object",
                     properties: {
                       EventBusArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["EventBusArn"],

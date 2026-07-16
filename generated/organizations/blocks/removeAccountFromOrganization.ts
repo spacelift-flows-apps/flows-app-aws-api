@@ -27,7 +27,7 @@ const removeAccountFromOrganization: AppBlock = {
         AccountId: {
           name: "Account Id",
           description:
-            "The unique identifier (ID) of the member account that you want to remove from the organization.",
+            "ID for the member account that you want to remove from the organization.",
           type: "string",
           required: true,
         },

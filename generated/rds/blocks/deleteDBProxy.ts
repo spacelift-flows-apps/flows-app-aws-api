@@ -115,6 +115,9 @@ const deleteDBProxy: AppBlock = {
                   type: "string",
                 },
               },
+              DefaultAuthScheme: {
+                type: "string",
+              },
               Auth: {
                 type: "array",
                 items: {
@@ -161,6 +164,12 @@ const deleteDBProxy: AppBlock = {
                 type: "string",
               },
               UpdatedDate: {
+                type: "string",
+              },
+              EndpointNetworkType: {
+                type: "string",
+              },
+              TargetConnectionNetworkType: {
                 type: "string",
               },
             },

@@ -137,6 +137,9 @@ const updateGlobalTable: AppBlock = {
                     ReplicaStatus: {
                       type: "string",
                     },
+                    ReplicaArn: {
+                      type: "string",
+                    },
                     ReplicaStatusDescription: {
                       type: "string",
                     },
@@ -150,8 +153,7 @@ const updateGlobalTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -160,8 +162,7 @@ const updateGlobalTable: AppBlock = {
                       type: "object",
                       properties: {
                         MaxReadRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -170,16 +171,13 @@ const updateGlobalTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Status: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -188,7 +186,13 @@ const updateGlobalTable: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          IndexName: {},
+                          ProvisionedThroughputOverride: {},
+                          OnDemandThroughputOverride: {},
+                          WarmThroughput: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ReplicaInaccessibleDateTime: {
@@ -198,15 +202,16 @@ const updateGlobalTable: AppBlock = {
                       type: "object",
                       properties: {
                         TableClass: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LastUpdateDateTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
+                    },
+                    GlobalTableSettingsReplicationMode: {
+                      type: "string",
                     },
                   },
                   additionalProperties: false,

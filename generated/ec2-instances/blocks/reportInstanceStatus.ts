@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { EC2Client, ReportInstanceStatusCommand } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const reportInstanceStatus: AppBlock = {
   name: "Report Instance Status",
@@ -121,7 +122,12 @@ const reportInstanceStatus: AppBlock = {
           }),
         });
 
-        const command = new ReportInstanceStatusCommand(commandInput as any);
+        const command = new ReportInstanceStatusCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

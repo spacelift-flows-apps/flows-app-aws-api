@@ -155,6 +155,66 @@ const updateNodegroupConfig: AppBlock = {
               enabled: {
                 type: "boolean",
               },
+              maxUnhealthyNodeThresholdCount: {
+                type: "number",
+              },
+              maxUnhealthyNodeThresholdPercentage: {
+                type: "number",
+              },
+              maxParallelNodesRepairedCount: {
+                type: "number",
+              },
+              maxParallelNodesRepairedPercentage: {
+                type: "number",
+              },
+              nodeRepairConfigOverrides: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    nodeMonitoringCondition: {
+                      type: "string",
+                    },
+                    nodeUnhealthyReason: {
+                      type: "string",
+                    },
+                    minRepairWaitTimeMins: {
+                      type: "number",
+                    },
+                    repairAction: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+            },
+            additionalProperties: false,
+          },
+          required: false,
+        },
+        warmPoolConfig: {
+          name: "warm Pool Config",
+          description:
+            "The warm pool configuration to apply to the node group.",
+          type: {
+            type: "object",
+            properties: {
+              enabled: {
+                type: "boolean",
+              },
+              minSize: {
+                type: "number",
+              },
+              maxGroupPreparedCapacity: {
+                type: "number",
+              },
+              poolState: {
+                type: "string",
+              },
+              reuseOnScaleIn: {
+                type: "boolean",
+              },
             },
             additionalProperties: false,
           },
@@ -269,8 +329,7 @@ const updateNodegroupConfig: AppBlock = {
                     resourceIds: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

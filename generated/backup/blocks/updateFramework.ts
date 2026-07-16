@@ -51,12 +51,10 @@ const updateFramework: AppBlock = {
                     type: "object",
                     properties: {
                       ParameterName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ParameterValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -68,21 +66,19 @@ const updateFramework: AppBlock = {
                     ComplianceResourceIds: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     ComplianceResourceTypes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Tags: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                   },

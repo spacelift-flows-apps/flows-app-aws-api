@@ -184,7 +184,12 @@ const inviteAccountToOrganization: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Value: {},
+                          Type: {},
+                          Resources: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },

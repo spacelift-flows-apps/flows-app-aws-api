@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { SESClient, SendBounceCommand } from "@aws-sdk/client-ses";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const sendBounce: AppBlock = {
   name: "Send Bounce",
@@ -118,7 +119,12 @@ const sendBounce: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                          Value: {},
+                        },
+                        required: ["Name", "Value"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -181,7 +187,12 @@ const sendBounce: AppBlock = {
           }),
         });
 
-        const command = new SendBounceCommand(commandInput as any);
+        const command = new SendBounceCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["ArrivalDate", "LastAttemptDate"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

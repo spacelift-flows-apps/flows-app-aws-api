@@ -99,7 +99,18 @@ const getStatementResultV2: AppBlock = {
           Records: {
             type: "array",
             items: {
-              type: "string",
+              oneOf: [
+                {
+                  type: "object",
+                  properties: {
+                    CSVRecords: {
+                      type: "string",
+                    },
+                  },
+                  required: ["CSVRecords"],
+                  additionalProperties: false,
+                },
+              ],
             },
             description: "The results of the SQL statement in CSV format.",
           },

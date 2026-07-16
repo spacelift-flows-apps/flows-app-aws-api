@@ -34,7 +34,7 @@ const getItem: AppBlock = {
           type: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
           },
           required: true,
@@ -144,7 +144,7 @@ const getItem: AppBlock = {
           Item: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
             description:
               "A map of attribute names to AttributeValue objects, as specified by ProjectionExpression.",

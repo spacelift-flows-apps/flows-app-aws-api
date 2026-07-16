@@ -127,6 +127,9 @@ const deleteDBProxyEndpoint: AppBlock = {
               IsDefault: {
                 type: "boolean",
               },
+              EndpointNetworkType: {
+                type: "string",
+              },
             },
             additionalProperties: false,
             description:

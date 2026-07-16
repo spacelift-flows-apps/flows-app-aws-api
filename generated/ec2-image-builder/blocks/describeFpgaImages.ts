@@ -212,12 +212,10 @@ const describeFpgaImages: AppBlock = {
                     type: "object",
                     properties: {
                       ProductCodeId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ProductCodeType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -229,12 +227,10 @@ const describeFpgaImages: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

@@ -5,7 +5,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const listMultipartUploads: AppBlock = {
   name: "List Multipart Uploads",
-  description: `End of support notice: Beginning October 1, 2025, Amazon S3 will stop returning DisplayName.`,
+  description: `This operation lists in-progress multipart uploads in a bucket.`,
   inputs: {
     default: {
       config: {

@@ -52,16 +52,19 @@ const createFieldLevelEncryptionProfile: AppBlock = {
                       type: "object",
                       properties: {
                         PublicKeyId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ProviderId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         FieldPatterns: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Quantity: {},
+                            Items: {},
+                          },
+                          required: ["Quantity"],
+                          additionalProperties: false,
                         },
                       },
                       required: ["PublicKeyId", "ProviderId", "FieldPatterns"],
@@ -169,7 +172,17 @@ const createFieldLevelEncryptionProfile: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            PublicKeyId: {},
+                            ProviderId: {},
+                            FieldPatterns: {},
+                          },
+                          required: [
+                            "PublicKeyId",
+                            "ProviderId",
+                            "FieldPatterns",
+                          ],
+                          additionalProperties: false,
                         },
                       },
                     },

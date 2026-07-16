@@ -141,12 +141,10 @@ const getPredictiveScalingForecast: AppBlock = {
                       type: "object",
                       properties: {
                         PredefinedMetricType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ResourceLabel: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["PredefinedMetricType"],
@@ -156,12 +154,10 @@ const getPredictiveScalingForecast: AppBlock = {
                       type: "object",
                       properties: {
                         PredefinedMetricType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ResourceLabel: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["PredefinedMetricType"],
@@ -171,12 +167,10 @@ const getPredictiveScalingForecast: AppBlock = {
                       type: "object",
                       properties: {
                         PredefinedMetricType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ResourceLabel: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["PredefinedMetricType"],
@@ -186,8 +180,8 @@ const getPredictiveScalingForecast: AppBlock = {
                       type: "object",
                       properties: {
                         MetricDataQueries: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["MetricDataQueries"],
@@ -197,8 +191,8 @@ const getPredictiveScalingForecast: AppBlock = {
                       type: "object",
                       properties: {
                         MetricDataQueries: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["MetricDataQueries"],
@@ -208,8 +202,8 @@ const getPredictiveScalingForecast: AppBlock = {
                       type: "object",
                       properties: {
                         MetricDataQueries: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["MetricDataQueries"],

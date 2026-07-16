@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const detectStackSetDrift: AppBlock = {
   name: "Detect Stack Set Drift",
-  description: `Detect drift on a stack set.`,
+  description: `Detect drift on a StackSet.`,
   inputs: {
     default: {
       config: {
@@ -27,14 +27,14 @@ const detectStackSetDrift: AppBlock = {
         StackSetName: {
           name: "Stack Set Name",
           description:
-            "The name of the stack set on which to perform the drift detection operation.",
+            "The name of the StackSet on which to perform the drift detection operation.",
           type: "string",
           required: true,
         },
         OperationPreferences: {
           name: "Operation Preferences",
           description:
-            "The user-specified preferences for how CloudFormation performs a stack set operation.",
+            "The user-specified preferences for how CloudFormation performs a StackSet operation.",
           type: {
             type: "object",
             properties: {
@@ -69,7 +69,7 @@ const detectStackSetDrift: AppBlock = {
         },
         OperationId: {
           name: "Operation Id",
-          description: "The ID of the stack set operation.",
+          description: "The ID of the StackSet operation.",
           type: "string",
           required: false,
         },
@@ -140,7 +140,7 @@ const detectStackSetDrift: AppBlock = {
         properties: {
           OperationId: {
             type: "string",
-            description: "The ID of the drift detection stack set operation.",
+            description: "The ID of the drift detection StackSet operation.",
           },
         },
         additionalProperties: true,

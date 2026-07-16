@@ -4,6 +4,7 @@ import {
   ListAsyncInvokesCommand,
 } from "@aws-sdk/client-bedrock-runtime";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const listAsyncInvokes: AppBlock = {
   name: "List Async Invokes",
@@ -111,7 +112,12 @@ const listAsyncInvokes: AppBlock = {
           }),
         });
 
-        const command = new ListAsyncInvokesCommand(commandInput as any);
+        const command = new ListAsyncInvokesCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["submitTimeAfter", "submitTimeBefore"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});
@@ -169,16 +175,13 @@ const listAsyncInvokes: AppBlock = {
                           type: "object",
                           properties: {
                             s3Uri: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             kmsKeyId: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             bucketOwner: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                           },
                           required: ["s3Uri"],

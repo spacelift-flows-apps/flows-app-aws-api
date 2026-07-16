@@ -65,7 +65,7 @@ const createRepository: AppBlock = {
         imageTagMutabilityExclusionFilters: {
           name: "image Tag Mutability Exclusion Filters",
           description:
-            "Creates a repository with a list of filters that define which image tags can override the default image tag mutability setting.",
+            "A list of filters that specify which image tags should be excluded from the repository's image tag mutability setting.",
           type: {
             type: "array",
             items: {
@@ -86,7 +86,8 @@ const createRepository: AppBlock = {
         },
         imageScanningConfiguration: {
           name: "image Scanning Configuration",
-          description: "The image scanning configuration for the repository.",
+          description:
+            "The imageScanningConfiguration parameter is being deprecated, in favor of specifying the image scanning configuration at the registry level.",
           type: {
             type: "object",
             properties: {

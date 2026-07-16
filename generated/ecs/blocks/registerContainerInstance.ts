@@ -292,8 +292,7 @@ const registerContainerInstance: AppBlock = {
                     stringSetValue: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -323,8 +322,7 @@ const registerContainerInstance: AppBlock = {
                     stringSetValue: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -392,7 +390,11 @@ const registerContainerInstance: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {},
+                          value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -426,20 +428,19 @@ const registerContainerInstance: AppBlock = {
                       type: "object",
                       properties: {
                         type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         status: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
+                        },
+                        statusReason: {
+                          type: "string",
                         },
                         lastUpdated: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         lastStatusChange: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

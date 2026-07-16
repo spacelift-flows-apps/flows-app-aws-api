@@ -52,6 +52,27 @@ const startDBInstanceAutomatedBackupsReplication: AppBlock = {
           type: "string",
           required: false,
         },
+        Tags: {
+          name: "Tags",
+          description:
+            "A list of tags to associate with the replicated automated backups.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                Key: {
+                  type: "string",
+                },
+                Value: {
+                  type: "string",
+                },
+              },
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -173,6 +194,9 @@ const startDBInstanceAutomatedBackupsReplication: AppBlock = {
               Iops: {
                 type: "number",
               },
+              StorageThroughput: {
+                type: "number",
+              },
               OptionGroupName: {
                 type: "string",
               },
@@ -181,6 +205,9 @@ const startDBInstanceAutomatedBackupsReplication: AppBlock = {
               },
               Encrypted: {
                 type: "boolean",
+              },
+              StorageEncryptionType: {
+                type: "string",
               },
               StorageType: {
                 type: "string",
@@ -196,6 +223,9 @@ const startDBInstanceAutomatedBackupsReplication: AppBlock = {
               },
               BackupRetentionPeriod: {
                 type: "number",
+              },
+              PreferredBackupWindow: {
+                type: "string",
               },
               DBInstanceAutomatedBackupsArn: {
                 type: "string",
@@ -215,17 +245,57 @@ const startDBInstanceAutomatedBackupsReplication: AppBlock = {
               BackupTarget: {
                 type: "string",
               },
-              StorageThroughput: {
-                type: "number",
+              MultiTenant: {
+                type: "boolean",
               },
               AwsBackupRecoveryPointArn: {
                 type: "string",
               },
+              TagList: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    Key: {
+                      type: "string",
+                    },
+                    Value: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
               DedicatedLogVolume: {
                 type: "boolean",
               },
-              MultiTenant: {
-                type: "boolean",
+              AdditionalStorageVolumes: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    VolumeName: {
+                      type: "string",
+                    },
+                    AllocatedStorage: {
+                      type: "number",
+                    },
+                    IOPS: {
+                      type: "number",
+                    },
+                    MaxAllocatedStorage: {
+                      type: "number",
+                    },
+                    StorageThroughput: {
+                      type: "number",
+                    },
+                    StorageType: {
+                      type: "string",
+                    },
+                  },
+                  required: ["VolumeName"],
+                  additionalProperties: false,
+                },
               },
             },
             additionalProperties: false,

@@ -26,14 +26,14 @@ const removeFromGlobalCluster: AppBlock = {
           description:
             "The cluster identifier to detach from the Aurora global database cluster.",
           type: "string",
-          required: false,
+          required: true,
         },
         DbClusterIdentifier: {
           name: "Db Cluster Identifier",
           description:
             "The Amazon Resource Name (ARN) identifying the cluster that was detached from the Aurora global database cluster.",
           type: "string",
-          required: false,
+          required: true,
         },
       },
       onEvent: async (input) => {
@@ -123,6 +123,9 @@ const removeFromGlobalCluster: AppBlock = {
               StorageEncrypted: {
                 type: "boolean",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               DeletionProtection: {
                 type: "boolean",
               },
@@ -137,8 +140,7 @@ const removeFromGlobalCluster: AppBlock = {
                     Readers: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     IsWriter: {

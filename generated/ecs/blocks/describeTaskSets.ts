@@ -170,16 +170,13 @@ const describeTaskSets: AppBlock = {
                     type: "object",
                     properties: {
                       capacityProvider: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       weight: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       base: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     required: ["capacityProvider"],
@@ -199,16 +196,15 @@ const describeTaskSets: AppBlock = {
                       type: "object",
                       properties: {
                         subnets: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         securityGroups: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         assignPublicIp: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["subnets"],
@@ -223,24 +219,26 @@ const describeTaskSets: AppBlock = {
                     type: "object",
                     properties: {
                       targetGroupArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       loadBalancerName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       containerName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       containerPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       advancedConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          alternateTargetGroupArn: {},
+                          productionListenerRule: {},
+                          testListenerRule: {},
+                          roleArn: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     additionalProperties: false,
@@ -252,20 +250,16 @@ const describeTaskSets: AppBlock = {
                     type: "object",
                     properties: {
                       registryArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       port: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       containerName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       containerPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     additionalProperties: false,
@@ -295,12 +289,10 @@ const describeTaskSets: AppBlock = {
                     type: "object",
                     properties: {
                       key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

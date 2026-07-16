@@ -155,7 +155,51 @@ const listNodes: AppBlock = {
                   type: "string",
                 },
                 NodeType: {
-                  type: "string",
+                  oneOf: [
+                    {
+                      type: "object",
+                      properties: {
+                        Instance: {
+                          type: "object",
+                          properties: {
+                            AgentType: {
+                              type: "string",
+                            },
+                            AgentVersion: {
+                              type: "string",
+                            },
+                            ComputerName: {
+                              type: "string",
+                            },
+                            InstanceStatus: {
+                              type: "string",
+                            },
+                            IpAddress: {
+                              type: "string",
+                            },
+                            ManagedStatus: {
+                              type: "string",
+                            },
+                            PlatformType: {
+                              type: "string",
+                            },
+                            PlatformName: {
+                              type: "string",
+                            },
+                            PlatformVersion: {
+                              type: "string",
+                            },
+                            ResourceType: {
+                              type: "string",
+                            },
+                          },
+                          additionalProperties: false,
+                        },
+                      },
+                      required: ["Instance"],
+                      additionalProperties: false,
+                    },
+                  ],
                 },
               },
               additionalProperties: false,

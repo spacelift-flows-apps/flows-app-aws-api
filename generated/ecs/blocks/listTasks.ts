@@ -83,6 +83,13 @@ const listTasks: AppBlock = {
           type: "string",
           required: false,
         },
+        daemonName: {
+          name: "daemon Name",
+          description:
+            "The name of the daemon to use when filtering the ListTasks results.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =

@@ -34,7 +34,7 @@ const putItem: AppBlock = {
           type: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
           },
           required: true,
@@ -103,7 +103,7 @@ const putItem: AppBlock = {
           type: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
           },
           required: false,
@@ -176,7 +176,7 @@ const putItem: AppBlock = {
           Attributes: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
             description:
               "The attribute values as they appeared before the PutItem operation, but only if ReturnValues is specified as ALL_OLD in the request.",
@@ -234,7 +234,7 @@ const putItem: AppBlock = {
               ItemCollectionKey: {
                 type: "object",
                 additionalProperties: {
-                  type: "string",
+                  type: "object",
                 },
               },
               SizeEstimateRangeGB: {

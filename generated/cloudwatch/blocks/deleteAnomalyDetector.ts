@@ -125,19 +125,21 @@ const deleteAnomalyDetector: AppBlock = {
                       properties: {
                         Metric: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Namespace: {},
+                            MetricName: {},
+                            Dimensions: {},
+                          },
+                          additionalProperties: false,
                         },
                         Period: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Stat: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Unit: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Metric", "Period", "Stat"],

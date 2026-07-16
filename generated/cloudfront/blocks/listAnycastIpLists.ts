@@ -122,6 +122,26 @@ const listAnycastIpLists: AppBlock = {
                     LastModifiedTime: {
                       type: "string",
                     },
+                    IpAddressType: {
+                      type: "string",
+                    },
+                    ETag: {
+                      type: "string",
+                    },
+                    IpamConfig: {
+                      type: "object",
+                      properties: {
+                        Quantity: {
+                          type: "number",
+                        },
+                        IpamCidrConfigs: {
+                          type: "array",
+                          items: {},
+                        },
+                      },
+                      required: ["Quantity", "IpamCidrConfigs"],
+                      additionalProperties: false,
+                    },
                   },
                   required: [
                     "Id",

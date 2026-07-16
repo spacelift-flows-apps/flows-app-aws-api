@@ -142,6 +142,9 @@ const describePodIdentityAssociation: AppBlock = {
               externalId: {
                 type: "string",
               },
+              policy: {
+                type: "string",
+              },
             },
             additionalProperties: false,
             description:

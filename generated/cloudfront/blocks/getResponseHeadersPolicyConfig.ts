@@ -111,8 +111,7 @@ const getResponseHeadersPolicyConfig: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -128,8 +127,7 @@ const getResponseHeadersPolicyConfig: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -145,8 +143,7 @@ const getResponseHeadersPolicyConfig: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -165,8 +162,7 @@ const getResponseHeadersPolicyConfig: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -307,16 +303,13 @@ const getResponseHeadersPolicyConfig: AppBlock = {
                       type: "object",
                       properties: {
                         Header: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Override: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       required: ["Header", "Value", "Override"],
@@ -339,8 +332,7 @@ const getResponseHeadersPolicyConfig: AppBlock = {
                       type: "object",
                       properties: {
                         Header: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Header"],

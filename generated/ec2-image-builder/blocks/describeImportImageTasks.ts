@@ -180,44 +180,39 @@ const describeImportImageTasks: AppBlock = {
                     type: "object",
                     properties: {
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DeviceName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DiskImageSize: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       Format: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Progress: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SnapshotId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       StatusMessage: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Url: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       UserBucket: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          S3Bucket: {},
+                          S3Key: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     additionalProperties: false,
@@ -235,12 +230,10 @@ const describeImportImageTasks: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -252,8 +245,7 @@ const describeImportImageTasks: AppBlock = {
                     type: "object",
                     properties: {
                       LicenseConfigurationArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

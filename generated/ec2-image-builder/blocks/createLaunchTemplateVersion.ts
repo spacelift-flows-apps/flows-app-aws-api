@@ -4,6 +4,7 @@ import {
   CreateLaunchTemplateVersionCommand,
 } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const createLaunchTemplateVersion: AppBlock = {
   name: "Create Launch Template Version",
@@ -102,40 +103,34 @@ const createLaunchTemplateVersion: AppBlock = {
                       type: "object",
                       properties: {
                         Encrypted: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         DeleteOnTermination: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         Iops: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         KmsKeyId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SnapshotId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         VolumeSize: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         VolumeType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Throughput: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         VolumeInitializationRate: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
+                        },
+                        EbsCardIndex: {
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -170,8 +165,7 @@ const createLaunchTemplateVersion: AppBlock = {
                     Groups: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     InterfaceType: {
@@ -184,7 +178,10 @@ const createLaunchTemplateVersion: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Ipv6Address: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     NetworkInterfaceId: {
@@ -197,7 +194,11 @@ const createLaunchTemplateVersion: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Primary: {},
+                          PrivateIpAddress: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     SecondaryPrivateIpAddressCount: {
@@ -213,7 +214,10 @@ const createLaunchTemplateVersion: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Ipv4Prefix: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Ipv4PrefixCount: {
@@ -223,7 +227,10 @@ const createLaunchTemplateVersion: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Ipv6Prefix: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Ipv6PrefixCount: {
@@ -236,12 +243,14 @@ const createLaunchTemplateVersion: AppBlock = {
                       type: "object",
                       properties: {
                         EnaSrdEnabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         EnaSrdUdpSpecification: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            EnaSrdUdpEnabled: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -250,16 +259,13 @@ const createLaunchTemplateVersion: AppBlock = {
                       type: "object",
                       properties: {
                         TcpEstablishedTimeout: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         UdpStreamTimeout: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         UdpTimeout: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -293,6 +299,9 @@ const createLaunchTemplateVersion: AppBlock = {
                 type: "object",
                 properties: {
                   AvailabilityZone: {
+                    type: "string",
+                  },
+                  AvailabilityZoneId: {
                     type: "string",
                   },
                   Affinity: {
@@ -346,7 +355,11 @@ const createLaunchTemplateVersion: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -444,6 +457,9 @@ const createLaunchTemplateVersion: AppBlock = {
                     type: "number",
                   },
                   AmdSevSnp: {
+                    type: "string",
+                  },
+                  NestedVirtualization: {
                     type: "string",
                   },
                 },
@@ -710,14 +726,17 @@ const createLaunchTemplateVersion: AppBlock = {
                         type: "object",
                         properties: {
                           References: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         additionalProperties: false,
                       },
                     },
                     additionalProperties: false,
+                  },
+                  RequireEncryptionInTransit: {
+                    type: "boolean",
                   },
                 },
                 required: ["VCpuCount", "MemoryMiB"],
@@ -767,6 +786,43 @@ const createLaunchTemplateVersion: AppBlock = {
                   },
                 },
                 additionalProperties: false,
+              },
+              SecondaryInterfaces: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    DeleteOnTermination: {
+                      type: "boolean",
+                    },
+                    DeviceIndex: {
+                      type: "number",
+                    },
+                    PrivateIpAddresses: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          PrivateIpAddress: {},
+                        },
+                        additionalProperties: false,
+                      },
+                    },
+                    PrivateIpAddressCount: {
+                      type: "number",
+                    },
+                    SecondarySubnetId: {
+                      type: "string",
+                    },
+                    InterfaceType: {
+                      type: "string",
+                    },
+                    NetworkCardIndex: {
+                      type: "number",
+                    },
+                  },
+                  additionalProperties: false,
+                },
               },
             },
             additionalProperties: false,
@@ -824,7 +880,7 @@ const createLaunchTemplateVersion: AppBlock = {
         });
 
         const command = new CreateLaunchTemplateVersionCommand(
-          commandInput as any,
+          convertTimestamps(commandInput, new Set(["ValidUntil"])) as any,
         );
         const response = await client.send(command);
 
@@ -891,20 +947,29 @@ const createLaunchTemplateVersion: AppBlock = {
                       type: "object",
                       properties: {
                         DeviceName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         VirtualName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Ebs: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Encrypted: {},
+                            DeleteOnTermination: {},
+                            Iops: {},
+                            KmsKeyId: {},
+                            SnapshotId: {},
+                            VolumeSize: {},
+                            VolumeType: {},
+                            Throughput: {},
+                            VolumeInitializationRate: {},
+                            EbsCardIndex: {},
+                          },
+                          additionalProperties: false,
                         },
                         NoDevice: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -916,96 +981,89 @@ const createLaunchTemplateVersion: AppBlock = {
                       type: "object",
                       properties: {
                         AssociateCarrierIpAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         AssociatePublicIpAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         DeleteOnTermination: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         Description: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         DeviceIndex: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Groups: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         InterfaceType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Ipv6AddressCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Ipv6Addresses: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         NetworkInterfaceId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PrivateIpAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PrivateIpAddresses: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         SecondaryPrivateIpAddressCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         SubnetId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NetworkCardIndex: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Ipv4Prefixes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Ipv4PrefixCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Ipv6Prefixes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Ipv6PrefixCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         PrimaryIpv6: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         EnaSrdSpecification: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            EnaSrdEnabled: {},
+                            EnaSrdUdpSpecification: {},
+                          },
+                          additionalProperties: false,
                         },
                         ConnectionTrackingSpecification: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            TcpEstablishedTimeout: {},
+                            UdpTimeout: {},
+                            UdpStreamTimeout: {},
+                          },
+                          additionalProperties: false,
                         },
                         EnaQueueCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -1033,6 +1091,9 @@ const createLaunchTemplateVersion: AppBlock = {
                     type: "object",
                     properties: {
                       AvailabilityZone: {
+                        type: "string",
+                      },
+                      AvailabilityZoneId: {
                         type: "string",
                       },
                       Affinity: {
@@ -1080,12 +1141,11 @@ const createLaunchTemplateVersion: AppBlock = {
                       type: "object",
                       properties: {
                         ResourceType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Tags: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -1097,8 +1157,7 @@ const createLaunchTemplateVersion: AppBlock = {
                       type: "object",
                       properties: {
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -1110,12 +1169,10 @@ const createLaunchTemplateVersion: AppBlock = {
                       type: "object",
                       properties: {
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Count: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -1143,24 +1200,19 @@ const createLaunchTemplateVersion: AppBlock = {
                         type: "object",
                         properties: {
                           MaxPrice: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           SpotInstanceType: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           BlockDurationMinutes: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           ValidUntil: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           InstanceInterruptionBehavior: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         additionalProperties: false,
@@ -1189,6 +1241,9 @@ const createLaunchTemplateVersion: AppBlock = {
                       AmdSevSnp: {
                         type: "string",
                       },
+                      NestedVirtualization: {
+                        type: "string",
+                      },
                     },
                     additionalProperties: false,
                   },
@@ -1202,12 +1257,10 @@ const createLaunchTemplateVersion: AppBlock = {
                         type: "object",
                         properties: {
                           CapacityReservationId: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           CapacityReservationResourceGroupArn: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         additionalProperties: false,
@@ -1221,8 +1274,7 @@ const createLaunchTemplateVersion: AppBlock = {
                       type: "object",
                       properties: {
                         LicenseConfigurationArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -1277,12 +1329,10 @@ const createLaunchTemplateVersion: AppBlock = {
                         type: "object",
                         properties: {
                           Min: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Max: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                         },
                         additionalProperties: false,
@@ -1291,12 +1341,10 @@ const createLaunchTemplateVersion: AppBlock = {
                         type: "object",
                         properties: {
                           Min: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Max: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                         },
                         additionalProperties: false,
@@ -1304,20 +1352,17 @@ const createLaunchTemplateVersion: AppBlock = {
                       CpuManufacturers: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       MemoryGiBPerVCpu: {
                         type: "object",
                         properties: {
                           Min: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Max: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                         },
                         additionalProperties: false,
@@ -1325,15 +1370,13 @@ const createLaunchTemplateVersion: AppBlock = {
                       ExcludedInstanceTypes: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       InstanceGenerations: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       SpotMaxPricePercentageOverLowestPrice: {
@@ -1355,12 +1398,10 @@ const createLaunchTemplateVersion: AppBlock = {
                         type: "object",
                         properties: {
                           Min: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Max: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                         },
                         additionalProperties: false,
@@ -1371,20 +1412,17 @@ const createLaunchTemplateVersion: AppBlock = {
                       LocalStorageTypes: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       TotalLocalStorageGB: {
                         type: "object",
                         properties: {
                           Min: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Max: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                         },
                         additionalProperties: false,
@@ -1393,12 +1431,10 @@ const createLaunchTemplateVersion: AppBlock = {
                         type: "object",
                         properties: {
                           Min: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Max: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                         },
                         additionalProperties: false,
@@ -1406,20 +1442,17 @@ const createLaunchTemplateVersion: AppBlock = {
                       AcceleratorTypes: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       AcceleratorCount: {
                         type: "object",
                         properties: {
                           Min: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Max: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                         },
                         additionalProperties: false,
@@ -1427,27 +1460,23 @@ const createLaunchTemplateVersion: AppBlock = {
                       AcceleratorManufacturers: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       AcceleratorNames: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       AcceleratorTotalMemoryMiB: {
                         type: "object",
                         properties: {
                           Min: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Max: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                         },
                         additionalProperties: false,
@@ -1456,12 +1485,10 @@ const createLaunchTemplateVersion: AppBlock = {
                         type: "object",
                         properties: {
                           Min: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Max: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                         },
                         additionalProperties: false,
@@ -1469,8 +1496,7 @@ const createLaunchTemplateVersion: AppBlock = {
                       AllowedInstanceTypes: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       MaxSpotPriceAsPercentageOfOptimalOnDemandPrice: {
@@ -1481,10 +1507,16 @@ const createLaunchTemplateVersion: AppBlock = {
                         properties: {
                           Cpu: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              References: {},
+                            },
+                            additionalProperties: false,
                           },
                         },
                         additionalProperties: false,
+                      },
+                      RequireEncryptionInTransit: {
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,
@@ -1525,6 +1557,9 @@ const createLaunchTemplateVersion: AppBlock = {
                       Principal: {
                         type: "string",
                       },
+                      HiddenByDefault: {
+                        type: "boolean",
+                      },
                     },
                     additionalProperties: false,
                   },
@@ -1537,6 +1572,37 @@ const createLaunchTemplateVersion: AppBlock = {
                     },
                     additionalProperties: false,
                   },
+                  SecondaryInterfaces: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      properties: {
+                        DeleteOnTermination: {
+                          type: "boolean",
+                        },
+                        DeviceIndex: {
+                          type: "number",
+                        },
+                        PrivateIpAddresses: {
+                          type: "array",
+                          items: {},
+                        },
+                        PrivateIpAddressCount: {
+                          type: "number",
+                        },
+                        SecondarySubnetId: {
+                          type: "string",
+                        },
+                        InterfaceType: {
+                          type: "string",
+                        },
+                        NetworkCardIndex: {
+                          type: "number",
+                        },
+                      },
+                      additionalProperties: false,
+                    },
+                  },
                 },
                 additionalProperties: false,
               },
@@ -1548,6 +1614,9 @@ const createLaunchTemplateVersion: AppBlock = {
                   },
                   Principal: {
                     type: "string",
+                  },
+                  HiddenByDefault: {
+                    type: "boolean",
                   },
                 },
                 additionalProperties: false,

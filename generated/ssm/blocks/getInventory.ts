@@ -66,16 +66,15 @@ const getInventory: AppBlock = {
                     type: "object",
                     properties: {
                       Expression: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Aggregators: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Groups: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -87,12 +86,11 @@ const getInventory: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Filters: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     required: ["Name", "Filters"],

@@ -26,22 +26,21 @@ const moveAccount: AppBlock = {
         },
         AccountId: {
           name: "Account Id",
-          description:
-            "The unique identifier (ID) of the account that you want to move.",
+          description: "ID for the account that you want to move.",
           type: "string",
           required: true,
         },
         SourceParentId: {
           name: "Source Parent Id",
           description:
-            "The unique identifier (ID) of the root or organizational unit that you want to move the account from.",
+            "ID for the root or organizational unit that you want to move the account from.",
           type: "string",
           required: true,
         },
         DestinationParentId: {
           name: "Destination Parent Id",
           description:
-            "The unique identifier (ID) of the root or organizational unit that you want to move the account to.",
+            "ID for the root or organizational unit that you want to move the account to.",
           type: "string",
           required: true,
         },

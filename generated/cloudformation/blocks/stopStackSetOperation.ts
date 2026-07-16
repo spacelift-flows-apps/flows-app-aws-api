@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const stopStackSetOperation: AppBlock = {
   name: "Stop Stack Set Operation",
-  description: `Stops an in-progress operation on a stack set and its associated stack instances.`,
+  description: `Stops an in-progress operation on a StackSet and its associated stack instances.`,
   inputs: {
     default: {
       config: {
@@ -27,7 +27,7 @@ const stopStackSetOperation: AppBlock = {
         StackSetName: {
           name: "Stack Set Name",
           description:
-            "The name or unique ID of the stack set that you want to stop the operation for.",
+            "The name or unique ID of the StackSet that you want to stop the operation for.",
           type: "string",
           required: true,
         },
@@ -40,7 +40,7 @@ const stopStackSetOperation: AppBlock = {
         CallAs: {
           name: "Call As",
           description:
-            "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.",
+            "Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.",
           type: "string",
           required: false,
         },

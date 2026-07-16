@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const listHandshakesForAccount: AppBlock = {
   name: "List Handshakes For Account",
-  description: `Lists the current handshakes that are associated with the account of the requesting user.`,
+  description: `Lists the recent handshakes that you have received.`,
   inputs: {
     default: {
       config: {
@@ -26,8 +26,7 @@ const listHandshakesForAccount: AppBlock = {
         },
         Filter: {
           name: "Filter",
-          description:
-            "Filters the handshakes that you want included in the response.",
+          description: "A HandshakeFilter object.",
           type: {
             type: "object",
             properties: {
@@ -51,8 +50,7 @@ const listHandshakesForAccount: AppBlock = {
         },
         MaxResults: {
           name: "Max Results",
-          description:
-            "The total number of results that you want included on each page of the response.",
+          description: "The maximum number of items to return in the response.",
           type: "number",
           required: false,
         },
@@ -133,12 +131,10 @@ const listHandshakesForAccount: AppBlock = {
                     type: "object",
                     properties: {
                       Id: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Id", "Type"],
@@ -163,16 +159,14 @@ const listHandshakesForAccount: AppBlock = {
                     type: "object",
                     properties: {
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Resources: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -181,8 +175,7 @@ const listHandshakesForAccount: AppBlock = {
               },
               additionalProperties: false,
             },
-            description:
-              "A list of Handshake objects with details about each of the handshakes that is associated with the specified account.",
+            description: "An array of Handshakeobjects.",
           },
           NextToken: {
             type: "string",

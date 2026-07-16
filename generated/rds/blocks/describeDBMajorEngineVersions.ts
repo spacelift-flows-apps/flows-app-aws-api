@@ -129,16 +129,13 @@ const describeDBMajorEngineVersions: AppBlock = {
                     type: "object",
                     properties: {
                       LifecycleSupportName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       LifecycleSupportStartDate: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       LifecycleSupportEndDate: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: [

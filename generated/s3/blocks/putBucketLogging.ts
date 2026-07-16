@@ -5,7 +5,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const putBucketLogging: AppBlock = {
   name: "Put Bucket Logging",
-  description: `End of support notice: Beginning October 1, 2025, Amazon S3 will discontinue support for creating new Email Grantee Access Control Lists (ACL).`,
+  description: `End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs).`,
   inputs: {
     default: {
       config: {
@@ -48,11 +48,18 @@ const putBucketLogging: AppBlock = {
                       properties: {
                         Grantee: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            DisplayName: {},
+                            EmailAddress: {},
+                            ID: {},
+                            URI: {},
+                            Type: {},
+                          },
+                          required: ["Type"],
+                          additionalProperties: false,
                         },
                         Permission: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -73,8 +80,7 @@ const putBucketLogging: AppBlock = {
                         type: "object",
                         properties: {
                           PartitionDateSource: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         additionalProperties: false,

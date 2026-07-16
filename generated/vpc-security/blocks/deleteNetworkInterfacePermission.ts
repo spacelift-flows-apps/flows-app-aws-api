@@ -107,7 +107,7 @@ const deleteNetworkInterfacePermission: AppBlock = {
           Return: {
             type: "boolean",
             description:
-              "Returns true if the request succeeds, otherwise returns an error.",
+              "Is true if the request succeeds and an error otherwise.",
           },
         },
         additionalProperties: true,

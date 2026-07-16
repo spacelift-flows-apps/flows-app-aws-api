@@ -226,6 +226,15 @@ const describeDBClusterSnapshots: AppBlock = {
                 StorageEncrypted: {
                   type: "boolean",
                 },
+                StorageEncryptionType: {
+                  type: "string",
+                },
+                BackupRetentionPeriod: {
+                  type: "number",
+                },
+                PreferredBackupWindow: {
+                  type: "string",
+                },
                 KmsKeyId: {
                   type: "string",
                 },
@@ -244,28 +253,26 @@ const describeDBClusterSnapshots: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
                   },
                 },
-                DBSystemId: {
-                  type: "string",
-                },
                 StorageType: {
-                  type: "string",
-                },
-                DbClusterResourceId: {
                   type: "string",
                 },
                 StorageThroughput: {
                   type: "number",
+                },
+                DbClusterResourceId: {
+                  type: "string",
+                },
+                DBSystemId: {
+                  type: "string",
                 },
               },
               additionalProperties: false,

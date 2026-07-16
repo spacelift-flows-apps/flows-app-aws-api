@@ -94,7 +94,7 @@ const createChangeSet: AppBlock = {
         ResourceTypes: {
           name: "Resource Types",
           description:
-            "The template resource types that you have permissions to work with if you execute this change set, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance.",
+            "Specifies which resource types you can work with, such as AWS::EC2::Instance or Custom::MyCustomInstance.",
           type: {
             type: "array",
             items: {
@@ -248,6 +248,13 @@ const createChangeSet: AppBlock = {
           description:
             "Indicates if the change set auto-imports resources that already exist.",
           type: "boolean",
+          required: false,
+        },
+        DeploymentMode: {
+          name: "Deployment Mode",
+          description:
+            "Determines how CloudFormation handles configuration drift during deployment.",
+          type: "string",
           required: false,
         },
       },

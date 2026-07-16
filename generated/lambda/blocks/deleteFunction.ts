@@ -90,6 +90,12 @@ const deleteFunction: AppBlock = {
       possiblePrimaryParents: ["default"],
       type: {
         type: "object",
+        properties: {
+          StatusCode: {
+            type: "number",
+            description: "The HTTP status code returned by the operation.",
+          },
+        },
         additionalProperties: true,
       },
     },

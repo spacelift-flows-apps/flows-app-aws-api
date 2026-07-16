@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const describeType: AppBlock = {
   name: "Describe Type",
-  description: `Returns detailed information about an extension that has been registered.`,
+  description: `Returns detailed information about an extension from the CloudFormation registry in your current account and Region.`,
   inputs: {
     default: {
       config: {

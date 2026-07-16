@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { ECSClient, ListServiceDeploymentsCommand } from "@aws-sdk/client-ecs";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const listServiceDeployments: AppBlock = {
   name: "List Service Deployments",
@@ -119,7 +120,9 @@ const listServiceDeployments: AppBlock = {
           }),
         });
 
-        const command = new ListServiceDeploymentsCommand(commandInput as any);
+        const command = new ListServiceDeploymentsCommand(
+          convertTimestamps(commandInput, new Set(["before", "after"])) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

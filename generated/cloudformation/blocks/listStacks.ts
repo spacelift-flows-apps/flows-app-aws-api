@@ -26,8 +26,7 @@ const listStacks: AppBlock = {
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "A string that identifies the next page of stacks that you want to retrieve.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },
@@ -147,6 +146,21 @@ const listStacks: AppBlock = {
                   },
                   required: ["StackDriftStatus"],
                   additionalProperties: false,
+                },
+                LastOperations: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      OperationType: {
+                        type: "string",
+                      },
+                      OperationId: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
                 },
               },
               required: ["StackName", "CreationTime", "StackStatus"],

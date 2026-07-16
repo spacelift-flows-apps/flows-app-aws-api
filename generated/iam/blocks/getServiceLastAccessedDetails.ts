@@ -147,20 +147,16 @@ const getServiceLastAccessedDetails: AppBlock = {
                     type: "object",
                     properties: {
                       ActionName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       LastAccessedEntity: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       LastAccessedTime: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       LastAccessedRegion: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

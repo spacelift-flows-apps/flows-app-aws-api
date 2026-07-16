@@ -117,8 +117,7 @@ const createCluster: AppBlock = {
                     types: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     enabled: {
@@ -279,8 +278,7 @@ const createCluster: AppBlock = {
                     cidrs: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -295,8 +293,7 @@ const createCluster: AppBlock = {
                     cidrs: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -347,6 +344,27 @@ const createCluster: AppBlock = {
                   },
                 },
                 additionalProperties: false,
+              },
+            },
+            additionalProperties: false,
+          },
+          required: false,
+        },
+        deletionProtection: {
+          name: "deletion Protection",
+          description:
+            "Indicates whether to enable deletion protection for the cluster.",
+          type: "boolean",
+          required: false,
+        },
+        controlPlaneScalingConfig: {
+          name: "control Plane Scaling Config",
+          description: "The control plane scaling tier configuration.",
+          type: {
+            type: "object",
+            properties: {
+              tier: {
+                type: "string",
               },
             },
             additionalProperties: false,
@@ -501,12 +519,11 @@ const createCluster: AppBlock = {
                       type: "object",
                       properties: {
                         types: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         enabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -562,16 +579,14 @@ const createCluster: AppBlock = {
                     resources: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     provider: {
                       type: "object",
                       properties: {
                         keyArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -613,16 +628,14 @@ const createCluster: AppBlock = {
                       type: "object",
                       properties: {
                         code: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         message: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         resourceIds: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -695,8 +708,8 @@ const createCluster: AppBlock = {
                       type: "object",
                       properties: {
                         cidrs: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -708,8 +721,8 @@ const createCluster: AppBlock = {
                       type: "object",
                       properties: {
                         cidrs: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -747,6 +760,18 @@ const createCluster: AppBlock = {
                       },
                     },
                     additionalProperties: false,
+                  },
+                },
+                additionalProperties: false,
+              },
+              deletionProtection: {
+                type: "boolean",
+              },
+              controlPlaneScalingConfig: {
+                type: "object",
+                properties: {
+                  tier: {
+                    type: "string",
                   },
                 },
                 additionalProperties: false,

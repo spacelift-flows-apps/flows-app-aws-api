@@ -101,7 +101,68 @@ const getStatementResult: AppBlock = {
             items: {
               type: "array",
               items: {
-                type: "string",
+                oneOf: [
+                  {
+                    type: "object",
+                    properties: {
+                      isNull: {
+                        type: "boolean",
+                      },
+                    },
+                    required: ["isNull"],
+                    additionalProperties: false,
+                  },
+                  {
+                    type: "object",
+                    properties: {
+                      booleanValue: {
+                        type: "boolean",
+                      },
+                    },
+                    required: ["booleanValue"],
+                    additionalProperties: false,
+                  },
+                  {
+                    type: "object",
+                    properties: {
+                      longValue: {
+                        type: "number",
+                      },
+                    },
+                    required: ["longValue"],
+                    additionalProperties: false,
+                  },
+                  {
+                    type: "object",
+                    properties: {
+                      doubleValue: {
+                        type: "number",
+                      },
+                    },
+                    required: ["doubleValue"],
+                    additionalProperties: false,
+                  },
+                  {
+                    type: "object",
+                    properties: {
+                      stringValue: {
+                        type: "string",
+                      },
+                    },
+                    required: ["stringValue"],
+                    additionalProperties: false,
+                  },
+                  {
+                    type: "object",
+                    properties: {
+                      blobValue: {
+                        type: "string",
+                      },
+                    },
+                    required: ["blobValue"],
+                    additionalProperties: false,
+                  },
+                ],
               },
             },
             description: "The results of the SQL statement in JSON format.",

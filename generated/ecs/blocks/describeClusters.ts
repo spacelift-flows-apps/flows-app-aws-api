@@ -121,16 +121,21 @@ const describeClusters: AppBlock = {
                       type: "object",
                       properties: {
                         kmsKeyId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         logging: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         logConfiguration: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            cloudWatchLogGroupName: {},
+                            cloudWatchEncryptionEnabled: {},
+                            s3BucketName: {},
+                            s3EncryptionEnabled: {},
+                            s3KeyPrefix: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -139,12 +144,10 @@ const describeClusters: AppBlock = {
                       type: "object",
                       properties: {
                         kmsKeyId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         fargateEphemeralStorageKmsKeyId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -173,12 +176,10 @@ const describeClusters: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -190,12 +191,10 @@ const describeClusters: AppBlock = {
                     type: "object",
                     properties: {
                       key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -207,12 +206,10 @@ const describeClusters: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -230,16 +227,13 @@ const describeClusters: AppBlock = {
                     type: "object",
                     properties: {
                       capacityProvider: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       weight: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       base: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     required: ["capacityProvider"],
@@ -252,20 +246,17 @@ const describeClusters: AppBlock = {
                     type: "object",
                     properties: {
                       id: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       details: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,

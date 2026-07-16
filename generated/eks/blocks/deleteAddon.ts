@@ -122,16 +122,14 @@ const deleteAddon: AppBlock = {
                       type: "object",
                       properties: {
                         code: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         message: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         resourceIds: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -184,6 +182,15 @@ const deleteAddon: AppBlock = {
                 items: {
                   type: "string",
                 },
+              },
+              namespaceConfig: {
+                type: "object",
+                properties: {
+                  namespace: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
               },
             },
             additionalProperties: false,

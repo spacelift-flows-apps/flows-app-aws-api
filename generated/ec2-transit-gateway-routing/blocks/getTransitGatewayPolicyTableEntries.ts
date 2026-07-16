@@ -164,12 +164,10 @@ const getTransitGatewayPolicyTableEntries: AppBlock = {
                       type: "object",
                       properties: {
                         MetaDataKey: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         MetaDataValue: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

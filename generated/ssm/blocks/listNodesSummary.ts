@@ -79,20 +79,17 @@ const listNodesSummary: AppBlock = {
                     type: "object",
                     properties: {
                       AggregatorType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TypeName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AttributeName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Aggregators: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     required: ["AggregatorType", "TypeName", "AttributeName"],

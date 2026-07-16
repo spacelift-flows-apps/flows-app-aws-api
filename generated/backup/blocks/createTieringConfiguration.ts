@@ -45,8 +45,7 @@ const createTieringConfiguration: AppBlock = {
                     Resources: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     TieringDownSettingsInDays: {

@@ -27,7 +27,7 @@ const describeOrganizationalUnit: AppBlock = {
         OrganizationalUnitId: {
           name: "Organizational Unit Id",
           description:
-            "The unique identifier (ID) of the organizational unit that you want details about.",
+            "ID for the organizational unit that you want details about.",
           type: "string",
           required: true,
         },
@@ -101,6 +101,9 @@ const describeOrganizationalUnit: AppBlock = {
                 type: "string",
               },
               Name: {
+                type: "string",
+              },
+              Path: {
                 type: "string",
               },
             },

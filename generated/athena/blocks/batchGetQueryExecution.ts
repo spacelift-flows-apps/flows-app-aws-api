@@ -117,8 +117,7 @@ const batchGetQueryExecution: AppBlock = {
                       type: "object",
                       properties: {
                         KmsKey: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["KmsKey"],
@@ -138,12 +137,10 @@ const batchGetQueryExecution: AppBlock = {
                       type: "object",
                       properties: {
                         EncryptionOption: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KmsKey: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["EncryptionOption"],
@@ -156,8 +153,7 @@ const batchGetQueryExecution: AppBlock = {
                       type: "object",
                       properties: {
                         S3AclOption: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["S3AclOption"],
@@ -173,12 +169,10 @@ const batchGetQueryExecution: AppBlock = {
                       type: "object",
                       properties: {
                         Enabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         MaxAgeInMinutes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       required: ["Enabled"],
@@ -218,20 +212,16 @@ const batchGetQueryExecution: AppBlock = {
                       type: "object",
                       properties: {
                         ErrorCategory: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ErrorType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Retryable: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         ErrorMessage: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -270,8 +260,7 @@ const batchGetQueryExecution: AppBlock = {
                       type: "object",
                       properties: {
                         ReusedPreviousResult: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       required: ["ReusedPreviousResult"],

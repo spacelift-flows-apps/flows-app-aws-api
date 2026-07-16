@@ -34,7 +34,7 @@ const deleteItem: AppBlock = {
           type: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
           },
           required: true,
@@ -103,7 +103,7 @@ const deleteItem: AppBlock = {
           type: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
           },
           required: false,
@@ -176,7 +176,7 @@ const deleteItem: AppBlock = {
           Attributes: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
             description:
               "A map of attribute names to AttributeValue objects, representing the item as it appeared before the DeleteItem operation.",
@@ -234,7 +234,7 @@ const deleteItem: AppBlock = {
               ItemCollectionKey: {
                 type: "object",
                 additionalProperties: {
-                  type: "string",
+                  type: "object",
                 },
               },
               SizeEstimateRangeGB: {

@@ -143,7 +143,12 @@ const getBucketIntelligentTieringConfiguration: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Key: {},
+                            Value: {},
+                          },
+                          required: ["Key", "Value"],
+                          additionalProperties: false,
                         },
                       },
                     },

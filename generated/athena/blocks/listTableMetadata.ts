@@ -142,16 +142,13 @@ const listTableMetadata: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Comment: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Name"],
@@ -164,16 +161,13 @@ const listTableMetadata: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Comment: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Name"],

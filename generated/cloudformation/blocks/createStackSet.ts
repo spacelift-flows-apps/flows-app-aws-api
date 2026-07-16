@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const createStackSet: AppBlock = {
   name: "Create Stack Set",
-  description: `Creates a stack set.`,
+  description: `Creates a StackSet.`,
   inputs: {
     default: {
       config: {
@@ -26,13 +26,13 @@ const createStackSet: AppBlock = {
         },
         StackSetName: {
           name: "Stack Set Name",
-          description: "The name to associate with the stack set.",
+          description: "The name to associate with the StackSet.",
           type: "string",
           required: true,
         },
         Description: {
           name: "Description",
-          description: "A description of the stack set.",
+          description: "A description of the StackSet.",
           type: "string",
           required: false,
         },
@@ -51,13 +51,13 @@ const createStackSet: AppBlock = {
         },
         StackId: {
           name: "Stack Id",
-          description: "The stack ID you are importing into a new stack set.",
+          description: "The stack ID you are importing into a new StackSet.",
           type: "string",
           required: false,
         },
         Parameters: {
           name: "Parameters",
-          description: "The input parameters for the stack set template.",
+          description: "The input parameters for the StackSet template.",
           type: {
             type: "array",
             items: {
@@ -84,7 +84,7 @@ const createStackSet: AppBlock = {
         Capabilities: {
           name: "Capabilities",
           description:
-            "In some cases, you must explicitly acknowledge that your stack set template contains certain capabilities in order for CloudFormation to create the stack set and related stack instances.",
+            "In some cases, you must explicitly acknowledge that your StackSet template contains certain capabilities in order for CloudFormation to create the StackSet and related stack instances.",
           type: {
             type: "array",
             items: {
@@ -96,7 +96,7 @@ const createStackSet: AppBlock = {
         Tags: {
           name: "Tags",
           description:
-            "The key-value pairs to associate with this stack set and the stacks created from it.",
+            "The key-value pairs to associate with this StackSet and the stacks created from it.",
           type: {
             type: "array",
             items: {
@@ -118,21 +118,21 @@ const createStackSet: AppBlock = {
         AdministrationRoleARN: {
           name: "Administration Role ARN",
           description:
-            "The Amazon Resource Name (ARN) of the IAM role to use to create this stack set.",
+            "The Amazon Resource Name (ARN) of the IAM role to use to create this StackSet.",
           type: "string",
           required: false,
         },
         ExecutionRoleName: {
           name: "Execution Role Name",
           description:
-            "The name of the IAM execution role to use to create the stack set.",
+            "The name of the IAM execution role to use to create the StackSet.",
           type: "string",
           required: false,
         },
         PermissionModel: {
           name: "Permission Model",
           description:
-            "Describes how the IAM roles required for stack set operations are created.",
+            "Describes how the IAM roles required for StackSet operations are created.",
           type: "string",
           required: false,
         },
@@ -148,6 +148,12 @@ const createStackSet: AppBlock = {
               },
               RetainStacksOnAccountRemoval: {
                 type: "boolean",
+              },
+              DependsOn: {
+                type: "array",
+                items: {
+                  type: "string",
+                },
               },
             },
             additionalProperties: false,
@@ -170,7 +176,7 @@ const createStackSet: AppBlock = {
         ManagedExecution: {
           name: "Managed Execution",
           description:
-            "Describes whether StackSets performs non-conflicting operations concurrently and queues conflicting operations.",
+            "Describes whether CloudFormation performs non-conflicting operations concurrently and queues conflicting operations.",
           type: {
             type: "object",
             properties: {
@@ -242,7 +248,7 @@ const createStackSet: AppBlock = {
         properties: {
           StackSetId: {
             type: "string",
-            description: "The ID of the stack set that you're creating.",
+            description: "The ID of the StackSet that you're creating.",
           },
         },
         additionalProperties: true,

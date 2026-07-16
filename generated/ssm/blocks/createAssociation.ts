@@ -208,7 +208,11 @@ const createAssociation: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                        },
+                        required: ["Name"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -230,12 +234,11 @@ const createAssociation: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Values: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -331,6 +334,13 @@ const createAssociation: AppBlock = {
             required: ["Alarms"],
             additionalProperties: false,
           },
+          required: false,
+        },
+        AssociationDispatchAssumeRole: {
+          name: "Association Dispatch Assume Role",
+          description:
+            "A role used by association to take actions on your behalf.",
+          type: "string",
           required: false,
         },
       },
@@ -472,8 +482,7 @@ const createAssociation: AppBlock = {
                     Values: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -542,15 +551,13 @@ const createAssociation: AppBlock = {
                     Accounts: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Regions: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     TargetLocationMaxConcurrency: {
@@ -566,12 +573,11 @@ const createAssociation: AppBlock = {
                       type: "object",
                       properties: {
                         IgnorePollAlarmFailure: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         Alarms: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["Alarms"],
@@ -583,15 +589,18 @@ const createAssociation: AppBlock = {
                     ExcludeAccounts: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Targets: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Values: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     TargetsMaxConcurrency: {
@@ -631,8 +640,7 @@ const createAssociation: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Name"],
@@ -658,6 +666,9 @@ const createAssociation: AppBlock = {
                   required: ["Name", "State"],
                   additionalProperties: false,
                 },
+              },
+              AssociationDispatchAssumeRole: {
+                type: "string",
               },
             },
             additionalProperties: false,

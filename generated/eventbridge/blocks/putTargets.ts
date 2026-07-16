@@ -66,7 +66,7 @@ const putTargets: AppBlock = {
                     InputPathsMap: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     InputTemplate: {
@@ -93,7 +93,12 @@ const putTargets: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Values: {},
+                        },
+                        required: ["Key", "Values"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -117,7 +122,13 @@ const putTargets: AppBlock = {
                       properties: {
                         awsvpcConfiguration: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Subnets: {},
+                            SecurityGroups: {},
+                            AssignPublicIp: {},
+                          },
+                          required: ["Subnets"],
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -132,7 +143,13 @@ const putTargets: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          capacityProvider: {},
+                          weight: {},
+                          base: {},
+                        },
+                        required: ["capacityProvider"],
+                        additionalProperties: false,
                       },
                     },
                     EnableECSManagedTags: {
@@ -145,14 +162,22 @@ const putTargets: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          type: {},
+                          expression: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     PlacementStrategy: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          type: {},
+                          field: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     PropagateTags: {
@@ -165,7 +190,12 @@ const putTargets: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Value: {},
+                        },
+                        required: ["Key", "Value"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -185,8 +215,7 @@ const putTargets: AppBlock = {
                       type: "object",
                       properties: {
                         Size: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -195,8 +224,7 @@ const putTargets: AppBlock = {
                       type: "object",
                       properties: {
                         Attempts: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -220,20 +248,19 @@ const putTargets: AppBlock = {
                     PathParameterValues: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     HeaderParameters: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     QueryStringParameters: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                   },
@@ -263,8 +290,7 @@ const putTargets: AppBlock = {
                     Sqls: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -278,7 +304,12 @@ const putTargets: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                          Value: {},
+                        },
+                        required: ["Name", "Value"],
+                        additionalProperties: false,
                       },
                     },
                   },

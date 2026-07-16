@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const listStackSetAutoDeploymentTargets: AppBlock = {
   name: "List Stack Set Auto Deployment Targets",
-  description: `Returns summary information about deployment targets for a stack set.`,
+  description: `Returns summary information about deployment targets for a StackSet.`,
   inputs: {
     default: {
       config: {
@@ -27,14 +27,13 @@ const listStackSetAutoDeploymentTargets: AppBlock = {
         StackSetName: {
           name: "Stack Set Name",
           description:
-            "The name or unique ID of the stack set that you want to get automatic deployment targets for.",
+            "The name or unique ID of the StackSet that you want to get automatic deployment targets for.",
           type: "string",
           required: true,
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "A string that identifies the next page of stack set deployment targets that you want to retrieve.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },
@@ -130,7 +129,7 @@ const listStackSetAutoDeploymentTargets: AppBlock = {
               additionalProperties: false,
             },
             description:
-              "An array of summaries of the deployment targets for the stack set.",
+              "An array of summaries of the deployment targets for the StackSet.",
           },
           NextToken: {
             type: "string",

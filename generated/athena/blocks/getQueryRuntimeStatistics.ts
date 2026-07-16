@@ -172,14 +172,19 @@ const getQueryRuntimeStatistics: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                            Identifier: {},
+                            Children: {},
+                            RemoteSources: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       RemoteSources: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -191,40 +196,39 @@ const getQueryRuntimeStatistics: AppBlock = {
                       type: "object",
                       properties: {
                         StageId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         State: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OutputBytes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         OutputRows: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         InputBytes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         InputRows: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ExecutionTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         QueryStagePlan: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                            Identifier: {},
+                            Children: {},
+                            RemoteSources: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubStages: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,

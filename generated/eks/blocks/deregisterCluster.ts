@@ -175,12 +175,11 @@ const deregisterCluster: AppBlock = {
                       type: "object",
                       properties: {
                         types: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         enabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -236,16 +235,14 @@ const deregisterCluster: AppBlock = {
                     resources: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     provider: {
                       type: "object",
                       properties: {
                         keyArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -287,16 +284,14 @@ const deregisterCluster: AppBlock = {
                       type: "object",
                       properties: {
                         code: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         message: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         resourceIds: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -369,8 +364,8 @@ const deregisterCluster: AppBlock = {
                       type: "object",
                       properties: {
                         cidrs: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -382,8 +377,8 @@ const deregisterCluster: AppBlock = {
                       type: "object",
                       properties: {
                         cidrs: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -421,6 +416,18 @@ const deregisterCluster: AppBlock = {
                       },
                     },
                     additionalProperties: false,
+                  },
+                },
+                additionalProperties: false,
+              },
+              deletionProtection: {
+                type: "boolean",
+              },
+              controlPlaneScalingConfig: {
+                type: "object",
+                properties: {
+                  tier: {
+                    type: "string",
                   },
                 },
                 additionalProperties: false,

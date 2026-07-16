@@ -64,12 +64,11 @@ const createCachePolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity"],
@@ -89,12 +88,11 @@ const createCachePolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity"],
@@ -114,12 +112,11 @@ const createCachePolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity"],
@@ -242,12 +239,16 @@ const createCachePolicy: AppBlock = {
                         type: "object",
                         properties: {
                           HeaderBehavior: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           Headers: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              Quantity: {},
+                              Items: {},
+                            },
+                            required: ["Quantity"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["HeaderBehavior"],
@@ -257,12 +258,16 @@ const createCachePolicy: AppBlock = {
                         type: "object",
                         properties: {
                           CookieBehavior: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           Cookies: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              Quantity: {},
+                              Items: {},
+                            },
+                            required: ["Quantity"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["CookieBehavior"],
@@ -272,12 +277,16 @@ const createCachePolicy: AppBlock = {
                         type: "object",
                         properties: {
                           QueryStringBehavior: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           QueryStrings: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              Quantity: {},
+                              Items: {},
+                            },
+                            required: ["Quantity"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["QueryStringBehavior"],

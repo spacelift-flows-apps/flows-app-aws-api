@@ -92,12 +92,10 @@ const createNetworkInterface: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -376,8 +374,7 @@ const createNetworkInterface: AppBlock = {
                         type: "object",
                         properties: {
                           EnaSrdUdpEnabled: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                         },
                         additionalProperties: false,
@@ -496,32 +493,25 @@ const createNetworkInterface: AppBlock = {
                       type: "object",
                       properties: {
                         AllocationId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         AssociationId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         IpOwnerId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PublicDnsName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PublicIp: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         CustomerOwnedIp: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         CarrierIp: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -614,6 +604,9 @@ const createNetworkInterface: AppBlock = {
                   Principal: {
                     type: "string",
                   },
+                  HiddenByDefault: {
+                    type: "boolean",
+                  },
                 },
                 additionalProperties: false,
               },
@@ -622,6 +615,9 @@ const createNetworkInterface: AppBlock = {
                 items: {
                   type: "string",
                 },
+              },
+              AvailabilityZoneId: {
+                type: "string",
               },
             },
             additionalProperties: false,

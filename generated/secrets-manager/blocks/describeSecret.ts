@@ -96,6 +96,11 @@ const describeSecret: AppBlock = {
             type: "string",
             description: "The name of the secret.",
           },
+          Type: {
+            type: "string",
+            description:
+              "The exact string that identifies the partner that holds the external secret.",
+          },
           Description: {
             type: "string",
             description: "The description of the secret.",
@@ -131,6 +136,28 @@ const describeSecret: AppBlock = {
             additionalProperties: false,
             description:
               "The rotation schedule and Lambda function for this secret.",
+          },
+          ExternalSecretRotationMetadata: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                Key: {
+                  type: "string",
+                },
+                Value: {
+                  type: "string",
+                },
+              },
+              additionalProperties: false,
+            },
+            description:
+              "The metadata needed to successfully rotate a managed external secret.",
+          },
+          ExternalSecretRotationRoleArn: {
+            type: "string",
+            description:
+              "The Amazon Resource Name (ARN) of the role that allows Secrets Manager to rotate a secret held by a third-party partner.",
           },
           LastRotatedDate: {
             type: "string",

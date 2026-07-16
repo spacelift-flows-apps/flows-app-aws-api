@@ -25,7 +25,7 @@ const reEncrypt: AppBlock = {
           name: "Ciphertext Blob",
           description: "Ciphertext of the data to reencrypt.",
           type: "string",
-          required: true,
+          required: false,
         },
         SourceEncryptionContext: {
           name: "Source Encryption Context",
@@ -94,6 +94,18 @@ const reEncrypt: AppBlock = {
           name: "Dry Run",
           description: "Checks if your request will succeed.",
           type: "boolean",
+          required: false,
+        },
+        DryRunModifiers: {
+          name: "Dry Run Modifiers",
+          description:
+            "Specifies the modifiers to apply to the dry run operation.",
+          type: {
+            type: "array",
+            items: {
+              type: "string",
+            },
+          },
           required: false,
         },
       },

@@ -996,8 +996,14 @@ export async function serializeAWSResponse(response: any): Promise<any> {
   ): any {
     if (!shape) return "string";
 
-    // Prevent infinite recursion
-    if (depth > 3) return { type: "object", additionalProperties: true };
+    // Prevent infinite recursion. Beyond this depth we fall back to an empty
+    // schema ({}), the JSON-schema idiom for "any" — it accepts values of any
+    // type (numbers, strings, objects, ...), unlike { type: "object" } which
+    // would reject deep scalars. We emit {} rather than the bare "any" string
+    // because this value gets embedded directly into nested properties/items,
+    // and only a top-level config `type: "any"` is converted to {} by the
+    // backend schema parser (nested { type: "any" } would not be valid).
+    if (depth > 4) return {};
 
     switch (shape.type) {
       case "string":

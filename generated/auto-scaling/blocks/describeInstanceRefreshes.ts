@@ -149,12 +149,10 @@ const describeInstanceRefreshes: AppBlock = {
                       type: "object",
                       properties: {
                         PercentageComplete: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         InstancesToUpdate: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -163,12 +161,10 @@ const describeInstanceRefreshes: AppBlock = {
                       type: "object",
                       properties: {
                         PercentageComplete: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         InstancesToUpdate: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -188,8 +184,7 @@ const describeInstanceRefreshes: AppBlock = {
                     CheckpointPercentages: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     CheckpointDelay: {
@@ -211,8 +206,8 @@ const describeInstanceRefreshes: AppBlock = {
                       type: "object",
                       properties: {
                         Alarms: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -233,16 +228,13 @@ const describeInstanceRefreshes: AppBlock = {
                       type: "object",
                       properties: {
                         LaunchTemplateId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LaunchTemplateName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Version: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -252,11 +244,23 @@ const describeInstanceRefreshes: AppBlock = {
                       properties: {
                         LaunchTemplate: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            LaunchTemplateSpecification: {},
+                            Overrides: {},
+                          },
+                          additionalProperties: false,
                         },
                         InstancesDistribution: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            OnDemandAllocationStrategy: {},
+                            OnDemandBaseCapacity: {},
+                            OnDemandPercentageAboveBaseCapacity: {},
+                            SpotAllocationStrategy: {},
+                            SpotInstancePools: {},
+                            SpotMaxPrice: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -284,11 +288,19 @@ const describeInstanceRefreshes: AppBlock = {
                       properties: {
                         LivePoolProgress: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            PercentageComplete: {},
+                            InstancesToUpdate: {},
+                          },
+                          additionalProperties: false,
                         },
                         WarmPoolProgress: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            PercentageComplete: {},
+                            InstancesToUpdate: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,

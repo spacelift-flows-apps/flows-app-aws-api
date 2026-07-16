@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { EC2Client, DescribeFleetHistoryCommand } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const describeFleetHistory: AppBlock = {
   name: "Describe Fleet History",
@@ -103,7 +104,9 @@ const describeFleetHistory: AppBlock = {
           }),
         });
 
-        const command = new DescribeFleetHistoryCommand(commandInput as any);
+        const command = new DescribeFleetHistoryCommand(
+          convertTimestamps(commandInput, new Set(["StartTime"])) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

@@ -53,12 +53,11 @@ const createAssociationBatch: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Values: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -74,16 +73,13 @@ const createAssociationBatch: AppBlock = {
                       type: "object",
                       properties: {
                         OutputS3Region: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OutputS3BucketName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OutputS3KeyPrefix: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -121,48 +117,47 @@ const createAssociationBatch: AppBlock = {
                     type: "object",
                     properties: {
                       Accounts: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Regions: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       TargetLocationMaxConcurrency: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetLocationMaxErrors: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ExecutionRoleName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetLocationAlarmConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          IgnorePollAlarmFailure: {},
+                          Alarms: {},
+                        },
+                        required: ["Alarms"],
+                        additionalProperties: false,
                       },
                       IncludeChildOrganizationUnits: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       ExcludeAccounts: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Targets: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       TargetsMaxConcurrency: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetsMaxErrors: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -179,7 +174,7 @@ const createAssociationBatch: AppBlock = {
                   items: {
                     type: "object",
                     additionalProperties: {
-                      type: "object",
+                      type: "array",
                     },
                   },
                 },
@@ -193,7 +188,11 @@ const createAssociationBatch: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                        },
+                        required: ["Name"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -206,6 +205,13 @@ const createAssociationBatch: AppBlock = {
             },
           },
           required: true,
+        },
+        AssociationDispatchAssumeRole: {
+          name: "Association Dispatch Assume Role",
+          description:
+            "A role used by association to take actions on your behalf.",
+          type: "string",
+          required: false,
         },
       },
       onEvent: async (input) => {
@@ -316,7 +322,7 @@ const createAssociationBatch: AppBlock = {
                     AssociationStatusAggregatedCount: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "number",
                       },
                     },
                   },
@@ -343,12 +349,11 @@ const createAssociationBatch: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Values: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -364,16 +369,13 @@ const createAssociationBatch: AppBlock = {
                       type: "object",
                       properties: {
                         OutputS3Region: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OutputS3BucketName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OutputS3KeyPrefix: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -417,48 +419,47 @@ const createAssociationBatch: AppBlock = {
                     type: "object",
                     properties: {
                       Accounts: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Regions: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       TargetLocationMaxConcurrency: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetLocationMaxErrors: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ExecutionRoleName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetLocationAlarmConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          IgnorePollAlarmFailure: {},
+                          Alarms: {},
+                        },
+                        required: ["Alarms"],
+                        additionalProperties: false,
                       },
                       IncludeChildOrganizationUnits: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       ExcludeAccounts: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Targets: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       TargetsMaxConcurrency: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetsMaxErrors: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -475,7 +476,7 @@ const createAssociationBatch: AppBlock = {
                   items: {
                     type: "object",
                     additionalProperties: {
-                      type: "object",
+                      type: "array",
                     },
                   },
                 },
@@ -489,7 +490,11 @@ const createAssociationBatch: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                        },
+                        required: ["Name"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -502,17 +507,18 @@ const createAssociationBatch: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       State: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Name", "State"],
                     additionalProperties: false,
                   },
+                },
+                AssociationDispatchAssumeRole: {
+                  type: "string",
                 },
               },
               additionalProperties: false,
@@ -536,7 +542,7 @@ const createAssociationBatch: AppBlock = {
                     Parameters: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "array",
                       },
                     },
                     AutomationTargetParameterName: {
@@ -549,7 +555,11 @@ const createAssociationBatch: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Values: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ScheduleExpression: {
@@ -560,7 +570,12 @@ const createAssociationBatch: AppBlock = {
                       properties: {
                         S3Location: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            OutputS3Region: {},
+                            OutputS3BucketName: {},
+                            OutputS3KeyPrefix: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -586,15 +601,27 @@ const createAssociationBatch: AppBlock = {
                     CalendarNames: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     TargetLocations: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Accounts: {},
+                          Regions: {},
+                          TargetLocationMaxConcurrency: {},
+                          TargetLocationMaxErrors: {},
+                          ExecutionRoleName: {},
+                          TargetLocationAlarmConfiguration: {},
+                          IncludeChildOrganizationUnits: {},
+                          ExcludeAccounts: {},
+                          Targets: {},
+                          TargetsMaxConcurrency: {},
+                          TargetsMaxErrors: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ScheduleOffset: {
@@ -607,19 +634,20 @@ const createAssociationBatch: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        additionalProperties: {
+                          type: "object",
+                        },
                       },
                     },
                     AlarmConfiguration: {
                       type: "object",
                       properties: {
                         IgnorePollAlarmFailure: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         Alarms: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["Alarms"],

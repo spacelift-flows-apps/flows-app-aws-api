@@ -48,32 +48,31 @@ const createEventDataStore: AppBlock = {
                     type: "object",
                     properties: {
                       Field: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Equals: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       StartsWith: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       EndsWith: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       NotEquals: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       NotStartsWith: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       NotEndsWith: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     required: ["Field"],
@@ -240,32 +239,31 @@ const createEventDataStore: AppBlock = {
                     type: "object",
                     properties: {
                       Field: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Equals: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       StartsWith: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       EndsWith: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       NotEquals: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       NotStartsWith: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       NotEndsWith: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     required: ["Field"],

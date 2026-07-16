@@ -152,20 +152,16 @@ const describeInstanceEventWindows: AppBlock = {
                     type: "object",
                     properties: {
                       StartWeekDay: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       StartHour: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       EndWeekDay: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EndHour: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     additionalProperties: false,
@@ -183,22 +179,24 @@ const describeInstanceEventWindows: AppBlock = {
                     InstanceIds: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Tags: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     DedicatedHostIds: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -213,12 +211,10 @@ const describeInstanceEventWindows: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

@@ -163,8 +163,7 @@ const describeConfigurationTemplates: AppBlock = {
                     recordFields: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     fieldDelimiter: {
@@ -174,12 +173,10 @@ const describeConfigurationTemplates: AppBlock = {
                       type: "object",
                       properties: {
                         suffixPath: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         enableHiveCompatiblePath: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -193,12 +190,10 @@ const describeConfigurationTemplates: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       mandatory: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,

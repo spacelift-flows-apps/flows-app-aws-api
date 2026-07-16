@@ -90,6 +90,41 @@ const uploadPart: AppBlock = {
           type: "string",
           required: false,
         },
+        ChecksumSHA512: {
+          name: "Checksum SHA512",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumMD5: {
+          name: "Checksum MD5",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumXXHASH64: {
+          name: "Checksum XXHASH64",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumXXHASH3: {
+          name: "Checksum XXHASH3",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumXXHASH128: {
+          name: "Checksum XXHASH128",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
         Key: {
           name: "Key",
           description:
@@ -216,27 +251,52 @@ const uploadPart: AppBlock = {
           ChecksumCRC32: {
             type: "string",
             description:
-              "The Base64 encoded, 32-bit CRC32 checksum of the object.",
+              "The Base64 encoded, 32-bit CRC32 checksum of the part.",
           },
           ChecksumCRC32C: {
             type: "string",
             description:
-              "The Base64 encoded, 32-bit CRC32C checksum of the object.",
+              "The Base64 encoded, 32-bit CRC32C checksum of the part.",
           },
           ChecksumCRC64NVME: {
             type: "string",
             description:
-              "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+              "The Base64 encoded, 64-bit CRC64NVME checksum of the part.",
           },
           ChecksumSHA1: {
             type: "string",
             description:
-              "The Base64 encoded, 160-bit SHA1 digest of the object.",
+              "The Base64 encoded, 160-bit SHA1 checksum of the part.",
           },
           ChecksumSHA256: {
             type: "string",
             description:
-              "The Base64 encoded, 256-bit SHA256 digest of the object.",
+              "The Base64 encoded, 256-bit SHA256 checksum of the part.",
+          },
+          ChecksumSHA512: {
+            type: "string",
+            description:
+              "The Base64 encoded, 512-bit SHA512 checksum of the part.",
+          },
+          ChecksumMD5: {
+            type: "string",
+            description:
+              "The Base64 encoded, 128-bit MD5 checksum of the part.",
+          },
+          ChecksumXXHASH64: {
+            type: "string",
+            description:
+              "The Base64 encoded, 64-bit XXHASH64 checksum of the part.",
+          },
+          ChecksumXXHASH3: {
+            type: "string",
+            description:
+              "The Base64 encoded, 64-bit XXHASH3 checksum of the part.",
+          },
+          ChecksumXXHASH128: {
+            type: "string",
+            description:
+              "The Base64 encoded, 128-bit XXHASH128 checksum of the part.",
           },
           SSECustomerAlgorithm: {
             type: "string",

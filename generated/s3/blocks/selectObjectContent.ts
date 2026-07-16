@@ -265,7 +265,104 @@ const selectObjectContent: AppBlock = {
         type: "object",
         properties: {
           Payload: {
-            type: "string",
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  Records: {
+                    type: "object",
+                    properties: {
+                      Payload: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["Records"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  Stats: {
+                    type: "object",
+                    properties: {
+                      Details: {
+                        type: "object",
+                        properties: {
+                          BytesScanned: {
+                            type: "number",
+                          },
+                          BytesProcessed: {
+                            type: "number",
+                          },
+                          BytesReturned: {
+                            type: "number",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["Stats"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  Progress: {
+                    type: "object",
+                    properties: {
+                      Details: {
+                        type: "object",
+                        properties: {
+                          BytesScanned: {
+                            type: "number",
+                          },
+                          BytesProcessed: {
+                            type: "number",
+                          },
+                          BytesReturned: {
+                            type: "number",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["Progress"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  Cont: {
+                    type: "object",
+                    properties: {},
+                    additionalProperties: false,
+                  },
+                },
+                required: ["Cont"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  End: {
+                    type: "object",
+                    properties: {},
+                    additionalProperties: false,
+                  },
+                },
+                required: ["End"],
+                additionalProperties: false,
+              },
+            ],
             description: "The array of results.",
           },
         },

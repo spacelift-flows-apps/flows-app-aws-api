@@ -192,19 +192,31 @@ const describeImages: AppBlock = {
                     properties: {
                       Ebs: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          DeleteOnTermination: {},
+                          Iops: {},
+                          SnapshotId: {},
+                          VolumeSize: {},
+                          VolumeType: {},
+                          KmsKeyId: {},
+                          Throughput: {},
+                          OutpostArn: {},
+                          AvailabilityZone: {},
+                          Encrypted: {},
+                          VolumeInitializationRate: {},
+                          AvailabilityZoneId: {},
+                          EbsCardIndex: {},
+                        },
+                        additionalProperties: false,
                       },
                       NoDevice: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DeviceName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       VirtualName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -252,12 +264,10 @@ const describeImages: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -323,12 +333,10 @@ const describeImages: AppBlock = {
                     type: "object",
                     properties: {
                       ProductCodeId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ProductCodeType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

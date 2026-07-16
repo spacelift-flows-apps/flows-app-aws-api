@@ -155,16 +155,13 @@ const getDeclarativePoliciesReportSummary: AppBlock = {
                     type: "object",
                     properties: {
                       RegionName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       NumberOfMatchedAccounts: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       NumberOfUnmatchedAccounts: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     additionalProperties: false,

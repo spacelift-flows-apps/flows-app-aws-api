@@ -27,7 +27,7 @@ const enablePolicyType: AppBlock = {
         RootId: {
           name: "Root Id",
           description:
-            "The unique identifier (ID) of the root in which you want to enable a policy type.",
+            "ID for the root in which you want to enable a policy type.",
           type: "string",
           required: true,
         },

@@ -150,12 +150,19 @@ const describeReservedInstancesModifications: AppBlock = {
                     type: "object",
                     properties: {
                       ReservedInstancesId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AvailabilityZone: {},
+                          InstanceCount: {},
+                          InstanceType: {},
+                          Platform: {},
+                          Scope: {},
+                          AvailabilityZoneId: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     additionalProperties: false,
@@ -167,8 +174,7 @@ const describeReservedInstancesModifications: AppBlock = {
                     type: "object",
                     properties: {
                       ReservedInstancesId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

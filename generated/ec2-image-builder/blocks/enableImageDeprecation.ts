@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { EC2Client, EnableImageDeprecationCommand } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const enableImageDeprecation: AppBlock = {
   name: "Enable Image Deprecation",
@@ -84,7 +85,9 @@ const enableImageDeprecation: AppBlock = {
           }),
         });
 
-        const command = new EnableImageDeprecationCommand(commandInput as any);
+        const command = new EnableImageDeprecationCommand(
+          convertTimestamps(commandInput, new Set(["DeprecateAt"])) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

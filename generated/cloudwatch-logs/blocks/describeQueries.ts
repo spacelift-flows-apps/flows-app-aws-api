@@ -139,6 +139,15 @@ const describeQueries: AppBlock = {
                 logGroupName: {
                   type: "string",
                 },
+                queryDuration: {
+                  type: "number",
+                },
+                bytesScanned: {
+                  type: "number",
+                },
+                userIdentity: {
+                  type: "string",
+                },
               },
               additionalProperties: false,
             },

@@ -120,14 +120,18 @@ const listRealtimeLogConfigs: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          StreamType: {},
+                          KinesisStreamConfig: {},
+                        },
+                        required: ["StreamType"],
+                        additionalProperties: false,
                       },
                     },
                     Fields: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

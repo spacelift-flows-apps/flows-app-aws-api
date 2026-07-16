@@ -177,8 +177,7 @@ const describeInstanceTypes: AppBlock = {
                     SupportedArchitectures: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     SustainedClockSpeedInGhz: {
@@ -187,8 +186,7 @@ const describeInstanceTypes: AppBlock = {
                     SupportedFeatures: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Manufacturer: {
@@ -212,15 +210,13 @@ const describeInstanceTypes: AppBlock = {
                     ValidCores: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     ValidThreadsPerCore: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                   },
@@ -248,7 +244,12 @@ const describeInstanceTypes: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          SizeInGB: {},
+                          Count: {},
+                          Type: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     NvmeSupport: {
@@ -273,34 +274,53 @@ const describeInstanceTypes: AppBlock = {
                       type: "object",
                       properties: {
                         BaselineBandwidthInMbps: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         BaselineThroughputInMBps: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         BaselineIops: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         MaximumBandwidthInMbps: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         MaximumThroughputInMBps: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         MaximumIops: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
                     },
                     NvmeSupport: {
                       type: "string",
+                    },
+                    MaximumEbsAttachments: {
+                      type: "number",
+                    },
+                    AttachmentLimitType: {
+                      type: "string",
+                    },
+                    MaximumEbsCards: {
+                      type: "number",
+                    },
+                    EbsCards: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          EbsCardIndex: {},
+                          BaselineBandwidthInMbps: {},
+                          BaselineThroughputInMBps: {},
+                          BaselineIops: {},
+                          MaximumBandwidthInMbps: {},
+                          MaximumThroughputInMBps: {},
+                          MaximumIops: {},
+                        },
+                        additionalProperties: false,
+                      },
                     },
                   },
                   additionalProperties: false,
@@ -324,7 +344,18 @@ const describeInstanceTypes: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          NetworkCardIndex: {},
+                          NetworkPerformance: {},
+                          MaximumNetworkInterfaces: {},
+                          AdditionalFlexibleNetworkInterfaces: {},
+                          BaselineBandwidthInGbps: {},
+                          PeakBandwidthInGbps: {},
+                          DefaultEnaQueueCountPerInterface: {},
+                          MaximumEnaQueueCount: {},
+                          MaximumEnaQueueCountPerInterface: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Ipv4AddressesPerInterface: {
@@ -346,8 +377,7 @@ const describeInstanceTypes: AppBlock = {
                       type: "object",
                       properties: {
                         MaximumEfaInterfaces: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -361,12 +391,35 @@ const describeInstanceTypes: AppBlock = {
                     BandwidthWeightings: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     FlexibleEnaQueuesSupport: {
                       type: "string",
+                    },
+                    ConnectionTrackingConfiguration: {
+                      type: "object",
+                      properties: {
+                        DefaultTcpEstablishedTimeout: {
+                          type: "number",
+                        },
+                        DefaultUdpTimeout: {
+                          type: "number",
+                        },
+                        DefaultUdpStreamTimeout: {
+                          type: "number",
+                        },
+                      },
+                      additionalProperties: false,
+                    },
+                    SecondaryNetworkSupported: {
+                      type: "boolean",
+                    },
+                    MaximumSecondaryNetworkInterfaces: {
+                      type: "number",
+                    },
+                    Ipv4AddressesPerSecondaryInterface: {
+                      type: "number",
                     },
                   },
                   additionalProperties: false,
@@ -378,7 +431,16 @@ const describeInstanceTypes: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                          Manufacturer: {},
+                          Count: {},
+                          LogicalGpuCount: {},
+                          GpuPartitionSize: {},
+                          Workloads: {},
+                          MemoryInfo: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     TotalGpuMemoryInMiB: {
@@ -394,7 +456,13 @@ const describeInstanceTypes: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                          Manufacturer: {},
+                          Count: {},
+                          MemoryInfo: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     TotalFpgaMemoryInMiB: {
@@ -409,8 +477,7 @@ const describeInstanceTypes: AppBlock = {
                     SupportedStrategies: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -423,7 +490,13 @@ const describeInstanceTypes: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Count: {},
+                          Name: {},
+                          Manufacturer: {},
+                          MemoryInfo: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     TotalInferenceMemoryInMiB: {
@@ -462,8 +535,7 @@ const describeInstanceTypes: AppBlock = {
                     SupportedVersions: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -476,7 +548,13 @@ const describeInstanceTypes: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Count: {},
+                          Name: {},
+                          Manufacturer: {},
+                          MemoryInfo: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     TotalMediaMemoryInMiB: {
@@ -492,7 +570,13 @@ const describeInstanceTypes: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Count: {},
+                          Name: {},
+                          CoreInfo: {},
+                          MemoryInfo: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     TotalNeuronDeviceMemoryInMiB: {

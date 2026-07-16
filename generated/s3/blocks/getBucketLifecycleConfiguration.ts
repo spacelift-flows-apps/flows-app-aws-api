@@ -136,12 +136,10 @@ const getBucketLifecycleConfiguration: AppBlock = {
                       type: "object",
                       properties: {
                         Key: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Key", "Value"],
@@ -157,20 +155,17 @@ const getBucketLifecycleConfiguration: AppBlock = {
                       type: "object",
                       properties: {
                         Prefix: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Tags: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         ObjectSizeGreaterThan: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ObjectSizeLessThan: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -187,16 +182,13 @@ const getBucketLifecycleConfiguration: AppBlock = {
                     type: "object",
                     properties: {
                       Date: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Days: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       StorageClass: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -208,16 +200,13 @@ const getBucketLifecycleConfiguration: AppBlock = {
                     type: "object",
                     properties: {
                       NoncurrentDays: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       StorageClass: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       NewerNoncurrentVersions: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     additionalProperties: false,

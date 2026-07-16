@@ -223,6 +223,39 @@ const createNodegroup: AppBlock = {
               enabled: {
                 type: "boolean",
               },
+              maxUnhealthyNodeThresholdCount: {
+                type: "number",
+              },
+              maxUnhealthyNodeThresholdPercentage: {
+                type: "number",
+              },
+              maxParallelNodesRepairedCount: {
+                type: "number",
+              },
+              maxParallelNodesRepairedPercentage: {
+                type: "number",
+              },
+              nodeRepairConfigOverrides: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    nodeMonitoringCondition: {
+                      type: "string",
+                    },
+                    nodeUnhealthyReason: {
+                      type: "string",
+                    },
+                    minRepairWaitTimeMins: {
+                      type: "number",
+                    },
+                    repairAction: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
             },
             additionalProperties: false,
           },
@@ -245,6 +278,32 @@ const createNodegroup: AppBlock = {
           description:
             "The AMI version of the Amazon EKS optimized AMI to use with your node group.",
           type: "string",
+          required: false,
+        },
+        warmPoolConfig: {
+          name: "warm Pool Config",
+          description: "The warm pool configuration for the node group.",
+          type: {
+            type: "object",
+            properties: {
+              enabled: {
+                type: "boolean",
+              },
+              minSize: {
+                type: "number",
+              },
+              maxGroupPreparedCapacity: {
+                type: "number",
+              },
+              poolState: {
+                type: "string",
+              },
+              reuseOnScaleIn: {
+                type: "boolean",
+              },
+            },
+            additionalProperties: false,
+          },
           required: false,
         },
       },
@@ -416,8 +475,7 @@ const createNodegroup: AppBlock = {
                       type: "object",
                       properties: {
                         name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -441,16 +499,14 @@ const createNodegroup: AppBlock = {
                       type: "object",
                       properties: {
                         code: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         message: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         resourceIds: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -480,6 +536,39 @@ const createNodegroup: AppBlock = {
                   enabled: {
                     type: "boolean",
                   },
+                  maxUnhealthyNodeThresholdCount: {
+                    type: "number",
+                  },
+                  maxUnhealthyNodeThresholdPercentage: {
+                    type: "number",
+                  },
+                  maxParallelNodesRepairedCount: {
+                    type: "number",
+                  },
+                  maxParallelNodesRepairedPercentage: {
+                    type: "number",
+                  },
+                  nodeRepairConfigOverrides: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      properties: {
+                        nodeMonitoringCondition: {
+                          type: "string",
+                        },
+                        nodeUnhealthyReason: {
+                          type: "string",
+                        },
+                        minRepairWaitTimeMins: {
+                          type: "number",
+                        },
+                        repairAction: {
+                          type: "string",
+                        },
+                      },
+                      additionalProperties: false,
+                    },
+                  },
                 },
                 additionalProperties: false,
               },
@@ -503,6 +592,27 @@ const createNodegroup: AppBlock = {
                 additionalProperties: {
                   type: "string",
                 },
+              },
+              warmPoolConfig: {
+                type: "object",
+                properties: {
+                  enabled: {
+                    type: "boolean",
+                  },
+                  minSize: {
+                    type: "number",
+                  },
+                  maxGroupPreparedCapacity: {
+                    type: "number",
+                  },
+                  poolState: {
+                    type: "string",
+                  },
+                  reuseOnScaleIn: {
+                    type: "boolean",
+                  },
+                },
+                additionalProperties: false,
               },
             },
             additionalProperties: false,

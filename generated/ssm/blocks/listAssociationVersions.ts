@@ -130,12 +130,11 @@ const listAssociationVersions: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Values: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -151,16 +150,13 @@ const listAssociationVersions: AppBlock = {
                       type: "object",
                       properties: {
                         OutputS3Region: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OutputS3BucketName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OutputS3KeyPrefix: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -198,48 +194,47 @@ const listAssociationVersions: AppBlock = {
                     type: "object",
                     properties: {
                       Accounts: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Regions: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       TargetLocationMaxConcurrency: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetLocationMaxErrors: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ExecutionRoleName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetLocationAlarmConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          IgnorePollAlarmFailure: {},
+                          Alarms: {},
+                        },
+                        required: ["Alarms"],
+                        additionalProperties: false,
                       },
                       IncludeChildOrganizationUnits: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       ExcludeAccounts: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Targets: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       TargetsMaxConcurrency: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetsMaxErrors: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -256,9 +251,12 @@ const listAssociationVersions: AppBlock = {
                   items: {
                     type: "object",
                     additionalProperties: {
-                      type: "object",
+                      type: "array",
                     },
                   },
+                },
+                AssociationDispatchAssumeRole: {
+                  type: "string",
                 },
               },
               additionalProperties: false,

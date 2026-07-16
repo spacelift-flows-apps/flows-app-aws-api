@@ -243,14 +243,14 @@ const describeStatement: AppBlock = {
             description:
               "The serverless workgroup name or Amazon Resource Name (ARN).",
           },
-          SessionId: {
-            type: "string",
-            description: "The session identifier of the query.",
-          },
           ResultFormat: {
             type: "string",
             enum: ["JSON", "CSV"],
             description: "The data format of the result of the SQL statement.",
+          },
+          SessionId: {
+            type: "string",
+            description: "The session identifier of the query.",
           },
         },
         required: ["Id"],

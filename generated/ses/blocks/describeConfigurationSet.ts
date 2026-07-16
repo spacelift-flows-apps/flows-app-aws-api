@@ -150,7 +150,17 @@ const describeConfigurationSet: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          DimensionName: {},
+                          DimensionValueSource: {},
+                          DefaultDimensionValue: {},
+                        },
+                        required: [
+                          "DimensionName",
+                          "DimensionValueSource",
+                          "DefaultDimensionValue",
+                        ],
+                        additionalProperties: false,
                       },
                     },
                   },

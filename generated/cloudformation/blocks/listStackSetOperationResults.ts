@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const listStackSetOperationResults: AppBlock = {
   name: "List Stack Set Operation Results",
-  description: `Returns summary information about the results of a stack set operation.`,
+  description: `Returns summary information about the results of a StackSet operation.`,
   inputs: {
     default: {
       config: {
@@ -27,20 +27,19 @@ const listStackSetOperationResults: AppBlock = {
         StackSetName: {
           name: "Stack Set Name",
           description:
-            "The name or unique ID of the stack set that you want to get operation results for.",
+            "The name or unique ID of the StackSet that you want to get operation results for.",
           type: "string",
           required: true,
         },
         OperationId: {
           name: "Operation Id",
-          description: "The ID of the stack set operation.",
+          description: "The ID of the StackSet operation.",
           type: "string",
           required: true,
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "If the previous request didn't return all the remaining results, the response object's NextToken parameter value is set to a token.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },

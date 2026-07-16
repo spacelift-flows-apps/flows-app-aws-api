@@ -27,7 +27,7 @@ const createStackInstances: AppBlock = {
         StackSetName: {
           name: "Stack Set Name",
           description:
-            "The name or unique ID of the stack set that you want to create stack instances from.",
+            "The name or unique ID of the StackSet that you want to create stack instances from.",
           type: "string",
           required: true,
         },
@@ -46,7 +46,7 @@ const createStackInstances: AppBlock = {
         DeploymentTargets: {
           name: "Deployment Targets",
           description:
-            "[Service-managed permissions] The Organizations accounts for which to create stack instances in the specified Amazon Web Services Regions.",
+            "[Service-managed permissions] The Organizations accounts in which to create stack instances in the specified Amazon Web Services Regions.",
           type: {
             type: "object",
             properties: {
@@ -88,7 +88,7 @@ const createStackInstances: AppBlock = {
         ParameterOverrides: {
           name: "Parameter Overrides",
           description:
-            "A list of stack set parameters whose values you want to override in the selected stack instances.",
+            "A list of StackSet parameters whose values you want to override in the selected stack instances.",
           type: {
             type: "array",
             items: {
@@ -115,7 +115,7 @@ const createStackInstances: AppBlock = {
         OperationPreferences: {
           name: "Operation Preferences",
           description:
-            "Preferences for how CloudFormation performs this stack set operation.",
+            "Preferences for how CloudFormation performs this StackSet operation.",
           type: {
             type: "object",
             properties: {
@@ -150,7 +150,7 @@ const createStackInstances: AppBlock = {
         },
         OperationId: {
           name: "Operation Id",
-          description: "The unique identifier for this stack set operation.",
+          description: "The unique identifier for this StackSet operation.",
           type: "string",
           required: false,
         },
@@ -221,7 +221,7 @@ const createStackInstances: AppBlock = {
         properties: {
           OperationId: {
             type: "string",
-            description: "The unique identifier for this stack set operation.",
+            description: "The unique identifier for this StackSet operation.",
           },
         },
         additionalProperties: true,

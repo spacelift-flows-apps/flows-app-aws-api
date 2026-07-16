@@ -265,6 +265,47 @@ const createDBCluster: AppBlock = {
           },
           required: false,
         },
+        DBClusterInstanceClass: {
+          name: "DB Cluster Instance Class",
+          description:
+            "The compute and memory capacity of each DB instance in the Multi-AZ DB cluster, for example db.",
+          type: "string",
+          required: false,
+        },
+        AllocatedStorage: {
+          name: "Allocated Storage",
+          description:
+            "The amount of storage in gibibytes (GiB) to allocate to each DB instance in the Multi-AZ DB cluster.",
+          type: "number",
+          required: false,
+        },
+        StorageType: {
+          name: "Storage Type",
+          description: "The storage type to associate with the DB cluster.",
+          type: "string",
+          required: false,
+        },
+        Iops: {
+          name: "Iops",
+          description:
+            "The amount of Provisioned IOPS (input/output operations per second) to be initially allocated for each DB instance in the Multi-AZ DB cluster.",
+          type: "number",
+          required: false,
+        },
+        PubliclyAccessible: {
+          name: "Publicly Accessible",
+          description:
+            "Specifies whether the DB cluster is publicly accessible.",
+          type: "boolean",
+          required: false,
+        },
+        AutoMinorVersionUpgrade: {
+          name: "Auto Minor Version Upgrade",
+          description:
+            "Specifies whether minor engine upgrades are applied automatically to the DB cluster during the maintenance window.",
+          type: "boolean",
+          required: false,
+        },
         DeletionProtection: {
           name: "Deletion Protection",
           description:
@@ -314,45 +355,31 @@ const createDBCluster: AppBlock = {
           type: "boolean",
           required: false,
         },
-        DBClusterInstanceClass: {
-          name: "DB Cluster Instance Class",
-          description:
-            "The compute and memory capacity of each DB instance in the Multi-AZ DB cluster, for example db.",
+        NetworkType: {
+          name: "Network Type",
+          description: "The network type of the DB cluster.",
           type: "string",
           required: false,
         },
-        AllocatedStorage: {
-          name: "Allocated Storage",
+        ServerlessV2ScalingConfiguration: {
+          name: "Serverless V2Scaling Configuration",
           description:
-            "The amount of storage in gibibytes (GiB) to allocate to each DB instance in the Multi-AZ DB cluster.",
-          type: "number",
-          required: false,
-        },
-        StorageType: {
-          name: "Storage Type",
-          description: "The storage type to associate with the DB cluster.",
-          type: "string",
-          required: false,
-        },
-        Iops: {
-          name: "Iops",
-          description:
-            "The amount of Provisioned IOPS (input/output operations per second) to be initially allocated for each DB instance in the Multi-AZ DB cluster.",
-          type: "number",
-          required: false,
-        },
-        PubliclyAccessible: {
-          name: "Publicly Accessible",
-          description:
-            "Specifies whether the DB cluster is publicly accessible.",
-          type: "boolean",
-          required: false,
-        },
-        AutoMinorVersionUpgrade: {
-          name: "Auto Minor Version Upgrade",
-          description:
-            "Specifies whether minor engine upgrades are applied automatically to the DB cluster during the maintenance window.",
-          type: "boolean",
+            "Contains the scaling configuration of an Aurora Serverless v2 DB cluster.",
+          type: {
+            type: "object",
+            properties: {
+              MinCapacity: {
+                type: "number",
+              },
+              MaxCapacity: {
+                type: "number",
+              },
+              SecondsUntilAutoPause: {
+                type: "number",
+              },
+            },
+            additionalProperties: false,
+          },
           required: false,
         },
         MonitoringInterval: {
@@ -403,33 +430,6 @@ const createDBCluster: AppBlock = {
           type: "boolean",
           required: false,
         },
-        ServerlessV2ScalingConfiguration: {
-          name: "Serverless V2Scaling Configuration",
-          description:
-            "Contains the scaling configuration of an Aurora Serverless v2 DB cluster.",
-          type: {
-            type: "object",
-            properties: {
-              MinCapacity: {
-                type: "number",
-              },
-              MaxCapacity: {
-                type: "number",
-              },
-              SecondsUntilAutoPause: {
-                type: "number",
-              },
-            },
-            additionalProperties: false,
-          },
-          required: false,
-        },
-        NetworkType: {
-          name: "Network Type",
-          description: "The network type of the DB cluster.",
-          type: "string",
-          required: false,
-        },
         ClusterScalabilityType: {
           name: "Cluster Scalability Type",
           description:
@@ -450,18 +450,18 @@ const createDBCluster: AppBlock = {
           type: "boolean",
           required: false,
         },
-        MasterUserSecretKmsKeyId: {
-          name: "Master User Secret Kms Key Id",
-          description:
-            "The Amazon Web Services KMS key identifier to encrypt a secret that is automatically generated and managed in Amazon Web Services Secrets Manager.",
-          type: "string",
-          required: false,
-        },
         EnableLocalWriteForwarding: {
           name: "Enable Local Write Forwarding",
           description:
             "Specifies whether read replicas can forward write operations to the writer DB instance in the DB cluster.",
           type: "boolean",
+          required: false,
+        },
+        MasterUserSecretKmsKeyId: {
+          name: "Master User Secret Kms Key Id",
+          description:
+            "The Amazon Web Services KMS key identifier to encrypt a secret that is automatically generated and managed in Amazon Web Services Secrets Manager.",
+          type: "string",
           required: false,
         },
         CACertificateIdentifier: {
@@ -475,6 +475,52 @@ const createDBCluster: AppBlock = {
           name: "Engine Lifecycle Support",
           description: "The life cycle type for this DB cluster.",
           type: "string",
+          required: false,
+        },
+        TagSpecifications: {
+          name: "Tag Specifications",
+          description:
+            "Tags to assign to resources associated with the DB cluster.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                ResourceType: {
+                  type: "string",
+                },
+                Tags: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Key: {
+                        type: "string",
+                      },
+                      Value: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+              },
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
+        MasterUserAuthenticationType: {
+          name: "Master User Authentication Type",
+          description: "Specifies the authentication type for the master user.",
+          type: "string",
+          required: false,
+        },
+        WithExpressConfiguration: {
+          name: "With Express Configuration",
+          description:
+            "Specifies to create an Aurora DB Cluster with express configuration in seconds.",
+          type: "boolean",
           required: false,
         },
       },
@@ -568,9 +614,6 @@ const createDBCluster: AppBlock = {
               Status: {
                 type: "string",
               },
-              AutomaticRestartTime: {
-                type: "string",
-              },
               PercentProgress: {
                 type: "string",
               },
@@ -626,6 +669,9 @@ const createDBCluster: AppBlock = {
                 type: "string",
               },
               PreferredMaintenanceWindow: {
+                type: "string",
+              },
+              UpgradeRolloutOrder: {
                 type: "string",
               },
               ReplicationSourceIdentifier: {
@@ -700,6 +746,9 @@ const createDBCluster: AppBlock = {
               StorageEncrypted: {
                 type: "boolean",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               KmsKeyId: {
                 type: "string",
               },
@@ -754,6 +803,81 @@ const createDBCluster: AppBlock = {
               Capacity: {
                 type: "number",
               },
+              PendingModifiedValues: {
+                type: "object",
+                properties: {
+                  PendingCloudwatchLogsExports: {
+                    type: "object",
+                    properties: {
+                      LogTypesToEnable: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      LogTypesToDisable: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                  DBClusterIdentifier: {
+                    type: "string",
+                  },
+                  MasterUserPassword: {
+                    type: "string",
+                  },
+                  IAMDatabaseAuthenticationEnabled: {
+                    type: "boolean",
+                  },
+                  EngineVersion: {
+                    type: "string",
+                  },
+                  BackupRetentionPeriod: {
+                    type: "number",
+                  },
+                  StorageType: {
+                    type: "string",
+                  },
+                  AllocatedStorage: {
+                    type: "number",
+                  },
+                  RdsCustomClusterConfiguration: {
+                    type: "object",
+                    properties: {
+                      InterconnectSubnetId: {
+                        type: "string",
+                      },
+                      TransitGatewayMulticastDomainId: {
+                        type: "string",
+                      },
+                      ReplicaMode: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                  Iops: {
+                    type: "number",
+                  },
+                  CertificateDetails: {
+                    type: "object",
+                    properties: {
+                      CAIdentifier: {
+                        type: "string",
+                      },
+                      ValidTill: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                additionalProperties: false,
+              },
               EngineMode: {
                 type: "string",
               },
@@ -795,6 +919,27 @@ const createDBCluster: AppBlock = {
                   },
                 },
                 additionalProperties: false,
+              },
+              DBClusterInstanceClass: {
+                type: "string",
+              },
+              StorageType: {
+                type: "string",
+              },
+              Iops: {
+                type: "number",
+              },
+              StorageThroughput: {
+                type: "number",
+              },
+              IOOptimizedNextAllowedModificationTime: {
+                type: "string",
+              },
+              PubliclyAccessible: {
+                type: "boolean",
+              },
+              AutoMinorVersionUpgrade: {
+                type: "boolean",
               },
               DeletionProtection: {
                 type: "boolean",
@@ -846,8 +991,7 @@ const createDBCluster: AppBlock = {
                     DnsIps: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -878,97 +1022,29 @@ const createDBCluster: AppBlock = {
               GlobalWriteForwardingRequested: {
                 type: "boolean",
               },
-              PendingModifiedValues: {
+              NetworkType: {
+                type: "string",
+              },
+              AutomaticRestartTime: {
+                type: "string",
+              },
+              ServerlessV2ScalingConfiguration: {
                 type: "object",
                 properties: {
-                  PendingCloudwatchLogsExports: {
-                    type: "object",
-                    properties: {
-                      LogTypesToEnable: {
-                        type: "array",
-                        items: {
-                          type: "object",
-                          additionalProperties: true,
-                        },
-                      },
-                      LogTypesToDisable: {
-                        type: "array",
-                        items: {
-                          type: "object",
-                          additionalProperties: true,
-                        },
-                      },
-                    },
-                    additionalProperties: false,
-                  },
-                  DBClusterIdentifier: {
-                    type: "string",
-                  },
-                  MasterUserPassword: {
-                    type: "string",
-                  },
-                  IAMDatabaseAuthenticationEnabled: {
-                    type: "boolean",
-                  },
-                  EngineVersion: {
-                    type: "string",
-                  },
-                  BackupRetentionPeriod: {
+                  MinCapacity: {
                     type: "number",
                   },
-                  AllocatedStorage: {
+                  MaxCapacity: {
                     type: "number",
                   },
-                  RdsCustomClusterConfiguration: {
-                    type: "object",
-                    properties: {
-                      InterconnectSubnetId: {
-                        type: "string",
-                      },
-                      TransitGatewayMulticastDomainId: {
-                        type: "string",
-                      },
-                      ReplicaMode: {
-                        type: "string",
-                      },
-                    },
-                    additionalProperties: false,
-                  },
-                  Iops: {
+                  SecondsUntilAutoPause: {
                     type: "number",
-                  },
-                  StorageType: {
-                    type: "string",
-                  },
-                  CertificateDetails: {
-                    type: "object",
-                    properties: {
-                      CAIdentifier: {
-                        type: "string",
-                      },
-                      ValidTill: {
-                        type: "string",
-                      },
-                    },
-                    additionalProperties: false,
                   },
                 },
                 additionalProperties: false,
               },
-              DBClusterInstanceClass: {
+              ServerlessV2PlatformVersion: {
                 type: "string",
-              },
-              StorageType: {
-                type: "string",
-              },
-              Iops: {
-                type: "number",
-              },
-              PubliclyAccessible: {
-                type: "boolean",
-              },
-              AutoMinorVersionUpgrade: {
-                type: "boolean",
               },
               MonitoringInterval: {
                 type: "number",
@@ -988,24 +1064,6 @@ const createDBCluster: AppBlock = {
               PerformanceInsightsRetentionPeriod: {
                 type: "number",
               },
-              ServerlessV2ScalingConfiguration: {
-                type: "object",
-                properties: {
-                  MinCapacity: {
-                    type: "number",
-                  },
-                  MaxCapacity: {
-                    type: "number",
-                  },
-                  SecondsUntilAutoPause: {
-                    type: "number",
-                  },
-                },
-                additionalProperties: false,
-              },
-              NetworkType: {
-                type: "string",
-              },
               DBSystemId: {
                 type: "string",
               },
@@ -1023,9 +1081,6 @@ const createDBCluster: AppBlock = {
                   },
                 },
                 additionalProperties: false,
-              },
-              IOOptimizedNextAllowedModificationTime: {
-                type: "string",
               },
               LocalWriteForwardingStatus: {
                 type: "string",
@@ -1045,9 +1100,6 @@ const createDBCluster: AppBlock = {
                 },
                 additionalProperties: false,
               },
-              StorageThroughput: {
-                type: "number",
-              },
               ClusterScalabilityType: {
                 type: "string",
               },
@@ -1065,6 +1117,12 @@ const createDBCluster: AppBlock = {
               },
               EngineLifecycleSupport: {
                 type: "string",
+              },
+              VPCNetworkingEnabled: {
+                type: "boolean",
+              },
+              InternetAccessGatewayEnabled: {
+                type: "boolean",
               },
             },
             additionalProperties: false,

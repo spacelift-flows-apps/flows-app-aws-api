@@ -137,28 +137,25 @@ const describeMetricFilters: AppBlock = {
                     type: "object",
                     properties: {
                       metricName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       metricNamespace: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       metricValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       defaultValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       dimensions: {
                         type: "object",
-                        additionalProperties: true,
+                        additionalProperties: {
+                          type: "object",
+                        },
                       },
                       unit: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["metricName", "metricNamespace", "metricValue"],

@@ -40,8 +40,7 @@ const listAccountsForParent: AppBlock = {
         },
         MaxResults: {
           name: "Max Results",
-          description:
-            "The total number of results that you want included on each page of the response.",
+          description: "The maximum number of items to return in the response.",
           type: "number",
           required: false,
         },
@@ -122,6 +121,15 @@ const listAccountsForParent: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                },
+                State: {
+                  type: "string",
+                },
+                Paths: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
                 },
                 JoinedMethod: {
                   type: "string",

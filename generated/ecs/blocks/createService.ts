@@ -243,13 +243,39 @@ const createService: AppBlock = {
                     lifecycleStages: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
+                    },
+                    hookDetails: {
+                      type: "string",
                     },
                   },
                   additionalProperties: false,
                 },
+              },
+              linearConfiguration: {
+                type: "object",
+                properties: {
+                  stepPercent: {
+                    type: "number",
+                  },
+                  stepBakeTimeInMinutes: {
+                    type: "number",
+                  },
+                },
+                additionalProperties: false,
+              },
+              canaryConfiguration: {
+                type: "object",
+                properties: {
+                  canaryPercent: {
+                    type: "number",
+                  },
+                  canaryBakeTimeInMinutes: {
+                    type: "number",
+                  },
+                },
+                additionalProperties: false,
               },
             },
             additionalProperties: false,
@@ -429,7 +455,13 @@ const createService: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          port: {},
+                          dnsName: {},
+                          testTrafficRules: {},
+                        },
+                        required: ["port"],
+                        additionalProperties: false,
                       },
                     },
                     ingressPortOverride: {
@@ -439,12 +471,10 @@ const createService: AppBlock = {
                       type: "object",
                       properties: {
                         idleTimeoutSeconds: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         perRequestTimeoutSeconds: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -454,15 +484,16 @@ const createService: AppBlock = {
                       properties: {
                         issuerCertificateAuthority: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            awsPcaAuthorityArn: {},
+                          },
+                          additionalProperties: false,
                         },
                         kmsKey: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         roleArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["issuerCertificateAuthority"],
@@ -491,12 +522,10 @@ const createService: AppBlock = {
                       type: "object",
                       properties: {
                         name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         valueFrom: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["name", "valueFrom"],
@@ -505,6 +534,19 @@ const createService: AppBlock = {
                   },
                 },
                 required: ["logDriver"],
+                additionalProperties: false,
+              },
+              accessLogConfiguration: {
+                type: "object",
+                properties: {
+                  format: {
+                    type: "string",
+                  },
+                  includeQueryParameters: {
+                    type: "string",
+                  },
+                },
+                required: ["format"],
                 additionalProperties: false,
               },
             },
@@ -556,7 +598,13 @@ const createService: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          resourceType: {},
+                          tags: {},
+                          propagateTags: {},
+                        },
+                        required: ["resourceType"],
+                        additionalProperties: false,
                       },
                     },
                     roleArn: {
@@ -692,20 +740,16 @@ const createService: AppBlock = {
                       type: "object",
                       properties: {
                         alternateTargetGroupArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         productionListenerRule: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         testListenerRule: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         roleArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -806,8 +850,7 @@ const createService: AppBlock = {
                       alarmNames: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       rollback: {
@@ -832,20 +875,45 @@ const createService: AppBlock = {
                       type: "object",
                       properties: {
                         hookTargetArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         roleArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         lifecycleStages: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
+                        },
+                        hookDetails: {
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
                     },
+                  },
+                  linearConfiguration: {
+                    type: "object",
+                    properties: {
+                      stepPercent: {
+                        type: "number",
+                      },
+                      stepBakeTimeInMinutes: {
+                        type: "number",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                  canaryConfiguration: {
+                    type: "object",
+                    properties: {
+                      canaryPercent: {
+                        type: "number",
+                      },
+                      canaryBakeTimeInMinutes: {
+                        type: "number",
+                      },
+                    },
+                    additionalProperties: false,
                   },
                 },
                 additionalProperties: false,
@@ -901,7 +969,13 @@ const createService: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          capacityProvider: {},
+                          weight: {},
+                          base: {},
+                        },
+                        required: ["capacityProvider"],
+                        additionalProperties: false,
                       },
                     },
                     platformVersion: {
@@ -915,7 +989,13 @@ const createService: AppBlock = {
                       properties: {
                         awsvpcConfiguration: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            subnets: {},
+                            securityGroups: {},
+                            assignPublicIp: {},
+                          },
+                          required: ["subnets"],
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -924,26 +1004,37 @@ const createService: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          targetGroupArn: {},
+                          loadBalancerName: {},
+                          containerName: {},
+                          containerPort: {},
+                          advancedConfiguration: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     serviceRegistries: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          registryArn: {},
+                          port: {},
+                          containerName: {},
+                          containerPort: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     scale: {
                       type: "object",
                       properties: {
                         value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         unit: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -958,15 +1049,18 @@ const createService: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          key: {},
+                          value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     fargateEphemeralStorage: {
                       type: "object",
                       properties: {
                         kmsKeyId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -1011,7 +1105,13 @@ const createService: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          capacityProvider: {},
+                          weight: {},
+                          base: {},
+                        },
+                        required: ["capacityProvider"],
+                        additionalProperties: false,
                       },
                     },
                     launchType: {
@@ -1028,7 +1128,13 @@ const createService: AppBlock = {
                       properties: {
                         awsvpcConfiguration: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            subnets: {},
+                            securityGroups: {},
+                            assignPublicIp: {},
+                          },
+                          required: ["subnets"],
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -1043,20 +1149,33 @@ const createService: AppBlock = {
                       type: "object",
                       properties: {
                         enabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         namespace: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         services: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         logConfiguration: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            logDriver: {},
+                            options: {},
+                            secretOptions: {},
+                          },
+                          required: ["logDriver"],
+                          additionalProperties: false,
+                        },
+                        accessLogConfiguration: {
+                          type: "object",
+                          properties: {
+                            format: {},
+                            includeQueryParameters: {},
+                          },
+                          required: ["format"],
+                          additionalProperties: false,
                         },
                       },
                       required: ["enabled"],
@@ -1066,22 +1185,30 @@ const createService: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          discoveryName: {},
+                          discoveryArn: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     volumeConfigurations: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {},
+                          managedEBSVolume: {},
+                        },
+                        required: ["name"],
+                        additionalProperties: false,
                       },
                     },
                     fargateEphemeralStorage: {
                       type: "object",
                       properties: {
                         kmsKeyId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -1090,7 +1217,13 @@ const createService: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          roleArn: {},
+                          targetGroupArn: {},
+                          portName: {},
+                        },
+                        required: ["roleArn", "targetGroupArn", "portName"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -1120,6 +1253,30 @@ const createService: AppBlock = {
               },
               createdAt: {
                 type: "string",
+              },
+              currentServiceDeployment: {
+                type: "string",
+              },
+              currentServiceRevisions: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    arn: {
+                      type: "string",
+                    },
+                    requestedTaskCount: {
+                      type: "number",
+                    },
+                    runningTaskCount: {
+                      type: "number",
+                    },
+                    pendingTaskCount: {
+                      type: "number",
+                    },
+                  },
+                  additionalProperties: false,
+                },
               },
               placementConstraints: {
                 type: "array",
@@ -1160,15 +1317,13 @@ const createService: AppBlock = {
                       subnets: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       securityGroups: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       assignPublicIp: {
@@ -1225,6 +1380,9 @@ const createService: AppBlock = {
                 type: "boolean",
               },
               availabilityZoneRebalancing: {
+                type: "string",
+              },
+              resourceManagementType: {
                 type: "string",
               },
             },

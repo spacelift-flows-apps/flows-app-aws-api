@@ -190,8 +190,7 @@ const describeOrderableDBInstanceOptions: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -213,6 +212,9 @@ const describeOrderableDBInstanceOptions: AppBlock = {
                   type: "string",
                 },
                 SupportsIops: {
+                  type: "boolean",
+                },
+                SupportsStorageThroughput: {
                   type: "boolean",
                 },
                 SupportsEnhancedMonitoring: {
@@ -242,22 +244,31 @@ const describeOrderableDBInstanceOptions: AppBlock = {
                 MaxIopsPerGib: {
                   type: "number",
                 },
+                MinStorageThroughputPerDbInstance: {
+                  type: "number",
+                },
+                MaxStorageThroughputPerDbInstance: {
+                  type: "number",
+                },
+                MinStorageThroughputPerIops: {
+                  type: "number",
+                },
+                MaxStorageThroughputPerIops: {
+                  type: "number",
+                },
                 AvailableProcessorFeatures: {
                   type: "array",
                   items: {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DefaultValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AllowedValues: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -287,32 +298,68 @@ const describeOrderableDBInstanceOptions: AppBlock = {
                 SupportsGlobalDatabases: {
                   type: "boolean",
                 },
-                SupportsClusters: {
-                  type: "boolean",
-                },
                 SupportedNetworkTypes: {
                   type: "array",
                   items: {
                     type: "string",
                   },
                 },
-                SupportsStorageThroughput: {
+                SupportsClusters: {
                   type: "boolean",
-                },
-                MinStorageThroughputPerDbInstance: {
-                  type: "number",
-                },
-                MaxStorageThroughputPerDbInstance: {
-                  type: "number",
-                },
-                MinStorageThroughputPerIops: {
-                  type: "number",
-                },
-                MaxStorageThroughputPerIops: {
-                  type: "number",
                 },
                 SupportsDedicatedLogVolume: {
                   type: "boolean",
+                },
+                SupportsAdditionalStorageVolumes: {
+                  type: "boolean",
+                },
+                SupportsHttpEndpoint: {
+                  type: "boolean",
+                },
+                AvailableAdditionalStorageVolumesOptions: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      SupportsStorageAutoscaling: {
+                        type: "boolean",
+                      },
+                      SupportsStorageThroughput: {
+                        type: "boolean",
+                      },
+                      SupportsIops: {
+                        type: "boolean",
+                      },
+                      StorageType: {
+                        type: "string",
+                      },
+                      MinStorageSize: {
+                        type: "number",
+                      },
+                      MaxStorageSize: {
+                        type: "number",
+                      },
+                      MinIops: {
+                        type: "number",
+                      },
+                      MaxIops: {
+                        type: "number",
+                      },
+                      MinIopsPerGib: {
+                        type: "number",
+                      },
+                      MaxIopsPerGib: {
+                        type: "number",
+                      },
+                      MinStorageThroughput: {
+                        type: "number",
+                      },
+                      MaxStorageThroughput: {
+                        type: "number",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
                 },
               },
               additionalProperties: false,

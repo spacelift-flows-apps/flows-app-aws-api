@@ -107,6 +107,36 @@ const getAllowedImagesSettings: AppBlock = {
                     type: "string",
                   },
                 },
+                MarketplaceProductCodes: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
+                },
+                ImageNames: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
+                },
+                DeprecationTimeCondition: {
+                  type: "object",
+                  properties: {
+                    MaximumDaysSinceDeprecated: {
+                      type: "number",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+                CreationDateCondition: {
+                  type: "object",
+                  properties: {
+                    MaximumDaysSinceCreated: {
+                      type: "number",
+                    },
+                  },
+                  additionalProperties: false,
+                },
               },
               additionalProperties: false,
             },

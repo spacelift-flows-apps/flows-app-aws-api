@@ -167,8 +167,7 @@ const listResourceRecordSets: AppBlock = {
                     type: "object",
                     properties: {
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Value"],
@@ -223,12 +222,10 @@ const listResourceRecordSets: AppBlock = {
                       type: "object",
                       properties: {
                         Latitude: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Longitude: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Latitude", "Longitude"],

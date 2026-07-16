@@ -182,12 +182,10 @@ const listDocuments: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Key", "Value"],
@@ -200,20 +198,16 @@ const listDocuments: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Version: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       RequireType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       VersionName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Name"],

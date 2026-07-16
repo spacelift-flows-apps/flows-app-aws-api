@@ -3,6 +3,7 @@ import associateEncryptionConfig from "./associateEncryptionConfig";
 import associateIdentityProviderConfig from "./associateIdentityProviderConfig";
 import createAccessEntry from "./createAccessEntry";
 import createAddon from "./createAddon";
+import createCapability from "./createCapability";
 import createCluster from "./createCluster";
 import createEksAnywhereSubscription from "./createEksAnywhereSubscription";
 import createFargateProfile from "./createFargateProfile";
@@ -10,6 +11,7 @@ import createNodegroup from "./createNodegroup";
 import createPodIdentityAssociation from "./createPodIdentityAssociation";
 import deleteAccessEntry from "./deleteAccessEntry";
 import deleteAddon from "./deleteAddon";
+import deleteCapability from "./deleteCapability";
 import deleteCluster from "./deleteCluster";
 import deleteEksAnywhereSubscription from "./deleteEksAnywhereSubscription";
 import deleteFargateProfile from "./deleteFargateProfile";
@@ -20,12 +22,14 @@ import describeAccessEntry from "./describeAccessEntry";
 import describeAddon from "./describeAddon";
 import describeAddonConfiguration from "./describeAddonConfiguration";
 import describeAddonVersions from "./describeAddonVersions";
+import describeCapability from "./describeCapability";
 import describeCluster from "./describeCluster";
 import describeClusterVersions from "./describeClusterVersions";
 import describeEksAnywhereSubscription from "./describeEksAnywhereSubscription";
 import describeFargateProfile from "./describeFargateProfile";
 import describeIdentityProviderConfig from "./describeIdentityProviderConfig";
 import describeInsight from "./describeInsight";
+import describeInsightsRefresh from "./describeInsightsRefresh";
 import describeNodegroup from "./describeNodegroup";
 import describePodIdentityAssociation from "./describePodIdentityAssociation";
 import describeUpdate from "./describeUpdate";
@@ -35,6 +39,7 @@ import listAccessEntries from "./listAccessEntries";
 import listAccessPolicies from "./listAccessPolicies";
 import listAddons from "./listAddons";
 import listAssociatedAccessPolicies from "./listAssociatedAccessPolicies";
+import listCapabilities from "./listCapabilities";
 import listClusters from "./listClusters";
 import listEksAnywhereSubscriptions from "./listEksAnywhereSubscriptions";
 import listFargateProfiles from "./listFargateProfiles";
@@ -45,10 +50,12 @@ import listPodIdentityAssociations from "./listPodIdentityAssociations";
 import listTagsForResource from "./listTagsForResource";
 import listUpdates from "./listUpdates";
 import registerCluster from "./registerCluster";
+import startInsightsRefresh from "./startInsightsRefresh";
 import tagResource from "./tagResource";
 import untagResource from "./untagResource";
 import updateAccessEntry from "./updateAccessEntry";
 import updateAddon from "./updateAddon";
+import updateCapability from "./updateCapability";
 import updateClusterConfig from "./updateClusterConfig";
 import updateClusterVersion from "./updateClusterVersion";
 import updateEksAnywhereSubscription from "./updateEksAnywhereSubscription";
@@ -62,6 +69,7 @@ export const blocks = {
   associateIdentityProviderConfig,
   createAccessEntry,
   createAddon,
+  createCapability,
   createCluster,
   createEksAnywhereSubscription,
   createFargateProfile,
@@ -69,6 +77,7 @@ export const blocks = {
   createPodIdentityAssociation,
   deleteAccessEntry,
   deleteAddon,
+  deleteCapability,
   deleteCluster,
   deleteEksAnywhereSubscription,
   deleteFargateProfile,
@@ -79,12 +88,14 @@ export const blocks = {
   describeAddon,
   describeAddonConfiguration,
   describeAddonVersions,
+  describeCapability,
   describeCluster,
   describeClusterVersions,
   describeEksAnywhereSubscription,
   describeFargateProfile,
   describeIdentityProviderConfig,
   describeInsight,
+  describeInsightsRefresh,
   describeNodegroup,
   describePodIdentityAssociation,
   describeUpdate,
@@ -94,6 +105,7 @@ export const blocks = {
   listAccessPolicies,
   listAddons,
   listAssociatedAccessPolicies,
+  listCapabilities,
   listClusters,
   listEksAnywhereSubscriptions,
   listFargateProfiles,
@@ -104,10 +116,12 @@ export const blocks = {
   listTagsForResource,
   listUpdates,
   registerCluster,
+  startInsightsRefresh,
   tagResource,
   untagResource,
   updateAccessEntry,
   updateAddon,
+  updateCapability,
   updateClusterConfig,
   updateClusterVersion,
   updateEksAnywhereSubscription,

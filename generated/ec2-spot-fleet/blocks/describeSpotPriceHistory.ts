@@ -4,6 +4,7 @@ import {
   DescribeSpotPriceHistoryCommand,
 } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const describeSpotPriceHistory: AppBlock = {
   name: "Describe Spot Price History",
@@ -21,6 +22,13 @@ const describeSpotPriceHistory: AppBlock = {
           name: "Assume Role ARN",
           description:
             "Optional IAM role ARN to assume before executing this operation. If provided, the block will use STS to assume this role and use the temporary credentials.",
+          type: "string",
+          required: false,
+        },
+        AvailabilityZoneId: {
+          name: "Availability Zone Id",
+          description:
+            "Filters the results by the specified ID of the Availability Zone.",
           type: "string",
           required: false,
         },
@@ -155,7 +163,10 @@ const describeSpotPriceHistory: AppBlock = {
         });
 
         const command = new DescribeSpotPriceHistoryCommand(
-          commandInput as any,
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
         );
         const response = await client.send(command);
 
@@ -182,6 +193,9 @@ const describeSpotPriceHistory: AppBlock = {
               type: "object",
               properties: {
                 AvailabilityZone: {
+                  type: "string",
+                },
+                AvailabilityZoneId: {
                   type: "string",
                 },
                 InstanceType: {

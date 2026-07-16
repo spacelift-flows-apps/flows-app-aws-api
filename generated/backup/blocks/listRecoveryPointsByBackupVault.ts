@@ -308,8 +308,7 @@ const listRecoveryPointsByBackupVault: AppBlock = {
                     Findings: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     LastComputed: {

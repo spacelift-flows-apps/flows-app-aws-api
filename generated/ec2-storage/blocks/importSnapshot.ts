@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { EC2Client, ImportSnapshotCommand } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const importSnapshot: AppBlock = {
   name: "Import Snapshot",
@@ -134,12 +135,10 @@ const importSnapshot: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -194,7 +193,12 @@ const importSnapshot: AppBlock = {
           }),
         });
 
-        const command = new ImportSnapshotCommand(commandInput as any);
+        const command = new ImportSnapshotCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["UploadEnd", "UploadStart"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

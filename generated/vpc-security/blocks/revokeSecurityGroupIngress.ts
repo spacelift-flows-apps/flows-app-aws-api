@@ -72,32 +72,25 @@ const revokeSecurityGroupIngress: AppBlock = {
                     type: "object",
                     properties: {
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       UserId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       GroupName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       GroupId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       VpcId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       VpcPeeringConnectionId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PeeringStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -109,12 +102,10 @@ const revokeSecurityGroupIngress: AppBlock = {
                     type: "object",
                     properties: {
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CidrIp: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -126,12 +117,10 @@ const revokeSecurityGroupIngress: AppBlock = {
                     type: "object",
                     properties: {
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CidrIpv6: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -143,12 +132,10 @@ const revokeSecurityGroupIngress: AppBlock = {
                     type: "object",
                     properties: {
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PrefixListId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -289,32 +276,25 @@ const revokeSecurityGroupIngress: AppBlock = {
                     type: "object",
                     properties: {
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       UserId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       GroupName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       GroupId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       VpcId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       VpcPeeringConnectionId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PeeringStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -326,12 +306,10 @@ const revokeSecurityGroupIngress: AppBlock = {
                     type: "object",
                     properties: {
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CidrIp: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -343,12 +321,10 @@ const revokeSecurityGroupIngress: AppBlock = {
                     type: "object",
                     properties: {
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CidrIpv6: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -360,12 +336,10 @@ const revokeSecurityGroupIngress: AppBlock = {
                     type: "object",
                     properties: {
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PrefixListId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

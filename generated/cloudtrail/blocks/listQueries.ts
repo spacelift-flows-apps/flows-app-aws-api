@@ -4,6 +4,7 @@ import {
   ListQueriesCommand,
 } from "@aws-sdk/client-cloudtrail";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const listQueries: AppBlock = {
   name: "List Queries",
@@ -107,7 +108,12 @@ const listQueries: AppBlock = {
           }),
         });
 
-        const command = new ListQueriesCommand(commandInput as any);
+        const command = new ListQueriesCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

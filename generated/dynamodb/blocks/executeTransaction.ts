@@ -39,7 +39,115 @@ const executeTransaction: AppBlock = {
                 Parameters: {
                   type: "array",
                   items: {
-                    type: "string",
+                    oneOf: [
+                      {
+                        type: "object",
+                        properties: {
+                          S: {
+                            type: "string",
+                          },
+                        },
+                        required: ["S"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          N: {
+                            type: "string",
+                          },
+                        },
+                        required: ["N"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          B: {
+                            type: "string",
+                          },
+                        },
+                        required: ["B"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          SS: {
+                            type: "array",
+                            items: {},
+                          },
+                        },
+                        required: ["SS"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          NS: {
+                            type: "array",
+                            items: {},
+                          },
+                        },
+                        required: ["NS"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          BS: {
+                            type: "array",
+                            items: {},
+                          },
+                        },
+                        required: ["BS"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          M: {
+                            type: "object",
+                            additionalProperties: {
+                              type: "object",
+                            },
+                          },
+                        },
+                        required: ["M"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          L: {
+                            type: "array",
+                            items: {},
+                          },
+                        },
+                        required: ["L"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          NULL: {
+                            type: "boolean",
+                          },
+                        },
+                        required: ["NULL"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          BOOL: {
+                            type: "boolean",
+                          },
+                        },
+                        required: ["BOOL"],
+                        additionalProperties: false,
+                      },
+                    ],
                   },
                 },
                 ReturnValuesOnConditionCheckFailure: {
@@ -132,7 +240,7 @@ const executeTransaction: AppBlock = {
                 Item: {
                   type: "object",
                   additionalProperties: {
-                    type: "string",
+                    type: "object",
                   },
                 },
               },

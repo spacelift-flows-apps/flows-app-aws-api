@@ -67,7 +67,7 @@ const putInsightRule: AppBlock = {
         ApplyOnTransformedLogs: {
           name: "Apply On Transformed Logs",
           description:
-            "Specify true to have this rule evalute log events after they have been transformed by Log transformation.",
+            "Specify true to have this rule evaluate log events after they have been transformed by Log transformation.",
           type: "boolean",
           required: false,
         },

@@ -136,12 +136,10 @@ const describeReservedInstancesListings: AppBlock = {
                     type: "object",
                     properties: {
                       InstanceCount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       State: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -153,20 +151,16 @@ const describeReservedInstancesListings: AppBlock = {
                     type: "object",
                     properties: {
                       Active: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       CurrencyCode: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Price: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       Term: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     additionalProperties: false,
@@ -190,12 +184,10 @@ const describeReservedInstancesListings: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

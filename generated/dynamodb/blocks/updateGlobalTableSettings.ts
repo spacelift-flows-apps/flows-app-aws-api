@@ -130,12 +130,18 @@ const updateGlobalTableSettings: AppBlock = {
                       type: "object",
                       properties: {
                         PolicyName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         TargetTrackingScalingPolicyConfiguration: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            DisableScaleIn: {},
+                            ScaleInCooldown: {},
+                            ScaleOutCooldown: {},
+                            TargetValue: {},
+                          },
+                          required: ["TargetValue"],
+                          additionalProperties: false,
                         },
                       },
                       required: ["TargetTrackingScalingPolicyConfiguration"],
@@ -185,12 +191,18 @@ const updateGlobalTableSettings: AppBlock = {
                       type: "object",
                       properties: {
                         PolicyName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         TargetTrackingScalingPolicyConfiguration: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            DisableScaleIn: {},
+                            ScaleInCooldown: {},
+                            ScaleOutCooldown: {},
+                            TargetValue: {},
+                          },
+                          required: ["TargetValue"],
+                          additionalProperties: false,
                         },
                       },
                       required: ["TargetTrackingScalingPolicyConfiguration"],
@@ -205,16 +217,21 @@ const updateGlobalTableSettings: AppBlock = {
                     type: "object",
                     properties: {
                       IndexName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ProvisionedReadCapacityUnits: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       ProvisionedReadCapacityAutoScalingSettingsUpdate: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          MinimumUnits: {},
+                          MaximumUnits: {},
+                          AutoScalingDisabled: {},
+                          AutoScalingRoleArn: {},
+                          ScalingPolicyUpdate: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     required: ["IndexName"],
@@ -340,7 +357,11 @@ const updateGlobalTableSettings: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          PolicyName: {},
+                          TargetTrackingScalingPolicyConfiguration: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -368,7 +389,11 @@ const updateGlobalTableSettings: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          PolicyName: {},
+                          TargetTrackingScalingPolicyConfiguration: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -380,28 +405,38 @@ const updateGlobalTableSettings: AppBlock = {
                     type: "object",
                     properties: {
                       IndexName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IndexStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ProvisionedReadCapacityUnits: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       ProvisionedReadCapacityAutoScalingSettings: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          MinimumUnits: {},
+                          MaximumUnits: {},
+                          AutoScalingDisabled: {},
+                          AutoScalingRoleArn: {},
+                          ScalingPolicies: {},
+                        },
+                        additionalProperties: false,
                       },
                       ProvisionedWriteCapacityUnits: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       ProvisionedWriteCapacityAutoScalingSettings: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          MinimumUnits: {},
+                          MaximumUnits: {},
+                          AutoScalingDisabled: {},
+                          AutoScalingRoleArn: {},
+                          ScalingPolicies: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     required: ["IndexName"],

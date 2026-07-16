@@ -137,7 +137,7 @@ const createWorkGroup: AppBlock = {
                       LogTypes: {
                         type: "object",
                         additionalProperties: {
-                          type: "object",
+                          type: "array",
                         },
                       },
                     },
@@ -206,12 +206,13 @@ const createWorkGroup: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Properties: {
                           type: "object",
-                          additionalProperties: true,
+                          additionalProperties: {
+                            type: "object",
+                          },
                         },
                       },
                       additionalProperties: false,

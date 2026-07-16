@@ -291,6 +291,20 @@ const restoreFromClusterSnapshot: AppBlock = {
           type: "boolean",
           required: false,
         },
+        CatalogName: {
+          name: "Catalog Name",
+          description:
+            "The name of the Glue Data Catalog that will be associated with the cluster enabled with Amazon Redshift federated permissions.",
+          type: "string",
+          required: false,
+        },
+        RedshiftIdcApplicationArn: {
+          name: "Redshift Idc Application Arn",
+          description:
+            "The Amazon Resource Name (ARN) of the IAM Identity Center application used for enabling Amazon Web Services IAM Identity Center trusted identity propagation on a cluster enabled with Amazon Redshift federated permissions.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -390,16 +404,14 @@ const restoreFromClusterSnapshot: AppBlock = {
                       type: "object",
                       properties: {
                         VpcEndpointId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         VpcId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NetworkInterfaces: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -462,7 +474,12 @@ const restoreFromClusterSnapshot: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ParameterName: {},
+                          ParameterApplyStatus: {},
+                          ParameterApplyErrorDescription: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -835,16 +852,13 @@ const restoreFromClusterSnapshot: AppBlock = {
                       type: "object",
                       properties: {
                         NodeRole: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PrivateIPAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PublicIPAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -852,6 +866,15 @@ const restoreFromClusterSnapshot: AppBlock = {
                   },
                 },
                 additionalProperties: false,
+              },
+              LakehouseRegistrationStatus: {
+                type: "string",
+              },
+              CatalogArn: {
+                type: "string",
+              },
+              ExtraComputeForAutomaticOptimization: {
+                type: "string",
               },
             },
             additionalProperties: false,

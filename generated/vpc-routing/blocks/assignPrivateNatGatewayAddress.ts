@@ -149,6 +149,12 @@ const assignPrivateNatGatewayAddress: AppBlock = {
                 Status: {
                   type: "string",
                 },
+                AvailabilityZone: {
+                  type: "string",
+                },
+                AvailabilityZoneId: {
+                  type: "string",
+                },
               },
               additionalProperties: false,
             },

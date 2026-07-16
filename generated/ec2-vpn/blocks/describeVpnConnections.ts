@@ -131,6 +131,9 @@ const describeVpnConnections: AppBlock = {
                 TransitGatewayId: {
                   type: "string",
                 },
+                VpnConcentratorId: {
+                  type: "string",
+                },
                 CoreNetworkArn: {
                   type: "string",
                 },
@@ -174,8 +177,34 @@ const describeVpnConnections: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          OutsideIpAddress: {},
+                          TunnelInsideCidr: {},
+                          TunnelInsideIpv6Cidr: {},
+                          PreSharedKey: {},
+                          Phase1LifetimeSeconds: {},
+                          Phase2LifetimeSeconds: {},
+                          RekeyMarginTimeSeconds: {},
+                          RekeyFuzzPercentage: {},
+                          ReplayWindowSize: {},
+                          DpdTimeoutSeconds: {},
+                          DpdTimeoutAction: {},
+                          Phase1EncryptionAlgorithms: {},
+                          Phase2EncryptionAlgorithms: {},
+                          Phase1IntegrityAlgorithms: {},
+                          Phase2IntegrityAlgorithms: {},
+                          Phase1DHGroupNumbers: {},
+                          Phase2DHGroupNumbers: {},
+                          IkeVersions: {},
+                          StartupAction: {},
+                          LogOptions: {},
+                          EnableTunnelLifecycleControl: {},
+                        },
+                        additionalProperties: false,
                       },
+                    },
+                    TunnelBandwidth: {
+                      type: "string",
                     },
                   },
                   additionalProperties: false,
@@ -186,16 +215,13 @@ const describeVpnConnections: AppBlock = {
                     type: "object",
                     properties: {
                       DestinationCidrBlock: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Source: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       State: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -207,12 +233,10 @@ const describeVpnConnections: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -224,28 +248,22 @@ const describeVpnConnections: AppBlock = {
                     type: "object",
                     properties: {
                       AcceptedRouteCount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       LastStatusChange: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       OutsideIpAddress: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       StatusMessage: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CertificateArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

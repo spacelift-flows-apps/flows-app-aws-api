@@ -27,14 +27,14 @@ const attachPolicy: AppBlock = {
         PolicyId: {
           name: "Policy Id",
           description:
-            "The unique identifier (ID) of the policy that you want to attach to the target.",
+            "ID for the policy that you want to attach to the target.",
           type: "string",
           required: true,
         },
         TargetId: {
           name: "Target Id",
           description:
-            "The unique identifier (ID) of the root, OU, or account that you want to attach the policy to.",
+            "ID for the root, OU, or account that you want to attach the policy to.",
           type: "string",
           required: true,
         },

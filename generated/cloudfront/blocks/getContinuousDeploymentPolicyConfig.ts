@@ -126,12 +126,10 @@ const getContinuousDeploymentPolicyConfig: AppBlock = {
                         type: "object",
                         properties: {
                           IdleTTL: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           MaximumTTL: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                         },
                         required: ["IdleTTL", "MaximumTTL"],

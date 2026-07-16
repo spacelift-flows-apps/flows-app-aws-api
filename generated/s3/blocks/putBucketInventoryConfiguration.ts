@@ -8,7 +8,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const putBucketInventoryConfiguration: AppBlock = {
   name: "Put Bucket Inventory Configuration",
-  description: `This operation is not supported for directory buckets.`,
+  description: `This implementation of the PUT action adds an S3 Inventory configuration (identified by the inventory ID) to the bucket.`,
   inputs: {
     default: {
       config: {
@@ -67,11 +67,16 @@ const putBucketInventoryConfiguration: AppBlock = {
                         properties: {
                           SSES3: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {},
+                            additionalProperties: false,
                           },
                           SSEKMS: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              KeyId: {},
+                            },
+                            required: ["KeyId"],
+                            additionalProperties: false,
                           },
                         },
                         additionalProperties: false,

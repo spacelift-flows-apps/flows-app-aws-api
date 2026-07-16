@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const setTypeConfiguration: AppBlock = {
   name: "Set Type Configuration",
-  description: `Specifies the configuration data for a registered CloudFormation extension, in the given account and Region.`,
+  description: `Specifies the configuration data for a CloudFormation extension, such as a resource or Hook, in the given account and Region.`,
   inputs: {
     default: {
       config: {
@@ -27,14 +27,14 @@ const setTypeConfiguration: AppBlock = {
         TypeArn: {
           name: "Type Arn",
           description:
-            "The Amazon Resource Name (ARN) for the extension, in this account and Region.",
+            "The Amazon Resource Name (ARN) for the extension in this account and Region.",
           type: "string",
           required: false,
         },
         Configuration: {
           name: "Configuration",
           description:
-            "The configuration data for the extension, in this account and Region.",
+            "The configuration data for the extension in this account and Region.",
           type: "string",
           required: true,
         },
@@ -118,7 +118,7 @@ const setTypeConfiguration: AppBlock = {
           ConfigurationArn: {
             type: "string",
             description:
-              "The Amazon Resource Name (ARN) for the configuration data, in this account and Region.",
+              "The Amazon Resource Name (ARN) for the configuration data in this account and Region.",
           },
         },
         additionalProperties: true,

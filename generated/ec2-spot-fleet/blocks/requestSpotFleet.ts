@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { EC2Client, RequestSpotFleetCommand } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const requestSpotFleet: AppBlock = {
   name: "Request Spot Fleet",
@@ -85,7 +86,13 @@ const requestSpotFleet: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Ebs: {},
+                          NoDevice: {},
+                          DeviceName: {},
+                          VirtualName: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     EbsOptimized: {
@@ -95,12 +102,10 @@ const requestSpotFleet: AppBlock = {
                       type: "object",
                       properties: {
                         Arn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -121,8 +126,7 @@ const requestSpotFleet: AppBlock = {
                       type: "object",
                       properties: {
                         Enabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -131,23 +135,48 @@ const requestSpotFleet: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AssociatePublicIpAddress: {},
+                          DeleteOnTermination: {},
+                          Description: {},
+                          DeviceIndex: {},
+                          Groups: {},
+                          Ipv6AddressCount: {},
+                          Ipv6Addresses: {},
+                          NetworkInterfaceId: {},
+                          PrivateIpAddress: {},
+                          PrivateIpAddresses: {},
+                          SecondaryPrivateIpAddressCount: {},
+                          SubnetId: {},
+                          AssociateCarrierIpAddress: {},
+                          InterfaceType: {},
+                          NetworkCardIndex: {},
+                          Ipv4Prefixes: {},
+                          Ipv4PrefixCount: {},
+                          Ipv6Prefixes: {},
+                          Ipv6PrefixCount: {},
+                          PrimaryIpv6: {},
+                          EnaSrdSpecification: {},
+                          ConnectionTrackingSpecification: {},
+                          EnaQueueCount: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Placement: {
                       type: "object",
                       properties: {
                         AvailabilityZone: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         GroupName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Tenancy: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
+                        },
+                        AvailabilityZoneId: {
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -171,7 +200,11 @@ const requestSpotFleet: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ResourceType: {},
+                          Tags: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     InstanceRequirements: {
@@ -179,103 +212,138 @@ const requestSpotFleet: AppBlock = {
                       properties: {
                         VCpuCount: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         MemoryMiB: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         CpuManufacturers: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         MemoryGiBPerVCpu: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         ExcludedInstanceTypes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         InstanceGenerations: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         SpotMaxPricePercentageOverLowestPrice: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         OnDemandMaxPricePercentageOverLowestPrice: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         BareMetal: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         BurstablePerformance: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         RequireHibernateSupport: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         NetworkInterfaceCount: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         LocalStorage: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LocalStorageTypes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         TotalLocalStorageGB: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         BaselineEbsBandwidthMbps: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         AcceleratorTypes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         AcceleratorCount: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         AcceleratorManufacturers: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         AcceleratorNames: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         AcceleratorTotalMemoryMiB: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         NetworkBandwidthGbps: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         AllowedInstanceTypes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         MaxSpotPriceAsPercentageOfOptimalOnDemandPrice: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         BaselinePerformanceFactors: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Cpu: {},
+                          },
+                          additionalProperties: false,
+                        },
+                        RequireEncryptionInTransit: {
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -284,7 +352,11 @@ const requestSpotFleet: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          GroupId: {},
+                          GroupName: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -300,16 +372,13 @@ const requestSpotFleet: AppBlock = {
                       type: "object",
                       properties: {
                         LaunchTemplateId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LaunchTemplateName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Version: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -318,7 +387,17 @@ const requestSpotFleet: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          InstanceType: {},
+                          SpotPrice: {},
+                          SubnetId: {},
+                          AvailabilityZone: {},
+                          WeightedCapacity: {},
+                          Priority: {},
+                          InstanceRequirements: {},
+                          AvailabilityZoneId: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -368,7 +447,10 @@ const requestSpotFleet: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                     },
@@ -381,7 +463,10 @@ const requestSpotFleet: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Arn: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                     },
@@ -411,7 +496,11 @@ const requestSpotFleet: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -467,7 +556,12 @@ const requestSpotFleet: AppBlock = {
           }),
         });
 
-        const command = new RequestSpotFleetCommand(commandInput as any);
+        const command = new RequestSpotFleetCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["ValidFrom", "ValidUntil"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

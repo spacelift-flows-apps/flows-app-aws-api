@@ -85,16 +85,14 @@ const getOpsSummary: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Values: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Key", "Values"],
@@ -107,28 +105,27 @@ const getOpsSummary: AppBlock = {
                     type: "object",
                     properties: {
                       AggregatorType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TypeName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AttributeName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Values: {
                         type: "object",
-                        additionalProperties: true,
+                        additionalProperties: {
+                          type: "object",
+                        },
                       },
                       Filters: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Aggregators: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,

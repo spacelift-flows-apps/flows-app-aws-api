@@ -130,20 +130,22 @@ const describeServiceDeployments: AppBlock = {
                     type: "object",
                     properties: {
                       arn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       requestedTaskCount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       runningTaskCount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       pendingTaskCount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
+                      },
+                      requestedTestTrafficWeight: {
+                        type: "number",
+                      },
+                      requestedProductionTrafficWeight: {
+                        type: "number",
                       },
                     },
                     additionalProperties: false,
@@ -162,6 +164,12 @@ const describeServiceDeployments: AppBlock = {
                       type: "number",
                     },
                     pendingTaskCount: {
+                      type: "number",
+                    },
+                    requestedTestTrafficWeight: {
+                      type: "number",
+                    },
+                    requestedProductionTrafficWeight: {
                       type: "number",
                     },
                   },
@@ -183,12 +191,10 @@ const describeServiceDeployments: AppBlock = {
                       type: "object",
                       properties: {
                         enable: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         rollback: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       required: ["enable", "rollback"],
@@ -204,16 +210,14 @@ const describeServiceDeployments: AppBlock = {
                       type: "object",
                       properties: {
                         alarmNames: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         rollback: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         enable: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       required: ["alarmNames", "rollback", "enable"],
@@ -229,8 +233,38 @@ const describeServiceDeployments: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          hookTargetArn: {},
+                          roleArn: {},
+                          lifecycleStages: {},
+                          hookDetails: {},
+                        },
+                        additionalProperties: false,
                       },
+                    },
+                    linearConfiguration: {
+                      type: "object",
+                      properties: {
+                        stepPercent: {
+                          type: "number",
+                        },
+                        stepBakeTimeInMinutes: {
+                          type: "number",
+                        },
+                      },
+                      additionalProperties: false,
+                    },
+                    canaryConfiguration: {
+                      type: "object",
+                      properties: {
+                        canaryPercent: {
+                          type: "number",
+                        },
+                        canaryBakeTimeInMinutes: {
+                          type: "number",
+                        },
+                      },
+                      additionalProperties: false,
                     },
                   },
                   additionalProperties: false,
@@ -274,15 +308,13 @@ const describeServiceDeployments: AppBlock = {
                     alarmNames: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     triggeredAlarmNames: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

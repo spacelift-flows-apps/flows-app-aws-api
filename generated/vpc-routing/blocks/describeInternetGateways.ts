@@ -149,12 +149,10 @@ const describeInternetGateways: AppBlock = {
                     type: "object",
                     properties: {
                       State: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       VpcId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -172,12 +170,10 @@ const describeInternetGateways: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

@@ -2,6 +2,7 @@ import { AppBlock, events } from "@slflows/sdk/v1";
 import { S3Client, DeleteObjectsCommand } from "@aws-sdk/client-s3";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const deleteObjects: AppBlock = {
   name: "Delete Objects",
@@ -145,7 +146,9 @@ const deleteObjects: AppBlock = {
           }),
         });
 
-        const command = new DeleteObjectsCommand(commandInput as any);
+        const command = new DeleteObjectsCommand(
+          convertTimestamps(commandInput, new Set(["LastModifiedTime"])) as any,
+        );
         const response = await client.send(command);
 
         // Safely serialize response by handling circular references and streams

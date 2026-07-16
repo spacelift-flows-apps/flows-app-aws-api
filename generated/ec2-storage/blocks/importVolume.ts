@@ -21,6 +21,13 @@ const importVolume: AppBlock = {
           type: "string",
           required: false,
         },
+        AvailabilityZoneId: {
+          name: "Availability Zone Id",
+          description:
+            "The ID of the Availability Zone for the resulting EBS volume.",
+          type: "string",
+          required: false,
+        },
         DryRun: {
           name: "Dry Run",
           description:
@@ -32,7 +39,7 @@ const importVolume: AppBlock = {
           name: "Availability Zone",
           description: "The Availability Zone for the resulting EBS volume.",
           type: "string",
-          required: true,
+          required: false,
         },
         Image: {
           name: "Image",
@@ -161,32 +168,40 @@ const importVolume: AppBlock = {
                       type: "object",
                       properties: {
                         AvailabilityZone: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
+                        },
+                        AvailabilityZoneId: {
+                          type: "string",
                         },
                         BytesConverted: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Description: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Image: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Checksum: {},
+                            Format: {},
+                            ImportManifestUrl: {},
+                            Size: {},
+                          },
+                          additionalProperties: false,
                         },
                         Status: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         StatusMessage: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Volume: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Id: {},
+                            Size: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -199,6 +214,9 @@ const importVolume: AppBlock = {
                 type: "object",
                 properties: {
                   AvailabilityZone: {
+                    type: "string",
+                  },
+                  AvailabilityZoneId: {
                     type: "string",
                   },
                   BytesConverted: {

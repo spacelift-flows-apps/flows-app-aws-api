@@ -8,7 +8,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const getBucketInventoryConfiguration: AppBlock = {
   name: "Get Bucket Inventory Configuration",
-  description: `This operation is not supported for directory buckets.`,
+  description: `Returns an S3 Inventory configuration (identified by the inventory configuration ID) from the bucket.`,
   inputs: {
     default: {
       config: {
@@ -132,11 +132,16 @@ const getBucketInventoryConfiguration: AppBlock = {
                         properties: {
                           SSES3: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {},
+                            additionalProperties: false,
                           },
                           SSEKMS: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              KeyId: {},
+                            },
+                            required: ["KeyId"],
+                            additionalProperties: false,
                           },
                         },
                         additionalProperties: false,

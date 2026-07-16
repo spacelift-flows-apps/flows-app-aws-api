@@ -143,12 +143,10 @@ const deleteBackup: AppBlock = {
                       type: "object",
                       properties: {
                         AttributeName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KeyType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["AttributeName", "KeyType"],
@@ -208,16 +206,19 @@ const deleteBackup: AppBlock = {
                       type: "object",
                       properties: {
                         IndexName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KeySchema: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Projection: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            ProjectionType: {},
+                            NonKeyAttributes: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -229,24 +230,36 @@ const deleteBackup: AppBlock = {
                       type: "object",
                       properties: {
                         IndexName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KeySchema: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Projection: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            ProjectionType: {},
+                            NonKeyAttributes: {},
+                          },
+                          additionalProperties: false,
                         },
                         ProvisionedThroughput: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            ReadCapacityUnits: {},
+                            WriteCapacityUnits: {},
+                          },
+                          required: ["ReadCapacityUnits", "WriteCapacityUnits"],
+                          additionalProperties: false,
                         },
                         OnDemandThroughput: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            MaxReadRequestUnits: {},
+                            MaxWriteRequestUnits: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,

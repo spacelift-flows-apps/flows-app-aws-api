@@ -214,20 +214,26 @@ const simulateCustomPolicy: AppBlock = {
                     type: "object",
                     properties: {
                       SourcePolicyId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SourcePolicyType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       StartPosition: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Line: {},
+                          Column: {},
+                        },
+                        additionalProperties: false,
                       },
                       EndPosition: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Line: {},
+                          Column: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     additionalProperties: false,
@@ -269,28 +275,31 @@ const simulateCustomPolicy: AppBlock = {
                     type: "object",
                     properties: {
                       EvalResourceName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EvalResourceDecision: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       MatchedStatements: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       MissingContextValues: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       EvalDecisionDetails: {
                         type: "object",
-                        additionalProperties: true,
+                        additionalProperties: {
+                          type: "object",
+                        },
                       },
                       PermissionsBoundaryDecisionDetail: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AllowedByPermissionsBoundary: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     required: ["EvalResourceName", "EvalResourceDecision"],

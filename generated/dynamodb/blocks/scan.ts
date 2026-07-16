@@ -82,7 +82,7 @@ const scan: AppBlock = {
           type: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
           },
           required: false,
@@ -141,7 +141,7 @@ const scan: AppBlock = {
           type: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
           },
           required: false,
@@ -216,7 +216,7 @@ const scan: AppBlock = {
             items: {
               type: "object",
               additionalProperties: {
-                type: "string",
+                type: "object",
               },
             },
             description:
@@ -234,7 +234,7 @@ const scan: AppBlock = {
           LastEvaluatedKey: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
             description:
               "The primary key of the item where the operation stopped, inclusive of the previous result set.",

@@ -63,20 +63,16 @@ const updateBackupPlan: AppBlock = {
                       type: "object",
                       properties: {
                         MoveToColdStorageAfterDays: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         DeleteAfterDays: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         OptInToArchiveForSupportedResources: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         DeleteAfterEvent: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -84,14 +80,19 @@ const updateBackupPlan: AppBlock = {
                     RecoveryPointTags: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     CopyActions: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Lifecycle: {},
+                          DestinationBackupVaultArn: {},
+                        },
+                        required: ["DestinationBackupVaultArn"],
+                        additionalProperties: false,
                       },
                     },
                     EnableContinuousBackup: {
@@ -104,14 +105,21 @@ const updateBackupPlan: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ResourceTypes: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ScanActions: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          MalwareScanner: {},
+                          ScanMode: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -130,7 +138,7 @@ const updateBackupPlan: AppBlock = {
                     BackupOptions: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                   },
@@ -148,8 +156,7 @@ const updateBackupPlan: AppBlock = {
                     ResourceTypes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     ScannerRoleArn: {

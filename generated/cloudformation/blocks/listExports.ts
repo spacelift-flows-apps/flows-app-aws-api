@@ -26,8 +26,7 @@ const listExports: AppBlock = {
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "A string (provided by the ListExports response output) that identifies the next page of exported output values that you asked to retrieve.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },

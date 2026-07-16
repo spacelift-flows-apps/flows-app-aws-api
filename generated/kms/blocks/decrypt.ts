@@ -25,7 +25,7 @@ const decrypt: AppBlock = {
           name: "Ciphertext Blob",
           description: "Ciphertext to be decrypted.",
           type: "string",
-          required: true,
+          required: false,
         },
         EncryptionContext: {
           name: "Encryption Context",
@@ -67,7 +67,7 @@ const decrypt: AppBlock = {
         Recipient: {
           name: "Recipient",
           description:
-            "A signed attestation document from an Amazon Web Services Nitro enclave and the encryption algorithm to use with the enclave's public key.",
+            "A signed attestation document from an Amazon Web Services Nitro enclave or NitroTPM, and the encryption algorithm to use with the public key in the attestation document.",
           type: {
             type: "object",
             properties: {
@@ -86,6 +86,18 @@ const decrypt: AppBlock = {
           name: "Dry Run",
           description: "Checks if your request will succeed.",
           type: "boolean",
+          required: false,
+        },
+        DryRunModifiers: {
+          name: "Dry Run Modifiers",
+          description:
+            "Specifies the modifiers to apply to the dry run operation.",
+          type: {
+            type: "array",
+            items: {
+              type: "string",
+            },
+          },
           required: false,
         },
       },
@@ -163,7 +175,7 @@ const decrypt: AppBlock = {
           CiphertextForRecipient: {
             type: "string",
             description:
-              "The plaintext data encrypted with the public key in the attestation document.",
+              "The plaintext data encrypted with the public key from the attestation document.",
           },
           KeyMaterialId: {
             type: "string",

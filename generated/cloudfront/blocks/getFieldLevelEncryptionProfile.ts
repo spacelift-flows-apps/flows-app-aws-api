@@ -122,7 +122,17 @@ const getFieldLevelEncryptionProfile: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            PublicKeyId: {},
+                            ProviderId: {},
+                            FieldPatterns: {},
+                          },
+                          required: [
+                            "PublicKeyId",
+                            "ProviderId",
+                            "FieldPatterns",
+                          ],
+                          additionalProperties: false,
                         },
                       },
                     },

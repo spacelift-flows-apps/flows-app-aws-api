@@ -5,7 +5,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const getBucketLogging: AppBlock = {
   name: "Get Bucket Logging",
-  description: `End of support notice: Beginning October 1, 2025, Amazon S3 will stop returning DisplayName.`,
+  description: `This operation is not supported for directory buckets.`,
   inputs: {
     default: {
       config: {
@@ -110,24 +110,19 @@ const getBucketLogging: AppBlock = {
                       type: "object",
                       properties: {
                         DisplayName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         EmailAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ID: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         URI: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Type"],

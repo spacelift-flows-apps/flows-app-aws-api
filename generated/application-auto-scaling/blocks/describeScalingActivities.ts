@@ -167,20 +167,16 @@ const describeScalingActivities: AppBlock = {
                     type: "object",
                     properties: {
                       Code: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       MaxCapacity: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       MinCapacity: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       CurrentCapacity: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     required: ["Code"],

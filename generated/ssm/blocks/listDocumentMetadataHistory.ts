@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const listDocumentMetadataHistory: AppBlock = {
   name: "List Document Metadata History",
-  description: `Information about approval reviews for a version of a change template in Change Manager.`,
+  description: `Amazon Web Services Systems Manager Change Manager is no longer open to new customers.`,
   inputs: {
     default: {
       config: {
@@ -149,7 +149,11 @@ const listDocumentMetadataHistory: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Type: {},
+                          Content: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Reviewer: {

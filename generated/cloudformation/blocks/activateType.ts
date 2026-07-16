@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const activateType: AppBlock = {
   name: "Activate Type",
-  description: `Activates a public third-party extension, making it available for use in stack templates.`,
+  description: `Activates a public third-party extension, such as a resource or module, to make it available for use in stack templates in your current account and Region.`,
   inputs: {
     default: {
       config: {
@@ -52,7 +52,7 @@ const activateType: AppBlock = {
         TypeNameAlias: {
           name: "Type Name Alias",
           description:
-            "An alias to assign to the public extension, in this account and Region.",
+            "An alias to assign to the public extension in this account and Region.",
           type: "string",
           required: false,
         },
@@ -164,7 +164,7 @@ const activateType: AppBlock = {
           Arn: {
             type: "string",
             description:
-              "The Amazon Resource Name (ARN) of the activated extension, in this account and Region.",
+              "The Amazon Resource Name (ARN) of the activated extension in this account and Region.",
           },
         },
         additionalProperties: true,

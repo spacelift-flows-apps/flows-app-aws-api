@@ -147,9 +147,6 @@ const describeDBInstances: AppBlock = {
                 DBInstanceStatus: {
                   type: "string",
                 },
-                AutomaticRestartTime: {
-                  type: "string",
-                },
                 MasterUsername: {
                   type: "string",
                 },
@@ -189,12 +186,10 @@ const describeDBInstances: AppBlock = {
                     type: "object",
                     properties: {
                       DBSecurityGroupName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -206,12 +201,10 @@ const describeDBInstances: AppBlock = {
                     type: "object",
                     properties: {
                       VpcSecurityGroupId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -223,12 +216,10 @@ const describeDBInstances: AppBlock = {
                     type: "object",
                     properties: {
                       DBParameterGroupName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ParameterApplyStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -256,7 +247,13 @@ const describeDBInstances: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          SubnetIdentifier: {},
+                          SubnetAvailabilityZone: {},
+                          SubnetOutpost: {},
+                          SubnetStatus: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     DBSubnetGroupArn: {
@@ -265,14 +262,16 @@ const describeDBInstances: AppBlock = {
                     SupportedNetworkTypes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
                   additionalProperties: false,
                 },
                 PreferredMaintenanceWindow: {
+                  type: "string",
+                },
+                UpgradeRolloutOrder: {
                   type: "string",
                 },
                 PendingModifiedValues: {
@@ -305,6 +304,9 @@ const describeDBInstances: AppBlock = {
                     Iops: {
                       type: "number",
                     },
+                    StorageThroughput: {
+                      type: "number",
+                    },
                     DBInstanceIdentifier: {
                       type: "string",
                     },
@@ -321,12 +323,12 @@ const describeDBInstances: AppBlock = {
                       type: "object",
                       properties: {
                         LogTypesToEnable: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         LogTypesToDisable: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -335,11 +337,12 @@ const describeDBInstances: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                          Value: {},
+                        },
+                        additionalProperties: false,
                       },
-                    },
-                    IAMDatabaseAuthenticationEnabled: {
-                      type: "boolean",
                     },
                     AutomationMode: {
                       type: "string",
@@ -347,17 +350,33 @@ const describeDBInstances: AppBlock = {
                     ResumeFullAutomationModeTime: {
                       type: "string",
                     },
-                    StorageThroughput: {
-                      type: "number",
+                    MultiTenant: {
+                      type: "boolean",
                     },
-                    Engine: {
-                      type: "string",
+                    IAMDatabaseAuthenticationEnabled: {
+                      type: "boolean",
                     },
                     DedicatedLogVolume: {
                       type: "boolean",
                     },
-                    MultiTenant: {
-                      type: "boolean",
+                    Engine: {
+                      type: "string",
+                    },
+                    AdditionalStorageVolumes: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          VolumeName: {},
+                          AllocatedStorage: {},
+                          IOPS: {},
+                          MaxAllocatedStorage: {},
+                          StorageThroughput: {},
+                          StorageType: {},
+                        },
+                        required: ["VolumeName"],
+                        additionalProperties: false,
+                      },
                     },
                   },
                   additionalProperties: false,
@@ -398,18 +417,19 @@ const describeDBInstances: AppBlock = {
                 Iops: {
                   type: "number",
                 },
+                StorageThroughput: {
+                  type: "number",
+                },
                 OptionGroupMemberships: {
                   type: "array",
                   items: {
                     type: "object",
                     properties: {
                       OptionGroupName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -433,26 +453,25 @@ const describeDBInstances: AppBlock = {
                     type: "object",
                     properties: {
                       StatusType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Normal: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Message: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
                   },
                 },
                 StorageType: {
+                  type: "string",
+                },
+                StorageEncryptionType: {
                   type: "string",
                 },
                 TdeCredentialArn: {
@@ -482,32 +501,26 @@ const describeDBInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Domain: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       FQDN: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IAMRoleName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       OU: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AuthSecretArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DnsIps: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -561,12 +574,10 @@ const describeDBInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -581,16 +592,13 @@ const describeDBInstances: AppBlock = {
                     type: "object",
                     properties: {
                       RoleArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       FeatureName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -620,34 +628,25 @@ const describeDBInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
                   },
                 },
-                DBInstanceAutomatedBackupsReplications: {
-                  type: "array",
-                  items: {
-                    type: "object",
-                    properties: {
-                      DBInstanceAutomatedBackupsArn: {
-                        type: "object",
-                        additionalProperties: true,
-                      },
-                    },
-                    additionalProperties: false,
-                  },
+                AutomationMode: {
+                  type: "string",
+                },
+                ResumeFullAutomationModeTime: {
+                  type: "string",
                 },
                 CustomerOwnedIpEnabled: {
                   type: "boolean",
                 },
-                AwsBackupRecoveryPointArn: {
+                NetworkType: {
                   type: "string",
                 },
                 ActivityStreamStatus: {
@@ -665,26 +664,44 @@ const describeDBInstances: AppBlock = {
                 ActivityStreamEngineNativeAuditFieldsIncluded: {
                   type: "boolean",
                 },
-                AutomationMode: {
+                AwsBackupRecoveryPointArn: {
                   type: "string",
                 },
-                ResumeFullAutomationModeTime: {
+                DBInstanceAutomatedBackupsReplications: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      DBInstanceAutomatedBackupsArn: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                BackupTarget: {
+                  type: "string",
+                },
+                AutomaticRestartTime: {
                   type: "string",
                 },
                 CustomIamInstanceProfile: {
                   type: "string",
                 },
-                BackupTarget: {
-                  type: "string",
-                },
-                NetworkType: {
-                  type: "string",
-                },
                 ActivityStreamPolicyStatus: {
                   type: "string",
                 },
-                StorageThroughput: {
-                  type: "number",
+                CertificateDetails: {
+                  type: "object",
+                  properties: {
+                    CAIdentifier: {
+                      type: "string",
+                    },
+                    ValidTill: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
                 },
                 DBSystemId: {
                   type: "string",
@@ -704,23 +721,14 @@ const describeDBInstances: AppBlock = {
                   },
                   additionalProperties: false,
                 },
-                CertificateDetails: {
-                  type: "object",
-                  properties: {
-                    CAIdentifier: {
-                      type: "string",
-                    },
-                    ValidTill: {
-                      type: "string",
-                    },
-                  },
-                  additionalProperties: false,
-                },
                 ReadReplicaSourceDBClusterIdentifier: {
                   type: "string",
                 },
                 PercentProgress: {
                   type: "string",
+                },
+                MultiTenant: {
+                  type: "boolean",
                 },
                 DedicatedLogVolume: {
                   type: "boolean",
@@ -728,10 +736,40 @@ const describeDBInstances: AppBlock = {
                 IsStorageConfigUpgradeAvailable: {
                   type: "boolean",
                 },
-                MultiTenant: {
-                  type: "boolean",
-                },
                 EngineLifecycleSupport: {
+                  type: "string",
+                },
+                AdditionalStorageVolumes: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      VolumeName: {
+                        type: "string",
+                      },
+                      StorageVolumeStatus: {
+                        type: "string",
+                      },
+                      AllocatedStorage: {
+                        type: "number",
+                      },
+                      IOPS: {
+                        type: "number",
+                      },
+                      MaxAllocatedStorage: {
+                        type: "number",
+                      },
+                      StorageThroughput: {
+                        type: "number",
+                      },
+                      StorageType: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                StorageVolumeStatus: {
                   type: "string",
                 },
               },

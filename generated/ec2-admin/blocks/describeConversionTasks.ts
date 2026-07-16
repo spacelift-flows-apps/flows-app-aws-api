@@ -124,7 +124,17 @@ const describeConversionTasks: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AvailabilityZone: {},
+                          AvailabilityZoneId: {},
+                          BytesConverted: {},
+                          Description: {},
+                          Image: {},
+                          Status: {},
+                          StatusMessage: {},
+                          Volume: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -134,6 +144,9 @@ const describeConversionTasks: AppBlock = {
                   type: "object",
                   properties: {
                     AvailabilityZone: {
+                      type: "string",
+                    },
+                    AvailabilityZoneId: {
                       type: "string",
                     },
                     BytesConverted: {
@@ -146,20 +159,16 @@ const describeConversionTasks: AppBlock = {
                       type: "object",
                       properties: {
                         Checksum: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Format: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ImportManifestUrl: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Size: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -168,12 +177,10 @@ const describeConversionTasks: AppBlock = {
                       type: "object",
                       properties: {
                         Id: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Size: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -193,12 +200,10 @@ const describeConversionTasks: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

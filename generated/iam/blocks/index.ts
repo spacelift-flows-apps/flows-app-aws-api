@@ -1,12 +1,15 @@
+import acceptDelegationRequest from "./acceptDelegationRequest";
 import addClientIDToOpenIDConnectProvider from "./addClientIDToOpenIDConnectProvider";
 import addRoleToInstanceProfile from "./addRoleToInstanceProfile";
 import addUserToGroup from "./addUserToGroup";
+import associateDelegationRequest from "./associateDelegationRequest";
 import attachGroupPolicy from "./attachGroupPolicy";
 import attachRolePolicy from "./attachRolePolicy";
 import attachUserPolicy from "./attachUserPolicy";
 import changePassword from "./changePassword";
 import createAccessKey from "./createAccessKey";
 import createAccountAlias from "./createAccountAlias";
+import createDelegationRequest from "./createDelegationRequest";
 import createGroup from "./createGroup";
 import createInstanceProfile from "./createInstanceProfile";
 import createLoginProfile from "./createLoginProfile";
@@ -48,9 +51,11 @@ import detachRolePolicy from "./detachRolePolicy";
 import detachUserPolicy from "./detachUserPolicy";
 import disableOrganizationsRootCredentialsManagement from "./disableOrganizationsRootCredentialsManagement";
 import disableOrganizationsRootSessions from "./disableOrganizationsRootSessions";
+import disableOutboundWebIdentityFederation from "./disableOutboundWebIdentityFederation";
 import enableMFADevice from "./enableMFADevice";
 import enableOrganizationsRootCredentialsManagement from "./enableOrganizationsRootCredentialsManagement";
 import enableOrganizationsRootSessions from "./enableOrganizationsRootSessions";
+import enableOutboundWebIdentityFederation from "./enableOutboundWebIdentityFederation";
 import generateCredentialReport from "./generateCredentialReport";
 import generateOrganizationsAccessReport from "./generateOrganizationsAccessReport";
 import generateServiceLastAccessedDetails from "./generateServiceLastAccessedDetails";
@@ -61,13 +66,16 @@ import getAccountSummary from "./getAccountSummary";
 import getContextKeysForCustomPolicy from "./getContextKeysForCustomPolicy";
 import getContextKeysForPrincipalPolicy from "./getContextKeysForPrincipalPolicy";
 import getCredentialReport from "./getCredentialReport";
+import getDelegationRequest from "./getDelegationRequest";
 import getGroup from "./getGroup";
 import getGroupPolicy from "./getGroupPolicy";
+import getHumanReadableSummary from "./getHumanReadableSummary";
 import getInstanceProfile from "./getInstanceProfile";
 import getLoginProfile from "./getLoginProfile";
 import getMFADevice from "./getMFADevice";
 import getOpenIDConnectProvider from "./getOpenIDConnectProvider";
 import getOrganizationsAccessReport from "./getOrganizationsAccessReport";
+import getOutboundWebIdentityFederationInfo from "./getOutboundWebIdentityFederationInfo";
 import getPolicy from "./getPolicy";
 import getPolicyVersion from "./getPolicyVersion";
 import getRole from "./getRole";
@@ -85,6 +93,7 @@ import listAccountAliases from "./listAccountAliases";
 import listAttachedGroupPolicies from "./listAttachedGroupPolicies";
 import listAttachedRolePolicies from "./listAttachedRolePolicies";
 import listAttachedUserPolicies from "./listAttachedUserPolicies";
+import listDelegationRequests from "./listDelegationRequests";
 import listEntitiesForPolicy from "./listEntitiesForPolicy";
 import listGroupPolicies from "./listGroupPolicies";
 import listGroups from "./listGroups";
@@ -120,11 +129,13 @@ import putRolePermissionsBoundary from "./putRolePermissionsBoundary";
 import putRolePolicy from "./putRolePolicy";
 import putUserPermissionsBoundary from "./putUserPermissionsBoundary";
 import putUserPolicy from "./putUserPolicy";
+import rejectDelegationRequest from "./rejectDelegationRequest";
 import removeClientIDFromOpenIDConnectProvider from "./removeClientIDFromOpenIDConnectProvider";
 import removeRoleFromInstanceProfile from "./removeRoleFromInstanceProfile";
 import removeUserFromGroup from "./removeUserFromGroup";
 import resetServiceSpecificCredential from "./resetServiceSpecificCredential";
 import resyncMFADevice from "./resyncMFADevice";
+import sendDelegationToken from "./sendDelegationToken";
 import setDefaultPolicyVersion from "./setDefaultPolicyVersion";
 import setSecurityTokenServicePreferences from "./setSecurityTokenServicePreferences";
 import simulateCustomPolicy from "./simulateCustomPolicy";
@@ -148,6 +159,7 @@ import untagUser from "./untagUser";
 import updateAccessKey from "./updateAccessKey";
 import updateAccountPasswordPolicy from "./updateAccountPasswordPolicy";
 import updateAssumeRolePolicy from "./updateAssumeRolePolicy";
+import updateDelegationRequest from "./updateDelegationRequest";
 import updateGroup from "./updateGroup";
 import updateLoginProfile from "./updateLoginProfile";
 import updateOpenIDConnectProviderThumbprint from "./updateOpenIDConnectProviderThumbprint";
@@ -164,15 +176,18 @@ import uploadServerCertificate from "./uploadServerCertificate";
 import uploadSigningCertificate from "./uploadSigningCertificate";
 
 export const blocks = {
+  acceptDelegationRequest,
   addClientIDToOpenIDConnectProvider,
   addRoleToInstanceProfile,
   addUserToGroup,
+  associateDelegationRequest,
   attachGroupPolicy,
   attachRolePolicy,
   attachUserPolicy,
   changePassword,
   createAccessKey,
   createAccountAlias,
+  createDelegationRequest,
   createGroup,
   createInstanceProfile,
   createLoginProfile,
@@ -214,9 +229,11 @@ export const blocks = {
   detachUserPolicy,
   disableOrganizationsRootCredentialsManagement,
   disableOrganizationsRootSessions,
+  disableOutboundWebIdentityFederation,
   enableMFADevice,
   enableOrganizationsRootCredentialsManagement,
   enableOrganizationsRootSessions,
+  enableOutboundWebIdentityFederation,
   generateCredentialReport,
   generateOrganizationsAccessReport,
   generateServiceLastAccessedDetails,
@@ -227,13 +244,16 @@ export const blocks = {
   getContextKeysForCustomPolicy,
   getContextKeysForPrincipalPolicy,
   getCredentialReport,
+  getDelegationRequest,
   getGroup,
   getGroupPolicy,
+  getHumanReadableSummary,
   getInstanceProfile,
   getLoginProfile,
   getMFADevice,
   getOpenIDConnectProvider,
   getOrganizationsAccessReport,
+  getOutboundWebIdentityFederationInfo,
   getPolicy,
   getPolicyVersion,
   getRole,
@@ -251,6 +271,7 @@ export const blocks = {
   listAttachedGroupPolicies,
   listAttachedRolePolicies,
   listAttachedUserPolicies,
+  listDelegationRequests,
   listEntitiesForPolicy,
   listGroupPolicies,
   listGroups,
@@ -286,11 +307,13 @@ export const blocks = {
   putRolePolicy,
   putUserPermissionsBoundary,
   putUserPolicy,
+  rejectDelegationRequest,
   removeClientIDFromOpenIDConnectProvider,
   removeRoleFromInstanceProfile,
   removeUserFromGroup,
   resetServiceSpecificCredential,
   resyncMFADevice,
+  sendDelegationToken,
   setDefaultPolicyVersion,
   setSecurityTokenServicePreferences,
   simulateCustomPolicy,
@@ -314,6 +337,7 @@ export const blocks = {
   updateAccessKey,
   updateAccountPasswordPolicy,
   updateAssumeRolePolicy,
+  updateDelegationRequest,
   updateGroup,
   updateLoginProfile,
   updateOpenIDConnectProviderThumbprint,

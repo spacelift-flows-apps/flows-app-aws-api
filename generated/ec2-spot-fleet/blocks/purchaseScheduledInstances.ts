@@ -163,8 +163,7 @@ const purchaseScheduledInstances: AppBlock = {
                     OccurrenceDaySet: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     OccurrenceRelativeToEnd: {

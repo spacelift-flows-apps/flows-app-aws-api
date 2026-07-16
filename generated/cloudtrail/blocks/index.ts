@@ -31,6 +31,7 @@ import listDashboards from "./listDashboards";
 import listEventDataStores from "./listEventDataStores";
 import listImportFailures from "./listImportFailures";
 import listImports from "./listImports";
+import listInsightsData from "./listInsightsData";
 import listInsightsMetricData from "./listInsightsMetricData";
 import listPublicKeys from "./listPublicKeys";
 import listQueries from "./listQueries";
@@ -92,6 +93,7 @@ export const blocks = {
   listEventDataStores,
   listImportFailures,
   listImports,
+  listInsightsData,
   listInsightsMetricData,
   listPublicKeys,
   listQueries,

@@ -48,6 +48,13 @@ const publishVersion: AppBlock = {
           type: "string",
           required: false,
         },
+        PublishTo: {
+          name: "Publish To",
+          description:
+            "Specifies where to publish the function version or configuration.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -309,7 +316,8 @@ const publishVersion: AppBlock = {
               required: ["Arn", "LocalMountPath"],
               additionalProperties: false,
             },
-            description: "Connection settings for an Amazon EFS file system.",
+            description:
+              "Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.",
           },
           PackageType: {
             type: "string",
@@ -437,6 +445,61 @@ const publishVersion: AppBlock = {
             additionalProperties: false,
             description:
               "The function's Amazon CloudWatch Logs configuration settings.",
+          },
+          CapacityProviderConfig: {
+            type: "object",
+            properties: {
+              LambdaManagedInstancesCapacityProviderConfig: {
+                type: "object",
+                properties: {
+                  CapacityProviderArn: {
+                    type: "string",
+                  },
+                  PerExecutionEnvironmentMaxConcurrency: {
+                    type: "number",
+                  },
+                  ExecutionEnvironmentMemoryGiBPerVCpu: {
+                    type: "number",
+                  },
+                },
+                required: ["CapacityProviderArn"],
+                additionalProperties: false,
+              },
+            },
+            required: ["LambdaManagedInstancesCapacityProviderConfig"],
+            additionalProperties: false,
+            description:
+              "Configuration for the capacity provider that manages compute resources for Lambda functions.",
+          },
+          ConfigSha256: {
+            type: "string",
+            description: "The SHA256 hash of the function configuration.",
+          },
+          DurableConfig: {
+            type: "object",
+            properties: {
+              RetentionPeriodInDays: {
+                type: "number",
+              },
+              ExecutionTimeout: {
+                type: "number",
+              },
+            },
+            additionalProperties: false,
+            description:
+              "The function's durable execution configuration settings, if the function is configured for durability.",
+          },
+          TenancyConfig: {
+            type: "object",
+            properties: {
+              TenantIsolationMode: {
+                type: "string",
+              },
+            },
+            required: ["TenantIsolationMode"],
+            additionalProperties: false,
+            description:
+              "The function's tenant isolation configuration settings.",
           },
         },
         additionalProperties: true,

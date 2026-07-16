@@ -112,6 +112,11 @@ const rollbackStack: AppBlock = {
             type: "string",
             description: "Unique identifier of the stack.",
           },
+          OperationId: {
+            type: "string",
+            description:
+              "A unique identifier for this rollback operation that can be used to track the operation's progress and events.",
+          },
         },
         additionalProperties: true,
       },

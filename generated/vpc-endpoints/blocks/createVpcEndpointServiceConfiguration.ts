@@ -116,12 +116,10 @@ const createVpcEndpointServiceConfiguration: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -217,6 +215,12 @@ const createVpcEndpointServiceConfiguration: AppBlock = {
               },
               ServiceState: {
                 type: "string",
+              },
+              AvailabilityZoneIds: {
+                type: "array",
+                items: {
+                  type: "string",
+                },
               },
               AvailabilityZones: {
                 type: "array",

@@ -136,7 +136,12 @@ const describeInventoryDeletions: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Version: {},
+                          Count: {},
+                          RemainingCount: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },

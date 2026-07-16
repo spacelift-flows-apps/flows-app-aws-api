@@ -5,7 +5,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const getBucketLocation: AppBlock = {
   name: "Get Bucket Location",
-  description: `This operation is not supported for directory buckets.`,
+  description: `Using the GetBucketLocation operation is no longer a best practice.`,
   inputs: {
     default: {
       config: {

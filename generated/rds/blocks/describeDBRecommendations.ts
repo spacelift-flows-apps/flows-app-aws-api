@@ -4,6 +4,7 @@ import {
   DescribeDBRecommendationsCommand,
 } from "@aws-sdk/client-rds";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const describeDBRecommendations: AppBlock = {
   name: "Describe DB Recommendations",
@@ -128,7 +129,10 @@ const describeDBRecommendations: AppBlock = {
         });
 
         const command = new DescribeDBRecommendationsCommand(
-          commandInput as any,
+          convertTimestamps(
+            commandInput,
+            new Set(["LastUpdatedAfter", "LastUpdatedBefore"]),
+          ) as any,
         );
         const response = await client.send(command);
 
@@ -188,40 +192,38 @@ const describeDBRecommendations: AppBlock = {
                     type: "object",
                     properties: {
                       ActionId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Title: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Operation: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Parameters: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       ApplyModes: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IssueDetails: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          PerformanceIssueDetails: {},
+                        },
+                        additionalProperties: false,
                       },
                       ContextAttributes: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -251,12 +253,10 @@ const describeDBRecommendations: AppBlock = {
                     type: "object",
                     properties: {
                       Text: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Url: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -269,20 +269,17 @@ const describeDBRecommendations: AppBlock = {
                       type: "object",
                       properties: {
                         StartTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         EndTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Metrics: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Analysis: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

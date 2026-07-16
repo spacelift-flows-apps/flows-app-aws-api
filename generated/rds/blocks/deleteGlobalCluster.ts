@@ -116,6 +116,9 @@ const deleteGlobalCluster: AppBlock = {
               StorageEncrypted: {
                 type: "boolean",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               DeletionProtection: {
                 type: "boolean",
               },
@@ -130,8 +133,7 @@ const deleteGlobalCluster: AppBlock = {
                     Readers: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     IsWriter: {

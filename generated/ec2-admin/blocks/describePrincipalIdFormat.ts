@@ -130,16 +130,13 @@ const describePrincipalIdFormat: AppBlock = {
                     type: "object",
                     properties: {
                       Deadline: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Resource: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       UseLongIds: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,

@@ -130,24 +130,19 @@ const updateClusterSettings: AppBlock = {
                         type: "object",
                         properties: {
                           cloudWatchLogGroupName: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           cloudWatchEncryptionEnabled: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                           s3BucketName: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           s3EncryptionEnabled: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                           s3KeyPrefix: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         additionalProperties: false,
@@ -273,7 +268,11 @@ const updateClusterSettings: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {},
+                          value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },

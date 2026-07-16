@@ -24,7 +24,7 @@ const getAccountSetting: AppBlock = {
         name: {
           name: "name",
           description:
-            "The name of the account setting, such as BASIC_SCAN_TYPE_VERSION or REGISTRY_POLICY_SCOPE.",
+            "The name of the account setting, such as BASIC_SCAN_TYPE_VERSION, REGISTRY_POLICY_SCOPE, or BLOB_MOUNTING.",
           type: "string",
           required: true,
         },

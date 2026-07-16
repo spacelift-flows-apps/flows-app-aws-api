@@ -136,6 +136,11 @@ const describeContributorInsights: AppBlock = {
             description:
               "Returns information about the last failure that was encountered.",
           },
+          ContributorInsightsMode: {
+            type: "string",
+            description:
+              "The mode of CloudWatch Contributor Insights for DynamoDB that determines which events are emitted.",
+          },
         },
         additionalProperties: true,
       },

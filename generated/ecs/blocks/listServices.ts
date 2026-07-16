@@ -56,6 +56,13 @@ const listServices: AppBlock = {
           type: "string",
           required: false,
         },
+        resourceManagementType: {
+          name: "resource Management Type",
+          description:
+            "The resourceManagementType type to use when filtering the ListServices results.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =

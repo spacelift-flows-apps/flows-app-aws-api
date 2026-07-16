@@ -4,6 +4,7 @@ import {
   PutAnomalyDetectorCommand,
 } from "@aws-sdk/client-cloudwatch";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const putAnomalyDetector: AppBlock = {
   name: "Put Anomaly Detector",
@@ -171,19 +172,21 @@ const putAnomalyDetector: AppBlock = {
                       properties: {
                         Metric: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Namespace: {},
+                            MetricName: {},
+                            Dimensions: {},
+                          },
+                          additionalProperties: false,
                         },
                         Period: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Stat: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Unit: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Metric", "Period", "Stat"],
@@ -257,7 +260,12 @@ const putAnomalyDetector: AppBlock = {
           }),
         });
 
-        const command = new PutAnomalyDetectorCommand(commandInput as any);
+        const command = new PutAnomalyDetectorCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

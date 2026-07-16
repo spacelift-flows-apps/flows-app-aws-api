@@ -197,12 +197,10 @@ const describeClientVpnEndpoints: AppBlock = {
                     type: "object",
                     properties: {
                       NetworkId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       NetworkType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -217,20 +215,29 @@ const describeClientVpnEndpoints: AppBlock = {
                     type: "object",
                     properties: {
                       Type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ActiveDirectory: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          DirectoryId: {},
+                        },
+                        additionalProperties: false,
                       },
                       MutualAuthentication: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ClientRootCertificateChain: {},
+                        },
+                        additionalProperties: false,
                       },
                       FederatedAuthentication: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          SamlProviderArn: {},
+                          SelfServiceSamlProviderArn: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     additionalProperties: false,
@@ -257,12 +264,10 @@ const describeClientVpnEndpoints: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -293,12 +298,10 @@ const describeClientVpnEndpoints: AppBlock = {
                       type: "object",
                       properties: {
                         Code: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Message: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -332,6 +335,36 @@ const describeClientVpnEndpoints: AppBlock = {
                 },
                 DisconnectOnSessionTimeout: {
                   type: "boolean",
+                },
+                EndpointIpAddressType: {
+                  type: "string",
+                },
+                TrafficIpAddressType: {
+                  type: "string",
+                },
+                TransitGatewayConfiguration: {
+                  type: "object",
+                  properties: {
+                    TransitGatewayId: {
+                      type: "string",
+                    },
+                    TransitGatewayAttachmentId: {
+                      type: "string",
+                    },
+                    AvailabilityZones: {
+                      type: "array",
+                      items: {
+                        type: "string",
+                      },
+                    },
+                    AvailabilityZoneIds: {
+                      type: "array",
+                      items: {
+                        type: "string",
+                      },
+                    },
+                  },
+                  additionalProperties: false,
                 },
               },
               additionalProperties: false,

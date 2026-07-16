@@ -4,6 +4,7 @@ import {
   PurchaseReservedInstancesOfferingCommand,
 } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const purchaseReservedInstancesOffering: AppBlock = {
   name: "Purchase Reserved Instances Offering",
@@ -112,7 +113,7 @@ const purchaseReservedInstancesOffering: AppBlock = {
         });
 
         const command = new PurchaseReservedInstancesOfferingCommand(
-          commandInput as any,
+          convertTimestamps(commandInput, new Set(["PurchaseTime"])) as any,
         );
         const response = await client.send(command);
 

@@ -4,6 +4,7 @@ import {
   DescribeClusterSnapshotsCommand,
 } from "@aws-sdk/client-redshift";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const describeClusterSnapshots: AppBlock = {
   name: "Describe Cluster Snapshots",
@@ -183,7 +184,10 @@ const describeClusterSnapshots: AppBlock = {
         });
 
         const command = new DescribeClusterSnapshotsCommand(
-          commandInput as any,
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
         );
         const response = await client.send(command);
 
@@ -269,12 +273,10 @@ const describeClusterSnapshots: AppBlock = {
                     type: "object",
                     properties: {
                       AccountId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AccountAlias: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -310,12 +312,10 @@ const describeClusterSnapshots: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

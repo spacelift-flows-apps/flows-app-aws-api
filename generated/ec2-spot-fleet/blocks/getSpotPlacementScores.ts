@@ -270,14 +270,17 @@ const getSpotPlacementScores: AppBlock = {
                         type: "object",
                         properties: {
                           References: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         additionalProperties: false,
                       },
                     },
                     additionalProperties: false,
+                  },
+                  RequireEncryptionInTransit: {
+                    type: "boolean",
                   },
                 },
                 required: ["VCpuCount", "MemoryMiB"],

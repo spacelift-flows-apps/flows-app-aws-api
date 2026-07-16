@@ -127,8 +127,7 @@ const getObjectAcl: AppBlock = {
               },
             },
             additionalProperties: false,
-            description:
-              "Container for the bucket owner's display name and ID.",
+            description: "Container for the bucket owner's ID.",
           },
           Grants: {
             type: "array",

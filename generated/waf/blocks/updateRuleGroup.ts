@@ -53,8 +53,7 @@ const updateRuleGroup: AppBlock = {
                       type: "object",
                       properties: {
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Type"],
@@ -64,8 +63,7 @@ const updateRuleGroup: AppBlock = {
                       type: "object",
                       properties: {
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Type"],
@@ -78,7 +76,11 @@ const updateRuleGroup: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          RuleId: {},
+                        },
+                        required: ["RuleId"],
+                        additionalProperties: false,
                       },
                     },
                   },

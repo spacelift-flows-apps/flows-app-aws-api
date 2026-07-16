@@ -64,6 +64,13 @@ const invokeWithResponseStream: AppBlock = {
           type: "string",
           required: false,
         },
+        TenantId: {
+          name: "Tenant Id",
+          description:
+            "The identifier of the tenant in a multi-tenant Lambda function.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -134,7 +141,46 @@ const invokeWithResponseStream: AppBlock = {
             description: "The version of the function that executed.",
           },
           EventStream: {
-            type: "string",
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  PayloadChunk: {
+                    type: "object",
+                    properties: {
+                      Payload: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["PayloadChunk"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  InvokeComplete: {
+                    type: "object",
+                    properties: {
+                      ErrorCode: {
+                        type: "string",
+                      },
+                      ErrorDetails: {
+                        type: "string",
+                      },
+                      LogResult: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["InvokeComplete"],
+                additionalProperties: false,
+              },
+            ],
             description: "The stream of response payloads.",
           },
           ResponseStreamContentType: {

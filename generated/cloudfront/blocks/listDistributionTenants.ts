@@ -140,12 +140,10 @@ const listDistributionTenants: AppBlock = {
                     type: "object",
                     properties: {
                       Domain: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Domain"],
@@ -162,12 +160,10 @@ const listDistributionTenants: AppBlock = {
                       type: "object",
                       properties: {
                         Action: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Arn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Action"],
@@ -177,8 +173,7 @@ const listDistributionTenants: AppBlock = {
                       type: "object",
                       properties: {
                         Arn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Arn"],
@@ -188,12 +183,11 @@ const listDistributionTenants: AppBlock = {
                       type: "object",
                       properties: {
                         RestrictionType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Locations: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["RestrictionType"],

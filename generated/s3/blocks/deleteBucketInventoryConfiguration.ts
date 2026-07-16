@@ -8,7 +8,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const deleteBucketInventoryConfiguration: AppBlock = {
   name: "Delete Bucket Inventory Configuration",
-  description: `This operation is not supported for directory buckets.`,
+  description: `Deletes an S3 Inventory configuration (identified by the inventory ID) from the bucket.`,
   inputs: {
     default: {
       config: {

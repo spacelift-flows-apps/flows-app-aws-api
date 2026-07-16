@@ -123,20 +123,16 @@ const getBackupPlanFromTemplate: AppBlock = {
                       type: "object",
                       properties: {
                         MoveToColdStorageAfterDays: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         DeleteAfterDays: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         OptInToArchiveForSupportedResources: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         DeleteAfterEvent: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -144,7 +140,7 @@ const getBackupPlanFromTemplate: AppBlock = {
                     RecoveryPointTags: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     RuleId: {
@@ -154,7 +150,12 @@ const getBackupPlanFromTemplate: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Lifecycle: {},
+                          DestinationBackupVaultArn: {},
+                        },
+                        required: ["DestinationBackupVaultArn"],
+                        additionalProperties: false,
                       },
                     },
                     EnableContinuousBackup: {
@@ -167,14 +168,21 @@ const getBackupPlanFromTemplate: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ResourceTypes: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ScanActions: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          MalwareScanner: {},
+                          ScanMode: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -193,7 +201,7 @@ const getBackupPlanFromTemplate: AppBlock = {
                     BackupOptions: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                   },
@@ -211,8 +219,7 @@ const getBackupPlanFromTemplate: AppBlock = {
                     ResourceTypes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     ScannerRoleArn: {

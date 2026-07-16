@@ -85,6 +85,13 @@ const createPodIdentityAssociation: AppBlock = {
           type: "string",
           required: false,
         },
+        policy: {
+          name: "policy",
+          description:
+            "An optional IAM policy in JSON format (as an escaped string) that applies additional restrictions to this pod identity association beyond the IAM policies attached to the IAM role.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -188,6 +195,9 @@ const createPodIdentityAssociation: AppBlock = {
                 type: "string",
               },
               externalId: {
+                type: "string",
+              },
+              policy: {
                 type: "string",
               },
             },

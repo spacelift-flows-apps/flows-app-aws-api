@@ -159,8 +159,7 @@ const describeAvailabilityZones: AppBlock = {
                     type: "object",
                     properties: {
                       Message: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -192,6 +191,30 @@ const describeAvailabilityZones: AppBlock = {
                 },
                 GroupLongName: {
                   type: "string",
+                },
+                Geography: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Name: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                SubGeography: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Name: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
                 },
                 State: {
                   type: "string",

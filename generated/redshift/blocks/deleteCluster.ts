@@ -144,16 +144,14 @@ const deleteCluster: AppBlock = {
                       type: "object",
                       properties: {
                         VpcEndpointId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         VpcId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NetworkInterfaces: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -216,7 +214,12 @@ const deleteCluster: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ParameterName: {},
+                          ParameterApplyStatus: {},
+                          ParameterApplyErrorDescription: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -589,16 +592,13 @@ const deleteCluster: AppBlock = {
                       type: "object",
                       properties: {
                         NodeRole: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PrivateIPAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PublicIPAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -606,6 +606,15 @@ const deleteCluster: AppBlock = {
                   },
                 },
                 additionalProperties: false,
+              },
+              LakehouseRegistrationStatus: {
+                type: "string",
+              },
+              CatalogArn: {
+                type: "string",
+              },
+              ExtraComputeForAutomaticOptimization: {
+                type: "string",
               },
             },
             additionalProperties: false,

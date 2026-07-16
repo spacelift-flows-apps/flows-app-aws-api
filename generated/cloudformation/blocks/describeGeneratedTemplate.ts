@@ -129,12 +129,11 @@ const describeGeneratedTemplate: AppBlock = {
                     type: "object",
                     properties: {
                       Type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Properties: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,

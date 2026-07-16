@@ -2,6 +2,7 @@ import { AppBlock, events } from "@slflows/sdk/v1";
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const getObject: AppBlock = {
   name: "Get Object",
@@ -200,7 +201,16 @@ const getObject: AppBlock = {
           }),
         });
 
-        const command = new GetObjectCommand(commandInput as any);
+        const command = new GetObjectCommand(
+          convertTimestamps(
+            commandInput,
+            new Set([
+              "IfModifiedSince",
+              "IfUnmodifiedSince",
+              "ResponseExpires",
+            ]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         // Safely serialize response by handling circular references and streams
@@ -278,6 +288,31 @@ const getObject: AppBlock = {
             type: "string",
             description:
               "The Base64 encoded, 256-bit SHA256 digest of the object.",
+          },
+          ChecksumSHA512: {
+            type: "string",
+            description:
+              "The Base64 encoded, 512-bit SHA512 digest of the object.",
+          },
+          ChecksumMD5: {
+            type: "string",
+            description:
+              "The Base64 encoded, 128-bit MD5 digest of the object.",
+          },
+          ChecksumXXHASH64: {
+            type: "string",
+            description:
+              "The Base64 encoded, 64-bit XXHASH64 checksum of the object.",
+          },
+          ChecksumXXHASH3: {
+            type: "string",
+            description:
+              "The Base64 encoded, 64-bit XXHASH3 checksum of the object.",
+          },
+          ChecksumXXHASH128: {
+            type: "string",
+            description:
+              "The Base64 encoded, 128-bit XXHASH128 checksum of the object.",
           },
           ChecksumType: {
             type: "string",

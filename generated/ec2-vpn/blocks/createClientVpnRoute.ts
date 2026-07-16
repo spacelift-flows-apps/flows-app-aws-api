@@ -40,7 +40,7 @@ const createClientVpnRoute: AppBlock = {
           description:
             "The ID of the subnet through which you want to route traffic.",
           type: "string",
-          required: true,
+          required: false,
         },
         Description: {
           name: "Description",

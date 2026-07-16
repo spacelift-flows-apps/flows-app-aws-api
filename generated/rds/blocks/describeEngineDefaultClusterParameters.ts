@@ -177,8 +177,7 @@ const describeEngineDefaultClusterParameters: AppBlock = {
                     SupportedEngineModes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

@@ -119,16 +119,24 @@ const getBucketReplication: AppBlock = {
                       type: "object",
                       properties: {
                         Prefix: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Tag: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Key: {},
+                            Value: {},
+                          },
+                          required: ["Key", "Value"],
+                          additionalProperties: false,
                         },
                         And: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Prefix: {},
+                            Tags: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -141,11 +149,19 @@ const getBucketReplication: AppBlock = {
                       properties: {
                         SseKmsEncryptedObjects: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Status: {},
+                          },
+                          required: ["Status"],
+                          additionalProperties: false,
                         },
                         ReplicaModifications: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Status: {},
+                          },
+                          required: ["Status"],
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -154,8 +170,7 @@ const getBucketReplication: AppBlock = {
                       type: "object",
                       properties: {
                         Status: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Status"],
@@ -165,32 +180,46 @@ const getBucketReplication: AppBlock = {
                       type: "object",
                       properties: {
                         Bucket: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Account: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         StorageClass: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         AccessControlTranslation: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Owner: {},
+                          },
+                          required: ["Owner"],
+                          additionalProperties: false,
                         },
                         EncryptionConfiguration: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            ReplicaKmsKeyID: {},
+                          },
+                          additionalProperties: false,
                         },
                         ReplicationTime: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Status: {},
+                            Time: {},
+                          },
+                          required: ["Status", "Time"],
+                          additionalProperties: false,
                         },
                         Metrics: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Status: {},
+                            EventThreshold: {},
+                          },
+                          required: ["Status"],
+                          additionalProperties: false,
                         },
                       },
                       required: ["Bucket"],
@@ -200,8 +229,7 @@ const getBucketReplication: AppBlock = {
                       type: "object",
                       properties: {
                         Status: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

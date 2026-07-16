@@ -66,6 +66,21 @@ const completeMultipartUpload: AppBlock = {
                     ChecksumSHA256: {
                       type: "string",
                     },
+                    ChecksumSHA512: {
+                      type: "string",
+                    },
+                    ChecksumMD5: {
+                      type: "string",
+                    },
+                    ChecksumXXHASH64: {
+                      type: "string",
+                    },
+                    ChecksumXXHASH3: {
+                      type: "string",
+                    },
+                    ChecksumXXHASH128: {
+                      type: "string",
+                    },
                     PartNumber: {
                       type: "number",
                     },
@@ -114,6 +129,41 @@ const completeMultipartUpload: AppBlock = {
         },
         ChecksumSHA256: {
           name: "Checksum SHA256",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumSHA512: {
+          name: "Checksum SHA512",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumMD5: {
+          name: "Checksum MD5",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumXXHASH64: {
+          name: "Checksum XXHASH64",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumXXHASH3: {
+          name: "Checksum XXHASH3",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumXXHASH128: {
+          name: "Checksum XXHASH128",
           description:
             "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
           type: "string",
@@ -287,6 +337,31 @@ const completeMultipartUpload: AppBlock = {
             type: "string",
             description:
               "The Base64 encoded, 256-bit SHA256 digest of the object.",
+          },
+          ChecksumSHA512: {
+            type: "string",
+            description:
+              "The Base64 encoded, 512-bit SHA512 digest of the object.",
+          },
+          ChecksumMD5: {
+            type: "string",
+            description:
+              "The Base64 encoded, 128-bit MD5 digest of the object.",
+          },
+          ChecksumXXHASH64: {
+            type: "string",
+            description:
+              "The Base64 encoded, 64-bit XXHASH64 checksum of the object.",
+          },
+          ChecksumXXHASH3: {
+            type: "string",
+            description:
+              "The Base64 encoded, 64-bit XXHASH3 checksum of the object.",
+          },
+          ChecksumXXHASH128: {
+            type: "string",
+            description:
+              "The Base64 encoded, 128-bit XXHASH128 checksum of the object.",
           },
           ChecksumType: {
             type: "string",

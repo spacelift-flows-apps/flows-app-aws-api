@@ -174,12 +174,10 @@ const describeVpcEndpoints: AppBlock = {
                     type: "object",
                     properties: {
                       GroupId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       GroupName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -196,6 +194,15 @@ const describeVpcEndpoints: AppBlock = {
                     },
                     PrivateDnsOnlyForInboundResolverEndpoint: {
                       type: "boolean",
+                    },
+                    PrivateDnsPreference: {
+                      type: "string",
+                    },
+                    PrivateDnsSpecifiedDomains: {
+                      type: "array",
+                      items: {
+                        type: "string",
+                      },
                     },
                   },
                   additionalProperties: false,
@@ -218,12 +225,10 @@ const describeVpcEndpoints: AppBlock = {
                     type: "object",
                     properties: {
                       DnsName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       HostedZoneId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -238,12 +243,10 @@ const describeVpcEndpoints: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -270,12 +273,11 @@ const describeVpcEndpoints: AppBlock = {
                     type: "object",
                     properties: {
                       SubnetId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IpPrefixes: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -287,12 +289,11 @@ const describeVpcEndpoints: AppBlock = {
                     type: "object",
                     properties: {
                       SubnetId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IpPrefixes: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,

@@ -136,15 +136,19 @@ const describeInstanceAttribute: AppBlock = {
                       type: "object",
                       properties: {
                         Managed: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         Principal: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
+                        },
+                        HiddenByDefault: {
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
+                    },
+                    EbsCardIndex: {
+                      type: "number",
                     },
                   },
                   additionalProperties: false,

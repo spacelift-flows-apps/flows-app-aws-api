@@ -118,16 +118,13 @@ const describeServiceRevisions: AppBlock = {
                     type: "object",
                     properties: {
                       capacityProvider: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       weight: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       base: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     required: ["capacityProvider"],
@@ -149,24 +146,26 @@ const describeServiceRevisions: AppBlock = {
                     type: "object",
                     properties: {
                       targetGroupArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       loadBalancerName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       containerName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       containerPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       advancedConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          alternateTargetGroupArn: {},
+                          productionListenerRule: {},
+                          testListenerRule: {},
+                          roleArn: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     additionalProperties: false,
@@ -178,20 +177,16 @@ const describeServiceRevisions: AppBlock = {
                     type: "object",
                     properties: {
                       registryArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       port: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       containerName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       containerPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     additionalProperties: false,
@@ -204,16 +199,15 @@ const describeServiceRevisions: AppBlock = {
                       type: "object",
                       properties: {
                         subnets: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         securityGroups: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         assignPublicIp: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["subnets"],
@@ -228,16 +222,13 @@ const describeServiceRevisions: AppBlock = {
                     type: "object",
                     properties: {
                       containerName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       imageDigest: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       image: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -259,26 +250,49 @@ const describeServiceRevisions: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          portName: {},
+                          discoveryName: {},
+                          clientAliases: {},
+                          ingressPortOverride: {},
+                          timeout: {},
+                          tls: {},
+                        },
+                        required: ["portName"],
+                        additionalProperties: false,
                       },
                     },
                     logConfiguration: {
                       type: "object",
                       properties: {
                         logDriver: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         options: {
                           type: "object",
-                          additionalProperties: true,
+                          additionalProperties: {
+                            type: "object",
+                          },
                         },
                         secretOptions: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["logDriver"],
+                      additionalProperties: false,
+                    },
+                    accessLogConfiguration: {
+                      type: "object",
+                      properties: {
+                        format: {
+                          type: "string",
+                        },
+                        includeQueryParameters: {
+                          type: "string",
+                        },
+                      },
+                      required: ["format"],
                       additionalProperties: false,
                     },
                   },
@@ -291,12 +305,25 @@ const describeServiceRevisions: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       managedEBSVolume: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          encrypted: {},
+                          kmsKeyId: {},
+                          volumeType: {},
+                          sizeInGiB: {},
+                          snapshotId: {},
+                          volumeInitializationRate: {},
+                          iops: {},
+                          throughput: {},
+                          tagSpecifications: {},
+                          roleArn: {},
+                          filesystemType: {},
+                        },
+                        required: ["roleArn"],
+                        additionalProperties: false,
                       },
                     },
                     required: ["name"],
@@ -321,16 +348,13 @@ const describeServiceRevisions: AppBlock = {
                     type: "object",
                     properties: {
                       roleArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       targetGroupArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       portName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["roleArn", "targetGroupArn", "portName"],
@@ -344,7 +368,106 @@ const describeServiceRevisions: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          targetGroupArn: {},
+                          productionListenerRule: {},
+                        },
+                        additionalProperties: false,
+                      },
+                    },
+                  },
+                  additionalProperties: false,
+                },
+                ecsManagedResources: {
+                  type: "object",
+                  properties: {
+                    ingressPaths: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          accessType: {},
+                          endpoint: {},
+                          loadBalancer: {},
+                          loadBalancerSecurityGroups: {},
+                          certificate: {},
+                          listener: {},
+                          rule: {},
+                          targetGroups: {},
+                        },
+                        required: ["accessType", "endpoint"],
+                        additionalProperties: false,
+                      },
+                    },
+                    autoScaling: {
+                      type: "object",
+                      properties: {
+                        scalableTarget: {
+                          type: "object",
+                          properties: {
+                            arn: {},
+                            status: {},
+                            statusReason: {},
+                            updatedAt: {},
+                            minCapacity: {},
+                            maxCapacity: {},
+                          },
+                          required: [
+                            "status",
+                            "updatedAt",
+                            "minCapacity",
+                            "maxCapacity",
+                          ],
+                          additionalProperties: false,
+                        },
+                        applicationAutoScalingPolicies: {
+                          type: "array",
+                          items: {},
+                        },
+                      },
+                      additionalProperties: false,
+                    },
+                    metricAlarms: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          arn: {},
+                          status: {},
+                          statusReason: {},
+                          updatedAt: {},
+                        },
+                        required: ["status", "updatedAt"],
+                        additionalProperties: false,
+                      },
+                    },
+                    serviceSecurityGroups: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          arn: {},
+                          status: {},
+                          statusReason: {},
+                          updatedAt: {},
+                        },
+                        required: ["status", "updatedAt"],
+                        additionalProperties: false,
+                      },
+                    },
+                    logGroups: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          arn: {},
+                          status: {},
+                          statusReason: {},
+                          updatedAt: {},
+                          logGroupName: {},
+                        },
+                        required: ["status", "updatedAt", "logGroupName"],
+                        additionalProperties: false,
                       },
                     },
                   },

@@ -135,6 +135,18 @@ const describeRegions: AppBlock = {
                 OptInStatus: {
                   type: "string",
                 },
+                Geography: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Name: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
                 RegionName: {
                   type: "string",
                 },

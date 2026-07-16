@@ -120,12 +120,10 @@ const batchGetRepositoryScanningConfiguration: AppBlock = {
                     type: "object",
                     properties: {
                       filter: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       filterType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["filter", "filterType"],

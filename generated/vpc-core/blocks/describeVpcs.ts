@@ -155,32 +155,30 @@ const describeVpcs: AppBlock = {
                     type: "object",
                     properties: {
                       AssociationId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Ipv6CidrBlock: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Ipv6CidrBlockState: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          State: {},
+                          StatusMessage: {},
+                        },
+                        additionalProperties: false,
                       },
                       NetworkBorderGroup: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Ipv6Pool: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Ipv6AddressAttribute: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IpSource: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -192,16 +190,18 @@ const describeVpcs: AppBlock = {
                     type: "object",
                     properties: {
                       AssociationId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CidrBlock: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CidrBlockState: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          State: {},
+                          StatusMessage: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     additionalProperties: false,
@@ -233,23 +233,67 @@ const describeVpcs: AppBlock = {
                       properties: {
                         InternetGateway: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            State: {},
+                            StateMessage: {},
+                          },
+                          additionalProperties: false,
                         },
                         EgressOnlyInternetGateway: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            State: {},
+                            StateMessage: {},
+                          },
+                          additionalProperties: false,
                         },
                         NatGateway: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            State: {},
+                            StateMessage: {},
+                          },
+                          additionalProperties: false,
                         },
                         VirtualPrivateGateway: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            State: {},
+                            StateMessage: {},
+                          },
+                          additionalProperties: false,
                         },
                         VpcPeering: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            State: {},
+                            StateMessage: {},
+                          },
+                          additionalProperties: false,
+                        },
+                        Lambda: {
+                          type: "object",
+                          properties: {
+                            State: {},
+                            StateMessage: {},
+                          },
+                          additionalProperties: false,
+                        },
+                        VpcLattice: {
+                          type: "object",
+                          properties: {
+                            State: {},
+                            StateMessage: {},
+                          },
+                          additionalProperties: false,
+                        },
+                        ElasticFileSystem: {
+                          type: "object",
+                          properties: {
+                            State: {},
+                            StateMessage: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -258,7 +302,11 @@ const describeVpcs: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -270,12 +318,10 @@ const describeVpcs: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

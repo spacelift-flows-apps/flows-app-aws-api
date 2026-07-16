@@ -142,12 +142,10 @@ const getReservedNodeExchangeOfferings: AppBlock = {
                     type: "object",
                     properties: {
                       RecurringChargeAmount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       RecurringChargeFrequency: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

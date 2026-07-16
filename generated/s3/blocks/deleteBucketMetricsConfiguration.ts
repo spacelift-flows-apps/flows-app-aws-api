@@ -8,7 +8,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const deleteBucketMetricsConfiguration: AppBlock = {
   name: "Delete Bucket Metrics Configuration",
-  description: `This operation is not supported for directory buckets.`,
+  description: `Deletes a metrics configuration for the Amazon CloudWatch request metrics (specified by the metrics configuration ID) from the bucket.`,
   inputs: {
     default: {
       config: {

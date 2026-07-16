@@ -33,8 +33,7 @@ const listStackRefactorActions: AppBlock = {
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "If the request doesn't return all the remaining results, NextToken is set to a token.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },
@@ -137,12 +136,10 @@ const listStackRefactorActions: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Key", "Value"],
@@ -162,12 +159,10 @@ const listStackRefactorActions: AppBlock = {
                       type: "object",
                       properties: {
                         StackName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LogicalResourceId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["StackName", "LogicalResourceId"],
@@ -177,12 +172,10 @@ const listStackRefactorActions: AppBlock = {
                       type: "object",
                       properties: {
                         StackName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LogicalResourceId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["StackName", "LogicalResourceId"],

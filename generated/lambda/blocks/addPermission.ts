@@ -96,6 +96,13 @@ const addPermission: AppBlock = {
           type: "string",
           required: false,
         },
+        InvokedViaFunctionUrl: {
+          name: "Invoked Via Function Url",
+          description:
+            "Indicates whether the permission applies when the function is invoked through a function URL.",
+          type: "boolean",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =

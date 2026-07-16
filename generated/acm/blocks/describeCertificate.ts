@@ -114,8 +114,7 @@ const describeCertificate: AppBlock = {
                     ValidationEmails: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     ValidationDomain: {
@@ -128,16 +127,13 @@ const describeCertificate: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Name", "Type", "Value"],
@@ -147,12 +143,10 @@ const describeCertificate: AppBlock = {
                       type: "object",
                       properties: {
                         RedirectFrom: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         RedirectTo: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -228,32 +222,38 @@ const describeCertificate: AppBlock = {
                       type: "object",
                       properties: {
                         DomainName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ValidationEmails: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         ValidationDomain: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ValidationStatus: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ResourceRecord: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                            Type: {},
+                            Value: {},
+                          },
+                          required: ["Name", "Type", "Value"],
+                          additionalProperties: false,
                         },
                         HttpRedirect: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            RedirectFrom: {},
+                            RedirectTo: {},
+                          },
+                          additionalProperties: false,
                         },
                         ValidationMethod: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["DomainName"],

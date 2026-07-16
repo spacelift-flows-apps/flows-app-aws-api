@@ -161,12 +161,10 @@ const describeReservedInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Amount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       Frequency: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -181,12 +179,10 @@ const describeReservedInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

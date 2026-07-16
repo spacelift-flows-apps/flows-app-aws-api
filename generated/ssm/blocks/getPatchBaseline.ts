@@ -112,8 +112,7 @@ const getPatchBaseline: AppBlock = {
                     Values: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -139,8 +138,8 @@ const getPatchBaseline: AppBlock = {
                       type: "object",
                       properties: {
                         PatchFilters: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["PatchFilters"],

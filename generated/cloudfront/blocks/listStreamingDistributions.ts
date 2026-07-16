@@ -140,12 +140,10 @@ const listStreamingDistributions: AppBlock = {
                       type: "object",
                       properties: {
                         DomainName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OriginAccessIdentity: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["DomainName", "OriginAccessIdentity"],
@@ -155,12 +153,11 @@ const listStreamingDistributions: AppBlock = {
                       type: "object",
                       properties: {
                         Quantity: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["Quantity"],
@@ -170,16 +167,14 @@ const listStreamingDistributions: AppBlock = {
                       type: "object",
                       properties: {
                         Enabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         Quantity: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["Enabled", "Quantity"],

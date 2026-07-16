@@ -151,20 +151,16 @@ const listRecommendations: AppBlock = {
                     type: "object",
                     properties: {
                       Text: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Database: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Command: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -176,12 +172,10 @@ const listRecommendations: AppBlock = {
                     type: "object",
                     properties: {
                       Text: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Link: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

@@ -83,7 +83,95 @@ const modifyRedshiftIdcApplication: AppBlock = {
           type: {
             type: "array",
             items: {
-              type: "string",
+              oneOf: [
+                {
+                  type: "object",
+                  properties: {
+                    LakeFormation: {
+                      type: "array",
+                      items: {
+                        oneOf: [
+                          {
+                            type: "object",
+                            properties: {
+                              LakeFormationQuery: {
+                                type: "object",
+                                properties: {
+                                  Authorization: {},
+                                },
+                                required: ["Authorization"],
+                                additionalProperties: false,
+                              },
+                            },
+                            required: ["LakeFormationQuery"],
+                            additionalProperties: false,
+                          },
+                        ],
+                      },
+                    },
+                  },
+                  required: ["LakeFormation"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    S3AccessGrants: {
+                      type: "array",
+                      items: {
+                        oneOf: [
+                          {
+                            type: "object",
+                            properties: {
+                              ReadWriteAccess: {
+                                type: "object",
+                                properties: {
+                                  Authorization: {},
+                                },
+                                required: ["Authorization"],
+                                additionalProperties: false,
+                              },
+                            },
+                            required: ["ReadWriteAccess"],
+                            additionalProperties: false,
+                          },
+                        ],
+                      },
+                    },
+                  },
+                  required: ["S3AccessGrants"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    Redshift: {
+                      type: "array",
+                      items: {
+                        oneOf: [
+                          {
+                            type: "object",
+                            properties: {
+                              Connect: {
+                                type: "object",
+                                properties: {
+                                  Authorization: {},
+                                },
+                                required: ["Authorization"],
+                                additionalProperties: false,
+                              },
+                            },
+                            required: ["Connect"],
+                            additionalProperties: false,
+                          },
+                        ],
+                      },
+                    },
+                  },
+                  required: ["Redshift"],
+                  additionalProperties: false,
+                },
+              ],
             },
           },
           required: false,
@@ -186,8 +274,7 @@ const modifyRedshiftIdcApplication: AppBlock = {
                     AuthorizedAudiencesList: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -195,6 +282,97 @@ const modifyRedshiftIdcApplication: AppBlock = {
                 },
               },
               ServiceIntegrations: {
+                type: "array",
+                items: {
+                  oneOf: [
+                    {
+                      type: "object",
+                      properties: {
+                        LakeFormation: {
+                          type: "array",
+                          items: {
+                            oneOf: [
+                              {
+                                type: "object",
+                                properties: {
+                                  LakeFormationQuery: {},
+                                },
+                                required: ["LakeFormationQuery"],
+                                additionalProperties: false,
+                              },
+                            ],
+                          },
+                        },
+                      },
+                      required: ["LakeFormation"],
+                      additionalProperties: false,
+                    },
+                    {
+                      type: "object",
+                      properties: {
+                        S3AccessGrants: {
+                          type: "array",
+                          items: {
+                            oneOf: [
+                              {
+                                type: "object",
+                                properties: {
+                                  ReadWriteAccess: {},
+                                },
+                                required: ["ReadWriteAccess"],
+                                additionalProperties: false,
+                              },
+                            ],
+                          },
+                        },
+                      },
+                      required: ["S3AccessGrants"],
+                      additionalProperties: false,
+                    },
+                    {
+                      type: "object",
+                      properties: {
+                        Redshift: {
+                          type: "array",
+                          items: {
+                            oneOf: [
+                              {
+                                type: "object",
+                                properties: {
+                                  Connect: {},
+                                },
+                                required: ["Connect"],
+                                additionalProperties: false,
+                              },
+                            ],
+                          },
+                        },
+                      },
+                      required: ["Redshift"],
+                      additionalProperties: false,
+                    },
+                  ],
+                },
+              },
+              ApplicationType: {
+                type: "string",
+              },
+              Tags: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    Key: {
+                      type: "string",
+                    },
+                    Value: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              SsoTagKeys: {
                 type: "array",
                 items: {
                   type: "string",

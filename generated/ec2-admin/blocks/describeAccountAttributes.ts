@@ -116,8 +116,7 @@ const describeAccountAttributes: AppBlock = {
                     type: "object",
                     properties: {
                       AttributeValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

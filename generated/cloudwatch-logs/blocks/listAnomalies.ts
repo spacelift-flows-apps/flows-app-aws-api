@@ -158,12 +158,10 @@ const listAnomalies: AppBlock = {
                     type: "object",
                     properties: {
                       timestamp: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       message: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -175,24 +173,22 @@ const listAnomalies: AppBlock = {
                     type: "object",
                     properties: {
                       dynamicTokenPosition: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       isDynamic: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       tokenString: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       enumerations: {
                         type: "object",
-                        additionalProperties: true,
+                        additionalProperties: {
+                          type: "object",
+                        },
                       },
                       inferredTokenName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

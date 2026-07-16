@@ -27,7 +27,7 @@ const describeStackSet: AppBlock = {
         StackSetName: {
           name: "Stack Set Name",
           description:
-            "The name or unique ID of the stack set whose description you want.",
+            "The name or unique ID of the StackSet whose description you want.",
           type: "string",
           required: true,
         },
@@ -205,6 +205,12 @@ const describeStackSet: AppBlock = {
                   RetainStacksOnAccountRemoval: {
                     type: "boolean",
                   },
+                  DependsOn: {
+                    type: "array",
+                    items: {
+                      type: "string",
+                    },
+                  },
                 },
                 additionalProperties: false,
               },
@@ -234,7 +240,7 @@ const describeStackSet: AppBlock = {
               },
             },
             additionalProperties: false,
-            description: "The specified stack set.",
+            description: "The specified StackSet.",
           },
         },
         additionalProperties: true,

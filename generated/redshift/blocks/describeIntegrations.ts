@@ -158,12 +158,10 @@ const describeIntegrations: AppBlock = {
                     type: "object",
                     properties: {
                       ErrorCode: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ErrorMessage: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["ErrorCode"],
@@ -191,12 +189,10 @@ const describeIntegrations: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

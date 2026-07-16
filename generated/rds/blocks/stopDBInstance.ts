@@ -107,9 +107,6 @@ const stopDBInstance: AppBlock = {
               DBInstanceStatus: {
                 type: "string",
               },
-              AutomaticRestartTime: {
-                type: "string",
-              },
               MasterUsername: {
                 type: "string",
               },
@@ -212,20 +209,24 @@ const stopDBInstance: AppBlock = {
                       type: "object",
                       properties: {
                         SubnetIdentifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SubnetAvailabilityZone: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubnetOutpost: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Arn: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubnetStatus: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -244,6 +245,9 @@ const stopDBInstance: AppBlock = {
                 additionalProperties: false,
               },
               PreferredMaintenanceWindow: {
+                type: "string",
+              },
+              UpgradeRolloutOrder: {
                 type: "string",
               },
               PendingModifiedValues: {
@@ -276,6 +280,9 @@ const stopDBInstance: AppBlock = {
                   Iops: {
                     type: "number",
                   },
+                  StorageThroughput: {
+                    type: "number",
+                  },
                   DBInstanceIdentifier: {
                     type: "string",
                   },
@@ -294,15 +301,13 @@ const stopDBInstance: AppBlock = {
                       LogTypesToEnable: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       LogTypesToDisable: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -314,19 +319,14 @@ const stopDBInstance: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
                     },
-                  },
-                  IAMDatabaseAuthenticationEnabled: {
-                    type: "boolean",
                   },
                   AutomationMode: {
                     type: "string",
@@ -334,17 +334,45 @@ const stopDBInstance: AppBlock = {
                   ResumeFullAutomationModeTime: {
                     type: "string",
                   },
-                  StorageThroughput: {
-                    type: "number",
+                  MultiTenant: {
+                    type: "boolean",
                   },
-                  Engine: {
-                    type: "string",
+                  IAMDatabaseAuthenticationEnabled: {
+                    type: "boolean",
                   },
                   DedicatedLogVolume: {
                     type: "boolean",
                   },
-                  MultiTenant: {
-                    type: "boolean",
+                  Engine: {
+                    type: "string",
+                  },
+                  AdditionalStorageVolumes: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      properties: {
+                        VolumeName: {
+                          type: "string",
+                        },
+                        AllocatedStorage: {
+                          type: "number",
+                        },
+                        IOPS: {
+                          type: "number",
+                        },
+                        MaxAllocatedStorage: {
+                          type: "number",
+                        },
+                        StorageThroughput: {
+                          type: "number",
+                        },
+                        StorageType: {
+                          type: "string",
+                        },
+                      },
+                      required: ["VolumeName"],
+                      additionalProperties: false,
+                    },
                   },
                 },
                 additionalProperties: false,
@@ -383,6 +411,9 @@ const stopDBInstance: AppBlock = {
                 type: "string",
               },
               Iops: {
+                type: "number",
+              },
+              StorageThroughput: {
                 type: "number",
               },
               OptionGroupMemberships: {
@@ -436,6 +467,9 @@ const stopDBInstance: AppBlock = {
               StorageType: {
                 type: "string",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               TdeCredentialArn: {
                 type: "string",
               },
@@ -483,8 +517,7 @@ const stopDBInstance: AppBlock = {
                     DnsIps: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -602,22 +635,16 @@ const stopDBInstance: AppBlock = {
                   additionalProperties: false,
                 },
               },
-              DBInstanceAutomatedBackupsReplications: {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: {
-                    DBInstanceAutomatedBackupsArn: {
-                      type: "string",
-                    },
-                  },
-                  additionalProperties: false,
-                },
+              AutomationMode: {
+                type: "string",
+              },
+              ResumeFullAutomationModeTime: {
+                type: "string",
               },
               CustomerOwnedIpEnabled: {
                 type: "boolean",
               },
-              AwsBackupRecoveryPointArn: {
+              NetworkType: {
                 type: "string",
               },
               ActivityStreamStatus: {
@@ -635,26 +662,44 @@ const stopDBInstance: AppBlock = {
               ActivityStreamEngineNativeAuditFieldsIncluded: {
                 type: "boolean",
               },
-              AutomationMode: {
+              AwsBackupRecoveryPointArn: {
                 type: "string",
               },
-              ResumeFullAutomationModeTime: {
+              DBInstanceAutomatedBackupsReplications: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    DBInstanceAutomatedBackupsArn: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              BackupTarget: {
+                type: "string",
+              },
+              AutomaticRestartTime: {
                 type: "string",
               },
               CustomIamInstanceProfile: {
                 type: "string",
               },
-              BackupTarget: {
-                type: "string",
-              },
-              NetworkType: {
-                type: "string",
-              },
               ActivityStreamPolicyStatus: {
                 type: "string",
               },
-              StorageThroughput: {
-                type: "number",
+              CertificateDetails: {
+                type: "object",
+                properties: {
+                  CAIdentifier: {
+                    type: "string",
+                  },
+                  ValidTill: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
               },
               DBSystemId: {
                 type: "string",
@@ -674,23 +719,14 @@ const stopDBInstance: AppBlock = {
                 },
                 additionalProperties: false,
               },
-              CertificateDetails: {
-                type: "object",
-                properties: {
-                  CAIdentifier: {
-                    type: "string",
-                  },
-                  ValidTill: {
-                    type: "string",
-                  },
-                },
-                additionalProperties: false,
-              },
               ReadReplicaSourceDBClusterIdentifier: {
                 type: "string",
               },
               PercentProgress: {
                 type: "string",
+              },
+              MultiTenant: {
+                type: "boolean",
               },
               DedicatedLogVolume: {
                 type: "boolean",
@@ -698,10 +734,40 @@ const stopDBInstance: AppBlock = {
               IsStorageConfigUpgradeAvailable: {
                 type: "boolean",
               },
-              MultiTenant: {
-                type: "boolean",
-              },
               EngineLifecycleSupport: {
+                type: "string",
+              },
+              AdditionalStorageVolumes: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    VolumeName: {
+                      type: "string",
+                    },
+                    StorageVolumeStatus: {
+                      type: "string",
+                    },
+                    AllocatedStorage: {
+                      type: "number",
+                    },
+                    IOPS: {
+                      type: "number",
+                    },
+                    MaxAllocatedStorage: {
+                      type: "number",
+                    },
+                    StorageThroughput: {
+                      type: "number",
+                    },
+                    StorageType: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              StorageVolumeStatus: {
                 type: "string",
               },
             },

@@ -4,6 +4,7 @@ import {
   CreateCapacityReservationFleetCommand,
 } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const createCapacityReservationFleet: AppBlock = {
   name: "Create Capacity Reservation Fleet",
@@ -119,12 +120,10 @@ const createCapacityReservationFleet: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -187,7 +186,7 @@ const createCapacityReservationFleet: AppBlock = {
         });
 
         const command = new CreateCapacityReservationFleetCommand(
-          commandInput as any,
+          convertTimestamps(commandInput, new Set(["EndDate"])) as any,
         );
         const response = await client.send(command);
 

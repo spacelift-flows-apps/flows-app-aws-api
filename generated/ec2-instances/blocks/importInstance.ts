@@ -73,6 +73,9 @@ const importInstance: AppBlock = {
               Placement: {
                 type: "object",
                 properties: {
+                  AvailabilityZoneId: {
+                    type: "string",
+                  },
                   Affinity: {
                     type: "string",
                   },
@@ -254,32 +257,40 @@ const importInstance: AppBlock = {
                       type: "object",
                       properties: {
                         AvailabilityZone: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
+                        },
+                        AvailabilityZoneId: {
+                          type: "string",
                         },
                         BytesConverted: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Description: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Image: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Checksum: {},
+                            Format: {},
+                            ImportManifestUrl: {},
+                            Size: {},
+                          },
+                          additionalProperties: false,
                         },
                         Status: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         StatusMessage: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Volume: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Id: {},
+                            Size: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -292,6 +303,9 @@ const importInstance: AppBlock = {
                 type: "object",
                 properties: {
                   AvailabilityZone: {
+                    type: "string",
+                  },
+                  AvailabilityZoneId: {
                     type: "string",
                   },
                   BytesConverted: {

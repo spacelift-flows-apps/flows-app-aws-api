@@ -129,16 +129,27 @@ const listOriginRequestPolicies: AppBlock = {
                       type: "object",
                       properties: {
                         Id: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LastModifiedTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OriginRequestPolicyConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Comment: {},
+                            Name: {},
+                            HeadersConfig: {},
+                            CookiesConfig: {},
+                            QueryStringsConfig: {},
+                          },
+                          required: [
+                            "Name",
+                            "HeadersConfig",
+                            "CookiesConfig",
+                            "QueryStringsConfig",
+                          ],
+                          additionalProperties: false,
                         },
                       },
                       required: [

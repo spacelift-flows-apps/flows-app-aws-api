@@ -2,10 +2,11 @@ import { AppBlock, events } from "@slflows/sdk/v1";
 import { S3Client, CreateMultipartUploadCommand } from "@aws-sdk/client-s3";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const createMultipartUpload: AppBlock = {
   name: "Create Multipart Upload",
-  description: `End of support notice: Beginning October 1, 2025, Amazon S3 will discontinue support for creating new Email Grantee Access Control Lists (ACL).`,
+  description: `End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs).`,
   inputs: {
     default: {
       config: {
@@ -281,7 +282,12 @@ const createMultipartUpload: AppBlock = {
           }),
         });
 
-        const command = new CreateMultipartUploadCommand(commandInput as any);
+        const command = new CreateMultipartUploadCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["ObjectLockRetainUntilDate"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         // Safely serialize response by handling circular references and streams

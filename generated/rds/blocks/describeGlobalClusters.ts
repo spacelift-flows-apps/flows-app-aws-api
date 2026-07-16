@@ -161,6 +161,9 @@ const describeGlobalClusters: AppBlock = {
                 StorageEncrypted: {
                   type: "boolean",
                 },
+                StorageEncryptionType: {
+                  type: "string",
+                },
                 DeletionProtection: {
                   type: "boolean",
                 },
@@ -170,24 +173,20 @@ const describeGlobalClusters: AppBlock = {
                     type: "object",
                     properties: {
                       DBClusterArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Readers: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       IsWriter: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       GlobalWriteForwardingStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SynchronizationStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -220,12 +219,10 @@ const describeGlobalClusters: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

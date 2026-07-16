@@ -4,6 +4,7 @@ import {
   DescribeAlarmHistoryCommand,
 } from "@aws-sdk/client-cloudwatch";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const describeAlarmHistory: AppBlock = {
   name: "Describe Alarm History",
@@ -27,6 +28,13 @@ const describeAlarmHistory: AppBlock = {
         AlarmName: {
           name: "Alarm Name",
           description: "The name of the alarm.",
+          type: "string",
+          required: false,
+        },
+        AlarmContributorId: {
+          name: "Alarm Contributor Id",
+          description:
+            "The unique identifier of a specific alarm contributor to filter the alarm history results.",
           type: "string",
           required: false,
         },
@@ -124,7 +132,12 @@ const describeAlarmHistory: AppBlock = {
           }),
         });
 
-        const command = new DescribeAlarmHistoryCommand(commandInput as any);
+        const command = new DescribeAlarmHistoryCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["StartDate", "EndDate"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});
@@ -147,6 +160,9 @@ const describeAlarmHistory: AppBlock = {
                 AlarmName: {
                   type: "string",
                 },
+                AlarmContributorId: {
+                  type: "string",
+                },
                 AlarmType: {
                   type: "string",
                 },
@@ -161,6 +177,12 @@ const describeAlarmHistory: AppBlock = {
                 },
                 HistoryData: {
                   type: "string",
+                },
+                AlarmContributorAttributes: {
+                  type: "object",
+                  additionalProperties: {
+                    type: "string",
+                  },
                 },
               },
               additionalProperties: false,

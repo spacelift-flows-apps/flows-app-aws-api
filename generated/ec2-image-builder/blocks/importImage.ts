@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { EC2Client, ImportImageCommand } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const importImage: AppBlock = {
   name: "Import Image",
@@ -186,12 +187,10 @@ const importImage: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -258,7 +257,12 @@ const importImage: AppBlock = {
           }),
         });
 
-        const command = new ImportImageCommand(commandInput as any);
+        const command = new ImportImageCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["UploadEnd", "UploadStart"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

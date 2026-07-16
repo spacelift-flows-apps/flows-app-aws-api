@@ -4,6 +4,7 @@ import {
   DescribeCapacityBlockOfferingsCommand,
 } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const describeCapacityBlockOfferings: AppBlock = {
   name: "Describe Capacity Block Offerings",
@@ -90,6 +91,13 @@ const describeCapacityBlockOfferings: AppBlock = {
           type: "number",
           required: false,
         },
+        AllAvailabilityZones: {
+          name: "All Availability Zones",
+          description:
+            "Include all Availability Zones and Local Zones, regardless of your opt-in status.",
+          type: "boolean",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -134,7 +142,10 @@ const describeCapacityBlockOfferings: AppBlock = {
         });
 
         const command = new DescribeCapacityBlockOfferingsCommand(
-          commandInput as any,
+          convertTimestamps(
+            commandInput,
+            new Set(["StartDateRange", "EndDateRange"]),
+          ) as any,
         );
         const response = await client.send(command);
 
@@ -193,6 +204,9 @@ const describeCapacityBlockOfferings: AppBlock = {
                 },
                 CapacityBlockDurationMinutes: {
                   type: "number",
+                },
+                ZoneType: {
+                  type: "string",
                 },
               },
               additionalProperties: false,

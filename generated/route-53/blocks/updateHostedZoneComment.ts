@@ -134,6 +134,24 @@ const updateHostedZoneComment: AppBlock = {
                 },
                 additionalProperties: false,
               },
+              Features: {
+                type: "object",
+                properties: {
+                  AcceleratedRecoveryStatus: {
+                    type: "string",
+                  },
+                  FailureReasons: {
+                    type: "object",
+                    properties: {
+                      AcceleratedRecovery: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                additionalProperties: false,
+              },
             },
             required: ["Id", "Name", "CallerReference"],
             additionalProperties: false,

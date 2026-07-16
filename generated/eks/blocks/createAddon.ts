@@ -101,6 +101,20 @@ const createAddon: AppBlock = {
           },
           required: false,
         },
+        namespaceConfig: {
+          name: "namespace Config",
+          description: "The namespace configuration for the addon.",
+          type: {
+            type: "object",
+            properties: {
+              namespace: {
+                type: "string",
+              },
+            },
+            additionalProperties: false,
+          },
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -183,16 +197,14 @@ const createAddon: AppBlock = {
                       type: "object",
                       properties: {
                         code: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         message: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         resourceIds: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -245,6 +257,15 @@ const createAddon: AppBlock = {
                 items: {
                   type: "string",
                 },
+              },
+              namespaceConfig: {
+                type: "object",
+                properties: {
+                  namespace: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
               },
             },
             additionalProperties: false,

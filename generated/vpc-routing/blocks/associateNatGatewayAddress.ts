@@ -61,6 +61,20 @@ const associateNatGatewayAddress: AppBlock = {
           type: "boolean",
           required: false,
         },
+        AvailabilityZone: {
+          name: "Availability Zone",
+          description:
+            "For regional NAT gateways only: The Availability Zone where you want to associate an Elastic IP address (EIP).",
+          type: "string",
+          required: false,
+        },
+        AvailabilityZoneId: {
+          name: "Availability Zone Id",
+          description:
+            "For regional NAT gateways only: The ID of the Availability Zone where you want to associate an Elastic IP address (EIP).",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -152,6 +166,12 @@ const associateNatGatewayAddress: AppBlock = {
                   type: "string",
                 },
                 Status: {
+                  type: "string",
+                },
+                AvailabilityZone: {
+                  type: "string",
+                },
+                AvailabilityZoneId: {
                   type: "string",
                 },
               },

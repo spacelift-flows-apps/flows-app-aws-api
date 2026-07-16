@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const declineHandshake: AppBlock = {
   name: "Decline Handshake",
-  description: `Declines a handshake request.`,
+  description: `Declines a Handshake.`,
   inputs: {
     default: {
       config: {
@@ -26,8 +26,7 @@ const declineHandshake: AppBlock = {
         },
         HandshakeId: {
           name: "Handshake Id",
-          description:
-            "The unique identifier (ID) of the handshake that you want to decline.",
+          description: "ID for the handshake that you want to decline.",
           type: "string",
           required: true,
         },
@@ -141,7 +140,12 @@ const declineHandshake: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Value: {},
+                          Type: {},
+                          Resources: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -150,8 +154,7 @@ const declineHandshake: AppBlock = {
               },
             },
             additionalProperties: false,
-            description:
-              "A structure that contains details about the declined handshake.",
+            description: "A Handshake object.",
           },
         },
         additionalProperties: true,

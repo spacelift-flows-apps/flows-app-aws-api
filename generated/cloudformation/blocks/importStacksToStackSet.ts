@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const importStacksToStackSet: AppBlock = {
   name: "Import Stacks To Stack Set",
-  description: `Import existing stacks into a new stack sets.`,
+  description: `Import existing stacks into a new StackSets.`,
   inputs: {
     default: {
       config: {
@@ -26,14 +26,14 @@ const importStacksToStackSet: AppBlock = {
         },
         StackSetName: {
           name: "Stack Set Name",
-          description: "The name of the stack set.",
+          description: "The name of the StackSet.",
           type: "string",
           required: true,
         },
         StackIds: {
           name: "Stack Ids",
           description:
-            "The IDs of the stacks you are importing into a stack set.",
+            "The IDs of the stacks you are importing into a StackSet.",
           type: {
             type: "array",
             items: {
@@ -52,7 +52,7 @@ const importStacksToStackSet: AppBlock = {
         OrganizationalUnitIds: {
           name: "Organizational Unit Ids",
           description:
-            "The list of OU ID's to which the stacks being imported has to be mapped as deployment target.",
+            "The list of OU ID's to which the imported stacks must be mapped as deployment targets.",
           type: {
             type: "array",
             items: {
@@ -64,7 +64,7 @@ const importStacksToStackSet: AppBlock = {
         OperationPreferences: {
           name: "Operation Preferences",
           description:
-            "The user-specified preferences for how CloudFormation performs a stack set operation.",
+            "The user-specified preferences for how CloudFormation performs a StackSet operation.",
           type: {
             type: "object",
             properties: {
@@ -100,7 +100,7 @@ const importStacksToStackSet: AppBlock = {
         OperationId: {
           name: "Operation Id",
           description:
-            "A unique, user defined, identifier for the stack set operation.",
+            "A unique, user defined, identifier for the StackSet operation.",
           type: "string",
           required: false,
         },
@@ -170,7 +170,7 @@ const importStacksToStackSet: AppBlock = {
         properties: {
           OperationId: {
             type: "string",
-            description: "The unique identifier for the stack set operation.",
+            description: "The unique identifier for the StackSet operation.",
           },
         },
         additionalProperties: true,

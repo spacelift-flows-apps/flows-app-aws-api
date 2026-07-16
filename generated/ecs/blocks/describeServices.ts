@@ -129,24 +129,26 @@ const describeServices: AppBlock = {
                     type: "object",
                     properties: {
                       targetGroupArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       loadBalancerName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       containerName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       containerPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       advancedConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          alternateTargetGroupArn: {},
+                          productionListenerRule: {},
+                          testListenerRule: {},
+                          roleArn: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     additionalProperties: false,
@@ -158,20 +160,16 @@ const describeServices: AppBlock = {
                     type: "object",
                     properties: {
                       registryArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       port: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       containerName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       containerPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     additionalProperties: false,
@@ -198,16 +196,13 @@ const describeServices: AppBlock = {
                     type: "object",
                     properties: {
                       capacityProvider: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       weight: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       base: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     required: ["capacityProvider"],
@@ -230,12 +225,10 @@ const describeServices: AppBlock = {
                       type: "object",
                       properties: {
                         enable: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         rollback: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       required: ["enable", "rollback"],
@@ -251,16 +244,14 @@ const describeServices: AppBlock = {
                       type: "object",
                       properties: {
                         alarmNames: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         rollback: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         enable: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       required: ["alarmNames", "rollback", "enable"],
@@ -276,8 +267,38 @@ const describeServices: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          hookTargetArn: {},
+                          roleArn: {},
+                          lifecycleStages: {},
+                          hookDetails: {},
+                        },
+                        additionalProperties: false,
                       },
+                    },
+                    linearConfiguration: {
+                      type: "object",
+                      properties: {
+                        stepPercent: {
+                          type: "number",
+                        },
+                        stepBakeTimeInMinutes: {
+                          type: "number",
+                        },
+                      },
+                      additionalProperties: false,
+                    },
+                    canaryConfiguration: {
+                      type: "object",
+                      properties: {
+                        canaryPercent: {
+                          type: "number",
+                        },
+                        canaryBakeTimeInMinutes: {
+                          type: "number",
+                        },
+                      },
+                      additionalProperties: false,
                     },
                   },
                   additionalProperties: false,
@@ -288,104 +309,96 @@ const describeServices: AppBlock = {
                     type: "object",
                     properties: {
                       id: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       taskSetArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       serviceArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       clusterArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       startedBy: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       externalId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       taskDefinition: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       computedDesiredCount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       pendingCount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       runningCount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       createdAt: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       updatedAt: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       launchType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       capacityProviderStrategy: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       platformVersion: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       platformFamily: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       networkConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          awsvpcConfiguration: {},
+                        },
+                        additionalProperties: false,
                       },
                       loadBalancers: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       serviceRegistries: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       scale: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          value: {},
+                          unit: {},
+                        },
+                        additionalProperties: false,
                       },
                       stabilityStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       stabilityStatusAt: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       tags: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       fargateEphemeralStorage: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          kmsKeyId: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     additionalProperties: false,
@@ -397,88 +410,88 @@ const describeServices: AppBlock = {
                     type: "object",
                     properties: {
                       id: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       taskDefinition: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       desiredCount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       pendingCount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       runningCount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       failedTasks: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       createdAt: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       updatedAt: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       capacityProviderStrategy: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       launchType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       platformVersion: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       platformFamily: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       networkConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          awsvpcConfiguration: {},
+                        },
+                        additionalProperties: false,
                       },
                       rolloutState: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       rolloutStateReason: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       serviceConnectConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          enabled: {},
+                          namespace: {},
+                          services: {},
+                          logConfiguration: {},
+                          accessLogConfiguration: {},
+                        },
+                        required: ["enabled"],
+                        additionalProperties: false,
                       },
                       serviceConnectResources: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       volumeConfigurations: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       fargateEphemeralStorage: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          kmsKeyId: {},
+                        },
+                        additionalProperties: false,
                       },
                       vpcLatticeConfigurations: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -493,16 +506,13 @@ const describeServices: AppBlock = {
                     type: "object",
                     properties: {
                       id: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       createdAt: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       message: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -511,18 +521,40 @@ const describeServices: AppBlock = {
                 createdAt: {
                   type: "string",
                 },
+                currentServiceDeployment: {
+                  type: "string",
+                },
+                currentServiceRevisions: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      arn: {
+                        type: "string",
+                      },
+                      requestedTaskCount: {
+                        type: "number",
+                      },
+                      runningTaskCount: {
+                        type: "number",
+                      },
+                      pendingTaskCount: {
+                        type: "number",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
                 placementConstraints: {
                   type: "array",
                   items: {
                     type: "object",
                     properties: {
                       type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       expression: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -534,12 +566,10 @@ const describeServices: AppBlock = {
                     type: "object",
                     properties: {
                       type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       field: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -552,16 +582,15 @@ const describeServices: AppBlock = {
                       type: "object",
                       properties: {
                         subnets: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         securityGroups: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         assignPublicIp: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["subnets"],
@@ -592,12 +621,10 @@ const describeServices: AppBlock = {
                     type: "object",
                     properties: {
                       key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -616,6 +643,9 @@ const describeServices: AppBlock = {
                   type: "boolean",
                 },
                 availabilityZoneRebalancing: {
+                  type: "string",
+                },
+                resourceManagementType: {
                   type: "string",
                 },
               },

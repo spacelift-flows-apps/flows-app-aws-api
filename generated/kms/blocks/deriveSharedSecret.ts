@@ -24,7 +24,7 @@ const deriveSharedSecret: AppBlock = {
         KeyId: {
           name: "Key Id",
           description:
-            "Identifies an asymmetric NIST-recommended ECC or SM2 (China Regions only) KMS key.",
+            "Identifies an asymmetric NIST-standard ECC or SM2 (China Regions only) KMS key.",
           type: "string",
           required: true,
         },
@@ -38,7 +38,7 @@ const deriveSharedSecret: AppBlock = {
         PublicKey: {
           name: "Public Key",
           description:
-            "Specifies the public key in your peer's NIST-recommended elliptic curve (ECC) or SM2 (China Regions only) key pair.",
+            "Specifies the public key in your peer's NIST-standard elliptic curve (ECC) or SM2 (China Regions only) key pair.",
           type: "string",
           required: true,
         },
@@ -62,7 +62,7 @@ const deriveSharedSecret: AppBlock = {
         Recipient: {
           name: "Recipient",
           description:
-            "A signed attestation document from an Amazon Web Services Nitro enclave and the encryption algorithm to use with the enclave's public key.",
+            "A signed attestation document from an Amazon Web Services Nitro enclave or NitroTPM, and the encryption algorithm to use with the public key in the attestation document.",
           type: {
             type: "object",
             properties: {
@@ -148,7 +148,7 @@ const deriveSharedSecret: AppBlock = {
           CiphertextForRecipient: {
             type: "string",
             description:
-              "The plaintext shared secret encrypted with the public key in the attestation document.",
+              "The plaintext shared secret encrypted with the public key from the attestation document.",
           },
           KeyAgreementAlgorithm: {
             type: "string",

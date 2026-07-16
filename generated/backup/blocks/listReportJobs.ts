@@ -161,8 +161,7 @@ const listReportJobs: AppBlock = {
                     S3Keys: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

@@ -144,28 +144,30 @@ const describeRouteTables: AppBlock = {
                     type: "object",
                     properties: {
                       Main: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       RouteTableAssociationId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       RouteTableId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SubnetId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       GatewayId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
+                      },
+                      PublicIpv4Pool: {
+                        type: "string",
                       },
                       AssociationState: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          State: {},
+                          StatusMessage: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     additionalProperties: false,
@@ -177,8 +179,7 @@ const describeRouteTables: AppBlock = {
                     type: "object",
                     properties: {
                       GatewayId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -193,76 +194,58 @@ const describeRouteTables: AppBlock = {
                     type: "object",
                     properties: {
                       DestinationCidrBlock: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DestinationIpv6CidrBlock: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DestinationPrefixListId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EgressOnlyInternetGatewayId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       GatewayId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       InstanceId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       InstanceOwnerId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       NatGatewayId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TransitGatewayId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       LocalGatewayId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CarrierGatewayId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       NetworkInterfaceId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Origin: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       State: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       VpcPeeringConnectionId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CoreNetworkArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       OdbNetworkArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IpAddress: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -274,12 +257,10 @@ const describeRouteTables: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

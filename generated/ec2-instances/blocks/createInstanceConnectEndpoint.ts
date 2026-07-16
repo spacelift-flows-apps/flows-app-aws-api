@@ -82,12 +82,10 @@ const createInstanceConnectEndpoint: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -232,6 +230,39 @@ const createInstanceConnectEndpoint: AppBlock = {
                 },
               },
               IpAddressType: {
+                type: "string",
+              },
+              PublicDnsNames: {
+                type: "object",
+                properties: {
+                  Ipv4: {
+                    type: "object",
+                    properties: {
+                      DnsName: {
+                        type: "string",
+                      },
+                      FipsDnsName: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                  Dualstack: {
+                    type: "object",
+                    properties: {
+                      DnsName: {
+                        type: "string",
+                      },
+                      FipsDnsName: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                additionalProperties: false,
+              },
+              AvailabilityZoneId: {
                 type: "string",
               },
             },

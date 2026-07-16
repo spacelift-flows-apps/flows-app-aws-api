@@ -79,6 +79,13 @@ const createDBInstanceReadReplica: AppBlock = {
           type: "number",
           required: false,
         },
+        StorageThroughput: {
+          name: "Storage Throughput",
+          description:
+            "Specifies the storage throughput value for the read replica.",
+          type: "number",
+          required: false,
+        },
         OptionGroupName: {
           name: "Option Group Name",
           description: "The option group to associate the DB instance with.",
@@ -313,18 +320,11 @@ const createDBInstanceReadReplica: AppBlock = {
           type: "string",
           required: false,
         },
-        MaxAllocatedStorage: {
-          name: "Max Allocated Storage",
+        EnableCustomerOwnedIp: {
+          name: "Enable Customer Owned Ip",
           description:
-            "The upper limit in gibibytes (GiB) to which Amazon RDS can automatically scale the storage of the DB instance.",
-          type: "number",
-          required: false,
-        },
-        CustomIamInstanceProfile: {
-          name: "Custom Iam Instance Profile",
-          description:
-            "The instance profile associated with the underlying Amazon EC2 instance of an RDS Custom DB instance.",
-          type: "string",
+            "Specifies whether to enable a customer-owned IP address (CoIP) for an RDS on Outposts read replica.",
+          type: "boolean",
           required: false,
         },
         NetworkType: {
@@ -333,24 +333,24 @@ const createDBInstanceReadReplica: AppBlock = {
           type: "string",
           required: false,
         },
-        StorageThroughput: {
-          name: "Storage Throughput",
+        MaxAllocatedStorage: {
+          name: "Max Allocated Storage",
           description:
-            "Specifies the storage throughput value for the read replica.",
+            "The upper limit in gibibytes (GiB) to which Amazon RDS can automatically scale the storage of the DB instance.",
           type: "number",
-          required: false,
-        },
-        EnableCustomerOwnedIp: {
-          name: "Enable Customer Owned Ip",
-          description:
-            "Specifies whether to enable a customer-owned IP address (CoIP) for an RDS on Outposts read replica.",
-          type: "boolean",
           required: false,
         },
         BackupTarget: {
           name: "Backup Target",
           description:
             "The location where RDS stores automated backups and manual snapshots.",
+          type: "string",
+          required: false,
+        },
+        CustomIamInstanceProfile: {
+          name: "Custom Iam Instance Profile",
+          description:
+            "The instance profile associated with the underlying Amazon EC2 instance of an RDS Custom DB instance.",
           type: "string",
           required: false,
         },
@@ -387,6 +387,73 @@ const createDBInstanceReadReplica: AppBlock = {
           description:
             "The CA certificate identifier to use for the read replica's server certificate.",
           type: "string",
+          required: false,
+        },
+        AdditionalStorageVolumes: {
+          name: "Additional Storage Volumes",
+          description:
+            "A list of additional storage volumes to create for the DB instance.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                VolumeName: {
+                  type: "string",
+                },
+                AllocatedStorage: {
+                  type: "number",
+                },
+                IOPS: {
+                  type: "number",
+                },
+                MaxAllocatedStorage: {
+                  type: "number",
+                },
+                StorageThroughput: {
+                  type: "number",
+                },
+                StorageType: {
+                  type: "string",
+                },
+              },
+              required: ["VolumeName"],
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
+        TagSpecifications: {
+          name: "Tag Specifications",
+          description:
+            "Tags to assign to resources associated with the DB instance.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                ResourceType: {
+                  type: "string",
+                },
+                Tags: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Key: {
+                        type: "string",
+                      },
+                      Value: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+              },
+              additionalProperties: false,
+            },
+          },
           required: false,
         },
       },
@@ -462,9 +529,6 @@ const createDBInstanceReadReplica: AppBlock = {
                 type: "string",
               },
               DBInstanceStatus: {
-                type: "string",
-              },
-              AutomaticRestartTime: {
                 type: "string",
               },
               MasterUsername: {
@@ -569,20 +633,24 @@ const createDBInstanceReadReplica: AppBlock = {
                       type: "object",
                       properties: {
                         SubnetIdentifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SubnetAvailabilityZone: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubnetOutpost: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Arn: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubnetStatus: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -601,6 +669,9 @@ const createDBInstanceReadReplica: AppBlock = {
                 additionalProperties: false,
               },
               PreferredMaintenanceWindow: {
+                type: "string",
+              },
+              UpgradeRolloutOrder: {
                 type: "string",
               },
               PendingModifiedValues: {
@@ -633,6 +704,9 @@ const createDBInstanceReadReplica: AppBlock = {
                   Iops: {
                     type: "number",
                   },
+                  StorageThroughput: {
+                    type: "number",
+                  },
                   DBInstanceIdentifier: {
                     type: "string",
                   },
@@ -651,15 +725,13 @@ const createDBInstanceReadReplica: AppBlock = {
                       LogTypesToEnable: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       LogTypesToDisable: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -671,19 +743,14 @@ const createDBInstanceReadReplica: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
                     },
-                  },
-                  IAMDatabaseAuthenticationEnabled: {
-                    type: "boolean",
                   },
                   AutomationMode: {
                     type: "string",
@@ -691,17 +758,45 @@ const createDBInstanceReadReplica: AppBlock = {
                   ResumeFullAutomationModeTime: {
                     type: "string",
                   },
-                  StorageThroughput: {
-                    type: "number",
+                  MultiTenant: {
+                    type: "boolean",
                   },
-                  Engine: {
-                    type: "string",
+                  IAMDatabaseAuthenticationEnabled: {
+                    type: "boolean",
                   },
                   DedicatedLogVolume: {
                     type: "boolean",
                   },
-                  MultiTenant: {
-                    type: "boolean",
+                  Engine: {
+                    type: "string",
+                  },
+                  AdditionalStorageVolumes: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      properties: {
+                        VolumeName: {
+                          type: "string",
+                        },
+                        AllocatedStorage: {
+                          type: "number",
+                        },
+                        IOPS: {
+                          type: "number",
+                        },
+                        MaxAllocatedStorage: {
+                          type: "number",
+                        },
+                        StorageThroughput: {
+                          type: "number",
+                        },
+                        StorageType: {
+                          type: "string",
+                        },
+                      },
+                      required: ["VolumeName"],
+                      additionalProperties: false,
+                    },
                   },
                 },
                 additionalProperties: false,
@@ -740,6 +835,9 @@ const createDBInstanceReadReplica: AppBlock = {
                 type: "string",
               },
               Iops: {
+                type: "number",
+              },
+              StorageThroughput: {
                 type: "number",
               },
               OptionGroupMemberships: {
@@ -793,6 +891,9 @@ const createDBInstanceReadReplica: AppBlock = {
               StorageType: {
                 type: "string",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               TdeCredentialArn: {
                 type: "string",
               },
@@ -840,8 +941,7 @@ const createDBInstanceReadReplica: AppBlock = {
                     DnsIps: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -959,22 +1059,16 @@ const createDBInstanceReadReplica: AppBlock = {
                   additionalProperties: false,
                 },
               },
-              DBInstanceAutomatedBackupsReplications: {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: {
-                    DBInstanceAutomatedBackupsArn: {
-                      type: "string",
-                    },
-                  },
-                  additionalProperties: false,
-                },
+              AutomationMode: {
+                type: "string",
+              },
+              ResumeFullAutomationModeTime: {
+                type: "string",
               },
               CustomerOwnedIpEnabled: {
                 type: "boolean",
               },
-              AwsBackupRecoveryPointArn: {
+              NetworkType: {
                 type: "string",
               },
               ActivityStreamStatus: {
@@ -992,26 +1086,44 @@ const createDBInstanceReadReplica: AppBlock = {
               ActivityStreamEngineNativeAuditFieldsIncluded: {
                 type: "boolean",
               },
-              AutomationMode: {
+              AwsBackupRecoveryPointArn: {
                 type: "string",
               },
-              ResumeFullAutomationModeTime: {
+              DBInstanceAutomatedBackupsReplications: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    DBInstanceAutomatedBackupsArn: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              BackupTarget: {
+                type: "string",
+              },
+              AutomaticRestartTime: {
                 type: "string",
               },
               CustomIamInstanceProfile: {
                 type: "string",
               },
-              BackupTarget: {
-                type: "string",
-              },
-              NetworkType: {
-                type: "string",
-              },
               ActivityStreamPolicyStatus: {
                 type: "string",
               },
-              StorageThroughput: {
-                type: "number",
+              CertificateDetails: {
+                type: "object",
+                properties: {
+                  CAIdentifier: {
+                    type: "string",
+                  },
+                  ValidTill: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
               },
               DBSystemId: {
                 type: "string",
@@ -1031,23 +1143,14 @@ const createDBInstanceReadReplica: AppBlock = {
                 },
                 additionalProperties: false,
               },
-              CertificateDetails: {
-                type: "object",
-                properties: {
-                  CAIdentifier: {
-                    type: "string",
-                  },
-                  ValidTill: {
-                    type: "string",
-                  },
-                },
-                additionalProperties: false,
-              },
               ReadReplicaSourceDBClusterIdentifier: {
                 type: "string",
               },
               PercentProgress: {
                 type: "string",
+              },
+              MultiTenant: {
+                type: "boolean",
               },
               DedicatedLogVolume: {
                 type: "boolean",
@@ -1055,10 +1158,40 @@ const createDBInstanceReadReplica: AppBlock = {
               IsStorageConfigUpgradeAvailable: {
                 type: "boolean",
               },
-              MultiTenant: {
-                type: "boolean",
-              },
               EngineLifecycleSupport: {
+                type: "string",
+              },
+              AdditionalStorageVolumes: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    VolumeName: {
+                      type: "string",
+                    },
+                    StorageVolumeStatus: {
+                      type: "string",
+                    },
+                    AllocatedStorage: {
+                      type: "number",
+                    },
+                    IOPS: {
+                      type: "number",
+                    },
+                    MaxAllocatedStorage: {
+                      type: "number",
+                    },
+                    StorageThroughput: {
+                      type: "number",
+                    },
+                    StorageType: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              StorageVolumeStatus: {
                 type: "string",
               },
             },

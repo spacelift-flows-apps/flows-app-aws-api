@@ -67,16 +67,13 @@ const startInstanceRefresh: AppBlock = {
                         type: "object",
                         properties: {
                           LaunchTemplateId: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           LaunchTemplateName: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           Version: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         additionalProperties: false,
@@ -85,7 +82,14 @@ const startInstanceRefresh: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            InstanceType: {},
+                            WeightedCapacity: {},
+                            LaunchTemplateSpecification: {},
+                            InstanceRequirements: {},
+                            ImageId: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                     },

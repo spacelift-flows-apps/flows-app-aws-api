@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const deactivateType: AppBlock = {
   name: "Deactivate Type",
-  description: `Deactivates a public extension that was previously activated in this account and Region.`,
+  description: `Deactivates a public third-party extension, such as a resource or module, or a CloudFormation Hook when you no longer use it.`,
   inputs: {
     default: {
       config: {
@@ -27,7 +27,7 @@ const deactivateType: AppBlock = {
         TypeName: {
           name: "Type Name",
           description:
-            "The type name of the extension, in this account and Region.",
+            "The type name of the extension in this account and Region.",
           type: "string",
           required: false,
         },
@@ -40,7 +40,7 @@ const deactivateType: AppBlock = {
         Arn: {
           name: "Arn",
           description:
-            "The Amazon Resource Name (ARN) for the extension, in this account and Region.",
+            "The Amazon Resource Name (ARN) for the extension in this account and Region.",
           type: "string",
           required: false,
         },

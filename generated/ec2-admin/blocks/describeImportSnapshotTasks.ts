@@ -186,12 +186,10 @@ const describeImportSnapshotTasks: AppBlock = {
                       type: "object",
                       properties: {
                         S3Bucket: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         S3Key: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -205,12 +203,10 @@ const describeImportSnapshotTasks: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

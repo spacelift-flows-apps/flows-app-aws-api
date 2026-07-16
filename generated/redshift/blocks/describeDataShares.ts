@@ -123,32 +123,25 @@ const describeDataShares: AppBlock = {
                     type: "object",
                     properties: {
                       ConsumerIdentifier: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ConsumerRegion: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CreatedDate: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       StatusChangeDate: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ProducerAllowedWrites: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       ConsumerAcceptedWrites: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,

@@ -163,12 +163,10 @@ const describeAnomalyDetectors: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Name", "Value"],
@@ -185,7 +183,12 @@ const describeAnomalyDetectors: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          StartTime: {},
+                          EndTime: {},
+                        },
+                        required: ["StartTime", "EndTime"],
+                        additionalProperties: false,
                       },
                     },
                     MetricTimezone: {
@@ -222,7 +225,12 @@ const describeAnomalyDetectors: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                          Value: {},
+                        },
+                        required: ["Name", "Value"],
+                        additionalProperties: false,
                       },
                     },
                     Stat: {
@@ -238,7 +246,17 @@ const describeAnomalyDetectors: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Id: {},
+                          MetricStat: {},
+                          Expression: {},
+                          Label: {},
+                          ReturnData: {},
+                          Period: {},
+                          AccountId: {},
+                        },
+                        required: ["Id"],
+                        additionalProperties: false,
                       },
                     },
                   },

@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const describeHandshake: AppBlock = {
   name: "Describe Handshake",
-  description: `Retrieves information about a previously requested handshake.`,
+  description: `Returns details for a handshake.`,
   inputs: {
     default: {
       config: {
@@ -26,8 +26,7 @@ const describeHandshake: AppBlock = {
         },
         HandshakeId: {
           name: "Handshake Id",
-          description:
-            "The unique identifier (ID) of the handshake that you want information about.",
+          description: "ID for the handshake that you want information about.",
           type: "string",
           required: true,
         },
@@ -141,7 +140,12 @@ const describeHandshake: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Value: {},
+                          Type: {},
+                          Resources: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -150,8 +154,7 @@ const describeHandshake: AppBlock = {
               },
             },
             additionalProperties: false,
-            description:
-              "A structure that contains information about the specified handshake.",
+            description: "A Handshake object.",
           },
         },
         additionalProperties: true,

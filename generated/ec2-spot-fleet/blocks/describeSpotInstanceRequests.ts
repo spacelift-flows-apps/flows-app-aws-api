@@ -186,7 +186,13 @@ const describeSpotInstanceRequests: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Ebs: {},
+                          NoDevice: {},
+                          DeviceName: {},
+                          VirtualName: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     EbsOptimized: {
@@ -196,12 +202,10 @@ const describeSpotInstanceRequests: AppBlock = {
                       type: "object",
                       properties: {
                         Arn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -222,23 +226,48 @@ const describeSpotInstanceRequests: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AssociatePublicIpAddress: {},
+                          DeleteOnTermination: {},
+                          Description: {},
+                          DeviceIndex: {},
+                          Groups: {},
+                          Ipv6AddressCount: {},
+                          Ipv6Addresses: {},
+                          NetworkInterfaceId: {},
+                          PrivateIpAddress: {},
+                          PrivateIpAddresses: {},
+                          SecondaryPrivateIpAddressCount: {},
+                          SubnetId: {},
+                          AssociateCarrierIpAddress: {},
+                          InterfaceType: {},
+                          NetworkCardIndex: {},
+                          Ipv4Prefixes: {},
+                          Ipv4PrefixCount: {},
+                          Ipv6Prefixes: {},
+                          Ipv6PrefixCount: {},
+                          PrimaryIpv6: {},
+                          EnaSrdSpecification: {},
+                          ConnectionTrackingSpecification: {},
+                          EnaQueueCount: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Placement: {
                       type: "object",
                       properties: {
                         AvailabilityZone: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         GroupName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Tenancy: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
+                        },
+                        AvailabilityZoneId: {
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -253,15 +282,18 @@ const describeSpotInstanceRequests: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          GroupId: {},
+                          GroupName: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Monitoring: {
                       type: "object",
                       properties: {
                         Enabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       required: ["Enabled"],
@@ -271,6 +303,9 @@ const describeSpotInstanceRequests: AppBlock = {
                   additionalProperties: false,
                 },
                 LaunchedAvailabilityZone: {
+                  type: "string",
+                },
+                LaunchedAvailabilityZoneId: {
                   type: "string",
                 },
                 ProductDescription: {
@@ -306,12 +341,10 @@ const describeSpotInstanceRequests: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

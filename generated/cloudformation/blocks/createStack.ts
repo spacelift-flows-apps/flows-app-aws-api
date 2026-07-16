@@ -142,7 +142,7 @@ const createStack: AppBlock = {
         ResourceTypes: {
           name: "Resource Types",
           description:
-            "The template resource types that you have permissions to work with for this create stack action, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance.",
+            "Specifies which resource types you can work with, such as AWS::EC2::Instance or Custom::MyCustomInstance.",
           type: {
             type: "array",
             items: {
@@ -279,6 +279,11 @@ const createStack: AppBlock = {
           StackId: {
             type: "string",
             description: "Unique identifier of the stack.",
+          },
+          OperationId: {
+            type: "string",
+            description:
+              "A unique identifier for this stack operation that can be used to track the operation's progress and events.",
           },
         },
         additionalProperties: true,

@@ -37,6 +37,13 @@ const describeNetworkInterfaces: AppBlock = {
           type: "number",
           required: false,
         },
+        IncludeManagedResources: {
+          name: "Include Managed Resources",
+          description:
+            "Indicates whether to include managed resources in the output.",
+          type: "boolean",
+          required: false,
+        },
         DryRun: {
           name: "Dry Run",
           description:
@@ -201,12 +208,14 @@ const describeNetworkInterfaces: AppBlock = {
                       type: "object",
                       properties: {
                         EnaSrdEnabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         EnaSrdUdpSpecification: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            EnaSrdUdpEnabled: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -244,12 +253,10 @@ const describeNetworkInterfaces: AppBlock = {
                     type: "object",
                     properties: {
                       GroupId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       GroupName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -264,16 +271,13 @@ const describeNetworkInterfaces: AppBlock = {
                     type: "object",
                     properties: {
                       Ipv6Address: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PublicIpv6DnsName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IsPrimaryIpv6: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,
@@ -325,19 +329,25 @@ const describeNetworkInterfaces: AppBlock = {
                     properties: {
                       Association: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AllocationId: {},
+                          AssociationId: {},
+                          IpOwnerId: {},
+                          PublicDnsName: {},
+                          PublicIp: {},
+                          CustomerOwnedIp: {},
+                          CarrierIp: {},
+                        },
+                        additionalProperties: false,
                       },
                       Primary: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       PrivateDnsName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PrivateIpAddress: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -349,8 +359,7 @@ const describeNetworkInterfaces: AppBlock = {
                     type: "object",
                     properties: {
                       Ipv4Prefix: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -362,8 +371,7 @@ const describeNetworkInterfaces: AppBlock = {
                     type: "object",
                     properties: {
                       Ipv6Prefix: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -390,12 +398,10 @@ const describeNetworkInterfaces: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -422,6 +428,9 @@ const describeNetworkInterfaces: AppBlock = {
                     Principal: {
                       type: "string",
                     },
+                    HiddenByDefault: {
+                      type: "boolean",
+                    },
                   },
                   additionalProperties: false,
                 },
@@ -430,6 +439,9 @@ const describeNetworkInterfaces: AppBlock = {
                   items: {
                     type: "string",
                   },
+                },
+                AvailabilityZoneId: {
+                  type: "string",
                 },
               },
               additionalProperties: false,

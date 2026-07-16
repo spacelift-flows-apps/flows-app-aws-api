@@ -26,8 +26,7 @@ const updatePolicy: AppBlock = {
         },
         PolicyId: {
           name: "Policy Id",
-          description:
-            "The unique identifier (ID) of the policy that you want to update.",
+          description: "ID for the policy that you want to update.",
           type: "string",
           required: true,
         },

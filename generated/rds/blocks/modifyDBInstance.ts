@@ -151,6 +151,12 @@ const modifyDBInstance: AppBlock = {
           type: "number",
           required: false,
         },
+        StorageThroughput: {
+          name: "Storage Throughput",
+          description: "The storage throughput value for the DB instance.",
+          type: "number",
+          required: false,
+        },
         OptionGroupName: {
           name: "Option Group Name",
           description: "The option group to associate the DB instance with.",
@@ -231,6 +237,13 @@ const modifyDBInstance: AppBlock = {
           },
           required: false,
         },
+        DisableDomain: {
+          name: "Disable Domain",
+          description:
+            "Specifies whether to remove the DB instance from the Active Directory domain.",
+          type: "boolean",
+          required: false,
+        },
         CopyTagsToSnapshot: {
           name: "Copy Tags To Snapshot",
           description:
@@ -271,13 +284,6 @@ const modifyDBInstance: AppBlock = {
           description:
             "The name of the IAM role to use when making API calls to the Directory Service.",
           type: "string",
-          required: false,
-        },
-        DisableDomain: {
-          name: "Disable Domain",
-          description:
-            "Specifies whether to remove the DB instance from the Active Directory domain.",
-          type: "boolean",
           required: false,
         },
         PromotionTier: {
@@ -401,20 +407,6 @@ const modifyDBInstance: AppBlock = {
           type: "string",
           required: false,
         },
-        EnableCustomerOwnedIp: {
-          name: "Enable Customer Owned Ip",
-          description:
-            "Specifies whether to enable a customer-owned IP address (CoIP) for an RDS on Outposts DB instance.",
-          type: "boolean",
-          required: false,
-        },
-        AwsBackupRecoveryPointArn: {
-          name: "Aws Backup Recovery Point Arn",
-          description:
-            "The Amazon Resource Name (ARN) of the recovery point in Amazon Web Services Backup.",
-          type: "string",
-          required: false,
-        },
         AutomationMode: {
           name: "Automation Mode",
           description: "The automation mode of the RDS Custom DB instance.",
@@ -427,16 +419,24 @@ const modifyDBInstance: AppBlock = {
           type: "number",
           required: false,
         },
+        EnableCustomerOwnedIp: {
+          name: "Enable Customer Owned Ip",
+          description:
+            "Specifies whether to enable a customer-owned IP address (CoIP) for an RDS on Outposts DB instance.",
+          type: "boolean",
+          required: false,
+        },
         NetworkType: {
           name: "Network Type",
           description: "The network type of the DB instance.",
           type: "string",
           required: false,
         },
-        StorageThroughput: {
-          name: "Storage Throughput",
-          description: "The storage throughput value for the DB instance.",
-          type: "number",
+        AwsBackupRecoveryPointArn: {
+          name: "Aws Backup Recovery Point Arn",
+          description:
+            "The Amazon Resource Name (ARN) of the recovery point in Amazon Web Services Backup.",
+          type: "string",
           required: false,
         },
         ManageMasterUserPassword: {
@@ -460,11 +460,11 @@ const modifyDBInstance: AppBlock = {
           type: "string",
           required: false,
         },
-        Engine: {
-          name: "Engine",
+        MultiTenant: {
+          name: "Multi Tenant",
           description:
-            "The target Oracle DB engine when you convert a non-CDB to a CDB.",
-          type: "string",
+            "Specifies whether the to convert your DB instance from the single-tenant conﬁguration to the multi-tenant conﬁguration.",
+          type: "boolean",
           required: false,
         },
         DedicatedLogVolume: {
@@ -474,11 +474,87 @@ const modifyDBInstance: AppBlock = {
           type: "boolean",
           required: false,
         },
-        MultiTenant: {
-          name: "Multi Tenant",
+        Engine: {
+          name: "Engine",
           description:
-            "Specifies whether the to convert your DB instance from the single-tenant conﬁguration to the multi-tenant conﬁguration.",
-          type: "boolean",
+            "The target Oracle DB engine when you convert a non-CDB to a CDB.",
+          type: "string",
+          required: false,
+        },
+        AdditionalStorageVolumes: {
+          name: "Additional Storage Volumes",
+          description:
+            "A list of additional storage volumes to modify or delete for the DB instance.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                VolumeName: {
+                  type: "string",
+                },
+                AllocatedStorage: {
+                  type: "number",
+                },
+                IOPS: {
+                  type: "number",
+                },
+                MaxAllocatedStorage: {
+                  type: "number",
+                },
+                StorageThroughput: {
+                  type: "number",
+                },
+                StorageType: {
+                  type: "string",
+                },
+                SetForDelete: {
+                  type: "boolean",
+                },
+              },
+              required: ["VolumeName"],
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
+        TagSpecifications: {
+          name: "Tag Specifications",
+          description:
+            "Tags to assign to resources associated with the DB instance.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                ResourceType: {
+                  type: "string",
+                },
+                Tags: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Key: {
+                        type: "string",
+                      },
+                      Value: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+              },
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
+        MasterUserAuthenticationType: {
+          name: "Master User Authentication Type",
+          description: "Specifies the authentication type for the master user.",
+          type: "string",
           required: false,
         },
       },
@@ -552,9 +628,6 @@ const modifyDBInstance: AppBlock = {
                 type: "string",
               },
               DBInstanceStatus: {
-                type: "string",
-              },
-              AutomaticRestartTime: {
                 type: "string",
               },
               MasterUsername: {
@@ -659,20 +732,24 @@ const modifyDBInstance: AppBlock = {
                       type: "object",
                       properties: {
                         SubnetIdentifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SubnetAvailabilityZone: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubnetOutpost: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Arn: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubnetStatus: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -691,6 +768,9 @@ const modifyDBInstance: AppBlock = {
                 additionalProperties: false,
               },
               PreferredMaintenanceWindow: {
+                type: "string",
+              },
+              UpgradeRolloutOrder: {
                 type: "string",
               },
               PendingModifiedValues: {
@@ -723,6 +803,9 @@ const modifyDBInstance: AppBlock = {
                   Iops: {
                     type: "number",
                   },
+                  StorageThroughput: {
+                    type: "number",
+                  },
                   DBInstanceIdentifier: {
                     type: "string",
                   },
@@ -741,15 +824,13 @@ const modifyDBInstance: AppBlock = {
                       LogTypesToEnable: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       LogTypesToDisable: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -761,19 +842,14 @@ const modifyDBInstance: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
                     },
-                  },
-                  IAMDatabaseAuthenticationEnabled: {
-                    type: "boolean",
                   },
                   AutomationMode: {
                     type: "string",
@@ -781,17 +857,45 @@ const modifyDBInstance: AppBlock = {
                   ResumeFullAutomationModeTime: {
                     type: "string",
                   },
-                  StorageThroughput: {
-                    type: "number",
+                  MultiTenant: {
+                    type: "boolean",
                   },
-                  Engine: {
-                    type: "string",
+                  IAMDatabaseAuthenticationEnabled: {
+                    type: "boolean",
                   },
                   DedicatedLogVolume: {
                     type: "boolean",
                   },
-                  MultiTenant: {
-                    type: "boolean",
+                  Engine: {
+                    type: "string",
+                  },
+                  AdditionalStorageVolumes: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      properties: {
+                        VolumeName: {
+                          type: "string",
+                        },
+                        AllocatedStorage: {
+                          type: "number",
+                        },
+                        IOPS: {
+                          type: "number",
+                        },
+                        MaxAllocatedStorage: {
+                          type: "number",
+                        },
+                        StorageThroughput: {
+                          type: "number",
+                        },
+                        StorageType: {
+                          type: "string",
+                        },
+                      },
+                      required: ["VolumeName"],
+                      additionalProperties: false,
+                    },
                   },
                 },
                 additionalProperties: false,
@@ -830,6 +934,9 @@ const modifyDBInstance: AppBlock = {
                 type: "string",
               },
               Iops: {
+                type: "number",
+              },
+              StorageThroughput: {
                 type: "number",
               },
               OptionGroupMemberships: {
@@ -883,6 +990,9 @@ const modifyDBInstance: AppBlock = {
               StorageType: {
                 type: "string",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               TdeCredentialArn: {
                 type: "string",
               },
@@ -930,8 +1040,7 @@ const modifyDBInstance: AppBlock = {
                     DnsIps: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -1049,22 +1158,16 @@ const modifyDBInstance: AppBlock = {
                   additionalProperties: false,
                 },
               },
-              DBInstanceAutomatedBackupsReplications: {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: {
-                    DBInstanceAutomatedBackupsArn: {
-                      type: "string",
-                    },
-                  },
-                  additionalProperties: false,
-                },
+              AutomationMode: {
+                type: "string",
+              },
+              ResumeFullAutomationModeTime: {
+                type: "string",
               },
               CustomerOwnedIpEnabled: {
                 type: "boolean",
               },
-              AwsBackupRecoveryPointArn: {
+              NetworkType: {
                 type: "string",
               },
               ActivityStreamStatus: {
@@ -1082,26 +1185,44 @@ const modifyDBInstance: AppBlock = {
               ActivityStreamEngineNativeAuditFieldsIncluded: {
                 type: "boolean",
               },
-              AutomationMode: {
+              AwsBackupRecoveryPointArn: {
                 type: "string",
               },
-              ResumeFullAutomationModeTime: {
+              DBInstanceAutomatedBackupsReplications: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    DBInstanceAutomatedBackupsArn: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              BackupTarget: {
+                type: "string",
+              },
+              AutomaticRestartTime: {
                 type: "string",
               },
               CustomIamInstanceProfile: {
                 type: "string",
               },
-              BackupTarget: {
-                type: "string",
-              },
-              NetworkType: {
-                type: "string",
-              },
               ActivityStreamPolicyStatus: {
                 type: "string",
               },
-              StorageThroughput: {
-                type: "number",
+              CertificateDetails: {
+                type: "object",
+                properties: {
+                  CAIdentifier: {
+                    type: "string",
+                  },
+                  ValidTill: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
               },
               DBSystemId: {
                 type: "string",
@@ -1121,23 +1242,14 @@ const modifyDBInstance: AppBlock = {
                 },
                 additionalProperties: false,
               },
-              CertificateDetails: {
-                type: "object",
-                properties: {
-                  CAIdentifier: {
-                    type: "string",
-                  },
-                  ValidTill: {
-                    type: "string",
-                  },
-                },
-                additionalProperties: false,
-              },
               ReadReplicaSourceDBClusterIdentifier: {
                 type: "string",
               },
               PercentProgress: {
                 type: "string",
+              },
+              MultiTenant: {
+                type: "boolean",
               },
               DedicatedLogVolume: {
                 type: "boolean",
@@ -1145,10 +1257,40 @@ const modifyDBInstance: AppBlock = {
               IsStorageConfigUpgradeAvailable: {
                 type: "boolean",
               },
-              MultiTenant: {
-                type: "boolean",
-              },
               EngineLifecycleSupport: {
+                type: "string",
+              },
+              AdditionalStorageVolumes: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    VolumeName: {
+                      type: "string",
+                    },
+                    StorageVolumeStatus: {
+                      type: "string",
+                    },
+                    AllocatedStorage: {
+                      type: "number",
+                    },
+                    IOPS: {
+                      type: "number",
+                    },
+                    MaxAllocatedStorage: {
+                      type: "number",
+                    },
+                    StorageThroughput: {
+                      type: "number",
+                    },
+                    StorageType: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              StorageVolumeStatus: {
                 type: "string",
               },
             },

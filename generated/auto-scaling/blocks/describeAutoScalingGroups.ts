@@ -175,11 +175,16 @@ const describeAutoScalingGroups: AppBlock = {
                       properties: {
                         LaunchTemplateSpecification: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            LaunchTemplateId: {},
+                            LaunchTemplateName: {},
+                            Version: {},
+                          },
+                          additionalProperties: false,
                         },
                         Overrides: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -188,28 +193,22 @@ const describeAutoScalingGroups: AppBlock = {
                       type: "object",
                       properties: {
                         OnDemandAllocationStrategy: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OnDemandBaseCapacity: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         OnDemandPercentageAboveBaseCapacity: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         SpotAllocationStrategy: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SpotInstancePools: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         SpotMaxPrice: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -268,48 +267,43 @@ const describeAutoScalingGroups: AppBlock = {
                     type: "object",
                     properties: {
                       InstanceId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       InstanceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AvailabilityZone: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AvailabilityZoneId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       LifecycleState: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       HealthStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       LaunchConfigurationName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       LaunchTemplate: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          LaunchTemplateId: {},
+                          LaunchTemplateName: {},
+                          Version: {},
+                        },
+                        additionalProperties: false,
                       },
                       ImageId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ProtectedFromScaleIn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       WeightedCapacity: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: [
@@ -331,12 +325,10 @@ const describeAutoScalingGroups: AppBlock = {
                     type: "object",
                     properties: {
                       ProcessName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SuspensionReason: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -354,12 +346,10 @@ const describeAutoScalingGroups: AppBlock = {
                     type: "object",
                     properties: {
                       Metric: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Granularity: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -374,24 +364,19 @@ const describeAutoScalingGroups: AppBlock = {
                     type: "object",
                     properties: {
                       ResourceId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ResourceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PropagateAtLaunch: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,
@@ -434,8 +419,7 @@ const describeAutoScalingGroups: AppBlock = {
                       type: "object",
                       properties: {
                         ReuseOnScaleIn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -461,12 +445,10 @@ const describeAutoScalingGroups: AppBlock = {
                     type: "object",
                     properties: {
                       Identifier: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Identifier"],
@@ -519,12 +501,12 @@ const describeAutoScalingGroups: AppBlock = {
                       type: "object",
                       properties: {
                         CapacityReservationIds: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         CapacityReservationResourceGroupArns: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -539,8 +521,7 @@ const describeAutoScalingGroups: AppBlock = {
                       type: "object",
                       properties: {
                         TerminateHookAbandon: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

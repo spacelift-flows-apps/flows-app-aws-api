@@ -5,7 +5,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const putBucketAcl: AppBlock = {
   name: "Put Bucket Acl",
-  description: `End of support notice: Beginning October 1, 2025, Amazon S3 will discontinue support for creating new Email Grantee Access Control Lists (ACL).`,
+  description: `End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs).`,
   inputs: {
     default: {
       config: {
@@ -44,24 +44,19 @@ const putBucketAcl: AppBlock = {
                       type: "object",
                       properties: {
                         DisplayName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         EmailAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ID: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         URI: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Type"],

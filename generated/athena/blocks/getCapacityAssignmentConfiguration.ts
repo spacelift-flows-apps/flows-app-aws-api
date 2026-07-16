@@ -105,8 +105,7 @@ const getCapacityAssignmentConfiguration: AppBlock = {
                     WorkGroupNames: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

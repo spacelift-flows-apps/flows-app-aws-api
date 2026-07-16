@@ -58,8 +58,7 @@ const updateWebACL: AppBlock = {
                       type: "object",
                       properties: {
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Type"],
@@ -69,8 +68,7 @@ const updateWebACL: AppBlock = {
                       type: "object",
                       properties: {
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Type"],
@@ -83,7 +81,11 @@ const updateWebACL: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          RuleId: {},
+                        },
+                        required: ["RuleId"],
+                        additionalProperties: false,
                       },
                     },
                   },

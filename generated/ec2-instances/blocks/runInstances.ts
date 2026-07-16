@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { EC2Client, RunInstancesCommand } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const runInstances: AppBlock = {
   name: "Run Instances",
@@ -68,6 +69,9 @@ const runInstances: AppBlock = {
                     },
                     AvailabilityZoneId: {
                       type: "string",
+                    },
+                    EbsCardIndex: {
+                      type: "number",
                     },
                   },
                   additionalProperties: false,
@@ -173,6 +177,9 @@ const runInstances: AppBlock = {
           type: {
             type: "object",
             properties: {
+              AvailabilityZoneId: {
+                type: "string",
+              },
               Affinity: {
                 type: "string",
               },
@@ -303,12 +310,10 @@ const runInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -404,6 +409,9 @@ const runInstances: AppBlock = {
                 type: "number",
               },
               AmdSevSnp: {
+                type: "string",
+              },
+              NestedVirtualization: {
                 type: "string",
               },
             },
@@ -588,6 +596,52 @@ const runInstances: AppBlock = {
           },
           required: false,
         },
+        SecondaryInterfaces: {
+          name: "Secondary Interfaces",
+          description:
+            "The secondary interfaces to associate with the instance.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                DeleteOnTermination: {
+                  type: "boolean",
+                },
+                DeviceIndex: {
+                  type: "number",
+                },
+                PrivateIpAddresses: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      PrivateIpAddress: {
+                        type: "string",
+                      },
+                    },
+                    required: ["PrivateIpAddress"],
+                    additionalProperties: false,
+                  },
+                },
+                PrivateIpAddressCount: {
+                  type: "number",
+                },
+                SecondarySubnetId: {
+                  type: "string",
+                },
+                InterfaceType: {
+                  type: "string",
+                },
+                NetworkCardIndex: {
+                  type: "number",
+                },
+              },
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
         DryRun: {
           name: "Dry Run",
           description:
@@ -663,12 +717,10 @@ const runInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Ipv6Address: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IsPrimaryIpv6: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,
@@ -686,12 +738,10 @@ const runInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Primary: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       PrivateIpAddress: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -718,8 +768,7 @@ const runInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Ipv4Prefix: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -734,8 +783,7 @@ const runInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Ipv6Prefix: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -757,8 +805,7 @@ const runInstances: AppBlock = {
                       type: "object",
                       properties: {
                         EnaSrdUdpEnabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -858,7 +905,9 @@ const runInstances: AppBlock = {
           }),
         });
 
-        const command = new RunInstancesCommand(commandInput as any);
+        const command = new RunInstancesCommand(
+          convertTimestamps(commandInput, new Set(["ValidUntil"])) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});
@@ -917,12 +966,21 @@ const runInstances: AppBlock = {
                     type: "object",
                     properties: {
                       DeviceName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Ebs: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AttachTime: {},
+                          DeleteOnTermination: {},
+                          Status: {},
+                          VolumeId: {},
+                          AssociatedResource: {},
+                          VolumeOwnerId: {},
+                          Operator: {},
+                          EbsCardIndex: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     additionalProperties: false,
@@ -961,20 +1019,16 @@ const runInstances: AppBlock = {
                     type: "object",
                     properties: {
                       ElasticGpuId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ElasticGpuAssociationId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ElasticGpuAssociationState: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ElasticGpuAssociationTime: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -986,20 +1040,16 @@ const runInstances: AppBlock = {
                     type: "object",
                     properties: {
                       ElasticInferenceAcceleratorArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ElasticInferenceAcceleratorAssociationId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ElasticInferenceAcceleratorAssociationState: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ElasticInferenceAcceleratorAssociationTime: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -1012,83 +1062,99 @@ const runInstances: AppBlock = {
                     properties: {
                       Association: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          CarrierIp: {},
+                          CustomerOwnedIp: {},
+                          IpOwnerId: {},
+                          PublicDnsName: {},
+                          PublicIp: {},
+                        },
+                        additionalProperties: false,
                       },
                       Attachment: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AttachTime: {},
+                          AttachmentId: {},
+                          DeleteOnTermination: {},
+                          DeviceIndex: {},
+                          Status: {},
+                          NetworkCardIndex: {},
+                          EnaSrdSpecification: {},
+                          EnaQueueCount: {},
+                        },
+                        additionalProperties: false,
                       },
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Groups: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Ipv6Addresses: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       MacAddress: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       NetworkInterfaceId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       OwnerId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PrivateDnsName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PrivateIpAddress: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PrivateIpAddresses: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       SourceDestCheck: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SubnetId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       VpcId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       InterfaceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Ipv4Prefixes: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Ipv6Prefixes: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       ConnectionTrackingConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          TcpEstablishedTimeout: {},
+                          UdpStreamTimeout: {},
+                          UdpTimeout: {},
+                        },
+                        additionalProperties: false,
                       },
                       Operator: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Managed: {},
+                          Principal: {},
+                          HiddenByDefault: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     additionalProperties: false,
@@ -1109,12 +1175,10 @@ const runInstances: AppBlock = {
                     type: "object",
                     properties: {
                       GroupId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       GroupName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -1147,12 +1211,10 @@ const runInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -1171,6 +1233,9 @@ const runInstances: AppBlock = {
                       type: "number",
                     },
                     AmdSevSnp: {
+                      type: "string",
+                    },
+                    NestedVirtualization: {
                       type: "string",
                     },
                   },
@@ -1192,12 +1257,10 @@ const runInstances: AppBlock = {
                       type: "object",
                       properties: {
                         CapacityReservationId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         CapacityReservationResourceGroupArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -1220,8 +1283,7 @@ const runInstances: AppBlock = {
                     type: "object",
                     properties: {
                       LicenseConfigurationArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -1326,8 +1388,60 @@ const runInstances: AppBlock = {
                     Principal: {
                       type: "string",
                     },
+                    HiddenByDefault: {
+                      type: "boolean",
+                    },
                   },
                   additionalProperties: false,
+                },
+                SecondaryInterfaces: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Attachment: {
+                        type: "object",
+                        properties: {
+                          AttachTime: {},
+                          AttachmentId: {},
+                          DeleteOnTermination: {},
+                          DeviceIndex: {},
+                          Status: {},
+                          NetworkCardIndex: {},
+                        },
+                        additionalProperties: false,
+                      },
+                      MacAddress: {
+                        type: "string",
+                      },
+                      SecondaryInterfaceId: {
+                        type: "string",
+                      },
+                      OwnerId: {
+                        type: "string",
+                      },
+                      PrivateIpAddresses: {
+                        type: "array",
+                        items: {},
+                      },
+                      SourceDestCheck: {
+                        type: "boolean",
+                      },
+                      Status: {
+                        type: "string",
+                      },
+                      SecondarySubnetId: {
+                        type: "string",
+                      },
+                      SecondaryNetworkId: {
+                        type: "string",
+                      },
+                      InterfaceType: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
                 },
                 InstanceId: {
                   type: "string",
@@ -1368,12 +1482,10 @@ const runInstances: AppBlock = {
                     type: "object",
                     properties: {
                       ProductCodeId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ProductCodeType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -1388,6 +1500,9 @@ const runInstances: AppBlock = {
                 Placement: {
                   type: "object",
                   properties: {
+                    AvailabilityZoneId: {
+                      type: "string",
+                    },
                     Affinity: {
                       type: "string",
                     },

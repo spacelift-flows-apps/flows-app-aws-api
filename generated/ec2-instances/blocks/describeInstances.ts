@@ -32,6 +32,13 @@ const describeInstances: AppBlock = {
           },
           required: false,
         },
+        IncludeManagedResources: {
+          name: "Include Managed Resources",
+          description:
+            "Indicates whether to include managed resources in the output.",
+          type: "boolean",
+          required: false,
+        },
         DryRun: {
           name: "Dry Run",
           description:
@@ -158,12 +165,10 @@ const describeInstances: AppBlock = {
                     type: "object",
                     properties: {
                       GroupId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       GroupName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -175,244 +180,278 @@ const describeInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Architecture: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       BlockDeviceMappings: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       ClientToken: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EbsOptimized: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       EnaSupport: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       Hypervisor: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IamInstanceProfile: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Arn: {},
+                          Id: {},
+                        },
+                        additionalProperties: false,
                       },
                       InstanceLifecycle: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ElasticGpuAssociations: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       ElasticInferenceAcceleratorAssociations: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       NetworkInterfaces: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       OutpostArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       RootDeviceName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       RootDeviceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SecurityGroups: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       SourceDestCheck: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       SpotInstanceRequestId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SriovNetSupport: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       StateReason: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Code: {},
+                          Message: {},
+                        },
+                        additionalProperties: false,
                       },
                       Tags: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       VirtualizationType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CpuOptions: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          CoreCount: {},
+                          ThreadsPerCore: {},
+                          AmdSevSnp: {},
+                          NestedVirtualization: {},
+                        },
+                        additionalProperties: false,
                       },
                       CapacityBlockId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CapacityReservationId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CapacityReservationSpecification: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          CapacityReservationPreference: {},
+                          CapacityReservationTarget: {},
+                        },
+                        additionalProperties: false,
                       },
                       HibernationOptions: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Configured: {},
+                        },
+                        additionalProperties: false,
                       },
                       Licenses: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       MetadataOptions: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          State: {},
+                          HttpTokens: {},
+                          HttpPutResponseHopLimit: {},
+                          HttpEndpoint: {},
+                          HttpProtocolIpv6: {},
+                          InstanceMetadataTags: {},
+                        },
+                        additionalProperties: false,
                       },
                       EnclaveOptions: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Enabled: {},
+                        },
+                        additionalProperties: false,
                       },
                       BootMode: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PlatformDetails: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       UsageOperation: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       UsageOperationUpdateTime: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PrivateDnsNameOptions: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          HostnameType: {},
+                          EnableResourceNameDnsARecord: {},
+                          EnableResourceNameDnsAAAARecord: {},
+                        },
+                        additionalProperties: false,
                       },
                       Ipv6Address: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TpmSupport: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       MaintenanceOptions: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AutoRecovery: {},
+                          RebootMigration: {},
+                        },
+                        additionalProperties: false,
                       },
                       CurrentInstanceBootMode: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       NetworkPerformanceOptions: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          BandwidthWeighting: {},
+                        },
+                        additionalProperties: false,
                       },
                       Operator: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Managed: {},
+                          Principal: {},
+                          HiddenByDefault: {},
+                        },
+                        additionalProperties: false,
+                      },
+                      SecondaryInterfaces: {
+                        type: "array",
+                        items: {},
                       },
                       InstanceId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ImageId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       State: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Code: {},
+                          Name: {},
+                        },
+                        additionalProperties: false,
                       },
                       PrivateDnsName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PublicDnsName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       StateTransitionReason: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       KeyName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AmiLaunchIndex: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       ProductCodes: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       InstanceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       LaunchTime: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Placement: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AvailabilityZoneId: {},
+                          Affinity: {},
+                          GroupName: {},
+                          PartitionNumber: {},
+                          HostId: {},
+                          Tenancy: {},
+                          SpreadDomain: {},
+                          HostResourceGroupArn: {},
+                          GroupId: {},
+                          AvailabilityZone: {},
+                        },
+                        additionalProperties: false,
                       },
                       KernelId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       RamdiskId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Platform: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Monitoring: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          State: {},
+                        },
+                        additionalProperties: false,
                       },
                       SubnetId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       VpcId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PrivateIpAddress: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PublicIpAddress: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

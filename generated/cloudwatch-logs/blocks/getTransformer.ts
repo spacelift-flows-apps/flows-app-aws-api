@@ -116,7 +116,13 @@ const getTransformer: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          key: {},
+                          value: {},
+                          overwriteIfExists: {},
+                        },
+                        required: ["key", "value"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -130,7 +136,13 @@ const getTransformer: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          source: {},
+                          target: {},
+                          overwriteIfExists: {},
+                        },
+                        required: ["source", "target"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -149,8 +161,7 @@ const getTransformer: AppBlock = {
                     columns: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     source: {
@@ -177,8 +188,7 @@ const getTransformer: AppBlock = {
                     matchPatterns: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     sourceTimezone: {
@@ -200,8 +210,7 @@ const getTransformer: AppBlock = {
                     withKeys: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -252,8 +261,7 @@ const getTransformer: AppBlock = {
                     withKeys: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -267,7 +275,13 @@ const getTransformer: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          source: {},
+                          target: {},
+                          overwriteIfExists: {},
+                        },
+                        required: ["source", "target"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -384,7 +398,13 @@ const getTransformer: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          key: {},
+                          renameTo: {},
+                          overwriteIfExists: {},
+                        },
+                        required: ["key", "renameTo"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -398,7 +418,12 @@ const getTransformer: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          source: {},
+                          delimiter: {},
+                        },
+                        required: ["source", "delimiter"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -412,7 +437,13 @@ const getTransformer: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          source: {},
+                          from: {},
+                          to: {},
+                        },
+                        required: ["source", "from", "to"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -425,8 +456,7 @@ const getTransformer: AppBlock = {
                     withKeys: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -440,7 +470,12 @@ const getTransformer: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          key: {},
+                          type: {},
+                        },
+                        required: ["key", "type"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -453,8 +488,7 @@ const getTransformer: AppBlock = {
                     withKeys: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

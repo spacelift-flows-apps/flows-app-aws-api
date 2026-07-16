@@ -5,7 +5,7 @@ import { serializeAWSResponse } from "../utils/serialize";
 
 const listObjectVersions: AppBlock = {
   name: "List Object Versions",
-  description: `End of support notice: Beginning October 1, 2025, Amazon S3 will stop returning DisplayName.`,
+  description: `This operation is not supported for directory buckets.`,
   inputs: {
     default: {
       config: {

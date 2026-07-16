@@ -166,8 +166,7 @@ const getExecutionHistory: AppBlock = {
                       type: "object",
                       properties: {
                         truncated: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -201,8 +200,7 @@ const getExecutionHistory: AppBlock = {
                       type: "object",
                       properties: {
                         truncated: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -266,8 +264,7 @@ const getExecutionHistory: AppBlock = {
                       type: "object",
                       properties: {
                         roleArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -348,8 +345,7 @@ const getExecutionHistory: AppBlock = {
                       type: "object",
                       properties: {
                         truncated: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -374,8 +370,7 @@ const getExecutionHistory: AppBlock = {
                       type: "object",
                       properties: {
                         truncated: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -425,8 +420,7 @@ const getExecutionHistory: AppBlock = {
                       type: "object",
                       properties: {
                         truncated: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -453,8 +447,7 @@ const getExecutionHistory: AppBlock = {
                       type: "object",
                       properties: {
                         truncated: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -589,8 +582,7 @@ const getExecutionHistory: AppBlock = {
                       type: "object",
                       properties: {
                         truncated: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -602,8 +594,7 @@ const getExecutionHistory: AppBlock = {
                       type: "object",
                       properties: {
                         roleArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -634,8 +625,7 @@ const getExecutionHistory: AppBlock = {
                       type: "object",
                       properties: {
                         truncated: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -668,8 +658,7 @@ const getExecutionHistory: AppBlock = {
                       type: "object",
                       properties: {
                         truncated: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -691,8 +680,7 @@ const getExecutionHistory: AppBlock = {
                       type: "object",
                       properties: {
                         truncated: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -700,15 +688,14 @@ const getExecutionHistory: AppBlock = {
                     assignedVariables: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     assignedVariablesDetails: {
                       type: "object",
                       properties: {
                         truncated: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,

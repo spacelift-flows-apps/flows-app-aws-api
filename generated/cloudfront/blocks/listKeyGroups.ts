@@ -117,16 +117,20 @@ const listKeyGroups: AppBlock = {
                       type: "object",
                       properties: {
                         Id: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LastModifiedTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KeyGroupConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                            Items: {},
+                            Comment: {},
+                          },
+                          required: ["Name", "Items"],
+                          additionalProperties: false,
                         },
                       },
                       required: ["Id", "LastModifiedTime", "KeyGroupConfig"],

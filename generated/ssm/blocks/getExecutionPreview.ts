@@ -105,7 +105,51 @@ const getExecutionPreview: AppBlock = {
               "Supplemental information about the current status of the execution preview.",
           },
           ExecutionPreview: {
-            type: "string",
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  Automation: {
+                    type: "object",
+                    properties: {
+                      StepPreviews: {
+                        type: "object",
+                        additionalProperties: {
+                          type: "number",
+                        },
+                      },
+                      Regions: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      TargetPreviews: {
+                        type: "array",
+                        items: {
+                          type: "object",
+                          properties: {
+                            Count: {
+                              type: "number",
+                            },
+                            TargetType: {
+                              type: "string",
+                            },
+                          },
+                          additionalProperties: false,
+                        },
+                      },
+                      TotalAccounts: {
+                        type: "number",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["Automation"],
+                additionalProperties: false,
+              },
+            ],
             description:
               "Information about the changes that would be made if an execution were run.",
           },

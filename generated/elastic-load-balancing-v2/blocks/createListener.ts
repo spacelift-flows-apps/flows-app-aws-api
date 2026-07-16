@@ -118,7 +118,7 @@ const createListener: AppBlock = {
                     AuthenticationRequestExtraParams: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     OnUnauthenticatedRequest: {
@@ -161,7 +161,7 @@ const createListener: AppBlock = {
                     AuthenticationRequestExtraParams: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     OnUnauthenticatedRequest: {
@@ -226,19 +226,21 @@ const createListener: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          TargetGroupArn: {},
+                          Weight: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     TargetGroupStickinessConfig: {
                       type: "object",
                       properties: {
                         Enabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         DurationSeconds: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -259,7 +261,13 @@ const createListener: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Format: {},
+                          Name: {},
+                          Values: {},
+                        },
+                        required: ["Format", "Name", "Values"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -414,12 +422,10 @@ const createListener: AppBlock = {
                     type: "object",
                     properties: {
                       CertificateArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IsDefault: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,
@@ -434,40 +440,98 @@ const createListener: AppBlock = {
                     type: "object",
                     properties: {
                       Type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetGroupArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AuthenticateOidcConfig: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Issuer: {},
+                          AuthorizationEndpoint: {},
+                          TokenEndpoint: {},
+                          UserInfoEndpoint: {},
+                          ClientId: {},
+                          ClientSecret: {},
+                          SessionCookieName: {},
+                          Scope: {},
+                          SessionTimeout: {},
+                          AuthenticationRequestExtraParams: {},
+                          OnUnauthenticatedRequest: {},
+                          UseExistingClientSecret: {},
+                        },
+                        required: [
+                          "Issuer",
+                          "AuthorizationEndpoint",
+                          "TokenEndpoint",
+                          "UserInfoEndpoint",
+                          "ClientId",
+                        ],
+                        additionalProperties: false,
                       },
                       AuthenticateCognitoConfig: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          UserPoolArn: {},
+                          UserPoolClientId: {},
+                          UserPoolDomain: {},
+                          SessionCookieName: {},
+                          Scope: {},
+                          SessionTimeout: {},
+                          AuthenticationRequestExtraParams: {},
+                          OnUnauthenticatedRequest: {},
+                        },
+                        required: [
+                          "UserPoolArn",
+                          "UserPoolClientId",
+                          "UserPoolDomain",
+                        ],
+                        additionalProperties: false,
                       },
                       Order: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       RedirectConfig: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Protocol: {},
+                          Port: {},
+                          Host: {},
+                          Path: {},
+                          Query: {},
+                          StatusCode: {},
+                        },
+                        required: ["StatusCode"],
+                        additionalProperties: false,
                       },
                       FixedResponseConfig: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          MessageBody: {},
+                          StatusCode: {},
+                          ContentType: {},
+                        },
+                        required: ["StatusCode"],
+                        additionalProperties: false,
                       },
                       ForwardConfig: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          TargetGroups: {},
+                          TargetGroupStickinessConfig: {},
+                        },
+                        additionalProperties: false,
                       },
                       JwtValidationConfig: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          JwksEndpoint: {},
+                          Issuer: {},
+                          AdditionalClaims: {},
+                        },
+                        required: ["JwksEndpoint", "Issuer"],
+                        additionalProperties: false,
                       },
                     },
                     required: ["Type"],

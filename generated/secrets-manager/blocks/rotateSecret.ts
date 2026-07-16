@@ -64,6 +64,34 @@ const rotateSecret: AppBlock = {
           },
           required: false,
         },
+        ExternalSecretRotationMetadata: {
+          name: "External Secret Rotation Metadata",
+          description:
+            "The metadata needed to successfully rotate a managed external secret.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                Key: {
+                  type: "string",
+                },
+                Value: {
+                  type: "string",
+                },
+              },
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
+        ExternalSecretRotationRoleArn: {
+          name: "External Secret Rotation Role Arn",
+          description:
+            "The Amazon Resource Name (ARN) of the role that allows Secrets Manager to rotate a secret held by a third-party partner.",
+          type: "string",
+          required: false,
+        },
         RotateImmediately: {
           name: "Rotate Immediately",
           description:

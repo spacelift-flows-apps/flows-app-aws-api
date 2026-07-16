@@ -27,7 +27,7 @@ const deleteOrganizationalUnit: AppBlock = {
         OrganizationalUnitId: {
           name: "Organizational Unit Id",
           description:
-            "The unique identifier (ID) of the organizational unit that you want to delete.",
+            "ID for the organizational unit that you want to delete.",
           type: "string",
           required: true,
         },

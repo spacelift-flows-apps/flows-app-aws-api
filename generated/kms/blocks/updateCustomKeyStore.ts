@@ -70,6 +70,13 @@ const updateCustomKeyStore: AppBlock = {
           type: "string",
           required: false,
         },
+        XksProxyVpcEndpointServiceOwner: {
+          name: "Xks Proxy Vpc Endpoint Service Owner",
+          description:
+            "Changes the Amazon Web Services account ID that KMS uses to identify the Amazon VPC endpoint service for your external key store proxy (XKS proxy).",
+          type: "string",
+          required: false,
+        },
         XksProxyAuthenticationCredential: {
           name: "Xks Proxy Authentication Credential",
           description:

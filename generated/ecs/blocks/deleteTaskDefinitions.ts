@@ -105,172 +105,195 @@ const deleteTaskDefinitions: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       image: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       repositoryCredentials: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          credentialsParameter: {},
+                        },
+                        required: ["credentialsParameter"],
+                        additionalProperties: false,
                       },
                       cpu: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       memory: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       memoryReservation: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       links: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       portMappings: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       essential: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       restartPolicy: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          enabled: {},
+                          ignoredExitCodes: {},
+                          restartAttemptPeriod: {},
+                        },
+                        required: ["enabled"],
+                        additionalProperties: false,
                       },
                       entryPoint: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       command: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       environment: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       environmentFiles: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       mountPoints: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       volumesFrom: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       linuxParameters: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          capabilities: {},
+                          devices: {},
+                          initProcessEnabled: {},
+                          sharedMemorySize: {},
+                          tmpfs: {},
+                          maxSwap: {},
+                          swappiness: {},
+                        },
+                        additionalProperties: false,
                       },
                       secrets: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       dependsOn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       startTimeout: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       stopTimeout: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       versionConsistency: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       hostname: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       user: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       workingDirectory: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       disableNetworking: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       privileged: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       readonlyRootFilesystem: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       dnsServers: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       dnsSearchDomains: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       extraHosts: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       dockerSecurityOptions: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       interactive: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       pseudoTerminal: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       dockerLabels: {
                         type: "object",
-                        additionalProperties: true,
+                        additionalProperties: {
+                          type: "object",
+                        },
                       },
                       ulimits: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       logConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          logDriver: {},
+                          options: {},
+                          secretOptions: {},
+                        },
+                        required: ["logDriver"],
+                        additionalProperties: false,
                       },
                       healthCheck: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          command: {},
+                          interval: {},
+                          timeout: {},
+                          retries: {},
+                          startPeriod: {},
+                        },
+                        required: ["command"],
+                        additionalProperties: false,
                       },
                       systemControls: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       resourceRequirements: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       firelensConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          type: {},
+                          options: {},
+                        },
+                        required: ["type"],
+                        additionalProperties: false,
                       },
                       credentialSpecs: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -297,28 +320,65 @@ const deleteTaskDefinitions: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       host: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          sourcePath: {},
+                        },
+                        additionalProperties: false,
                       },
                       dockerVolumeConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          scope: {},
+                          autoprovision: {},
+                          driver: {},
+                          driverOpts: {},
+                          labels: {},
+                        },
+                        additionalProperties: false,
                       },
                       efsVolumeConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          fileSystemId: {},
+                          rootDirectory: {},
+                          transitEncryption: {},
+                          transitEncryptionPort: {},
+                          authorizationConfig: {},
+                        },
+                        required: ["fileSystemId"],
+                        additionalProperties: false,
+                      },
+                      s3filesVolumeConfiguration: {
+                        type: "object",
+                        properties: {
+                          fileSystemArn: {},
+                          rootDirectory: {},
+                          transitEncryptionPort: {},
+                          accessPointArn: {},
+                        },
+                        required: ["fileSystemArn"],
+                        additionalProperties: false,
                       },
                       fsxWindowsFileServerVolumeConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          fileSystemId: {},
+                          rootDirectory: {},
+                          authorizationConfig: {},
+                        },
+                        required: [
+                          "fileSystemId",
+                          "rootDirectory",
+                          "authorizationConfig",
+                        ],
+                        additionalProperties: false,
                       },
                       configuredAtLaunch: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,
@@ -333,20 +393,16 @@ const deleteTaskDefinitions: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       targetType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       targetId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["name"],
@@ -359,12 +415,10 @@ const deleteTaskDefinitions: AppBlock = {
                     type: "object",
                     properties: {
                       type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       expression: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -406,12 +460,10 @@ const deleteTaskDefinitions: AppBlock = {
                     type: "object",
                     properties: {
                       deviceName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       deviceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["deviceName", "deviceType"],
@@ -437,7 +489,11 @@ const deleteTaskDefinitions: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {},
+                          value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -448,6 +504,9 @@ const deleteTaskDefinitions: AppBlock = {
                   type: "string",
                 },
                 deregisteredAt: {
+                  type: "string",
+                },
+                deleteRequestedAt: {
                   type: "string",
                 },
                 registeredBy: {

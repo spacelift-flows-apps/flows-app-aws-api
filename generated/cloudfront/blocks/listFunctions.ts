@@ -130,16 +130,19 @@ const listFunctions: AppBlock = {
                       type: "object",
                       properties: {
                         Comment: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Runtime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KeyValueStoreAssociations: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Quantity: {},
+                            Items: {},
+                          },
+                          required: ["Quantity"],
+                          additionalProperties: false,
                         },
                       },
                       required: ["Comment", "Runtime"],
@@ -149,20 +152,16 @@ const listFunctions: AppBlock = {
                       type: "object",
                       properties: {
                         FunctionARN: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Stage: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         CreatedTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LastModifiedTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["FunctionARN", "LastModifiedTime"],

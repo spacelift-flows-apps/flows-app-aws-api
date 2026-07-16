@@ -25,6 +25,7 @@ import deleteObject from "./deleteObject";
 import deleteObjectTagging from "./deleteObjectTagging";
 import deleteObjects from "./deleteObjects";
 import deletePublicAccessBlock from "./deletePublicAccessBlock";
+import getBucketAbac from "./getBucketAbac";
 import getBucketAccelerateConfiguration from "./getBucketAccelerateConfiguration";
 import getBucketAcl from "./getBucketAcl";
 import getBucketAnalyticsConfiguration from "./getBucketAnalyticsConfiguration";
@@ -69,6 +70,7 @@ import listObjectVersions from "./listObjectVersions";
 import listObjects from "./listObjects";
 import listObjectsV2 from "./listObjectsV2";
 import listParts from "./listParts";
+import putBucketAbac from "./putBucketAbac";
 import putBucketAccelerateConfiguration from "./putBucketAccelerateConfiguration";
 import putBucketAcl from "./putBucketAcl";
 import putBucketAnalyticsConfiguration from "./putBucketAnalyticsConfiguration";
@@ -99,6 +101,7 @@ import restoreObject from "./restoreObject";
 import selectObjectContent from "./selectObjectContent";
 import updateBucketMetadataInventoryTableConfiguration from "./updateBucketMetadataInventoryTableConfiguration";
 import updateBucketMetadataJournalTableConfiguration from "./updateBucketMetadataJournalTableConfiguration";
+import updateObjectEncryption from "./updateObjectEncryption";
 import uploadPart from "./uploadPart";
 import uploadPartCopy from "./uploadPartCopy";
 import writeGetObjectResponse from "./writeGetObjectResponse";
@@ -131,6 +134,7 @@ export const blocks = {
   deleteObjectTagging,
   deleteObjects,
   deletePublicAccessBlock,
+  getBucketAbac,
   getBucketAccelerateConfiguration,
   getBucketAcl,
   getBucketAnalyticsConfiguration,
@@ -175,6 +179,7 @@ export const blocks = {
   listObjects,
   listObjectsV2,
   listParts,
+  putBucketAbac,
   putBucketAccelerateConfiguration,
   putBucketAcl,
   putBucketAnalyticsConfiguration,
@@ -205,6 +210,7 @@ export const blocks = {
   selectObjectContent,
   updateBucketMetadataInventoryTableConfiguration,
   updateBucketMetadataJournalTableConfiguration,
+  updateObjectEncryption,
   uploadPart,
   uploadPartCopy,
   writeGetObjectResponse,

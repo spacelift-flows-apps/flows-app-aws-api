@@ -145,8 +145,7 @@ const describeInstanceAssociationsStatus: AppBlock = {
                       type: "object",
                       properties: {
                         OutputUrl: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

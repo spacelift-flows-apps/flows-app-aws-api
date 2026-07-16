@@ -138,6 +138,9 @@ const describeFastSnapshotRestores: AppBlock = {
                 AvailabilityZone: {
                   type: "string",
                 },
+                AvailabilityZoneId: {
+                  type: "string",
+                },
                 State: {
                   type: "string",
                 },

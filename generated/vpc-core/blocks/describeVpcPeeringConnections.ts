@@ -153,14 +153,20 @@ const describeVpcPeeringConnections: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Ipv6CidrBlock: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     CidrBlockSet: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          CidrBlock: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     OwnerId: {
@@ -170,16 +176,13 @@ const describeVpcPeeringConnections: AppBlock = {
                       type: "object",
                       properties: {
                         AllowDnsResolutionFromRemoteVpc: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         AllowEgressFromLocalClassicLinkToRemoteVpc: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         AllowEgressFromLocalVpcToRemoteClassicLink: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -206,14 +209,20 @@ const describeVpcPeeringConnections: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Ipv6CidrBlock: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     CidrBlockSet: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          CidrBlock: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     OwnerId: {
@@ -223,16 +232,13 @@ const describeVpcPeeringConnections: AppBlock = {
                       type: "object",
                       properties: {
                         AllowDnsResolutionFromRemoteVpc: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         AllowEgressFromLocalClassicLinkToRemoteVpc: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         AllowEgressFromLocalVpcToRemoteClassicLink: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -264,12 +270,10 @@ const describeVpcPeeringConnections: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

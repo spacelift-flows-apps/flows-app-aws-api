@@ -4,7 +4,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const publishBatch: AppBlock = {
   name: "Publish Batch",
-  description: `Publishes up to ten messages to the specified topic.`,
+  description: `Publishes up to 10 messages to the specified topic in a single batch.`,
   inputs: {
     default: {
       config: {

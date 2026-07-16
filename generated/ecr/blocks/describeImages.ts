@@ -78,6 +78,9 @@ const describeImages: AppBlock = {
               tagStatus: {
                 type: "string",
               },
+              imageStatus: {
+                type: "string",
+              },
             },
             additionalProperties: false,
           },
@@ -191,7 +194,7 @@ const describeImages: AppBlock = {
                     findingSeverityCounts: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "number",
                       },
                     },
                   },
@@ -204,6 +207,18 @@ const describeImages: AppBlock = {
                   type: "string",
                 },
                 lastRecordedPullTime: {
+                  type: "string",
+                },
+                subjectManifestDigest: {
+                  type: "string",
+                },
+                imageStatus: {
+                  type: "string",
+                },
+                lastArchivedAt: {
+                  type: "string",
+                },
+                lastActivatedAt: {
                   type: "string",
                 },
               },

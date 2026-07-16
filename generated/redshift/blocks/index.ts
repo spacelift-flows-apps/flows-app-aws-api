@@ -98,6 +98,7 @@ import enableSnapshotCopy from "./enableSnapshotCopy";
 import failoverPrimaryCompute from "./failoverPrimaryCompute";
 import getClusterCredentials from "./getClusterCredentials";
 import getClusterCredentialsWithIAM from "./getClusterCredentialsWithIAM";
+import getIdentityCenterAuthToken from "./getIdentityCenterAuthToken";
 import getReservedNodeExchangeConfigurationOptions from "./getReservedNodeExchangeConfigurationOptions";
 import getReservedNodeExchangeOfferings from "./getReservedNodeExchangeOfferings";
 import getResourcePolicy from "./getResourcePolicy";
@@ -116,6 +117,7 @@ import modifyCustomDomainAssociation from "./modifyCustomDomainAssociation";
 import modifyEndpointAccess from "./modifyEndpointAccess";
 import modifyEventSubscription from "./modifyEventSubscription";
 import modifyIntegration from "./modifyIntegration";
+import modifyLakehouseConfiguration from "./modifyLakehouseConfiguration";
 import modifyRedshiftIdcApplication from "./modifyRedshiftIdcApplication";
 import modifyScheduledAction from "./modifyScheduledAction";
 import modifySnapshotCopyRetentionPeriod from "./modifySnapshotCopyRetentionPeriod";
@@ -239,6 +241,7 @@ export const blocks = {
   failoverPrimaryCompute,
   getClusterCredentials,
   getClusterCredentialsWithIAM,
+  getIdentityCenterAuthToken,
   getReservedNodeExchangeConfigurationOptions,
   getReservedNodeExchangeOfferings,
   getResourcePolicy,
@@ -257,6 +260,7 @@ export const blocks = {
   modifyEndpointAccess,
   modifyEventSubscription,
   modifyIntegration,
+  modifyLakehouseConfiguration,
   modifyRedshiftIdcApplication,
   modifyScheduledAction,
   modifySnapshotCopyRetentionPeriod,

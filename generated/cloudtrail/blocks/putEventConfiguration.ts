@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const putEventConfiguration: AppBlock = {
   name: "Put Event Configuration",
-  description: `Updates the event configuration settings for the specified event data store.`,
+  description: `Updates the event configuration settings for the specified event data store or trail.`,
   inputs: {
     default: {
       config: {
@@ -24,10 +24,17 @@ const putEventConfiguration: AppBlock = {
           type: "string",
           required: false,
         },
+        TrailName: {
+          name: "Trail Name",
+          description:
+            "The name of the trail for which you want to update event configuration settings.",
+          type: "string",
+          required: false,
+        },
         EventDataStore: {
           name: "Event Data Store",
           description:
-            "The Amazon Resource Name (ARN) or ID suffix of the ARN of the event data store for which you want to update event configuration settings.",
+            "The Amazon Resource Name (ARN) or ID suffix of the ARN of the event data store for which event configuration settings are updated.",
           type: "string",
           required: false,
         },
@@ -36,7 +43,7 @@ const putEventConfiguration: AppBlock = {
           description:
             "The maximum allowed size for events to be stored in the specified event data store.",
           type: "string",
-          required: true,
+          required: false,
         },
         ContextKeySelectors: {
           name: "Context Key Selectors",
@@ -61,7 +68,32 @@ const putEventConfiguration: AppBlock = {
               additionalProperties: false,
             },
           },
-          required: true,
+          required: false,
+        },
+        AggregationConfigurations: {
+          name: "Aggregation Configurations",
+          description:
+            "The list of aggregation configurations that you want to configure for the trail.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                Templates: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
+                },
+                EventCategory: {
+                  type: "string",
+                },
+              },
+              required: ["Templates", "EventCategory"],
+              additionalProperties: false,
+            },
+          },
+          required: false,
         },
       },
       onEvent: async (input) => {
@@ -121,6 +153,11 @@ const putEventConfiguration: AppBlock = {
       type: {
         type: "object",
         properties: {
+          TrailARN: {
+            type: "string",
+            description:
+              "The Amazon Resource Name (ARN) of the trail that has aggregation enabled.",
+          },
           EventDataStoreArn: {
             type: "string",
             description:
@@ -151,6 +188,27 @@ const putEventConfiguration: AppBlock = {
             },
             description:
               "The list of context key selectors that are configured for the event data store.",
+          },
+          AggregationConfigurations: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                Templates: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
+                },
+                EventCategory: {
+                  type: "string",
+                },
+              },
+              required: ["Templates", "EventCategory"],
+              additionalProperties: false,
+            },
+            description:
+              "A list of aggregation configurations that are configured for the trail.",
           },
         },
         additionalProperties: true,

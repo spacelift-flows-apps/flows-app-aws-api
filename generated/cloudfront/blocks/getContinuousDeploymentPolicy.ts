@@ -112,8 +112,7 @@ const getContinuousDeploymentPolicy: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -130,12 +129,16 @@ const getContinuousDeploymentPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Weight: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           SessionStickinessConfig: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              IdleTTL: {},
+                              MaximumTTL: {},
+                            },
+                            required: ["IdleTTL", "MaximumTTL"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["Weight"],
@@ -145,12 +148,10 @@ const getContinuousDeploymentPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Header: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           Value: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         required: ["Header", "Value"],

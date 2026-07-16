@@ -200,6 +200,21 @@ const getObjectAttributes: AppBlock = {
               ChecksumSHA256: {
                 type: "string",
               },
+              ChecksumSHA512: {
+                type: "string",
+              },
+              ChecksumMD5: {
+                type: "string",
+              },
+              ChecksumXXHASH64: {
+                type: "string",
+              },
+              ChecksumXXHASH3: {
+                type: "string",
+              },
+              ChecksumXXHASH128: {
+                type: "string",
+              },
               ChecksumType: {
                 type: "string",
               },
@@ -249,6 +264,21 @@ const getObjectAttributes: AppBlock = {
                       type: "string",
                     },
                     ChecksumSHA256: {
+                      type: "string",
+                    },
+                    ChecksumSHA512: {
+                      type: "string",
+                    },
+                    ChecksumMD5: {
+                      type: "string",
+                    },
+                    ChecksumXXHASH64: {
+                      type: "string",
+                    },
+                    ChecksumXXHASH3: {
+                      type: "string",
+                    },
+                    ChecksumXXHASH128: {
                       type: "string",
                     },
                   },

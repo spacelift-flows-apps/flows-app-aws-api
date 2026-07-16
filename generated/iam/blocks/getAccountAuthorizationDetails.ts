@@ -135,12 +135,10 @@ const getAccountAuthorizationDetails: AppBlock = {
                     type: "object",
                     properties: {
                       PolicyName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PolicyDocument: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -158,12 +156,10 @@ const getAccountAuthorizationDetails: AppBlock = {
                     type: "object",
                     properties: {
                       PolicyName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PolicyArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -187,12 +183,10 @@ const getAccountAuthorizationDetails: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Key", "Value"],
@@ -230,12 +224,10 @@ const getAccountAuthorizationDetails: AppBlock = {
                     type: "object",
                     properties: {
                       PolicyName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PolicyDocument: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -247,12 +239,10 @@ const getAccountAuthorizationDetails: AppBlock = {
                     type: "object",
                     properties: {
                       PolicyName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PolicyArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -292,32 +282,27 @@ const getAccountAuthorizationDetails: AppBlock = {
                     type: "object",
                     properties: {
                       Path: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       InstanceProfileName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       InstanceProfileId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Arn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CreateDate: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Roles: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Tags: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     required: [
@@ -337,12 +322,10 @@ const getAccountAuthorizationDetails: AppBlock = {
                     type: "object",
                     properties: {
                       PolicyName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PolicyDocument: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -354,12 +337,10 @@ const getAccountAuthorizationDetails: AppBlock = {
                     type: "object",
                     properties: {
                       PolicyName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PolicyArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -383,12 +364,10 @@ const getAccountAuthorizationDetails: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Key", "Value"],
@@ -456,20 +435,16 @@ const getAccountAuthorizationDetails: AppBlock = {
                     type: "object",
                     properties: {
                       Document: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       VersionId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IsDefaultVersion: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       CreateDate: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

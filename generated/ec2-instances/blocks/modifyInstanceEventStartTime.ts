@@ -4,6 +4,7 @@ import {
   ModifyInstanceEventStartTimeCommand,
 } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const modifyInstanceEventStartTime: AppBlock = {
   name: "Modify Instance Event Start Time",
@@ -94,7 +95,7 @@ const modifyInstanceEventStartTime: AppBlock = {
         });
 
         const command = new ModifyInstanceEventStartTimeCommand(
-          commandInput as any,
+          convertTimestamps(commandInput, new Set(["NotBefore"])) as any,
         );
         const response = await client.send(command);
 

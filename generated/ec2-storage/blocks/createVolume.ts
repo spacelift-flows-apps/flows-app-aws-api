@@ -26,7 +26,14 @@ const createVolume: AppBlock = {
           description:
             "The ID of the Availability Zone in which to create the volume.",
           type: "string",
-          required: true,
+          required: false,
+        },
+        AvailabilityZoneId: {
+          name: "Availability Zone Id",
+          description:
+            "The ID of the Availability Zone in which to create the volume.",
+          type: "string",
+          required: false,
         },
         Encrypted: {
           name: "Encrypted",
@@ -36,7 +43,8 @@ const createVolume: AppBlock = {
         },
         Iops: {
           name: "Iops",
-          description: "The number of I/O operations per second (IOPS).",
+          description:
+            "The number of I/O operations per second (IOPS) to provision for the volume.",
           type: "number",
           required: false,
         },
@@ -89,12 +97,10 @@ const createVolume: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -114,8 +120,7 @@ const createVolume: AppBlock = {
         },
         Throughput: {
           name: "Throughput",
-          description:
-            "The throughput to provision for a volume, with a maximum of 1,000 MiB/s.",
+          description: "The throughput to provision for the volume, in MiB/s.",
           type: "number",
           required: false,
         },
@@ -212,9 +217,18 @@ const createVolume: AppBlock = {
       type: {
         type: "object",
         properties: {
+          AvailabilityZoneId: {
+            type: "string",
+            description: "The ID of the Availability Zone for the volume.",
+          },
           OutpostArn: {
             type: "string",
             description: "The Amazon Resource Name (ARN) of the Outpost.",
+          },
+          SourceVolumeId: {
+            type: "string",
+            description:
+              "The ID of the source volume from which the volume copy was created.",
           },
           Iops: {
             type: "number",
@@ -266,6 +280,9 @@ const createVolume: AppBlock = {
               Principal: {
                 type: "string",
               },
+              HiddenByDefault: {
+                type: "boolean",
+              },
             },
             additionalProperties: false,
             description: "The service provider that manages the volume.",
@@ -313,6 +330,9 @@ const createVolume: AppBlock = {
                 },
                 InstanceOwningService: {
                   type: "string",
+                },
+                EbsCardIndex: {
+                  type: "number",
                 },
                 VolumeId: {
                   type: "string",

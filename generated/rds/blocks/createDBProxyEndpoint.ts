@@ -84,6 +84,12 @@ const createDBProxyEndpoint: AppBlock = {
           },
           required: false,
         },
+        EndpointNetworkType: {
+          name: "Endpoint Network Type",
+          description: "The network type of the DB proxy endpoint.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -183,6 +189,9 @@ const createDBProxyEndpoint: AppBlock = {
               },
               IsDefault: {
                 type: "boolean",
+              },
+              EndpointNetworkType: {
+                type: "string",
               },
             },
             additionalProperties: false,

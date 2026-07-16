@@ -181,52 +181,40 @@ const listCommandInvocations: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       StatusDetails: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ResponseCode: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       ResponseStartDateTime: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ResponseFinishDateTime: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Output: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       StandardOutputUrl: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       StandardErrorUrl: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       OutputS3Region: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       OutputS3BucketName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       OutputS3KeyPrefix: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -244,8 +232,7 @@ const listCommandInvocations: AppBlock = {
                     NotificationEvents: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     NotificationType: {

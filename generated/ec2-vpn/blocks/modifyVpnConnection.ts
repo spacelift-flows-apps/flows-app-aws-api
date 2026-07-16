@@ -121,6 +121,9 @@ const modifyVpnConnection: AppBlock = {
               TransitGatewayId: {
                 type: "string",
               },
+              VpnConcentratorId: {
+                type: "string",
+              },
               CoreNetworkArn: {
                 type: "string",
               },
@@ -166,92 +169,85 @@ const modifyVpnConnection: AppBlock = {
                       type: "object",
                       properties: {
                         OutsideIpAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         TunnelInsideCidr: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         TunnelInsideIpv6Cidr: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PreSharedKey: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Phase1LifetimeSeconds: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Phase2LifetimeSeconds: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         RekeyMarginTimeSeconds: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         RekeyFuzzPercentage: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ReplayWindowSize: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         DpdTimeoutSeconds: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         DpdTimeoutAction: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Phase1EncryptionAlgorithms: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Phase2EncryptionAlgorithms: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Phase1IntegrityAlgorithms: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Phase2IntegrityAlgorithms: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Phase1DHGroupNumbers: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Phase2DHGroupNumbers: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         IkeVersions: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         StartupAction: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LogOptions: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            CloudWatchLogOptions: {},
+                          },
+                          additionalProperties: false,
                         },
                         EnableTunnelLifecycleControl: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
                     },
+                  },
+                  TunnelBandwidth: {
+                    type: "string",
                   },
                 },
                 additionalProperties: false,

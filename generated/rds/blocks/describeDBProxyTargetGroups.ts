@@ -170,8 +170,7 @@ const describeDBProxyTargetGroups: AppBlock = {
                     SessionPinningFilters: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     InitQuery: {

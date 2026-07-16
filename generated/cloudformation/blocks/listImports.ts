@@ -32,8 +32,7 @@ const listImports: AppBlock = {
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "A string (provided by the ListImports response output) that identifies the next page of stacks that are importing the specified exported output value.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },

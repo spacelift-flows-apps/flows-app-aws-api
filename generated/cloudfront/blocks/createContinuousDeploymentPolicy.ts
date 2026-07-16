@@ -63,12 +63,10 @@ const createContinuousDeploymentPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           IdleTTL: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           MaximumTTL: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                         },
                         required: ["IdleTTL", "MaximumTTL"],
@@ -185,8 +183,7 @@ const createContinuousDeploymentPolicy: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -203,12 +200,16 @@ const createContinuousDeploymentPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Weight: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           SessionStickinessConfig: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              IdleTTL: {},
+                              MaximumTTL: {},
+                            },
+                            required: ["IdleTTL", "MaximumTTL"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["Weight"],
@@ -218,12 +219,10 @@ const createContinuousDeploymentPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Header: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           Value: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         required: ["Header", "Value"],

@@ -65,6 +65,40 @@ const createAnycastIpList: AppBlock = {
           },
           required: false,
         },
+        IpAddressType: {
+          name: "Ip Address Type",
+          description: "The IP address type for the Anycast static IP list.",
+          type: "string",
+          required: false,
+        },
+        IpamCidrConfigs: {
+          name: "Ipam Cidr Configs",
+          description:
+            "A list of IPAM CIDR configurations that specify the IP address ranges and IPAM pool settings for creating the Anycast static IP list.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                Cidr: {
+                  type: "string",
+                },
+                IpamPoolArn: {
+                  type: "string",
+                },
+                AnycastIp: {
+                  type: "string",
+                },
+                Status: {
+                  type: "string",
+                },
+              },
+              required: ["Cidr", "IpamPoolArn"],
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -137,6 +171,41 @@ const createAnycastIpList: AppBlock = {
               },
               Arn: {
                 type: "string",
+              },
+              IpAddressType: {
+                type: "string",
+              },
+              IpamConfig: {
+                type: "object",
+                properties: {
+                  Quantity: {
+                    type: "number",
+                  },
+                  IpamCidrConfigs: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      properties: {
+                        Cidr: {
+                          type: "string",
+                        },
+                        IpamPoolArn: {
+                          type: "string",
+                        },
+                        AnycastIp: {
+                          type: "string",
+                        },
+                        Status: {
+                          type: "string",
+                        },
+                      },
+                      required: ["Cidr", "IpamPoolArn"],
+                      additionalProperties: false,
+                    },
+                  },
+                },
+                required: ["Quantity", "IpamCidrConfigs"],
+                additionalProperties: false,
               },
               AnycastIps: {
                 type: "array",

@@ -137,20 +137,16 @@ const listScheduledQueries: AppBlock = {
                       type: "object",
                       properties: {
                         destinationIdentifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         roleArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ownerAccountId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         kmsKeyId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["destinationIdentifier", "roleArn"],

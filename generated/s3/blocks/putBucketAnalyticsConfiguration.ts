@@ -49,7 +49,66 @@ const putBucketAnalyticsConfiguration: AppBlock = {
                 type: "string",
               },
               Filter: {
-                type: "string",
+                oneOf: [
+                  {
+                    type: "object",
+                    properties: {
+                      Prefix: {
+                        type: "string",
+                      },
+                    },
+                    required: ["Prefix"],
+                    additionalProperties: false,
+                  },
+                  {
+                    type: "object",
+                    properties: {
+                      Tag: {
+                        type: "object",
+                        properties: {
+                          Key: {
+                            type: "string",
+                          },
+                          Value: {
+                            type: "string",
+                          },
+                        },
+                        required: ["Key", "Value"],
+                        additionalProperties: false,
+                      },
+                    },
+                    required: ["Tag"],
+                    additionalProperties: false,
+                  },
+                  {
+                    type: "object",
+                    properties: {
+                      And: {
+                        type: "object",
+                        properties: {
+                          Prefix: {
+                            type: "string",
+                          },
+                          Tags: {
+                            type: "array",
+                            items: {
+                              type: "object",
+                              properties: {
+                                Key: {},
+                                Value: {},
+                              },
+                              required: ["Key", "Value"],
+                              additionalProperties: false,
+                            },
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                    },
+                    required: ["And"],
+                    additionalProperties: false,
+                  },
+                ],
               },
               StorageClassAnalysis: {
                 type: "object",
@@ -65,7 +124,14 @@ const putBucketAnalyticsConfiguration: AppBlock = {
                         properties: {
                           S3BucketDestination: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              Format: {},
+                              BucketAccountId: {},
+                              Bucket: {},
+                              Prefix: {},
+                            },
+                            required: ["Format", "Bucket"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["S3BucketDestination"],

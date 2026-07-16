@@ -1,0 +1,201 @@
+import { AppBlock, events } from "@slflows/sdk/v1";
+import {
+  RDSClient,
+  DescribeServerlessV2PlatformVersionsCommand,
+} from "@aws-sdk/client-rds";
+import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+
+const describeServerlessV2PlatformVersions: AppBlock = {
+  name: "Describe Serverless V2Platform Versions",
+  description: `Describes the properties of specific platform versions for Aurora Serverless v2.`,
+  inputs: {
+    default: {
+      config: {
+        region: {
+          name: "Region",
+          description: "AWS region for this operation",
+          type: "string",
+          required: true,
+        },
+        assumeRoleArn: {
+          name: "Assume Role ARN",
+          description:
+            "Optional IAM role ARN to assume before executing this operation. If provided, the block will use STS to assume this role and use the temporary credentials.",
+          type: "string",
+          required: false,
+        },
+        ServerlessV2PlatformVersion: {
+          name: "Serverless V2Platform Version",
+          description: "A specific platform version to return details for.",
+          type: "string",
+          required: false,
+        },
+        Engine: {
+          name: "Engine",
+          description:
+            "The database engine to return platform version details for.",
+          type: "string",
+          required: false,
+        },
+        Filters: {
+          name: "Filters",
+          description: "This parameter isn't currently supported.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                Name: {
+                  type: "string",
+                },
+                Values: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
+                },
+              },
+              required: ["Name", "Values"],
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
+        DefaultOnly: {
+          name: "Default Only",
+          description:
+            "Specifies whether to return only the default platform versions for each engine.",
+          type: "boolean",
+          required: false,
+        },
+        IncludeAll: {
+          name: "Include All",
+          description:
+            "Specifies whether to also include platform versions which are no longer in use.",
+          type: "boolean",
+          required: false,
+        },
+        MaxRecords: {
+          name: "Max Records",
+          description:
+            "The maximum number of records to include in the response.",
+          type: "number",
+          required: false,
+        },
+        Marker: {
+          name: "Marker",
+          description:
+            "An optional pagination token provided by a previous request.",
+          type: "string",
+          required: false,
+        },
+      },
+      onEvent: async (input) => {
+        const { region, assumeRoleArn, ...commandInput } =
+          input.event.inputConfig;
+
+        let credentials = {
+          accessKeyId: input.app.config.accessKeyId,
+          secretAccessKey: input.app.config.secretAccessKey,
+          sessionToken: input.app.config.sessionToken,
+        };
+
+        // Determine credentials to use
+        if (assumeRoleArn) {
+          // Use STS to assume the specified role
+          const stsClient = new STSClient({
+            region: region,
+            credentials: credentials,
+            ...(input.app.config.endpoint && {
+              endpoint: input.app.config.endpoint,
+            }),
+          });
+
+          const assumeRoleCommand = new AssumeRoleCommand({
+            RoleArn: assumeRoleArn,
+            RoleSessionName: `flows-session-${Date.now()}`,
+          });
+
+          const assumeRoleResponse = await stsClient.send(assumeRoleCommand);
+          credentials = {
+            accessKeyId: assumeRoleResponse.Credentials!.AccessKeyId!,
+            secretAccessKey: assumeRoleResponse.Credentials!.SecretAccessKey!,
+            sessionToken: assumeRoleResponse.Credentials!.SessionToken!,
+          };
+        }
+
+        const client = new RDSClient({
+          region: region,
+          credentials: credentials,
+          ...(input.app.config.endpoint && {
+            endpoint: input.app.config.endpoint,
+          }),
+        });
+
+        const command = new DescribeServerlessV2PlatformVersionsCommand(
+          commandInput as any,
+        );
+        const response = await client.send(command);
+
+        await events.emit(response || {});
+      },
+    },
+  },
+  outputs: {
+    default: {
+      name: "Describe Serverless V2Platform Versions Result",
+      description: "Result from DescribeServerlessV2PlatformVersions operation",
+      possiblePrimaryParents: ["default"],
+      type: {
+        type: "object",
+        properties: {
+          Marker: {
+            type: "string",
+            description:
+              "An optional pagination token provided by a previous request.",
+          },
+          ServerlessV2PlatformVersions: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                ServerlessV2PlatformVersion: {
+                  type: "string",
+                },
+                ServerlessV2PlatformVersionDescription: {
+                  type: "string",
+                },
+                Engine: {
+                  type: "string",
+                },
+                ServerlessV2FeaturesSupport: {
+                  type: "object",
+                  properties: {
+                    MinCapacity: {
+                      type: "number",
+                    },
+                    MaxCapacity: {
+                      type: "number",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+                Status: {
+                  type: "string",
+                },
+                IsDefault: {
+                  type: "boolean",
+                },
+              },
+              additionalProperties: false,
+            },
+            description: "A list of ServerlessV2PlatformVersionInfo elements.",
+          },
+        },
+        additionalProperties: true,
+      },
+    },
+  },
+};
+
+export default describeServerlessV2PlatformVersions;

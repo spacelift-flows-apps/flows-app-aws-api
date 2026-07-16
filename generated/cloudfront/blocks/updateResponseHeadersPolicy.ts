@@ -48,8 +48,7 @@ const updateResponseHeadersPolicy: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -65,8 +64,7 @@ const updateResponseHeadersPolicy: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -82,8 +80,7 @@ const updateResponseHeadersPolicy: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -102,8 +99,7 @@ const updateResponseHeadersPolicy: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -244,16 +240,13 @@ const updateResponseHeadersPolicy: AppBlock = {
                       type: "object",
                       properties: {
                         Header: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Override: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       required: ["Header", "Value", "Override"],
@@ -276,8 +269,7 @@ const updateResponseHeadersPolicy: AppBlock = {
                       type: "object",
                       properties: {
                         Header: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Header"],
@@ -393,12 +385,11 @@ const updateResponseHeadersPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity", "Items"],
@@ -408,12 +399,11 @@ const updateResponseHeadersPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity", "Items"],
@@ -423,12 +413,11 @@ const updateResponseHeadersPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity", "Items"],
@@ -441,12 +430,11 @@ const updateResponseHeadersPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity"],
@@ -475,20 +463,16 @@ const updateResponseHeadersPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Override: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                           Protection: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                           ModeBlock: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                           ReportUri: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         required: ["Override", "Protection"],
@@ -498,12 +482,10 @@ const updateResponseHeadersPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Override: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                           FrameOption: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         required: ["Override", "FrameOption"],
@@ -513,12 +495,10 @@ const updateResponseHeadersPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Override: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                           ReferrerPolicy: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         required: ["Override", "ReferrerPolicy"],
@@ -528,12 +508,10 @@ const updateResponseHeadersPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Override: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                           ContentSecurityPolicy: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         required: ["Override", "ContentSecurityPolicy"],
@@ -543,8 +521,7 @@ const updateResponseHeadersPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Override: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                         },
                         required: ["Override"],
@@ -554,20 +531,16 @@ const updateResponseHeadersPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Override: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                           IncludeSubdomains: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                           Preload: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                           AccessControlMaxAgeSec: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                         },
                         required: ["Override", "AccessControlMaxAgeSec"],
@@ -599,7 +572,13 @@ const updateResponseHeadersPolicy: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Header: {},
+                            Value: {},
+                            Override: {},
+                          },
+                          required: ["Header", "Value", "Override"],
+                          additionalProperties: false,
                         },
                       },
                     },
@@ -616,7 +595,11 @@ const updateResponseHeadersPolicy: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Header: {},
+                          },
+                          required: ["Header"],
+                          additionalProperties: false,
                         },
                       },
                     },

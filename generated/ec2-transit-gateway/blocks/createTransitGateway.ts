@@ -85,12 +85,10 @@ const createTransitGateway: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -226,6 +224,18 @@ const createTransitGateway: AppBlock = {
                   },
                   MulticastSupport: {
                     type: "string",
+                  },
+                  EncryptionSupport: {
+                    type: "object",
+                    properties: {
+                      EncryptionState: {
+                        type: "string",
+                      },
+                      StateMessage: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
                   },
                 },
                 additionalProperties: false,

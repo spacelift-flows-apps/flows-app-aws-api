@@ -116,7 +116,12 @@ const getFieldLevelEncryptionConfig: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            QueryArg: {},
+                            ProfileId: {},
+                          },
+                          required: ["QueryArg", "ProfileId"],
+                          additionalProperties: false,
                         },
                       },
                     },
@@ -143,7 +148,13 @@ const getFieldLevelEncryptionConfig: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Format: {},
+                            ProfileId: {},
+                            ContentType: {},
+                          },
+                          required: ["Format", "ContentType"],
+                          additionalProperties: false,
                         },
                       },
                     },

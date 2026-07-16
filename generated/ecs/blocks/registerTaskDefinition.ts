@@ -94,28 +94,22 @@ const registerTaskDefinition: AppBlock = {
                     type: "object",
                     properties: {
                       containerPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       hostPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       protocol: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       appProtocol: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       containerPortRange: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -133,8 +127,7 @@ const registerTaskDefinition: AppBlock = {
                     ignoredExitCodes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     restartAttemptPeriod: {
@@ -162,12 +155,10 @@ const registerTaskDefinition: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -179,12 +170,10 @@ const registerTaskDefinition: AppBlock = {
                     type: "object",
                     properties: {
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["value", "type"],
@@ -197,16 +186,13 @@ const registerTaskDefinition: AppBlock = {
                     type: "object",
                     properties: {
                       sourceVolume: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       containerPath: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       readOnly: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,
@@ -218,12 +204,10 @@ const registerTaskDefinition: AppBlock = {
                     type: "object",
                     properties: {
                       sourceContainer: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       readOnly: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,
@@ -236,12 +220,12 @@ const registerTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         add: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         drop: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -250,7 +234,13 @@ const registerTaskDefinition: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          hostPath: {},
+                          containerPath: {},
+                          permissions: {},
+                        },
+                        required: ["hostPath"],
+                        additionalProperties: false,
                       },
                     },
                     initProcessEnabled: {
@@ -263,7 +253,13 @@ const registerTaskDefinition: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          containerPath: {},
+                          size: {},
+                          mountOptions: {},
+                        },
+                        required: ["containerPath", "size"],
+                        additionalProperties: false,
                       },
                     },
                     maxSwap: {
@@ -281,12 +277,10 @@ const registerTaskDefinition: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       valueFrom: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["name", "valueFrom"],
@@ -299,12 +293,10 @@ const registerTaskDefinition: AppBlock = {
                     type: "object",
                     properties: {
                       containerName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       condition: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["containerName", "condition"],
@@ -356,12 +348,10 @@ const registerTaskDefinition: AppBlock = {
                     type: "object",
                     properties: {
                       hostname: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ipAddress: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["hostname", "ipAddress"],
@@ -392,16 +382,13 @@ const registerTaskDefinition: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       softLimit: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       hardLimit: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     required: ["name", "softLimit", "hardLimit"],
@@ -417,14 +404,19 @@ const registerTaskDefinition: AppBlock = {
                     options: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     secretOptions: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {},
+                          valueFrom: {},
+                        },
+                        required: ["name", "valueFrom"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -437,8 +429,7 @@ const registerTaskDefinition: AppBlock = {
                     command: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     interval: {
@@ -463,12 +454,10 @@ const registerTaskDefinition: AppBlock = {
                     type: "object",
                     properties: {
                       namespace: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -480,12 +469,10 @@ const registerTaskDefinition: AppBlock = {
                     type: "object",
                     properties: {
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["value", "type"],
@@ -501,7 +488,7 @@ const registerTaskDefinition: AppBlock = {
                     options: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                   },
@@ -556,13 +543,13 @@ const registerTaskDefinition: AppBlock = {
                     driverOpts: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     labels: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                   },
@@ -587,18 +574,35 @@ const registerTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         accessPointId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         iam: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
                     },
                   },
                   required: ["fileSystemId"],
+                  additionalProperties: false,
+                },
+                s3filesVolumeConfiguration: {
+                  type: "object",
+                  properties: {
+                    fileSystemArn: {
+                      type: "string",
+                    },
+                    rootDirectory: {
+                      type: "string",
+                    },
+                    transitEncryptionPort: {
+                      type: "number",
+                    },
+                    accessPointArn: {
+                      type: "string",
+                    },
+                  },
+                  required: ["fileSystemArn"],
                   additionalProperties: false,
                 },
                 fsxWindowsFileServerVolumeConfiguration: {
@@ -614,12 +618,10 @@ const registerTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         credentialsParameter: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         domain: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["credentialsParameter", "domain"],
@@ -897,8 +899,7 @@ const registerTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         credentialsParameter: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["credentialsParameter"],
@@ -916,15 +917,22 @@ const registerTaskDefinition: AppBlock = {
                     links: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     portMappings: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          containerPort: {},
+                          hostPort: {},
+                          protocol: {},
+                          name: {},
+                          appProtocol: {},
+                          containerPortRange: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     essential: {
@@ -934,16 +942,14 @@ const registerTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         enabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         ignoredExitCodes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         restartAttemptPeriod: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       required: ["enabled"],
@@ -952,43 +958,59 @@ const registerTaskDefinition: AppBlock = {
                     entryPoint: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     command: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     environment: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {},
+                          value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     environmentFiles: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          value: {},
+                          type: {},
+                        },
+                        required: ["value", "type"],
+                        additionalProperties: false,
                       },
                     },
                     mountPoints: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          sourceVolume: {},
+                          containerPath: {},
+                          readOnly: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     volumesFrom: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          sourceContainer: {},
+                          readOnly: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     linuxParameters: {
@@ -996,31 +1018,31 @@ const registerTaskDefinition: AppBlock = {
                       properties: {
                         capabilities: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            add: {},
+                            drop: {},
+                          },
+                          additionalProperties: false,
                         },
                         devices: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         initProcessEnabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         sharedMemorySize: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         tmpfs: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         maxSwap: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         swappiness: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -1029,14 +1051,24 @@ const registerTaskDefinition: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {},
+                          valueFrom: {},
+                        },
+                        required: ["name", "valueFrom"],
+                        additionalProperties: false,
                       },
                     },
                     dependsOn: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          containerName: {},
+                          condition: {},
+                        },
+                        required: ["containerName", "condition"],
+                        additionalProperties: false,
                       },
                     },
                     startTimeout: {
@@ -1069,29 +1101,31 @@ const registerTaskDefinition: AppBlock = {
                     dnsServers: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     dnsSearchDomains: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     extraHosts: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          hostname: {},
+                          ipAddress: {},
+                        },
+                        required: ["hostname", "ipAddress"],
+                        additionalProperties: false,
                       },
                     },
                     dockerSecurityOptions: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     interactive: {
@@ -1103,30 +1137,37 @@ const registerTaskDefinition: AppBlock = {
                     dockerLabels: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     ulimits: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {},
+                          softLimit: {},
+                          hardLimit: {},
+                        },
+                        required: ["name", "softLimit", "hardLimit"],
+                        additionalProperties: false,
                       },
                     },
                     logConfiguration: {
                       type: "object",
                       properties: {
                         logDriver: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         options: {
                           type: "object",
-                          additionalProperties: true,
+                          additionalProperties: {
+                            type: "object",
+                          },
                         },
                         secretOptions: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["logDriver"],
@@ -1136,24 +1177,20 @@ const registerTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         command: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         interval: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         timeout: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         retries: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         startPeriod: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       required: ["command"],
@@ -1163,26 +1200,36 @@ const registerTaskDefinition: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          namespace: {},
+                          value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     resourceRequirements: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          value: {},
+                          type: {},
+                        },
+                        required: ["value", "type"],
+                        additionalProperties: false,
                       },
                     },
                     firelensConfiguration: {
                       type: "object",
                       properties: {
                         type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         options: {
                           type: "object",
-                          additionalProperties: true,
+                          additionalProperties: {
+                            type: "object",
+                          },
                         },
                       },
                       required: ["type"],
@@ -1191,8 +1238,7 @@ const registerTaskDefinition: AppBlock = {
                     credentialSpecs: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -1226,8 +1272,7 @@ const registerTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         sourcePath: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -1236,24 +1281,25 @@ const registerTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         scope: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         autoprovision: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         driver: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         driverOpts: {
                           type: "object",
-                          additionalProperties: true,
+                          additionalProperties: {
+                            type: "object",
+                          },
                         },
                         labels: {
                           type: "object",
-                          additionalProperties: true,
+                          additionalProperties: {
+                            type: "object",
+                          },
                         },
                       },
                       additionalProperties: false,
@@ -1262,43 +1308,65 @@ const registerTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         fileSystemId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         rootDirectory: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         transitEncryption: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         transitEncryptionPort: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         authorizationConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            accessPointId: {},
+                            iam: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       required: ["fileSystemId"],
+                      additionalProperties: false,
+                    },
+                    s3filesVolumeConfiguration: {
+                      type: "object",
+                      properties: {
+                        fileSystemArn: {
+                          type: "string",
+                        },
+                        rootDirectory: {
+                          type: "string",
+                        },
+                        transitEncryptionPort: {
+                          type: "number",
+                        },
+                        accessPointArn: {
+                          type: "string",
+                        },
+                      },
+                      required: ["fileSystemArn"],
                       additionalProperties: false,
                     },
                     fsxWindowsFileServerVolumeConfiguration: {
                       type: "object",
                       properties: {
                         fileSystemId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         rootDirectory: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         authorizationConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            credentialsParameter: {},
+                            domain: {},
+                          },
+                          required: ["credentialsParameter", "domain"],
+                          additionalProperties: false,
                         },
                       },
                       required: [
@@ -1422,12 +1490,10 @@ const registerTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -1441,6 +1507,9 @@ const registerTaskDefinition: AppBlock = {
                 type: "string",
               },
               deregisteredAt: {
+                type: "string",
+              },
+              deleteRequestedAt: {
                 type: "string",
               },
               registeredBy: {

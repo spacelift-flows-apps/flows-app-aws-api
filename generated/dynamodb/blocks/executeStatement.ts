@@ -37,7 +37,231 @@ const executeStatement: AppBlock = {
           type: {
             type: "array",
             items: {
-              type: "string",
+              oneOf: [
+                {
+                  type: "object",
+                  properties: {
+                    S: {
+                      type: "string",
+                    },
+                  },
+                  required: ["S"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    N: {
+                      type: "string",
+                    },
+                  },
+                  required: ["N"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    B: {
+                      type: "string",
+                    },
+                  },
+                  required: ["B"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    SS: {
+                      type: "array",
+                      items: {
+                        type: "string",
+                      },
+                    },
+                  },
+                  required: ["SS"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    NS: {
+                      type: "array",
+                      items: {
+                        type: "string",
+                      },
+                    },
+                  },
+                  required: ["NS"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    BS: {
+                      type: "array",
+                      items: {
+                        type: "string",
+                      },
+                    },
+                  },
+                  required: ["BS"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    M: {
+                      type: "object",
+                      additionalProperties: {
+                        type: "object",
+                      },
+                    },
+                  },
+                  required: ["M"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    L: {
+                      type: "array",
+                      items: {
+                        oneOf: [
+                          {
+                            type: "object",
+                            properties: {
+                              S: {
+                                type: "string",
+                              },
+                            },
+                            required: ["S"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              N: {
+                                type: "string",
+                              },
+                            },
+                            required: ["N"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              B: {
+                                type: "string",
+                              },
+                            },
+                            required: ["B"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              SS: {
+                                type: "array",
+                                items: {},
+                              },
+                            },
+                            required: ["SS"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              NS: {
+                                type: "array",
+                                items: {},
+                              },
+                            },
+                            required: ["NS"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              BS: {
+                                type: "array",
+                                items: {},
+                              },
+                            },
+                            required: ["BS"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              M: {
+                                type: "object",
+                                additionalProperties: {
+                                  type: "object",
+                                },
+                              },
+                            },
+                            required: ["M"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              L: {
+                                type: "array",
+                                items: {},
+                              },
+                            },
+                            required: ["L"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              NULL: {
+                                type: "boolean",
+                              },
+                            },
+                            required: ["NULL"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              BOOL: {
+                                type: "boolean",
+                              },
+                            },
+                            required: ["BOOL"],
+                            additionalProperties: false,
+                          },
+                        ],
+                      },
+                    },
+                  },
+                  required: ["L"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    NULL: {
+                      type: "boolean",
+                    },
+                  },
+                  required: ["NULL"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    BOOL: {
+                      type: "boolean",
+                    },
+                  },
+                  required: ["BOOL"],
+                  additionalProperties: false,
+                },
+              ],
             },
           },
           required: false,
@@ -139,7 +363,7 @@ const executeStatement: AppBlock = {
             items: {
               type: "object",
               additionalProperties: {
-                type: "string",
+                type: "object",
               },
             },
             description:
@@ -199,7 +423,7 @@ const executeStatement: AppBlock = {
           LastEvaluatedKey: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
             description:
               "The primary key of the item where the operation stopped, inclusive of the previous result set.",

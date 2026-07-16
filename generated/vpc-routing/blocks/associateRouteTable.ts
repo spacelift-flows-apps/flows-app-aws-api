@@ -28,6 +28,12 @@ const associateRouteTable: AppBlock = {
           type: "string",
           required: false,
         },
+        PublicIpv4Pool: {
+          name: "Public Ipv4Pool",
+          description: "The ID of a public IPv4 pool.",
+          type: "string",
+          required: false,
+        },
         DryRun: {
           name: "Dry Run",
           description:

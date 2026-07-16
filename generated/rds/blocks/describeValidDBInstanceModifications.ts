@@ -106,39 +106,62 @@ const describeValidDBInstanceModifications: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          From: {},
+                          To: {},
+                          Step: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ProvisionedIops: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          From: {},
+                          To: {},
+                          Step: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     IopsToStorageRatio: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          From: {},
+                          To: {},
+                        },
+                        additionalProperties: false,
                       },
-                    },
-                    SupportsStorageAutoscaling: {
-                      type: "boolean",
                     },
                     ProvisionedStorageThroughput: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          From: {},
+                          To: {},
+                          Step: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     StorageThroughputToIopsRatio: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          From: {},
+                          To: {},
+                        },
+                        additionalProperties: false,
                       },
+                    },
+                    SupportsStorageAutoscaling: {
+                      type: "boolean",
                     },
                   },
                   additionalProperties: false,
@@ -164,6 +187,31 @@ const describeValidDBInstanceModifications: AppBlock = {
               },
               SupportsDedicatedLogVolume: {
                 type: "boolean",
+              },
+              AdditionalStorage: {
+                type: "object",
+                properties: {
+                  SupportsAdditionalStorageVolumes: {
+                    type: "boolean",
+                  },
+                  Volumes: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      properties: {
+                        VolumeName: {
+                          type: "string",
+                        },
+                        Storage: {
+                          type: "array",
+                          items: {},
+                        },
+                      },
+                      additionalProperties: false,
+                    },
+                  },
+                },
+                additionalProperties: false,
               },
             },
             additionalProperties: false,

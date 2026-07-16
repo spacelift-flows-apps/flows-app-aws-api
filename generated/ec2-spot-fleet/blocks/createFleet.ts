@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { EC2Client, CreateFleetCommand } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const createFleet: AppBlock = {
   name: "Create Fleet",
@@ -122,6 +123,24 @@ const createFleet: AppBlock = {
           },
           required: false,
         },
+        ReservedCapacityOptions: {
+          name: "Reserved Capacity Options",
+          description:
+            "Defines EC2 Fleet preferences for utilizing reserved capacity when DefaultTargetCapacityType is set to reserved-capacity.",
+          type: {
+            type: "object",
+            properties: {
+              ReservationTypes: {
+                type: "array",
+                items: {
+                  type: "string",
+                },
+              },
+            },
+            additionalProperties: false,
+          },
+          required: false,
+        },
         ExcessCapacityTerminationPolicy: {
           name: "Excess Capacity Termination Policy",
           description:
@@ -158,44 +177,81 @@ const createFleet: AppBlock = {
                     type: "object",
                     properties: {
                       InstanceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       MaxPrice: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SubnetId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AvailabilityZone: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       WeightedCapacity: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       Priority: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       Placement: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AvailabilityZoneId: {},
+                          Affinity: {},
+                          GroupName: {},
+                          PartitionNumber: {},
+                          HostId: {},
+                          Tenancy: {},
+                          SpreadDomain: {},
+                          HostResourceGroupArn: {},
+                          GroupId: {},
+                          AvailabilityZone: {},
+                        },
+                        additionalProperties: false,
                       },
                       BlockDeviceMappings: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       InstanceRequirements: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          VCpuCount: {},
+                          MemoryMiB: {},
+                          CpuManufacturers: {},
+                          MemoryGiBPerVCpu: {},
+                          ExcludedInstanceTypes: {},
+                          InstanceGenerations: {},
+                          SpotMaxPricePercentageOverLowestPrice: {},
+                          OnDemandMaxPricePercentageOverLowestPrice: {},
+                          BareMetal: {},
+                          BurstablePerformance: {},
+                          RequireHibernateSupport: {},
+                          NetworkInterfaceCount: {},
+                          LocalStorage: {},
+                          LocalStorageTypes: {},
+                          TotalLocalStorageGB: {},
+                          BaselineEbsBandwidthMbps: {},
+                          AcceleratorTypes: {},
+                          AcceleratorCount: {},
+                          AcceleratorManufacturers: {},
+                          AcceleratorNames: {},
+                          AcceleratorTotalMemoryMiB: {},
+                          NetworkBandwidthGbps: {},
+                          AllowedInstanceTypes: {},
+                          MaxSpotPriceAsPercentageOfOptimalOnDemandPrice: {},
+                          BaselinePerformanceFactors: {},
+                          RequireEncryptionInTransit: {},
+                        },
+                        required: ["VCpuCount", "MemoryMiB"],
+                        additionalProperties: false,
                       },
                       ImageId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
+                      },
+                      AvailabilityZoneId: {
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -286,12 +342,10 @@ const createFleet: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -352,7 +406,12 @@ const createFleet: AppBlock = {
           }),
         });
 
-        const command = new CreateFleetCommand(commandInput as any);
+        const command = new CreateFleetCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["ValidFrom", "ValidUntil"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});
@@ -383,16 +442,13 @@ const createFleet: AppBlock = {
                       type: "object",
                       properties: {
                         LaunchTemplateId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LaunchTemplateName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Version: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -401,44 +457,71 @@ const createFleet: AppBlock = {
                       type: "object",
                       properties: {
                         InstanceType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         MaxPrice: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SubnetId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         AvailabilityZone: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         WeightedCapacity: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Priority: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Placement: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            GroupName: {},
+                          },
+                          additionalProperties: false,
                         },
                         InstanceRequirements: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            VCpuCount: {},
+                            MemoryMiB: {},
+                            CpuManufacturers: {},
+                            MemoryGiBPerVCpu: {},
+                            ExcludedInstanceTypes: {},
+                            InstanceGenerations: {},
+                            SpotMaxPricePercentageOverLowestPrice: {},
+                            OnDemandMaxPricePercentageOverLowestPrice: {},
+                            BareMetal: {},
+                            BurstablePerformance: {},
+                            RequireHibernateSupport: {},
+                            NetworkInterfaceCount: {},
+                            LocalStorage: {},
+                            LocalStorageTypes: {},
+                            TotalLocalStorageGB: {},
+                            BaselineEbsBandwidthMbps: {},
+                            AcceleratorTypes: {},
+                            AcceleratorCount: {},
+                            AcceleratorManufacturers: {},
+                            AcceleratorNames: {},
+                            AcceleratorTotalMemoryMiB: {},
+                            NetworkBandwidthGbps: {},
+                            AllowedInstanceTypes: {},
+                            MaxSpotPriceAsPercentageOfOptimalOnDemandPrice: {},
+                            BaselinePerformanceFactors: {},
+                            RequireEncryptionInTransit: {},
+                          },
+                          additionalProperties: false,
                         },
                         ImageId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         BlockDeviceMappings: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
+                        },
+                        AvailabilityZoneId: {
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -473,16 +556,13 @@ const createFleet: AppBlock = {
                       type: "object",
                       properties: {
                         LaunchTemplateId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LaunchTemplateName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Version: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -491,44 +571,71 @@ const createFleet: AppBlock = {
                       type: "object",
                       properties: {
                         InstanceType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         MaxPrice: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SubnetId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         AvailabilityZone: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         WeightedCapacity: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Priority: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Placement: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            GroupName: {},
+                          },
+                          additionalProperties: false,
                         },
                         InstanceRequirements: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            VCpuCount: {},
+                            MemoryMiB: {},
+                            CpuManufacturers: {},
+                            MemoryGiBPerVCpu: {},
+                            ExcludedInstanceTypes: {},
+                            InstanceGenerations: {},
+                            SpotMaxPricePercentageOverLowestPrice: {},
+                            OnDemandMaxPricePercentageOverLowestPrice: {},
+                            BareMetal: {},
+                            BurstablePerformance: {},
+                            RequireHibernateSupport: {},
+                            NetworkInterfaceCount: {},
+                            LocalStorage: {},
+                            LocalStorageTypes: {},
+                            TotalLocalStorageGB: {},
+                            BaselineEbsBandwidthMbps: {},
+                            AcceleratorTypes: {},
+                            AcceleratorCount: {},
+                            AcceleratorManufacturers: {},
+                            AcceleratorNames: {},
+                            AcceleratorTotalMemoryMiB: {},
+                            NetworkBandwidthGbps: {},
+                            AllowedInstanceTypes: {},
+                            MaxSpotPriceAsPercentageOfOptimalOnDemandPrice: {},
+                            BaselinePerformanceFactors: {},
+                            RequireEncryptionInTransit: {},
+                          },
+                          additionalProperties: false,
                         },
                         ImageId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         BlockDeviceMappings: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
+                        },
+                        AvailabilityZoneId: {
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

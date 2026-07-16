@@ -135,6 +135,9 @@ const listVpcOrigins: AppBlock = {
                     Arn: {
                       type: "string",
                     },
+                    AccountId: {
+                      type: "string",
+                    },
                     OriginEndpointArn: {
                       type: "string",
                     },

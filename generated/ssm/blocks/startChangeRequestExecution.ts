@@ -4,10 +4,11 @@ import {
   StartChangeRequestExecutionCommand,
 } from "@aws-sdk/client-ssm";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const startChangeRequestExecution: AppBlock = {
   name: "Start Change Request Execution",
-  description: `Creates a change request for Change Manager.`,
+  description: `Amazon Web Services Systems Manager Change Manager is no longer open to new customers.`,
   inputs: {
     default: {
       config: {
@@ -107,12 +108,11 @@ const startChangeRequestExecution: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Values: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -123,7 +123,7 @@ const startChangeRequestExecution: AppBlock = {
                   items: {
                     type: "object",
                     additionalProperties: {
-                      type: "object",
+                      type: "array",
                     },
                   },
                 },
@@ -139,48 +139,47 @@ const startChangeRequestExecution: AppBlock = {
                     type: "object",
                     properties: {
                       Accounts: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Regions: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       TargetLocationMaxConcurrency: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetLocationMaxErrors: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ExecutionRoleName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetLocationAlarmConfiguration: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          IgnorePollAlarmFailure: {},
+                          Alarms: {},
+                        },
+                        required: ["Alarms"],
+                        additionalProperties: false,
                       },
                       IncludeChildOrganizationUnits: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       ExcludeAccounts: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Targets: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       TargetsMaxConcurrency: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetsMaxErrors: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -271,7 +270,10 @@ const startChangeRequestExecution: AppBlock = {
         });
 
         const command = new StartChangeRequestExecutionCommand(
-          commandInput as any,
+          convertTimestamps(
+            commandInput,
+            new Set(["ScheduledTime", "ScheduledEndTime"]),
+          ) as any,
         );
         const response = await client.send(command);
 

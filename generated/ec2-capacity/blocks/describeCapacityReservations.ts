@@ -208,12 +208,10 @@ const describeCapacityReservations: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -234,12 +232,14 @@ const describeCapacityReservations: AppBlock = {
                     type: "object",
                     properties: {
                       AllocationType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Count: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
+                      },
+                      AllocationMetadata: {
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -268,6 +268,42 @@ const describeCapacityReservations: AppBlock = {
                 },
                 CapacityBlockId: {
                   type: "string",
+                },
+                Interruptible: {
+                  type: "boolean",
+                },
+                InterruptibleCapacityAllocation: {
+                  type: "object",
+                  properties: {
+                    InstanceCount: {
+                      type: "number",
+                    },
+                    TargetInstanceCount: {
+                      type: "number",
+                    },
+                    Status: {
+                      type: "string",
+                    },
+                    InterruptibleCapacityReservationId: {
+                      type: "string",
+                    },
+                    InterruptionType: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+                InterruptionInfo: {
+                  type: "object",
+                  properties: {
+                    SourceCapacityReservationId: {
+                      type: "string",
+                    },
+                    InterruptionType: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
                 },
               },
               additionalProperties: false,

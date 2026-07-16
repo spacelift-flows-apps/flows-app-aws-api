@@ -171,7 +171,12 @@ const describeClusters: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          VpcEndpointId: {},
+                          VpcId: {},
+                          NetworkInterfaces: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -192,12 +197,10 @@ const describeClusters: AppBlock = {
                     type: "object",
                     properties: {
                       ClusterSecurityGroupName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -209,12 +212,10 @@ const describeClusters: AppBlock = {
                     type: "object",
                     properties: {
                       VpcSecurityGroupId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -226,16 +227,14 @@ const describeClusters: AppBlock = {
                     type: "object",
                     properties: {
                       ParameterGroupName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ParameterApplyStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ClusterParameterStatusList: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -397,16 +396,13 @@ const describeClusters: AppBlock = {
                     type: "object",
                     properties: {
                       NodeRole: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PrivateIPAddress: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PublicIPAddress: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -433,12 +429,10 @@ const describeClusters: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -456,12 +450,10 @@ const describeClusters: AppBlock = {
                     type: "object",
                     properties: {
                       IamRoleArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ApplyStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -485,16 +477,13 @@ const describeClusters: AppBlock = {
                     type: "object",
                     properties: {
                       DeferMaintenanceIdentifier: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DeferMaintenanceStartTime: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DeferMaintenanceEndTime: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -615,11 +604,25 @@ const describeClusters: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          NodeRole: {},
+                          PrivateIPAddress: {},
+                          PublicIPAddress: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
                   additionalProperties: false,
+                },
+                LakehouseRegistrationStatus: {
+                  type: "string",
+                },
+                CatalogArn: {
+                  type: "string",
+                },
+                ExtraComputeForAutomaticOptimization: {
+                  type: "string",
                 },
               },
               additionalProperties: false,

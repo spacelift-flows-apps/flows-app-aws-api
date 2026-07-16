@@ -2,6 +2,7 @@ import { AppBlock, events } from "@slflows/sdk/v1";
 import { S3Client, RenameObjectCommand } from "@aws-sdk/client-s3";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const renameObject: AppBlock = {
   name: "Rename Object",
@@ -147,7 +148,17 @@ const renameObject: AppBlock = {
           }),
         });
 
-        const command = new RenameObjectCommand(commandInput as any);
+        const command = new RenameObjectCommand(
+          convertTimestamps(
+            commandInput,
+            new Set([
+              "DestinationIfModifiedSince",
+              "DestinationIfUnmodifiedSince",
+              "SourceIfModifiedSince",
+              "SourceIfUnmodifiedSince",
+            ]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         // Safely serialize response by handling circular references and streams

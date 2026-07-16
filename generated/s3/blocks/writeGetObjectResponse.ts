@@ -2,6 +2,7 @@ import { AppBlock, events } from "@slflows/sdk/v1";
 import { S3Client, WriteGetObjectResponseCommand } from "@aws-sdk/client-s3";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const writeGetObjectResponse: AppBlock = {
   name: "Write Get Object Response",
@@ -141,6 +142,41 @@ const writeGetObjectResponse: AppBlock = {
         },
         ChecksumSHA256: {
           name: "Checksum SHA256",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumSHA512: {
+          name: "Checksum SHA512",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumMD5: {
+          name: "Checksum MD5",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumXXHASH64: {
+          name: "Checksum XXHASH64",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumXXHASH3: {
+          name: "Checksum XXHASH3",
+          description:
+            "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
+          type: "string",
+          required: false,
+        },
+        ChecksumXXHASH128: {
+          name: "Checksum XXHASH128",
           description:
             "This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.",
           type: "string",
@@ -343,7 +379,12 @@ const writeGetObjectResponse: AppBlock = {
           }),
         });
 
-        const command = new WriteGetObjectResponseCommand(commandInput as any);
+        const command = new WriteGetObjectResponseCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["LastModified", "ObjectLockRetainUntilDate"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         // Safely serialize response by handling circular references and streams

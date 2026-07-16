@@ -4,6 +4,7 @@ import {
   ListPublicKeysCommand,
 } from "@aws-sdk/client-cloudtrail";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const listPublicKeys: AppBlock = {
   name: "List Public Keys",
@@ -87,7 +88,12 @@ const listPublicKeys: AppBlock = {
           }),
         });
 
-        const command = new ListPublicKeysCommand(commandInput as any);
+        const command = new ListPublicKeysCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

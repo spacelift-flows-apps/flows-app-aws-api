@@ -30,15 +30,14 @@ const copyImage: AppBlock = {
         },
         Description: {
           name: "Description",
-          description:
-            "A description for the new AMI in the destination Region.",
+          description: "A description for the new AMI.",
           type: "string",
           required: false,
         },
         Encrypted: {
           name: "Encrypted",
           description:
-            "Specifies whether the destination snapshots of the copied image should be encrypted.",
+            "Specifies whether to encrypt the snapshots of the copied image.",
           type: "boolean",
           required: false,
         },
@@ -51,7 +50,7 @@ const copyImage: AppBlock = {
         },
         Name: {
           name: "Name",
-          description: "The name of the new AMI in the destination Region.",
+          description: "The name of the new AMI.",
           type: "string",
           required: true,
         },
@@ -70,14 +69,14 @@ const copyImage: AppBlock = {
         DestinationOutpostArn: {
           name: "Destination Outpost Arn",
           description:
-            "The Amazon Resource Name (ARN) of the Outpost to which to copy the AMI.",
+            "The Amazon Resource Name (ARN) of the Outpost for the new AMI.",
           type: "string",
           required: false,
         },
         CopyImageTags: {
           name: "Copy Image Tags",
           description:
-            "Indicates whether to include your user-defined AMI tags when copying the AMI.",
+            "Specifies whether to copy your user-defined AMI tags to the new AMI.",
           type: "boolean",
           required: false,
         },
@@ -98,12 +97,10 @@ const copyImage: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -120,6 +117,20 @@ const copyImage: AppBlock = {
           description:
             "Specify a completion duration, in 15 minute increments, to initiate a time-based AMI copy.",
           type: "number",
+          required: false,
+        },
+        DestinationAvailabilityZone: {
+          name: "Destination Availability Zone",
+          description:
+            "The Local Zone for the new AMI (for example, cn-north-1-pkx-1a).",
+          type: "string",
+          required: false,
+        },
+        DestinationAvailabilityZoneId: {
+          name: "Destination Availability Zone Id",
+          description:
+            "The ID of the Local Zone for the new AMI (for example, cnn1-pkx1-az1).",
+          type: "string",
           required: false,
         },
         DryRun: {

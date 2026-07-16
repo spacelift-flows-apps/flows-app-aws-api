@@ -28,7 +28,47 @@ const deregisterNamespace: AppBlock = {
           name: "Namespace Identifier",
           description:
             "The unique identifier of the cluster or serverless namespace that you want to deregister.",
-          type: "string",
+          type: {
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  ServerlessIdentifier: {
+                    type: "object",
+                    properties: {
+                      NamespaceIdentifier: {
+                        type: "string",
+                      },
+                      WorkgroupIdentifier: {
+                        type: "string",
+                      },
+                    },
+                    required: ["NamespaceIdentifier", "WorkgroupIdentifier"],
+                    additionalProperties: false,
+                  },
+                },
+                required: ["ServerlessIdentifier"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  ProvisionedIdentifier: {
+                    type: "object",
+                    properties: {
+                      ClusterIdentifier: {
+                        type: "string",
+                      },
+                    },
+                    required: ["ClusterIdentifier"],
+                    additionalProperties: false,
+                  },
+                },
+                required: ["ProvisionedIdentifier"],
+                additionalProperties: false,
+              },
+            ],
+          },
           required: true,
         },
         ConsumerIdentifiers: {

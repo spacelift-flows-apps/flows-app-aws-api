@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const putSecretValue: AppBlock = {
   name: "Put Secret Value",
-  description: `Creates a new version with a new encrypted secret value and attaches it to the secret.`,
+  description: `Creates a new version of your secret by creating a new encrypted value and attaching it to the secret.`,
   inputs: {
     default: {
       config: {

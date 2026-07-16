@@ -140,12 +140,10 @@ const describeInboundIntegrations: AppBlock = {
                     type: "object",
                     properties: {
                       ErrorCode: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ErrorMessage: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["ErrorCode"],

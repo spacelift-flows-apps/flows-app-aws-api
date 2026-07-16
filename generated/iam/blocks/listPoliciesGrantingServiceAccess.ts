@@ -124,24 +124,19 @@ const listPoliciesGrantingServiceAccess: AppBlock = {
                     type: "object",
                     properties: {
                       PolicyName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PolicyType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PolicyArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EntityType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EntityName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["PolicyName", "PolicyType"],

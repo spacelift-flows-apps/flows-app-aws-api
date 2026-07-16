@@ -39,6 +39,12 @@ const attachVolume: AppBlock = {
           type: "string",
           required: true,
         },
+        EbsCardIndex: {
+          name: "Ebs Card Index",
+          description: "The index of the EBS card.",
+          type: "number",
+          required: false,
+        },
         DryRun: {
           name: "Dry Run",
           description:
@@ -118,6 +124,10 @@ const attachVolume: AppBlock = {
             type: "string",
             description:
               "The service principal of the Amazon Web Services service that owns the underlying resource to which the volume is attached.",
+          },
+          EbsCardIndex: {
+            type: "number",
+            description: "The index of the EBS card.",
           },
           VolumeId: {
             type: "string",

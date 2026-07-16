@@ -4,6 +4,7 @@ import {
   StartImportCommand,
 } from "@aws-sdk/client-cloudtrail";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const startImport: AppBlock = {
   name: "Start Import",
@@ -130,7 +131,12 @@ const startImport: AppBlock = {
           }),
         });
 
-        const command = new StartImportCommand(commandInput as any);
+        const command = new StartImportCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["StartEventTime", "EndEventTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

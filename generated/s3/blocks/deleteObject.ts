@@ -2,6 +2,7 @@ import { AppBlock, events } from "@slflows/sdk/v1";
 import { S3Client, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 import { serializeAWSResponse } from "../utils/serialize";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const deleteObject: AppBlock = {
   name: "Delete Object",
@@ -71,7 +72,7 @@ const deleteObject: AppBlock = {
         IfMatch: {
           name: "If Match",
           description:
-            "The If-Match header field makes the request method conditional on ETags.",
+            "Deletes the object if the ETag (entity tag) value provided during the delete operation matches the ETag of the object in S3.",
           type: "string",
           required: false,
         },
@@ -132,7 +133,12 @@ const deleteObject: AppBlock = {
           }),
         });
 
-        const command = new DeleteObjectCommand(commandInput as any);
+        const command = new DeleteObjectCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["IfMatchLastModifiedTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         // Safely serialize response by handling circular references and streams

@@ -160,24 +160,19 @@ const getScheduledQueryHistory: AppBlock = {
                     type: "object",
                     properties: {
                       destinationType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       destinationIdentifier: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       processedIdentifier: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       errorMessage: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

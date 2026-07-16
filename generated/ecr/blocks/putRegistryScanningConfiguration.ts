@@ -47,12 +47,10 @@ const putRegistryScanningConfiguration: AppBlock = {
                     type: "object",
                     properties: {
                       filter: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       filterType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["filter", "filterType"],
@@ -144,7 +142,12 @@ const putRegistryScanningConfiguration: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          filter: {},
+                          filterType: {},
+                        },
+                        required: ["filter", "filterType"],
+                        additionalProperties: false,
                       },
                     },
                   },

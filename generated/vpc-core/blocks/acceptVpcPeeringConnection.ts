@@ -112,8 +112,7 @@ const acceptVpcPeeringConnection: AppBlock = {
                       type: "object",
                       properties: {
                         Ipv6CidrBlock: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -125,8 +124,7 @@ const acceptVpcPeeringConnection: AppBlock = {
                       type: "object",
                       properties: {
                         CidrBlock: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -174,8 +172,7 @@ const acceptVpcPeeringConnection: AppBlock = {
                       type: "object",
                       properties: {
                         Ipv6CidrBlock: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -187,8 +184,7 @@ const acceptVpcPeeringConnection: AppBlock = {
                       type: "object",
                       properties: {
                         CidrBlock: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

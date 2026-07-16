@@ -123,6 +123,9 @@ const switchoverGlobalCluster: AppBlock = {
               StorageEncrypted: {
                 type: "boolean",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               DeletionProtection: {
                 type: "boolean",
               },
@@ -137,8 +140,7 @@ const switchoverGlobalCluster: AppBlock = {
                     Readers: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     IsWriter: {

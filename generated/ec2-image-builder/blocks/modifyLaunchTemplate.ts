@@ -157,6 +157,9 @@ const modifyLaunchTemplate: AppBlock = {
                   Principal: {
                     type: "string",
                   },
+                  HiddenByDefault: {
+                    type: "boolean",
+                  },
                 },
                 additionalProperties: false,
               },

@@ -132,12 +132,10 @@ const describeCustomDomainAssociations: AppBlock = {
                     type: "object",
                     properties: {
                       CustomDomainName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ClusterIdentifier: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

@@ -167,24 +167,24 @@ const describeSubnets: AppBlock = {
                     type: "object",
                     properties: {
                       AssociationId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Ipv6CidrBlock: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Ipv6CidrBlockState: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          State: {},
+                          StatusMessage: {},
+                        },
+                        additionalProperties: false,
                       },
                       Ipv6AddressAttribute: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IpSource: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -196,12 +196,10 @@ const describeSubnets: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

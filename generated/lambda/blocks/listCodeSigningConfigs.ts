@@ -120,8 +120,7 @@ const listCodeSigningConfigs: AppBlock = {
                     SigningProfileVersionArns: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
