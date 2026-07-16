@@ -58,14 +58,39 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Deploying ${{ inputs.app_name }} version $VERSION"
 
+      - name: Check if version already exists in R2
+        id: check
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.FLOWS_REGISTRY_R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FLOWS_REGISTRY_R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          R2_BUCKET: registry-useflows-com
+          R2_ENDPOINT_URL: https://5f0d4105431f10a4af1e1f0266f26a97.r2.cloudflarestorage.com
+        run: |
+          R2_KEY="aws-api-${{ inputs.app_name }}"
+          OBJECT_KEY="core/apps/${R2_KEY}/versions/${{ steps.version.outputs.version }}.tar.gz"
+          if aws s3api head-object \
+            --bucket "${R2_BUCKET}" \
+            --key "${OBJECT_KEY}" \
+            --endpoint-url "${R2_ENDPOINT_URL}" >/dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "⏭️  Version ${{ steps.version.outputs.version }} already exists in R2 — skipping to avoid overwriting the uploaded tarball. Bump the VERSION file to deploy a new version."
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "Version ${{ steps.version.outputs.version }} not found in R2 — proceeding with deployment."
+          fi
+
       - name: Install app dependencies
+        if: steps.check.outputs.exists != 'true'
         run: npm ci
 
       - name: Bundle app
+        if: steps.check.outputs.exists != 'true'
         run: npm run bundle
 
       - name: Create tarball and calculate checksum
         id: package
+        if: steps.check.outputs.exists != 'true'
         run: |
           if [ ! -f "bundle.tar.gz" ]; then
             echo "Error: bundle.tar.gz not found after bundling"
@@ -76,6 +101,7 @@ jobs:
           echo "Bundle checksum: $CHECKSUM"
 
       - name: Upload to R2
+        if: steps.check.outputs.exists != 'true'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.FLOWS_REGISTRY_R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FLOWS_REGISTRY_R2_SECRET_ACCESS_KEY }}
@@ -94,6 +120,7 @@ jobs:
           echo "✅ Successfully uploaded ${{ inputs.app_name }} version ${{ steps.version.outputs.version }}"
 
       - name: Index app versions
+        if: steps.check.outputs.exists != 'true'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.FLOWS_REGISTRY_R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FLOWS_REGISTRY_R2_SECRET_ACCESS_KEY }}

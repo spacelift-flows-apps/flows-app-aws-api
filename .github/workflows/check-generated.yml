@@ -1,0 +1,60 @@
+name: Check Generated Apps Are Up To Date
+
+# Runs on non-main branches / PRs to make review easier: it verifies that
+# re-running the generator produces no changes, i.e. the committed generated
+# apps match the current models + generator. If this fails, run
+# `npm run generate` locally and commit the result.
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+concurrency:
+  group: check-generated-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-generated:
+    name: Verify generated apps are up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+          cache-dependency-path: package-lock.json
+
+      - name: Install generator dependencies
+        run: npm ci
+
+      - name: Regenerate all apps
+        run: npm run generate
+
+      - name: Check for uncommitted changes in generated apps
+        run: |
+          # Stage everything under generated/ so new/deleted files are detected
+          # too. node_modules/ is gitignored, so it is not considered.
+          git add -A -- generated
+
+          # Compare generated source only. package-lock.json files are excluded
+          # because the per-app `npm install` the generator runs can rewrite
+          # them based on the current registry state, which is unrelated to
+          # whether the generated code itself is up to date.
+          if ! git diff --cached --quiet -- generated ':(exclude)generated/**/package-lock.json'; then
+            echo "::error::Generated apps are out of date. Run 'npm run generate' locally and commit the result."
+            echo ""
+            echo "The following generated files differ from a fresh generation:"
+            git diff --cached --stat -- generated ':(exclude)generated/**/package-lock.json'
+            echo ""
+            echo "----- Full diff -----"
+            git --no-pager diff --cached -- generated ':(exclude)generated/**/package-lock.json'
+            exit 1
+          fi
+
+          echo "✅ Generated apps are up to date."
