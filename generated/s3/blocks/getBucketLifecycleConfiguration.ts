@@ -225,7 +225,7 @@ const getBucketLifecycleConfiguration: AppBlock = {
                   additionalProperties: false,
                 },
                 AbortIncompleteMultipartUpload: {
-                  type: "object",
+                  type: "objectt",
                   properties: {
                     DaysAfterInitiation: {
                       type: "number",
