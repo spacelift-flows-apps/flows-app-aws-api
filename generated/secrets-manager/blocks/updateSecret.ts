@@ -64,6 +64,13 @@ const updateSecret: AppBlock = {
           type: "string",
           required: false,
         },
+        Type: {
+          name: "Type",
+          description:
+            "The exact string that identifies the third-party partner that holds the external secret.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =

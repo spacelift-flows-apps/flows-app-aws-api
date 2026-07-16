@@ -144,12 +144,10 @@ const describeRepositoryCreationTemplates: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Key", "Value"],
@@ -165,12 +163,10 @@ const describeRepositoryCreationTemplates: AppBlock = {
                     type: "object",
                     properties: {
                       filterType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       filter: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["filterType", "filter"],

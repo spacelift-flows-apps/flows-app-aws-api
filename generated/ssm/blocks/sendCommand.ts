@@ -319,8 +319,7 @@ const sendCommand: AppBlock = {
                     Values: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -411,8 +410,7 @@ const sendCommand: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Name"],

@@ -107,12 +107,10 @@ const getWorkGroup: AppBlock = {
                         type: "object",
                         properties: {
                           EncryptionOption: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           KmsKey: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         required: ["EncryptionOption"],
@@ -125,8 +123,7 @@ const getWorkGroup: AppBlock = {
                         type: "object",
                         properties: {
                           S3AclOption: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         required: ["S3AclOption"],
@@ -145,8 +142,7 @@ const getWorkGroup: AppBlock = {
                         type: "object",
                         properties: {
                           KmsKey: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         required: ["KmsKey"],
@@ -193,20 +189,19 @@ const getWorkGroup: AppBlock = {
                         type: "object",
                         properties: {
                           Enabled: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                           LogGroup: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           LogStreamNamePrefix: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           LogTypes: {
                             type: "object",
-                            additionalProperties: true,
+                            additionalProperties: {
+                              type: "object",
+                            },
                           },
                         },
                         required: ["Enabled"],
@@ -216,12 +211,10 @@ const getWorkGroup: AppBlock = {
                         type: "object",
                         properties: {
                           Enabled: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                           KmsKey: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         required: ["Enabled"],
@@ -231,16 +224,13 @@ const getWorkGroup: AppBlock = {
                         type: "object",
                         properties: {
                           Enabled: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "boolean",
                           },
                           KmsKey: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           LogLocation: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         required: ["Enabled"],
@@ -264,20 +254,24 @@ const getWorkGroup: AppBlock = {
                       AdditionalConfigs: {
                         type: "object",
                         additionalProperties: {
-                          type: "object",
+                          type: "string",
                         },
                       },
                       SparkProperties: {
                         type: "object",
                         additionalProperties: {
-                          type: "object",
+                          type: "string",
                         },
                       },
                       Classifications: {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                            Properties: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                     },

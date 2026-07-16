@@ -194,12 +194,10 @@ const listStatements: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["name", "value"],

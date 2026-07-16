@@ -180,48 +180,37 @@ const describeCapacityReservationFleets: AppBlock = {
                     type: "object",
                     properties: {
                       CapacityReservationId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AvailabilityZoneId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       InstanceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       InstancePlatform: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AvailabilityZone: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TotalInstanceCount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       FulfilledCapacity: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       EbsOptimized: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       CreateDate: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Weight: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       Priority: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     additionalProperties: false,
@@ -233,12 +222,10 @@ const describeCapacityReservationFleets: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

@@ -274,15 +274,13 @@ const getFunction: AppBlock = {
                       EntryPoint: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       Command: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       WorkingDirectory: {
@@ -377,6 +375,54 @@ const getFunction: AppBlock = {
                     type: "string",
                   },
                 },
+                additionalProperties: false,
+              },
+              CapacityProviderConfig: {
+                type: "object",
+                properties: {
+                  LambdaManagedInstancesCapacityProviderConfig: {
+                    type: "object",
+                    properties: {
+                      CapacityProviderArn: {
+                        type: "string",
+                      },
+                      PerExecutionEnvironmentMaxConcurrency: {
+                        type: "number",
+                      },
+                      ExecutionEnvironmentMemoryGiBPerVCpu: {
+                        type: "number",
+                      },
+                    },
+                    required: ["CapacityProviderArn"],
+                    additionalProperties: false,
+                  },
+                },
+                required: ["LambdaManagedInstancesCapacityProviderConfig"],
+                additionalProperties: false,
+              },
+              ConfigSha256: {
+                type: "string",
+              },
+              DurableConfig: {
+                type: "object",
+                properties: {
+                  RetentionPeriodInDays: {
+                    type: "number",
+                  },
+                  ExecutionTimeout: {
+                    type: "number",
+                  },
+                },
+                additionalProperties: false,
+              },
+              TenancyConfig: {
+                type: "object",
+                properties: {
+                  TenantIsolationMode: {
+                    type: "string",
+                  },
+                },
+                required: ["TenantIsolationMode"],
                 additionalProperties: false,
               },
             },

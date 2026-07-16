@@ -135,12 +135,10 @@ const putScalingPolicy: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Name", "Value"],
@@ -159,24 +157,26 @@ const putScalingPolicy: AppBlock = {
                       type: "object",
                       properties: {
                         Expression: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Id: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Label: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         MetricStat: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Metric: {},
+                            Stat: {},
+                            Unit: {},
+                          },
+                          required: ["Metric", "Stat"],
+                          additionalProperties: false,
                         },
                         ReturnData: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       required: ["Id"],
@@ -219,12 +219,10 @@ const putScalingPolicy: AppBlock = {
                       type: "object",
                       properties: {
                         PredefinedMetricType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ResourceLabel: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["PredefinedMetricType"],
@@ -234,12 +232,10 @@ const putScalingPolicy: AppBlock = {
                       type: "object",
                       properties: {
                         PredefinedMetricType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ResourceLabel: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["PredefinedMetricType"],
@@ -249,12 +245,10 @@ const putScalingPolicy: AppBlock = {
                       type: "object",
                       properties: {
                         PredefinedMetricType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ResourceLabel: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["PredefinedMetricType"],
@@ -264,8 +258,8 @@ const putScalingPolicy: AppBlock = {
                       type: "object",
                       properties: {
                         MetricDataQueries: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["MetricDataQueries"],
@@ -275,8 +269,8 @@ const putScalingPolicy: AppBlock = {
                       type: "object",
                       properties: {
                         MetricDataQueries: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["MetricDataQueries"],
@@ -286,8 +280,8 @@ const putScalingPolicy: AppBlock = {
                       type: "object",
                       properties: {
                         MetricDataQueries: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["MetricDataQueries"],

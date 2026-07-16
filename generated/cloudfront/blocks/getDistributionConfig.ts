@@ -125,52 +125,82 @@ const getDistributionConfig: AppBlock = {
                       type: "object",
                       properties: {
                         Id: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         DomainName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OriginPath: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         CustomHeaders: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Quantity: {},
+                            Items: {},
+                          },
+                          required: ["Quantity"],
+                          additionalProperties: false,
                         },
                         S3OriginConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            OriginAccessIdentity: {},
+                            OriginReadTimeout: {},
+                          },
+                          required: ["OriginAccessIdentity"],
+                          additionalProperties: false,
                         },
                         CustomOriginConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            HTTPPort: {},
+                            HTTPSPort: {},
+                            OriginProtocolPolicy: {},
+                            OriginSslProtocols: {},
+                            OriginReadTimeout: {},
+                            OriginKeepaliveTimeout: {},
+                            IpAddressType: {},
+                            OriginMtlsConfig: {},
+                          },
+                          required: [
+                            "HTTPPort",
+                            "HTTPSPort",
+                            "OriginProtocolPolicy",
+                          ],
+                          additionalProperties: false,
                         },
                         VpcOriginConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            VpcOriginId: {},
+                            OwnerAccountId: {},
+                            OriginReadTimeout: {},
+                            OriginKeepaliveTimeout: {},
+                          },
+                          required: ["VpcOriginId"],
+                          additionalProperties: false,
                         },
                         ConnectionAttempts: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ConnectionTimeout: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ResponseCompletionTimeout: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         OriginShield: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Enabled: {},
+                            OriginShieldRegion: {},
+                          },
+                          required: ["Enabled"],
+                          additionalProperties: false,
                         },
                         OriginAccessControlId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Id", "DomainName"],
@@ -193,20 +223,27 @@ const getDistributionConfig: AppBlock = {
                       type: "object",
                       properties: {
                         Id: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         FailoverCriteria: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            StatusCodes: {},
+                          },
+                          required: ["StatusCodes"],
+                          additionalProperties: false,
                         },
                         Members: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Quantity: {},
+                            Items: {},
+                          },
+                          required: ["Quantity", "Items"],
+                          additionalProperties: false,
                         },
                         SelectionCriteria: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Id", "FailoverCriteria", "Members"],
@@ -235,8 +272,7 @@ const getDistributionConfig: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -255,8 +291,7 @@ const getDistributionConfig: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -275,20 +310,18 @@ const getDistributionConfig: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       CachedMethods: {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity", "Items"],
@@ -314,7 +347,13 @@ const getDistributionConfig: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            LambdaFunctionARN: {},
+                            EventType: {},
+                            IncludeBody: {},
+                          },
+                          required: ["LambdaFunctionARN", "EventType"],
+                          additionalProperties: false,
                         },
                       },
                     },
@@ -331,7 +370,12 @@ const getDistributionConfig: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            FunctionARN: {},
+                            EventType: {},
+                          },
+                          required: ["FunctionARN", "EventType"],
+                          additionalProperties: false,
                         },
                       },
                     },
@@ -373,12 +417,16 @@ const getDistributionConfig: AppBlock = {
                         type: "object",
                         properties: {
                           Forward: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           WhitelistedNames: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              Quantity: {},
+                              Items: {},
+                            },
+                            required: ["Quantity"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["Forward"],
@@ -388,12 +436,11 @@ const getDistributionConfig: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity"],
@@ -403,12 +450,11 @@ const getDistributionConfig: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity"],
@@ -443,84 +489,110 @@ const getDistributionConfig: AppBlock = {
                       type: "object",
                       properties: {
                         PathPattern: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         TargetOriginId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         TrustedSigners: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Enabled: {},
+                            Quantity: {},
+                            Items: {},
+                          },
+                          required: ["Enabled", "Quantity"],
+                          additionalProperties: false,
                         },
                         TrustedKeyGroups: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Enabled: {},
+                            Quantity: {},
+                            Items: {},
+                          },
+                          required: ["Enabled", "Quantity"],
+                          additionalProperties: false,
                         },
                         ViewerProtocolPolicy: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         AllowedMethods: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Quantity: {},
+                            Items: {},
+                            CachedMethods: {},
+                          },
+                          required: ["Quantity", "Items"],
+                          additionalProperties: false,
                         },
                         SmoothStreaming: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         Compress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         LambdaFunctionAssociations: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Quantity: {},
+                            Items: {},
+                          },
+                          required: ["Quantity"],
+                          additionalProperties: false,
                         },
                         FunctionAssociations: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Quantity: {},
+                            Items: {},
+                          },
+                          required: ["Quantity"],
+                          additionalProperties: false,
                         },
                         FieldLevelEncryptionId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         RealtimeLogConfigArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         CachePolicyId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OriginRequestPolicyId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ResponseHeadersPolicyId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         GrpcConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Enabled: {},
+                          },
+                          required: ["Enabled"],
+                          additionalProperties: false,
                         },
                         ForwardedValues: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            QueryString: {},
+                            Cookies: {},
+                            Headers: {},
+                            QueryStringCacheKeys: {},
+                          },
+                          required: ["QueryString", "Cookies"],
+                          additionalProperties: false,
                         },
                         MinTTL: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         DefaultTTL: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         MaxTTL: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       required: [
@@ -547,20 +619,16 @@ const getDistributionConfig: AppBlock = {
                       type: "object",
                       properties: {
                         ErrorCode: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ResponsePagePath: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ResponseCode: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ErrorCachingMinTTL: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       required: ["ErrorCode"],
@@ -640,8 +708,7 @@ const getDistributionConfig: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -679,12 +746,14 @@ const getDistributionConfig: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Definition: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            StringSchema: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       required: ["Name", "Definition"],
@@ -696,6 +765,41 @@ const getDistributionConfig: AppBlock = {
               },
               ConnectionMode: {
                 type: "string",
+              },
+              ViewerMtlsConfig: {
+                type: "object",
+                properties: {
+                  Mode: {
+                    type: "string",
+                  },
+                  TrustStoreConfig: {
+                    type: "object",
+                    properties: {
+                      TrustStoreId: {
+                        type: "string",
+                      },
+                      AdvertiseTrustStoreCaNames: {
+                        type: "boolean",
+                      },
+                      IgnoreCertificateExpiry: {
+                        type: "boolean",
+                      },
+                    },
+                    required: ["TrustStoreId"],
+                    additionalProperties: false,
+                  },
+                },
+                additionalProperties: false,
+              },
+              ConnectionFunctionAssociation: {
+                type: "object",
+                properties: {
+                  Id: {
+                    type: "string",
+                  },
+                },
+                required: ["Id"],
+                additionalProperties: false,
               },
             },
             required: [

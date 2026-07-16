@@ -94,12 +94,10 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       required: ["ReadCapacityUnits", "WriteCapacityUnits"],
@@ -109,12 +107,10 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         MaxReadRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         MaxWriteRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -123,12 +119,10 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -147,19 +141,23 @@ const updateTable: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AttributeName: {},
+                          KeyType: {},
+                        },
+                        required: ["AttributeName", "KeyType"],
+                        additionalProperties: false,
                       },
                     },
                     Projection: {
                       type: "object",
                       properties: {
                         ProjectionType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NonKeyAttributes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -168,12 +166,10 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       required: ["ReadCapacityUnits", "WriteCapacityUnits"],
@@ -183,12 +179,10 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         MaxReadRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         MaxWriteRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -197,12 +191,10 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -289,8 +281,7 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -299,8 +290,7 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         MaxReadRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -309,7 +299,13 @@ const updateTable: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          IndexName: {},
+                          ProvisionedThroughputOverride: {},
+                          OnDemandThroughputOverride: {},
+                        },
+                        required: ["IndexName"],
+                        additionalProperties: false,
                       },
                     },
                     TableClassOverride: {
@@ -332,8 +328,7 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -342,8 +337,7 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         MaxReadRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -352,7 +346,13 @@ const updateTable: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          IndexName: {},
+                          ProvisionedThroughputOverride: {},
+                          OnDemandThroughputOverride: {},
+                        },
+                        required: ["IndexName"],
+                        additionalProperties: false,
                       },
                     },
                     TableClassOverride: {
@@ -465,6 +465,13 @@ const updateTable: AppBlock = {
             },
             additionalProperties: false,
           },
+          required: false,
+        },
+        GlobalTableSettingsReplicationMode: {
+          name: "Global Table Settings Replication Mode",
+          description:
+            "Controls the settings replication mode for a global table replica.",
+          type: "string",
           required: false,
         },
       },
@@ -626,19 +633,23 @@ const updateTable: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AttributeName: {},
+                          KeyType: {},
+                        },
+                        required: ["AttributeName", "KeyType"],
+                        additionalProperties: false,
                       },
                     },
                     Projection: {
                       type: "object",
                       properties: {
                         ProjectionType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NonKeyAttributes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -668,19 +679,23 @@ const updateTable: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AttributeName: {},
+                          KeyType: {},
+                        },
+                        required: ["AttributeName", "KeyType"],
+                        additionalProperties: false,
                       },
                     },
                     Projection: {
                       type: "object",
                       properties: {
                         ProjectionType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NonKeyAttributes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -695,24 +710,19 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         LastIncreaseDateTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LastDecreaseDateTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NumberOfDecreasesToday: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ReadCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -730,12 +740,10 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         MaxReadRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         MaxWriteRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -744,16 +752,13 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Status: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -795,6 +800,9 @@ const updateTable: AppBlock = {
                     ReplicaStatus: {
                       type: "string",
                     },
+                    ReplicaArn: {
+                      type: "string",
+                    },
                     ReplicaStatusDescription: {
                       type: "string",
                     },
@@ -808,8 +816,7 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -818,8 +825,7 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         MaxReadRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -828,16 +834,13 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Status: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -846,7 +849,13 @@ const updateTable: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          IndexName: {},
+                          ProvisionedThroughputOverride: {},
+                          OnDemandThroughputOverride: {},
+                          WarmThroughput: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ReplicaInaccessibleDateTime: {
@@ -856,15 +865,16 @@ const updateTable: AppBlock = {
                       type: "object",
                       properties: {
                         TableClass: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LastUpdateDateTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
+                    },
+                    GlobalTableSettingsReplicationMode: {
+                      type: "string",
                     },
                   },
                   additionalProperties: false,
@@ -884,6 +894,9 @@ const updateTable: AppBlock = {
                   },
                   additionalProperties: false,
                 },
+              },
+              GlobalTableSettingsReplicationMode: {
+                type: "string",
               },
               RestoreSummary: {
                 type: "object",

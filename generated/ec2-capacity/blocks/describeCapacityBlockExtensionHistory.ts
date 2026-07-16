@@ -185,6 +185,9 @@ const describeCapacityBlockExtensionHistory: AppBlock = {
                 CurrencyCode: {
                   type: "string",
                 },
+                ZoneType: {
+                  type: "string",
+                },
               },
               additionalProperties: false,
             },

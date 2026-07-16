@@ -4,7 +4,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const listExports: AppBlock = {
   name: "List Exports",
-  description: `Lists completed exports within the past 90 days.`,
+  description: `Lists completed exports within the past 90 days, in reverse alphanumeric order of ExportArn.`,
   inputs: {
     default: {
       config: {

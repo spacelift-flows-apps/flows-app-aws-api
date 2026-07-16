@@ -26,7 +26,7 @@ const modifyGlobalCluster: AppBlock = {
           description:
             "The cluster identifier for the global cluster to modify.",
           type: "string",
-          required: false,
+          required: true,
         },
         NewGlobalClusterIdentifier: {
           name: "New Global Cluster Identifier",
@@ -143,6 +143,9 @@ const modifyGlobalCluster: AppBlock = {
               StorageEncrypted: {
                 type: "boolean",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               DeletionProtection: {
                 type: "boolean",
               },
@@ -157,8 +160,7 @@ const modifyGlobalCluster: AppBlock = {
                     Readers: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     IsWriter: {

@@ -136,12 +136,10 @@ const putMetricStream: AppBlock = {
                     type: "object",
                     properties: {
                       Namespace: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       MetricName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Namespace", "MetricName"],

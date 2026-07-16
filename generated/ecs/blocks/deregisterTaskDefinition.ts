@@ -112,8 +112,7 @@ const deregisterTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         credentialsParameter: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["credentialsParameter"],
@@ -131,15 +130,22 @@ const deregisterTaskDefinition: AppBlock = {
                     links: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     portMappings: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          containerPort: {},
+                          hostPort: {},
+                          protocol: {},
+                          name: {},
+                          appProtocol: {},
+                          containerPortRange: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     essential: {
@@ -149,16 +155,14 @@ const deregisterTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         enabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         ignoredExitCodes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         restartAttemptPeriod: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       required: ["enabled"],
@@ -167,43 +171,59 @@ const deregisterTaskDefinition: AppBlock = {
                     entryPoint: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     command: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     environment: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {},
+                          value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     environmentFiles: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          value: {},
+                          type: {},
+                        },
+                        required: ["value", "type"],
+                        additionalProperties: false,
                       },
                     },
                     mountPoints: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          sourceVolume: {},
+                          containerPath: {},
+                          readOnly: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     volumesFrom: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          sourceContainer: {},
+                          readOnly: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     linuxParameters: {
@@ -211,31 +231,31 @@ const deregisterTaskDefinition: AppBlock = {
                       properties: {
                         capabilities: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            add: {},
+                            drop: {},
+                          },
+                          additionalProperties: false,
                         },
                         devices: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         initProcessEnabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         sharedMemorySize: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         tmpfs: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         maxSwap: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         swappiness: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -244,14 +264,24 @@ const deregisterTaskDefinition: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {},
+                          valueFrom: {},
+                        },
+                        required: ["name", "valueFrom"],
+                        additionalProperties: false,
                       },
                     },
                     dependsOn: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          containerName: {},
+                          condition: {},
+                        },
+                        required: ["containerName", "condition"],
+                        additionalProperties: false,
                       },
                     },
                     startTimeout: {
@@ -284,29 +314,31 @@ const deregisterTaskDefinition: AppBlock = {
                     dnsServers: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     dnsSearchDomains: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     extraHosts: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          hostname: {},
+                          ipAddress: {},
+                        },
+                        required: ["hostname", "ipAddress"],
+                        additionalProperties: false,
                       },
                     },
                     dockerSecurityOptions: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     interactive: {
@@ -318,30 +350,37 @@ const deregisterTaskDefinition: AppBlock = {
                     dockerLabels: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     ulimits: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {},
+                          softLimit: {},
+                          hardLimit: {},
+                        },
+                        required: ["name", "softLimit", "hardLimit"],
+                        additionalProperties: false,
                       },
                     },
                     logConfiguration: {
                       type: "object",
                       properties: {
                         logDriver: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         options: {
                           type: "object",
-                          additionalProperties: true,
+                          additionalProperties: {
+                            type: "object",
+                          },
                         },
                         secretOptions: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["logDriver"],
@@ -351,24 +390,20 @@ const deregisterTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         command: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         interval: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         timeout: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         retries: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         startPeriod: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       required: ["command"],
@@ -378,26 +413,36 @@ const deregisterTaskDefinition: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          namespace: {},
+                          value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     resourceRequirements: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          value: {},
+                          type: {},
+                        },
+                        required: ["value", "type"],
+                        additionalProperties: false,
                       },
                     },
                     firelensConfiguration: {
                       type: "object",
                       properties: {
                         type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         options: {
                           type: "object",
-                          additionalProperties: true,
+                          additionalProperties: {
+                            type: "object",
+                          },
                         },
                       },
                       required: ["type"],
@@ -406,8 +451,7 @@ const deregisterTaskDefinition: AppBlock = {
                     credentialSpecs: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -441,8 +485,7 @@ const deregisterTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         sourcePath: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -451,24 +494,25 @@ const deregisterTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         scope: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         autoprovision: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         driver: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         driverOpts: {
                           type: "object",
-                          additionalProperties: true,
+                          additionalProperties: {
+                            type: "object",
+                          },
                         },
                         labels: {
                           type: "object",
-                          additionalProperties: true,
+                          additionalProperties: {
+                            type: "object",
+                          },
                         },
                       },
                       additionalProperties: false,
@@ -477,43 +521,65 @@ const deregisterTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         fileSystemId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         rootDirectory: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         transitEncryption: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         transitEncryptionPort: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         authorizationConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            accessPointId: {},
+                            iam: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       required: ["fileSystemId"],
+                      additionalProperties: false,
+                    },
+                    s3filesVolumeConfiguration: {
+                      type: "object",
+                      properties: {
+                        fileSystemArn: {
+                          type: "string",
+                        },
+                        rootDirectory: {
+                          type: "string",
+                        },
+                        transitEncryptionPort: {
+                          type: "number",
+                        },
+                        accessPointArn: {
+                          type: "string",
+                        },
+                      },
+                      required: ["fileSystemArn"],
                       additionalProperties: false,
                     },
                     fsxWindowsFileServerVolumeConfiguration: {
                       type: "object",
                       properties: {
                         fileSystemId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         rootDirectory: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         authorizationConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            credentialsParameter: {},
+                            domain: {},
+                          },
+                          required: ["credentialsParameter", "domain"],
+                          additionalProperties: false,
                         },
                       },
                       required: [
@@ -637,12 +703,10 @@ const deregisterTaskDefinition: AppBlock = {
                       type: "object",
                       properties: {
                         name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -656,6 +720,9 @@ const deregisterTaskDefinition: AppBlock = {
                 type: "string",
               },
               deregisteredAt: {
+                type: "string",
+              },
+              deleteRequestedAt: {
                 type: "string",
               },
               registeredBy: {

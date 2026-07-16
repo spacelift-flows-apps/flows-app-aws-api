@@ -61,7 +61,13 @@ const converse: AppBlock = {
                         properties: {
                           image: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              format: {},
+                              source: {},
+                              error: {},
+                            },
+                            required: ["format", "source"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["image"],
@@ -72,7 +78,19 @@ const converse: AppBlock = {
                         properties: {
                           document: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              format: {},
+                              name: {
+                                type: "string",
+                              },
+                              source: {},
+                              context: {
+                                type: "string",
+                              },
+                              citations: {},
+                            },
+                            required: ["name", "source"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["document"],
@@ -83,7 +101,12 @@ const converse: AppBlock = {
                         properties: {
                           video: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              format: {},
+                              source: {},
+                            },
+                            required: ["format", "source"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["video"],
@@ -94,7 +117,13 @@ const converse: AppBlock = {
                         properties: {
                           audio: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              format: {},
+                              source: {},
+                              error: {},
+                            },
+                            required: ["format", "source"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["audio"],
@@ -105,7 +134,16 @@ const converse: AppBlock = {
                         properties: {
                           toolUse: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              toolUseId: {},
+                              name: {},
+                              input: {
+                                type: "string",
+                              },
+                              type: {},
+                            },
+                            required: ["toolUseId", "name", "input"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["toolUse"],
@@ -116,7 +154,16 @@ const converse: AppBlock = {
                         properties: {
                           toolResult: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              toolUseId: {},
+                              content: {},
+                              status: {},
+                              type: {
+                                type: "string",
+                              },
+                            },
+                            required: ["toolUseId", "content"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["toolResult"],
@@ -126,8 +173,24 @@ const converse: AppBlock = {
                         type: "object",
                         properties: {
                           guardContent: {
-                            type: "object",
-                            additionalProperties: true,
+                            oneOf: [
+                              {
+                                type: "object",
+                                properties: {
+                                  text: {},
+                                },
+                                required: ["text"],
+                                additionalProperties: false,
+                              },
+                              {
+                                type: "object",
+                                properties: {
+                                  image: {},
+                                },
+                                required: ["image"],
+                                additionalProperties: false,
+                              },
+                            ],
                           },
                         },
                         required: ["guardContent"],
@@ -138,7 +201,12 @@ const converse: AppBlock = {
                         properties: {
                           cachePoint: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              type: {},
+                              ttl: {},
+                            },
+                            required: ["type"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["cachePoint"],
@@ -148,8 +216,26 @@ const converse: AppBlock = {
                         type: "object",
                         properties: {
                           reasoningContent: {
-                            type: "object",
-                            additionalProperties: true,
+                            oneOf: [
+                              {
+                                type: "object",
+                                properties: {
+                                  reasoningText: {},
+                                },
+                                required: ["reasoningText"],
+                                additionalProperties: false,
+                              },
+                              {
+                                type: "object",
+                                properties: {
+                                  redactedContent: {
+                                    type: "string",
+                                  },
+                                },
+                                required: ["redactedContent"],
+                                additionalProperties: false,
+                              },
+                            ],
                           },
                         },
                         required: ["reasoningContent"],
@@ -160,7 +246,11 @@ const converse: AppBlock = {
                         properties: {
                           citationsContent: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              content: {},
+                              citations: {},
+                            },
+                            additionalProperties: false,
                           },
                         },
                         required: ["citationsContent"],
@@ -171,7 +261,18 @@ const converse: AppBlock = {
                         properties: {
                           searchResult: {
                             type: "object",
-                            additionalProperties: true,
+                            properties: {
+                              source: {
+                                type: "string",
+                              },
+                              title: {
+                                type: "string",
+                              },
+                              content: {},
+                              citations: {},
+                            },
+                            required: ["source", "title", "content"],
+                            additionalProperties: false,
                           },
                         },
                         required: ["searchResult"],
@@ -220,8 +321,8 @@ const converse: AppBlock = {
                                   type: "string",
                                 },
                                 qualifiers: {
-                                  type: "object",
-                                  additionalProperties: true,
+                                  type: "array",
+                                  items: {},
                                 },
                               },
                               required: ["text"],
@@ -238,12 +339,21 @@ const converse: AppBlock = {
                               type: "object",
                               properties: {
                                 format: {
-                                  type: "object",
-                                  additionalProperties: true,
+                                  type: "string",
                                 },
                                 source: {
-                                  type: "object",
-                                  additionalProperties: true,
+                                  oneOf: [
+                                    {
+                                      type: "object",
+                                      properties: {
+                                        bytes: {
+                                          type: "string",
+                                        },
+                                      },
+                                      required: ["bytes"],
+                                      additionalProperties: false,
+                                    },
+                                  ],
                                 },
                               },
                               required: ["format", "source"],
@@ -328,16 +438,24 @@ const converse: AppBlock = {
                           type: "object",
                           properties: {
                             name: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             description: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             inputSchema: {
-                              type: "object",
-                              additionalProperties: true,
+                              oneOf: [
+                                {
+                                  type: "object",
+                                  properties: {
+                                    json: {
+                                      type: "string",
+                                    },
+                                  },
+                                  required: ["json"],
+                                  additionalProperties: false,
+                                },
+                              ],
                             },
                             strict: {
                               type: "string",
@@ -357,8 +475,7 @@ const converse: AppBlock = {
                           type: "object",
                           properties: {
                             name: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                           },
                           required: ["name"],
@@ -375,12 +492,10 @@ const converse: AppBlock = {
                           type: "object",
                           properties: {
                             type: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             ttl: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                           },
                           required: ["type"],
@@ -672,7 +787,13 @@ const converse: AppBlock = {
                               properties: {
                                 image: {
                                   type: "object",
-                                  additionalProperties: true,
+                                  properties: {
+                                    format: {},
+                                    source: {},
+                                    error: {},
+                                  },
+                                  required: ["format", "source"],
+                                  additionalProperties: false,
                                 },
                               },
                               required: ["image"],
@@ -683,7 +804,19 @@ const converse: AppBlock = {
                               properties: {
                                 document: {
                                   type: "object",
-                                  additionalProperties: true,
+                                  properties: {
+                                    format: {},
+                                    name: {
+                                      type: "string",
+                                    },
+                                    source: {},
+                                    context: {
+                                      type: "string",
+                                    },
+                                    citations: {},
+                                  },
+                                  required: ["name", "source"],
+                                  additionalProperties: false,
                                 },
                               },
                               required: ["document"],
@@ -694,7 +827,12 @@ const converse: AppBlock = {
                               properties: {
                                 video: {
                                   type: "object",
-                                  additionalProperties: true,
+                                  properties: {
+                                    format: {},
+                                    source: {},
+                                  },
+                                  required: ["format", "source"],
+                                  additionalProperties: false,
                                 },
                               },
                               required: ["video"],
@@ -705,7 +843,13 @@ const converse: AppBlock = {
                               properties: {
                                 audio: {
                                   type: "object",
-                                  additionalProperties: true,
+                                  properties: {
+                                    format: {},
+                                    source: {},
+                                    error: {},
+                                  },
+                                  required: ["format", "source"],
+                                  additionalProperties: false,
                                 },
                               },
                               required: ["audio"],
@@ -716,7 +860,16 @@ const converse: AppBlock = {
                               properties: {
                                 toolUse: {
                                   type: "object",
-                                  additionalProperties: true,
+                                  properties: {
+                                    toolUseId: {},
+                                    name: {},
+                                    input: {
+                                      type: "string",
+                                    },
+                                    type: {},
+                                  },
+                                  required: ["toolUseId", "name", "input"],
+                                  additionalProperties: false,
                                 },
                               },
                               required: ["toolUse"],
@@ -727,7 +880,16 @@ const converse: AppBlock = {
                               properties: {
                                 toolResult: {
                                   type: "object",
-                                  additionalProperties: true,
+                                  properties: {
+                                    toolUseId: {},
+                                    content: {},
+                                    status: {},
+                                    type: {
+                                      type: "string",
+                                    },
+                                  },
+                                  required: ["toolUseId", "content"],
+                                  additionalProperties: false,
                                 },
                               },
                               required: ["toolResult"],
@@ -737,8 +899,24 @@ const converse: AppBlock = {
                               type: "object",
                               properties: {
                                 guardContent: {
-                                  type: "object",
-                                  additionalProperties: true,
+                                  oneOf: [
+                                    {
+                                      type: "object",
+                                      properties: {
+                                        text: {},
+                                      },
+                                      required: ["text"],
+                                      additionalProperties: false,
+                                    },
+                                    {
+                                      type: "object",
+                                      properties: {
+                                        image: {},
+                                      },
+                                      required: ["image"],
+                                      additionalProperties: false,
+                                    },
+                                  ],
                                 },
                               },
                               required: ["guardContent"],
@@ -749,7 +927,12 @@ const converse: AppBlock = {
                               properties: {
                                 cachePoint: {
                                   type: "object",
-                                  additionalProperties: true,
+                                  properties: {
+                                    type: {},
+                                    ttl: {},
+                                  },
+                                  required: ["type"],
+                                  additionalProperties: false,
                                 },
                               },
                               required: ["cachePoint"],
@@ -759,8 +942,26 @@ const converse: AppBlock = {
                               type: "object",
                               properties: {
                                 reasoningContent: {
-                                  type: "object",
-                                  additionalProperties: true,
+                                  oneOf: [
+                                    {
+                                      type: "object",
+                                      properties: {
+                                        reasoningText: {},
+                                      },
+                                      required: ["reasoningText"],
+                                      additionalProperties: false,
+                                    },
+                                    {
+                                      type: "object",
+                                      properties: {
+                                        redactedContent: {
+                                          type: "string",
+                                        },
+                                      },
+                                      required: ["redactedContent"],
+                                      additionalProperties: false,
+                                    },
+                                  ],
                                 },
                               },
                               required: ["reasoningContent"],
@@ -771,7 +972,11 @@ const converse: AppBlock = {
                               properties: {
                                 citationsContent: {
                                   type: "object",
-                                  additionalProperties: true,
+                                  properties: {
+                                    content: {},
+                                    citations: {},
+                                  },
+                                  additionalProperties: false,
                                 },
                               },
                               required: ["citationsContent"],
@@ -782,7 +987,18 @@ const converse: AppBlock = {
                               properties: {
                                 searchResult: {
                                   type: "object",
-                                  additionalProperties: true,
+                                  properties: {
+                                    source: {
+                                      type: "string",
+                                    },
+                                    title: {
+                                      type: "string",
+                                    },
+                                    content: {},
+                                    citations: {},
+                                  },
+                                  required: ["source", "title", "content"],
+                                  additionalProperties: false,
                                 },
                               },
                               required: ["searchResult"],

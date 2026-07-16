@@ -103,6 +103,15 @@ const executeStatement: AppBlock = {
           type: "string",
           required: false,
         },
+        ResultFormat: {
+          name: "Result Format",
+          description: "The data format of the result of the SQL statement.",
+          type: {
+            type: "string",
+            enum: ["JSON", "CSV"],
+          },
+          required: false,
+        },
         SessionKeepAliveSeconds: {
           name: "Session Keep Alive Seconds",
           description:
@@ -114,15 +123,6 @@ const executeStatement: AppBlock = {
           name: "Session Id",
           description: "The session identifier of the query.",
           type: "string",
-          required: false,
-        },
-        ResultFormat: {
-          name: "Result Format",
-          description: "The data format of the result of the SQL statement.",
-          type: {
-            type: "string",
-            enum: ["JSON", "CSV"],
-          },
           required: false,
         },
       },

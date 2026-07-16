@@ -45,8 +45,7 @@ const describeStackResourceDrifts: AppBlock = {
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "A string that identifies the next page of stack resource drift results.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },
@@ -137,12 +136,10 @@ const describeStackResourceDrifts: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Key", "Value"],
@@ -164,20 +161,16 @@ const describeStackResourceDrifts: AppBlock = {
                     type: "object",
                     properties: {
                       PropertyPath: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ExpectedValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ActualValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DifferenceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: [

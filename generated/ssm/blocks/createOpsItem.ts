@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { SSMClient, CreateOpsItemCommand } from "@aws-sdk/client-ssm";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const createOpsItem: AppBlock = {
   name: "Create Ops Item",
@@ -213,7 +214,17 @@ const createOpsItem: AppBlock = {
           }),
         });
 
-        const command = new CreateOpsItemCommand(commandInput as any);
+        const command = new CreateOpsItemCommand(
+          convertTimestamps(
+            commandInput,
+            new Set([
+              "ActualStartTime",
+              "ActualEndTime",
+              "PlannedStartTime",
+              "PlannedEndTime",
+            ]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

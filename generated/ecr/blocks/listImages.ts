@@ -58,6 +58,9 @@ const listImages: AppBlock = {
               tagStatus: {
                 type: "string",
               },
+              imageStatus: {
+                type: "string",
+              },
             },
             additionalProperties: false,
           },

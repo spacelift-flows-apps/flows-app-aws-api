@@ -157,12 +157,10 @@ const describeSnapshotSchedules: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -183,12 +181,10 @@ const describeSnapshotSchedules: AppBlock = {
                     type: "object",
                     properties: {
                       ClusterIdentifier: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ScheduleAssociationState: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

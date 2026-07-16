@@ -119,12 +119,11 @@ const listResourceDataSync: AppBlock = {
                       type: "object",
                       properties: {
                         OrganizationSourceType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OrganizationalUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["OrganizationSourceType"],
@@ -133,8 +132,7 @@ const listResourceDataSync: AppBlock = {
                     SourceRegions: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     IncludeFutureRegions: {
@@ -171,8 +169,7 @@ const listResourceDataSync: AppBlock = {
                       type: "object",
                       properties: {
                         DestinationDataSharingType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

@@ -38,12 +38,10 @@ const createNetworkAcl: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -169,12 +167,10 @@ const createNetworkAcl: AppBlock = {
                       type: "object",
                       properties: {
                         Code: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -186,12 +182,10 @@ const createNetworkAcl: AppBlock = {
                       type: "object",
                       properties: {
                         From: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         To: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,

@@ -96,6 +96,7 @@ import describeOrderableDBInstanceOptions from "./describeOrderableDBInstanceOpt
 import describePendingMaintenanceActions from "./describePendingMaintenanceActions";
 import describeReservedDBInstances from "./describeReservedDBInstances";
 import describeReservedDBInstancesOfferings from "./describeReservedDBInstancesOfferings";
+import describeServerlessV2PlatformVersions from "./describeServerlessV2PlatformVersions";
 import describeSourceRegions from "./describeSourceRegions";
 import describeTenantDatabases from "./describeTenantDatabases";
 import describeValidDBInstanceModifications from "./describeValidDBInstanceModifications";
@@ -261,6 +262,7 @@ export const blocks = {
   describePendingMaintenanceActions,
   describeReservedDBInstances,
   describeReservedDBInstancesOfferings,
+  describeServerlessV2PlatformVersions,
   describeSourceRegions,
   describeTenantDatabases,
   describeValidDBInstanceModifications,

@@ -111,6 +111,13 @@ const describeLaunchTemplateVersions: AppBlock = {
           type: "boolean",
           required: false,
         },
+        IncludeManagedResources: {
+          name: "Include Managed Resources",
+          description:
+            "Indicates whether to include managed resources in the output.",
+          type: "boolean",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -210,12 +217,10 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "object",
                       properties: {
                         Arn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -224,14 +229,45 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          DeviceName: {},
+                          VirtualName: {},
+                          Ebs: {},
+                          NoDevice: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     NetworkInterfaces: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AssociateCarrierIpAddress: {},
+                          AssociatePublicIpAddress: {},
+                          DeleteOnTermination: {},
+                          Description: {},
+                          DeviceIndex: {},
+                          Groups: {},
+                          InterfaceType: {},
+                          Ipv6AddressCount: {},
+                          Ipv6Addresses: {},
+                          NetworkInterfaceId: {},
+                          PrivateIpAddress: {},
+                          PrivateIpAddresses: {},
+                          SecondaryPrivateIpAddressCount: {},
+                          SubnetId: {},
+                          NetworkCardIndex: {},
+                          Ipv4Prefixes: {},
+                          Ipv4PrefixCount: {},
+                          Ipv6Prefixes: {},
+                          Ipv6PrefixCount: {},
+                          PrimaryIpv6: {},
+                          EnaSrdSpecification: {},
+                          ConnectionTrackingSpecification: {},
+                          EnaQueueCount: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ImageId: {
@@ -247,8 +283,7 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "object",
                       properties: {
                         Enabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -257,40 +292,34 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "object",
                       properties: {
                         AvailabilityZone: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
+                        },
+                        AvailabilityZoneId: {
+                          type: "string",
                         },
                         Affinity: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         GroupName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         HostId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Tenancy: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SpreadDomain: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         HostResourceGroupArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PartitionNumber: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         GroupId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -311,47 +340,62 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ResourceType: {},
+                          Tags: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ElasticGpuSpecifications: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Type: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ElasticInferenceAccelerators: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Type: {},
+                          Count: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     SecurityGroupIds: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     SecurityGroups: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     InstanceMarketOptions: {
                       type: "object",
                       properties: {
                         MarketType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SpotOptions: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            MaxPrice: {},
+                            SpotInstanceType: {},
+                            BlockDurationMinutes: {},
+                            ValidUntil: {},
+                            InstanceInterruptionBehavior: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -360,8 +404,7 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "object",
                       properties: {
                         CpuCredits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -370,16 +413,16 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "object",
                       properties: {
                         CoreCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ThreadsPerCore: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         AmdSevSnp: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
+                        },
+                        NestedVirtualization: {
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -388,12 +431,15 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "object",
                       properties: {
                         CapacityReservationPreference: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         CapacityReservationTarget: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            CapacityReservationId: {},
+                            CapacityReservationResourceGroupArn: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -402,15 +448,17 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          LicenseConfigurationArn: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     HibernationOptions: {
                       type: "object",
                       properties: {
                         Configured: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -419,28 +467,22 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "object",
                       properties: {
                         State: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         HttpTokens: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         HttpPutResponseHopLimit: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         HttpEndpoint: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         HttpProtocolIpv6: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         InstanceMetadataTags: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -449,8 +491,7 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "object",
                       properties: {
                         Enabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -460,103 +501,138 @@ const describeLaunchTemplateVersions: AppBlock = {
                       properties: {
                         VCpuCount: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         MemoryMiB: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         CpuManufacturers: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         MemoryGiBPerVCpu: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         ExcludedInstanceTypes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         InstanceGenerations: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         SpotMaxPricePercentageOverLowestPrice: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         OnDemandMaxPricePercentageOverLowestPrice: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         BareMetal: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         BurstablePerformance: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         RequireHibernateSupport: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         NetworkInterfaceCount: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         LocalStorage: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LocalStorageTypes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         TotalLocalStorageGB: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         BaselineEbsBandwidthMbps: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         AcceleratorTypes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         AcceleratorCount: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         AcceleratorManufacturers: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         AcceleratorNames: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         AcceleratorTotalMemoryMiB: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         NetworkBandwidthGbps: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Min: {},
+                            Max: {},
+                          },
+                          additionalProperties: false,
                         },
                         AllowedInstanceTypes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         MaxSpotPriceAsPercentageOfOptimalOnDemandPrice: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         BaselinePerformanceFactors: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Cpu: {},
+                          },
+                          additionalProperties: false,
+                        },
+                        RequireEncryptionInTransit: {
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -565,16 +641,13 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "object",
                       properties: {
                         HostnameType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         EnableResourceNameDnsARecord: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         EnableResourceNameDnsAAAARecord: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -583,8 +656,7 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "object",
                       properties: {
                         AutoRecovery: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -596,12 +668,13 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "object",
                       properties: {
                         Managed: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         Principal: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
+                        },
+                        HiddenByDefault: {
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -610,11 +683,26 @@ const describeLaunchTemplateVersions: AppBlock = {
                       type: "object",
                       properties: {
                         BandwidthWeighting: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
+                    },
+                    SecondaryInterfaces: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          DeleteOnTermination: {},
+                          DeviceIndex: {},
+                          PrivateIpAddresses: {},
+                          PrivateIpAddressCount: {},
+                          SecondarySubnetId: {},
+                          InterfaceType: {},
+                          NetworkCardIndex: {},
+                        },
+                        additionalProperties: false,
+                      },
                     },
                   },
                   additionalProperties: false,
@@ -627,6 +715,9 @@ const describeLaunchTemplateVersions: AppBlock = {
                     },
                     Principal: {
                       type: "string",
+                    },
+                    HiddenByDefault: {
+                      type: "boolean",
                     },
                   },
                   additionalProperties: false,

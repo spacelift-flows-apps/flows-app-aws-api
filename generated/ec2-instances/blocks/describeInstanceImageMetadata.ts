@@ -179,12 +179,10 @@ const describeInstanceImageMetadata: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -231,6 +229,9 @@ const describeInstanceImageMetadata: AppBlock = {
                     },
                     Principal: {
                       type: "string",
+                    },
+                    HiddenByDefault: {
+                      type: "boolean",
                     },
                   },
                   additionalProperties: false,

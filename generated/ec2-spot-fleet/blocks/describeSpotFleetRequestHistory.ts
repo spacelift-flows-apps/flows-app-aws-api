@@ -4,6 +4,7 @@ import {
   DescribeSpotFleetRequestHistoryCommand,
 } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const describeSpotFleetRequestHistory: AppBlock = {
   name: "Describe Spot Fleet Request History",
@@ -108,7 +109,7 @@ const describeSpotFleetRequestHistory: AppBlock = {
         });
 
         const command = new DescribeSpotFleetRequestHistoryCommand(
-          commandInput as any,
+          convertTimestamps(commandInput, new Set(["StartTime"])) as any,
         );
         const response = await client.send(command);
 

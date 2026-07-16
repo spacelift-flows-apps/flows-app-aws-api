@@ -150,12 +150,11 @@ const describeMaintenanceWindowTasks: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Values: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -214,7 +213,11 @@ const describeMaintenanceWindowTasks: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                        },
+                        required: ["Name"],
+                        additionalProperties: false,
                       },
                     },
                   },

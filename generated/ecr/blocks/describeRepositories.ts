@@ -140,12 +140,10 @@ const describeRepositories: AppBlock = {
                     type: "object",
                     properties: {
                       filterType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       filter: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["filterType", "filter"],

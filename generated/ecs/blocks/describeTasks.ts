@@ -120,20 +120,17 @@ const describeTasks: AppBlock = {
                     type: "object",
                     properties: {
                       id: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       details: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -145,20 +142,16 @@ const describeTasks: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       targetType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       targetId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["name"],
@@ -189,72 +182,59 @@ const describeTasks: AppBlock = {
                     type: "object",
                     properties: {
                       containerArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       taskArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       image: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       imageDigest: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       runtimeId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       lastStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       exitCode: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       reason: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       networkBindings: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       networkInterfaces: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       healthStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       managedAgents: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       cpu: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       memory: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       memoryReservation: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       gpuIds: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -287,12 +267,10 @@ const describeTasks: AppBlock = {
                     type: "object",
                     properties: {
                       deviceName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       deviceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["deviceName", "deviceType"],
@@ -315,7 +293,17 @@ const describeTasks: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {},
+                          command: {},
+                          environment: {},
+                          environmentFiles: {},
+                          cpu: {},
+                          memory: {},
+                          memoryReservation: {},
+                          resourceRequirements: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     cpu: {
@@ -325,7 +313,11 @@ const describeTasks: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          deviceName: {},
+                          deviceType: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     executionRoleArn: {
@@ -341,8 +333,7 @@ const describeTasks: AppBlock = {
                       type: "object",
                       properties: {
                         sizeInGiB: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       required: ["sizeInGiB"],
@@ -387,12 +378,10 @@ const describeTasks: AppBlock = {
                     type: "object",
                     properties: {
                       key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

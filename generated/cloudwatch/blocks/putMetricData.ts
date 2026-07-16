@@ -4,6 +4,7 @@ import {
   PutMetricDataCommand,
 } from "@aws-sdk/client-cloudwatch";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const putMetricData: AppBlock = {
   name: "Put Metric Data",
@@ -47,12 +48,10 @@ const putMetricData: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Name", "Value"],
@@ -124,13 +123,13 @@ const putMetricData: AppBlock = {
                     KeyAttributes: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     Attributes: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                   },
@@ -142,40 +141,42 @@ const putMetricData: AppBlock = {
                     type: "object",
                     properties: {
                       MetricName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Dimensions: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Timestamp: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       StatisticValues: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          SampleCount: {},
+                          Sum: {},
+                          Minimum: {},
+                          Maximum: {},
+                        },
+                        required: ["SampleCount", "Sum", "Minimum", "Maximum"],
+                        additionalProperties: false,
                       },
                       Values: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Counts: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Unit: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       StorageResolution: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     required: ["MetricName"],
@@ -238,7 +239,9 @@ const putMetricData: AppBlock = {
           }),
         });
 
-        const command = new PutMetricDataCommand(commandInput as any);
+        const command = new PutMetricDataCommand(
+          convertTimestamps(commandInput, new Set(["Timestamp"])) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

@@ -4,6 +4,7 @@ import {
   DescribeScheduledActionsCommand,
 } from "@aws-sdk/client-redshift";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const describeScheduledActions: AppBlock = {
   name: "Describe Scheduled Actions",
@@ -138,7 +139,10 @@ const describeScheduledActions: AppBlock = {
         });
 
         const command = new DescribeScheduledActionsCommand(
-          commandInput as any,
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
         );
         const response = await client.send(command);
 
@@ -174,32 +178,25 @@ const describeScheduledActions: AppBlock = {
                       type: "object",
                       properties: {
                         ClusterIdentifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ClusterType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NodeType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NumberOfNodes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Classic: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         ReservedNodeId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         TargetReservedNodeOfferingId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["ClusterIdentifier"],
@@ -209,8 +206,7 @@ const describeScheduledActions: AppBlock = {
                       type: "object",
                       properties: {
                         ClusterIdentifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["ClusterIdentifier"],
@@ -220,8 +216,7 @@ const describeScheduledActions: AppBlock = {
                       type: "object",
                       properties: {
                         ClusterIdentifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["ClusterIdentifier"],

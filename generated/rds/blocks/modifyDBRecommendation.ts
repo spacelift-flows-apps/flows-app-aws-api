@@ -175,14 +175,17 @@ const modifyDBRecommendation: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ApplyModes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Status: {
@@ -193,7 +196,13 @@ const modifyDBRecommendation: AppBlock = {
                       properties: {
                         PerformanceIssueDetails: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            StartTime: {},
+                            EndTime: {},
+                            Metrics: {},
+                            Analysis: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -202,7 +211,11 @@ const modifyDBRecommendation: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -258,7 +271,13 @@ const modifyDBRecommendation: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                            References: {},
+                            StatisticsDetails: {},
+                            MetricQuery: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       Analysis: {

@@ -119,7 +119,17 @@ const getChannel: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Field: {},
+                          Equals: {},
+                          StartsWith: {},
+                          EndsWith: {},
+                          NotEquals: {},
+                          NotStartsWith: {},
+                          NotEndsWith: {},
+                        },
+                        required: ["Field"],
+                        additionalProperties: false,
                       },
                     },
                   },

@@ -144,7 +144,10 @@ const listEventSourceMappings: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Pattern: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -172,8 +175,7 @@ const listEventSourceMappings: AppBlock = {
                       type: "object",
                       properties: {
                         Destination: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -182,8 +184,7 @@ const listEventSourceMappings: AppBlock = {
                       type: "object",
                       properties: {
                         Destination: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -209,12 +210,10 @@ const listEventSourceMappings: AppBlock = {
                     type: "object",
                     properties: {
                       Type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       URI: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -226,7 +225,7 @@ const listEventSourceMappings: AppBlock = {
                     Endpoints: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "array",
                       },
                     },
                   },
@@ -260,20 +259,18 @@ const listEventSourceMappings: AppBlock = {
                       type: "object",
                       properties: {
                         SchemaRegistryURI: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         EventRecordFormat: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         AccessConfigs: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         SchemaValidationConfigs: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -291,20 +288,18 @@ const listEventSourceMappings: AppBlock = {
                       type: "object",
                       properties: {
                         SchemaRegistryURI: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         EventRecordFormat: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         AccessConfigs: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         SchemaValidationConfigs: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -360,9 +355,17 @@ const listEventSourceMappings: AppBlock = {
                     Metrics: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
+                    },
+                  },
+                  additionalProperties: false,
+                },
+                LoggingConfig: {
+                  type: "object",
+                  properties: {
+                    SystemLogLevel: {
+                      type: "string",
                     },
                   },
                   additionalProperties: false,
@@ -375,6 +378,9 @@ const listEventSourceMappings: AppBlock = {
                     },
                     MaximumPollers: {
                       type: "number",
+                    },
+                    PollerGroupName: {
+                      type: "string",
                     },
                   },
                   additionalProperties: false,

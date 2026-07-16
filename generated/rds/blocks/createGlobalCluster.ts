@@ -26,7 +26,7 @@ const createGlobalCluster: AppBlock = {
           description:
             "The cluster identifier for this global database cluster.",
           type: "string",
-          required: false,
+          required: true,
         },
         SourceDBClusterIdentifier: {
           name: "Source DB Cluster Identifier",
@@ -184,6 +184,9 @@ const createGlobalCluster: AppBlock = {
               StorageEncrypted: {
                 type: "boolean",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               DeletionProtection: {
                 type: "boolean",
               },
@@ -198,8 +201,7 @@ const createGlobalCluster: AppBlock = {
                     Readers: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     IsWriter: {

@@ -159,6 +159,9 @@ const describeCapacityBlockExtensionOfferings: AppBlock = {
                 Tenancy: {
                   type: "string",
                 },
+                ZoneType: {
+                  type: "string",
+                },
               },
               additionalProperties: false,
             },

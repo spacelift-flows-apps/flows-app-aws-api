@@ -51,7 +51,7 @@ const transactWriteItems: AppBlock = {
                     ExpressionAttributeNames: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     ExpressionAttributeValues: {
@@ -85,7 +85,7 @@ const transactWriteItems: AppBlock = {
                     ExpressionAttributeNames: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     ExpressionAttributeValues: {
@@ -119,7 +119,7 @@ const transactWriteItems: AppBlock = {
                     ExpressionAttributeNames: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     ExpressionAttributeValues: {
@@ -156,7 +156,7 @@ const transactWriteItems: AppBlock = {
                     ExpressionAttributeNames: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     ExpressionAttributeValues: {

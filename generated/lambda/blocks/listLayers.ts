@@ -137,8 +137,7 @@ const listLayers: AppBlock = {
                     CompatibleRuntimes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     LicenseInfo: {
@@ -147,8 +146,7 @@ const listLayers: AppBlock = {
                     CompatibleArchitectures: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

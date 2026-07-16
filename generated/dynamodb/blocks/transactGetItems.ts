@@ -51,7 +51,7 @@ const transactGetItems: AppBlock = {
                     ExpressionAttributeNames: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                   },
@@ -188,7 +188,7 @@ const transactGetItems: AppBlock = {
                 Item: {
                   type: "object",
                   additionalProperties: {
-                    type: "string",
+                    type: "object",
                   },
                 },
               },

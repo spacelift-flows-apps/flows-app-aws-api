@@ -65,8 +65,7 @@ const applyGuardrail: AppBlock = {
                         qualifiers: {
                           type: "array",
                           items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                       },
@@ -256,7 +255,18 @@ const applyGuardrail: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {
+                            type: "string",
+                          },
+                          type: {},
+                          action: {},
+                          detected: {
+                            type: "string",
+                          },
+                        },
+                        required: ["name", "type", "action"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -270,7 +280,17 @@ const applyGuardrail: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          type: {},
+                          confidence: {},
+                          filterStrength: {},
+                          action: {},
+                          detected: {
+                            type: "string",
+                          },
+                        },
+                        required: ["type", "confidence", "action"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -284,14 +304,35 @@ const applyGuardrail: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          match: {
+                            type: "string",
+                          },
+                          action: {},
+                          detected: {
+                            type: "string",
+                          },
+                        },
+                        required: ["match", "action"],
+                        additionalProperties: false,
                       },
                     },
                     managedWordLists: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          match: {
+                            type: "string",
+                          },
+                          type: {},
+                          action: {},
+                          detected: {
+                            type: "string",
+                          },
+                        },
+                        required: ["match", "type", "action"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -305,14 +346,41 @@ const applyGuardrail: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          match: {
+                            type: "string",
+                          },
+                          type: {},
+                          action: {},
+                          detected: {
+                            type: "string",
+                          },
+                        },
+                        required: ["match", "type", "action"],
+                        additionalProperties: false,
                       },
                     },
                     regexes: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {
+                            type: "string",
+                          },
+                          match: {
+                            type: "string",
+                          },
+                          regex: {
+                            type: "string",
+                          },
+                          action: {},
+                          detected: {
+                            type: "string",
+                          },
+                        },
+                        required: ["action"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -326,7 +394,21 @@ const applyGuardrail: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          type: {},
+                          threshold: {
+                            type: "string",
+                          },
+                          score: {
+                            type: "string",
+                          },
+                          action: {},
+                          detected: {
+                            type: "string",
+                          },
+                        },
+                        required: ["type", "threshold", "score", "action"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -338,8 +420,64 @@ const applyGuardrail: AppBlock = {
                     findings: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        oneOf: [
+                          {
+                            type: "object",
+                            properties: {
+                              valid: {},
+                            },
+                            required: ["valid"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              invalid: {},
+                            },
+                            required: ["invalid"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              satisfiable: {},
+                            },
+                            required: ["satisfiable"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              impossible: {},
+                            },
+                            required: ["impossible"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              translationAmbiguous: {},
+                            },
+                            required: ["translationAmbiguous"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              tooComplex: {},
+                            },
+                            required: ["tooComplex"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              noTranslations: {},
+                            },
+                            required: ["noTranslations"],
+                            additionalProperties: false,
+                          },
+                        ],
                       },
                     },
                   },
@@ -355,40 +493,31 @@ const applyGuardrail: AppBlock = {
                       type: "object",
                       properties: {
                         topicPolicyUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         contentPolicyUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         wordPolicyUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         sensitiveInformationPolicyUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         sensitiveInformationPolicyFreeUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         contextualGroundingPolicyUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         contentPolicyImageUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         automatedReasoningPolicyUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         automatedReasoningPolicies: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       required: [
@@ -406,11 +535,19 @@ const applyGuardrail: AppBlock = {
                       properties: {
                         textCharacters: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            guarded: {},
+                            total: {},
+                          },
+                          additionalProperties: false,
                         },
                         images: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            guarded: {},
+                            total: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -433,8 +570,7 @@ const applyGuardrail: AppBlock = {
                     guardrailOrigin: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     guardrailOwnership: {

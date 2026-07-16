@@ -225,6 +225,13 @@ const modifyCluster: AppBlock = {
           type: "boolean",
           required: false,
         },
+        ExtraComputeForAutomaticOptimization: {
+          name: "Extra Compute For Automatic Optimization",
+          description:
+            "If true, allocates additional compute resources for running automatic optimization operations.",
+          type: "boolean",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -322,16 +329,14 @@ const modifyCluster: AppBlock = {
                       type: "object",
                       properties: {
                         VpcEndpointId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         VpcId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NetworkInterfaces: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -394,7 +399,12 @@ const modifyCluster: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ParameterName: {},
+                          ParameterApplyStatus: {},
+                          ParameterApplyErrorDescription: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -767,16 +777,13 @@ const modifyCluster: AppBlock = {
                       type: "object",
                       properties: {
                         NodeRole: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PrivateIPAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PublicIPAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -784,6 +791,15 @@ const modifyCluster: AppBlock = {
                   },
                 },
                 additionalProperties: false,
+              },
+              LakehouseRegistrationStatus: {
+                type: "string",
+              },
+              CatalogArn: {
+                type: "string",
+              },
+              ExtraComputeForAutomaticOptimization: {
+                type: "string",
               },
             },
             additionalProperties: false,

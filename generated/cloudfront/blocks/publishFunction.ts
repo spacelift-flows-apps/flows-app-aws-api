@@ -123,7 +123,11 @@ const publishFunction: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            KeyValueStoreARN: {},
+                          },
+                          required: ["KeyValueStoreARN"],
+                          additionalProperties: false,
                         },
                       },
                     },

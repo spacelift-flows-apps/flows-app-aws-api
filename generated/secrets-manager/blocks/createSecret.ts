@@ -111,6 +111,13 @@ const createSecret: AppBlock = {
           type: "boolean",
           required: false,
         },
+        Type: {
+          name: "Type",
+          description:
+            "The exact string that identifies the partner that holds the external secret.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =

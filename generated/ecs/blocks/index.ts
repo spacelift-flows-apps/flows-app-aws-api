@@ -1,11 +1,16 @@
 import createCapacityProvider from "./createCapacityProvider";
 import createCluster from "./createCluster";
+import createDaemon from "./createDaemon";
+import createExpressGatewayService from "./createExpressGatewayService";
 import createService from "./createService";
 import createTaskSet from "./createTaskSet";
 import deleteAccountSetting from "./deleteAccountSetting";
 import deleteAttributes from "./deleteAttributes";
 import deleteCapacityProvider from "./deleteCapacityProvider";
 import deleteCluster from "./deleteCluster";
+import deleteDaemon from "./deleteDaemon";
+import deleteDaemonTaskDefinition from "./deleteDaemonTaskDefinition";
+import deleteExpressGatewayService from "./deleteExpressGatewayService";
 import deleteService from "./deleteService";
 import deleteTaskDefinitions from "./deleteTaskDefinitions";
 import deleteTaskSet from "./deleteTaskSet";
@@ -14,6 +19,11 @@ import deregisterTaskDefinition from "./deregisterTaskDefinition";
 import describeCapacityProviders from "./describeCapacityProviders";
 import describeClusters from "./describeClusters";
 import describeContainerInstances from "./describeContainerInstances";
+import describeDaemon from "./describeDaemon";
+import describeDaemonDeployments from "./describeDaemonDeployments";
+import describeDaemonRevisions from "./describeDaemonRevisions";
+import describeDaemonTaskDefinition from "./describeDaemonTaskDefinition";
+import describeExpressGatewayService from "./describeExpressGatewayService";
 import describeServiceDeployments from "./describeServiceDeployments";
 import describeServiceRevisions from "./describeServiceRevisions";
 import describeServices from "./describeServices";
@@ -27,6 +37,9 @@ import listAccountSettings from "./listAccountSettings";
 import listAttributes from "./listAttributes";
 import listClusters from "./listClusters";
 import listContainerInstances from "./listContainerInstances";
+import listDaemonDeployments from "./listDaemonDeployments";
+import listDaemonTaskDefinitions from "./listDaemonTaskDefinitions";
+import listDaemons from "./listDaemons";
 import listServiceDeployments from "./listServiceDeployments";
 import listServices from "./listServices";
 import listServicesByNamespace from "./listServicesByNamespace";
@@ -39,6 +52,7 @@ import putAccountSettingDefault from "./putAccountSettingDefault";
 import putAttributes from "./putAttributes";
 import putClusterCapacityProviders from "./putClusterCapacityProviders";
 import registerContainerInstance from "./registerContainerInstance";
+import registerDaemonTaskDefinition from "./registerDaemonTaskDefinition";
 import registerTaskDefinition from "./registerTaskDefinition";
 import runTask from "./runTask";
 import startTask from "./startTask";
@@ -54,6 +68,8 @@ import updateCluster from "./updateCluster";
 import updateClusterSettings from "./updateClusterSettings";
 import updateContainerAgent from "./updateContainerAgent";
 import updateContainerInstancesState from "./updateContainerInstancesState";
+import updateDaemon from "./updateDaemon";
+import updateExpressGatewayService from "./updateExpressGatewayService";
 import updateService from "./updateService";
 import updateServicePrimaryTaskSet from "./updateServicePrimaryTaskSet";
 import updateTaskProtection from "./updateTaskProtection";
@@ -62,12 +78,17 @@ import updateTaskSet from "./updateTaskSet";
 export const blocks = {
   createCapacityProvider,
   createCluster,
+  createDaemon,
+  createExpressGatewayService,
   createService,
   createTaskSet,
   deleteAccountSetting,
   deleteAttributes,
   deleteCapacityProvider,
   deleteCluster,
+  deleteDaemon,
+  deleteDaemonTaskDefinition,
+  deleteExpressGatewayService,
   deleteService,
   deleteTaskDefinitions,
   deleteTaskSet,
@@ -76,6 +97,11 @@ export const blocks = {
   describeCapacityProviders,
   describeClusters,
   describeContainerInstances,
+  describeDaemon,
+  describeDaemonDeployments,
+  describeDaemonRevisions,
+  describeDaemonTaskDefinition,
+  describeExpressGatewayService,
   describeServiceDeployments,
   describeServiceRevisions,
   describeServices,
@@ -89,6 +115,9 @@ export const blocks = {
   listAttributes,
   listClusters,
   listContainerInstances,
+  listDaemonDeployments,
+  listDaemonTaskDefinitions,
+  listDaemons,
   listServiceDeployments,
   listServices,
   listServicesByNamespace,
@@ -101,6 +130,7 @@ export const blocks = {
   putAttributes,
   putClusterCapacityProviders,
   registerContainerInstance,
+  registerDaemonTaskDefinition,
   registerTaskDefinition,
   runTask,
   startTask,
@@ -116,6 +146,8 @@ export const blocks = {
   updateClusterSettings,
   updateContainerAgent,
   updateContainerInstancesState,
+  updateDaemon,
+  updateExpressGatewayService,
   updateService,
   updateServicePrimaryTaskSet,
   updateTaskProtection,

@@ -83,12 +83,10 @@ const createBackupSelection: AppBlock = {
                       type: "object",
                       properties: {
                         ConditionKey: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ConditionValue: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -100,12 +98,10 @@ const createBackupSelection: AppBlock = {
                       type: "object",
                       properties: {
                         ConditionKey: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ConditionValue: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -117,12 +113,10 @@ const createBackupSelection: AppBlock = {
                       type: "object",
                       properties: {
                         ConditionKey: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ConditionValue: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -134,12 +128,10 @@ const createBackupSelection: AppBlock = {
                       type: "object",
                       properties: {
                         ConditionKey: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ConditionValue: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

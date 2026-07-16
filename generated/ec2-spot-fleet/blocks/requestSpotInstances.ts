@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { EC2Client, RequestSpotInstancesCommand } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const requestSpotInstances: AppBlock = {
   name: "Request Spot Instances",
@@ -51,52 +52,43 @@ const requestSpotInstances: AppBlock = {
                       type: "object",
                       properties: {
                         DeleteOnTermination: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         Iops: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         SnapshotId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         VolumeSize: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         VolumeType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KmsKeyId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Throughput: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         OutpostArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         AvailabilityZone: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Encrypted: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         VolumeInitializationRate: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         AvailabilityZoneId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
+                        },
+                        EbsCardIndex: {
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -171,8 +163,7 @@ const requestSpotInstances: AppBlock = {
                     Groups: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Ipv6AddressCount: {
@@ -182,7 +173,11 @@ const requestSpotInstances: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Ipv6Address: {},
+                          IsPrimaryIpv6: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     NetworkInterfaceId: {
@@ -195,7 +190,11 @@ const requestSpotInstances: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Primary: {},
+                          PrivateIpAddress: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     SecondaryPrivateIpAddressCount: {
@@ -217,7 +216,10 @@ const requestSpotInstances: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Ipv4Prefix: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Ipv4PrefixCount: {
@@ -227,7 +229,10 @@ const requestSpotInstances: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Ipv6Prefix: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Ipv6PrefixCount: {
@@ -240,12 +245,14 @@ const requestSpotInstances: AppBlock = {
                       type: "object",
                       properties: {
                         EnaSrdEnabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         EnaSrdUdpSpecification: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            EnaSrdUdpEnabled: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -254,16 +261,13 @@ const requestSpotInstances: AppBlock = {
                       type: "object",
                       properties: {
                         TcpEstablishedTimeout: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         UdpStreamTimeout: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         UdpTimeout: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -285,6 +289,9 @@ const requestSpotInstances: AppBlock = {
                     type: "string",
                   },
                   Tenancy: {
+                    type: "string",
+                  },
+                  AvailabilityZoneId: {
                     type: "string",
                   },
                 },
@@ -322,12 +329,10 @@ const requestSpotInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -453,7 +458,12 @@ const requestSpotInstances: AppBlock = {
           }),
         });
 
-        const command = new RequestSpotInstancesCommand(commandInput as any);
+        const command = new RequestSpotInstancesCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["ValidFrom", "ValidUntil"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});
@@ -516,7 +526,13 @@ const requestSpotInstances: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Ebs: {},
+                          NoDevice: {},
+                          DeviceName: {},
+                          VirtualName: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     EbsOptimized: {
@@ -526,12 +542,10 @@ const requestSpotInstances: AppBlock = {
                       type: "object",
                       properties: {
                         Arn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -552,23 +566,48 @@ const requestSpotInstances: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AssociatePublicIpAddress: {},
+                          DeleteOnTermination: {},
+                          Description: {},
+                          DeviceIndex: {},
+                          Groups: {},
+                          Ipv6AddressCount: {},
+                          Ipv6Addresses: {},
+                          NetworkInterfaceId: {},
+                          PrivateIpAddress: {},
+                          PrivateIpAddresses: {},
+                          SecondaryPrivateIpAddressCount: {},
+                          SubnetId: {},
+                          AssociateCarrierIpAddress: {},
+                          InterfaceType: {},
+                          NetworkCardIndex: {},
+                          Ipv4Prefixes: {},
+                          Ipv4PrefixCount: {},
+                          Ipv6Prefixes: {},
+                          Ipv6PrefixCount: {},
+                          PrimaryIpv6: {},
+                          EnaSrdSpecification: {},
+                          ConnectionTrackingSpecification: {},
+                          EnaQueueCount: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Placement: {
                       type: "object",
                       properties: {
                         AvailabilityZone: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         GroupName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Tenancy: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
+                        },
+                        AvailabilityZoneId: {
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -583,15 +622,18 @@ const requestSpotInstances: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          GroupId: {},
+                          GroupName: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Monitoring: {
                       type: "object",
                       properties: {
                         Enabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       required: ["Enabled"],
@@ -601,6 +643,9 @@ const requestSpotInstances: AppBlock = {
                   additionalProperties: false,
                 },
                 LaunchedAvailabilityZone: {
+                  type: "string",
+                },
+                LaunchedAvailabilityZoneId: {
                   type: "string",
                 },
                 ProductDescription: {
@@ -636,12 +681,10 @@ const requestSpotInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

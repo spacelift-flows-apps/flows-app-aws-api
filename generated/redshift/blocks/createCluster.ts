@@ -312,6 +312,20 @@ const createCluster: AppBlock = {
           type: "string",
           required: false,
         },
+        CatalogName: {
+          name: "Catalog Name",
+          description:
+            "The name of the Glue data catalog that will be associated with the cluster enabled with Amazon Redshift federated permissions.",
+          type: "string",
+          required: false,
+        },
+        ExtraComputeForAutomaticOptimization: {
+          name: "Extra Compute For Automatic Optimization",
+          description:
+            "If true, allocates additional compute resources for running automatic optimization operations.",
+          type: "boolean",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -409,16 +423,14 @@ const createCluster: AppBlock = {
                       type: "object",
                       properties: {
                         VpcEndpointId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         VpcId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NetworkInterfaces: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -481,7 +493,12 @@ const createCluster: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ParameterName: {},
+                          ParameterApplyStatus: {},
+                          ParameterApplyErrorDescription: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -854,16 +871,13 @@ const createCluster: AppBlock = {
                       type: "object",
                       properties: {
                         NodeRole: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PrivateIPAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PublicIPAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -871,6 +885,15 @@ const createCluster: AppBlock = {
                   },
                 },
                 additionalProperties: false,
+              },
+              LakehouseRegistrationStatus: {
+                type: "string",
+              },
+              CatalogArn: {
+                type: "string",
+              },
+              ExtraComputeForAutomaticOptimization: {
+                type: "string",
               },
             },
             additionalProperties: false,

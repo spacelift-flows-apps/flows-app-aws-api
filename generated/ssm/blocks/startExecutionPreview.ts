@@ -37,7 +37,112 @@ const startExecutionPreview: AppBlock = {
           name: "Execution Inputs",
           description:
             "Information about the inputs that can be specified for the preview operation.",
-          type: "string",
+          type: {
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  Automation: {
+                    type: "object",
+                    properties: {
+                      Parameters: {
+                        type: "object",
+                        additionalProperties: {
+                          type: "array",
+                        },
+                      },
+                      TargetParameterName: {
+                        type: "string",
+                      },
+                      Targets: {
+                        type: "array",
+                        items: {
+                          type: "object",
+                          properties: {
+                            Key: {
+                              type: "string",
+                            },
+                            Values: {
+                              type: "array",
+                              items: {},
+                            },
+                          },
+                          additionalProperties: false,
+                        },
+                      },
+                      TargetMaps: {
+                        type: "array",
+                        items: {
+                          type: "object",
+                          additionalProperties: {
+                            type: "array",
+                          },
+                        },
+                      },
+                      TargetLocations: {
+                        type: "array",
+                        items: {
+                          type: "object",
+                          properties: {
+                            Accounts: {
+                              type: "array",
+                              items: {},
+                            },
+                            Regions: {
+                              type: "array",
+                              items: {},
+                            },
+                            TargetLocationMaxConcurrency: {
+                              type: "string",
+                            },
+                            TargetLocationMaxErrors: {
+                              type: "string",
+                            },
+                            ExecutionRoleName: {
+                              type: "string",
+                            },
+                            TargetLocationAlarmConfiguration: {
+                              type: "object",
+                              properties: {
+                                IgnorePollAlarmFailure: {},
+                                Alarms: {},
+                              },
+                              required: ["Alarms"],
+                              additionalProperties: false,
+                            },
+                            IncludeChildOrganizationUnits: {
+                              type: "boolean",
+                            },
+                            ExcludeAccounts: {
+                              type: "array",
+                              items: {},
+                            },
+                            Targets: {
+                              type: "array",
+                              items: {},
+                            },
+                            TargetsMaxConcurrency: {
+                              type: "string",
+                            },
+                            TargetsMaxErrors: {
+                              type: "string",
+                            },
+                          },
+                          additionalProperties: false,
+                        },
+                      },
+                      TargetLocationsURL: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["Automation"],
+                additionalProperties: false,
+              },
+            ],
+          },
           required: false,
         },
       },

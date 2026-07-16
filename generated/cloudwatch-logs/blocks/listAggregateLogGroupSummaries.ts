@@ -171,12 +171,10 @@ const listAggregateLogGroupSummaries: AppBlock = {
                     type: "object",
                     properties: {
                       key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

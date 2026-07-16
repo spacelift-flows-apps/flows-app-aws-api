@@ -87,12 +87,10 @@ const createTransitGatewayConnectPeer: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -210,24 +208,19 @@ const createTransitGatewayConnectPeer: AppBlock = {
                       type: "object",
                       properties: {
                         TransitGatewayAsn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         PeerAsn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         TransitGatewayAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PeerAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         BgpStatus: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

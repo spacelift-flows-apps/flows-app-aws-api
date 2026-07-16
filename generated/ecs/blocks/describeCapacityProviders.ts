@@ -36,6 +36,13 @@ const describeCapacityProviders: AppBlock = {
           },
           required: false,
         },
+        cluster: {
+          name: "cluster",
+          description:
+            "The name of the cluster to describe capacity providers for.",
+          type: "string",
+          required: false,
+        },
         include: {
           name: "include",
           description:
@@ -133,6 +140,9 @@ const describeCapacityProviders: AppBlock = {
                 name: {
                   type: "string",
                 },
+                cluster: {
+                  type: "string",
+                },
                 status: {
                   type: "string",
                 },
@@ -146,24 +156,19 @@ const describeCapacityProviders: AppBlock = {
                       type: "object",
                       properties: {
                         status: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         targetCapacity: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         minimumScalingStepSize: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         maximumScalingStepSize: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         instanceWarmupPeriod: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -178,6 +183,122 @@ const describeCapacityProviders: AppBlock = {
                   required: ["autoScalingGroupArn"],
                   additionalProperties: false,
                 },
+                managedInstancesProvider: {
+                  type: "object",
+                  properties: {
+                    infrastructureRoleArn: {
+                      type: "string",
+                    },
+                    instanceLaunchTemplate: {
+                      type: "object",
+                      properties: {
+                        ec2InstanceProfileArn: {
+                          type: "string",
+                        },
+                        networkConfiguration: {
+                          type: "object",
+                          properties: {
+                            subnets: {},
+                            securityGroups: {},
+                          },
+                          additionalProperties: false,
+                        },
+                        storageConfiguration: {
+                          type: "object",
+                          properties: {
+                            storageSizeGiB: {},
+                          },
+                          additionalProperties: false,
+                        },
+                        localStorageConfiguration: {
+                          type: "object",
+                          properties: {
+                            useLocalStorage: {},
+                          },
+                          additionalProperties: false,
+                        },
+                        monitoring: {
+                          type: "string",
+                        },
+                        capacityOptionType: {
+                          type: "string",
+                        },
+                        instanceMetadataTagsPropagation: {
+                          type: "boolean",
+                        },
+                        instanceRequirements: {
+                          type: "object",
+                          properties: {
+                            vCpuCount: {},
+                            memoryMiB: {},
+                            cpuManufacturers: {},
+                            memoryGiBPerVCpu: {},
+                            excludedInstanceTypes: {},
+                            instanceGenerations: {},
+                            spotMaxPricePercentageOverLowestPrice: {},
+                            onDemandMaxPricePercentageOverLowestPrice: {},
+                            bareMetal: {},
+                            burstablePerformance: {},
+                            requireHibernateSupport: {},
+                            networkInterfaceCount: {},
+                            localStorage: {},
+                            localStorageTypes: {},
+                            totalLocalStorageGB: {},
+                            baselineEbsBandwidthMbps: {},
+                            acceleratorTypes: {},
+                            acceleratorCount: {},
+                            acceleratorManufacturers: {},
+                            acceleratorNames: {},
+                            acceleratorTotalMemoryMiB: {},
+                            networkBandwidthGbps: {},
+                            allowedInstanceTypes: {},
+                            maxSpotPriceAsPercentageOfOptimalOnDemandPrice: {},
+                          },
+                          required: ["vCpuCount", "memoryMiB"],
+                          additionalProperties: false,
+                        },
+                        fipsEnabled: {
+                          type: "boolean",
+                        },
+                        capacityReservations: {
+                          type: "object",
+                          properties: {
+                            reservationGroupArn: {},
+                            reservationPreference: {},
+                          },
+                          additionalProperties: false,
+                        },
+                      },
+                      required: [
+                        "ec2InstanceProfileArn",
+                        "networkConfiguration",
+                      ],
+                      additionalProperties: false,
+                    },
+                    propagateTags: {
+                      type: "string",
+                    },
+                    infrastructureOptimization: {
+                      type: "object",
+                      properties: {
+                        scaleInAfter: {
+                          type: "number",
+                        },
+                      },
+                      additionalProperties: false,
+                    },
+                    autoRepairConfiguration: {
+                      type: "object",
+                      properties: {
+                        actionsStatus: {
+                          type: "string",
+                        },
+                      },
+                      additionalProperties: false,
+                    },
+                  },
+                  additionalProperties: false,
+                },
                 updateStatus: {
                   type: "string",
                 },
@@ -190,16 +311,17 @@ const describeCapacityProviders: AppBlock = {
                     type: "object",
                     properties: {
                       key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
                   },
+                },
+                type: {
+                  type: "string",
                 },
               },
               additionalProperties: false,

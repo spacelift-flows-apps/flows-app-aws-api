@@ -242,12 +242,10 @@ const describeReservedInstancesOfferings: AppBlock = {
                     type: "object",
                     properties: {
                       Count: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       Price: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     additionalProperties: false,
@@ -259,12 +257,10 @@ const describeReservedInstancesOfferings: AppBlock = {
                     type: "object",
                     properties: {
                       Amount: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       Frequency: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

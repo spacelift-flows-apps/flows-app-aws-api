@@ -45,6 +45,13 @@ const describeVolumeStatus: AppBlock = {
           },
           required: false,
         },
+        IncludeManagedResources: {
+          name: "Include Managed Resources",
+          description:
+            "Indicates whether to include managed resources in the output.",
+          type: "boolean",
+          required: false,
+        },
         DryRun: {
           name: "Dry Run",
           description:
@@ -149,20 +156,16 @@ const describeVolumeStatus: AppBlock = {
                     type: "object",
                     properties: {
                       Code: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EventId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EventType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -180,28 +183,22 @@ const describeVolumeStatus: AppBlock = {
                     type: "object",
                     properties: {
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EventId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EventType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       NotAfter: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       NotBefore: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       InstanceId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -217,7 +214,11 @@ const describeVolumeStatus: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                          Status: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Status: {
@@ -232,12 +233,10 @@ const describeVolumeStatus: AppBlock = {
                     type: "object",
                     properties: {
                       IoPerformance: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       InstanceId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -260,6 +259,21 @@ const describeVolumeStatus: AppBlock = {
                 },
                 AvailabilityZoneId: {
                   type: "string",
+                },
+                Operator: {
+                  type: "object",
+                  properties: {
+                    Managed: {
+                      type: "boolean",
+                    },
+                    Principal: {
+                      type: "string",
+                    },
+                    HiddenByDefault: {
+                      type: "boolean",
+                    },
+                  },
+                  additionalProperties: false,
                 },
               },
               additionalProperties: false,

@@ -26,7 +26,7 @@ const getFunctionRecursionConfig: AppBlock = {
         },
         FunctionName: {
           name: "Function Name",
-          description: "",
+          description: "The name of the function.",
           type: "string",
           required: true,
         },

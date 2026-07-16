@@ -155,34 +155,31 @@ const describeDBProxies: AppBlock = {
                     type: "string",
                   },
                 },
+                DefaultAuthScheme: {
+                  type: "string",
+                },
                 Auth: {
                   type: "array",
                   items: {
                     type: "object",
                     properties: {
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       UserName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AuthScheme: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SecretArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IAMAuth: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ClientPasswordAuthType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -207,6 +204,12 @@ const describeDBProxies: AppBlock = {
                   type: "string",
                 },
                 UpdatedDate: {
+                  type: "string",
+                },
+                EndpointNetworkType: {
+                  type: "string",
+                },
+                TargetConnectionNetworkType: {
                   type: "string",
                 },
               },

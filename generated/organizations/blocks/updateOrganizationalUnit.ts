@@ -26,8 +26,7 @@ const updateOrganizationalUnit: AppBlock = {
         },
         OrganizationalUnitId: {
           name: "Organizational Unit Id",
-          description:
-            "The unique identifier (ID) of the OU that you want to rename.",
+          description: "ID for the OU that you want to rename.",
           type: "string",
           required: true,
         },
@@ -107,6 +106,9 @@ const updateOrganizationalUnit: AppBlock = {
                 type: "string",
               },
               Name: {
+                type: "string",
+              },
+              Path: {
                 type: "string",
               },
             },

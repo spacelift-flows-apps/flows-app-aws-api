@@ -190,6 +190,15 @@ const copyDBClusterSnapshot: AppBlock = {
               StorageEncrypted: {
                 type: "boolean",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
+              BackupRetentionPeriod: {
+                type: "number",
+              },
+              PreferredBackupWindow: {
+                type: "string",
+              },
               KmsKeyId: {
                 type: "string",
               },
@@ -217,17 +226,17 @@ const copyDBClusterSnapshot: AppBlock = {
                   additionalProperties: false,
                 },
               },
-              DBSystemId: {
-                type: "string",
-              },
               StorageType: {
-                type: "string",
-              },
-              DbClusterResourceId: {
                 type: "string",
               },
               StorageThroughput: {
                 type: "number",
+              },
+              DbClusterResourceId: {
+                type: "string",
+              },
+              DBSystemId: {
+                type: "string",
               },
             },
             additionalProperties: false,

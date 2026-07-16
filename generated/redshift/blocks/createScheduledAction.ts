@@ -4,6 +4,7 @@ import {
   CreateScheduledActionCommand,
 } from "@aws-sdk/client-redshift";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const createScheduledAction: AppBlock = {
   name: "Create Scheduled Action",
@@ -169,7 +170,12 @@ const createScheduledAction: AppBlock = {
           }),
         });
 
-        const command = new CreateScheduledActionCommand(commandInput as any);
+        const command = new CreateScheduledActionCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

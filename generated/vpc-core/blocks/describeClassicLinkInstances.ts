@@ -149,12 +149,10 @@ const describeClassicLinkInstances: AppBlock = {
                     type: "object",
                     properties: {
                       GroupId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       GroupName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -169,12 +167,10 @@ const describeClassicLinkInstances: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

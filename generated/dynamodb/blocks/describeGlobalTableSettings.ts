@@ -139,7 +139,11 @@ const describeGlobalTableSettings: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          PolicyName: {},
+                          TargetTrackingScalingPolicyConfiguration: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -167,7 +171,11 @@ const describeGlobalTableSettings: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          PolicyName: {},
+                          TargetTrackingScalingPolicyConfiguration: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -179,28 +187,38 @@ const describeGlobalTableSettings: AppBlock = {
                     type: "object",
                     properties: {
                       IndexName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IndexStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ProvisionedReadCapacityUnits: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       ProvisionedReadCapacityAutoScalingSettings: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          MinimumUnits: {},
+                          MaximumUnits: {},
+                          AutoScalingDisabled: {},
+                          AutoScalingRoleArn: {},
+                          ScalingPolicies: {},
+                        },
+                        additionalProperties: false,
                       },
                       ProvisionedWriteCapacityUnits: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       ProvisionedWriteCapacityAutoScalingSettings: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          MinimumUnits: {},
+                          MaximumUnits: {},
+                          AutoScalingDisabled: {},
+                          AutoScalingRoleArn: {},
+                          ScalingPolicies: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     required: ["IndexName"],

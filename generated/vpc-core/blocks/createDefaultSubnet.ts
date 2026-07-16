@@ -26,7 +26,7 @@ const createDefaultSubnet: AppBlock = {
           description:
             "The Availability Zone in which to create the default subnet.",
           type: "string",
-          required: true,
+          required: false,
         },
         DryRun: {
           name: "Dry Run",
@@ -39,6 +39,12 @@ const createDefaultSubnet: AppBlock = {
           name: "Ipv6Native",
           description: "Indicates whether to create an IPv6 only subnet.",
           type: "boolean",
+          required: false,
+        },
+        AvailabilityZoneId: {
+          name: "Availability Zone Id",
+          description: "The ID of the Availability Zone.",
+          type: "string",
           required: false,
         },
       },
@@ -135,12 +141,10 @@ const createDefaultSubnet: AppBlock = {
                       type: "object",
                       properties: {
                         State: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         StatusMessage: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

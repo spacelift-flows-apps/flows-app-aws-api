@@ -4,6 +4,7 @@ import {
   ModifyCapacityReservationCommand,
 } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const modifyCapacityReservation: AppBlock = {
   name: "Modify Capacity Reservation",
@@ -120,7 +121,7 @@ const modifyCapacityReservation: AppBlock = {
         });
 
         const command = new ModifyCapacityReservationCommand(
-          commandInput as any,
+          convertTimestamps(commandInput, new Set(["EndDate"])) as any,
         );
         const response = await client.send(command);
 

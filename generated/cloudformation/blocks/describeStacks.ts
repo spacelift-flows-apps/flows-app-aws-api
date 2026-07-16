@@ -33,8 +33,7 @@ const describeStacks: AppBlock = {
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "A string that identifies the next page of stacks that you want to retrieve.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },
@@ -119,20 +118,16 @@ const describeStacks: AppBlock = {
                     type: "object",
                     properties: {
                       ParameterKey: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ParameterValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       UsePreviousValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       ResolvedValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -154,7 +149,12 @@ const describeStacks: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Arn: {},
+                          Type: {},
+                        },
+                        required: ["Arn", "Type"],
+                        additionalProperties: false,
                       },
                     },
                     MonitoringTimeInMinutes: {
@@ -193,20 +193,16 @@ const describeStacks: AppBlock = {
                     type: "object",
                     properties: {
                       OutputKey: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       OutputValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ExportName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -221,12 +217,10 @@ const describeStacks: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Key", "Value"],
@@ -263,6 +257,21 @@ const describeStacks: AppBlock = {
                 },
                 DetailedStatus: {
                   type: "string",
+                },
+                LastOperations: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      OperationType: {
+                        type: "string",
+                      },
+                      OperationId: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
                 },
               },
               required: ["StackName", "CreationTime", "StackStatus"],

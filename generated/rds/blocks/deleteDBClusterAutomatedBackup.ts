@@ -142,6 +142,9 @@ const deleteDBClusterAutomatedBackup: AppBlock = {
               StorageEncrypted: {
                 type: "boolean",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               AllocatedStorage: {
                 type: "number",
               },
@@ -153,6 +156,9 @@ const deleteDBClusterAutomatedBackup: AppBlock = {
               },
               BackupRetentionPeriod: {
                 type: "number",
+              },
+              PreferredBackupWindow: {
+                type: "string",
               },
               EngineMode: {
                 type: "string",
@@ -175,11 +181,26 @@ const deleteDBClusterAutomatedBackup: AppBlock = {
               Iops: {
                 type: "number",
               },
+              StorageThroughput: {
+                type: "number",
+              },
               AwsBackupRecoveryPointArn: {
                 type: "string",
               },
-              StorageThroughput: {
-                type: "number",
+              TagList: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    Key: {
+                      type: "string",
+                    },
+                    Value: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
               },
             },
             additionalProperties: false,

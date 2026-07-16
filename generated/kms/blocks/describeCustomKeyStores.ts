@@ -154,6 +154,9 @@ const describeCustomKeyStores: AppBlock = {
                     VpcEndpointServiceName: {
                       type: "string",
                     },
+                    VpcEndpointServiceOwner: {
+                      type: "string",
+                    },
                   },
                   additionalProperties: false,
                 },

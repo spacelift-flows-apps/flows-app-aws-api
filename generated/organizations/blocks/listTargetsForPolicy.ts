@@ -26,8 +26,7 @@ const listTargetsForPolicy: AppBlock = {
         },
         PolicyId: {
           name: "Policy Id",
-          description:
-            "The unique identifier (ID) of the policy whose attachments you want to know.",
+          description: "ID for the policy whose attachments you want to know.",
           type: "string",
           required: true,
         },
@@ -40,8 +39,7 @@ const listTargetsForPolicy: AppBlock = {
         },
         MaxResults: {
           name: "Max Results",
-          description:
-            "The total number of results that you want included on each page of the response.",
+          description: "The maximum number of items to return in the response.",
           type: "number",
           required: false,
         },

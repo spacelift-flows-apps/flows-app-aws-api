@@ -12,8 +12,11 @@ import deleteRegistryPolicy from "./deleteRegistryPolicy";
 import deleteRepository from "./deleteRepository";
 import deleteRepositoryCreationTemplate from "./deleteRepositoryCreationTemplate";
 import deleteRepositoryPolicy from "./deleteRepositoryPolicy";
+import deleteSigningConfiguration from "./deleteSigningConfiguration";
+import deregisterPullTimeUpdateExclusion from "./deregisterPullTimeUpdateExclusion";
 import describeImageReplicationStatus from "./describeImageReplicationStatus";
 import describeImageScanFindings from "./describeImageScanFindings";
+import describeImageSigningStatus from "./describeImageSigningStatus";
 import describeImages from "./describeImages";
 import describePullThroughCacheRules from "./describePullThroughCacheRules";
 import describeRegistry from "./describeRegistry";
@@ -27,8 +30,11 @@ import getLifecyclePolicyPreview from "./getLifecyclePolicyPreview";
 import getRegistryPolicy from "./getRegistryPolicy";
 import getRegistryScanningConfiguration from "./getRegistryScanningConfiguration";
 import getRepositoryPolicy from "./getRepositoryPolicy";
+import getSigningConfiguration from "./getSigningConfiguration";
 import initiateLayerUpload from "./initiateLayerUpload";
+import listImageReferrers from "./listImageReferrers";
 import listImages from "./listImages";
+import listPullTimeUpdateExclusions from "./listPullTimeUpdateExclusions";
 import listTagsForResource from "./listTagsForResource";
 import putAccountSetting from "./putAccountSetting";
 import putImage from "./putImage";
@@ -38,11 +44,14 @@ import putLifecyclePolicy from "./putLifecyclePolicy";
 import putRegistryPolicy from "./putRegistryPolicy";
 import putRegistryScanningConfiguration from "./putRegistryScanningConfiguration";
 import putReplicationConfiguration from "./putReplicationConfiguration";
+import putSigningConfiguration from "./putSigningConfiguration";
+import registerPullTimeUpdateExclusion from "./registerPullTimeUpdateExclusion";
 import setRepositoryPolicy from "./setRepositoryPolicy";
 import startImageScan from "./startImageScan";
 import startLifecyclePolicyPreview from "./startLifecyclePolicyPreview";
 import tagResource from "./tagResource";
 import untagResource from "./untagResource";
+import updateImageStorageClass from "./updateImageStorageClass";
 import updatePullThroughCacheRule from "./updatePullThroughCacheRule";
 import updateRepositoryCreationTemplate from "./updateRepositoryCreationTemplate";
 import uploadLayerPart from "./uploadLayerPart";
@@ -63,8 +72,11 @@ export const blocks = {
   deleteRepository,
   deleteRepositoryCreationTemplate,
   deleteRepositoryPolicy,
+  deleteSigningConfiguration,
+  deregisterPullTimeUpdateExclusion,
   describeImageReplicationStatus,
   describeImageScanFindings,
+  describeImageSigningStatus,
   describeImages,
   describePullThroughCacheRules,
   describeRegistry,
@@ -78,8 +90,11 @@ export const blocks = {
   getRegistryPolicy,
   getRegistryScanningConfiguration,
   getRepositoryPolicy,
+  getSigningConfiguration,
   initiateLayerUpload,
+  listImageReferrers,
   listImages,
+  listPullTimeUpdateExclusions,
   listTagsForResource,
   putAccountSetting,
   putImage,
@@ -89,11 +104,14 @@ export const blocks = {
   putRegistryPolicy,
   putRegistryScanningConfiguration,
   putReplicationConfiguration,
+  putSigningConfiguration,
+  registerPullTimeUpdateExclusion,
   setRepositoryPolicy,
   startImageScan,
   startLifecyclePolicyPreview,
   tagResource,
   untagResource,
+  updateImageStorageClass,
   updatePullThroughCacheRule,
   updateRepositoryCreationTemplate,
   uploadLayerPart,

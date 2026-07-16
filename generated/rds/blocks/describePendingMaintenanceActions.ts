@@ -144,28 +144,22 @@ const describePendingMaintenanceActions: AppBlock = {
                     type: "object",
                     properties: {
                       Action: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AutoAppliedAfterDate: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ForcedApplyDate: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       OptInStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CurrentApplyDate: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

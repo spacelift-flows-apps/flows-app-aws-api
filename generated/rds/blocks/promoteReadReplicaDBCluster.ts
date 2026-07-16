@@ -124,9 +124,6 @@ const promoteReadReplicaDBCluster: AppBlock = {
               Status: {
                 type: "string",
               },
-              AutomaticRestartTime: {
-                type: "string",
-              },
               PercentProgress: {
                 type: "string",
               },
@@ -182,6 +179,9 @@ const promoteReadReplicaDBCluster: AppBlock = {
                 type: "string",
               },
               PreferredMaintenanceWindow: {
+                type: "string",
+              },
+              UpgradeRolloutOrder: {
                 type: "string",
               },
               ReplicationSourceIdentifier: {
@@ -256,6 +256,9 @@ const promoteReadReplicaDBCluster: AppBlock = {
               StorageEncrypted: {
                 type: "boolean",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               KmsKeyId: {
                 type: "string",
               },
@@ -310,6 +313,81 @@ const promoteReadReplicaDBCluster: AppBlock = {
               Capacity: {
                 type: "number",
               },
+              PendingModifiedValues: {
+                type: "object",
+                properties: {
+                  PendingCloudwatchLogsExports: {
+                    type: "object",
+                    properties: {
+                      LogTypesToEnable: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      LogTypesToDisable: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                  DBClusterIdentifier: {
+                    type: "string",
+                  },
+                  MasterUserPassword: {
+                    type: "string",
+                  },
+                  IAMDatabaseAuthenticationEnabled: {
+                    type: "boolean",
+                  },
+                  EngineVersion: {
+                    type: "string",
+                  },
+                  BackupRetentionPeriod: {
+                    type: "number",
+                  },
+                  StorageType: {
+                    type: "string",
+                  },
+                  AllocatedStorage: {
+                    type: "number",
+                  },
+                  RdsCustomClusterConfiguration: {
+                    type: "object",
+                    properties: {
+                      InterconnectSubnetId: {
+                        type: "string",
+                      },
+                      TransitGatewayMulticastDomainId: {
+                        type: "string",
+                      },
+                      ReplicaMode: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                  Iops: {
+                    type: "number",
+                  },
+                  CertificateDetails: {
+                    type: "object",
+                    properties: {
+                      CAIdentifier: {
+                        type: "string",
+                      },
+                      ValidTill: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                additionalProperties: false,
+              },
               EngineMode: {
                 type: "string",
               },
@@ -351,6 +429,27 @@ const promoteReadReplicaDBCluster: AppBlock = {
                   },
                 },
                 additionalProperties: false,
+              },
+              DBClusterInstanceClass: {
+                type: "string",
+              },
+              StorageType: {
+                type: "string",
+              },
+              Iops: {
+                type: "number",
+              },
+              StorageThroughput: {
+                type: "number",
+              },
+              IOOptimizedNextAllowedModificationTime: {
+                type: "string",
+              },
+              PubliclyAccessible: {
+                type: "boolean",
+              },
+              AutoMinorVersionUpgrade: {
+                type: "boolean",
               },
               DeletionProtection: {
                 type: "boolean",
@@ -402,8 +501,7 @@ const promoteReadReplicaDBCluster: AppBlock = {
                     DnsIps: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -434,97 +532,29 @@ const promoteReadReplicaDBCluster: AppBlock = {
               GlobalWriteForwardingRequested: {
                 type: "boolean",
               },
-              PendingModifiedValues: {
+              NetworkType: {
+                type: "string",
+              },
+              AutomaticRestartTime: {
+                type: "string",
+              },
+              ServerlessV2ScalingConfiguration: {
                 type: "object",
                 properties: {
-                  PendingCloudwatchLogsExports: {
-                    type: "object",
-                    properties: {
-                      LogTypesToEnable: {
-                        type: "array",
-                        items: {
-                          type: "object",
-                          additionalProperties: true,
-                        },
-                      },
-                      LogTypesToDisable: {
-                        type: "array",
-                        items: {
-                          type: "object",
-                          additionalProperties: true,
-                        },
-                      },
-                    },
-                    additionalProperties: false,
-                  },
-                  DBClusterIdentifier: {
-                    type: "string",
-                  },
-                  MasterUserPassword: {
-                    type: "string",
-                  },
-                  IAMDatabaseAuthenticationEnabled: {
-                    type: "boolean",
-                  },
-                  EngineVersion: {
-                    type: "string",
-                  },
-                  BackupRetentionPeriod: {
+                  MinCapacity: {
                     type: "number",
                   },
-                  AllocatedStorage: {
+                  MaxCapacity: {
                     type: "number",
                   },
-                  RdsCustomClusterConfiguration: {
-                    type: "object",
-                    properties: {
-                      InterconnectSubnetId: {
-                        type: "string",
-                      },
-                      TransitGatewayMulticastDomainId: {
-                        type: "string",
-                      },
-                      ReplicaMode: {
-                        type: "string",
-                      },
-                    },
-                    additionalProperties: false,
-                  },
-                  Iops: {
+                  SecondsUntilAutoPause: {
                     type: "number",
-                  },
-                  StorageType: {
-                    type: "string",
-                  },
-                  CertificateDetails: {
-                    type: "object",
-                    properties: {
-                      CAIdentifier: {
-                        type: "string",
-                      },
-                      ValidTill: {
-                        type: "string",
-                      },
-                    },
-                    additionalProperties: false,
                   },
                 },
                 additionalProperties: false,
               },
-              DBClusterInstanceClass: {
+              ServerlessV2PlatformVersion: {
                 type: "string",
-              },
-              StorageType: {
-                type: "string",
-              },
-              Iops: {
-                type: "number",
-              },
-              PubliclyAccessible: {
-                type: "boolean",
-              },
-              AutoMinorVersionUpgrade: {
-                type: "boolean",
               },
               MonitoringInterval: {
                 type: "number",
@@ -544,24 +574,6 @@ const promoteReadReplicaDBCluster: AppBlock = {
               PerformanceInsightsRetentionPeriod: {
                 type: "number",
               },
-              ServerlessV2ScalingConfiguration: {
-                type: "object",
-                properties: {
-                  MinCapacity: {
-                    type: "number",
-                  },
-                  MaxCapacity: {
-                    type: "number",
-                  },
-                  SecondsUntilAutoPause: {
-                    type: "number",
-                  },
-                },
-                additionalProperties: false,
-              },
-              NetworkType: {
-                type: "string",
-              },
               DBSystemId: {
                 type: "string",
               },
@@ -579,9 +591,6 @@ const promoteReadReplicaDBCluster: AppBlock = {
                   },
                 },
                 additionalProperties: false,
-              },
-              IOOptimizedNextAllowedModificationTime: {
-                type: "string",
               },
               LocalWriteForwardingStatus: {
                 type: "string",
@@ -601,9 +610,6 @@ const promoteReadReplicaDBCluster: AppBlock = {
                 },
                 additionalProperties: false,
               },
-              StorageThroughput: {
-                type: "number",
-              },
               ClusterScalabilityType: {
                 type: "string",
               },
@@ -621,6 +627,12 @@ const promoteReadReplicaDBCluster: AppBlock = {
               },
               EngineLifecycleSupport: {
                 type: "string",
+              },
+              VPCNetworkingEnabled: {
+                type: "boolean",
+              },
+              InternetAccessGatewayEnabled: {
+                type: "boolean",
               },
             },
             additionalProperties: false,

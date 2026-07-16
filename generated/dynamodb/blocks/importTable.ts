@@ -185,19 +185,23 @@ const importTable: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AttributeName: {},
+                          KeyType: {},
+                        },
+                        required: ["AttributeName", "KeyType"],
+                        additionalProperties: false,
                       },
                     },
                     Projection: {
                       type: "object",
                       properties: {
                         ProjectionType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NonKeyAttributes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -206,12 +210,10 @@ const importTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       required: ["ReadCapacityUnits", "WriteCapacityUnits"],
@@ -221,12 +223,10 @@ const importTable: AppBlock = {
                       type: "object",
                       properties: {
                         MaxReadRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         MaxWriteRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -235,12 +235,10 @@ const importTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -369,8 +367,7 @@ const importTable: AppBlock = {
                       HeaderList: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -394,12 +391,10 @@ const importTable: AppBlock = {
                       type: "object",
                       properties: {
                         AttributeName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         AttributeType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["AttributeName", "AttributeType"],
@@ -412,12 +407,10 @@ const importTable: AppBlock = {
                       type: "object",
                       properties: {
                         AttributeName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KeyType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["AttributeName", "KeyType"],
@@ -473,28 +466,44 @@ const importTable: AppBlock = {
                       type: "object",
                       properties: {
                         IndexName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KeySchema: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Projection: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            ProjectionType: {},
+                            NonKeyAttributes: {},
+                          },
+                          additionalProperties: false,
                         },
                         ProvisionedThroughput: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            ReadCapacityUnits: {},
+                            WriteCapacityUnits: {},
+                          },
+                          required: ["ReadCapacityUnits", "WriteCapacityUnits"],
+                          additionalProperties: false,
                         },
                         OnDemandThroughput: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            MaxReadRequestUnits: {},
+                            MaxWriteRequestUnits: {},
+                          },
+                          additionalProperties: false,
                         },
                         WarmThroughput: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            ReadUnitsPerSecond: {},
+                            WriteUnitsPerSecond: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       required: ["IndexName", "KeySchema", "Projection"],

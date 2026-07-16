@@ -191,6 +191,33 @@ const modifyClientVpnEndpoint: AppBlock = {
           type: "boolean",
           required: false,
         },
+        TransitGatewayConfiguration: {
+          name: "Transit Gateway Configuration",
+          description:
+            "The Transit Gateway configuration for the Client VPN endpoint.",
+          type: {
+            type: "object",
+            properties: {
+              TransitGatewayId: {
+                type: "string",
+              },
+              AvailabilityZones: {
+                type: "array",
+                items: {
+                  type: "string",
+                },
+              },
+              AvailabilityZoneIds: {
+                type: "array",
+                items: {
+                  type: "string",
+                },
+              },
+            },
+            additionalProperties: false,
+          },
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =

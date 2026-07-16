@@ -119,16 +119,14 @@ const describeClusterTracks: AppBlock = {
                     type: "object",
                     properties: {
                       MaintenanceTrackName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DatabaseVersion: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SupportedOperations: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,

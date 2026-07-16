@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { DynamoDBClient, ListBackupsCommand } from "@aws-sdk/client-dynamodb";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const listBackups: AppBlock = {
   name: "List Backups",
@@ -103,7 +104,12 @@ const listBackups: AppBlock = {
           }),
         });
 
-        const command = new ListBackupsCommand(commandInput as any);
+        const command = new ListBackupsCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["TimeRangeLowerBound", "TimeRangeUpperBound"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

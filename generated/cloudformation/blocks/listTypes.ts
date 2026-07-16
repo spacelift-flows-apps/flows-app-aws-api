@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const listTypes: AppBlock = {
   name: "List Types",
-  description: `Returns summary information about extension that have been registered with CloudFormation.`,
+  description: `Returns summary information about all extensions, including your private resource types, modules, and Hooks as well as all public extensions from Amazon Web Services and third-party publishers.`,
   inputs: {
     default: {
       config: {
@@ -81,8 +81,7 @@ const listTypes: AppBlock = {
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "If the previous paginated request didn't return all the remaining results, the response object's NextToken parameter value is set to a token.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },

@@ -131,20 +131,16 @@ const getBackupPlan: AppBlock = {
                       type: "object",
                       properties: {
                         MoveToColdStorageAfterDays: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         DeleteAfterDays: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         OptInToArchiveForSupportedResources: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         DeleteAfterEvent: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -152,7 +148,7 @@ const getBackupPlan: AppBlock = {
                     RecoveryPointTags: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     RuleId: {
@@ -162,7 +158,12 @@ const getBackupPlan: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Lifecycle: {},
+                          DestinationBackupVaultArn: {},
+                        },
+                        required: ["DestinationBackupVaultArn"],
+                        additionalProperties: false,
                       },
                     },
                     EnableContinuousBackup: {
@@ -175,14 +176,21 @@ const getBackupPlan: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ResourceTypes: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ScanActions: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          MalwareScanner: {},
+                          ScanMode: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -201,7 +209,7 @@ const getBackupPlan: AppBlock = {
                     BackupOptions: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                   },
@@ -219,8 +227,7 @@ const getBackupPlan: AppBlock = {
                     ResourceTypes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     ScannerRoleArn: {

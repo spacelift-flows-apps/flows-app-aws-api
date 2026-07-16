@@ -65,12 +65,11 @@ const countTokens: AppBlock = {
                           type: "object",
                           properties: {
                             role: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             content: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "array",
+                              items: {},
                             },
                           },
                           required: ["role", "content"],
@@ -85,8 +84,7 @@ const countTokens: AppBlock = {
                               type: "object",
                               properties: {
                                 text: {
-                                  type: "object",
-                                  additionalProperties: true,
+                                  type: "string",
                                 },
                               },
                               required: ["text"],
@@ -96,8 +94,24 @@ const countTokens: AppBlock = {
                               type: "object",
                               properties: {
                                 guardContent: {
-                                  type: "object",
-                                  additionalProperties: true,
+                                  oneOf: [
+                                    {
+                                      type: "object",
+                                      properties: {
+                                        text: {},
+                                      },
+                                      required: ["text"],
+                                      additionalProperties: false,
+                                    },
+                                    {
+                                      type: "object",
+                                      properties: {
+                                        image: {},
+                                      },
+                                      required: ["image"],
+                                      additionalProperties: false,
+                                    },
+                                  ],
                                 },
                               },
                               required: ["guardContent"],
@@ -108,7 +122,12 @@ const countTokens: AppBlock = {
                               properties: {
                                 cachePoint: {
                                   type: "object",
-                                  additionalProperties: true,
+                                  properties: {
+                                    type: {},
+                                    ttl: {},
+                                  },
+                                  required: ["type"],
+                                  additionalProperties: false,
                                 },
                               },
                               required: ["cachePoint"],
@@ -123,8 +142,32 @@ const countTokens: AppBlock = {
                           tools: {
                             type: "array",
                             items: {
-                              type: "object",
-                              additionalProperties: true,
+                              oneOf: [
+                                {
+                                  type: "object",
+                                  properties: {
+                                    toolSpec: {},
+                                  },
+                                  required: ["toolSpec"],
+                                  additionalProperties: false,
+                                },
+                                {
+                                  type: "object",
+                                  properties: {
+                                    systemTool: {},
+                                  },
+                                  required: ["systemTool"],
+                                  additionalProperties: false,
+                                },
+                                {
+                                  type: "object",
+                                  properties: {
+                                    cachePoint: {},
+                                  },
+                                  required: ["cachePoint"],
+                                  additionalProperties: false,
+                                },
+                              ],
                             },
                           },
                           toolChoice: {
@@ -134,7 +177,8 @@ const countTokens: AppBlock = {
                                 properties: {
                                   auto: {
                                     type: "object",
-                                    additionalProperties: true,
+                                    properties: {},
+                                    additionalProperties: false,
                                   },
                                 },
                                 required: ["auto"],
@@ -145,7 +189,8 @@ const countTokens: AppBlock = {
                                 properties: {
                                   any: {
                                     type: "object",
-                                    additionalProperties: true,
+                                    properties: {},
+                                    additionalProperties: false,
                                   },
                                 },
                                 required: ["any"],
@@ -156,7 +201,11 @@ const countTokens: AppBlock = {
                                 properties: {
                                   tool: {
                                     type: "object",
-                                    additionalProperties: true,
+                                    properties: {
+                                      name: {},
+                                    },
+                                    required: ["name"],
+                                    additionalProperties: false,
                                   },
                                 },
                                 required: ["tool"],

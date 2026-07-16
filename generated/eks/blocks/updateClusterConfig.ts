@@ -78,8 +78,7 @@ const updateClusterConfig: AppBlock = {
                     types: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     enabled: {
@@ -229,8 +228,7 @@ const updateClusterConfig: AppBlock = {
                     cidrs: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -245,13 +243,33 @@ const updateClusterConfig: AppBlock = {
                     cidrs: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
                   additionalProperties: false,
                 },
+              },
+            },
+            additionalProperties: false,
+          },
+          required: false,
+        },
+        deletionProtection: {
+          name: "deletion Protection",
+          description:
+            "Specifies whether to enable or disable deletion protection for the cluster.",
+          type: "boolean",
+          required: false,
+        },
+        controlPlaneScalingConfig: {
+          name: "control Plane Scaling Config",
+          description: "The control plane scaling tier configuration.",
+          type: {
+            type: "object",
+            properties: {
+              tier: {
+                type: "string",
               },
             },
             additionalProperties: false,
@@ -360,8 +378,7 @@ const updateClusterConfig: AppBlock = {
                     resourceIds: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

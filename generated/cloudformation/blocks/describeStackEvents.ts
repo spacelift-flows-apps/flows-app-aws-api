@@ -29,12 +29,11 @@ const describeStackEvents: AppBlock = {
           description:
             "The name or the unique stack ID that's associated with the stack, which aren't always interchangeable: Running stacks: You can specify either the stack's name or its unique stack ID.",
           type: "string",
-          required: false,
+          required: true,
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "A string that identifies the next page of events that you want to retrieve.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },
@@ -110,6 +109,9 @@ const describeStackEvents: AppBlock = {
                 StackName: {
                   type: "string",
                 },
+                OperationId: {
+                  type: "string",
+                },
                 LogicalResourceId: {
                   type: "string",
                 },
@@ -144,6 +146,9 @@ const describeStackEvents: AppBlock = {
                   type: "string",
                 },
                 HookInvocationPoint: {
+                  type: "string",
+                },
+                HookInvocationId: {
                   type: "string",
                 },
                 HookFailureMode: {

@@ -108,8 +108,7 @@ const describeDBSnapshotAttributes: AppBlock = {
                     AttributeValues: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

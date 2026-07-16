@@ -190,11 +190,17 @@ const getLifecyclePolicyPreview: AppBlock = {
                     type: {
                       type: "string",
                     },
+                    targetStorageClass: {
+                      type: "string",
+                    },
                   },
                   additionalProperties: false,
                 },
                 appliedRulePriority: {
                   type: "number",
+                },
+                storageClass: {
+                  type: "string",
                 },
               },
               additionalProperties: false,
@@ -206,6 +212,21 @@ const getLifecyclePolicyPreview: AppBlock = {
             properties: {
               expiringImageTotalCount: {
                 type: "number",
+              },
+              transitioningImageTotalCounts: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    targetStorageClass: {
+                      type: "string",
+                    },
+                    imageTotalCount: {
+                      type: "number",
+                    },
+                  },
+                  additionalProperties: false,
+                },
               },
             },
             additionalProperties: false,

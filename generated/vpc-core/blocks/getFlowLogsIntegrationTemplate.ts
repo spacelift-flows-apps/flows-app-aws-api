@@ -4,6 +4,7 @@ import {
   GetFlowLogsIntegrationTemplateCommand,
 } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const getFlowLogsIntegrationTemplate: AppBlock = {
   name: "Get Flow Logs Integration Template",
@@ -124,7 +125,10 @@ const getFlowLogsIntegrationTemplate: AppBlock = {
         });
 
         const command = new GetFlowLogsIntegrationTemplateCommand(
-          commandInput as any,
+          convertTimestamps(
+            commandInput,
+            new Set(["PartitionStartDate", "PartitionEndDate"]),
+          ) as any,
         );
         const response = await client.send(command);
 

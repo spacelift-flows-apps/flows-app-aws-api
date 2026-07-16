@@ -134,12 +134,10 @@ const describeVpnGateways: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -163,12 +161,10 @@ const describeVpnGateways: AppBlock = {
                     type: "object",
                     properties: {
                       VpcId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       State: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

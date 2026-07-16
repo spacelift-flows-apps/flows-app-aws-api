@@ -217,12 +217,10 @@ const getHealthCheck: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Name", "Value"],

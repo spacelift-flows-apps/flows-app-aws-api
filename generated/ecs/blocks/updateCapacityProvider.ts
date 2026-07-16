@@ -27,6 +27,13 @@ const updateCapacityProvider: AppBlock = {
           type: "string",
           required: true,
         },
+        cluster: {
+          name: "cluster",
+          description:
+            "The name of the cluster that contains the capacity provider to update.",
+          type: "string",
+          required: false,
+        },
         autoScalingGroupProvider: {
           name: "auto Scaling Group Provider",
           description:
@@ -64,7 +71,293 @@ const updateCapacityProvider: AppBlock = {
             },
             additionalProperties: false,
           },
-          required: true,
+          required: false,
+        },
+        managedInstancesProvider: {
+          name: "managed Instances Provider",
+          description:
+            "The updated configuration for the Amazon ECS Managed Instances provider.",
+          type: {
+            type: "object",
+            properties: {
+              infrastructureRoleArn: {
+                type: "string",
+              },
+              instanceLaunchTemplate: {
+                type: "object",
+                properties: {
+                  ec2InstanceProfileArn: {
+                    type: "string",
+                  },
+                  networkConfiguration: {
+                    type: "object",
+                    properties: {
+                      subnets: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      securityGroups: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                  storageConfiguration: {
+                    type: "object",
+                    properties: {
+                      storageSizeGiB: {
+                        type: "number",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                  instanceMetadataTagsPropagation: {
+                    type: "boolean",
+                  },
+                  localStorageConfiguration: {
+                    type: "object",
+                    properties: {
+                      useLocalStorage: {
+                        type: "boolean",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                  monitoring: {
+                    type: "string",
+                  },
+                  instanceRequirements: {
+                    type: "object",
+                    properties: {
+                      vCpuCount: {
+                        type: "object",
+                        properties: {
+                          min: {
+                            type: "number",
+                          },
+                          max: {
+                            type: "number",
+                          },
+                        },
+                        required: ["min"],
+                        additionalProperties: false,
+                      },
+                      memoryMiB: {
+                        type: "object",
+                        properties: {
+                          min: {
+                            type: "number",
+                          },
+                          max: {
+                            type: "number",
+                          },
+                        },
+                        required: ["min"],
+                        additionalProperties: false,
+                      },
+                      cpuManufacturers: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      memoryGiBPerVCpu: {
+                        type: "object",
+                        properties: {
+                          min: {
+                            type: "number",
+                          },
+                          max: {
+                            type: "number",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      excludedInstanceTypes: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      instanceGenerations: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      spotMaxPricePercentageOverLowestPrice: {
+                        type: "number",
+                      },
+                      onDemandMaxPricePercentageOverLowestPrice: {
+                        type: "number",
+                      },
+                      bareMetal: {
+                        type: "string",
+                      },
+                      burstablePerformance: {
+                        type: "string",
+                      },
+                      requireHibernateSupport: {
+                        type: "boolean",
+                      },
+                      networkInterfaceCount: {
+                        type: "object",
+                        properties: {
+                          min: {
+                            type: "number",
+                          },
+                          max: {
+                            type: "number",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      localStorage: {
+                        type: "string",
+                      },
+                      localStorageTypes: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      totalLocalStorageGB: {
+                        type: "object",
+                        properties: {
+                          min: {
+                            type: "number",
+                          },
+                          max: {
+                            type: "number",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      baselineEbsBandwidthMbps: {
+                        type: "object",
+                        properties: {
+                          min: {
+                            type: "number",
+                          },
+                          max: {
+                            type: "number",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      acceleratorTypes: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      acceleratorCount: {
+                        type: "object",
+                        properties: {
+                          min: {
+                            type: "number",
+                          },
+                          max: {
+                            type: "number",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      acceleratorManufacturers: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      acceleratorNames: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      acceleratorTotalMemoryMiB: {
+                        type: "object",
+                        properties: {
+                          min: {
+                            type: "number",
+                          },
+                          max: {
+                            type: "number",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      networkBandwidthGbps: {
+                        type: "object",
+                        properties: {
+                          min: {
+                            type: "number",
+                          },
+                          max: {
+                            type: "number",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      allowedInstanceTypes: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      maxSpotPriceAsPercentageOfOptimalOnDemandPrice: {
+                        type: "number",
+                      },
+                    },
+                    required: ["vCpuCount", "memoryMiB"],
+                    additionalProperties: false,
+                  },
+                  capacityReservations: {
+                    type: "object",
+                    properties: {
+                      reservationGroupArn: {
+                        type: "string",
+                      },
+                      reservationPreference: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                additionalProperties: false,
+              },
+              propagateTags: {
+                type: "string",
+              },
+              infrastructureOptimization: {
+                type: "object",
+                properties: {
+                  scaleInAfter: {
+                    type: "number",
+                  },
+                },
+                additionalProperties: false,
+              },
+              autoRepairConfiguration: {
+                type: "object",
+                properties: {
+                  actionsStatus: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
+              },
+            },
+            required: ["infrastructureRoleArn", "instanceLaunchTemplate"],
+            additionalProperties: false,
+          },
+          required: false,
         },
       },
       onEvent: async (input) => {
@@ -133,6 +426,9 @@ const updateCapacityProvider: AppBlock = {
               name: {
                 type: "string",
               },
+              cluster: {
+                type: "string",
+              },
               status: {
                 type: "string",
               },
@@ -173,6 +469,236 @@ const updateCapacityProvider: AppBlock = {
                 required: ["autoScalingGroupArn"],
                 additionalProperties: false,
               },
+              managedInstancesProvider: {
+                type: "object",
+                properties: {
+                  infrastructureRoleArn: {
+                    type: "string",
+                  },
+                  instanceLaunchTemplate: {
+                    type: "object",
+                    properties: {
+                      ec2InstanceProfileArn: {
+                        type: "string",
+                      },
+                      networkConfiguration: {
+                        type: "object",
+                        properties: {
+                          subnets: {
+                            type: "array",
+                            items: {},
+                          },
+                          securityGroups: {
+                            type: "array",
+                            items: {},
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      storageConfiguration: {
+                        type: "object",
+                        properties: {
+                          storageSizeGiB: {
+                            type: "number",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      localStorageConfiguration: {
+                        type: "object",
+                        properties: {
+                          useLocalStorage: {
+                            type: "boolean",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      monitoring: {
+                        type: "string",
+                      },
+                      capacityOptionType: {
+                        type: "string",
+                      },
+                      instanceMetadataTagsPropagation: {
+                        type: "boolean",
+                      },
+                      instanceRequirements: {
+                        type: "object",
+                        properties: {
+                          vCpuCount: {
+                            type: "object",
+                            properties: {
+                              min: {},
+                              max: {},
+                            },
+                            required: ["min"],
+                            additionalProperties: false,
+                          },
+                          memoryMiB: {
+                            type: "object",
+                            properties: {
+                              min: {},
+                              max: {},
+                            },
+                            required: ["min"],
+                            additionalProperties: false,
+                          },
+                          cpuManufacturers: {
+                            type: "array",
+                            items: {},
+                          },
+                          memoryGiBPerVCpu: {
+                            type: "object",
+                            properties: {
+                              min: {},
+                              max: {},
+                            },
+                            additionalProperties: false,
+                          },
+                          excludedInstanceTypes: {
+                            type: "array",
+                            items: {},
+                          },
+                          instanceGenerations: {
+                            type: "array",
+                            items: {},
+                          },
+                          spotMaxPricePercentageOverLowestPrice: {
+                            type: "number",
+                          },
+                          onDemandMaxPricePercentageOverLowestPrice: {
+                            type: "number",
+                          },
+                          bareMetal: {
+                            type: "string",
+                          },
+                          burstablePerformance: {
+                            type: "string",
+                          },
+                          requireHibernateSupport: {
+                            type: "boolean",
+                          },
+                          networkInterfaceCount: {
+                            type: "object",
+                            properties: {
+                              min: {},
+                              max: {},
+                            },
+                            additionalProperties: false,
+                          },
+                          localStorage: {
+                            type: "string",
+                          },
+                          localStorageTypes: {
+                            type: "array",
+                            items: {},
+                          },
+                          totalLocalStorageGB: {
+                            type: "object",
+                            properties: {
+                              min: {},
+                              max: {},
+                            },
+                            additionalProperties: false,
+                          },
+                          baselineEbsBandwidthMbps: {
+                            type: "object",
+                            properties: {
+                              min: {},
+                              max: {},
+                            },
+                            additionalProperties: false,
+                          },
+                          acceleratorTypes: {
+                            type: "array",
+                            items: {},
+                          },
+                          acceleratorCount: {
+                            type: "object",
+                            properties: {
+                              min: {},
+                              max: {},
+                            },
+                            additionalProperties: false,
+                          },
+                          acceleratorManufacturers: {
+                            type: "array",
+                            items: {},
+                          },
+                          acceleratorNames: {
+                            type: "array",
+                            items: {},
+                          },
+                          acceleratorTotalMemoryMiB: {
+                            type: "object",
+                            properties: {
+                              min: {},
+                              max: {},
+                            },
+                            additionalProperties: false,
+                          },
+                          networkBandwidthGbps: {
+                            type: "object",
+                            properties: {
+                              min: {},
+                              max: {},
+                            },
+                            additionalProperties: false,
+                          },
+                          allowedInstanceTypes: {
+                            type: "array",
+                            items: {},
+                          },
+                          maxSpotPriceAsPercentageOfOptimalOnDemandPrice: {
+                            type: "number",
+                          },
+                        },
+                        required: ["vCpuCount", "memoryMiB"],
+                        additionalProperties: false,
+                      },
+                      fipsEnabled: {
+                        type: "boolean",
+                      },
+                      capacityReservations: {
+                        type: "object",
+                        properties: {
+                          reservationGroupArn: {
+                            type: "string",
+                          },
+                          reservationPreference: {
+                            type: "string",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                    },
+                    required: ["ec2InstanceProfileArn", "networkConfiguration"],
+                    additionalProperties: false,
+                  },
+                  propagateTags: {
+                    type: "string",
+                  },
+                  infrastructureOptimization: {
+                    type: "object",
+                    properties: {
+                      scaleInAfter: {
+                        type: "number",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                  autoRepairConfiguration: {
+                    type: "object",
+                    properties: {
+                      actionsStatus: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                additionalProperties: false,
+              },
               updateStatus: {
                 type: "string",
               },
@@ -193,6 +719,9 @@ const updateCapacityProvider: AppBlock = {
                   },
                   additionalProperties: false,
                 },
+              },
+              type: {
+                type: "string",
               },
             },
             additionalProperties: false,

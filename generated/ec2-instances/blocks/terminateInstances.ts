@@ -4,7 +4,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const terminateInstances: AppBlock = {
   name: "Terminate Instances",
-  description: `Shuts down the specified instances.`,
+  description: `Terminates (deletes) the specified instances.`,
   inputs: {
     default: {
       config: {

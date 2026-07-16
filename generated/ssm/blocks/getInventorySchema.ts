@@ -127,12 +127,10 @@ const getInventorySchema: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DataType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Name", "DataType"],

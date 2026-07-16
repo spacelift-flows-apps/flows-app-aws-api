@@ -135,28 +135,25 @@ const describeStaleSecurityGroups: AppBlock = {
                     type: "object",
                     properties: {
                       FromPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       IpProtocol: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IpRanges: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       PrefixListIds: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       ToPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       UserIdGroupPairs: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -168,28 +165,25 @@ const describeStaleSecurityGroups: AppBlock = {
                     type: "object",
                     properties: {
                       FromPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       IpProtocol: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IpRanges: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       PrefixListIds: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       ToPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       UserIdGroupPairs: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,

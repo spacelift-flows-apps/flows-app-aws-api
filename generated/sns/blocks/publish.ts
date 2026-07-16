@@ -82,7 +82,7 @@ const publish: AppBlock = {
         MessageGroupId: {
           name: "Message Group Id",
           description:
-            "This parameter applies only to FIFO (first-in-first-out) topics.",
+            "The MessageGroupId can contain up to 128 alphanumeric characters (a-z, A-Z, 0-9) and punctuation (!\"#$%&'()*+,-.",
           type: "string",
           required: false,
         },

@@ -86,6 +86,13 @@ const describeLaunchTemplates: AppBlock = {
           type: "number",
           required: false,
         },
+        IncludeManagedResources: {
+          name: "Include Managed Resources",
+          description:
+            "Indicates whether to include managed resources in the output.",
+          type: "boolean",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -173,12 +180,10 @@ const describeLaunchTemplates: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -192,6 +197,9 @@ const describeLaunchTemplates: AppBlock = {
                     },
                     Principal: {
                       type: "string",
+                    },
+                    HiddenByDefault: {
+                      type: "boolean",
                     },
                   },
                   additionalProperties: false,

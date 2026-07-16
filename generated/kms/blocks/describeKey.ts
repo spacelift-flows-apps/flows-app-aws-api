@@ -195,12 +195,10 @@ const describeKey: AppBlock = {
                       type: "object",
                       properties: {
                         Arn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Region: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

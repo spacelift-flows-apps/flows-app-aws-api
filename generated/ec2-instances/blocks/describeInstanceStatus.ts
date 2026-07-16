@@ -45,6 +45,13 @@ const describeInstanceStatus: AppBlock = {
           type: "string",
           required: false,
         },
+        IncludeManagedResources: {
+          name: "Include Managed Resources",
+          description:
+            "Indicates whether to include managed resources in the output.",
+          type: "boolean",
+          required: false,
+        },
         DryRun: {
           name: "Dry Run",
           description:
@@ -148,6 +155,9 @@ const describeInstanceStatus: AppBlock = {
                 AvailabilityZone: {
                   type: "string",
                 },
+                AvailabilityZoneId: {
+                  type: "string",
+                },
                 OutpostArn: {
                   type: "string",
                 },
@@ -160,6 +170,9 @@ const describeInstanceStatus: AppBlock = {
                     Principal: {
                       type: "string",
                     },
+                    HiddenByDefault: {
+                      type: "boolean",
+                    },
                   },
                   additionalProperties: false,
                 },
@@ -169,28 +182,22 @@ const describeInstanceStatus: AppBlock = {
                     type: "object",
                     properties: {
                       InstanceEventId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Code: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       NotAfter: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       NotBefore: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       NotBeforeDeadline: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -218,7 +225,12 @@ const describeInstanceStatus: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ImpairedSince: {},
+                          Name: {},
+                          Status: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Status: {
@@ -234,7 +246,12 @@ const describeInstanceStatus: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ImpairedSince: {},
+                          Name: {},
+                          Status: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Status: {
@@ -250,7 +267,12 @@ const describeInstanceStatus: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ImpairedSince: {},
+                          Name: {},
+                          Status: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Status: {

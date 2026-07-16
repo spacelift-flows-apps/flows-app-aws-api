@@ -57,12 +57,11 @@ const getDeployablePatchSnapshotForInstance: AppBlock = {
                       type: "object",
                       properties: {
                         Key: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Values: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["Key", "Values"],
@@ -83,23 +82,23 @@ const getDeployablePatchSnapshotForInstance: AppBlock = {
                       properties: {
                         PatchFilterGroup: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            PatchFilters: {},
+                          },
+                          required: ["PatchFilters"],
+                          additionalProperties: false,
                         },
                         ComplianceLevel: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ApproveAfterDays: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ApproveUntilDate: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         EnableNonSecurity: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       required: ["PatchFilterGroup"],
@@ -142,8 +141,7 @@ const getDeployablePatchSnapshotForInstance: AppBlock = {
                     Products: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Configuration: {
@@ -160,6 +158,13 @@ const getDeployablePatchSnapshotForInstance: AppBlock = {
             },
             additionalProperties: false,
           },
+          required: false,
+        },
+        UseS3DualStackEndpoint: {
+          name: "Use S3Dual Stack Endpoint",
+          description:
+            "Specifies whether to use S3 dualstack endpoints for the patch snapshot download URL.",
+          type: "boolean",
           required: false,
         },
       },

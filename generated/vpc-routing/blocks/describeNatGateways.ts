@@ -156,36 +156,34 @@ const describeNatGateways: AppBlock = {
                     type: "object",
                     properties: {
                       AllocationId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       NetworkInterfaceId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PrivateIp: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PublicIp: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AssociationId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IsPrimary: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       FailureMessage: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
+                      },
+                      AvailabilityZone: {
+                        type: "string",
+                      },
+                      AvailabilityZoneId: {
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -230,18 +228,58 @@ const describeNatGateways: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
                   },
                 },
                 ConnectivityType: {
+                  type: "string",
+                },
+                AvailabilityMode: {
+                  type: "string",
+                },
+                AutoScalingIps: {
+                  type: "string",
+                },
+                AutoProvisionZones: {
+                  type: "string",
+                },
+                AttachedAppliances: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Type: {
+                        type: "string",
+                      },
+                      ApplianceArn: {
+                        type: "string",
+                      },
+                      VpcEndpointId: {
+                        type: "string",
+                      },
+                      AttachmentState: {
+                        type: "string",
+                      },
+                      ModificationState: {
+                        type: "string",
+                      },
+                      FailureCode: {
+                        type: "string",
+                      },
+                      FailureMessage: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                RouteTableId: {
                   type: "string",
                 },
               },

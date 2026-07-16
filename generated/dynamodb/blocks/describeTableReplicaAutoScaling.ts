@@ -111,31 +111,33 @@ const describeTableReplicaAutoScaling: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          IndexName: {},
+                          IndexStatus: {},
+                          ProvisionedReadCapacityAutoScalingSettings: {},
+                          ProvisionedWriteCapacityAutoScalingSettings: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ReplicaProvisionedReadCapacityAutoScalingSettings: {
                       type: "object",
                       properties: {
                         MinimumUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         MaximumUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         AutoScalingDisabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         AutoScalingRoleArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ScalingPolicies: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -144,24 +146,20 @@ const describeTableReplicaAutoScaling: AppBlock = {
                       type: "object",
                       properties: {
                         MinimumUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         MaximumUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         AutoScalingDisabled: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         AutoScalingRoleArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ScalingPolicies: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,

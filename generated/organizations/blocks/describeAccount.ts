@@ -107,6 +107,15 @@ const describeAccount: AppBlock = {
               Status: {
                 type: "string",
               },
+              State: {
+                type: "string",
+              },
+              Paths: {
+                type: "array",
+                items: {
+                  type: "string",
+                },
+              },
               JoinedMethod: {
                 type: "string",
               },

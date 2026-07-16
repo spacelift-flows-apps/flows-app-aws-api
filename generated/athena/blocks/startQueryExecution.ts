@@ -177,7 +177,7 @@ const startQueryExecution: AppBlock = {
                     Properties: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                   },

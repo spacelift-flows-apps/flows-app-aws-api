@@ -157,20 +157,16 @@ const describeDBSecurityGroups: AppBlock = {
                     type: "object",
                     properties: {
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EC2SecurityGroupName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EC2SecurityGroupId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EC2SecurityGroupOwnerId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -182,12 +178,10 @@ const describeDBSecurityGroups: AppBlock = {
                     type: "object",
                     properties: {
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CIDRIP: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

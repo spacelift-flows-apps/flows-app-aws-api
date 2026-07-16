@@ -156,28 +156,25 @@ const describeAddonVersions: AppBlock = {
                     type: "object",
                     properties: {
                       addonVersion: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       architecture: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       computeTypes: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       compatibilities: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       requiresConfiguration: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       requiresIamPermissions: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,
@@ -200,6 +197,9 @@ const describeAddonVersions: AppBlock = {
                     },
                   },
                   additionalProperties: false,
+                },
+                defaultNamespace: {
+                  type: "string",
                 },
               },
               additionalProperties: false,

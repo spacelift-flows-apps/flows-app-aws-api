@@ -139,12 +139,10 @@ const listVirtualMFADevices: AppBlock = {
                       type: "object",
                       properties: {
                         PermissionsBoundaryType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PermissionsBoundaryArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -153,7 +151,12 @@ const listVirtualMFADevices: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Value: {},
+                        },
+                        required: ["Key", "Value"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -169,12 +172,10 @@ const listVirtualMFADevices: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Key", "Value"],

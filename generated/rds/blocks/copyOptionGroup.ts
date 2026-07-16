@@ -159,21 +159,40 @@ const copyOptionGroup: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                          Value: {},
+                          DefaultValue: {},
+                          Description: {},
+                          ApplyType: {},
+                          DataType: {},
+                          AllowedValues: {},
+                          IsModifiable: {},
+                          IsCollection: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     DBSecurityGroupMemberships: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          DBSecurityGroupName: {},
+                          Status: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     VpcSecurityGroupMemberships: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          VpcSecurityGroupId: {},
+                          Status: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },

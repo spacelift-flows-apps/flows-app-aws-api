@@ -130,16 +130,13 @@ const describeClusterDbRevisions: AppBlock = {
                     type: "object",
                     properties: {
                       DatabaseRevision: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DatabaseRevisionReleaseDate: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

@@ -166,6 +166,39 @@ const deleteInstanceConnectEndpoint: AppBlock = {
               IpAddressType: {
                 type: "string",
               },
+              PublicDnsNames: {
+                type: "object",
+                properties: {
+                  Ipv4: {
+                    type: "object",
+                    properties: {
+                      DnsName: {
+                        type: "string",
+                      },
+                      FipsDnsName: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                  Dualstack: {
+                    type: "object",
+                    properties: {
+                      DnsName: {
+                        type: "string",
+                      },
+                      FipsDnsName: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                additionalProperties: false,
+              },
+              AvailabilityZoneId: {
+                type: "string",
+              },
             },
             additionalProperties: false,
             description: "Information about the EC2 Instance Connect Endpoint.",

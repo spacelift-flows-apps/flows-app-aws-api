@@ -33,7 +33,7 @@ const updateItem: AppBlock = {
           type: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
           },
           required: true,
@@ -120,7 +120,7 @@ const updateItem: AppBlock = {
           type: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
           },
           required: false,
@@ -193,7 +193,7 @@ const updateItem: AppBlock = {
           Attributes: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
             description:
               "A map of attribute values as they appear before or after the UpdateItem operation, as determined by the ReturnValues parameter.",
@@ -251,7 +251,7 @@ const updateItem: AppBlock = {
               ItemCollectionKey: {
                 type: "object",
                 additionalProperties: {
-                  type: "string",
+                  type: "object",
                 },
               },
               SizeEstimateRangeGB: {

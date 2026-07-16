@@ -129,12 +129,10 @@ const describeSSLPolicies: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Priority: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     additionalProperties: false,

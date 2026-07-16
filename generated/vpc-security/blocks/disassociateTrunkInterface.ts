@@ -107,7 +107,7 @@ const disassociateTrunkInterface: AppBlock = {
           Return: {
             type: "boolean",
             description:
-              "Returns true if the request succeeds; otherwise, it returns an error.",
+              "Is true if the request succeeds and an error otherwise.",
           },
           ClientToken: {
             type: "string",

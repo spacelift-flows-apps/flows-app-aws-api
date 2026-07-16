@@ -4,6 +4,7 @@ import {
   DescribeEventsCommand,
 } from "@aws-sdk/client-redshift";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const describeEvents: AppBlock = {
   name: "Describe Events",
@@ -115,7 +116,12 @@ const describeEvents: AppBlock = {
           }),
         });
 
-        const command = new DescribeEventsCommand(commandInput as any);
+        const command = new DescribeEventsCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

@@ -160,8 +160,7 @@ const disassociateIdentityProviderConfig: AppBlock = {
                     resourceIds: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

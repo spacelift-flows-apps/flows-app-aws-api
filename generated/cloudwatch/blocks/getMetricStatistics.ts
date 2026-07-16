@@ -4,6 +4,7 @@ import {
   GetMetricStatisticsCommand,
 } from "@aws-sdk/client-cloudwatch";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const getMetricStatistics: AppBlock = {
   name: "Get Metric Statistics",
@@ -149,7 +150,12 @@ const getMetricStatistics: AppBlock = {
           }),
         });
 
-        const command = new GetMetricStatisticsCommand(commandInput as any);
+        const command = new GetMetricStatisticsCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

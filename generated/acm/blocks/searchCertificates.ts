@@ -40,8 +40,40 @@ const searchCertificates: AppBlock = {
                             And: {
                               type: "array",
                               items: {
-                                type: "object",
-                                additionalProperties: true,
+                                oneOf: [
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      And: {},
+                                    },
+                                    required: ["And"],
+                                    additionalProperties: false,
+                                  },
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      Or: {},
+                                    },
+                                    required: ["Or"],
+                                    additionalProperties: false,
+                                  },
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      Not: {},
+                                    },
+                                    required: ["Not"],
+                                    additionalProperties: false,
+                                  },
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      Filter: {},
+                                    },
+                                    required: ["Filter"],
+                                    additionalProperties: false,
+                                  },
+                                ],
                               },
                             },
                           },
@@ -54,8 +86,40 @@ const searchCertificates: AppBlock = {
                             Or: {
                               type: "array",
                               items: {
-                                type: "object",
-                                additionalProperties: true,
+                                oneOf: [
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      And: {},
+                                    },
+                                    required: ["And"],
+                                    additionalProperties: false,
+                                  },
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      Or: {},
+                                    },
+                                    required: ["Or"],
+                                    additionalProperties: false,
+                                  },
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      Not: {},
+                                    },
+                                    required: ["Not"],
+                                    additionalProperties: false,
+                                  },
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      Filter: {},
+                                    },
+                                    required: ["Filter"],
+                                    additionalProperties: false,
+                                  },
+                                ],
                               },
                             },
                           },
@@ -71,8 +135,8 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     And: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      type: "array",
+                                      items: {},
                                     },
                                   },
                                   required: ["And"],
@@ -82,8 +146,8 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     Or: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      type: "array",
+                                      items: {},
                                     },
                                   },
                                   required: ["Or"],
@@ -93,8 +157,40 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     Not: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      oneOf: [
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            And: {},
+                                          },
+                                          required: ["And"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Or: {},
+                                          },
+                                          required: ["Or"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Not: {},
+                                          },
+                                          required: ["Not"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Filter: {},
+                                          },
+                                          required: ["Filter"],
+                                          additionalProperties: false,
+                                        },
+                                      ],
                                     },
                                   },
                                   required: ["Not"],
@@ -104,8 +200,34 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     Filter: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      oneOf: [
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            CertificateArn: {},
+                                          },
+                                          required: ["CertificateArn"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            X509AttributeFilter: {},
+                                          },
+                                          required: ["X509AttributeFilter"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            AcmCertificateMetadataFilter: {},
+                                          },
+                                          required: [
+                                            "AcmCertificateMetadataFilter",
+                                          ],
+                                          additionalProperties: false,
+                                        },
+                                      ],
                                     },
                                   },
                                   required: ["Filter"],
@@ -126,8 +248,7 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     CertificateArn: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      type: "string",
                                     },
                                   },
                                   required: ["CertificateArn"],
@@ -137,8 +258,72 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     X509AttributeFilter: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      oneOf: [
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Subject: {},
+                                          },
+                                          required: ["Subject"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            SubjectAlternativeName: {},
+                                          },
+                                          required: ["SubjectAlternativeName"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            ExtendedKeyUsage: {},
+                                          },
+                                          required: ["ExtendedKeyUsage"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            KeyUsage: {},
+                                          },
+                                          required: ["KeyUsage"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            KeyAlgorithm: {},
+                                          },
+                                          required: ["KeyAlgorithm"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            SerialNumber: {},
+                                          },
+                                          required: ["SerialNumber"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            NotAfter: {},
+                                          },
+                                          required: ["NotAfter"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            NotBefore: {},
+                                          },
+                                          required: ["NotBefore"],
+                                          additionalProperties: false,
+                                        },
+                                      ],
                                     },
                                   },
                                   required: ["X509AttributeFilter"],
@@ -148,8 +333,72 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     AcmCertificateMetadataFilter: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      oneOf: [
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Status: {},
+                                          },
+                                          required: ["Status"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            RenewalStatus: {},
+                                          },
+                                          required: ["RenewalStatus"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Type: {},
+                                          },
+                                          required: ["Type"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            InUse: {},
+                                          },
+                                          required: ["InUse"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Exported: {},
+                                          },
+                                          required: ["Exported"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            ExportOption: {},
+                                          },
+                                          required: ["ExportOption"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            ManagedBy: {},
+                                          },
+                                          required: ["ManagedBy"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            ValidationMethod: {},
+                                          },
+                                          required: ["ValidationMethod"],
+                                          additionalProperties: false,
+                                        },
+                                      ],
                                     },
                                   },
                                   required: ["AcmCertificateMetadataFilter"],
@@ -181,8 +430,40 @@ const searchCertificates: AppBlock = {
                             And: {
                               type: "array",
                               items: {
-                                type: "object",
-                                additionalProperties: true,
+                                oneOf: [
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      And: {},
+                                    },
+                                    required: ["And"],
+                                    additionalProperties: false,
+                                  },
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      Or: {},
+                                    },
+                                    required: ["Or"],
+                                    additionalProperties: false,
+                                  },
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      Not: {},
+                                    },
+                                    required: ["Not"],
+                                    additionalProperties: false,
+                                  },
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      Filter: {},
+                                    },
+                                    required: ["Filter"],
+                                    additionalProperties: false,
+                                  },
+                                ],
                               },
                             },
                           },
@@ -195,8 +476,40 @@ const searchCertificates: AppBlock = {
                             Or: {
                               type: "array",
                               items: {
-                                type: "object",
-                                additionalProperties: true,
+                                oneOf: [
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      And: {},
+                                    },
+                                    required: ["And"],
+                                    additionalProperties: false,
+                                  },
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      Or: {},
+                                    },
+                                    required: ["Or"],
+                                    additionalProperties: false,
+                                  },
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      Not: {},
+                                    },
+                                    required: ["Not"],
+                                    additionalProperties: false,
+                                  },
+                                  {
+                                    type: "object",
+                                    properties: {
+                                      Filter: {},
+                                    },
+                                    required: ["Filter"],
+                                    additionalProperties: false,
+                                  },
+                                ],
                               },
                             },
                           },
@@ -212,8 +525,8 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     And: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      type: "array",
+                                      items: {},
                                     },
                                   },
                                   required: ["And"],
@@ -223,8 +536,8 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     Or: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      type: "array",
+                                      items: {},
                                     },
                                   },
                                   required: ["Or"],
@@ -234,8 +547,40 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     Not: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      oneOf: [
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            And: {},
+                                          },
+                                          required: ["And"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Or: {},
+                                          },
+                                          required: ["Or"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Not: {},
+                                          },
+                                          required: ["Not"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Filter: {},
+                                          },
+                                          required: ["Filter"],
+                                          additionalProperties: false,
+                                        },
+                                      ],
                                     },
                                   },
                                   required: ["Not"],
@@ -245,8 +590,34 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     Filter: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      oneOf: [
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            CertificateArn: {},
+                                          },
+                                          required: ["CertificateArn"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            X509AttributeFilter: {},
+                                          },
+                                          required: ["X509AttributeFilter"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            AcmCertificateMetadataFilter: {},
+                                          },
+                                          required: [
+                                            "AcmCertificateMetadataFilter",
+                                          ],
+                                          additionalProperties: false,
+                                        },
+                                      ],
                                     },
                                   },
                                   required: ["Filter"],
@@ -267,8 +638,7 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     CertificateArn: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      type: "string",
                                     },
                                   },
                                   required: ["CertificateArn"],
@@ -278,8 +648,72 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     X509AttributeFilter: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      oneOf: [
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Subject: {},
+                                          },
+                                          required: ["Subject"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            SubjectAlternativeName: {},
+                                          },
+                                          required: ["SubjectAlternativeName"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            ExtendedKeyUsage: {},
+                                          },
+                                          required: ["ExtendedKeyUsage"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            KeyUsage: {},
+                                          },
+                                          required: ["KeyUsage"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            KeyAlgorithm: {},
+                                          },
+                                          required: ["KeyAlgorithm"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            SerialNumber: {},
+                                          },
+                                          required: ["SerialNumber"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            NotAfter: {},
+                                          },
+                                          required: ["NotAfter"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            NotBefore: {},
+                                          },
+                                          required: ["NotBefore"],
+                                          additionalProperties: false,
+                                        },
+                                      ],
                                     },
                                   },
                                   required: ["X509AttributeFilter"],
@@ -289,8 +723,72 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     AcmCertificateMetadataFilter: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      oneOf: [
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Status: {},
+                                          },
+                                          required: ["Status"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            RenewalStatus: {},
+                                          },
+                                          required: ["RenewalStatus"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Type: {},
+                                          },
+                                          required: ["Type"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            InUse: {},
+                                          },
+                                          required: ["InUse"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Exported: {},
+                                          },
+                                          required: ["Exported"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            ExportOption: {},
+                                          },
+                                          required: ["ExportOption"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            ManagedBy: {},
+                                          },
+                                          required: ["ManagedBy"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            ValidationMethod: {},
+                                          },
+                                          required: ["ValidationMethod"],
+                                          additionalProperties: false,
+                                        },
+                                      ],
                                     },
                                   },
                                   required: ["AcmCertificateMetadataFilter"],
@@ -325,8 +823,8 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     And: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      type: "array",
+                                      items: {},
                                     },
                                   },
                                   required: ["And"],
@@ -336,8 +834,8 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     Or: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      type: "array",
+                                      items: {},
                                     },
                                   },
                                   required: ["Or"],
@@ -347,8 +845,40 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     Not: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      oneOf: [
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            And: {},
+                                          },
+                                          required: ["And"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Or: {},
+                                          },
+                                          required: ["Or"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Not: {},
+                                          },
+                                          required: ["Not"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Filter: {},
+                                          },
+                                          required: ["Filter"],
+                                          additionalProperties: false,
+                                        },
+                                      ],
                                     },
                                   },
                                   required: ["Not"],
@@ -358,8 +888,34 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     Filter: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      oneOf: [
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            CertificateArn: {},
+                                          },
+                                          required: ["CertificateArn"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            X509AttributeFilter: {},
+                                          },
+                                          required: ["X509AttributeFilter"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            AcmCertificateMetadataFilter: {},
+                                          },
+                                          required: [
+                                            "AcmCertificateMetadataFilter",
+                                          ],
+                                          additionalProperties: false,
+                                        },
+                                      ],
                                     },
                                   },
                                   required: ["Filter"],
@@ -383,8 +939,8 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     And: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      type: "array",
+                                      items: {},
                                     },
                                   },
                                   required: ["And"],
@@ -394,8 +950,8 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     Or: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      type: "array",
+                                      items: {},
                                     },
                                   },
                                   required: ["Or"],
@@ -405,8 +961,40 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     Not: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      oneOf: [
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            And: {},
+                                          },
+                                          required: ["And"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Or: {},
+                                          },
+                                          required: ["Or"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Not: {},
+                                          },
+                                          required: ["Not"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Filter: {},
+                                          },
+                                          required: ["Filter"],
+                                          additionalProperties: false,
+                                        },
+                                      ],
                                     },
                                   },
                                   required: ["Not"],
@@ -416,8 +1004,34 @@ const searchCertificates: AppBlock = {
                                   type: "object",
                                   properties: {
                                     Filter: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      oneOf: [
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            CertificateArn: {},
+                                          },
+                                          required: ["CertificateArn"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            X509AttributeFilter: {},
+                                          },
+                                          required: ["X509AttributeFilter"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            AcmCertificateMetadataFilter: {},
+                                          },
+                                          required: [
+                                            "AcmCertificateMetadataFilter",
+                                          ],
+                                          additionalProperties: false,
+                                        },
+                                      ],
                                     },
                                   },
                                   required: ["Filter"],
@@ -441,8 +1055,40 @@ const searchCertificates: AppBlock = {
                                   And: {
                                     type: "array",
                                     items: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      oneOf: [
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            And: {},
+                                          },
+                                          required: ["And"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Or: {},
+                                          },
+                                          required: ["Or"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Not: {},
+                                          },
+                                          required: ["Not"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Filter: {},
+                                          },
+                                          required: ["Filter"],
+                                          additionalProperties: false,
+                                        },
+                                      ],
                                     },
                                   },
                                 },
@@ -455,8 +1101,40 @@ const searchCertificates: AppBlock = {
                                   Or: {
                                     type: "array",
                                     items: {
-                                      type: "object",
-                                      additionalProperties: true,
+                                      oneOf: [
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            And: {},
+                                          },
+                                          required: ["And"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Or: {},
+                                          },
+                                          required: ["Or"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Not: {},
+                                          },
+                                          required: ["Not"],
+                                          additionalProperties: false,
+                                        },
+                                        {
+                                          type: "object",
+                                          properties: {
+                                            Filter: {},
+                                          },
+                                          required: ["Filter"],
+                                          additionalProperties: false,
+                                        },
+                                      ],
                                     },
                                   },
                                 },
@@ -472,8 +1150,8 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           And: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "array",
+                                            items: {},
                                           },
                                         },
                                         required: ["And"],
@@ -483,8 +1161,8 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           Or: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "array",
+                                            items: {},
                                           },
                                         },
                                         required: ["Or"],
@@ -494,8 +1172,40 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           Not: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            oneOf: [
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  And: {},
+                                                },
+                                                required: ["And"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  Or: {},
+                                                },
+                                                required: ["Or"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  Not: {},
+                                                },
+                                                required: ["Not"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  Filter: {},
+                                                },
+                                                required: ["Filter"],
+                                                additionalProperties: false,
+                                              },
+                                            ],
                                           },
                                         },
                                         required: ["Not"],
@@ -505,8 +1215,37 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           Filter: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            oneOf: [
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  CertificateArn: {},
+                                                },
+                                                required: ["CertificateArn"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  X509AttributeFilter: {},
+                                                },
+                                                required: [
+                                                  "X509AttributeFilter",
+                                                ],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  AcmCertificateMetadataFilter:
+                                                    {},
+                                                },
+                                                required: [
+                                                  "AcmCertificateMetadataFilter",
+                                                ],
+                                                additionalProperties: false,
+                                              },
+                                            ],
                                           },
                                         },
                                         required: ["Filter"],
@@ -527,8 +1266,7 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           CertificateArn: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "string",
                                           },
                                         },
                                         required: ["CertificateArn"],
@@ -538,8 +1276,74 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           X509AttributeFilter: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            oneOf: [
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  Subject: {},
+                                                },
+                                                required: ["Subject"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  SubjectAlternativeName: {},
+                                                },
+                                                required: [
+                                                  "SubjectAlternativeName",
+                                                ],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  ExtendedKeyUsage: {},
+                                                },
+                                                required: ["ExtendedKeyUsage"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  KeyUsage: {},
+                                                },
+                                                required: ["KeyUsage"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  KeyAlgorithm: {},
+                                                },
+                                                required: ["KeyAlgorithm"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  SerialNumber: {},
+                                                },
+                                                required: ["SerialNumber"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  NotAfter: {},
+                                                },
+                                                required: ["NotAfter"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  NotBefore: {},
+                                                },
+                                                required: ["NotBefore"],
+                                                additionalProperties: false,
+                                              },
+                                            ],
                                           },
                                         },
                                         required: ["X509AttributeFilter"],
@@ -549,8 +1353,72 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           AcmCertificateMetadataFilter: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            oneOf: [
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  Status: {},
+                                                },
+                                                required: ["Status"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  RenewalStatus: {},
+                                                },
+                                                required: ["RenewalStatus"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  Type: {},
+                                                },
+                                                required: ["Type"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  InUse: {},
+                                                },
+                                                required: ["InUse"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  Exported: {},
+                                                },
+                                                required: ["Exported"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  ExportOption: {},
+                                                },
+                                                required: ["ExportOption"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  ManagedBy: {},
+                                                },
+                                                required: ["ManagedBy"],
+                                                additionalProperties: false,
+                                              },
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  ValidationMethod: {},
+                                                },
+                                                required: ["ValidationMethod"],
+                                                additionalProperties: false,
+                                              },
+                                            ],
                                           },
                                         },
                                         required: [
@@ -594,8 +1462,16 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           Subject: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            oneOf: [
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  CommonName: {},
+                                                },
+                                                required: ["CommonName"],
+                                                additionalProperties: false,
+                                              },
+                                            ],
                                           },
                                         },
                                         required: ["Subject"],
@@ -605,8 +1481,16 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           SubjectAlternativeName: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            oneOf: [
+                                              {
+                                                type: "object",
+                                                properties: {
+                                                  DnsName: {},
+                                                },
+                                                required: ["DnsName"],
+                                                additionalProperties: false,
+                                              },
+                                            ],
                                           },
                                         },
                                         required: ["SubjectAlternativeName"],
@@ -616,8 +1500,7 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           ExtendedKeyUsage: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "string",
                                           },
                                         },
                                         required: ["ExtendedKeyUsage"],
@@ -627,8 +1510,7 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           KeyUsage: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "string",
                                           },
                                         },
                                         required: ["KeyUsage"],
@@ -638,8 +1520,7 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           KeyAlgorithm: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "string",
                                           },
                                         },
                                         required: ["KeyAlgorithm"],
@@ -649,8 +1530,7 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           SerialNumber: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "string",
                                           },
                                         },
                                         required: ["SerialNumber"],
@@ -661,7 +1541,11 @@ const searchCertificates: AppBlock = {
                                         properties: {
                                           NotAfter: {
                                             type: "object",
-                                            additionalProperties: true,
+                                            properties: {
+                                              Start: {},
+                                              End: {},
+                                            },
+                                            additionalProperties: false,
                                           },
                                         },
                                         required: ["NotAfter"],
@@ -672,7 +1556,11 @@ const searchCertificates: AppBlock = {
                                         properties: {
                                           NotBefore: {
                                             type: "object",
-                                            additionalProperties: true,
+                                            properties: {
+                                              Start: {},
+                                              End: {},
+                                            },
+                                            additionalProperties: false,
                                           },
                                         },
                                         required: ["NotBefore"],
@@ -693,8 +1581,7 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           Status: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "string",
                                           },
                                         },
                                         required: ["Status"],
@@ -704,8 +1591,7 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           RenewalStatus: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "string",
                                           },
                                         },
                                         required: ["RenewalStatus"],
@@ -715,8 +1601,7 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           Type: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "string",
                                           },
                                         },
                                         required: ["Type"],
@@ -726,8 +1611,7 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           InUse: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "boolean",
                                           },
                                         },
                                         required: ["InUse"],
@@ -737,8 +1621,7 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           Exported: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "boolean",
                                           },
                                         },
                                         required: ["Exported"],
@@ -748,8 +1631,7 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           ExportOption: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "string",
                                           },
                                         },
                                         required: ["ExportOption"],
@@ -759,8 +1641,7 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           ManagedBy: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "string",
                                           },
                                         },
                                         required: ["ManagedBy"],
@@ -770,8 +1651,7 @@ const searchCertificates: AppBlock = {
                                         type: "object",
                                         properties: {
                                           ValidationMethod: {
-                                            type: "object",
-                                            additionalProperties: true,
+                                            type: "string",
                                           },
                                         },
                                         required: ["ValidationMethod"],
@@ -825,7 +1705,15 @@ const searchCertificates: AppBlock = {
                                         properties: {
                                           CommonName: {
                                             type: "object",
-                                            additionalProperties: true,
+                                            properties: {
+                                              Value: {},
+                                              ComparisonOperator: {},
+                                            },
+                                            required: [
+                                              "Value",
+                                              "ComparisonOperator",
+                                            ],
+                                            additionalProperties: false,
                                           },
                                         },
                                         required: ["CommonName"],
@@ -847,7 +1735,15 @@ const searchCertificates: AppBlock = {
                                         properties: {
                                           DnsName: {
                                             type: "object",
-                                            additionalProperties: true,
+                                            properties: {
+                                              Value: {},
+                                              ComparisonOperator: {},
+                                            },
+                                            required: [
+                                              "Value",
+                                              "ComparisonOperator",
+                                            ],
+                                            additionalProperties: false,
                                           },
                                         },
                                         required: ["DnsName"],
@@ -906,12 +1802,10 @@ const searchCertificates: AppBlock = {
                                     type: "object",
                                     properties: {
                                       Start: {
-                                        type: "object",
-                                        additionalProperties: true,
+                                        type: "string",
                                       },
                                       End: {
-                                        type: "object",
-                                        additionalProperties: true,
+                                        type: "string",
                                       },
                                     },
                                     additionalProperties: false,
@@ -927,12 +1821,10 @@ const searchCertificates: AppBlock = {
                                     type: "object",
                                     properties: {
                                       Start: {
-                                        type: "object",
-                                        additionalProperties: true,
+                                        type: "string",
                                       },
                                       End: {
-                                        type: "object",
-                                        additionalProperties: true,
+                                        type: "string",
                                       },
                                     },
                                     additionalProperties: false,
@@ -1149,68 +2041,54 @@ const searchCertificates: AppBlock = {
                       type: "object",
                       properties: {
                         CommonName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         DomainComponents: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Country: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         CustomAttributes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         DistinguishedNameQualifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         GenerationQualifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         GivenName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Initials: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Locality: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Organization: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OrganizationalUnit: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Pseudonym: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SerialNumber: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         State: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Surname: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Title: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -1219,68 +2097,54 @@ const searchCertificates: AppBlock = {
                       type: "object",
                       properties: {
                         CommonName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         DomainComponents: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Country: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         CustomAttributes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         DistinguishedNameQualifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         GenerationQualifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         GivenName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Initials: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Locality: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Organization: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OrganizationalUnit: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Pseudonym: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SerialNumber: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         State: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Surname: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Title: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -1288,15 +2152,70 @@ const searchCertificates: AppBlock = {
                     SubjectAlternativeNames: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        oneOf: [
+                          {
+                            type: "object",
+                            properties: {
+                              DirectoryName: {},
+                            },
+                            required: ["DirectoryName"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              DnsName: {},
+                            },
+                            required: ["DnsName"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              IpAddress: {},
+                            },
+                            required: ["IpAddress"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              OtherName: {},
+                            },
+                            required: ["OtherName"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              RegisteredId: {},
+                            },
+                            required: ["RegisteredId"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              Rfc822Name: {},
+                            },
+                            required: ["Rfc822Name"],
+                            additionalProperties: false,
+                          },
+                          {
+                            type: "object",
+                            properties: {
+                              UniformResourceIdentifier: {},
+                            },
+                            required: ["UniformResourceIdentifier"],
+                            additionalProperties: false,
+                          },
+                        ],
                       },
                     },
                     ExtendedKeyUsages: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     KeyAlgorithm: {
@@ -1305,8 +2224,7 @@ const searchCertificates: AppBlock = {
                     KeyUsages: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     SerialNumber: {
@@ -1330,56 +2248,43 @@ const searchCertificates: AppBlock = {
                           type: "object",
                           properties: {
                             CreatedAt: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             Exported: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "boolean",
                             },
                             ImportedAt: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             InUse: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "boolean",
                             },
                             IssuedAt: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             RenewalEligibility: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             RevokedAt: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             Status: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             RenewalStatus: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             Type: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             ExportOption: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             ManagedBy: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                             ValidationMethod: {
-                              type: "object",
-                              additionalProperties: true,
+                              type: "string",
                             },
                           },
                           additionalProperties: false,

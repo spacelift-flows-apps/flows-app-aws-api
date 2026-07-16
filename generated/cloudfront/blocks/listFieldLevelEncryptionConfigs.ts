@@ -128,12 +128,16 @@ const listFieldLevelEncryptionConfigs: AppBlock = {
                       type: "object",
                       properties: {
                         ForwardWhenQueryArgProfileIsUnknown: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         QueryArgProfiles: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Quantity: {},
+                            Items: {},
+                          },
+                          required: ["Quantity"],
+                          additionalProperties: false,
                         },
                       },
                       required: ["ForwardWhenQueryArgProfileIsUnknown"],
@@ -143,12 +147,16 @@ const listFieldLevelEncryptionConfigs: AppBlock = {
                       type: "object",
                       properties: {
                         ForwardWhenContentTypeIsUnknown: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         ContentTypeProfiles: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Quantity: {},
+                            Items: {},
+                          },
+                          required: ["Quantity"],
+                          additionalProperties: false,
                         },
                       },
                       required: ["ForwardWhenContentTypeIsUnknown"],

@@ -41,6 +41,39 @@ const promoteReadReplica: AppBlock = {
           type: "string",
           required: false,
         },
+        TagSpecifications: {
+          name: "Tag Specifications",
+          description:
+            "Tags to assign to resources associated with the DB instance.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                ResourceType: {
+                  type: "string",
+                },
+                Tags: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Key: {
+                        type: "string",
+                      },
+                      Value: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+              },
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -112,9 +145,6 @@ const promoteReadReplica: AppBlock = {
                 type: "string",
               },
               DBInstanceStatus: {
-                type: "string",
-              },
-              AutomaticRestartTime: {
                 type: "string",
               },
               MasterUsername: {
@@ -219,20 +249,24 @@ const promoteReadReplica: AppBlock = {
                       type: "object",
                       properties: {
                         SubnetIdentifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SubnetAvailabilityZone: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubnetOutpost: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Arn: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubnetStatus: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -251,6 +285,9 @@ const promoteReadReplica: AppBlock = {
                 additionalProperties: false,
               },
               PreferredMaintenanceWindow: {
+                type: "string",
+              },
+              UpgradeRolloutOrder: {
                 type: "string",
               },
               PendingModifiedValues: {
@@ -283,6 +320,9 @@ const promoteReadReplica: AppBlock = {
                   Iops: {
                     type: "number",
                   },
+                  StorageThroughput: {
+                    type: "number",
+                  },
                   DBInstanceIdentifier: {
                     type: "string",
                   },
@@ -301,15 +341,13 @@ const promoteReadReplica: AppBlock = {
                       LogTypesToEnable: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       LogTypesToDisable: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -321,19 +359,14 @@ const promoteReadReplica: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
                     },
-                  },
-                  IAMDatabaseAuthenticationEnabled: {
-                    type: "boolean",
                   },
                   AutomationMode: {
                     type: "string",
@@ -341,17 +374,45 @@ const promoteReadReplica: AppBlock = {
                   ResumeFullAutomationModeTime: {
                     type: "string",
                   },
-                  StorageThroughput: {
-                    type: "number",
+                  MultiTenant: {
+                    type: "boolean",
                   },
-                  Engine: {
-                    type: "string",
+                  IAMDatabaseAuthenticationEnabled: {
+                    type: "boolean",
                   },
                   DedicatedLogVolume: {
                     type: "boolean",
                   },
-                  MultiTenant: {
-                    type: "boolean",
+                  Engine: {
+                    type: "string",
+                  },
+                  AdditionalStorageVolumes: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      properties: {
+                        VolumeName: {
+                          type: "string",
+                        },
+                        AllocatedStorage: {
+                          type: "number",
+                        },
+                        IOPS: {
+                          type: "number",
+                        },
+                        MaxAllocatedStorage: {
+                          type: "number",
+                        },
+                        StorageThroughput: {
+                          type: "number",
+                        },
+                        StorageType: {
+                          type: "string",
+                        },
+                      },
+                      required: ["VolumeName"],
+                      additionalProperties: false,
+                    },
                   },
                 },
                 additionalProperties: false,
@@ -390,6 +451,9 @@ const promoteReadReplica: AppBlock = {
                 type: "string",
               },
               Iops: {
+                type: "number",
+              },
+              StorageThroughput: {
                 type: "number",
               },
               OptionGroupMemberships: {
@@ -443,6 +507,9 @@ const promoteReadReplica: AppBlock = {
               StorageType: {
                 type: "string",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               TdeCredentialArn: {
                 type: "string",
               },
@@ -490,8 +557,7 @@ const promoteReadReplica: AppBlock = {
                     DnsIps: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -609,22 +675,16 @@ const promoteReadReplica: AppBlock = {
                   additionalProperties: false,
                 },
               },
-              DBInstanceAutomatedBackupsReplications: {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: {
-                    DBInstanceAutomatedBackupsArn: {
-                      type: "string",
-                    },
-                  },
-                  additionalProperties: false,
-                },
+              AutomationMode: {
+                type: "string",
+              },
+              ResumeFullAutomationModeTime: {
+                type: "string",
               },
               CustomerOwnedIpEnabled: {
                 type: "boolean",
               },
-              AwsBackupRecoveryPointArn: {
+              NetworkType: {
                 type: "string",
               },
               ActivityStreamStatus: {
@@ -642,26 +702,44 @@ const promoteReadReplica: AppBlock = {
               ActivityStreamEngineNativeAuditFieldsIncluded: {
                 type: "boolean",
               },
-              AutomationMode: {
+              AwsBackupRecoveryPointArn: {
                 type: "string",
               },
-              ResumeFullAutomationModeTime: {
+              DBInstanceAutomatedBackupsReplications: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    DBInstanceAutomatedBackupsArn: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              BackupTarget: {
+                type: "string",
+              },
+              AutomaticRestartTime: {
                 type: "string",
               },
               CustomIamInstanceProfile: {
                 type: "string",
               },
-              BackupTarget: {
-                type: "string",
-              },
-              NetworkType: {
-                type: "string",
-              },
               ActivityStreamPolicyStatus: {
                 type: "string",
               },
-              StorageThroughput: {
-                type: "number",
+              CertificateDetails: {
+                type: "object",
+                properties: {
+                  CAIdentifier: {
+                    type: "string",
+                  },
+                  ValidTill: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
               },
               DBSystemId: {
                 type: "string",
@@ -681,23 +759,14 @@ const promoteReadReplica: AppBlock = {
                 },
                 additionalProperties: false,
               },
-              CertificateDetails: {
-                type: "object",
-                properties: {
-                  CAIdentifier: {
-                    type: "string",
-                  },
-                  ValidTill: {
-                    type: "string",
-                  },
-                },
-                additionalProperties: false,
-              },
               ReadReplicaSourceDBClusterIdentifier: {
                 type: "string",
               },
               PercentProgress: {
                 type: "string",
+              },
+              MultiTenant: {
+                type: "boolean",
               },
               DedicatedLogVolume: {
                 type: "boolean",
@@ -705,10 +774,40 @@ const promoteReadReplica: AppBlock = {
               IsStorageConfigUpgradeAvailable: {
                 type: "boolean",
               },
-              MultiTenant: {
-                type: "boolean",
-              },
               EngineLifecycleSupport: {
+                type: "string",
+              },
+              AdditionalStorageVolumes: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    VolumeName: {
+                      type: "string",
+                    },
+                    StorageVolumeStatus: {
+                      type: "string",
+                    },
+                    AllocatedStorage: {
+                      type: "number",
+                    },
+                    IOPS: {
+                      type: "number",
+                    },
+                    MaxAllocatedStorage: {
+                      type: "number",
+                    },
+                    StorageThroughput: {
+                      type: "number",
+                    },
+                    StorageType: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              StorageVolumeStatus: {
                 type: "string",
               },
             },

@@ -153,6 +153,48 @@ const getCapacityReservationUsage: AppBlock = {
             },
             description: "Information about the Capacity Reservation usage.",
           },
+          Interruptible: {
+            type: "boolean",
+            description:
+              "Indicates whether the Capacity Reservation is interruptible, meaning instances may be terminated when the owner reclaims capacity.",
+          },
+          InterruptibleCapacityAllocation: {
+            type: "object",
+            properties: {
+              InstanceCount: {
+                type: "number",
+              },
+              TargetInstanceCount: {
+                type: "number",
+              },
+              Status: {
+                type: "string",
+              },
+              InterruptibleCapacityReservationId: {
+                type: "string",
+              },
+              InterruptionType: {
+                type: "string",
+              },
+            },
+            additionalProperties: false,
+            description:
+              "Information about the capacity allocated to the interruptible Capacity Reservation, including instance counts and allocation status.",
+          },
+          InterruptionInfo: {
+            type: "object",
+            properties: {
+              SourceCapacityReservationId: {
+                type: "string",
+              },
+              InterruptionType: {
+                type: "string",
+              },
+            },
+            additionalProperties: false,
+            description:
+              "Details about the interruption configuration and source reservation for interruptible Capacity Reservations.",
+          },
         },
         additionalProperties: true,
       },

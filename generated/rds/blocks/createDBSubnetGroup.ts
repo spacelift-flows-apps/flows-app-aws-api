@@ -149,8 +149,7 @@ const createDBSubnetGroup: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -159,8 +158,7 @@ const createDBSubnetGroup: AppBlock = {
                       type: "object",
                       properties: {
                         Arn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

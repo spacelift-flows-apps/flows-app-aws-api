@@ -166,7 +166,11 @@ const describeAssociationExecutions: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                        },
+                        required: ["Name"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -179,12 +183,10 @@ const describeAssociationExecutions: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       State: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Name", "State"],

@@ -47,7 +47,7 @@ const getTemplateSummary: AppBlock = {
         StackSetName: {
           name: "Stack Set Name",
           description:
-            "The name or unique ID of the stack set from which the stack was created.",
+            "The name or unique ID of the StackSet from which the stack was created.",
           type: "string",
           required: false,
         },
@@ -157,8 +157,7 @@ const getTemplateSummary: AppBlock = {
                     AllowedValues: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

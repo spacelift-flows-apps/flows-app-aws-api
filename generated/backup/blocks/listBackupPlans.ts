@@ -139,12 +139,13 @@ const listBackupPlans: AppBlock = {
                     type: "object",
                     properties: {
                       ResourceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       BackupOptions: {
                         type: "object",
-                        additionalProperties: true,
+                        additionalProperties: {
+                          type: "object",
+                        },
                       },
                     },
                     additionalProperties: false,

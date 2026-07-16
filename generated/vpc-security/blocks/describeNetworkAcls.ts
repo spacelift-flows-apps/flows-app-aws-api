@@ -144,16 +144,13 @@ const describeNetworkAcls: AppBlock = {
                     type: "object",
                     properties: {
                       NetworkAclAssociationId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       NetworkAclId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SubnetId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -165,36 +162,38 @@ const describeNetworkAcls: AppBlock = {
                     type: "object",
                     properties: {
                       CidrBlock: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Egress: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       IcmpTypeCode: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Code: {},
+                          Type: {},
+                        },
+                        additionalProperties: false,
                       },
                       Ipv6CidrBlock: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PortRange: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          From: {},
+                          To: {},
+                        },
+                        additionalProperties: false,
                       },
                       Protocol: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       RuleAction: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       RuleNumber: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     additionalProperties: false,
@@ -212,12 +211,10 @@ const describeNetworkAcls: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

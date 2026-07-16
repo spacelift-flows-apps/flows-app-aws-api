@@ -54,7 +54,7 @@ const putInventory: AppBlock = {
                   items: {
                     type: "object",
                     additionalProperties: {
-                      type: "object",
+                      type: "string",
                     },
                   },
                 },

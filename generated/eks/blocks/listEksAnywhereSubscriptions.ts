@@ -165,12 +165,10 @@ const listEksAnywhereSubscriptions: AppBlock = {
                     type: "object",
                     properties: {
                       id: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       token: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

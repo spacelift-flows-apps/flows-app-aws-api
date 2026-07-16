@@ -4,7 +4,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const copySnapshot: AppBlock = {
   name: "Copy Snapshot",
-  description: `Copies a point-in-time snapshot of an EBS volume and stores it in Amazon S3.`,
+  description: `Creates an exact copy of an Amazon EBS snapshot.`,
   inputs: {
     default: {
       config: {
@@ -92,12 +92,10 @@ const copySnapshot: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -112,8 +110,15 @@ const copySnapshot: AppBlock = {
         CompletionDurationMinutes: {
           name: "Completion Duration Minutes",
           description:
-            "Specify a completion duration, in 15 minute increments, to initiate a time-based snapshot copy.",
+            "Not supported when copying snapshots to or from Local Zones or Outposts.",
           type: "number",
+          required: false,
+        },
+        DestinationAvailabilityZone: {
+          name: "Destination Availability Zone",
+          description:
+            "The Local Zone, for example, cn-north-1-pkx-1a to which to copy the snapshot.",
+          type: "string",
           required: false,
         },
         DryRun: {

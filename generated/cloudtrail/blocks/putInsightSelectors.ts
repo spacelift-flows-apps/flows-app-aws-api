@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const putInsightSelectors: AppBlock = {
   name: "Put Insight Selectors",
-  description: `Lets you enable Insights event logging by specifying the Insights selectors that you want to enable on an existing trail or event data store.`,
+  description: `Lets you enable Insights event logging on specific event categories by specifying the Insights selectors that you want to enable on an existing trail or event data store.`,
   inputs: {
     default: {
       config: {
@@ -34,7 +34,7 @@ const putInsightSelectors: AppBlock = {
         InsightSelectors: {
           name: "Insight Selectors",
           description:
-            "A JSON string that contains the Insights types you want to log on a trail or event data store.",
+            "Contains the Insights types you want to log on a specific category of events on a trail or event data store.",
           type: {
             type: "array",
             items: {
@@ -42,6 +42,12 @@ const putInsightSelectors: AppBlock = {
               properties: {
                 InsightType: {
                   type: "string",
+                },
+                EventCategories: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
                 },
               },
               additionalProperties: false,
@@ -134,11 +140,17 @@ const putInsightSelectors: AppBlock = {
                 InsightType: {
                   type: "string",
                 },
+                EventCategories: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
+                },
               },
               additionalProperties: false,
             },
             description:
-              "A JSON string that contains the Insights event types that you want to log on a trail or event data store.",
+              "Contains the Insights types you want to log on a specific category of events in a trail or event data store.",
           },
           EventDataStoreArn: {
             type: "string",

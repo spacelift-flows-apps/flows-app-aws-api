@@ -171,6 +171,13 @@ const createDBInstance: AppBlock = {
           type: "number",
           required: false,
         },
+        StorageThroughput: {
+          name: "Storage Throughput",
+          description:
+            "The storage throughput value, in mebibyte per second (MiBps), for the DB instance.",
+          type: "number",
+          required: false,
+        },
         OptionGroupName: {
           name: "Option Group Name",
           description: "The option group to associate the DB instance with.",
@@ -428,10 +435,9 @@ const createDBInstance: AppBlock = {
           type: "boolean",
           required: false,
         },
-        CustomIamInstanceProfile: {
-          name: "Custom Iam Instance Profile",
-          description:
-            "The instance profile associated with the underlying Amazon EC2 instance of an RDS Custom DB instance.",
+        NetworkType: {
+          name: "Network Type",
+          description: "The network type of the DB instance.",
           type: "string",
           required: false,
         },
@@ -442,17 +448,25 @@ const createDBInstance: AppBlock = {
           type: "string",
           required: false,
         },
-        NetworkType: {
-          name: "Network Type",
-          description: "The network type of the DB instance.",
+        CustomIamInstanceProfile: {
+          name: "Custom Iam Instance Profile",
+          description:
+            "The instance profile associated with the underlying Amazon EC2 instance of an RDS Custom DB instance.",
           type: "string",
           required: false,
         },
-        StorageThroughput: {
-          name: "Storage Throughput",
+        DBSystemId: {
+          name: "DB System Id",
           description:
-            "The storage throughput value, in mebibyte per second (MiBps), for the DB instance.",
-          type: "number",
+            "The Oracle system identifier (SID), which is the name of the Oracle database instance that manages your database files.",
+          type: "string",
+          required: false,
+        },
+        CACertificateIdentifier: {
+          name: "CA Certificate Identifier",
+          description:
+            "The CA certificate identifier to use for the DB instance's server certificate.",
+          type: "string",
           required: false,
         },
         ManageMasterUserPassword: {
@@ -469,18 +483,11 @@ const createDBInstance: AppBlock = {
           type: "string",
           required: false,
         },
-        CACertificateIdentifier: {
-          name: "CA Certificate Identifier",
+        MultiTenant: {
+          name: "Multi Tenant",
           description:
-            "The CA certificate identifier to use for the DB instance's server certificate.",
-          type: "string",
-          required: false,
-        },
-        DBSystemId: {
-          name: "DB System Id",
-          description:
-            "The Oracle system identifier (SID), which is the name of the Oracle database instance that manages your database files.",
-          type: "string",
+            "Specifies whether to use the multi-tenant configuration or the single-tenant configuration (default).",
+          type: "boolean",
           required: false,
         },
         DedicatedLogVolume: {
@@ -490,16 +497,82 @@ const createDBInstance: AppBlock = {
           type: "boolean",
           required: false,
         },
-        MultiTenant: {
-          name: "Multi Tenant",
-          description:
-            "Specifies whether to use the multi-tenant configuration or the single-tenant configuration (default).",
-          type: "boolean",
-          required: false,
-        },
         EngineLifecycleSupport: {
           name: "Engine Lifecycle Support",
           description: "The life cycle type for this DB instance.",
+          type: "string",
+          required: false,
+        },
+        AdditionalStorageVolumes: {
+          name: "Additional Storage Volumes",
+          description:
+            "A list of additional storage volumes to create for the DB instance.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                VolumeName: {
+                  type: "string",
+                },
+                AllocatedStorage: {
+                  type: "number",
+                },
+                IOPS: {
+                  type: "number",
+                },
+                MaxAllocatedStorage: {
+                  type: "number",
+                },
+                StorageThroughput: {
+                  type: "number",
+                },
+                StorageType: {
+                  type: "string",
+                },
+              },
+              required: ["VolumeName"],
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
+        TagSpecifications: {
+          name: "Tag Specifications",
+          description:
+            "Tags to assign to resources associated with the DB instance.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                ResourceType: {
+                  type: "string",
+                },
+                Tags: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Key: {
+                        type: "string",
+                      },
+                      Value: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+              },
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
+        MasterUserAuthenticationType: {
+          name: "Master User Authentication Type",
+          description: "Specifies the authentication type for the master user.",
           type: "string",
           required: false,
         },
@@ -574,9 +647,6 @@ const createDBInstance: AppBlock = {
                 type: "string",
               },
               DBInstanceStatus: {
-                type: "string",
-              },
-              AutomaticRestartTime: {
                 type: "string",
               },
               MasterUsername: {
@@ -681,20 +751,24 @@ const createDBInstance: AppBlock = {
                       type: "object",
                       properties: {
                         SubnetIdentifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SubnetAvailabilityZone: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubnetOutpost: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Arn: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubnetStatus: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -713,6 +787,9 @@ const createDBInstance: AppBlock = {
                 additionalProperties: false,
               },
               PreferredMaintenanceWindow: {
+                type: "string",
+              },
+              UpgradeRolloutOrder: {
                 type: "string",
               },
               PendingModifiedValues: {
@@ -745,6 +822,9 @@ const createDBInstance: AppBlock = {
                   Iops: {
                     type: "number",
                   },
+                  StorageThroughput: {
+                    type: "number",
+                  },
                   DBInstanceIdentifier: {
                     type: "string",
                   },
@@ -763,15 +843,13 @@ const createDBInstance: AppBlock = {
                       LogTypesToEnable: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       LogTypesToDisable: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -783,19 +861,14 @@ const createDBInstance: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
                     },
-                  },
-                  IAMDatabaseAuthenticationEnabled: {
-                    type: "boolean",
                   },
                   AutomationMode: {
                     type: "string",
@@ -803,17 +876,45 @@ const createDBInstance: AppBlock = {
                   ResumeFullAutomationModeTime: {
                     type: "string",
                   },
-                  StorageThroughput: {
-                    type: "number",
+                  MultiTenant: {
+                    type: "boolean",
                   },
-                  Engine: {
-                    type: "string",
+                  IAMDatabaseAuthenticationEnabled: {
+                    type: "boolean",
                   },
                   DedicatedLogVolume: {
                     type: "boolean",
                   },
-                  MultiTenant: {
-                    type: "boolean",
+                  Engine: {
+                    type: "string",
+                  },
+                  AdditionalStorageVolumes: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      properties: {
+                        VolumeName: {
+                          type: "string",
+                        },
+                        AllocatedStorage: {
+                          type: "number",
+                        },
+                        IOPS: {
+                          type: "number",
+                        },
+                        MaxAllocatedStorage: {
+                          type: "number",
+                        },
+                        StorageThroughput: {
+                          type: "number",
+                        },
+                        StorageType: {
+                          type: "string",
+                        },
+                      },
+                      required: ["VolumeName"],
+                      additionalProperties: false,
+                    },
                   },
                 },
                 additionalProperties: false,
@@ -852,6 +953,9 @@ const createDBInstance: AppBlock = {
                 type: "string",
               },
               Iops: {
+                type: "number",
+              },
+              StorageThroughput: {
                 type: "number",
               },
               OptionGroupMemberships: {
@@ -905,6 +1009,9 @@ const createDBInstance: AppBlock = {
               StorageType: {
                 type: "string",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               TdeCredentialArn: {
                 type: "string",
               },
@@ -952,8 +1059,7 @@ const createDBInstance: AppBlock = {
                     DnsIps: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -1071,22 +1177,16 @@ const createDBInstance: AppBlock = {
                   additionalProperties: false,
                 },
               },
-              DBInstanceAutomatedBackupsReplications: {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: {
-                    DBInstanceAutomatedBackupsArn: {
-                      type: "string",
-                    },
-                  },
-                  additionalProperties: false,
-                },
+              AutomationMode: {
+                type: "string",
+              },
+              ResumeFullAutomationModeTime: {
+                type: "string",
               },
               CustomerOwnedIpEnabled: {
                 type: "boolean",
               },
-              AwsBackupRecoveryPointArn: {
+              NetworkType: {
                 type: "string",
               },
               ActivityStreamStatus: {
@@ -1104,26 +1204,44 @@ const createDBInstance: AppBlock = {
               ActivityStreamEngineNativeAuditFieldsIncluded: {
                 type: "boolean",
               },
-              AutomationMode: {
+              AwsBackupRecoveryPointArn: {
                 type: "string",
               },
-              ResumeFullAutomationModeTime: {
+              DBInstanceAutomatedBackupsReplications: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    DBInstanceAutomatedBackupsArn: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              BackupTarget: {
+                type: "string",
+              },
+              AutomaticRestartTime: {
                 type: "string",
               },
               CustomIamInstanceProfile: {
                 type: "string",
               },
-              BackupTarget: {
-                type: "string",
-              },
-              NetworkType: {
-                type: "string",
-              },
               ActivityStreamPolicyStatus: {
                 type: "string",
               },
-              StorageThroughput: {
-                type: "number",
+              CertificateDetails: {
+                type: "object",
+                properties: {
+                  CAIdentifier: {
+                    type: "string",
+                  },
+                  ValidTill: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
               },
               DBSystemId: {
                 type: "string",
@@ -1143,23 +1261,14 @@ const createDBInstance: AppBlock = {
                 },
                 additionalProperties: false,
               },
-              CertificateDetails: {
-                type: "object",
-                properties: {
-                  CAIdentifier: {
-                    type: "string",
-                  },
-                  ValidTill: {
-                    type: "string",
-                  },
-                },
-                additionalProperties: false,
-              },
               ReadReplicaSourceDBClusterIdentifier: {
                 type: "string",
               },
               PercentProgress: {
                 type: "string",
+              },
+              MultiTenant: {
+                type: "boolean",
               },
               DedicatedLogVolume: {
                 type: "boolean",
@@ -1167,10 +1276,40 @@ const createDBInstance: AppBlock = {
               IsStorageConfigUpgradeAvailable: {
                 type: "boolean",
               },
-              MultiTenant: {
-                type: "boolean",
-              },
               EngineLifecycleSupport: {
+                type: "string",
+              },
+              AdditionalStorageVolumes: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    VolumeName: {
+                      type: "string",
+                    },
+                    StorageVolumeStatus: {
+                      type: "string",
+                    },
+                    AllocatedStorage: {
+                      type: "number",
+                    },
+                    IOPS: {
+                      type: "number",
+                    },
+                    MaxAllocatedStorage: {
+                      type: "number",
+                    },
+                    StorageThroughput: {
+                      type: "number",
+                    },
+                    StorageType: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              StorageVolumeStatus: {
                 type: "string",
               },
             },

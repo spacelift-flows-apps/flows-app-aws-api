@@ -90,6 +90,132 @@ const createRedshiftIdcApplication: AppBlock = {
           type: {
             type: "array",
             items: {
+              oneOf: [
+                {
+                  type: "object",
+                  properties: {
+                    LakeFormation: {
+                      type: "array",
+                      items: {
+                        oneOf: [
+                          {
+                            type: "object",
+                            properties: {
+                              LakeFormationQuery: {
+                                type: "object",
+                                properties: {
+                                  Authorization: {},
+                                },
+                                required: ["Authorization"],
+                                additionalProperties: false,
+                              },
+                            },
+                            required: ["LakeFormationQuery"],
+                            additionalProperties: false,
+                          },
+                        ],
+                      },
+                    },
+                  },
+                  required: ["LakeFormation"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    S3AccessGrants: {
+                      type: "array",
+                      items: {
+                        oneOf: [
+                          {
+                            type: "object",
+                            properties: {
+                              ReadWriteAccess: {
+                                type: "object",
+                                properties: {
+                                  Authorization: {},
+                                },
+                                required: ["Authorization"],
+                                additionalProperties: false,
+                              },
+                            },
+                            required: ["ReadWriteAccess"],
+                            additionalProperties: false,
+                          },
+                        ],
+                      },
+                    },
+                  },
+                  required: ["S3AccessGrants"],
+                  additionalProperties: false,
+                },
+                {
+                  type: "object",
+                  properties: {
+                    Redshift: {
+                      type: "array",
+                      items: {
+                        oneOf: [
+                          {
+                            type: "object",
+                            properties: {
+                              Connect: {
+                                type: "object",
+                                properties: {
+                                  Authorization: {},
+                                },
+                                required: ["Authorization"],
+                                additionalProperties: false,
+                              },
+                            },
+                            required: ["Connect"],
+                            additionalProperties: false,
+                          },
+                        ],
+                      },
+                    },
+                  },
+                  required: ["Redshift"],
+                  additionalProperties: false,
+                },
+              ],
+            },
+          },
+          required: false,
+        },
+        ApplicationType: {
+          name: "Application Type",
+          description: "The type of application being created.",
+          type: "string",
+          required: false,
+        },
+        Tags: {
+          name: "Tags",
+          description: "A list of tags.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                Key: {
+                  type: "string",
+                },
+                Value: {
+                  type: "string",
+                },
+              },
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
+        SsoTagKeys: {
+          name: "Sso Tag Keys",
+          description:
+            "A list of tags keys that Redshift Identity Center applications copy to IAM Identity Center.",
+          type: {
+            type: "array",
+            items: {
               type: "string",
             },
           },
@@ -193,8 +319,7 @@ const createRedshiftIdcApplication: AppBlock = {
                     AuthorizedAudiencesList: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -202,6 +327,97 @@ const createRedshiftIdcApplication: AppBlock = {
                 },
               },
               ServiceIntegrations: {
+                type: "array",
+                items: {
+                  oneOf: [
+                    {
+                      type: "object",
+                      properties: {
+                        LakeFormation: {
+                          type: "array",
+                          items: {
+                            oneOf: [
+                              {
+                                type: "object",
+                                properties: {
+                                  LakeFormationQuery: {},
+                                },
+                                required: ["LakeFormationQuery"],
+                                additionalProperties: false,
+                              },
+                            ],
+                          },
+                        },
+                      },
+                      required: ["LakeFormation"],
+                      additionalProperties: false,
+                    },
+                    {
+                      type: "object",
+                      properties: {
+                        S3AccessGrants: {
+                          type: "array",
+                          items: {
+                            oneOf: [
+                              {
+                                type: "object",
+                                properties: {
+                                  ReadWriteAccess: {},
+                                },
+                                required: ["ReadWriteAccess"],
+                                additionalProperties: false,
+                              },
+                            ],
+                          },
+                        },
+                      },
+                      required: ["S3AccessGrants"],
+                      additionalProperties: false,
+                    },
+                    {
+                      type: "object",
+                      properties: {
+                        Redshift: {
+                          type: "array",
+                          items: {
+                            oneOf: [
+                              {
+                                type: "object",
+                                properties: {
+                                  Connect: {},
+                                },
+                                required: ["Connect"],
+                                additionalProperties: false,
+                              },
+                            ],
+                          },
+                        },
+                      },
+                      required: ["Redshift"],
+                      additionalProperties: false,
+                    },
+                  ],
+                },
+              },
+              ApplicationType: {
+                type: "string",
+              },
+              Tags: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    Key: {
+                      type: "string",
+                    },
+                    Value: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              SsoTagKeys: {
                 type: "array",
                 items: {
                   type: "string",

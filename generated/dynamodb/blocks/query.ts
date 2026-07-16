@@ -106,7 +106,7 @@ const query: AppBlock = {
           type: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
           },
           required: false,
@@ -158,7 +158,7 @@ const query: AppBlock = {
           type: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
           },
           required: false,
@@ -226,7 +226,7 @@ const query: AppBlock = {
             items: {
               type: "object",
               additionalProperties: {
-                type: "string",
+                type: "object",
               },
             },
             description:
@@ -244,7 +244,7 @@ const query: AppBlock = {
           LastEvaluatedKey: {
             type: "object",
             additionalProperties: {
-              type: "string",
+              type: "object",
             },
             description:
               "The primary key of the item where the operation stopped, inclusive of the previous result set.",

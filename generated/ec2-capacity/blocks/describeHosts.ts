@@ -144,7 +144,12 @@ const describeHosts: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AvailableCapacity: {},
+                          InstanceType: {},
+                          TotalCapacity: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     AvailableVCpus: {
@@ -189,16 +194,13 @@ const describeHosts: AppBlock = {
                     type: "object",
                     properties: {
                       InstanceId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       InstanceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       OwnerId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -219,12 +221,10 @@ const describeHosts: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

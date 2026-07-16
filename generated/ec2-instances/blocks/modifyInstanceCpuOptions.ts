@@ -35,13 +35,20 @@ const modifyInstanceCpuOptions: AppBlock = {
           description:
             "The number of CPU cores to activate for the specified instance.",
           type: "number",
-          required: true,
+          required: false,
         },
         ThreadsPerCore: {
           name: "Threads Per Core",
           description: "The number of threads to run for each CPU core.",
           type: "number",
-          required: true,
+          required: false,
+        },
+        NestedVirtualization: {
+          name: "Nested Virtualization",
+          description:
+            "Indicates whether to enable or disable nested virtualization for the instance.",
+          type: "string",
+          required: false,
         },
         DryRun: {
           name: "Dry Run",
@@ -123,6 +130,11 @@ const modifyInstanceCpuOptions: AppBlock = {
             type: "number",
             description:
               "The number of threads that are running per CPU core for the specified instance after the update.",
+          },
+          NestedVirtualization: {
+            type: "string",
+            description:
+              "Indicates whether nested virtualization has been enabled or disabled.",
           },
         },
         additionalProperties: true,

@@ -159,15 +159,13 @@ const listFunctions: AppBlock = {
                     SubnetIds: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     SecurityGroupIds: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     VpcId: {
@@ -194,19 +192,17 @@ const listFunctions: AppBlock = {
                     Variables: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     Error: {
                       type: "object",
                       properties: {
                         ErrorCode: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Message: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -238,20 +234,16 @@ const listFunctions: AppBlock = {
                     type: "object",
                     properties: {
                       Arn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CodeSize: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       SigningProfileVersionArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SigningJobArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -281,12 +273,10 @@ const listFunctions: AppBlock = {
                     type: "object",
                     properties: {
                       Arn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       LocalMountPath: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Arn", "LocalMountPath"],
@@ -303,16 +293,15 @@ const listFunctions: AppBlock = {
                       type: "object",
                       properties: {
                         EntryPoint: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Command: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         WorkingDirectory: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -321,12 +310,10 @@ const listFunctions: AppBlock = {
                       type: "object",
                       properties: {
                         ErrorCode: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Message: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -378,12 +365,10 @@ const listFunctions: AppBlock = {
                       type: "object",
                       properties: {
                         ErrorCode: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Message: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -407,6 +392,54 @@ const listFunctions: AppBlock = {
                       type: "string",
                     },
                   },
+                  additionalProperties: false,
+                },
+                CapacityProviderConfig: {
+                  type: "object",
+                  properties: {
+                    LambdaManagedInstancesCapacityProviderConfig: {
+                      type: "object",
+                      properties: {
+                        CapacityProviderArn: {
+                          type: "string",
+                        },
+                        PerExecutionEnvironmentMaxConcurrency: {
+                          type: "number",
+                        },
+                        ExecutionEnvironmentMemoryGiBPerVCpu: {
+                          type: "number",
+                        },
+                      },
+                      required: ["CapacityProviderArn"],
+                      additionalProperties: false,
+                    },
+                  },
+                  required: ["LambdaManagedInstancesCapacityProviderConfig"],
+                  additionalProperties: false,
+                },
+                ConfigSha256: {
+                  type: "string",
+                },
+                DurableConfig: {
+                  type: "object",
+                  properties: {
+                    RetentionPeriodInDays: {
+                      type: "number",
+                    },
+                    ExecutionTimeout: {
+                      type: "number",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+                TenancyConfig: {
+                  type: "object",
+                  properties: {
+                    TenantIsolationMode: {
+                      type: "string",
+                    },
+                  },
+                  required: ["TenantIsolationMode"],
                   additionalProperties: false,
                 },
               },

@@ -4,6 +4,7 @@ import {
   DescribeScheduledInstancesCommand,
 } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const describeScheduledInstances: AppBlock = {
   name: "Describe Scheduled Instances",
@@ -139,7 +140,10 @@ const describeScheduledInstances: AppBlock = {
         });
 
         const command = new DescribeScheduledInstancesCommand(
-          commandInput as any,
+          convertTimestamps(
+            commandInput,
+            new Set(["EarliestTime", "LatestTime"]),
+          ) as any,
         );
         const response = await client.send(command);
 
@@ -204,8 +208,7 @@ const describeScheduledInstances: AppBlock = {
                     OccurrenceDaySet: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     OccurrenceRelativeToEnd: {

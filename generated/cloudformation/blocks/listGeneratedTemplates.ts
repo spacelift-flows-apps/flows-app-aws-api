@@ -26,8 +26,7 @@ const listGeneratedTemplates: AppBlock = {
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "A string that identifies the next page of resource scan results.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },

@@ -26,7 +26,7 @@ const stopReplicationToReplica: AppBlock = {
         },
         SecretId: {
           name: "Secret Id",
-          description: "The ARN of the primary secret.",
+          description: "The name of the secret or the replica ARN.",
           type: "string",
           required: true,
         },

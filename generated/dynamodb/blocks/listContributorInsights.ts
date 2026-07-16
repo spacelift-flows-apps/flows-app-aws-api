@@ -114,6 +114,9 @@ const listContributorInsights: AppBlock = {
                 ContributorInsightsStatus: {
                   type: "string",
                 },
+                ContributorInsightsMode: {
+                  type: "string",
+                },
               },
               additionalProperties: false,
             },

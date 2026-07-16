@@ -53,64 +53,80 @@ const changeResourceRecordSets: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SetIdentifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Weight: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Region: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         GeoLocation: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            ContinentCode: {},
+                            CountryCode: {},
+                            SubdivisionCode: {},
+                          },
+                          additionalProperties: false,
                         },
                         Failover: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         MultiValueAnswer: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         TTL: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ResourceRecords: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         AliasTarget: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            HostedZoneId: {},
+                            DNSName: {},
+                            EvaluateTargetHealth: {},
+                          },
+                          required: [
+                            "HostedZoneId",
+                            "DNSName",
+                            "EvaluateTargetHealth",
+                          ],
+                          additionalProperties: false,
                         },
                         HealthCheckId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         TrafficPolicyInstanceId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         CidrRoutingConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            CollectionId: {},
+                            LocationName: {},
+                          },
+                          required: ["CollectionId", "LocationName"],
+                          additionalProperties: false,
                         },
                         GeoProximityLocation: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            AWSRegion: {},
+                            LocalZoneGroup: {},
+                            Coordinates: {},
+                            Bias: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       required: ["Name", "Type"],

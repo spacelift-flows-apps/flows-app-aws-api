@@ -73,6 +73,12 @@ const listSecrets: AppBlock = {
           type: "string",
           required: false,
         },
+        SortBy: {
+          name: "Sort By",
+          description: "If not specified, secrets are listed by CreatedDate.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -142,6 +148,9 @@ const listSecrets: AppBlock = {
                 Name: {
                   type: "string",
                 },
+                Type: {
+                  type: "string",
+                },
                 Description: {
                   type: "string",
                 },
@@ -169,6 +178,24 @@ const listSecrets: AppBlock = {
                   },
                   additionalProperties: false,
                 },
+                ExternalSecretRotationMetadata: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Key: {
+                        type: "string",
+                      },
+                      Value: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                ExternalSecretRotationRoleArn: {
+                  type: "string",
+                },
                 LastRotatedDate: {
                   type: "string",
                 },
@@ -190,12 +217,10 @@ const listSecrets: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

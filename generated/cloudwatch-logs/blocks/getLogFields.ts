@@ -114,16 +114,20 @@ const getLogFields: AppBlock = {
                       type: "object",
                       properties: {
                         type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         element: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            type: {},
+                            element: {},
+                            fields: {},
+                          },
+                          additionalProperties: false,
                         },
                         fields: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -132,7 +136,11 @@ const getLogFields: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          logFieldName: {},
+                          logFieldType: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },

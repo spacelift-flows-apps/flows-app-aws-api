@@ -57,6 +57,13 @@ const modifyInstanceMetadataDefaults: AppBlock = {
           type: "boolean",
           required: false,
         },
+        HttpTokensEnforced: {
+          name: "Http Tokens Enforced",
+          description:
+            "Specifies whether to enforce the requirement of IMDSv2 on an instance at the time of launch.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =

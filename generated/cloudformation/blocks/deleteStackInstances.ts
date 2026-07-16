@@ -27,7 +27,7 @@ const deleteStackInstances: AppBlock = {
         StackSetName: {
           name: "Stack Set Name",
           description:
-            "The name or unique ID of the stack set that you want to delete stack instances for.",
+            "The name or unique ID of the StackSet that you want to delete stack instances for.",
           type: "string",
           required: true,
         },
@@ -76,7 +76,7 @@ const deleteStackInstances: AppBlock = {
         Regions: {
           name: "Regions",
           description:
-            "The Amazon Web Services Regions where you want to delete stack set instances.",
+            "The Amazon Web Services Regions where you want to delete StackSet instances.",
           type: {
             type: "array",
             items: {
@@ -88,7 +88,7 @@ const deleteStackInstances: AppBlock = {
         OperationPreferences: {
           name: "Operation Preferences",
           description:
-            "Preferences for how CloudFormation performs this stack set operation.",
+            "Preferences for how CloudFormation performs this StackSet operation.",
           type: {
             type: "object",
             properties: {
@@ -124,13 +124,13 @@ const deleteStackInstances: AppBlock = {
         RetainStacks: {
           name: "Retain Stacks",
           description:
-            "Removes the stack instances from the specified stack set, but doesn't delete the stacks.",
+            "Removes the stack instances from the specified StackSet, but doesn't delete the stacks.",
           type: "boolean",
           required: true,
         },
         OperationId: {
           name: "Operation Id",
-          description: "The unique identifier for this stack set operation.",
+          description: "The unique identifier for this StackSet operation.",
           type: "string",
           required: false,
         },
@@ -201,7 +201,7 @@ const deleteStackInstances: AppBlock = {
         properties: {
           OperationId: {
             type: "string",
-            description: "The unique identifier for this stack set operation.",
+            description: "The unique identifier for this StackSet operation.",
           },
         },
         additionalProperties: true,

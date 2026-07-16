@@ -145,6 +145,9 @@ const modifyDBProxyEndpoint: AppBlock = {
               IsDefault: {
                 type: "boolean",
               },
+              EndpointNetworkType: {
+                type: "string",
+              },
             },
             additionalProperties: false,
             description:

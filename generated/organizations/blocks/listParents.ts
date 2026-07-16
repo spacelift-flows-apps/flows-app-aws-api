@@ -27,7 +27,7 @@ const listParents: AppBlock = {
         ChildId: {
           name: "Child Id",
           description:
-            "The unique identifier (ID) of the OU or account whose parent containers you want to list.",
+            "ID for the OU or account whose parent containers you want to list.",
           type: "string",
           required: true,
         },
@@ -40,8 +40,7 @@ const listParents: AppBlock = {
         },
         MaxResults: {
           name: "Max Results",
-          description:
-            "The total number of results that you want included on each page of the response.",
+          description: "The maximum number of items to return in the response.",
           type: "number",
           required: false,
         },

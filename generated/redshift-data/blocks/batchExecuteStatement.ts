@@ -73,6 +73,27 @@ const batchExecuteStatement: AppBlock = {
           type: "string",
           required: false,
         },
+        Parameters: {
+          name: "Parameters",
+          description: "The parameters for the SQL statements.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                name: {
+                  type: "string",
+                },
+                value: {
+                  type: "string",
+                },
+              },
+              required: ["name", "value"],
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
         WorkgroupName: {
           name: "Workgroup Name",
           description:
@@ -87,6 +108,15 @@ const batchExecuteStatement: AppBlock = {
           type: "string",
           required: false,
         },
+        ResultFormat: {
+          name: "Result Format",
+          description: "The data format of the result of the SQL statement.",
+          type: {
+            type: "string",
+            enum: ["JSON", "CSV"],
+          },
+          required: false,
+        },
         SessionKeepAliveSeconds: {
           name: "Session Keep Alive Seconds",
           description:
@@ -98,15 +128,6 @@ const batchExecuteStatement: AppBlock = {
           name: "Session Id",
           description: "The session identifier of the query.",
           type: "string",
-          required: false,
-        },
-        ResultFormat: {
-          name: "Result Format",
-          description: "The data format of the result of the SQL statement.",
-          type: {
-            type: "string",
-            enum: ["JSON", "CSV"],
-          },
           required: false,
         },
       },

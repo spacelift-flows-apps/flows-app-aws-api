@@ -145,12 +145,10 @@ const describeInsight: AppBlock = {
                       type: "object",
                       properties: {
                         status: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         reason: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -174,24 +172,20 @@ const describeInsight: AppBlock = {
                       type: "object",
                       properties: {
                         usage: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         replacedWith: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         stopServingVersion: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         startServingReplacementVersion: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         clientStats: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -203,12 +197,11 @@ const describeInsight: AppBlock = {
                       type: "object",
                       properties: {
                         name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         compatibleVersions: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,

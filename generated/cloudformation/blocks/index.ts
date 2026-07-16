@@ -20,6 +20,7 @@ import deregisterType from "./deregisterType";
 import describeAccountLimits from "./describeAccountLimits";
 import describeChangeSet from "./describeChangeSet";
 import describeChangeSetHooks from "./describeChangeSetHooks";
+import describeEvents from "./describeEvents";
 import describeGeneratedTemplate from "./describeGeneratedTemplate";
 import describeOrganizationsAccess from "./describeOrganizationsAccess";
 import describePublisher from "./describePublisher";
@@ -43,6 +44,7 @@ import estimateTemplateCost from "./estimateTemplateCost";
 import executeChangeSet from "./executeChangeSet";
 import executeStackRefactor from "./executeStackRefactor";
 import getGeneratedTemplate from "./getGeneratedTemplate";
+import getHookResult from "./getHookResult";
 import getStackPolicy from "./getStackPolicy";
 import getTemplate from "./getTemplate";
 import getTemplateSummary from "./getTemplateSummary";
@@ -110,6 +112,7 @@ export const blocks = {
   describeAccountLimits,
   describeChangeSet,
   describeChangeSetHooks,
+  describeEvents,
   describeGeneratedTemplate,
   describeOrganizationsAccess,
   describePublisher,
@@ -133,6 +136,7 @@ export const blocks = {
   executeChangeSet,
   executeStackRefactor,
   getGeneratedTemplate,
+  getHookResult,
   getStackPolicy,
   getTemplate,
   getTemplateSummary,

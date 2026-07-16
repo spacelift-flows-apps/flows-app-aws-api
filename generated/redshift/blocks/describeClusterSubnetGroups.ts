@@ -157,16 +157,18 @@ const describeClusterSubnetGroups: AppBlock = {
                     type: "object",
                     properties: {
                       SubnetIdentifier: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SubnetAvailabilityZone: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                          SupportedPlatforms: {},
+                        },
+                        additionalProperties: false,
                       },
                       SubnetStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -178,12 +180,10 @@ const describeClusterSubnetGroups: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

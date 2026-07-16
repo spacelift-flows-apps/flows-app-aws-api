@@ -63,40 +63,31 @@ const modifyOptionGroup: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DefaultValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ApplyType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DataType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AllowedValues: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IsModifiable: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       IsCollection: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,
@@ -228,21 +219,40 @@ const modifyOptionGroup: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                          Value: {},
+                          DefaultValue: {},
+                          Description: {},
+                          ApplyType: {},
+                          DataType: {},
+                          AllowedValues: {},
+                          IsModifiable: {},
+                          IsCollection: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     DBSecurityGroupMemberships: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          DBSecurityGroupName: {},
+                          Status: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     VpcSecurityGroupMemberships: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          VpcSecurityGroupId: {},
+                          Status: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },

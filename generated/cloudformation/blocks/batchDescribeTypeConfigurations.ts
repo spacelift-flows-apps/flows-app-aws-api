@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const batchDescribeTypeConfigurations: AppBlock = {
   name: "Batch Describe Type Configurations",
-  description: `Returns configuration data for the specified CloudFormation extensions, from the CloudFormation registry for the account and Region.`,
+  description: `Returns configuration data for the specified CloudFormation extensions, from the CloudFormation registry in your current account and Region.`,
   inputs: {
     default: {
       config: {

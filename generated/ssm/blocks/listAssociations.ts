@@ -138,12 +138,11 @@ const listAssociations: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Values: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -164,7 +163,7 @@ const listAssociations: AppBlock = {
                     AssociationStatusAggregatedCount: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "number",
                       },
                     },
                   },
@@ -187,7 +186,7 @@ const listAssociations: AppBlock = {
                   items: {
                     type: "object",
                     additionalProperties: {
-                      type: "object",
+                      type: "array",
                     },
                   },
                 },

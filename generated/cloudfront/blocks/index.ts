@@ -5,6 +5,7 @@ import copyDistribution from "./copyDistribution";
 import createAnycastIpList from "./createAnycastIpList";
 import createCachePolicy from "./createCachePolicy";
 import createCloudFrontOriginAccessIdentity from "./createCloudFrontOriginAccessIdentity";
+import createConnectionFunction from "./createConnectionFunction";
 import createConnectionGroup from "./createConnectionGroup";
 import createContinuousDeploymentPolicy from "./createContinuousDeploymentPolicy";
 import createDistribution from "./createDistribution";
@@ -25,10 +26,12 @@ import createRealtimeLogConfig from "./createRealtimeLogConfig";
 import createResponseHeadersPolicy from "./createResponseHeadersPolicy";
 import createStreamingDistribution from "./createStreamingDistribution";
 import createStreamingDistributionWithTags from "./createStreamingDistributionWithTags";
+import createTrustStore from "./createTrustStore";
 import createVpcOrigin from "./createVpcOrigin";
 import deleteAnycastIpList from "./deleteAnycastIpList";
 import deleteCachePolicy from "./deleteCachePolicy";
 import deleteCloudFrontOriginAccessIdentity from "./deleteCloudFrontOriginAccessIdentity";
+import deleteConnectionFunction from "./deleteConnectionFunction";
 import deleteConnectionGroup from "./deleteConnectionGroup";
 import deleteContinuousDeploymentPolicy from "./deleteContinuousDeploymentPolicy";
 import deleteDistribution from "./deleteDistribution";
@@ -43,9 +46,12 @@ import deleteOriginAccessControl from "./deleteOriginAccessControl";
 import deleteOriginRequestPolicy from "./deleteOriginRequestPolicy";
 import deletePublicKey from "./deletePublicKey";
 import deleteRealtimeLogConfig from "./deleteRealtimeLogConfig";
+import deleteResourcePolicy from "./deleteResourcePolicy";
 import deleteResponseHeadersPolicy from "./deleteResponseHeadersPolicy";
 import deleteStreamingDistribution from "./deleteStreamingDistribution";
+import deleteTrustStore from "./deleteTrustStore";
 import deleteVpcOrigin from "./deleteVpcOrigin";
+import describeConnectionFunction from "./describeConnectionFunction";
 import describeFunction from "./describeFunction";
 import describeKeyValueStore from "./describeKeyValueStore";
 import disassociateDistributionTenantWebACL from "./disassociateDistributionTenantWebACL";
@@ -55,6 +61,7 @@ import getCachePolicy from "./getCachePolicy";
 import getCachePolicyConfig from "./getCachePolicyConfig";
 import getCloudFrontOriginAccessIdentity from "./getCloudFrontOriginAccessIdentity";
 import getCloudFrontOriginAccessIdentityConfig from "./getCloudFrontOriginAccessIdentityConfig";
+import getConnectionFunction from "./getConnectionFunction";
 import getConnectionGroup from "./getConnectionGroup";
 import getConnectionGroupByRoutingEndpoint from "./getConnectionGroupByRoutingEndpoint";
 import getContinuousDeploymentPolicy from "./getContinuousDeploymentPolicy";
@@ -81,15 +88,18 @@ import getOriginRequestPolicyConfig from "./getOriginRequestPolicyConfig";
 import getPublicKey from "./getPublicKey";
 import getPublicKeyConfig from "./getPublicKeyConfig";
 import getRealtimeLogConfig from "./getRealtimeLogConfig";
+import getResourcePolicy from "./getResourcePolicy";
 import getResponseHeadersPolicy from "./getResponseHeadersPolicy";
 import getResponseHeadersPolicyConfig from "./getResponseHeadersPolicyConfig";
 import getStreamingDistribution from "./getStreamingDistribution";
 import getStreamingDistributionConfig from "./getStreamingDistributionConfig";
+import getTrustStore from "./getTrustStore";
 import getVpcOrigin from "./getVpcOrigin";
 import listAnycastIpLists from "./listAnycastIpLists";
 import listCachePolicies from "./listCachePolicies";
 import listCloudFrontOriginAccessIdentities from "./listCloudFrontOriginAccessIdentities";
 import listConflictingAliases from "./listConflictingAliases";
+import listConnectionFunctions from "./listConnectionFunctions";
 import listConnectionGroups from "./listConnectionGroups";
 import listContinuousDeploymentPolicies from "./listContinuousDeploymentPolicies";
 import listDistributionTenants from "./listDistributionTenants";
@@ -97,11 +107,14 @@ import listDistributionTenantsByCustomization from "./listDistributionTenantsByC
 import listDistributions from "./listDistributions";
 import listDistributionsByAnycastIpListId from "./listDistributionsByAnycastIpListId";
 import listDistributionsByCachePolicyId from "./listDistributionsByCachePolicyId";
+import listDistributionsByConnectionFunction from "./listDistributionsByConnectionFunction";
 import listDistributionsByConnectionMode from "./listDistributionsByConnectionMode";
 import listDistributionsByKeyGroup from "./listDistributionsByKeyGroup";
 import listDistributionsByOriginRequestPolicyId from "./listDistributionsByOriginRequestPolicyId";
+import listDistributionsByOwnedResource from "./listDistributionsByOwnedResource";
 import listDistributionsByRealtimeLogConfig from "./listDistributionsByRealtimeLogConfig";
 import listDistributionsByResponseHeadersPolicyId from "./listDistributionsByResponseHeadersPolicyId";
+import listDistributionsByTrustStore from "./listDistributionsByTrustStore";
 import listDistributionsByVpcOriginId from "./listDistributionsByVpcOriginId";
 import listDistributionsByWebACLId from "./listDistributionsByWebACLId";
 import listDomainConflicts from "./listDomainConflicts";
@@ -119,13 +132,19 @@ import listRealtimeLogConfigs from "./listRealtimeLogConfigs";
 import listResponseHeadersPolicies from "./listResponseHeadersPolicies";
 import listStreamingDistributions from "./listStreamingDistributions";
 import listTagsForResource from "./listTagsForResource";
+import listTrustStores from "./listTrustStores";
 import listVpcOrigins from "./listVpcOrigins";
+import publishConnectionFunction from "./publishConnectionFunction";
 import publishFunction from "./publishFunction";
+import putResourcePolicy from "./putResourcePolicy";
 import tagResource from "./tagResource";
+import testConnectionFunction from "./testConnectionFunction";
 import testFunction from "./testFunction";
 import untagResource from "./untagResource";
+import updateAnycastIpList from "./updateAnycastIpList";
 import updateCachePolicy from "./updateCachePolicy";
 import updateCloudFrontOriginAccessIdentity from "./updateCloudFrontOriginAccessIdentity";
+import updateConnectionFunction from "./updateConnectionFunction";
 import updateConnectionGroup from "./updateConnectionGroup";
 import updateContinuousDeploymentPolicy from "./updateContinuousDeploymentPolicy";
 import updateDistribution from "./updateDistribution";
@@ -143,6 +162,7 @@ import updatePublicKey from "./updatePublicKey";
 import updateRealtimeLogConfig from "./updateRealtimeLogConfig";
 import updateResponseHeadersPolicy from "./updateResponseHeadersPolicy";
 import updateStreamingDistribution from "./updateStreamingDistribution";
+import updateTrustStore from "./updateTrustStore";
 import updateVpcOrigin from "./updateVpcOrigin";
 import verifyDnsConfiguration from "./verifyDnsConfiguration";
 
@@ -154,6 +174,7 @@ export const blocks = {
   createAnycastIpList,
   createCachePolicy,
   createCloudFrontOriginAccessIdentity,
+  createConnectionFunction,
   createConnectionGroup,
   createContinuousDeploymentPolicy,
   createDistribution,
@@ -174,10 +195,12 @@ export const blocks = {
   createResponseHeadersPolicy,
   createStreamingDistribution,
   createStreamingDistributionWithTags,
+  createTrustStore,
   createVpcOrigin,
   deleteAnycastIpList,
   deleteCachePolicy,
   deleteCloudFrontOriginAccessIdentity,
+  deleteConnectionFunction,
   deleteConnectionGroup,
   deleteContinuousDeploymentPolicy,
   deleteDistribution,
@@ -192,9 +215,12 @@ export const blocks = {
   deleteOriginRequestPolicy,
   deletePublicKey,
   deleteRealtimeLogConfig,
+  deleteResourcePolicy,
   deleteResponseHeadersPolicy,
   deleteStreamingDistribution,
+  deleteTrustStore,
   deleteVpcOrigin,
+  describeConnectionFunction,
   describeFunction,
   describeKeyValueStore,
   disassociateDistributionTenantWebACL,
@@ -204,6 +230,7 @@ export const blocks = {
   getCachePolicyConfig,
   getCloudFrontOriginAccessIdentity,
   getCloudFrontOriginAccessIdentityConfig,
+  getConnectionFunction,
   getConnectionGroup,
   getConnectionGroupByRoutingEndpoint,
   getContinuousDeploymentPolicy,
@@ -230,15 +257,18 @@ export const blocks = {
   getPublicKey,
   getPublicKeyConfig,
   getRealtimeLogConfig,
+  getResourcePolicy,
   getResponseHeadersPolicy,
   getResponseHeadersPolicyConfig,
   getStreamingDistribution,
   getStreamingDistributionConfig,
+  getTrustStore,
   getVpcOrigin,
   listAnycastIpLists,
   listCachePolicies,
   listCloudFrontOriginAccessIdentities,
   listConflictingAliases,
+  listConnectionFunctions,
   listConnectionGroups,
   listContinuousDeploymentPolicies,
   listDistributionTenants,
@@ -246,11 +276,14 @@ export const blocks = {
   listDistributions,
   listDistributionsByAnycastIpListId,
   listDistributionsByCachePolicyId,
+  listDistributionsByConnectionFunction,
   listDistributionsByConnectionMode,
   listDistributionsByKeyGroup,
   listDistributionsByOriginRequestPolicyId,
+  listDistributionsByOwnedResource,
   listDistributionsByRealtimeLogConfig,
   listDistributionsByResponseHeadersPolicyId,
+  listDistributionsByTrustStore,
   listDistributionsByVpcOriginId,
   listDistributionsByWebACLId,
   listDomainConflicts,
@@ -268,13 +301,19 @@ export const blocks = {
   listResponseHeadersPolicies,
   listStreamingDistributions,
   listTagsForResource,
+  listTrustStores,
   listVpcOrigins,
+  publishConnectionFunction,
   publishFunction,
+  putResourcePolicy,
   tagResource,
+  testConnectionFunction,
   testFunction,
   untagResource,
+  updateAnycastIpList,
   updateCachePolicy,
   updateCloudFrontOriginAccessIdentity,
+  updateConnectionFunction,
   updateConnectionGroup,
   updateContinuousDeploymentPolicy,
   updateDistribution,
@@ -292,6 +331,7 @@ export const blocks = {
   updateRealtimeLogConfig,
   updateResponseHeadersPolicy,
   updateStreamingDistribution,
+  updateTrustStore,
   updateVpcOrigin,
   verifyDnsConfiguration,
 };

@@ -4,6 +4,7 @@ import {
   GetAwsNetworkPerformanceDataCommand,
 } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const getAwsNetworkPerformanceData: AppBlock = {
   name: "Get Aws Network Performance Data",
@@ -132,7 +133,10 @@ const getAwsNetworkPerformanceData: AppBlock = {
         });
 
         const command = new GetAwsNetworkPerformanceDataCommand(
-          commandInput as any,
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
         );
         const response = await client.send(command);
 
@@ -177,20 +181,16 @@ const getAwsNetworkPerformanceData: AppBlock = {
                     type: "object",
                     properties: {
                       StartDate: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EndDate: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

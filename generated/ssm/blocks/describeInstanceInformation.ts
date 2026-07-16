@@ -212,7 +212,7 @@ const describeInstanceInformation: AppBlock = {
                     InstanceAssociationStatusAggregatedCount: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "number",
                       },
                     },
                   },

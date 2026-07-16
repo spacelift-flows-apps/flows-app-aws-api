@@ -144,8 +144,7 @@ const describeImport: AppBlock = {
                       HeaderList: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -169,12 +168,10 @@ const describeImport: AppBlock = {
                       type: "object",
                       properties: {
                         AttributeName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         AttributeType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["AttributeName", "AttributeType"],
@@ -187,12 +184,10 @@ const describeImport: AppBlock = {
                       type: "object",
                       properties: {
                         AttributeName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KeyType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["AttributeName", "KeyType"],
@@ -248,28 +243,44 @@ const describeImport: AppBlock = {
                       type: "object",
                       properties: {
                         IndexName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KeySchema: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Projection: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            ProjectionType: {},
+                            NonKeyAttributes: {},
+                          },
+                          additionalProperties: false,
                         },
                         ProvisionedThroughput: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            ReadCapacityUnits: {},
+                            WriteCapacityUnits: {},
+                          },
+                          required: ["ReadCapacityUnits", "WriteCapacityUnits"],
+                          additionalProperties: false,
                         },
                         OnDemandThroughput: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            MaxReadRequestUnits: {},
+                            MaxWriteRequestUnits: {},
+                          },
+                          additionalProperties: false,
                         },
                         WarmThroughput: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            ReadUnitsPerSecond: {},
+                            WriteUnitsPerSecond: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       required: ["IndexName", "KeySchema", "Projection"],

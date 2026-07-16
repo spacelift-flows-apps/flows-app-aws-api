@@ -66,6 +66,7 @@ import listVPCAssociationAuthorizations from "./listVPCAssociationAuthorizations
 import testDNSAnswer from "./testDNSAnswer";
 import updateHealthCheck from "./updateHealthCheck";
 import updateHostedZoneComment from "./updateHostedZoneComment";
+import updateHostedZoneFeatures from "./updateHostedZoneFeatures";
 import updateTrafficPolicyComment from "./updateTrafficPolicyComment";
 import updateTrafficPolicyInstance from "./updateTrafficPolicyInstance";
 
@@ -138,6 +139,7 @@ export const blocks = {
   testDNSAnswer,
   updateHealthCheck,
   updateHostedZoneComment,
+  updateHostedZoneFeatures,
   updateTrafficPolicyComment,
   updateTrafficPolicyInstance,
 };

@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const describeChangeSetHooks: AppBlock = {
   name: "Describe Change Set Hooks",
-  description: `Returns hook-related information for the change set and a list of changes that CloudFormation makes when you run the change set.`,
+  description: `Returns Hook-related information for the change set and a list of changes that CloudFormation makes when you run the change set.`,
   inputs: {
     default: {
       config: {
@@ -40,8 +40,7 @@ const describeChangeSetHooks: AppBlock = {
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "A string, provided by the DescribeChangeSetHooks response output, that identifies the next page of information that you want to retrieve.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },
@@ -148,16 +147,13 @@ const describeChangeSetHooks: AppBlock = {
                       type: "object",
                       properties: {
                         LogicalResourceId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ResourceType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ResourceAction: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -168,11 +164,11 @@ const describeChangeSetHooks: AppBlock = {
               },
               additionalProperties: false,
             },
-            description: "List of hook objects.",
+            description: "List of Hook objects.",
           },
           Status: {
             type: "string",
-            description: "Provides the status of the change set hook.",
+            description: "Provides the status of the change set Hook.",
           },
           NextToken: {
             type: "string",

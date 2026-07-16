@@ -42,6 +42,13 @@ const updateContributorInsights: AppBlock = {
           type: "string",
           required: true,
         },
+        ContributorInsightsMode: {
+          name: "Contributor Insights Mode",
+          description:
+            "Specifies whether to track all access and throttled events or throttled events only for the DynamoDB table or index.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -114,6 +121,11 @@ const updateContributorInsights: AppBlock = {
           ContributorInsightsStatus: {
             type: "string",
             description: "The status of contributor insights",
+          },
+          ContributorInsightsMode: {
+            type: "string",
+            description:
+              "The updated mode of CloudWatch Contributor Insights that determines whether to monitor all access and throttled events or to track throttled events exclusively.",
           },
         },
         additionalProperties: true,

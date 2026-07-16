@@ -30,6 +30,19 @@ const getQueryResults: AppBlock = {
           type: "string",
           required: true,
         },
+        nextToken: {
+          name: "next Token",
+          description: "The token for the next set of items to return.",
+          type: "string",
+          required: false,
+        },
+        maxItems: {
+          name: "max Items",
+          description:
+            "The maximum number of log events to return in the response.",
+          type: "number",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -146,6 +159,11 @@ const getQueryResults: AppBlock = {
             type: "string",
             description:
               "If you associated an KMS key with the CloudWatch Logs Insights query results in this account, this field displays the ARN of the key that's used to encrypt the query results when StartQuery stores them.",
+          },
+          nextToken: {
+            type: "string",
+            description:
+              "If there are more log events remaining in the results, the response includes a nextToken.",
           },
         },
         additionalProperties: true,

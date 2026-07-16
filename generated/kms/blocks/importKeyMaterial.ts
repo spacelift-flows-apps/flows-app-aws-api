@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { KMSClient, ImportKeyMaterialCommand } from "@aws-sdk/client-kms";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const importKeyMaterial: AppBlock = {
   name: "Import Key Material",
@@ -116,7 +117,9 @@ const importKeyMaterial: AppBlock = {
           }),
         });
 
-        const command = new ImportKeyMaterialCommand(commandInput as any);
+        const command = new ImportKeyMaterialCommand(
+          convertTimestamps(commandInput, new Set(["ValidTo"])) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

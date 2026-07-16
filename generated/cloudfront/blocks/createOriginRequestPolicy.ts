@@ -51,8 +51,7 @@ const createOriginRequestPolicy: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -78,8 +77,7 @@ const createOriginRequestPolicy: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -105,8 +103,7 @@ const createOriginRequestPolicy: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -216,12 +213,11 @@ const createOriginRequestPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity"],
@@ -241,12 +237,11 @@ const createOriginRequestPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity"],
@@ -266,12 +261,11 @@ const createOriginRequestPolicy: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity"],

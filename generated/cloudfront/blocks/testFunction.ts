@@ -133,12 +133,11 @@ const testFunction: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity"],

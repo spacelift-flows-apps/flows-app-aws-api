@@ -35,7 +35,7 @@ const associateClientVpnTargetNetwork: AppBlock = {
           description:
             "The ID of the subnet to associate with the Client VPN endpoint.",
           type: "string",
-          required: true,
+          required: false,
         },
         ClientToken: {
           name: "Client Token",
@@ -49,6 +49,20 @@ const associateClientVpnTargetNetwork: AppBlock = {
           description:
             "Checks whether you have the required permissions for the action, without actually making the request, and provides an error response.",
           type: "boolean",
+          required: false,
+        },
+        AvailabilityZone: {
+          name: "Availability Zone",
+          description:
+            "The Availability Zone name for the Transit Gateway association.",
+          type: "string",
+          required: false,
+        },
+        AvailabilityZoneId: {
+          name: "Availability Zone Id",
+          description:
+            "The Availability Zone ID for the Transit Gateway association.",
+          type: "string",
           required: false,
         },
       },

@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const listStackSets: AppBlock = {
   name: "List Stack Sets",
-  description: `Returns summary information about stack sets that are associated with the user.`,
+  description: `Returns summary information about StackSets that are associated with the user.`,
   inputs: {
     default: {
       config: {
@@ -26,8 +26,7 @@ const listStackSets: AppBlock = {
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "If the previous paginated request didn't return all the remaining results, the response object's NextToken parameter value is set to a token.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },
@@ -41,7 +40,7 @@ const listStackSets: AppBlock = {
         Status: {
           name: "Status",
           description:
-            "The status of the stack sets that you want to get summary information about.",
+            "The status of the StackSets that you want to get summary information about.",
           type: "string",
           required: false,
         },
@@ -136,6 +135,12 @@ const listStackSets: AppBlock = {
                     RetainStacksOnAccountRemoval: {
                       type: "boolean",
                     },
+                    DependsOn: {
+                      type: "array",
+                      items: {
+                        type: "string",
+                      },
+                    },
                   },
                   additionalProperties: false,
                 },
@@ -161,7 +166,7 @@ const listStackSets: AppBlock = {
               additionalProperties: false,
             },
             description:
-              "A list of StackSetSummary structures that contain information about the user's stack sets.",
+              "A list of StackSetSummary structures that contain information about the user's StackSets.",
           },
           NextToken: {
             type: "string",

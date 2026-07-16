@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { WAFClient, GetSampledRequestsCommand } from "@aws-sdk/client-waf";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const getSampledRequests: AppBlock = {
   name: "Get Sampled Requests",
@@ -104,7 +105,12 @@ const getSampledRequests: AppBlock = {
           }),
         });
 
-        const command = new GetSampledRequestsCommand(commandInput as any);
+        const command = new GetSampledRequestsCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});
@@ -146,7 +152,11 @@ const getSampledRequests: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                          Value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },

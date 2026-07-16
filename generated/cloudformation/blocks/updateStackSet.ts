@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const updateStackSet: AppBlock = {
   name: "Update Stack Set",
-  description: `Updates the stack set and associated stack instances in the specified accounts and Amazon Web Services Regions.`,
+  description: `Updates the StackSet and associated stack instances in the specified accounts and Amazon Web Services Regions.`,
   inputs: {
     default: {
       config: {
@@ -27,7 +27,7 @@ const updateStackSet: AppBlock = {
         StackSetName: {
           name: "Stack Set Name",
           description:
-            "The name or unique ID of the stack set that you want to update.",
+            "The name or unique ID of the StackSet that you want to update.",
           type: "string",
           required: true,
         },
@@ -53,13 +53,13 @@ const updateStackSet: AppBlock = {
         UsePreviousTemplate: {
           name: "Use Previous Template",
           description:
-            "Use the existing template that's associated with the stack set that you're updating.",
+            "Use the existing template that's associated with the StackSet that you're updating.",
           type: "boolean",
           required: false,
         },
         Parameters: {
           name: "Parameters",
-          description: "A list of input parameters for the stack set template.",
+          description: "A list of input parameters for the StackSet template.",
           type: {
             type: "array",
             items: {
@@ -86,7 +86,7 @@ const updateStackSet: AppBlock = {
         Capabilities: {
           name: "Capabilities",
           description:
-            "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for CloudFormation to update the stack set and its associated stack instances.",
+            "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for CloudFormation to update the StackSet and its associated stack instances.",
           type: {
             type: "array",
             items: {
@@ -98,7 +98,7 @@ const updateStackSet: AppBlock = {
         Tags: {
           name: "Tags",
           description:
-            "The key-value pairs to associate with this stack set and the stacks created from it.",
+            "The key-value pairs to associate with this StackSet and the stacks created from it.",
           type: {
             type: "array",
             items: {
@@ -120,7 +120,7 @@ const updateStackSet: AppBlock = {
         OperationPreferences: {
           name: "Operation Preferences",
           description:
-            "Preferences for how CloudFormation performs this stack set operation.",
+            "Preferences for how CloudFormation performs this StackSet operation.",
           type: {
             type: "object",
             properties: {
@@ -156,7 +156,7 @@ const updateStackSet: AppBlock = {
         AdministrationRoleARN: {
           name: "Administration Role ARN",
           description:
-            "[Self-managed permissions] The Amazon Resource Name (ARN) of the IAM role to use to update this stack set.",
+            "[Self-managed permissions] The Amazon Resource Name (ARN) of the IAM role to use to update this StackSet.",
           type: "string",
           required: false,
         },
@@ -200,7 +200,7 @@ const updateStackSet: AppBlock = {
         PermissionModel: {
           name: "Permission Model",
           description:
-            "Describes how the IAM roles required for stack set operations are created.",
+            "Describes how the IAM roles required for StackSet operations are created.",
           type: "string",
           required: false,
         },
@@ -217,6 +217,12 @@ const updateStackSet: AppBlock = {
               RetainStacksOnAccountRemoval: {
                 type: "boolean",
               },
+              DependsOn: {
+                type: "array",
+                items: {
+                  type: "string",
+                },
+              },
             },
             additionalProperties: false,
           },
@@ -224,7 +230,7 @@ const updateStackSet: AppBlock = {
         },
         OperationId: {
           name: "Operation Id",
-          description: "The unique ID for this stack set operation.",
+          description: "The unique ID for this StackSet operation.",
           type: "string",
           required: false,
         },
@@ -262,7 +268,7 @@ const updateStackSet: AppBlock = {
         ManagedExecution: {
           name: "Managed Execution",
           description:
-            "Describes whether StackSets performs non-conflicting operations concurrently and queues conflicting operations.",
+            "Describes whether CloudFormation performs non-conflicting operations concurrently and queues conflicting operations.",
           type: {
             type: "object",
             properties: {
@@ -334,7 +340,7 @@ const updateStackSet: AppBlock = {
         properties: {
           OperationId: {
             type: "string",
-            description: "The unique ID for this stack set operation.",
+            description: "The unique ID for this StackSet operation.",
           },
         },
         additionalProperties: true,

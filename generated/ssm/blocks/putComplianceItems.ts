@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { SSMClient, PutComplianceItemsCommand } from "@aws-sdk/client-ssm";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const putComplianceItems: AppBlock = {
   name: "Put Compliance Items",
@@ -150,7 +151,9 @@ const putComplianceItems: AppBlock = {
           }),
         });
 
-        const command = new PutComplianceItemsCommand(commandInput as any);
+        const command = new PutComplianceItemsCommand(
+          convertTimestamps(commandInput, new Set(["ExecutionTime"])) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

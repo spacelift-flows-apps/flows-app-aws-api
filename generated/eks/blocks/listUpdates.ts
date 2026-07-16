@@ -42,6 +42,13 @@ const listUpdates: AppBlock = {
           type: "string",
           required: false,
         },
+        capabilityName: {
+          name: "capability Name",
+          description:
+            "The name of the capability for which you want to list updates.",
+          type: "string",
+          required: false,
+        },
         nextToken: {
           name: "next Token",
           description:

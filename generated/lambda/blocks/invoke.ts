@@ -48,6 +48,12 @@ const invoke: AppBlock = {
           type: "string",
           required: false,
         },
+        DurableExecutionName: {
+          name: "Durable Execution Name",
+          description: "Optional unique name for the durable execution.",
+          type: "string",
+          required: false,
+        },
         Payload: {
           name: "Payload",
           description:
@@ -59,6 +65,13 @@ const invoke: AppBlock = {
           name: "Qualifier",
           description:
             "Specify a version or alias to invoke a published version of the function.",
+          type: "string",
+          required: false,
+        },
+        TenantId: {
+          name: "Tenant Id",
+          description:
+            "The identifier of the tenant in a multi-tenant Lambda function.",
           type: "string",
           required: false,
         },
@@ -142,6 +155,10 @@ const invoke: AppBlock = {
           ExecutedVersion: {
             type: "string",
             description: "The version of the function that executed.",
+          },
+          DurableExecutionArn: {
+            type: "string",
+            description: "The ARN of the durable execution that was started.",
           },
         },
         additionalProperties: true,

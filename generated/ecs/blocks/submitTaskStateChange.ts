@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { ECSClient, SubmitTaskStateChangeCommand } from "@aws-sdk/client-ecs";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const submitTaskStateChange: AppBlock = {
   name: "Submit Task State Change",
@@ -74,28 +75,22 @@ const submitTaskStateChange: AppBlock = {
                     type: "object",
                     properties: {
                       bindIP: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       containerPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       hostPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       protocol: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       containerPortRange: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       hostPortRange: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -227,7 +222,12 @@ const submitTaskStateChange: AppBlock = {
           }),
         });
 
-        const command = new SubmitTaskStateChangeCommand(commandInput as any);
+        const command = new SubmitTaskStateChangeCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["pullStartedAt", "pullStoppedAt", "executionStoppedAt"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

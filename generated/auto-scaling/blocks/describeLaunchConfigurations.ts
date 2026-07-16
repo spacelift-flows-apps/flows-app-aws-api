@@ -157,20 +157,26 @@ const describeLaunchConfigurations: AppBlock = {
                     type: "object",
                     properties: {
                       VirtualName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DeviceName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Ebs: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          SnapshotId: {},
+                          VolumeSize: {},
+                          VolumeType: {},
+                          DeleteOnTermination: {},
+                          Iops: {},
+                          Encrypted: {},
+                          Throughput: {},
+                        },
+                        additionalProperties: false,
                       },
                       NoDevice: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     required: ["DeviceName"],

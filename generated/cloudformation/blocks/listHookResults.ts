@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const listHookResults: AppBlock = {
   name: "List Hook Results",
-  description: `Returns summaries of invoked Hooks when a change set or Cloud Control API operation target is provided.`,
+  description: `Returns summaries of invoked Hooks.`,
   inputs: {
     default: {
       config: {
@@ -26,21 +26,32 @@ const listHookResults: AppBlock = {
         },
         TargetType: {
           name: "Target Type",
-          description: "The type of operation being targeted by the Hook.",
+          description: "Filters results by target type.",
           type: "string",
-          required: true,
+          required: false,
         },
         TargetId: {
           name: "Target Id",
           description:
-            "The logical ID of the target the operation is acting on by the Hook.",
+            "Filters results by the unique identifier of the target the Hook was invoked against.",
           type: "string",
-          required: true,
+          required: false,
+        },
+        TypeArn: {
+          name: "Type Arn",
+          description: "Filters results by the ARN of the Hook.",
+          type: "string",
+          required: false,
+        },
+        Status: {
+          name: "Status",
+          description: "Filters results by the status of Hook invocations.",
+          type: "string",
+          required: false,
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "A string that identifies the next page of events that you want to retrieve.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },
@@ -104,18 +115,20 @@ const listHookResults: AppBlock = {
         properties: {
           TargetType: {
             type: "string",
-            description: "The type of operation being targeted by the Hook.",
+            description: "The target type.",
           },
           TargetId: {
             type: "string",
-            description:
-              "The logical ID of the target the operation is acting on by the Hook.",
+            description: "The unique identifier of the Hook invocation target.",
           },
           HookResults: {
             type: "array",
             items: {
               type: "object",
               properties: {
+                HookResultId: {
+                  type: "string",
+                },
                 InvocationPoint: {
                   type: "string",
                 },
@@ -135,6 +148,21 @@ const listHookResults: AppBlock = {
                   type: "string",
                 },
                 HookStatusReason: {
+                  type: "string",
+                },
+                InvokedAt: {
+                  type: "string",
+                },
+                TargetType: {
+                  type: "string",
+                },
+                TargetId: {
+                  type: "string",
+                },
+                TypeArn: {
+                  type: "string",
+                },
+                HookExecutionTarget: {
                   type: "string",
                 },
               },

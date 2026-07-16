@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const acceptHandshake: AppBlock = {
   name: "Accept Handshake",
-  description: `Sends a response to the originator of a handshake agreeing to the action proposed by the handshake request.`,
+  description: `Accepts a handshake by sending an ACCEPTED response to the sender.`,
   inputs: {
     default: {
       config: {
@@ -26,8 +26,7 @@ const acceptHandshake: AppBlock = {
         },
         HandshakeId: {
           name: "Handshake Id",
-          description:
-            "The unique identifier (ID) of the handshake that you want to accept.",
+          description: "ID for the handshake that you want to accept.",
           type: "string",
           required: true,
         },
@@ -141,7 +140,12 @@ const acceptHandshake: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Value: {},
+                          Type: {},
+                          Resources: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -150,8 +154,7 @@ const acceptHandshake: AppBlock = {
               },
             },
             additionalProperties: false,
-            description:
-              "A structure that contains details about the accepted handshake.",
+            description: "A Handshake object.",
           },
         },
         additionalProperties: true,

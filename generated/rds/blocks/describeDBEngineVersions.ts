@@ -184,13 +184,34 @@ const describeDBEngineVersions: AppBlock = {
                 Engine: {
                   type: "string",
                 },
+                MajorEngineVersion: {
+                  type: "string",
+                },
                 EngineVersion: {
+                  type: "string",
+                },
+                DatabaseInstallationFilesS3BucketName: {
+                  type: "string",
+                },
+                DatabaseInstallationFilesS3Prefix: {
+                  type: "string",
+                },
+                DatabaseInstallationFiles: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
+                },
+                CustomDBEngineVersionManifest: {
                   type: "string",
                 },
                 DBParameterGroupFamily: {
                   type: "string",
                 },
                 DBEngineDescription: {
+                  type: "string",
+                },
+                DBEngineVersionArn: {
                   type: "string",
                 },
                 DBEngineVersionDescription: {
@@ -208,6 +229,9 @@ const describeDBEngineVersions: AppBlock = {
                   },
                   additionalProperties: false,
                 },
+                FailureReason: {
+                  type: "string",
+                },
                 Image: {
                   type: "object",
                   properties: {
@@ -223,18 +247,22 @@ const describeDBEngineVersions: AppBlock = {
                 DBEngineMediaType: {
                   type: "string",
                 },
+                KMSKeyId: {
+                  type: "string",
+                },
+                CreateTime: {
+                  type: "string",
+                },
                 SupportedCharacterSets: {
                   type: "array",
                   items: {
                     type: "object",
                     properties: {
                       CharacterSetName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CharacterSetDescription: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -246,12 +274,10 @@ const describeDBEngineVersions: AppBlock = {
                     type: "object",
                     properties: {
                       CharacterSetName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CharacterSetDescription: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -263,52 +289,41 @@ const describeDBEngineVersions: AppBlock = {
                     type: "object",
                     properties: {
                       Engine: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EngineVersion: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AutoUpgrade: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       IsMajorVersionUpgrade: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       SupportedEngineModes: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       SupportsParallelQuery: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       SupportsGlobalDatabases: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       SupportsBabelfish: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       SupportsLimitlessDatabase: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       SupportsLocalWriteForwarding: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       SupportsIntegrations: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,
@@ -320,8 +335,7 @@ const describeDBEngineVersions: AppBlock = {
                     type: "object",
                     properties: {
                       TimezoneName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -360,36 +374,16 @@ const describeDBEngineVersions: AppBlock = {
                 SupportsGlobalDatabases: {
                   type: "boolean",
                 },
-                MajorEngineVersion: {
-                  type: "string",
-                },
-                DatabaseInstallationFilesS3BucketName: {
-                  type: "string",
-                },
-                DatabaseInstallationFilesS3Prefix: {
-                  type: "string",
-                },
-                DBEngineVersionArn: {
-                  type: "string",
-                },
-                KMSKeyId: {
-                  type: "string",
-                },
-                CreateTime: {
-                  type: "string",
-                },
                 TagList: {
                   type: "array",
                   items: {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -397,9 +391,6 @@ const describeDBEngineVersions: AppBlock = {
                 },
                 SupportsBabelfish: {
                   type: "boolean",
-                },
-                CustomDBEngineVersionManifest: {
-                  type: "string",
                 },
                 SupportsLimitlessDatabase: {
                   type: "boolean",

@@ -88,7 +88,7 @@ const updateTrail: AppBlock = {
         KmsKeyId: {
           name: "Kms Key Id",
           description:
-            "Specifies the KMS key ID to use to encrypt the logs delivered by CloudTrail.",
+            "Specifies the KMS key ID to use to encrypt the logs and digest files delivered by CloudTrail.",
           type: "string",
           required: false,
         },
@@ -212,7 +212,7 @@ const updateTrail: AppBlock = {
           KmsKeyId: {
             type: "string",
             description:
-              "Specifies the KMS key ID that encrypts the logs delivered by CloudTrail.",
+              "Specifies the KMS key ID that encrypts the logs and digest files delivered by CloudTrail.",
           },
           IsOrganizationTrail: {
             type: "boolean",

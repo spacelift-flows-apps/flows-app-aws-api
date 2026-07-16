@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { EC2Client, LockSnapshotCommand } from "@aws-sdk/client-ec2";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const lockSnapshot: AppBlock = {
   name: "Lock Snapshot",
@@ -104,7 +105,9 @@ const lockSnapshot: AppBlock = {
           }),
         });
 
-        const command = new LockSnapshotCommand(commandInput as any);
+        const command = new LockSnapshotCommand(
+          convertTimestamps(commandInput, new Set(["ExpirationDate"])) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

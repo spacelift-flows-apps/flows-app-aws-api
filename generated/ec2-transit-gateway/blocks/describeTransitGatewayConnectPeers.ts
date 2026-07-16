@@ -167,8 +167,7 @@ const describeTransitGatewayConnectPeers: AppBlock = {
                     InsideCidrBlocks: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Protocol: {
@@ -178,7 +177,14 @@ const describeTransitGatewayConnectPeers: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          TransitGatewayAsn: {},
+                          PeerAsn: {},
+                          TransitGatewayAddress: {},
+                          PeerAddress: {},
+                          BgpStatus: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -190,12 +196,10 @@ const describeTransitGatewayConnectPeers: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

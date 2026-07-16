@@ -89,21 +89,36 @@ const updateConnection: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Key: {},
+                            Value: {},
+                            IsValueSecret: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       QueryStringParameters: {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Key: {},
+                            Value: {},
+                            IsValueSecret: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       BodyParameters: {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Key: {},
+                            Value: {},
+                            IsValueSecret: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                     },
@@ -133,16 +148,13 @@ const updateConnection: AppBlock = {
                       type: "object",
                       properties: {
                         Key: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         IsValueSecret: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -154,16 +166,13 @@ const updateConnection: AppBlock = {
                       type: "object",
                       properties: {
                         Key: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         IsValueSecret: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,
@@ -175,16 +184,13 @@ const updateConnection: AppBlock = {
                       type: "object",
                       properties: {
                         Key: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         IsValueSecret: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       additionalProperties: false,

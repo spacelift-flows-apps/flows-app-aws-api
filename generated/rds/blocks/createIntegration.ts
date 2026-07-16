@@ -200,6 +200,14 @@ const createIntegration: AppBlock = {
             },
             description: "A list of tags.",
           },
+          DataFilter: {
+            type: "string",
+            description: "Data filters for the integration.",
+          },
+          Description: {
+            type: "string",
+            description: "A description of the integration.",
+          },
           CreateTime: {
             type: "string",
             description:
@@ -221,14 +229,6 @@ const createIntegration: AppBlock = {
               additionalProperties: false,
             },
             description: "Any errors associated with the integration.",
-          },
-          DataFilter: {
-            type: "string",
-            description: "Data filters for the integration.",
-          },
-          Description: {
-            type: "string",
-            description: "A description of the integration.",
           },
         },
         additionalProperties: true,

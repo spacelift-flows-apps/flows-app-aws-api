@@ -140,18 +140,75 @@ const describeRedshiftIdcApplications: AppBlock = {
                     type: "object",
                     properties: {
                       TrustedTokenIssuerArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AuthorizedAudiencesList: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
                   },
                 },
                 ServiceIntegrations: {
+                  type: "array",
+                  items: {
+                    oneOf: [
+                      {
+                        type: "object",
+                        properties: {
+                          LakeFormation: {
+                            type: "array",
+                            items: {},
+                          },
+                        },
+                        required: ["LakeFormation"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          S3AccessGrants: {
+                            type: "array",
+                            items: {},
+                          },
+                        },
+                        required: ["S3AccessGrants"],
+                        additionalProperties: false,
+                      },
+                      {
+                        type: "object",
+                        properties: {
+                          Redshift: {
+                            type: "array",
+                            items: {},
+                          },
+                        },
+                        required: ["Redshift"],
+                        additionalProperties: false,
+                      },
+                    ],
+                  },
+                },
+                ApplicationType: {
+                  type: "string",
+                },
+                Tags: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Key: {
+                        type: "string",
+                      },
+                      Value: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                SsoTagKeys: {
                   type: "array",
                   items: {
                     type: "string",

@@ -173,8 +173,7 @@ const describeVpcEndpointServices: AppBlock = {
                     type: "object",
                     properties: {
                       ServiceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -182,6 +181,12 @@ const describeVpcEndpointServices: AppBlock = {
                 },
                 ServiceRegion: {
                   type: "string",
+                },
+                AvailabilityZoneIds: {
+                  type: "array",
+                  items: {
+                    type: "string",
+                  },
                 },
                 AvailabilityZones: {
                   type: "array",
@@ -207,8 +212,7 @@ const describeVpcEndpointServices: AppBlock = {
                     type: "object",
                     properties: {
                       PrivateDnsName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -232,12 +236,10 @@ const describeVpcEndpointServices: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

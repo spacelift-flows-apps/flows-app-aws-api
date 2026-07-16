@@ -150,8 +150,7 @@ const listActivatedRulesInRuleGroup: AppBlock = {
                     type: "object",
                     properties: {
                       RuleId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["RuleId"],

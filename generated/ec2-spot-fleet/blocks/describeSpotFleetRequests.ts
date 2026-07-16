@@ -146,7 +146,11 @@ const describeSpotFleetRequests: AppBlock = {
                       properties: {
                         CapacityRebalance: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            ReplacementStrategy: {},
+                            TerminationDelay: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -170,14 +174,39 @@ const describeSpotFleetRequests: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AddressingType: {},
+                          BlockDeviceMappings: {},
+                          EbsOptimized: {},
+                          IamInstanceProfile: {},
+                          ImageId: {},
+                          InstanceType: {},
+                          KernelId: {},
+                          KeyName: {},
+                          Monitoring: {},
+                          NetworkInterfaces: {},
+                          Placement: {},
+                          RamdiskId: {},
+                          SpotPrice: {},
+                          SubnetId: {},
+                          UserData: {},
+                          WeightedCapacity: {},
+                          TagSpecifications: {},
+                          InstanceRequirements: {},
+                          SecurityGroups: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     LaunchTemplateConfigs: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          LaunchTemplateSpecification: {},
+                          Overrides: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     SpotPrice: {
@@ -218,11 +247,17 @@ const describeSpotFleetRequests: AppBlock = {
                       properties: {
                         ClassicLoadBalancersConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            ClassicLoadBalancers: {},
+                          },
+                          additionalProperties: false,
                         },
                         TargetGroupsConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            TargetGroups: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -240,7 +275,11 @@ const describeSpotFleetRequests: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          ResourceType: {},
+                          Tags: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -259,12 +298,10 @@ const describeSpotFleetRequests: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

@@ -142,16 +142,13 @@ const describeQueryDefinitions: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       defaultValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["name"],

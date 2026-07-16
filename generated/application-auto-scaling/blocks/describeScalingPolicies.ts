@@ -158,7 +158,13 @@ const describeScalingPolicies: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          MetricIntervalLowerBound: {},
+                          MetricIntervalUpperBound: {},
+                          ScalingAdjustment: {},
+                        },
+                        required: ["ScalingAdjustment"],
+                        additionalProperties: false,
                       },
                     },
                     MinAdjustmentMagnitude: {
@@ -183,12 +189,10 @@ const describeScalingPolicies: AppBlock = {
                       type: "object",
                       properties: {
                         PredefinedMetricType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ResourceLabel: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["PredefinedMetricType"],
@@ -198,28 +202,24 @@ const describeScalingPolicies: AppBlock = {
                       type: "object",
                       properties: {
                         MetricName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Namespace: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Dimensions: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Statistic: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Unit: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Metrics: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -244,7 +244,17 @@ const describeScalingPolicies: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          TargetValue: {},
+                          PredefinedMetricPairSpecification: {},
+                          PredefinedScalingMetricSpecification: {},
+                          PredefinedLoadMetricSpecification: {},
+                          CustomizedScalingMetricSpecification: {},
+                          CustomizedLoadMetricSpecification: {},
+                          CustomizedCapacityMetricSpecification: {},
+                        },
+                        required: ["TargetValue"],
+                        additionalProperties: false,
                       },
                     },
                     Mode: {
@@ -269,12 +279,10 @@ const describeScalingPolicies: AppBlock = {
                     type: "object",
                     properties: {
                       AlarmName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AlarmARN: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["AlarmName", "AlarmARN"],

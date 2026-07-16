@@ -208,12 +208,10 @@ const describeAlarmsForMetric: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Name", "Value"],
@@ -250,32 +248,33 @@ const describeAlarmsForMetric: AppBlock = {
                     type: "object",
                     properties: {
                       Id: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       MetricStat: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Metric: {},
+                          Period: {},
+                          Stat: {},
+                          Unit: {},
+                        },
+                        required: ["Metric", "Period", "Stat"],
+                        additionalProperties: false,
                       },
                       Expression: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Label: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ReturnData: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       Period: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       AccountId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Id"],
@@ -290,6 +289,36 @@ const describeAlarmsForMetric: AppBlock = {
                 },
                 StateTransitionedTimestamp: {
                   type: "string",
+                },
+                EvaluationCriteria: {
+                  oneOf: [
+                    {
+                      type: "object",
+                      properties: {
+                        PromQLCriteria: {
+                          type: "object",
+                          properties: {
+                            Query: {
+                              type: "string",
+                            },
+                            PendingPeriod: {
+                              type: "number",
+                            },
+                            RecoveryPeriod: {
+                              type: "number",
+                            },
+                          },
+                          required: ["Query"],
+                          additionalProperties: false,
+                        },
+                      },
+                      required: ["PromQLCriteria"],
+                      additionalProperties: false,
+                    },
+                  ],
+                },
+                EvaluationInterval: {
+                  type: "number",
                 },
               },
               additionalProperties: false,

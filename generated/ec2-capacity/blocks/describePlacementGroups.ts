@@ -157,12 +157,10 @@ const describePlacementGroups: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -173,6 +171,24 @@ const describePlacementGroups: AppBlock = {
                 },
                 SpreadLevel: {
                   type: "string",
+                },
+                LinkedGroupId: {
+                  type: "string",
+                },
+                Operator: {
+                  type: "object",
+                  properties: {
+                    Managed: {
+                      type: "boolean",
+                    },
+                    Principal: {
+                      type: "string",
+                    },
+                    HiddenByDefault: {
+                      type: "boolean",
+                    },
+                  },
+                  additionalProperties: false,
                 },
               },
               additionalProperties: false,

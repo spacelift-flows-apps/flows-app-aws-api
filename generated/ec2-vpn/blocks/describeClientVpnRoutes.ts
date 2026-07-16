@@ -163,6 +163,9 @@ const describeClientVpnRoutes: AppBlock = {
                 Description: {
                   type: "string",
                 },
+                TransitGatewayAttachmentId: {
+                  type: "string",
+                },
               },
               additionalProperties: false,
             },

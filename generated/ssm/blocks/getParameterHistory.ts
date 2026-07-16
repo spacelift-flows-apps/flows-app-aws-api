@@ -151,16 +151,13 @@ const getParameterHistory: AppBlock = {
                     type: "object",
                     properties: {
                       PolicyText: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PolicyType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PolicyStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

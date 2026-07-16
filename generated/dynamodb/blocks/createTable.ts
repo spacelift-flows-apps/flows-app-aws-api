@@ -41,7 +41,7 @@ const createTable: AppBlock = {
               additionalProperties: false,
             },
           },
-          required: true,
+          required: false,
         },
         TableName: {
           name: "Table Name",
@@ -69,7 +69,7 @@ const createTable: AppBlock = {
               additionalProperties: false,
             },
           },
-          required: true,
+          required: false,
         },
         LocalSecondaryIndexes: {
           name: "Local Secondary Indexes",
@@ -89,12 +89,10 @@ const createTable: AppBlock = {
                     type: "object",
                     properties: {
                       AttributeName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       KeyType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["AttributeName", "KeyType"],
@@ -110,8 +108,7 @@ const createTable: AppBlock = {
                     NonKeyAttributes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -142,12 +139,10 @@ const createTable: AppBlock = {
                     type: "object",
                     properties: {
                       AttributeName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       KeyType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["AttributeName", "KeyType"],
@@ -163,8 +158,7 @@ const createTable: AppBlock = {
                     NonKeyAttributes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -356,6 +350,20 @@ const createTable: AppBlock = {
           },
           required: false,
         },
+        GlobalTableSourceArn: {
+          name: "Global Table Source Arn",
+          description:
+            "The Amazon Resource Name (ARN) of the source table used for the creation of a multi-account global table.",
+          type: "string",
+          required: false,
+        },
+        GlobalTableSettingsReplicationMode: {
+          name: "Global Table Settings Replication Mode",
+          description:
+            "Controls the settings synchronization mode for the global table.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -515,19 +523,23 @@ const createTable: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AttributeName: {},
+                          KeyType: {},
+                        },
+                        required: ["AttributeName", "KeyType"],
+                        additionalProperties: false,
                       },
                     },
                     Projection: {
                       type: "object",
                       properties: {
                         ProjectionType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NonKeyAttributes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -557,19 +569,23 @@ const createTable: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AttributeName: {},
+                          KeyType: {},
+                        },
+                        required: ["AttributeName", "KeyType"],
+                        additionalProperties: false,
                       },
                     },
                     Projection: {
                       type: "object",
                       properties: {
                         ProjectionType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NonKeyAttributes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -584,24 +600,19 @@ const createTable: AppBlock = {
                       type: "object",
                       properties: {
                         LastIncreaseDateTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LastDecreaseDateTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NumberOfDecreasesToday: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ReadCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -619,12 +630,10 @@ const createTable: AppBlock = {
                       type: "object",
                       properties: {
                         MaxReadRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         MaxWriteRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -633,16 +642,13 @@ const createTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Status: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -684,6 +690,9 @@ const createTable: AppBlock = {
                     ReplicaStatus: {
                       type: "string",
                     },
+                    ReplicaArn: {
+                      type: "string",
+                    },
                     ReplicaStatusDescription: {
                       type: "string",
                     },
@@ -697,8 +706,7 @@ const createTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -707,8 +715,7 @@ const createTable: AppBlock = {
                       type: "object",
                       properties: {
                         MaxReadRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -717,16 +724,13 @@ const createTable: AppBlock = {
                       type: "object",
                       properties: {
                         ReadUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Status: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -735,7 +739,13 @@ const createTable: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          IndexName: {},
+                          ProvisionedThroughputOverride: {},
+                          OnDemandThroughputOverride: {},
+                          WarmThroughput: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ReplicaInaccessibleDateTime: {
@@ -745,15 +755,16 @@ const createTable: AppBlock = {
                       type: "object",
                       properties: {
                         TableClass: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LastUpdateDateTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
+                    },
+                    GlobalTableSettingsReplicationMode: {
+                      type: "string",
                     },
                   },
                   additionalProperties: false,
@@ -773,6 +784,9 @@ const createTable: AppBlock = {
                   },
                   additionalProperties: false,
                 },
+              },
+              GlobalTableSettingsReplicationMode: {
+                type: "string",
               },
               RestoreSummary: {
                 type: "object",

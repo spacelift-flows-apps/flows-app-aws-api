@@ -152,16 +152,13 @@ const describeBlueGreenDeployments: AppBlock = {
                     type: "object",
                     properties: {
                       SourceMember: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetMember: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -173,12 +170,10 @@ const describeBlueGreenDeployments: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -202,12 +197,10 @@ const describeBlueGreenDeployments: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

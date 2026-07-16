@@ -33,6 +33,13 @@ const modifyDBProxy: AppBlock = {
           type: "string",
           required: false,
         },
+        DefaultAuthScheme: {
+          name: "Default Auth Scheme",
+          description:
+            "The default authentication scheme that the proxy uses for client connections to the proxy and connections from the proxy to the underlying database.",
+          type: "string",
+          required: false,
+        },
         Auth: {
           name: "Auth",
           description: "The new authentication settings for the DBProxy.",
@@ -82,7 +89,7 @@ const modifyDBProxy: AppBlock = {
         DebugLogging: {
           name: "Debug Logging",
           description:
-            "Whether the proxy includes detailed information about SQL statements in its logs.",
+            "Specifies whether the proxy logs detailed connection and query information.",
           type: "boolean",
           required: false,
         },
@@ -192,6 +199,9 @@ const modifyDBProxy: AppBlock = {
                   type: "string",
                 },
               },
+              DefaultAuthScheme: {
+                type: "string",
+              },
               Auth: {
                 type: "array",
                 items: {
@@ -238,6 +248,12 @@ const modifyDBProxy: AppBlock = {
                 type: "string",
               },
               UpdatedDate: {
+                type: "string",
+              },
+              EndpointNetworkType: {
+                type: "string",
+              },
+              TargetConnectionNetworkType: {
                 type: "string",
               },
             },

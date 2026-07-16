@@ -119,12 +119,10 @@ const getRealtimeLogConfig: AppBlock = {
                       type: "object",
                       properties: {
                         RoleARN: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         StreamARN: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["RoleARN", "StreamARN"],

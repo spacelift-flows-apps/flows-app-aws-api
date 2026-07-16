@@ -7,7 +7,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const deleteStackSet: AppBlock = {
   name: "Delete Stack Set",
-  description: `Deletes a stack set.`,
+  description: `Deletes a StackSet.`,
   inputs: {
     default: {
       config: {
@@ -27,7 +27,7 @@ const deleteStackSet: AppBlock = {
         StackSetName: {
           name: "Stack Set Name",
           description:
-            "The name or unique ID of the stack set that you're deleting.",
+            "The name or unique ID of the StackSet that you're deleting.",
           type: "string",
           required: true,
         },

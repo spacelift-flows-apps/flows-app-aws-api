@@ -116,12 +116,10 @@ const getConnectionGroup: AppBlock = {
                       type: "object",
                       properties: {
                         Key: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Key"],

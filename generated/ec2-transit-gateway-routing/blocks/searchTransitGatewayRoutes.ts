@@ -66,6 +66,12 @@ const searchTransitGatewayRoutes: AppBlock = {
           type: "boolean",
           required: false,
         },
+        NextToken: {
+          name: "Next Token",
+          description: "The token for the next page of results.",
+          type: "string",
+          required: false,
+        },
       },
       onEvent: async (input) => {
         const { region, assumeRoleArn, ...commandInput } =
@@ -146,16 +152,13 @@ const searchTransitGatewayRoutes: AppBlock = {
                     type: "object",
                     properties: {
                       ResourceId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TransitGatewayAttachmentId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ResourceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -176,6 +179,11 @@ const searchTransitGatewayRoutes: AppBlock = {
             type: "boolean",
             description:
               "Indicates whether there are additional routes available.",
+          },
+          NextToken: {
+            type: "string",
+            description:
+              "The token to use to retrieve the next page of results.",
           },
         },
         additionalProperties: true,

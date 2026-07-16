@@ -248,7 +248,10 @@ const getInstanceTypesFromInstanceRequirements: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            InstanceFamily: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                     },
@@ -256,6 +259,9 @@ const getInstanceTypesFromInstanceRequirements: AppBlock = {
                   },
                 },
                 additionalProperties: false,
+              },
+              RequireEncryptionInTransit: {
+                type: "boolean",
               },
             },
             required: ["VCpuCount", "MemoryMiB"],

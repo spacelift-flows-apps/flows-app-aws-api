@@ -197,7 +197,7 @@ const describeAutomationStepExecutions: AppBlock = {
                     Details: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "array",
                       },
                     },
                   },
@@ -233,12 +233,11 @@ const describeAutomationStepExecutions: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Values: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -250,15 +249,13 @@ const describeAutomationStepExecutions: AppBlock = {
                     Accounts: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Regions: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     TargetLocationMaxConcurrency: {
@@ -274,12 +271,11 @@ const describeAutomationStepExecutions: AppBlock = {
                       type: "object",
                       properties: {
                         IgnorePollAlarmFailure: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         Alarms: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["Alarms"],
@@ -291,15 +287,18 @@ const describeAutomationStepExecutions: AppBlock = {
                     ExcludeAccounts: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Targets: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Values: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     TargetsMaxConcurrency: {
@@ -317,12 +316,10 @@ const describeAutomationStepExecutions: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       State: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Name", "State"],

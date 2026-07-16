@@ -61,12 +61,10 @@ const createDhcpOptions: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -179,7 +177,10 @@ const createDhcpOptions: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },

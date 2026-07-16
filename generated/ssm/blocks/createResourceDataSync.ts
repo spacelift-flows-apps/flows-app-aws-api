@@ -92,8 +92,7 @@ const createResourceDataSync: AppBlock = {
                       type: "object",
                       properties: {
                         OrganizationalUnitId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

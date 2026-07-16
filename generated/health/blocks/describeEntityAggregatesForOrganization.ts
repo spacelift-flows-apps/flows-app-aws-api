@@ -131,16 +131,16 @@ const describeEntityAggregatesForOrganization: AppBlock = {
                     type: "object",
                     properties: {
                       accountId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       count: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       statuses: {
                         type: "object",
-                        additionalProperties: true,
+                        additionalProperties: {
+                          type: "object",
+                        },
                       },
                     },
                     additionalProperties: false,

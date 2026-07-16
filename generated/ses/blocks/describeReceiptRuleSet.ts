@@ -126,35 +126,82 @@ const describeReceiptRuleSet: AppBlock = {
                     properties: {
                       S3Action: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          TopicArn: {},
+                          BucketName: {},
+                          ObjectKeyPrefix: {},
+                          KmsKeyArn: {},
+                          IamRoleArn: {},
+                        },
+                        required: ["BucketName"],
+                        additionalProperties: false,
                       },
                       BounceAction: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          TopicArn: {},
+                          SmtpReplyCode: {},
+                          StatusCode: {},
+                          Message: {},
+                          Sender: {},
+                        },
+                        required: ["SmtpReplyCode", "Message", "Sender"],
+                        additionalProperties: false,
                       },
                       WorkmailAction: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          TopicArn: {},
+                          OrganizationArn: {},
+                        },
+                        required: ["OrganizationArn"],
+                        additionalProperties: false,
                       },
                       LambdaAction: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          TopicArn: {},
+                          FunctionArn: {},
+                          InvocationType: {},
+                        },
+                        required: ["FunctionArn"],
+                        additionalProperties: false,
                       },
                       StopAction: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Scope: {},
+                          TopicArn: {},
+                        },
+                        required: ["Scope"],
+                        additionalProperties: false,
                       },
                       AddHeaderAction: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          HeaderName: {},
+                          HeaderValue: {},
+                        },
+                        required: ["HeaderName", "HeaderValue"],
+                        additionalProperties: false,
                       },
                       SNSAction: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          TopicArn: {},
+                          Encoding: {},
+                        },
+                        required: ["TopicArn"],
+                        additionalProperties: false,
                       },
                       ConnectAction: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          InstanceARN: {},
+                          IAMRoleARN: {},
+                        },
+                        required: ["InstanceARN", "IAMRoleARN"],
+                        additionalProperties: false,
                       },
                     },
                     additionalProperties: false,

@@ -97,6 +97,9 @@ const getVpcOrigin: AppBlock = {
               Arn: {
                 type: "string",
               },
+              AccountId: {
+                type: "string",
+              },
               Status: {
                 type: "string",
               },
@@ -133,8 +136,7 @@ const getVpcOrigin: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },

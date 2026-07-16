@@ -53,7 +53,12 @@ const createFieldLevelEncryptionConfig: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            QueryArg: {},
+                            ProfileId: {},
+                          },
+                          required: ["QueryArg", "ProfileId"],
+                          additionalProperties: false,
                         },
                       },
                     },
@@ -80,7 +85,13 @@ const createFieldLevelEncryptionConfig: AppBlock = {
                         type: "array",
                         items: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Format: {},
+                            ProfileId: {},
+                            ContentType: {},
+                          },
+                          required: ["Format", "ContentType"],
+                          additionalProperties: false,
                         },
                       },
                     },
@@ -185,12 +196,11 @@ const createFieldLevelEncryptionConfig: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity"],
@@ -210,12 +220,11 @@ const createFieldLevelEncryptionConfig: AppBlock = {
                         type: "object",
                         properties: {
                           Quantity: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "number",
                           },
                           Items: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "array",
+                            items: {},
                           },
                         },
                         required: ["Quantity"],

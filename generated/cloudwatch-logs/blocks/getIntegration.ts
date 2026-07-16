@@ -102,7 +102,198 @@ const getIntegration: AppBlock = {
             description: "The current status of this integration.",
           },
           integrationDetails: {
-            type: "string",
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  openSearchIntegrationDetails: {
+                    type: "object",
+                    properties: {
+                      dataSource: {
+                        type: "object",
+                        properties: {
+                          dataSourceName: {
+                            type: "string",
+                          },
+                          status: {
+                            type: "object",
+                            properties: {
+                              status: {
+                                type: "string",
+                              },
+                              statusMessage: {
+                                type: "string",
+                              },
+                            },
+                            additionalProperties: false,
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      application: {
+                        type: "object",
+                        properties: {
+                          applicationEndpoint: {
+                            type: "string",
+                          },
+                          applicationArn: {
+                            type: "string",
+                          },
+                          applicationId: {
+                            type: "string",
+                          },
+                          status: {
+                            type: "object",
+                            properties: {
+                              status: {
+                                type: "string",
+                              },
+                              statusMessage: {
+                                type: "string",
+                              },
+                            },
+                            additionalProperties: false,
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      collection: {
+                        type: "object",
+                        properties: {
+                          collectionEndpoint: {
+                            type: "string",
+                          },
+                          collectionArn: {
+                            type: "string",
+                          },
+                          status: {
+                            type: "object",
+                            properties: {
+                              status: {
+                                type: "string",
+                              },
+                              statusMessage: {
+                                type: "string",
+                              },
+                            },
+                            additionalProperties: false,
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      workspace: {
+                        type: "object",
+                        properties: {
+                          workspaceId: {
+                            type: "string",
+                          },
+                          status: {
+                            type: "object",
+                            properties: {
+                              status: {
+                                type: "string",
+                              },
+                              statusMessage: {
+                                type: "string",
+                              },
+                            },
+                            additionalProperties: false,
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      encryptionPolicy: {
+                        type: "object",
+                        properties: {
+                          policyName: {
+                            type: "string",
+                          },
+                          status: {
+                            type: "object",
+                            properties: {
+                              status: {
+                                type: "string",
+                              },
+                              statusMessage: {
+                                type: "string",
+                              },
+                            },
+                            additionalProperties: false,
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      networkPolicy: {
+                        type: "object",
+                        properties: {
+                          policyName: {
+                            type: "string",
+                          },
+                          status: {
+                            type: "object",
+                            properties: {
+                              status: {
+                                type: "string",
+                              },
+                              statusMessage: {
+                                type: "string",
+                              },
+                            },
+                            additionalProperties: false,
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      accessPolicy: {
+                        type: "object",
+                        properties: {
+                          policyName: {
+                            type: "string",
+                          },
+                          status: {
+                            type: "object",
+                            properties: {
+                              status: {
+                                type: "string",
+                              },
+                              statusMessage: {
+                                type: "string",
+                              },
+                            },
+                            additionalProperties: false,
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      lifecyclePolicy: {
+                        type: "object",
+                        properties: {
+                          policyName: {
+                            type: "string",
+                          },
+                          status: {
+                            type: "object",
+                            properties: {
+                              status: {
+                                type: "string",
+                              },
+                              statusMessage: {
+                                type: "string",
+                              },
+                            },
+                            additionalProperties: false,
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["openSearchIntegrationDetails"],
+                additionalProperties: false,
+              },
+            ],
             description:
               "A structure that contains information about the integration configuration.",
           },

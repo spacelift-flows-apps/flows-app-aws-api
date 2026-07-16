@@ -126,7 +126,126 @@ const startLiveTail: AppBlock = {
         type: "object",
         properties: {
           responseStream: {
-            type: "string",
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  sessionStart: {
+                    type: "object",
+                    properties: {
+                      requestId: {
+                        type: "string",
+                      },
+                      sessionId: {
+                        type: "string",
+                      },
+                      logGroupIdentifiers: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      logStreamNames: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      logStreamNamePrefixes: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      logEventFilterPattern: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["sessionStart"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  sessionUpdate: {
+                    type: "object",
+                    properties: {
+                      sessionMetadata: {
+                        type: "object",
+                        properties: {
+                          sampled: {
+                            type: "boolean",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      sessionResults: {
+                        type: "array",
+                        items: {
+                          type: "object",
+                          properties: {
+                            logStreamName: {
+                              type: "string",
+                            },
+                            logGroupIdentifier: {
+                              type: "string",
+                            },
+                            message: {
+                              type: "string",
+                            },
+                            timestamp: {
+                              type: "number",
+                            },
+                            ingestionTime: {
+                              type: "number",
+                            },
+                          },
+                          additionalProperties: false,
+                        },
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["sessionUpdate"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  SessionTimeoutException: {
+                    type: "object",
+                    properties: {
+                      message: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["SessionTimeoutException"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  SessionStreamingException: {
+                    type: "object",
+                    properties: {
+                      message: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["SessionStreamingException"],
+                additionalProperties: false,
+              },
+            ],
             description:
               "An object that includes the stream returned by your request.",
           },

@@ -289,6 +289,9 @@ const describeImageAttribute: AppBlock = {
                     AvailabilityZoneId: {
                       type: "string",
                     },
+                    EbsCardIndex: {
+                      type: "number",
+                    },
                   },
                   additionalProperties: false,
                 },

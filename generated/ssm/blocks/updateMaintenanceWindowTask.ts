@@ -127,8 +127,7 @@ const updateMaintenanceWindowTask: AppBlock = {
                       NotificationEvents: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       NotificationType: {
@@ -442,8 +441,7 @@ const updateMaintenanceWindowTask: AppBlock = {
                       NotificationEvents: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       NotificationType: {

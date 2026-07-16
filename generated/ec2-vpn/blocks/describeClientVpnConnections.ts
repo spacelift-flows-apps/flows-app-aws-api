@@ -168,6 +168,9 @@ const describeClientVpnConnections: AppBlock = {
                 ClientIp: {
                   type: "string",
                 },
+                ClientIpv6Address: {
+                  type: "string",
+                },
                 CommonName: {
                   type: "string",
                 },

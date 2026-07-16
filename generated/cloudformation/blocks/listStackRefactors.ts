@@ -37,8 +37,7 @@ const listStackRefactors: AppBlock = {
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "If the request doesn't return all the remaining results, NextToken is set to a token.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },

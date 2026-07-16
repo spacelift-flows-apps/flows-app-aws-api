@@ -59,28 +59,22 @@ const runScheduledInstances: AppBlock = {
                       type: "object",
                       properties: {
                         DeleteOnTermination: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         Encrypted: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         Iops: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         SnapshotId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         VolumeSize: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         VolumeType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -151,8 +145,7 @@ const runScheduledInstances: AppBlock = {
                     Groups: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Ipv6AddressCount: {
@@ -162,7 +155,10 @@ const runScheduledInstances: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Ipv6Address: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     NetworkInterfaceId: {
@@ -175,7 +171,11 @@ const runScheduledInstances: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Primary: {},
+                          PrivateIpAddress: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     SecondaryPrivateIpAddressCount: {

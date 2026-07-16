@@ -115,16 +115,19 @@ const getFieldLevelEncryptionProfileConfig: AppBlock = {
                       type: "object",
                       properties: {
                         PublicKeyId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ProviderId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         FieldPatterns: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Quantity: {},
+                            Items: {},
+                          },
+                          required: ["Quantity"],
+                          additionalProperties: false,
                         },
                       },
                       required: ["PublicKeyId", "ProviderId", "FieldPatterns"],

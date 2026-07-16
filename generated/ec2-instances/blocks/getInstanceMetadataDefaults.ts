@@ -112,6 +112,9 @@ const getInstanceMetadataDefaults: AppBlock = {
               ManagedExceptionMessage: {
                 type: "string",
               },
+              HttpTokensEnforced: {
+                type: "string",
+              },
             },
             additionalProperties: false,
             description: "The account-level default IMDS settings.",

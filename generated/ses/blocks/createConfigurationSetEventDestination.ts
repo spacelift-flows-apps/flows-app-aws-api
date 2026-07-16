@@ -72,16 +72,13 @@ const createConfigurationSetEventDestination: AppBlock = {
                       type: "object",
                       properties: {
                         DimensionName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         DimensionValueSource: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         DefaultDimensionValue: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: [

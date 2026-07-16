@@ -32,6 +32,13 @@ const describeVolumes: AppBlock = {
           },
           required: false,
         },
+        IncludeManagedResources: {
+          name: "Include Managed Resources",
+          description:
+            "Indicates whether to include managed resources in the output.",
+          type: "boolean",
+          required: false,
+        },
         DryRun: {
           name: "Dry Run",
           description:
@@ -143,7 +150,13 @@ const describeVolumes: AppBlock = {
             items: {
               type: "object",
               properties: {
+                AvailabilityZoneId: {
+                  type: "string",
+                },
                 OutpostArn: {
+                  type: "string",
+                },
+                SourceVolumeId: {
                   type: "string",
                 },
                 Iops: {
@@ -155,12 +168,10 @@ const describeVolumes: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -189,6 +200,9 @@ const describeVolumes: AppBlock = {
                     },
                     Principal: {
                       type: "string",
+                    },
+                    HiddenByDefault: {
+                      type: "boolean",
                     },
                   },
                   additionalProperties: false,
@@ -220,36 +234,31 @@ const describeVolumes: AppBlock = {
                     type: "object",
                     properties: {
                       DeleteOnTermination: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       AssociatedResource: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       InstanceOwningService: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
+                      },
+                      EbsCardIndex: {
+                        type: "number",
                       },
                       VolumeId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       InstanceId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Device: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       State: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AttachTime: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

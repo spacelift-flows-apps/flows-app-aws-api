@@ -196,6 +196,21 @@ const describeVolumesModifications: AppBlock = {
                 EndTime: {
                   type: "string",
                 },
+                Operator: {
+                  type: "object",
+                  properties: {
+                    Managed: {
+                      type: "boolean",
+                    },
+                    Principal: {
+                      type: "string",
+                    },
+                    HiddenByDefault: {
+                      type: "boolean",
+                    },
+                  },
+                  additionalProperties: false,
+                },
               },
               additionalProperties: false,
             },

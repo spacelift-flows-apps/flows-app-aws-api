@@ -27,7 +27,7 @@ const listOrganizationalUnitsForParent: AppBlock = {
         ParentId: {
           name: "Parent Id",
           description:
-            "The unique identifier (ID) of the root or OU whose child OUs you want to list.",
+            "ID for the root or OU whose child OUs you want to list.",
           type: "string",
           required: true,
         },
@@ -40,8 +40,7 @@ const listOrganizationalUnitsForParent: AppBlock = {
         },
         MaxResults: {
           name: "Max Results",
-          description:
-            "The total number of results that you want included on each page of the response.",
+          description: "The maximum number of items to return in the response.",
           type: "number",
           required: false,
         },
@@ -117,6 +116,9 @@ const listOrganizationalUnitsForParent: AppBlock = {
                   type: "string",
                 },
                 Name: {
+                  type: "string",
+                },
+                Path: {
                   type: "string",
                 },
               },

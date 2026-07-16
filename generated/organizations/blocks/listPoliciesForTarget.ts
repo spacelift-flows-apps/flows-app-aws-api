@@ -27,7 +27,7 @@ const listPoliciesForTarget: AppBlock = {
         TargetId: {
           name: "Target Id",
           description:
-            "The unique identifier (ID) of the root, organizational unit, or account whose policies you want to list.",
+            "ID for the root, organizational unit, or account whose policies you want to list.",
           type: "string",
           required: true,
         },
@@ -47,8 +47,7 @@ const listPoliciesForTarget: AppBlock = {
         },
         MaxResults: {
           name: "Max Results",
-          description:
-            "The total number of results that you want included on each page of the response.",
+          description: "The maximum number of items to return in the response.",
           type: "number",
           required: false,
         },

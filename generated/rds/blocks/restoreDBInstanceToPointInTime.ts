@@ -4,6 +4,7 @@ import {
   RestoreDBInstanceToPointInTimeCommand,
 } from "@aws-sdk/client-rds";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const restoreDBInstanceToPointInTime: AppBlock = {
   name: "Restore DB Instance To Point In Time",
@@ -121,6 +122,12 @@ const restoreDBInstanceToPointInTime: AppBlock = {
           name: "Iops",
           description:
             "The amount of Provisioned IOPS (input/output operations per second) to initially allocate for the DB instance.",
+          type: "number",
+          required: false,
+        },
+        StorageThroughput: {
+          name: "Storage Throughput",
+          description: "The storage throughput value for the DB instance.",
           type: "number",
           required: false,
         },
@@ -312,13 +319,6 @@ const restoreDBInstanceToPointInTime: AppBlock = {
           type: "number",
           required: false,
         },
-        SourceDBInstanceAutomatedBackupsArn: {
-          name: "Source DB Instance Automated Backups Arn",
-          description:
-            "The Amazon Resource Name (ARN) of the replicated automated backups from which to restore, for example, arn:aws:rds:us-east-1:123456789012:auto-backup:ab-L2IJCEXJP7XQ7HOJ4SIEXAMPLE.",
-          type: "string",
-          required: false,
-        },
         EnableCustomerOwnedIp: {
           name: "Enable Customer Owned Ip",
           description:
@@ -326,10 +326,16 @@ const restoreDBInstanceToPointInTime: AppBlock = {
           type: "boolean",
           required: false,
         },
-        CustomIamInstanceProfile: {
-          name: "Custom Iam Instance Profile",
+        NetworkType: {
+          name: "Network Type",
+          description: "The network type of the DB instance.",
+          type: "string",
+          required: false,
+        },
+        SourceDBInstanceAutomatedBackupsArn: {
+          name: "Source DB Instance Automated Backups Arn",
           description:
-            "The instance profile associated with the underlying Amazon EC2 instance of an RDS Custom DB instance.",
+            "The Amazon Resource Name (ARN) of the replicated automated backups from which to restore, for example, arn:aws:rds:us-east-1:123456789012:auto-backup:ab-L2IJCEXJP7XQ7HOJ4SIEXAMPLE.",
           type: "string",
           required: false,
         },
@@ -340,16 +346,11 @@ const restoreDBInstanceToPointInTime: AppBlock = {
           type: "string",
           required: false,
         },
-        NetworkType: {
-          name: "Network Type",
-          description: "The network type of the DB instance.",
+        CustomIamInstanceProfile: {
+          name: "Custom Iam Instance Profile",
+          description:
+            "The instance profile associated with the underlying Amazon EC2 instance of an RDS Custom DB instance.",
           type: "string",
-          required: false,
-        },
-        StorageThroughput: {
-          name: "Storage Throughput",
-          description: "The storage throughput value for the DB instance.",
-          type: "number",
           required: false,
         },
         AllocatedStorage: {
@@ -357,6 +358,19 @@ const restoreDBInstanceToPointInTime: AppBlock = {
           description:
             "The amount of storage (in gibibytes) to allocate initially for the DB instance.",
           type: "number",
+          required: false,
+        },
+        BackupRetentionPeriod: {
+          name: "Backup Retention Period",
+          description: "The number of days to retain automated backups.",
+          type: "number",
+          required: false,
+        },
+        PreferredBackupWindow: {
+          name: "Preferred Backup Window",
+          description:
+            "The daily time range during which automated backups are created if automated backups are enabled, as determined by the BackupRetentionPeriod parameter.",
+          type: "string",
           required: false,
         },
         DedicatedLogVolume: {
@@ -377,6 +391,73 @@ const restoreDBInstanceToPointInTime: AppBlock = {
           name: "Engine Lifecycle Support",
           description: "The life cycle type for this DB instance.",
           type: "string",
+          required: false,
+        },
+        AdditionalStorageVolumes: {
+          name: "Additional Storage Volumes",
+          description:
+            "A list of additional storage volumes to restore to the DB instance.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                VolumeName: {
+                  type: "string",
+                },
+                AllocatedStorage: {
+                  type: "number",
+                },
+                IOPS: {
+                  type: "number",
+                },
+                MaxAllocatedStorage: {
+                  type: "number",
+                },
+                StorageThroughput: {
+                  type: "number",
+                },
+                StorageType: {
+                  type: "string",
+                },
+              },
+              required: ["VolumeName"],
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
+        TagSpecifications: {
+          name: "Tag Specifications",
+          description:
+            "Tags to assign to resources associated with the DB instance.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                ResourceType: {
+                  type: "string",
+                },
+                Tags: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Key: {
+                        type: "string",
+                      },
+                      Value: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+              },
+              additionalProperties: false,
+            },
+          },
           required: false,
         },
         ManageMasterUserPassword: {
@@ -437,7 +518,7 @@ const restoreDBInstanceToPointInTime: AppBlock = {
         });
 
         const command = new RestoreDBInstanceToPointInTimeCommand(
-          commandInput as any,
+          convertTimestamps(commandInput, new Set(["RestoreTime"])) as any,
         );
         const response = await client.send(command);
 
@@ -466,9 +547,6 @@ const restoreDBInstanceToPointInTime: AppBlock = {
                 type: "string",
               },
               DBInstanceStatus: {
-                type: "string",
-              },
-              AutomaticRestartTime: {
                 type: "string",
               },
               MasterUsername: {
@@ -573,20 +651,24 @@ const restoreDBInstanceToPointInTime: AppBlock = {
                       type: "object",
                       properties: {
                         SubnetIdentifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SubnetAvailabilityZone: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubnetOutpost: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Arn: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubnetStatus: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -605,6 +687,9 @@ const restoreDBInstanceToPointInTime: AppBlock = {
                 additionalProperties: false,
               },
               PreferredMaintenanceWindow: {
+                type: "string",
+              },
+              UpgradeRolloutOrder: {
                 type: "string",
               },
               PendingModifiedValues: {
@@ -637,6 +722,9 @@ const restoreDBInstanceToPointInTime: AppBlock = {
                   Iops: {
                     type: "number",
                   },
+                  StorageThroughput: {
+                    type: "number",
+                  },
                   DBInstanceIdentifier: {
                     type: "string",
                   },
@@ -655,15 +743,13 @@ const restoreDBInstanceToPointInTime: AppBlock = {
                       LogTypesToEnable: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       LogTypesToDisable: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -675,19 +761,14 @@ const restoreDBInstanceToPointInTime: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
                     },
-                  },
-                  IAMDatabaseAuthenticationEnabled: {
-                    type: "boolean",
                   },
                   AutomationMode: {
                     type: "string",
@@ -695,17 +776,45 @@ const restoreDBInstanceToPointInTime: AppBlock = {
                   ResumeFullAutomationModeTime: {
                     type: "string",
                   },
-                  StorageThroughput: {
-                    type: "number",
+                  MultiTenant: {
+                    type: "boolean",
                   },
-                  Engine: {
-                    type: "string",
+                  IAMDatabaseAuthenticationEnabled: {
+                    type: "boolean",
                   },
                   DedicatedLogVolume: {
                     type: "boolean",
                   },
-                  MultiTenant: {
-                    type: "boolean",
+                  Engine: {
+                    type: "string",
+                  },
+                  AdditionalStorageVolumes: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      properties: {
+                        VolumeName: {
+                          type: "string",
+                        },
+                        AllocatedStorage: {
+                          type: "number",
+                        },
+                        IOPS: {
+                          type: "number",
+                        },
+                        MaxAllocatedStorage: {
+                          type: "number",
+                        },
+                        StorageThroughput: {
+                          type: "number",
+                        },
+                        StorageType: {
+                          type: "string",
+                        },
+                      },
+                      required: ["VolumeName"],
+                      additionalProperties: false,
+                    },
                   },
                 },
                 additionalProperties: false,
@@ -744,6 +853,9 @@ const restoreDBInstanceToPointInTime: AppBlock = {
                 type: "string",
               },
               Iops: {
+                type: "number",
+              },
+              StorageThroughput: {
                 type: "number",
               },
               OptionGroupMemberships: {
@@ -797,6 +909,9 @@ const restoreDBInstanceToPointInTime: AppBlock = {
               StorageType: {
                 type: "string",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               TdeCredentialArn: {
                 type: "string",
               },
@@ -844,8 +959,7 @@ const restoreDBInstanceToPointInTime: AppBlock = {
                     DnsIps: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -963,22 +1077,16 @@ const restoreDBInstanceToPointInTime: AppBlock = {
                   additionalProperties: false,
                 },
               },
-              DBInstanceAutomatedBackupsReplications: {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: {
-                    DBInstanceAutomatedBackupsArn: {
-                      type: "string",
-                    },
-                  },
-                  additionalProperties: false,
-                },
+              AutomationMode: {
+                type: "string",
+              },
+              ResumeFullAutomationModeTime: {
+                type: "string",
               },
               CustomerOwnedIpEnabled: {
                 type: "boolean",
               },
-              AwsBackupRecoveryPointArn: {
+              NetworkType: {
                 type: "string",
               },
               ActivityStreamStatus: {
@@ -996,26 +1104,44 @@ const restoreDBInstanceToPointInTime: AppBlock = {
               ActivityStreamEngineNativeAuditFieldsIncluded: {
                 type: "boolean",
               },
-              AutomationMode: {
+              AwsBackupRecoveryPointArn: {
                 type: "string",
               },
-              ResumeFullAutomationModeTime: {
+              DBInstanceAutomatedBackupsReplications: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    DBInstanceAutomatedBackupsArn: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              BackupTarget: {
+                type: "string",
+              },
+              AutomaticRestartTime: {
                 type: "string",
               },
               CustomIamInstanceProfile: {
                 type: "string",
               },
-              BackupTarget: {
-                type: "string",
-              },
-              NetworkType: {
-                type: "string",
-              },
               ActivityStreamPolicyStatus: {
                 type: "string",
               },
-              StorageThroughput: {
-                type: "number",
+              CertificateDetails: {
+                type: "object",
+                properties: {
+                  CAIdentifier: {
+                    type: "string",
+                  },
+                  ValidTill: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
               },
               DBSystemId: {
                 type: "string",
@@ -1035,23 +1161,14 @@ const restoreDBInstanceToPointInTime: AppBlock = {
                 },
                 additionalProperties: false,
               },
-              CertificateDetails: {
-                type: "object",
-                properties: {
-                  CAIdentifier: {
-                    type: "string",
-                  },
-                  ValidTill: {
-                    type: "string",
-                  },
-                },
-                additionalProperties: false,
-              },
               ReadReplicaSourceDBClusterIdentifier: {
                 type: "string",
               },
               PercentProgress: {
                 type: "string",
+              },
+              MultiTenant: {
+                type: "boolean",
               },
               DedicatedLogVolume: {
                 type: "boolean",
@@ -1059,10 +1176,40 @@ const restoreDBInstanceToPointInTime: AppBlock = {
               IsStorageConfigUpgradeAvailable: {
                 type: "boolean",
               },
-              MultiTenant: {
-                type: "boolean",
-              },
               EngineLifecycleSupport: {
+                type: "string",
+              },
+              AdditionalStorageVolumes: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    VolumeName: {
+                      type: "string",
+                    },
+                    StorageVolumeStatus: {
+                      type: "string",
+                    },
+                    AllocatedStorage: {
+                      type: "number",
+                    },
+                    IOPS: {
+                      type: "number",
+                    },
+                    MaxAllocatedStorage: {
+                      type: "number",
+                    },
+                    StorageThroughput: {
+                      type: "number",
+                    },
+                    StorageType: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              StorageVolumeStatus: {
                 type: "string",
               },
             },

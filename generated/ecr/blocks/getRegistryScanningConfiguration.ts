@@ -106,7 +106,12 @@ const getRegistryScanningConfiguration: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          filter: {},
+                          filterType: {},
+                        },
+                        required: ["filter", "filterType"],
+                        additionalProperties: false,
                       },
                     },
                   },

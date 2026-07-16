@@ -161,20 +161,16 @@ const setSubnets: AppBlock = {
                     type: "object",
                     properties: {
                       IpAddress: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AllocationId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       PrivateIPv4Address: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IPv6Address: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

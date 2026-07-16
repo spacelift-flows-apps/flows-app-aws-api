@@ -133,7 +133,7 @@ const listAliases: AppBlock = {
                     AdditionalVersionWeights: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "number",
                       },
                     },
                   },

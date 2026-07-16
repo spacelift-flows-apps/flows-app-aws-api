@@ -4,6 +4,7 @@ import {
   RestoreDBClusterToPointInTimeCommand,
 } from "@aws-sdk/client-rds";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const restoreDBClusterToPointInTime: AppBlock = {
   name: "Restore DB Cluster To Point In Time",
@@ -175,6 +176,68 @@ const restoreDBClusterToPointInTime: AppBlock = {
           type: "string",
           required: false,
         },
+        DBClusterInstanceClass: {
+          name: "DB Cluster Instance Class",
+          description:
+            "The compute and memory capacity of the each DB instance in the Multi-AZ DB cluster, for example db.",
+          type: "string",
+          required: false,
+        },
+        StorageType: {
+          name: "Storage Type",
+          description:
+            "Specifies the storage type to be associated with the DB cluster.",
+          type: "string",
+          required: false,
+        },
+        PubliclyAccessible: {
+          name: "Publicly Accessible",
+          description:
+            "Specifies whether the DB cluster is publicly accessible.",
+          type: "boolean",
+          required: false,
+        },
+        Iops: {
+          name: "Iops",
+          description:
+            "The amount of Provisioned IOPS (input/output operations per second) to be initially allocated for each DB instance in the Multi-AZ DB cluster.",
+          type: "number",
+          required: false,
+        },
+        NetworkType: {
+          name: "Network Type",
+          description: "The network type of the DB cluster.",
+          type: "string",
+          required: false,
+        },
+        SourceDbClusterResourceId: {
+          name: "Source Db Cluster Resource Id",
+          description:
+            "The resource ID of the source DB cluster from which to restore.",
+          type: "string",
+          required: false,
+        },
+        ServerlessV2ScalingConfiguration: {
+          name: "Serverless V2Scaling Configuration",
+          description:
+            "Contains the scaling configuration of an Aurora Serverless v2 DB cluster.",
+          type: {
+            type: "object",
+            properties: {
+              MinCapacity: {
+                type: "number",
+              },
+              MaxCapacity: {
+                type: "number",
+              },
+              SecondsUntilAutoPause: {
+                type: "number",
+              },
+            },
+            additionalProperties: false,
+          },
+          required: false,
+        },
         ScalingConfiguration: {
           name: "Scaling Configuration",
           description:
@@ -208,68 +271,6 @@ const restoreDBClusterToPointInTime: AppBlock = {
         EngineMode: {
           name: "Engine Mode",
           description: "The engine mode of the new cluster.",
-          type: "string",
-          required: false,
-        },
-        DBClusterInstanceClass: {
-          name: "DB Cluster Instance Class",
-          description:
-            "The compute and memory capacity of the each DB instance in the Multi-AZ DB cluster, for example db.",
-          type: "string",
-          required: false,
-        },
-        StorageType: {
-          name: "Storage Type",
-          description:
-            "Specifies the storage type to be associated with the DB cluster.",
-          type: "string",
-          required: false,
-        },
-        PubliclyAccessible: {
-          name: "Publicly Accessible",
-          description:
-            "Specifies whether the DB cluster is publicly accessible.",
-          type: "boolean",
-          required: false,
-        },
-        Iops: {
-          name: "Iops",
-          description:
-            "The amount of Provisioned IOPS (input/output operations per second) to be initially allocated for each DB instance in the Multi-AZ DB cluster.",
-          type: "number",
-          required: false,
-        },
-        ServerlessV2ScalingConfiguration: {
-          name: "Serverless V2Scaling Configuration",
-          description:
-            "Contains the scaling configuration of an Aurora Serverless v2 DB cluster.",
-          type: {
-            type: "object",
-            properties: {
-              MinCapacity: {
-                type: "number",
-              },
-              MaxCapacity: {
-                type: "number",
-              },
-              SecondsUntilAutoPause: {
-                type: "number",
-              },
-            },
-            additionalProperties: false,
-          },
-          required: false,
-        },
-        NetworkType: {
-          name: "Network Type",
-          description: "The network type of the DB cluster.",
-          type: "string",
-          required: false,
-        },
-        SourceDbClusterResourceId: {
-          name: "Source Db Cluster Resource Id",
-          description:
-            "The resource ID of the source DB cluster from which to restore.",
           type: "string",
           required: false,
         },
@@ -328,10 +329,71 @@ const restoreDBClusterToPointInTime: AppBlock = {
           type: "number",
           required: false,
         },
+        BackupRetentionPeriod: {
+          name: "Backup Retention Period",
+          description:
+            "The number of days for which automated backups are retained.",
+          type: "number",
+          required: false,
+        },
+        PreferredBackupWindow: {
+          name: "Preferred Backup Window",
+          description:
+            "The daily time range during which automated backups are created if automated backups are enabled, using the BackupRetentionPeriod parameter.",
+          type: "string",
+          required: false,
+        },
         EngineLifecycleSupport: {
           name: "Engine Lifecycle Support",
           description: "The life cycle type for this DB cluster.",
           type: "string",
+          required: false,
+        },
+        TagSpecifications: {
+          name: "Tag Specifications",
+          description:
+            "Tags to assign to resources associated with the DB cluster.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                ResourceType: {
+                  type: "string",
+                },
+                Tags: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Key: {
+                        type: "string",
+                      },
+                      Value: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+              },
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
+        EnableVPCNetworking: {
+          name: "Enable VPC Networking",
+          description:
+            "Specifies whether to enable VPC networking for the restored DB cluster.",
+          type: "boolean",
+          required: false,
+        },
+        EnableInternetAccessGateway: {
+          name: "Enable Internet Access Gateway",
+          description:
+            "Specifies that the restored DB cluster should use internet-based connectivity through an internet access gateway.",
+          type: "boolean",
           required: false,
         },
       },
@@ -378,7 +440,7 @@ const restoreDBClusterToPointInTime: AppBlock = {
         });
 
         const command = new RestoreDBClusterToPointInTimeCommand(
-          commandInput as any,
+          convertTimestamps(commandInput, new Set(["RestoreToTime"])) as any,
         );
         const response = await client.send(command);
 
@@ -425,9 +487,6 @@ const restoreDBClusterToPointInTime: AppBlock = {
                 type: "string",
               },
               Status: {
-                type: "string",
-              },
-              AutomaticRestartTime: {
                 type: "string",
               },
               PercentProgress: {
@@ -485,6 +544,9 @@ const restoreDBClusterToPointInTime: AppBlock = {
                 type: "string",
               },
               PreferredMaintenanceWindow: {
+                type: "string",
+              },
+              UpgradeRolloutOrder: {
                 type: "string",
               },
               ReplicationSourceIdentifier: {
@@ -559,6 +621,9 @@ const restoreDBClusterToPointInTime: AppBlock = {
               StorageEncrypted: {
                 type: "boolean",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               KmsKeyId: {
                 type: "string",
               },
@@ -613,6 +678,81 @@ const restoreDBClusterToPointInTime: AppBlock = {
               Capacity: {
                 type: "number",
               },
+              PendingModifiedValues: {
+                type: "object",
+                properties: {
+                  PendingCloudwatchLogsExports: {
+                    type: "object",
+                    properties: {
+                      LogTypesToEnable: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      LogTypesToDisable: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                  DBClusterIdentifier: {
+                    type: "string",
+                  },
+                  MasterUserPassword: {
+                    type: "string",
+                  },
+                  IAMDatabaseAuthenticationEnabled: {
+                    type: "boolean",
+                  },
+                  EngineVersion: {
+                    type: "string",
+                  },
+                  BackupRetentionPeriod: {
+                    type: "number",
+                  },
+                  StorageType: {
+                    type: "string",
+                  },
+                  AllocatedStorage: {
+                    type: "number",
+                  },
+                  RdsCustomClusterConfiguration: {
+                    type: "object",
+                    properties: {
+                      InterconnectSubnetId: {
+                        type: "string",
+                      },
+                      TransitGatewayMulticastDomainId: {
+                        type: "string",
+                      },
+                      ReplicaMode: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                  Iops: {
+                    type: "number",
+                  },
+                  CertificateDetails: {
+                    type: "object",
+                    properties: {
+                      CAIdentifier: {
+                        type: "string",
+                      },
+                      ValidTill: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                additionalProperties: false,
+              },
               EngineMode: {
                 type: "string",
               },
@@ -654,6 +794,27 @@ const restoreDBClusterToPointInTime: AppBlock = {
                   },
                 },
                 additionalProperties: false,
+              },
+              DBClusterInstanceClass: {
+                type: "string",
+              },
+              StorageType: {
+                type: "string",
+              },
+              Iops: {
+                type: "number",
+              },
+              StorageThroughput: {
+                type: "number",
+              },
+              IOOptimizedNextAllowedModificationTime: {
+                type: "string",
+              },
+              PubliclyAccessible: {
+                type: "boolean",
+              },
+              AutoMinorVersionUpgrade: {
+                type: "boolean",
               },
               DeletionProtection: {
                 type: "boolean",
@@ -705,8 +866,7 @@ const restoreDBClusterToPointInTime: AppBlock = {
                     DnsIps: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -737,97 +897,29 @@ const restoreDBClusterToPointInTime: AppBlock = {
               GlobalWriteForwardingRequested: {
                 type: "boolean",
               },
-              PendingModifiedValues: {
+              NetworkType: {
+                type: "string",
+              },
+              AutomaticRestartTime: {
+                type: "string",
+              },
+              ServerlessV2ScalingConfiguration: {
                 type: "object",
                 properties: {
-                  PendingCloudwatchLogsExports: {
-                    type: "object",
-                    properties: {
-                      LogTypesToEnable: {
-                        type: "array",
-                        items: {
-                          type: "object",
-                          additionalProperties: true,
-                        },
-                      },
-                      LogTypesToDisable: {
-                        type: "array",
-                        items: {
-                          type: "object",
-                          additionalProperties: true,
-                        },
-                      },
-                    },
-                    additionalProperties: false,
-                  },
-                  DBClusterIdentifier: {
-                    type: "string",
-                  },
-                  MasterUserPassword: {
-                    type: "string",
-                  },
-                  IAMDatabaseAuthenticationEnabled: {
-                    type: "boolean",
-                  },
-                  EngineVersion: {
-                    type: "string",
-                  },
-                  BackupRetentionPeriod: {
+                  MinCapacity: {
                     type: "number",
                   },
-                  AllocatedStorage: {
+                  MaxCapacity: {
                     type: "number",
                   },
-                  RdsCustomClusterConfiguration: {
-                    type: "object",
-                    properties: {
-                      InterconnectSubnetId: {
-                        type: "string",
-                      },
-                      TransitGatewayMulticastDomainId: {
-                        type: "string",
-                      },
-                      ReplicaMode: {
-                        type: "string",
-                      },
-                    },
-                    additionalProperties: false,
-                  },
-                  Iops: {
+                  SecondsUntilAutoPause: {
                     type: "number",
-                  },
-                  StorageType: {
-                    type: "string",
-                  },
-                  CertificateDetails: {
-                    type: "object",
-                    properties: {
-                      CAIdentifier: {
-                        type: "string",
-                      },
-                      ValidTill: {
-                        type: "string",
-                      },
-                    },
-                    additionalProperties: false,
                   },
                 },
                 additionalProperties: false,
               },
-              DBClusterInstanceClass: {
+              ServerlessV2PlatformVersion: {
                 type: "string",
-              },
-              StorageType: {
-                type: "string",
-              },
-              Iops: {
-                type: "number",
-              },
-              PubliclyAccessible: {
-                type: "boolean",
-              },
-              AutoMinorVersionUpgrade: {
-                type: "boolean",
               },
               MonitoringInterval: {
                 type: "number",
@@ -847,24 +939,6 @@ const restoreDBClusterToPointInTime: AppBlock = {
               PerformanceInsightsRetentionPeriod: {
                 type: "number",
               },
-              ServerlessV2ScalingConfiguration: {
-                type: "object",
-                properties: {
-                  MinCapacity: {
-                    type: "number",
-                  },
-                  MaxCapacity: {
-                    type: "number",
-                  },
-                  SecondsUntilAutoPause: {
-                    type: "number",
-                  },
-                },
-                additionalProperties: false,
-              },
-              NetworkType: {
-                type: "string",
-              },
               DBSystemId: {
                 type: "string",
               },
@@ -882,9 +956,6 @@ const restoreDBClusterToPointInTime: AppBlock = {
                   },
                 },
                 additionalProperties: false,
-              },
-              IOOptimizedNextAllowedModificationTime: {
-                type: "string",
               },
               LocalWriteForwardingStatus: {
                 type: "string",
@@ -904,9 +975,6 @@ const restoreDBClusterToPointInTime: AppBlock = {
                 },
                 additionalProperties: false,
               },
-              StorageThroughput: {
-                type: "number",
-              },
               ClusterScalabilityType: {
                 type: "string",
               },
@@ -924,6 +992,12 @@ const restoreDBClusterToPointInTime: AppBlock = {
               },
               EngineLifecycleSupport: {
                 type: "string",
+              },
+              VPCNetworkingEnabled: {
+                type: "boolean",
+              },
+              InternetAccessGatewayEnabled: {
+                type: "boolean",
               },
             },
             additionalProperties: false,

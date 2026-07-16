@@ -160,40 +160,34 @@ const describeOptionGroups: AppBlock = {
                     type: "object",
                     properties: {
                       OptionName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       OptionDescription: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Persistent: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       Permanent: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       Port: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       OptionVersion: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       OptionSettings: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       DBSecurityGroupMemberships: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       VpcSecurityGroupMemberships: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,

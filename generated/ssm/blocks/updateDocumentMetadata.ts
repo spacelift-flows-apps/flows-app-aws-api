@@ -4,7 +4,7 @@ import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 const updateDocumentMetadata: AppBlock = {
   name: "Update Document Metadata",
-  description: `Updates information related to approval reviews for a specific version of a change template in Change Manager.`,
+  description: `Amazon Web Services Systems Manager Change Manager is no longer open to new customers.`,
   inputs: {
     default: {
       config: {

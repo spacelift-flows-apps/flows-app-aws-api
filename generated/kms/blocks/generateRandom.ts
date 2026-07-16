@@ -37,7 +37,7 @@ const generateRandom: AppBlock = {
         Recipient: {
           name: "Recipient",
           description:
-            "A signed attestation document from an Amazon Web Services Nitro enclave and the encryption algorithm to use with the enclave's public key.",
+            "A signed attestation document from an Amazon Web Services Nitro enclave or NitroTPM, and the encryption algorithm to use with the public key in the attestation document.",
           type: {
             type: "object",
             properties: {
@@ -117,7 +117,7 @@ const generateRandom: AppBlock = {
           CiphertextForRecipient: {
             type: "string",
             description:
-              "The plaintext random bytes encrypted with the public key from the Nitro enclave.",
+              "The plaintext random bytes encrypted with the public key from the attestation document.",
           },
         },
         additionalProperties: true,

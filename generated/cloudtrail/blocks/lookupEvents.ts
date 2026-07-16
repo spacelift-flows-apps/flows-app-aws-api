@@ -4,6 +4,7 @@ import {
   LookupEventsCommand,
 } from "@aws-sdk/client-cloudtrail";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const lookupEvents: AppBlock = {
   name: "Lookup Events",
@@ -121,7 +122,12 @@ const lookupEvents: AppBlock = {
           }),
         });
 
-        const command = new LookupEventsCommand(commandInput as any);
+        const command = new LookupEventsCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});
@@ -168,12 +174,10 @@ const lookupEvents: AppBlock = {
                     type: "object",
                     properties: {
                       ResourceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ResourceName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

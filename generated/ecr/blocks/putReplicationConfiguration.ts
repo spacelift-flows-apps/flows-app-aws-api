@@ -40,14 +40,24 @@ const putReplicationConfiguration: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          region: {},
+                          registryId: {},
+                        },
+                        required: ["region", "registryId"],
+                        additionalProperties: false,
                       },
                     },
                     repositoryFilters: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          filter: {},
+                          filterType: {},
+                        },
+                        required: ["filter", "filterType"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -133,14 +143,24 @@ const putReplicationConfiguration: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          region: {},
+                          registryId: {},
+                        },
+                        required: ["region", "registryId"],
+                        additionalProperties: false,
                       },
                     },
                     repositoryFilters: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          filter: {},
+                          filterType: {},
+                        },
+                        required: ["filter", "filterType"],
+                        additionalProperties: false,
                       },
                     },
                   },

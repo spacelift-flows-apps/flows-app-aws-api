@@ -96,7 +96,40 @@ const getLogObject: AppBlock = {
         type: "object",
         properties: {
           fieldStream: {
-            type: "string",
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  fields: {
+                    type: "object",
+                    properties: {
+                      data: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["fields"],
+                additionalProperties: false,
+              },
+              {
+                type: "object",
+                properties: {
+                  InternalStreamingException: {
+                    type: "object",
+                    properties: {
+                      message: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+                required: ["InternalStreamingException"],
+                additionalProperties: false,
+              },
+            ],
             description:
               "A stream of structured log data returned by the GetLogObject operation.",
           },

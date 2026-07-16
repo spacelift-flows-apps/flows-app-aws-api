@@ -209,6 +209,9 @@ const describeDBInstanceAutomatedBackups: AppBlock = {
                 Iops: {
                   type: "number",
                 },
+                StorageThroughput: {
+                  type: "number",
+                },
                 OptionGroupName: {
                   type: "string",
                 },
@@ -217,6 +220,9 @@ const describeDBInstanceAutomatedBackups: AppBlock = {
                 },
                 Encrypted: {
                   type: "boolean",
+                },
+                StorageEncryptionType: {
+                  type: "string",
                 },
                 StorageType: {
                   type: "string",
@@ -233,6 +239,9 @@ const describeDBInstanceAutomatedBackups: AppBlock = {
                 BackupRetentionPeriod: {
                   type: "number",
                 },
+                PreferredBackupWindow: {
+                  type: "string",
+                },
                 DBInstanceAutomatedBackupsArn: {
                   type: "string",
                 },
@@ -242,8 +251,7 @@ const describeDBInstanceAutomatedBackups: AppBlock = {
                     type: "object",
                     properties: {
                       DBInstanceAutomatedBackupsArn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -252,17 +260,57 @@ const describeDBInstanceAutomatedBackups: AppBlock = {
                 BackupTarget: {
                   type: "string",
                 },
-                StorageThroughput: {
-                  type: "number",
+                MultiTenant: {
+                  type: "boolean",
                 },
                 AwsBackupRecoveryPointArn: {
                   type: "string",
                 },
+                TagList: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Key: {
+                        type: "string",
+                      },
+                      Value: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
                 DedicatedLogVolume: {
                   type: "boolean",
                 },
-                MultiTenant: {
-                  type: "boolean",
+                AdditionalStorageVolumes: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      VolumeName: {
+                        type: "string",
+                      },
+                      AllocatedStorage: {
+                        type: "number",
+                      },
+                      IOPS: {
+                        type: "number",
+                      },
+                      MaxAllocatedStorage: {
+                        type: "number",
+                      },
+                      StorageThroughput: {
+                        type: "number",
+                      },
+                      StorageType: {
+                        type: "string",
+                      },
+                    },
+                    required: ["VolumeName"],
+                    additionalProperties: false,
+                  },
                 },
               },
               additionalProperties: false,

@@ -26,7 +26,7 @@ const createClientVpnEndpoint: AppBlock = {
           description:
             "The IPv4 address range, in CIDR notation, from which to assign client IP addresses.",
           type: "string",
-          required: true,
+          required: false,
         },
         ServerCertificateArn: {
           name: "Server Certificate Arn",
@@ -173,12 +173,10 @@ const createClientVpnEndpoint: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -278,6 +276,46 @@ const createClientVpnEndpoint: AppBlock = {
           description:
             "Indicates whether the client VPN session is disconnected after the maximum timeout specified in SessionTimeoutHours is reached.",
           type: "boolean",
+          required: false,
+        },
+        EndpointIpAddressType: {
+          name: "Endpoint Ip Address Type",
+          description: "The IP address type for the Client VPN endpoint.",
+          type: "string",
+          required: false,
+        },
+        TrafficIpAddressType: {
+          name: "Traffic Ip Address Type",
+          description:
+            "The IP address type for traffic within the Client VPN tunnel.",
+          type: "string",
+          required: false,
+        },
+        TransitGatewayConfiguration: {
+          name: "Transit Gateway Configuration",
+          description:
+            "The Transit Gateway configuration for the Client VPN endpoint.",
+          type: {
+            type: "object",
+            properties: {
+              TransitGatewayId: {
+                type: "string",
+              },
+              AvailabilityZones: {
+                type: "array",
+                items: {
+                  type: "string",
+                },
+              },
+              AvailabilityZoneIds: {
+                type: "array",
+                items: {
+                  type: "string",
+                },
+              },
+            },
+            additionalProperties: false,
+          },
           required: false,
         },
       },

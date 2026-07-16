@@ -75,6 +75,46 @@ const createVpc: AppBlock = {
           type: "string",
           required: false,
         },
+        VpcEncryptionControl: {
+          name: "Vpc Encryption Control",
+          description:
+            "Specifies the encryption control configuration to apply to the VPC during creation.",
+          type: {
+            type: "object",
+            properties: {
+              Mode: {
+                type: "string",
+              },
+              InternetGatewayExclusion: {
+                type: "string",
+              },
+              EgressOnlyInternetGatewayExclusion: {
+                type: "string",
+              },
+              NatGatewayExclusion: {
+                type: "string",
+              },
+              VirtualPrivateGatewayExclusion: {
+                type: "string",
+              },
+              VpcPeeringExclusion: {
+                type: "string",
+              },
+              LambdaExclusion: {
+                type: "string",
+              },
+              VpcLatticeExclusion: {
+                type: "string",
+              },
+              ElasticFileSystemExclusion: {
+                type: "string",
+              },
+            },
+            required: ["Mode"],
+            additionalProperties: false,
+          },
+          required: false,
+        },
         TagSpecifications: {
           name: "Tag Specifications",
           description: "The tags to assign to the VPC.",
@@ -92,12 +132,10 @@ const createVpc: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -212,12 +250,10 @@ const createVpc: AppBlock = {
                       type: "object",
                       properties: {
                         State: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         StatusMessage: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -253,12 +289,10 @@ const createVpc: AppBlock = {
                       type: "object",
                       properties: {
                         State: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         StatusMessage: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -295,12 +329,10 @@ const createVpc: AppBlock = {
                         type: "object",
                         properties: {
                           State: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           StateMessage: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         additionalProperties: false,
@@ -309,12 +341,10 @@ const createVpc: AppBlock = {
                         type: "object",
                         properties: {
                           State: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           StateMessage: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         additionalProperties: false,
@@ -323,12 +353,10 @@ const createVpc: AppBlock = {
                         type: "object",
                         properties: {
                           State: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           StateMessage: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         additionalProperties: false,
@@ -337,12 +365,10 @@ const createVpc: AppBlock = {
                         type: "object",
                         properties: {
                           State: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           StateMessage: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                         },
                         additionalProperties: false,
@@ -351,12 +377,46 @@ const createVpc: AppBlock = {
                         type: "object",
                         properties: {
                           State: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
                           },
                           StateMessage: {
-                            type: "object",
-                            additionalProperties: true,
+                            type: "string",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      Lambda: {
+                        type: "object",
+                        properties: {
+                          State: {
+                            type: "string",
+                          },
+                          StateMessage: {
+                            type: "string",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      VpcLattice: {
+                        type: "object",
+                        properties: {
+                          State: {
+                            type: "string",
+                          },
+                          StateMessage: {
+                            type: "string",
+                          },
+                        },
+                        additionalProperties: false,
+                      },
+                      ElasticFileSystem: {
+                        type: "object",
+                        properties: {
+                          State: {
+                            type: "string",
+                          },
+                          StateMessage: {
+                            type: "string",
                           },
                         },
                         additionalProperties: false,
@@ -370,12 +430,10 @@ const createVpc: AppBlock = {
                       type: "object",
                       properties: {
                         Key: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

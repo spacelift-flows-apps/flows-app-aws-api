@@ -139,7 +139,11 @@ const authorizeClusterSecurityGroupIngress: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -161,7 +165,11 @@ const authorizeClusterSecurityGroupIngress: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },

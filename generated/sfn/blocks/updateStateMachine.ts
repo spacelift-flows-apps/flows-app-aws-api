@@ -63,8 +63,7 @@ const updateStateMachine: AppBlock = {
                       type: "object",
                       properties: {
                         logGroupArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

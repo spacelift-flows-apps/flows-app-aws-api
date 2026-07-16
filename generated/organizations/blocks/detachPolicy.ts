@@ -26,15 +26,14 @@ const detachPolicy: AppBlock = {
         },
         PolicyId: {
           name: "Policy Id",
-          description:
-            "The unique identifier (ID) of the policy you want to detach.",
+          description: "ID for the policy you want to detach.",
           type: "string",
           required: true,
         },
         TargetId: {
           name: "Target Id",
           description:
-            "The unique identifier (ID) of the root, OU, or account that you want to detach the policy from.",
+            "ID for the root, OU, or account that you want to detach the policy from.",
           type: "string",
           required: true,
         },

@@ -193,8 +193,7 @@ const associateIdentityProviderConfig: AppBlock = {
                     resourceIds: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

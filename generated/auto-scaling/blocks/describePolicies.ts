@@ -161,16 +161,13 @@ const describePolicies: AppBlock = {
                     type: "object",
                     properties: {
                       MetricIntervalLowerBound: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       MetricIntervalUpperBound: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       ScalingAdjustment: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                     },
                     required: ["ScalingAdjustment"],
@@ -189,12 +186,10 @@ const describePolicies: AppBlock = {
                     type: "object",
                     properties: {
                       AlarmName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AlarmARN: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -207,12 +202,10 @@ const describePolicies: AppBlock = {
                       type: "object",
                       properties: {
                         PredefinedMetricType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ResourceLabel: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["PredefinedMetricType"],
@@ -222,32 +215,27 @@ const describePolicies: AppBlock = {
                       type: "object",
                       properties: {
                         MetricName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Namespace: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Dimensions: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         Statistic: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Unit: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Period: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Metrics: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -272,7 +260,17 @@ const describePolicies: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          TargetValue: {},
+                          PredefinedMetricPairSpecification: {},
+                          PredefinedScalingMetricSpecification: {},
+                          PredefinedLoadMetricSpecification: {},
+                          CustomizedScalingMetricSpecification: {},
+                          CustomizedLoadMetricSpecification: {},
+                          CustomizedCapacityMetricSpecification: {},
+                        },
+                        required: ["TargetValue"],
+                        additionalProperties: false,
                       },
                     },
                     Mode: {

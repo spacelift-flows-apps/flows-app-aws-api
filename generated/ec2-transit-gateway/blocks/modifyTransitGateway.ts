@@ -78,6 +78,9 @@ const modifyTransitGateway: AppBlock = {
               AmazonSideAsn: {
                 type: "number",
               },
+              EncryptionSupport: {
+                type: "string",
+              },
             },
             additionalProperties: false,
           },
@@ -207,6 +210,18 @@ const modifyTransitGateway: AppBlock = {
                   },
                   MulticastSupport: {
                     type: "string",
+                  },
+                  EncryptionSupport: {
+                    type: "object",
+                    properties: {
+                      EncryptionState: {
+                        type: "string",
+                      },
+                      StateMessage: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
                   },
                 },
                 additionalProperties: false,

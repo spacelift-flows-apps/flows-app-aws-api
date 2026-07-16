@@ -138,6 +138,15 @@ const modifyVpcEndpoint: AppBlock = {
               PrivateDnsOnlyForInboundResolverEndpoint: {
                 type: "boolean",
               },
+              PrivateDnsPreference: {
+                type: "string",
+              },
+              PrivateDnsSpecifiedDomains: {
+                type: "array",
+                items: {
+                  type: "string",
+                },
+              },
             },
             additionalProperties: false,
           },

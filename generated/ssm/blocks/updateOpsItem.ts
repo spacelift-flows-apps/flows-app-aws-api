@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { SSMClient, UpdateOpsItemCommand } from "@aws-sdk/client-ssm";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const updateOpsItem: AppBlock = {
   name: "Update Ops Item",
@@ -202,7 +203,17 @@ const updateOpsItem: AppBlock = {
           }),
         });
 
-        const command = new UpdateOpsItemCommand(commandInput as any);
+        const command = new UpdateOpsItemCommand(
+          convertTimestamps(
+            commandInput,
+            new Set([
+              "ActualStartTime",
+              "ActualEndTime",
+              "PlannedStartTime",
+              "PlannedEndTime",
+            ]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

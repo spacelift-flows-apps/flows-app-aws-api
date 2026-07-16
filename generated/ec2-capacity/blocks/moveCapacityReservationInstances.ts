@@ -211,6 +211,17 @@ const moveCapacityReservationInstances: AppBlock = {
                     Count: {
                       type: "number",
                     },
+                    AllocationMetadata: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          Key: {},
+                          Value: {},
+                        },
+                        additionalProperties: false,
+                      },
+                    },
                   },
                   additionalProperties: false,
                 },
@@ -238,6 +249,42 @@ const moveCapacityReservationInstances: AppBlock = {
               },
               CapacityBlockId: {
                 type: "string",
+              },
+              Interruptible: {
+                type: "boolean",
+              },
+              InterruptibleCapacityAllocation: {
+                type: "object",
+                properties: {
+                  InstanceCount: {
+                    type: "number",
+                  },
+                  TargetInstanceCount: {
+                    type: "number",
+                  },
+                  Status: {
+                    type: "string",
+                  },
+                  InterruptibleCapacityReservationId: {
+                    type: "string",
+                  },
+                  InterruptionType: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
+              },
+              InterruptionInfo: {
+                type: "object",
+                properties: {
+                  SourceCapacityReservationId: {
+                    type: "string",
+                  },
+                  InterruptionType: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
               },
             },
             additionalProperties: false,
@@ -335,6 +382,17 @@ const moveCapacityReservationInstances: AppBlock = {
                     Count: {
                       type: "number",
                     },
+                    AllocationMetadata: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          Key: {},
+                          Value: {},
+                        },
+                        additionalProperties: false,
+                      },
+                    },
                   },
                   additionalProperties: false,
                 },
@@ -362,6 +420,42 @@ const moveCapacityReservationInstances: AppBlock = {
               },
               CapacityBlockId: {
                 type: "string",
+              },
+              Interruptible: {
+                type: "boolean",
+              },
+              InterruptibleCapacityAllocation: {
+                type: "object",
+                properties: {
+                  InstanceCount: {
+                    type: "number",
+                  },
+                  TargetInstanceCount: {
+                    type: "number",
+                  },
+                  Status: {
+                    type: "string",
+                  },
+                  InterruptibleCapacityReservationId: {
+                    type: "string",
+                  },
+                  InterruptionType: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
+              },
+              InterruptionInfo: {
+                type: "object",
+                properties: {
+                  SourceCapacityReservationId: {
+                    type: "string",
+                  },
+                  InterruptionType: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
               },
             },
             additionalProperties: false,

@@ -148,28 +148,23 @@ const updateContainerInstancesState: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       doubleValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       longValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       integerValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       stringSetValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -181,28 +176,23 @@ const updateContainerInstancesState: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       doubleValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       longValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       integerValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       stringSetValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -232,20 +222,16 @@ const updateContainerInstancesState: AppBlock = {
                     type: "object",
                     properties: {
                       name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       targetType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       targetId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["name"],
@@ -261,20 +247,17 @@ const updateContainerInstancesState: AppBlock = {
                     type: "object",
                     properties: {
                       id: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       type: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       details: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -286,12 +269,10 @@ const updateContainerInstancesState: AppBlock = {
                     type: "object",
                     properties: {
                       key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -307,7 +288,14 @@ const updateContainerInstancesState: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          type: {},
+                          status: {},
+                          statusReason: {},
+                          lastUpdated: {},
+                          lastStatusChange: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },

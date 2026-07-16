@@ -169,7 +169,11 @@ const getReservedNodeExchangeConfigurationOptions: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          RecurringChargeAmount: {},
+                          RecurringChargeFrequency: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ReservedNodeOfferingType: {
@@ -209,7 +213,11 @@ const getReservedNodeExchangeConfigurationOptions: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          RecurringChargeAmount: {},
+                          RecurringChargeFrequency: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ReservedNodeOfferingType: {

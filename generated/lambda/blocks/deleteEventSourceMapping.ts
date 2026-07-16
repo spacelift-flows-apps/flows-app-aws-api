@@ -190,7 +190,7 @@ const deleteEventSourceMapping: AppBlock = {
             },
             additionalProperties: false,
             description:
-              "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka event sources only) A configuration object that specifies the destination of an event after Lambda processes it.",
+              "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) A configuration object that specifies the destination of an event after Lambda processes it.",
           },
           Topics: {
             type: "array",
@@ -241,17 +241,17 @@ const deleteEventSourceMapping: AppBlock = {
           MaximumRecordAgeInSeconds: {
             type: "number",
             description:
-              "(Kinesis and DynamoDB Streams only) Discard records older than the specified age.",
+              "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records older than the specified age.",
           },
           BisectBatchOnFunctionError: {
             type: "boolean",
             description:
-              "(Kinesis and DynamoDB Streams only) If the function returns an error, split the batch in two and retry.",
+              "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) If the function returns an error, split the batch in two and retry.",
           },
           MaximumRetryAttempts: {
             type: "number",
             description:
-              "(Kinesis and DynamoDB Streams only) Discard records after the specified number of retries.",
+              "(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records after the specified number of retries.",
           },
           TumblingWindowInSeconds: {
             type: "number",
@@ -264,7 +264,7 @@ const deleteEventSourceMapping: AppBlock = {
               type: "string",
             },
             description:
-              "(Kinesis, DynamoDB Streams, and Amazon SQS) A list of current response type enums applied to the event source mapping.",
+              "(Kinesis, DynamoDB Streams, Amazon MSK, self-managed Apache Kafka, and Amazon SQS) A list of current response type enums applied to the event source mapping.",
           },
           AmazonManagedKafkaEventSourceConfig: {
             type: "object",
@@ -287,12 +287,10 @@ const deleteEventSourceMapping: AppBlock = {
                       type: "object",
                       properties: {
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         URI: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -304,8 +302,7 @@ const deleteEventSourceMapping: AppBlock = {
                       type: "object",
                       properties: {
                         Attribute: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -340,12 +337,10 @@ const deleteEventSourceMapping: AppBlock = {
                       type: "object",
                       properties: {
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         URI: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -357,8 +352,7 @@ const deleteEventSourceMapping: AppBlock = {
                       type: "object",
                       properties: {
                         Attribute: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -437,6 +431,17 @@ const deleteEventSourceMapping: AppBlock = {
             additionalProperties: false,
             description: "The metrics configuration for your event source.",
           },
+          LoggingConfig: {
+            type: "object",
+            properties: {
+              SystemLogLevel: {
+                type: "string",
+              },
+            },
+            additionalProperties: false,
+            description:
+              "(Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source.",
+          },
           ProvisionedPollerConfig: {
             type: "object",
             properties: {
@@ -446,10 +451,13 @@ const deleteEventSourceMapping: AppBlock = {
               MaximumPollers: {
                 type: "number",
               },
+              PollerGroupName: {
+                type: "string",
+              },
             },
             additionalProperties: false,
             description:
-              "(Amazon MSK and self-managed Apache Kafka only) The provisioned mode configuration for the event source.",
+              "(Amazon SQS, Amazon MSK, and self-managed Apache Kafka only) The provisioned mode configuration for the event source.",
           },
         },
         additionalProperties: true,

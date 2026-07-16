@@ -112,6 +112,13 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
           type: "number",
           required: false,
         },
+        StorageThroughput: {
+          name: "Storage Throughput",
+          description:
+            "Specifies the storage throughput value for the DB instance.",
+          type: "number",
+          required: false,
+        },
         OptionGroupName: {
           name: "Option Group Name",
           description:
@@ -294,10 +301,9 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
           type: "boolean",
           required: false,
         },
-        CustomIamInstanceProfile: {
-          name: "Custom Iam Instance Profile",
-          description:
-            "The instance profile associated with the underlying Amazon EC2 instance of an RDS Custom DB instance.",
+        NetworkType: {
+          name: "Network Type",
+          description: "The network type of the DB instance.",
           type: "string",
           required: false,
         },
@@ -308,16 +314,17 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
           type: "string",
           required: false,
         },
-        NetworkType: {
-          name: "Network Type",
-          description: "The network type of the DB instance.",
+        CustomIamInstanceProfile: {
+          name: "Custom Iam Instance Profile",
+          description:
+            "The instance profile associated with the underlying Amazon EC2 instance of an RDS Custom DB instance.",
           type: "string",
           required: false,
         },
-        StorageThroughput: {
-          name: "Storage Throughput",
+        AllocatedStorage: {
+          name: "Allocated Storage",
           description:
-            "Specifies the storage throughput value for the DB instance.",
+            "The amount of storage (in gibibytes) to allocate initially for the DB instance.",
           type: "number",
           required: false,
         },
@@ -328,11 +335,17 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
           type: "string",
           required: false,
         },
-        AllocatedStorage: {
-          name: "Allocated Storage",
-          description:
-            "The amount of storage (in gibibytes) to allocate initially for the DB instance.",
+        BackupRetentionPeriod: {
+          name: "Backup Retention Period",
+          description: "The number of days to retain automated backups.",
           type: "number",
+          required: false,
+        },
+        PreferredBackupWindow: {
+          name: "Preferred Backup Window",
+          description:
+            "The daily time range during which automated backups are created if automated backups are enabled, as determined by the BackupRetentionPeriod parameter.",
+          type: "string",
           required: false,
         },
         DedicatedLogVolume: {
@@ -353,6 +366,73 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
           name: "Engine Lifecycle Support",
           description: "The life cycle type for this DB instance.",
           type: "string",
+          required: false,
+        },
+        AdditionalStorageVolumes: {
+          name: "Additional Storage Volumes",
+          description:
+            "A list of additional storage volumes to create for the DB instance.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                VolumeName: {
+                  type: "string",
+                },
+                AllocatedStorage: {
+                  type: "number",
+                },
+                IOPS: {
+                  type: "number",
+                },
+                MaxAllocatedStorage: {
+                  type: "number",
+                },
+                StorageThroughput: {
+                  type: "number",
+                },
+                StorageType: {
+                  type: "string",
+                },
+              },
+              required: ["VolumeName"],
+              additionalProperties: false,
+            },
+          },
+          required: false,
+        },
+        TagSpecifications: {
+          name: "Tag Specifications",
+          description:
+            "Tags to assign to resources associated with the DB instance.",
+          type: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                ResourceType: {
+                  type: "string",
+                },
+                Tags: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      Key: {
+                        type: "string",
+                      },
+                      Value: {
+                        type: "string",
+                      },
+                    },
+                    additionalProperties: false,
+                  },
+                },
+              },
+              additionalProperties: false,
+            },
+          },
           required: false,
         },
         ManageMasterUserPassword: {
@@ -442,9 +522,6 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
                 type: "string",
               },
               DBInstanceStatus: {
-                type: "string",
-              },
-              AutomaticRestartTime: {
                 type: "string",
               },
               MasterUsername: {
@@ -549,20 +626,24 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
                       type: "object",
                       properties: {
                         SubnetIdentifier: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SubnetAvailabilityZone: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Name: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubnetOutpost: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Arn: {},
+                          },
+                          additionalProperties: false,
                         },
                         SubnetStatus: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -581,6 +662,9 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
                 additionalProperties: false,
               },
               PreferredMaintenanceWindow: {
+                type: "string",
+              },
+              UpgradeRolloutOrder: {
                 type: "string",
               },
               PendingModifiedValues: {
@@ -613,6 +697,9 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
                   Iops: {
                     type: "number",
                   },
+                  StorageThroughput: {
+                    type: "number",
+                  },
                   DBInstanceIdentifier: {
                     type: "string",
                   },
@@ -631,15 +718,13 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
                       LogTypesToEnable: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       LogTypesToDisable: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -651,19 +736,14 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Value: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
                     },
-                  },
-                  IAMDatabaseAuthenticationEnabled: {
-                    type: "boolean",
                   },
                   AutomationMode: {
                     type: "string",
@@ -671,17 +751,45 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
                   ResumeFullAutomationModeTime: {
                     type: "string",
                   },
-                  StorageThroughput: {
-                    type: "number",
+                  MultiTenant: {
+                    type: "boolean",
                   },
-                  Engine: {
-                    type: "string",
+                  IAMDatabaseAuthenticationEnabled: {
+                    type: "boolean",
                   },
                   DedicatedLogVolume: {
                     type: "boolean",
                   },
-                  MultiTenant: {
-                    type: "boolean",
+                  Engine: {
+                    type: "string",
+                  },
+                  AdditionalStorageVolumes: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      properties: {
+                        VolumeName: {
+                          type: "string",
+                        },
+                        AllocatedStorage: {
+                          type: "number",
+                        },
+                        IOPS: {
+                          type: "number",
+                        },
+                        MaxAllocatedStorage: {
+                          type: "number",
+                        },
+                        StorageThroughput: {
+                          type: "number",
+                        },
+                        StorageType: {
+                          type: "string",
+                        },
+                      },
+                      required: ["VolumeName"],
+                      additionalProperties: false,
+                    },
                   },
                 },
                 additionalProperties: false,
@@ -720,6 +828,9 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
                 type: "string",
               },
               Iops: {
+                type: "number",
+              },
+              StorageThroughput: {
                 type: "number",
               },
               OptionGroupMemberships: {
@@ -773,6 +884,9 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
               StorageType: {
                 type: "string",
               },
+              StorageEncryptionType: {
+                type: "string",
+              },
               TdeCredentialArn: {
                 type: "string",
               },
@@ -820,8 +934,7 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
                     DnsIps: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -939,22 +1052,16 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
                   additionalProperties: false,
                 },
               },
-              DBInstanceAutomatedBackupsReplications: {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: {
-                    DBInstanceAutomatedBackupsArn: {
-                      type: "string",
-                    },
-                  },
-                  additionalProperties: false,
-                },
+              AutomationMode: {
+                type: "string",
+              },
+              ResumeFullAutomationModeTime: {
+                type: "string",
               },
               CustomerOwnedIpEnabled: {
                 type: "boolean",
               },
-              AwsBackupRecoveryPointArn: {
+              NetworkType: {
                 type: "string",
               },
               ActivityStreamStatus: {
@@ -972,26 +1079,44 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
               ActivityStreamEngineNativeAuditFieldsIncluded: {
                 type: "boolean",
               },
-              AutomationMode: {
+              AwsBackupRecoveryPointArn: {
                 type: "string",
               },
-              ResumeFullAutomationModeTime: {
+              DBInstanceAutomatedBackupsReplications: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    DBInstanceAutomatedBackupsArn: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              BackupTarget: {
+                type: "string",
+              },
+              AutomaticRestartTime: {
                 type: "string",
               },
               CustomIamInstanceProfile: {
                 type: "string",
               },
-              BackupTarget: {
-                type: "string",
-              },
-              NetworkType: {
-                type: "string",
-              },
               ActivityStreamPolicyStatus: {
                 type: "string",
               },
-              StorageThroughput: {
-                type: "number",
+              CertificateDetails: {
+                type: "object",
+                properties: {
+                  CAIdentifier: {
+                    type: "string",
+                  },
+                  ValidTill: {
+                    type: "string",
+                  },
+                },
+                additionalProperties: false,
               },
               DBSystemId: {
                 type: "string",
@@ -1011,23 +1136,14 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
                 },
                 additionalProperties: false,
               },
-              CertificateDetails: {
-                type: "object",
-                properties: {
-                  CAIdentifier: {
-                    type: "string",
-                  },
-                  ValidTill: {
-                    type: "string",
-                  },
-                },
-                additionalProperties: false,
-              },
               ReadReplicaSourceDBClusterIdentifier: {
                 type: "string",
               },
               PercentProgress: {
                 type: "string",
+              },
+              MultiTenant: {
+                type: "boolean",
               },
               DedicatedLogVolume: {
                 type: "boolean",
@@ -1035,10 +1151,40 @@ const restoreDBInstanceFromDBSnapshot: AppBlock = {
               IsStorageConfigUpgradeAvailable: {
                 type: "boolean",
               },
-              MultiTenant: {
-                type: "boolean",
-              },
               EngineLifecycleSupport: {
+                type: "string",
+              },
+              AdditionalStorageVolumes: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    VolumeName: {
+                      type: "string",
+                    },
+                    StorageVolumeStatus: {
+                      type: "string",
+                    },
+                    AllocatedStorage: {
+                      type: "number",
+                    },
+                    IOPS: {
+                      type: "number",
+                    },
+                    MaxAllocatedStorage: {
+                      type: "number",
+                    },
+                    StorageThroughput: {
+                      type: "number",
+                    },
+                    StorageType: {
+                      type: "string",
+                    },
+                  },
+                  additionalProperties: false,
+                },
+              },
+              StorageVolumeStatus: {
                 type: "string",
               },
             },

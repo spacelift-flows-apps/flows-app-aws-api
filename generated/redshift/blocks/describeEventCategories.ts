@@ -103,20 +103,17 @@ const describeEventCategories: AppBlock = {
                     type: "object",
                     properties: {
                       EventId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       EventCategories: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       EventDescription: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Severity: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

@@ -201,7 +201,12 @@ const describeImageScanFindings: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          key: {},
+                          value: {},
+                        },
+                        required: ["key"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -232,44 +237,38 @@ const describeImageScanFindings: AppBlock = {
                       type: "object",
                       properties: {
                         cvss: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         referenceUrls: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         relatedVulnerabilities: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         source: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         sourceUrl: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         vendorCreatedAt: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         vendorSeverity: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         vendorUpdatedAt: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         vulnerabilityId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         vulnerablePackages: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -279,7 +278,11 @@ const describeImageScanFindings: AppBlock = {
                       properties: {
                         recommendation: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            url: {},
+                            text: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -288,7 +291,13 @@ const describeImageScanFindings: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          details: {},
+                          id: {},
+                          tags: {},
+                          type: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     score: {
@@ -299,7 +308,14 @@ const describeImageScanFindings: AppBlock = {
                       properties: {
                         cvss: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            adjustments: {},
+                            score: {},
+                            scoreSource: {},
+                            scoringVector: {},
+                            version: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,

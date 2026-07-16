@@ -27,13 +27,13 @@ const describeStackSetOperation: AppBlock = {
         StackSetName: {
           name: "Stack Set Name",
           description:
-            "The name or the unique stack ID of the stack set for the stack operation.",
+            "The name or the unique stack ID of the StackSet for the stack operation.",
           type: "string",
           required: true,
         },
         OperationId: {
           name: "Operation Id",
-          description: "The unique ID of the stack set operation.",
+          description: "The unique ID of the StackSet operation.",
           type: "string",
           required: true,
         },
@@ -232,7 +232,7 @@ const describeStackSetOperation: AppBlock = {
               },
             },
             additionalProperties: false,
-            description: "The specified stack set operation.",
+            description: "The specified StackSet operation.",
           },
         },
         additionalProperties: true,

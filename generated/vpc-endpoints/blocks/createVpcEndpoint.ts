@@ -106,6 +106,15 @@ const createVpcEndpoint: AppBlock = {
               PrivateDnsOnlyForInboundResolverEndpoint: {
                 type: "boolean",
               },
+              PrivateDnsPreference: {
+                type: "string",
+              },
+              PrivateDnsSpecifiedDomains: {
+                type: "array",
+                items: {
+                  type: "string",
+                },
+              },
             },
             additionalProperties: false,
           },
@@ -142,12 +151,10 @@ const createVpcEndpoint: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -320,6 +327,15 @@ const createVpcEndpoint: AppBlock = {
                   PrivateDnsOnlyForInboundResolverEndpoint: {
                     type: "boolean",
                   },
+                  PrivateDnsPreference: {
+                    type: "string",
+                  },
+                  PrivateDnsSpecifiedDomains: {
+                    type: "array",
+                    items: {
+                      type: "string",
+                    },
+                  },
                 },
                 additionalProperties: false,
               },
@@ -394,8 +410,7 @@ const createVpcEndpoint: AppBlock = {
                     IpPrefixes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -413,8 +428,7 @@ const createVpcEndpoint: AppBlock = {
                     IpPrefixes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },

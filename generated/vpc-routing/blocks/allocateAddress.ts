@@ -70,12 +70,10 @@ const allocateAddress: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -166,7 +164,7 @@ const allocateAddress: AppBlock = {
           },
           PublicIpv4Pool: {
             type: "string",
-            description: "The ID of an address pool.",
+            description: "The ID of an address pool that you own.",
           },
           NetworkBorderGroup: {
             type: "string",
@@ -191,7 +189,7 @@ const allocateAddress: AppBlock = {
           },
           PublicIp: {
             type: "string",
-            description: "The Elastic IP address.",
+            description: "The Amazon-owned IP address.",
           },
         },
         additionalProperties: true,

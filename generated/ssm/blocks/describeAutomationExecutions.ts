@@ -180,12 +180,11 @@ const describeAutomationExecutions: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Values: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -196,7 +195,7 @@ const describeAutomationExecutions: AppBlock = {
                   items: {
                     type: "object",
                     additionalProperties: {
-                      type: "object",
+                      type: "array",
                     },
                   },
                 },
@@ -206,8 +205,7 @@ const describeAutomationExecutions: AppBlock = {
                     ParameterValues: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Truncated: {
@@ -238,7 +236,11 @@ const describeAutomationExecutions: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                        },
+                        required: ["Name"],
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -251,12 +253,10 @@ const describeAutomationExecutions: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       State: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Name", "State"],
@@ -278,40 +278,37 @@ const describeAutomationExecutions: AppBlock = {
                     type: "object",
                     properties: {
                       DocumentName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DocumentVersion: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Parameters: {
                         type: "object",
-                        additionalProperties: true,
+                        additionalProperties: {
+                          type: "object",
+                        },
                       },
                       TargetParameterName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Targets: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       TargetMaps: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       MaxConcurrency: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       MaxErrors: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       TargetLocations: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     required: ["DocumentName"],

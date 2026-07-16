@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { SSMClient, CreateActivationCommand } from "@aws-sdk/client-ssm";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const createActivation: AppBlock = {
   name: "Create Activation",
@@ -141,7 +142,9 @@ const createActivation: AppBlock = {
           }),
         });
 
-        const command = new CreateActivationCommand(commandInput as any);
+        const command = new CreateActivationCommand(
+          convertTimestamps(commandInput, new Set(["ExpirationDate"])) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

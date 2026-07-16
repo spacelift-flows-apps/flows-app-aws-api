@@ -1,0 +1,155 @@
+import { AppBlock, events } from "@slflows/sdk/v1";
+import {
+  CloudWatchClient,
+  ListAlarmMuteRulesCommand,
+} from "@aws-sdk/client-cloudwatch";
+import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+
+const listAlarmMuteRules: AppBlock = {
+  name: "List Alarm Mute Rules",
+  description: `Lists alarm mute rules in your Amazon Web Services account and region.`,
+  inputs: {
+    default: {
+      config: {
+        region: {
+          name: "Region",
+          description: "AWS region for this operation",
+          type: "string",
+          required: true,
+        },
+        assumeRoleArn: {
+          name: "Assume Role ARN",
+          description:
+            "Optional IAM role ARN to assume before executing this operation. If provided, the block will use STS to assume this role and use the temporary credentials.",
+          type: "string",
+          required: false,
+        },
+        AlarmName: {
+          name: "Alarm Name",
+          description:
+            "Filter results to show only mute rules that target the specified alarm name.",
+          type: "string",
+          required: false,
+        },
+        Statuses: {
+          name: "Statuses",
+          description:
+            "Filter results to show only mute rules with the specified statuses.",
+          type: {
+            type: "array",
+            items: {
+              type: "string",
+            },
+          },
+          required: false,
+        },
+        MaxRecords: {
+          name: "Max Records",
+          description:
+            "The maximum number of mute rules to return in one call.",
+          type: "number",
+          required: false,
+        },
+        NextToken: {
+          name: "Next Token",
+          description:
+            "The token returned from a previous call to indicate where to continue retrieving results.",
+          type: "string",
+          required: false,
+        },
+      },
+      onEvent: async (input) => {
+        const { region, assumeRoleArn, ...commandInput } =
+          input.event.inputConfig;
+
+        let credentials = {
+          accessKeyId: input.app.config.accessKeyId,
+          secretAccessKey: input.app.config.secretAccessKey,
+          sessionToken: input.app.config.sessionToken,
+        };
+
+        // Determine credentials to use
+        if (assumeRoleArn) {
+          // Use STS to assume the specified role
+          const stsClient = new STSClient({
+            region: region,
+            credentials: credentials,
+            ...(input.app.config.endpoint && {
+              endpoint: input.app.config.endpoint,
+            }),
+          });
+
+          const assumeRoleCommand = new AssumeRoleCommand({
+            RoleArn: assumeRoleArn,
+            RoleSessionName: `flows-session-${Date.now()}`,
+          });
+
+          const assumeRoleResponse = await stsClient.send(assumeRoleCommand);
+          credentials = {
+            accessKeyId: assumeRoleResponse.Credentials!.AccessKeyId!,
+            secretAccessKey: assumeRoleResponse.Credentials!.SecretAccessKey!,
+            sessionToken: assumeRoleResponse.Credentials!.SessionToken!,
+          };
+        }
+
+        const client = new CloudWatchClient({
+          region: region,
+          credentials: credentials,
+          ...(input.app.config.endpoint && {
+            endpoint: input.app.config.endpoint,
+          }),
+        });
+
+        const command = new ListAlarmMuteRulesCommand(commandInput as any);
+        const response = await client.send(command);
+
+        await events.emit(response || {});
+      },
+    },
+  },
+  outputs: {
+    default: {
+      name: "List Alarm Mute Rules Result",
+      description: "Result from ListAlarmMuteRules operation",
+      possiblePrimaryParents: ["default"],
+      type: {
+        type: "object",
+        properties: {
+          AlarmMuteRuleSummaries: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                AlarmMuteRuleArn: {
+                  type: "string",
+                },
+                ExpireDate: {
+                  type: "string",
+                },
+                Status: {
+                  type: "string",
+                },
+                MuteType: {
+                  type: "string",
+                },
+                LastUpdatedTimestamp: {
+                  type: "string",
+                },
+              },
+              additionalProperties: false,
+            },
+            description: "A list of alarm mute rule summaries.",
+          },
+          NextToken: {
+            type: "string",
+            description:
+              "The token to use when requesting the next set of results.",
+          },
+        },
+        additionalProperties: true,
+      },
+    },
+  },
+};
+
+export default listAlarmMuteRules;

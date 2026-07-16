@@ -33,7 +33,18 @@ const disableFastSnapshotRestores: AppBlock = {
               type: "string",
             },
           },
-          required: true,
+          required: false,
+        },
+        AvailabilityZoneIds: {
+          name: "Availability Zone Ids",
+          description: "One or more Availability Zone IDs.",
+          type: {
+            type: "array",
+            items: {
+              type: "string",
+            },
+          },
+          required: false,
         },
         SourceSnapshotIds: {
           name: "Source Snapshot Ids",
@@ -124,6 +135,9 @@ const disableFastSnapshotRestores: AppBlock = {
                 AvailabilityZone: {
                   type: "string",
                 },
+                AvailabilityZoneId: {
+                  type: "string",
+                },
                 State: {
                   type: "string",
                 },
@@ -171,12 +185,18 @@ const disableFastSnapshotRestores: AppBlock = {
                     type: "object",
                     properties: {
                       AvailabilityZone: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
+                      },
+                      AvailabilityZoneId: {
+                        type: "string",
                       },
                       Error: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Code: {},
+                          Message: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     additionalProperties: false,

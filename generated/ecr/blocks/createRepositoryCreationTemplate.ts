@@ -87,7 +87,7 @@ const createRepositoryCreationTemplate: AppBlock = {
         imageTagMutabilityExclusionFilters: {
           name: "image Tag Mutability Exclusion Filters",
           description:
-            "Creates a repository creation template with a list of filters that define which image tags can override the default image tag mutability setting.",
+            "A list of filters that specify which image tags should be excluded from the repository creation template's image tag mutability setting.",
           type: {
             type: "array",
             items: {

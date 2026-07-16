@@ -40,8 +40,7 @@ const describeChangeSet: AppBlock = {
         },
         NextToken: {
           name: "Next Token",
-          description:
-            "A string (provided by the DescribeChangeSet response output) that identifies the next page of information that you want to retrieve.",
+          description: "The token for the next set of items to return.",
           type: "string",
           required: false,
         },
@@ -174,6 +173,11 @@ const describeChangeSet: AppBlock = {
             type: "string",
             description: "A description of the change set's status.",
           },
+          StackDriftStatus: {
+            type: "string",
+            description:
+              "The drift status of the stack when the change set was created.",
+          },
           NotificationARNs: {
             type: "array",
             items: {
@@ -270,15 +274,34 @@ const describeChangeSet: AppBlock = {
                     Scope: {
                       type: "array",
                       items: {
+                        type: "string",
+                      },
+                    },
+                    ResourceDriftStatus: {
+                      type: "string",
+                    },
+                    ResourceDriftIgnoredAttributes: {
+                      type: "array",
+                      items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Path: {},
+                          Reason: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     Details: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Target: {},
+                          Evaluation: {},
+                          ChangeSource: {},
+                          CausingEntity: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ChangeSetId: {
@@ -288,12 +311,10 @@ const describeChangeSet: AppBlock = {
                       type: "object",
                       properties: {
                         TypeHierarchy: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LogicalIdHierarchy: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -302,6 +323,9 @@ const describeChangeSet: AppBlock = {
                       type: "string",
                     },
                     AfterContext: {
+                      type: "string",
+                    },
+                    PreviousDeploymentContext: {
                       type: "string",
                     },
                   },
@@ -341,6 +365,11 @@ const describeChangeSet: AppBlock = {
             type: "boolean",
             description:
               "Indicates if the change set imports resources that already exist.",
+          },
+          DeploymentMode: {
+            type: "string",
+            description:
+              "The deployment mode specified when the change set was created.",
           },
         },
         additionalProperties: true,

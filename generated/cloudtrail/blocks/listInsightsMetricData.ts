@@ -4,6 +4,7 @@ import {
   ListInsightsMetricDataCommand,
 } from "@aws-sdk/client-cloudtrail";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const listInsightsMetricData: AppBlock = {
   name: "List Insights Metric Data",
@@ -21,6 +22,13 @@ const listInsightsMetricData: AppBlock = {
           name: "Assume Role ARN",
           description:
             "Optional IAM role ARN to assume before executing this operation. If provided, the block will use STS to assume this role and use the temporary credentials.",
+          type: "string",
+          required: false,
+        },
+        TrailName: {
+          name: "Trail Name",
+          description:
+            "The Amazon Resource Name(ARN) or name of the trail for which you want to retrieve Insights metrics data.",
           type: "string",
           required: false,
         },
@@ -133,7 +141,12 @@ const listInsightsMetricData: AppBlock = {
           }),
         });
 
-        const command = new ListInsightsMetricDataCommand(commandInput as any);
+        const command = new ListInsightsMetricDataCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});
@@ -148,6 +161,10 @@ const listInsightsMetricData: AppBlock = {
       type: {
         type: "object",
         properties: {
+          TrailARN: {
+            type: "string",
+            description: "Specifies the ARN of the trail.",
+          },
           EventSource: {
             type: "string",
             description:

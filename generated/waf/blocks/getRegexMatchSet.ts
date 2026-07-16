@@ -104,12 +104,10 @@ const getRegexMatchSet: AppBlock = {
                       type: "object",
                       properties: {
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Data: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Type"],

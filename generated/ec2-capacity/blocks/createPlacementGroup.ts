@@ -44,12 +44,10 @@ const createPlacementGroup: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -65,6 +63,26 @@ const createPlacementGroup: AppBlock = {
           name: "Spread Level",
           description: "Determines how placement groups spread instances.",
           type: "string",
+          required: false,
+        },
+        LinkedGroupId: {
+          name: "Linked Group Id",
+          description: "Reserved for future use.",
+          type: "string",
+          required: false,
+        },
+        Operator: {
+          name: "Operator",
+          description: "Reserved for internal use.",
+          type: {
+            type: "object",
+            properties: {
+              Principal: {
+                type: "string",
+              },
+            },
+            additionalProperties: false,
+          },
           required: false,
         },
         DryRun: {
@@ -182,6 +200,24 @@ const createPlacementGroup: AppBlock = {
               },
               SpreadLevel: {
                 type: "string",
+              },
+              LinkedGroupId: {
+                type: "string",
+              },
+              Operator: {
+                type: "object",
+                properties: {
+                  Managed: {
+                    type: "boolean",
+                  },
+                  Principal: {
+                    type: "string",
+                  },
+                  HiddenByDefault: {
+                    type: "boolean",
+                  },
+                },
+                additionalProperties: false,
               },
             },
             additionalProperties: false,

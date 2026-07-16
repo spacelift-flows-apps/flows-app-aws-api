@@ -225,12 +225,16 @@ const updateStreamingDistribution: AppBlock = {
                       type: "object",
                       properties: {
                         AwsAccountNumber: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KeyPairIds: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Quantity: {},
+                            Items: {},
+                          },
+                          required: ["Quantity"],
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -268,8 +272,7 @@ const updateStreamingDistribution: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },
@@ -307,8 +310,7 @@ const updateStreamingDistribution: AppBlock = {
                       Items: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                     },

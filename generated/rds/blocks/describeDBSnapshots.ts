@@ -212,6 +212,9 @@ const describeDBSnapshots: AppBlock = {
                 Iops: {
                   type: "number",
                 },
+                StorageThroughput: {
+                  type: "number",
+                },
                 OptionGroupName: {
                   type: "string",
                 },
@@ -233,6 +236,15 @@ const describeDBSnapshots: AppBlock = {
                 Encrypted: {
                   type: "boolean",
                 },
+                StorageEncryptionType: {
+                  type: "string",
+                },
+                BackupRetentionPeriod: {
+                  type: "number",
+                },
+                PreferredBackupWindow: {
+                  type: "string",
+                },
                 KmsKeyId: {
                   type: "string",
                 },
@@ -251,12 +263,10 @@ const describeDBSnapshots: AppBlock = {
                     type: "object",
                     properties: {
                       Name: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -271,16 +281,17 @@ const describeDBSnapshots: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
                   },
+                },
+                SnapshotTarget: {
+                  type: "string",
                 },
                 OriginalSnapshotCreateTime: {
                   type: "string",
@@ -288,20 +299,42 @@ const describeDBSnapshots: AppBlock = {
                 SnapshotDatabaseTime: {
                   type: "string",
                 },
-                SnapshotTarget: {
-                  type: "string",
-                },
-                StorageThroughput: {
-                  type: "number",
-                },
                 DBSystemId: {
                   type: "string",
+                },
+                MultiTenant: {
+                  type: "boolean",
                 },
                 DedicatedLogVolume: {
                   type: "boolean",
                 },
-                MultiTenant: {
-                  type: "boolean",
+                AdditionalStorageVolumes: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      VolumeName: {
+                        type: "string",
+                      },
+                      AllocatedStorage: {
+                        type: "number",
+                      },
+                      IOPS: {
+                        type: "number",
+                      },
+                      MaxAllocatedStorage: {
+                        type: "number",
+                      },
+                      StorageThroughput: {
+                        type: "number",
+                      },
+                      StorageType: {
+                        type: "string",
+                      },
+                    },
+                    required: ["VolumeName"],
+                    additionalProperties: false,
+                  },
                 },
                 SnapshotAvailabilityZone: {
                   type: "string",

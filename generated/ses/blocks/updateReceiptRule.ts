@@ -59,24 +59,19 @@ const updateReceiptRule: AppBlock = {
                       type: "object",
                       properties: {
                         TopicArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         BucketName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ObjectKeyPrefix: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         KmsKeyArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         IamRoleArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["BucketName"],
@@ -86,24 +81,19 @@ const updateReceiptRule: AppBlock = {
                       type: "object",
                       properties: {
                         TopicArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SmtpReplyCode: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         StatusCode: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Message: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Sender: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["SmtpReplyCode", "Message", "Sender"],
@@ -113,12 +103,10 @@ const updateReceiptRule: AppBlock = {
                       type: "object",
                       properties: {
                         TopicArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         OrganizationArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["OrganizationArn"],
@@ -128,16 +116,13 @@ const updateReceiptRule: AppBlock = {
                       type: "object",
                       properties: {
                         TopicArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         FunctionArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         InvocationType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["FunctionArn"],
@@ -147,12 +132,10 @@ const updateReceiptRule: AppBlock = {
                       type: "object",
                       properties: {
                         Scope: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         TopicArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Scope"],
@@ -162,12 +145,10 @@ const updateReceiptRule: AppBlock = {
                       type: "object",
                       properties: {
                         HeaderName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         HeaderValue: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["HeaderName", "HeaderValue"],
@@ -177,12 +158,10 @@ const updateReceiptRule: AppBlock = {
                       type: "object",
                       properties: {
                         TopicArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Encoding: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["TopicArn"],
@@ -192,12 +171,10 @@ const updateReceiptRule: AppBlock = {
                       type: "object",
                       properties: {
                         InstanceARN: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         IAMRoleARN: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["InstanceARN", "IAMRoleARN"],

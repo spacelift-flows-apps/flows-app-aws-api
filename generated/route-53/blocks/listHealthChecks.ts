@@ -161,8 +161,7 @@ const listHealthChecks: AppBlock = {
                     ChildHealthChecks: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     EnableSNI: {
@@ -171,20 +170,17 @@ const listHealthChecks: AppBlock = {
                     Regions: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     AlarmIdentifier: {
                       type: "object",
                       properties: {
                         Region: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Region", "Name"],
@@ -231,7 +227,12 @@ const listHealthChecks: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                          Value: {},
+                        },
+                        required: ["Name", "Value"],
+                        additionalProperties: false,
                       },
                     },
                   },

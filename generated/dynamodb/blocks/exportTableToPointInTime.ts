@@ -4,6 +4,7 @@ import {
   ExportTableToPointInTimeCommand,
 } from "@aws-sdk/client-dynamodb";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const exportTableToPointInTime: AppBlock = {
   name: "Export Table To Point In Time",
@@ -158,7 +159,10 @@ const exportTableToPointInTime: AppBlock = {
         });
 
         const command = new ExportTableToPointInTimeCommand(
-          commandInput as any,
+          convertTimestamps(
+            commandInput,
+            new Set(["ExportTime", "ExportFromTime", "ExportToTime"]),
+          ) as any,
         );
         const response = await client.send(command);
 

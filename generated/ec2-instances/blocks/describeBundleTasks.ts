@@ -147,24 +147,19 @@ const describeBundleTasks: AppBlock = {
                       type: "object",
                       properties: {
                         AWSAccessKeyId: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Bucket: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Prefix: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         UploadPolicy: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         UploadPolicySignature: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

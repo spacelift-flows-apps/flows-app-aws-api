@@ -168,28 +168,22 @@ const listResourceComplianceSummaries: AppBlock = {
                       type: "object",
                       properties: {
                         CriticalCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         HighCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         MediumCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         LowCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         InformationalCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         UnspecifiedCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -207,28 +201,22 @@ const listResourceComplianceSummaries: AppBlock = {
                       type: "object",
                       properties: {
                         CriticalCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         HighCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         MediumCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         LowCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         InformationalCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         UnspecifiedCount: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,

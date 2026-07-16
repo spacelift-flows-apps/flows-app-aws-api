@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { SSMClient, UpdateAssociationStatusCommand } from "@aws-sdk/client-ssm";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const updateAssociationStatus: AppBlock = {
   name: "Update Association Status",
@@ -100,7 +101,9 @@ const updateAssociationStatus: AppBlock = {
           }),
         });
 
-        const command = new UpdateAssociationStatusCommand(commandInput as any);
+        const command = new UpdateAssociationStatusCommand(
+          convertTimestamps(commandInput, new Set(["Date"])) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});
@@ -196,8 +199,7 @@ const updateAssociationStatus: AppBlock = {
                     Values: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -266,15 +268,13 @@ const updateAssociationStatus: AppBlock = {
                     Accounts: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Regions: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     TargetLocationMaxConcurrency: {
@@ -290,12 +290,11 @@ const updateAssociationStatus: AppBlock = {
                       type: "object",
                       properties: {
                         IgnorePollAlarmFailure: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         Alarms: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["Alarms"],
@@ -307,15 +306,18 @@ const updateAssociationStatus: AppBlock = {
                     ExcludeAccounts: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Targets: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Values: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     TargetsMaxConcurrency: {
@@ -355,8 +357,7 @@ const updateAssociationStatus: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Name"],
@@ -382,6 +383,9 @@ const updateAssociationStatus: AppBlock = {
                   required: ["Name", "State"],
                   additionalProperties: false,
                 },
+              },
+              AssociationDispatchAssumeRole: {
+                type: "string",
               },
             },
             additionalProperties: false,

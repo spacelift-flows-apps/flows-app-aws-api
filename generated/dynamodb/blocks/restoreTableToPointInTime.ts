@@ -4,6 +4,7 @@ import {
   RestoreTableToPointInTimeCommand,
 } from "@aws-sdk/client-dynamodb";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const restoreTableToPointInTime: AppBlock = {
   name: "Restore Table To Point In Time",
@@ -79,12 +80,10 @@ const restoreTableToPointInTime: AppBlock = {
                     type: "object",
                     properties: {
                       AttributeName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       KeyType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["AttributeName", "KeyType"],
@@ -100,8 +99,7 @@ const restoreTableToPointInTime: AppBlock = {
                     NonKeyAttributes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -169,12 +167,10 @@ const restoreTableToPointInTime: AppBlock = {
                     type: "object",
                     properties: {
                       AttributeName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       KeyType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["AttributeName", "KeyType"],
@@ -190,8 +186,7 @@ const restoreTableToPointInTime: AppBlock = {
                     NonKeyAttributes: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -306,7 +301,7 @@ const restoreTableToPointInTime: AppBlock = {
         });
 
         const command = new RestoreTableToPointInTimeCommand(
-          commandInput as any,
+          convertTimestamps(commandInput, new Set(["RestoreDateTime"])) as any,
         );
         const response = await client.send(command);
 
@@ -423,19 +418,23 @@ const restoreTableToPointInTime: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AttributeName: {},
+                          KeyType: {},
+                        },
+                        required: ["AttributeName", "KeyType"],
+                        additionalProperties: false,
                       },
                     },
                     Projection: {
                       type: "object",
                       properties: {
                         ProjectionType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NonKeyAttributes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -465,19 +464,23 @@ const restoreTableToPointInTime: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          AttributeName: {},
+                          KeyType: {},
+                        },
+                        required: ["AttributeName", "KeyType"],
+                        additionalProperties: false,
                       },
                     },
                     Projection: {
                       type: "object",
                       properties: {
                         ProjectionType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NonKeyAttributes: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -492,24 +495,19 @@ const restoreTableToPointInTime: AppBlock = {
                       type: "object",
                       properties: {
                         LastIncreaseDateTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LastDecreaseDateTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         NumberOfDecreasesToday: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         ReadCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -527,12 +525,10 @@ const restoreTableToPointInTime: AppBlock = {
                       type: "object",
                       properties: {
                         MaxReadRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         MaxWriteRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -541,16 +537,13 @@ const restoreTableToPointInTime: AppBlock = {
                       type: "object",
                       properties: {
                         ReadUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Status: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -592,6 +585,9 @@ const restoreTableToPointInTime: AppBlock = {
                     ReplicaStatus: {
                       type: "string",
                     },
+                    ReplicaArn: {
+                      type: "string",
+                    },
                     ReplicaStatusDescription: {
                       type: "string",
                     },
@@ -605,8 +601,7 @@ const restoreTableToPointInTime: AppBlock = {
                       type: "object",
                       properties: {
                         ReadCapacityUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -615,8 +610,7 @@ const restoreTableToPointInTime: AppBlock = {
                       type: "object",
                       properties: {
                         MaxReadRequestUnits: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                       },
                       additionalProperties: false,
@@ -625,16 +619,13 @@ const restoreTableToPointInTime: AppBlock = {
                       type: "object",
                       properties: {
                         ReadUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         WriteUnitsPerSecond: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Status: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -643,7 +634,13 @@ const restoreTableToPointInTime: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          IndexName: {},
+                          ProvisionedThroughputOverride: {},
+                          OnDemandThroughputOverride: {},
+                          WarmThroughput: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     ReplicaInaccessibleDateTime: {
@@ -653,15 +650,16 @@ const restoreTableToPointInTime: AppBlock = {
                       type: "object",
                       properties: {
                         TableClass: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LastUpdateDateTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
+                    },
+                    GlobalTableSettingsReplicationMode: {
+                      type: "string",
                     },
                   },
                   additionalProperties: false,
@@ -681,6 +679,9 @@ const restoreTableToPointInTime: AppBlock = {
                   },
                   additionalProperties: false,
                 },
+              },
+              GlobalTableSettingsReplicationMode: {
+                type: "string",
               },
               RestoreSummary: {
                 type: "object",

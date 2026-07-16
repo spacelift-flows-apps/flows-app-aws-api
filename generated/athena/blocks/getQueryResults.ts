@@ -123,7 +123,10 @@ const getQueryResults: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          VarCharValue: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -139,44 +142,34 @@ const getQueryResults: AppBlock = {
                       type: "object",
                       properties: {
                         CatalogName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         SchemaName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         TableName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Label: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Type: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Precision: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Scale: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         Nullable: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         CaseSensitive: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                       },
                       required: ["Name", "Type"],

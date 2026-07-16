@@ -81,12 +81,10 @@ const registerImage: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -188,6 +186,9 @@ const registerImage: AppBlock = {
                     },
                     AvailabilityZoneId: {
                       type: "string",
+                    },
+                    EbsCardIndex: {
+                      type: "number",
                     },
                   },
                   additionalProperties: false,

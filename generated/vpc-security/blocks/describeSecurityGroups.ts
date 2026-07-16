@@ -163,32 +163,29 @@ const describeSecurityGroups: AppBlock = {
                     type: "object",
                     properties: {
                       IpProtocol: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       FromPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       ToPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       UserIdGroupPairs: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       IpRanges: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Ipv6Ranges: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       PrefixListIds: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -200,12 +197,10 @@ const describeSecurityGroups: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -232,32 +227,29 @@ const describeSecurityGroups: AppBlock = {
                     type: "object",
                     properties: {
                       IpProtocol: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       FromPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       ToPort: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       UserIdGroupPairs: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       IpRanges: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       Ipv6Ranges: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       PrefixListIds: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,

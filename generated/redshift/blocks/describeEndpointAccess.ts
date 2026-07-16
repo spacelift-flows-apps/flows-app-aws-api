@@ -158,12 +158,10 @@ const describeEndpointAccess: AppBlock = {
                     type: "object",
                     properties: {
                       VpcSecurityGroupId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Status: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -182,7 +180,14 @@ const describeEndpointAccess: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          NetworkInterfaceId: {},
+                          SubnetId: {},
+                          PrivateIpAddress: {},
+                          AvailabilityZone: {},
+                          Ipv6Address: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },

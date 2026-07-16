@@ -27,14 +27,14 @@ const updateStackInstances: AppBlock = {
         StackSetName: {
           name: "Stack Set Name",
           description:
-            "The name or unique ID of the stack set associated with the stack instances.",
+            "The name or unique ID of the StackSet associated with the stack instances.",
           type: "string",
           required: true,
         },
         Accounts: {
           name: "Accounts",
           description:
-            "[Self-managed permissions] The account IDs of one or more Amazon Web Services accounts for which you want to update parameter values for stack instances.",
+            "[Self-managed permissions] The account IDs of one or more Amazon Web Services accounts in which you want to update parameter values for stack instances.",
           type: {
             type: "array",
             items: {
@@ -46,7 +46,7 @@ const updateStackInstances: AppBlock = {
         DeploymentTargets: {
           name: "Deployment Targets",
           description:
-            "[Service-managed permissions] The Organizations accounts for which you want to update parameter values for stack instances.",
+            "[Service-managed permissions] The Organizations accounts in which you want to update parameter values for stack instances.",
           type: {
             type: "object",
             properties: {
@@ -115,7 +115,7 @@ const updateStackInstances: AppBlock = {
         OperationPreferences: {
           name: "Operation Preferences",
           description:
-            "Preferences for how CloudFormation performs this stack set operation.",
+            "Preferences for how CloudFormation performs this StackSet operation.",
           type: {
             type: "object",
             properties: {
@@ -150,7 +150,7 @@ const updateStackInstances: AppBlock = {
         },
         OperationId: {
           name: "Operation Id",
-          description: "The unique identifier for this stack set operation.",
+          description: "The unique identifier for this StackSet operation.",
           type: "string",
           required: false,
         },
@@ -221,7 +221,7 @@ const updateStackInstances: AppBlock = {
         properties: {
           OperationId: {
             type: "string",
-            description: "The unique identifier for this stack set operation.",
+            description: "The unique identifier for this StackSet operation.",
           },
         },
         additionalProperties: true,

@@ -130,48 +130,48 @@ const listInstanceProfilesForRole: AppBlock = {
                     type: "object",
                     properties: {
                       Path: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       RoleName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       RoleId: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Arn: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       CreateDate: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AssumeRolePolicyDocument: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Description: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       MaxSessionDuration: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "number",
                       },
                       PermissionsBoundary: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          PermissionsBoundaryType: {},
+                          PermissionsBoundaryArn: {},
+                        },
+                        additionalProperties: false,
                       },
                       Tags: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       RoleLastUsed: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          LastUsedDate: {},
+                          Region: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     required: [
@@ -190,12 +190,10 @@ const listInstanceProfilesForRole: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     required: ["Key", "Value"],

@@ -129,16 +129,24 @@ const listResponseHeadersPolicies: AppBlock = {
                       type: "object",
                       properties: {
                         Id: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LastModifiedTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         ResponseHeadersPolicyConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Comment: {},
+                            Name: {},
+                            CorsConfig: {},
+                            SecurityHeadersConfig: {},
+                            ServerTimingHeadersConfig: {},
+                            CustomHeadersConfig: {},
+                            RemoveHeadersConfig: {},
+                          },
+                          required: ["Name"],
+                          additionalProperties: false,
                         },
                       },
                       required: [

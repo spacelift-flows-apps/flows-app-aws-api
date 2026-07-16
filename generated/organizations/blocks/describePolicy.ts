@@ -26,8 +26,7 @@ const describePolicy: AppBlock = {
         },
         PolicyId: {
           name: "Policy Id",
-          description:
-            "The unique identifier (ID) of the policy that you want details about.",
+          description: "ID for the policy that you want details about.",
           type: "string",
           required: true,
         },

@@ -136,24 +136,19 @@ const deleteTransitGatewayConnectPeer: AppBlock = {
                       type: "object",
                       properties: {
                         TransitGatewayAsn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         PeerAsn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         TransitGatewayAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         PeerAddress: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         BgpStatus: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

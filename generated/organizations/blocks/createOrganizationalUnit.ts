@@ -27,7 +27,7 @@ const createOrganizationalUnit: AppBlock = {
         ParentId: {
           name: "Parent Id",
           description:
-            "The unique identifier (ID) of the parent root or OU that you want to create the new OU in.",
+            "ID for the parent root or OU that you want to create the new OU in.",
           type: "string",
           required: true,
         },
@@ -129,6 +129,9 @@ const createOrganizationalUnit: AppBlock = {
                 type: "string",
               },
               Name: {
+                type: "string",
+              },
+              Path: {
                 type: "string",
               },
             },

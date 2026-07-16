@@ -119,7 +119,11 @@ const stopTask: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          name: {},
+                          value: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                   },
@@ -202,14 +206,27 @@ const stopTask: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          bindIP: {},
+                          containerPort: {},
+                          hostPort: {},
+                          protocol: {},
+                          containerPortRange: {},
+                          hostPortRange: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     networkInterfaces: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          attachmentId: {},
+                          privateIpv4Address: {},
+                          ipv6Address: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     healthStatus: {
@@ -219,7 +236,13 @@ const stopTask: AppBlock = {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          lastStartedAt: {},
+                          name: {},
+                          reason: {},
+                          lastStatus: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     cpu: {
@@ -234,8 +257,7 @@ const stopTask: AppBlock = {
                     gpuIds: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -297,36 +319,32 @@ const stopTask: AppBlock = {
                       type: "object",
                       properties: {
                         name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         command: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         environment: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         environmentFiles: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                         cpu: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         memory: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         memoryReservation: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "number",
                         },
                         resourceRequirements: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -341,12 +359,10 @@ const stopTask: AppBlock = {
                       type: "object",
                       properties: {
                         deviceName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         deviceType: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

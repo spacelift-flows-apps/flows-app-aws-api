@@ -151,20 +151,24 @@ const describeDBSubnetGroups: AppBlock = {
                     type: "object",
                     properties: {
                       SubnetIdentifier: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SubnetAvailabilityZone: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Name: {},
+                        },
+                        additionalProperties: false,
                       },
                       SubnetOutpost: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Arn: {},
+                        },
+                        additionalProperties: false,
                       },
                       SubnetStatus: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

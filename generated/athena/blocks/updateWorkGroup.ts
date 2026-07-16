@@ -192,7 +192,7 @@ const updateWorkGroup: AppBlock = {
                       LogTypes: {
                         type: "object",
                         additionalProperties: {
-                          type: "object",
+                          type: "array",
                         },
                       },
                     },
@@ -261,12 +261,13 @@ const updateWorkGroup: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Properties: {
                           type: "object",
-                          additionalProperties: true,
+                          additionalProperties: {
+                            type: "object",
+                          },
                         },
                       },
                       additionalProperties: false,

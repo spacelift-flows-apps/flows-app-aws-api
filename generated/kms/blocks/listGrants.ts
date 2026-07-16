@@ -150,13 +150,13 @@ const listGrants: AppBlock = {
                     EncryptionContextSubset: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                     EncryptionContextEquals: {
                       type: "object",
                       additionalProperties: {
-                        type: "object",
+                        type: "string",
                       },
                     },
                   },

@@ -74,6 +74,13 @@ const createCustomKeyStore: AppBlock = {
           type: "string",
           required: false,
         },
+        XksProxyVpcEndpointServiceOwner: {
+          name: "Xks Proxy Vpc Endpoint Service Owner",
+          description:
+            "Specifies the Amazon Web Services account ID that owns the Amazon VPC service endpoint for the interface that is used to communicate with your external key store proxy (XKS proxy).",
+          type: "string",
+          required: false,
+        },
         XksProxyAuthenticationCredential: {
           name: "Xks Proxy Authentication Credential",
           description:

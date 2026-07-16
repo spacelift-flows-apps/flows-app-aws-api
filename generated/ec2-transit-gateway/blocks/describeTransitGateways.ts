@@ -165,8 +165,7 @@ const describeTransitGateways: AppBlock = {
                     TransitGatewayCidrBlocks: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     AutoAcceptSharedAttachments: {
@@ -196,6 +195,18 @@ const describeTransitGateways: AppBlock = {
                     MulticastSupport: {
                       type: "string",
                     },
+                    EncryptionSupport: {
+                      type: "object",
+                      properties: {
+                        EncryptionState: {
+                          type: "string",
+                        },
+                        StateMessage: {
+                          type: "string",
+                        },
+                      },
+                      additionalProperties: false,
+                    },
                   },
                   additionalProperties: false,
                 },
@@ -205,12 +216,10 @@ const describeTransitGateways: AppBlock = {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

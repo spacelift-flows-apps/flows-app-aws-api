@@ -129,8 +129,7 @@ const modifyDBSubnetGroup: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -139,8 +138,7 @@ const modifyDBSubnetGroup: AppBlock = {
                       type: "object",
                       properties: {
                         Arn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

@@ -1,6 +1,7 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
 import { RDSClient, BacktrackDBClusterCommand } from "@aws-sdk/client-rds";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const backtrackDBCluster: AppBlock = {
   name: "Backtrack DB Cluster",
@@ -92,7 +93,9 @@ const backtrackDBCluster: AppBlock = {
           }),
         });
 
-        const command = new BacktrackDBClusterCommand(commandInput as any);
+        const command = new BacktrackDBClusterCommand(
+          convertTimestamps(commandInput, new Set(["BacktrackTo"])) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});

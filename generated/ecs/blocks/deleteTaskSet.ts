@@ -186,15 +186,13 @@ const deleteTaskSet: AppBlock = {
                       subnets: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       securityGroups: {
                         type: "array",
                         items: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       assignPublicIp: {
@@ -228,20 +226,16 @@ const deleteTaskSet: AppBlock = {
                       type: "object",
                       properties: {
                         alternateTargetGroupArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         productionListenerRule: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         testListenerRule: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         roleArn: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

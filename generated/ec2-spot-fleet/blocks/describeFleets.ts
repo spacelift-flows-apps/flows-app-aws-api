@@ -174,11 +174,16 @@ const describeFleets: AppBlock = {
                     properties: {
                       LaunchTemplateSpecification: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          LaunchTemplateId: {},
+                          LaunchTemplateName: {},
+                          Version: {},
+                        },
+                        additionalProperties: false,
                       },
                       Overrides: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -231,7 +236,11 @@ const describeFleets: AppBlock = {
                       properties: {
                         CapacityRebalance: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            ReplacementStrategy: {},
+                            TerminationDelay: {},
+                          },
+                          additionalProperties: false,
                         },
                       },
                       additionalProperties: false,
@@ -267,8 +276,7 @@ const describeFleets: AppBlock = {
                       type: "object",
                       properties: {
                         UsageStrategy: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -288,18 +296,28 @@ const describeFleets: AppBlock = {
                   },
                   additionalProperties: false,
                 },
+                ReservedCapacityOptions: {
+                  type: "object",
+                  properties: {
+                    ReservationTypes: {
+                      type: "array",
+                      items: {
+                        type: "string",
+                      },
+                    },
+                  },
+                  additionalProperties: false,
+                },
                 Tags: {
                   type: "array",
                   items: {
                     type: "object",
                     properties: {
                       Key: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -312,19 +330,20 @@ const describeFleets: AppBlock = {
                     properties: {
                       LaunchTemplateAndOverrides: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          LaunchTemplateSpecification: {},
+                          Overrides: {},
+                        },
+                        additionalProperties: false,
                       },
                       Lifecycle: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ErrorCode: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ErrorMessage: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,
@@ -337,23 +356,24 @@ const describeFleets: AppBlock = {
                     properties: {
                       LaunchTemplateAndOverrides: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          LaunchTemplateSpecification: {},
+                          Overrides: {},
+                        },
+                        additionalProperties: false,
                       },
                       Lifecycle: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       InstanceIds: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                       InstanceType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Platform: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

@@ -127,16 +127,23 @@ const listCachePolicies: AppBlock = {
                       type: "object",
                       properties: {
                         Id: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         LastModifiedTime: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         CachePolicyConfig: {
                           type: "object",
-                          additionalProperties: true,
+                          properties: {
+                            Comment: {},
+                            Name: {},
+                            DefaultTTL: {},
+                            MaxTTL: {},
+                            MinTTL: {},
+                            ParametersInCacheKeyAndForwardedToOrigin: {},
+                          },
+                          required: ["Name", "MinTTL"],
+                          additionalProperties: false,
                         },
                       },
                       required: ["Id", "LastModifiedTime", "CachePolicyConfig"],

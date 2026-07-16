@@ -127,8 +127,7 @@ const listFunctionEventInvokeConfigs: AppBlock = {
                       type: "object",
                       properties: {
                         Destination: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,
@@ -137,8 +136,7 @@ const listFunctionEventInvokeConfigs: AppBlock = {
                       type: "object",
                       properties: {
                         Destination: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       additionalProperties: false,

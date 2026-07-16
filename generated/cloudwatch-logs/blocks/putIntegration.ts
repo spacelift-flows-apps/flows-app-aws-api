@@ -34,7 +34,46 @@ const putIntegration: AppBlock = {
           name: "resource Config",
           description:
             "A structure that contains configuration information for the integration that you are creating.",
-          type: "string",
+          type: {
+            oneOf: [
+              {
+                type: "object",
+                properties: {
+                  openSearchResourceConfig: {
+                    type: "object",
+                    properties: {
+                      kmsKeyArn: {
+                        type: "string",
+                      },
+                      dataSourceRoleArn: {
+                        type: "string",
+                      },
+                      dashboardViewerPrincipals: {
+                        type: "array",
+                        items: {
+                          type: "string",
+                        },
+                      },
+                      applicationArn: {
+                        type: "string",
+                      },
+                      retentionDays: {
+                        type: "number",
+                      },
+                    },
+                    required: [
+                      "dataSourceRoleArn",
+                      "dashboardViewerPrincipals",
+                      "retentionDays",
+                    ],
+                    additionalProperties: false,
+                  },
+                },
+                required: ["openSearchResourceConfig"],
+                additionalProperties: false,
+              },
+            ],
+          },
           required: true,
         },
         integrationType: {

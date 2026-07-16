@@ -194,36 +194,29 @@ const describeOptionGroupOptions: AppBlock = {
                     type: "object",
                     properties: {
                       SettingName: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       SettingDescription: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       DefaultValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       ApplyType: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       AllowedValues: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IsModifiable: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       IsRequired: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                       MinimumEngineVersionPerAllowedValue: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "array",
+                        items: {},
                       },
                     },
                     additionalProperties: false,
@@ -235,12 +228,10 @@ const describeOptionGroupOptions: AppBlock = {
                     type: "object",
                     properties: {
                       Version: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       IsDefault: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "boolean",
                       },
                     },
                     additionalProperties: false,

@@ -184,8 +184,7 @@ const describeAssociation: AppBlock = {
                     Values: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
@@ -254,15 +253,13 @@ const describeAssociation: AppBlock = {
                     Accounts: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Regions: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     TargetLocationMaxConcurrency: {
@@ -278,12 +275,11 @@ const describeAssociation: AppBlock = {
                       type: "object",
                       properties: {
                         IgnorePollAlarmFailure: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "boolean",
                         },
                         Alarms: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       required: ["Alarms"],
@@ -295,15 +291,18 @@ const describeAssociation: AppBlock = {
                     ExcludeAccounts: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     Targets: {
                       type: "array",
                       items: {
                         type: "object",
-                        additionalProperties: true,
+                        properties: {
+                          Key: {},
+                          Values: {},
+                        },
+                        additionalProperties: false,
                       },
                     },
                     TargetsMaxConcurrency: {
@@ -343,8 +342,7 @@ const describeAssociation: AppBlock = {
                       type: "object",
                       properties: {
                         Name: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                       },
                       required: ["Name"],
@@ -370,6 +368,9 @@ const describeAssociation: AppBlock = {
                   required: ["Name", "State"],
                   additionalProperties: false,
                 },
+              },
+              AssociationDispatchAssumeRole: {
+                type: "string",
               },
             },
             additionalProperties: false,

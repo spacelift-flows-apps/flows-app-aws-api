@@ -4,6 +4,7 @@ import {
   GetMetricDataCommand,
 } from "@aws-sdk/client-cloudwatch";
 import { STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
+import { convertTimestamps } from "../utils/convertTimestamps";
 
 const getMetricData: AppBlock = {
   name: "Get Metric Data",
@@ -42,16 +43,14 @@ const getMetricData: AppBlock = {
                       type: "object",
                       properties: {
                         Namespace: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         MetricName: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "string",
                         },
                         Dimensions: {
-                          type: "object",
-                          additionalProperties: true,
+                          type: "array",
+                          items: {},
                         },
                       },
                       additionalProperties: false,
@@ -183,7 +182,12 @@ const getMetricData: AppBlock = {
           }),
         });
 
-        const command = new GetMetricDataCommand(commandInput as any);
+        const command = new GetMetricDataCommand(
+          convertTimestamps(
+            commandInput,
+            new Set(["StartTime", "EndTime"]),
+          ) as any,
+        );
         const response = await client.send(command);
 
         await events.emit(response || {});
@@ -230,12 +234,10 @@ const getMetricData: AppBlock = {
                     type: "object",
                     properties: {
                       Code: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                       Value: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                     additionalProperties: false,

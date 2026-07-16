@@ -162,8 +162,7 @@ const describeEventDetailsForOrganization: AppBlock = {
                     personas: {
                       type: "array",
                       items: {
-                        type: "object",
-                        additionalProperties: true,
+                        type: "string",
                       },
                     },
                   },
