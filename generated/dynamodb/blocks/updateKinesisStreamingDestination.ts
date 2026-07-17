@@ -47,6 +47,7 @@ const updateKinesisStreamingDestination: AppBlock = {
             properties: {
               ApproximateCreationDateTimePrecision: {
                 type: "string",
+                enum: ["MILLISECOND", "MICROSECOND"],
               },
             },
             additionalProperties: false,
@@ -124,6 +125,14 @@ const updateKinesisStreamingDestination: AppBlock = {
           },
           DestinationStatus: {
             type: "string",
+            enum: [
+              "ENABLING",
+              "ACTIVE",
+              "DISABLING",
+              "DISABLED",
+              "ENABLE_FAILED",
+              "UPDATING",
+            ],
             description:
               "The status of the attempt to update the Kinesis streaming destination output.",
           },
@@ -132,6 +141,7 @@ const updateKinesisStreamingDestination: AppBlock = {
             properties: {
               ApproximateCreationDateTimePrecision: {
                 type: "string",
+                enum: ["MILLISECOND", "MICROSECOND"],
               },
             },
             additionalProperties: false,

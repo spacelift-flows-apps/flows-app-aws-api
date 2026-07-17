@@ -31,7 +31,10 @@ const createDataCatalog: AppBlock = {
           name: "Type",
           description:
             "The type of data catalog to create: LAMBDA for a federated catalog, GLUE for an Glue Data Catalog, and HIVE for an external Apache Hive metastore.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["LAMBDA", "GLUE", "HIVE", "FEDERATED"],
+          },
           required: true,
         },
         Description: {
@@ -142,6 +145,7 @@ const createDataCatalog: AppBlock = {
               },
               Type: {
                 type: "string",
+                enum: ["LAMBDA", "GLUE", "HIVE", "FEDERATED"],
               },
               Parameters: {
                 type: "object",
@@ -151,9 +155,42 @@ const createDataCatalog: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: [
+                  "CREATE_IN_PROGRESS",
+                  "CREATE_COMPLETE",
+                  "CREATE_FAILED",
+                  "CREATE_FAILED_CLEANUP_IN_PROGRESS",
+                  "CREATE_FAILED_CLEANUP_COMPLETE",
+                  "CREATE_FAILED_CLEANUP_FAILED",
+                  "DELETE_IN_PROGRESS",
+                  "DELETE_COMPLETE",
+                  "DELETE_FAILED",
+                ],
               },
               ConnectionType: {
                 type: "string",
+                enum: [
+                  "DYNAMODB",
+                  "MYSQL",
+                  "POSTGRESQL",
+                  "REDSHIFT",
+                  "ORACLE",
+                  "SYNAPSE",
+                  "SQLSERVER",
+                  "DB2",
+                  "OPENSEARCH",
+                  "BIGQUERY",
+                  "GOOGLECLOUDSTORAGE",
+                  "HBASE",
+                  "DOCUMENTDB",
+                  "CMDB",
+                  "TPCDS",
+                  "TIMESTREAM",
+                  "SAPHANA",
+                  "SNOWFLAKE",
+                  "DATALAKEGEN2",
+                  "DB2AS400",
+                ],
               },
               Error: {
                 type: "string",

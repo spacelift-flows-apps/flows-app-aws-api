@@ -33,7 +33,10 @@ const describeDocumentPermission: AppBlock = {
         PermissionType: {
           name: "Permission Type",
           description: "The permission type for the document.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Share"],
+          },
           required: true,
         },
         MaxResults: {

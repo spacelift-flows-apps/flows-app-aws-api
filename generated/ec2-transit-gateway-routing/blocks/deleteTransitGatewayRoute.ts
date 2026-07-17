@@ -128,6 +128,17 @@ const deleteTransitGatewayRoute: AppBlock = {
                     },
                     ResourceType: {
                       type: "string",
+                      enum: [
+                        "vpc",
+                        "vpn",
+                        "vpn-concentrator",
+                        "direct-connect-gateway",
+                        "connect",
+                        "peering",
+                        "tgw-peering",
+                        "network-function",
+                        "client-vpn",
+                      ],
                     },
                   },
                   additionalProperties: false,
@@ -135,9 +146,11 @@ const deleteTransitGatewayRoute: AppBlock = {
               },
               Type: {
                 type: "string",
+                enum: ["static", "propagated"],
               },
               State: {
                 type: "string",
+                enum: ["pending", "active", "blackhole", "deleting", "deleted"],
               },
             },
             additionalProperties: false,

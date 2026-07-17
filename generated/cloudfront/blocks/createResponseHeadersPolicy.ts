@@ -82,6 +82,16 @@ const createResponseHeadersPolicy: AppBlock = {
                         type: "array",
                         items: {
                           type: "string",
+                          enum: [
+                            "GET",
+                            "POST",
+                            "OPTIONS",
+                            "PUT",
+                            "DELETE",
+                            "PATCH",
+                            "HEAD",
+                            "ALL",
+                          ],
                         },
                       },
                     },
@@ -153,6 +163,7 @@ const createResponseHeadersPolicy: AppBlock = {
                       },
                       FrameOption: {
                         type: "string",
+                        enum: ["DENY", "SAMEORIGIN"],
                       },
                     },
                     required: ["Override", "FrameOption"],
@@ -166,6 +177,16 @@ const createResponseHeadersPolicy: AppBlock = {
                       },
                       ReferrerPolicy: {
                         type: "string",
+                        enum: [
+                          "no-referrer",
+                          "no-referrer-when-downgrade",
+                          "origin",
+                          "origin-when-cross-origin",
+                          "same-origin",
+                          "strict-origin",
+                          "strict-origin-when-cross-origin",
+                          "unsafe-url",
+                        ],
                       },
                     },
                     required: ["Override", "ReferrerPolicy"],
@@ -473,6 +494,7 @@ const createResponseHeadersPolicy: AppBlock = {
                           },
                           FrameOption: {
                             type: "string",
+                            enum: ["DENY", "SAMEORIGIN"],
                           },
                         },
                         required: ["Override", "FrameOption"],
@@ -486,6 +508,16 @@ const createResponseHeadersPolicy: AppBlock = {
                           },
                           ReferrerPolicy: {
                             type: "string",
+                            enum: [
+                              "no-referrer",
+                              "no-referrer-when-downgrade",
+                              "origin",
+                              "origin-when-cross-origin",
+                              "same-origin",
+                              "strict-origin",
+                              "strict-origin-when-cross-origin",
+                              "unsafe-url",
+                            ],
                           },
                         },
                         required: ["Override", "ReferrerPolicy"],

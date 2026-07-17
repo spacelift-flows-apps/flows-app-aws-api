@@ -109,9 +109,11 @@ const listExports: AppBlock = {
                 },
                 ExportStatus: {
                   type: "string",
+                  enum: ["IN_PROGRESS", "COMPLETED", "FAILED"],
                 },
                 ExportType: {
                   type: "string",
+                  enum: ["FULL_EXPORT", "INCREMENTAL_EXPORT"],
                 },
               },
               additionalProperties: false,

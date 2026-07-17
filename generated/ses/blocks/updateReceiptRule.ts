@@ -43,6 +43,7 @@ const updateReceiptRule: AppBlock = {
               },
               TlsPolicy: {
                 type: "string",
+                enum: ["Require", "Optional"],
               },
               Recipients: {
                 type: "array",
@@ -123,6 +124,7 @@ const updateReceiptRule: AppBlock = {
                         },
                         InvocationType: {
                           type: "string",
+                          enum: ["Event", "RequestResponse"],
                         },
                       },
                       required: ["FunctionArn"],
@@ -133,6 +135,7 @@ const updateReceiptRule: AppBlock = {
                       properties: {
                         Scope: {
                           type: "string",
+                          enum: ["RuleSet"],
                         },
                         TopicArn: {
                           type: "string",
@@ -162,6 +165,7 @@ const updateReceiptRule: AppBlock = {
                         },
                         Encoding: {
                           type: "string",
+                          enum: ["UTF-8", "Base64"],
                         },
                       },
                       required: ["TopicArn"],

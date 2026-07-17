@@ -97,6 +97,7 @@ const getBucketRequestPayment: AppBlock = {
         properties: {
           Payer: {
             type: "string",
+            enum: ["Requester", "BucketOwner"],
             description:
               "Specifies who pays for the download and request fees.",
           },

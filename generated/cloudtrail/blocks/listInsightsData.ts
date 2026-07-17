@@ -35,7 +35,10 @@ const listInsightsData: AppBlock = {
         DataType: {
           name: "Data Type",
           description: "Specifies the category of events returned.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["InsightsEvents"],
+          },
           required: true,
         },
         Dimensions: {

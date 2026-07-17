@@ -102,6 +102,16 @@ const describeAddon: AppBlock = {
               },
               status: {
                 type: "string",
+                enum: [
+                  "CREATING",
+                  "ACTIVE",
+                  "CREATE_FAILED",
+                  "UPDATING",
+                  "DELETING",
+                  "DELETE_FAILED",
+                  "DEGRADED",
+                  "UPDATE_FAILED",
+                ],
               },
               addonVersion: {
                 type: "string",
@@ -116,6 +126,18 @@ const describeAddon: AppBlock = {
                       properties: {
                         code: {
                           type: "string",
+                          enum: [
+                            "AccessDenied",
+                            "InternalFailure",
+                            "ClusterUnreachable",
+                            "InsufficientNumberOfReplicas",
+                            "ConfigurationConflict",
+                            "AdmissionRequestDenied",
+                            "UnsupportedAddonModification",
+                            "K8sResourceNotFound",
+                            "AddonSubscriptionNeeded",
+                            "AddonPermissionFailure",
+                          ],
                         },
                         message: {
                           type: "string",

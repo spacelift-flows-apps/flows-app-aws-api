@@ -42,7 +42,10 @@ const applyGuardrail: AppBlock = {
           name: "source",
           description:
             "The source of data used in the request to apply the guardrail.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["INPUT", "OUTPUT"],
+          },
           required: true,
         },
         content: {
@@ -66,6 +69,11 @@ const applyGuardrail: AppBlock = {
                           type: "array",
                           items: {
                             type: "string",
+                            enum: [
+                              "grounding_source",
+                              "query",
+                              "guard_content",
+                            ],
                           },
                         },
                       },
@@ -84,6 +92,7 @@ const applyGuardrail: AppBlock = {
                       properties: {
                         format: {
                           type: "string",
+                          enum: ["png", "jpeg"],
                         },
                         source: {
                           oneOf: [
@@ -116,7 +125,10 @@ const applyGuardrail: AppBlock = {
           name: "output Scope",
           description:
             "Specifies the scope of the output that you get in the response.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["INTERVENTIONS", "FULL"],
+          },
           required: false,
         },
       },
@@ -222,6 +234,7 @@ const applyGuardrail: AppBlock = {
           },
           action: {
             type: "string",
+            enum: ["NONE", "GUARDRAIL_INTERVENED"],
             description: "The action taken in the response from the guardrail.",
           },
           actionReason: {
@@ -571,10 +584,16 @@ const applyGuardrail: AppBlock = {
                       type: "array",
                       items: {
                         type: "string",
+                        enum: [
+                          "REQUEST",
+                          "ACCOUNT_ENFORCED",
+                          "ORGANIZATION_ENFORCED",
+                        ],
                       },
                     },
                     guardrailOwnership: {
                       type: "string",
+                      enum: ["SELF", "CROSS_ACCOUNT"],
                     },
                   },
                   additionalProperties: false,

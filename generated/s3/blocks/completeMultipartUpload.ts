@@ -173,7 +173,10 @@ const completeMultipartUpload: AppBlock = {
           name: "Checksum Type",
           description:
             "This header specifies the checksum type of the object, which determines how part-level checksums are combined to create an object-level checksum for multipart objects.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["COMPOSITE", "FULL_OBJECT"],
+          },
           required: false,
         },
         MpuObjectSize: {
@@ -187,7 +190,10 @@ const completeMultipartUpload: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         ExpectedBucketOwner: {
@@ -365,11 +371,13 @@ const completeMultipartUpload: AppBlock = {
           },
           ChecksumType: {
             type: "string",
+            enum: ["COMPOSITE", "FULL_OBJECT"],
             description:
               "The checksum type, which determines how part-level checksums are combined to create an object-level checksum for multipart objects.",
           },
           ServerSideEncryption: {
             type: "string",
+            enum: ["AES256", "aws:fsx", "aws:kms", "aws:kms:dsse"],
             description:
               "The server-side encryption algorithm used when storing this object in Amazon S3.",
           },
@@ -390,6 +398,7 @@ const completeMultipartUpload: AppBlock = {
           },
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },

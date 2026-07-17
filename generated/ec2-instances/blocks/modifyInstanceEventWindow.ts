@@ -53,12 +53,30 @@ const modifyInstanceEventWindow: AppBlock = {
               properties: {
                 StartWeekDay: {
                   type: "string",
+                  enum: [
+                    "sunday",
+                    "monday",
+                    "tuesday",
+                    "wednesday",
+                    "thursday",
+                    "friday",
+                    "saturday",
+                  ],
                 },
                 StartHour: {
                   type: "number",
                 },
                 EndWeekDay: {
                   type: "string",
+                  enum: [
+                    "sunday",
+                    "monday",
+                    "tuesday",
+                    "wednesday",
+                    "thursday",
+                    "friday",
+                    "saturday",
+                  ],
                 },
                 EndHour: {
                   type: "number",
@@ -149,12 +167,30 @@ const modifyInstanceEventWindow: AppBlock = {
                   properties: {
                     StartWeekDay: {
                       type: "string",
+                      enum: [
+                        "sunday",
+                        "monday",
+                        "tuesday",
+                        "wednesday",
+                        "thursday",
+                        "friday",
+                        "saturday",
+                      ],
                     },
                     StartHour: {
                       type: "number",
                     },
                     EndWeekDay: {
                       type: "string",
+                      enum: [
+                        "sunday",
+                        "monday",
+                        "tuesday",
+                        "wednesday",
+                        "thursday",
+                        "friday",
+                        "saturday",
+                      ],
                     },
                     EndHour: {
                       type: "number",
@@ -204,6 +240,7 @@ const modifyInstanceEventWindow: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["creating", "deleting", "active", "deleted"],
               },
               Tags: {
                 type: "array",

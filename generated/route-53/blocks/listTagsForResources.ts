@@ -27,7 +27,10 @@ const listTagsForResources: AppBlock = {
         ResourceType: {
           name: "Resource Type",
           description: "The type of the resources.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["healthcheck", "hostedzone"],
+          },
           required: true,
         },
         ResourceIds: {
@@ -107,6 +110,7 @@ const listTagsForResources: AppBlock = {
               properties: {
                 ResourceType: {
                   type: "string",
+                  enum: ["healthcheck", "hostedzone"],
                 },
                 ResourceId: {
                   type: "string",

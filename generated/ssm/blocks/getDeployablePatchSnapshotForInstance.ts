@@ -47,6 +47,23 @@ const getDeployablePatchSnapshotForInstance: AppBlock = {
             properties: {
               OperatingSystem: {
                 type: "string",
+                enum: [
+                  "WINDOWS",
+                  "AMAZON_LINUX",
+                  "AMAZON_LINUX_2",
+                  "AMAZON_LINUX_2022",
+                  "UBUNTU",
+                  "REDHAT_ENTERPRISE_LINUX",
+                  "SUSE",
+                  "CENTOS",
+                  "ORACLE_LINUX",
+                  "DEBIAN",
+                  "MACOS",
+                  "RASPBIAN",
+                  "ROCKY_LINUX",
+                  "ALMA_LINUX",
+                  "AMAZON_LINUX_2023",
+                ],
               },
               GlobalFilters: {
                 type: "object",
@@ -58,6 +75,27 @@ const getDeployablePatchSnapshotForInstance: AppBlock = {
                       properties: {
                         Key: {
                           type: "string",
+                          enum: [
+                            "ARCH",
+                            "ADVISORY_ID",
+                            "BUGZILLA_ID",
+                            "PATCH_SET",
+                            "PRODUCT",
+                            "PRODUCT_FAMILY",
+                            "CLASSIFICATION",
+                            "CVE_ID",
+                            "EPOCH",
+                            "MSRC_SEVERITY",
+                            "NAME",
+                            "PATCH_ID",
+                            "SECTION",
+                            "PRIORITY",
+                            "REPOSITORY",
+                            "RELEASE",
+                            "SEVERITY",
+                            "SECURITY",
+                            "VERSION",
+                          ],
                         },
                         Values: {
                           type: "array",
@@ -90,6 +128,14 @@ const getDeployablePatchSnapshotForInstance: AppBlock = {
                         },
                         ComplianceLevel: {
                           type: "string",
+                          enum: [
+                            "CRITICAL",
+                            "HIGH",
+                            "MEDIUM",
+                            "LOW",
+                            "INFORMATIONAL",
+                            "UNSPECIFIED",
+                          ],
                         },
                         ApproveAfterDays: {
                           type: "number",
@@ -117,6 +163,14 @@ const getDeployablePatchSnapshotForInstance: AppBlock = {
               },
               ApprovedPatchesComplianceLevel: {
                 type: "string",
+                enum: [
+                  "CRITICAL",
+                  "HIGH",
+                  "MEDIUM",
+                  "LOW",
+                  "INFORMATIONAL",
+                  "UNSPECIFIED",
+                ],
               },
               RejectedPatches: {
                 type: "array",
@@ -126,6 +180,7 @@ const getDeployablePatchSnapshotForInstance: AppBlock = {
               },
               RejectedPatchesAction: {
                 type: "string",
+                enum: ["ALLOW_AS_DEPENDENCY", "BLOCK"],
               },
               ApprovedPatchesEnableNonSecurity: {
                 type: "boolean",
@@ -154,6 +209,7 @@ const getDeployablePatchSnapshotForInstance: AppBlock = {
               },
               AvailableSecurityUpdatesComplianceStatus: {
                 type: "string",
+                enum: ["COMPLIANT", "NON_COMPLIANT"],
               },
             },
             additionalProperties: false,

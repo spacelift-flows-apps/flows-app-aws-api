@@ -135,6 +135,7 @@ const getMaintenanceWindowTask: AppBlock = {
           },
           TaskType: {
             type: "string",
+            enum: ["RUN_COMMAND", "AUTOMATION", "STEP_FUNCTIONS", "LAMBDA"],
             description: "The type of task to run.",
           },
           TaskParameters: {
@@ -170,6 +171,7 @@ const getMaintenanceWindowTask: AppBlock = {
                   },
                   DocumentHashType: {
                     type: "string",
+                    enum: ["Sha256", "Sha1"],
                   },
                   DocumentVersion: {
                     type: "string",
@@ -184,10 +186,19 @@ const getMaintenanceWindowTask: AppBlock = {
                         type: "array",
                         items: {
                           type: "string",
+                          enum: [
+                            "All",
+                            "InProgress",
+                            "Success",
+                            "TimedOut",
+                            "Cancelled",
+                            "Failed",
+                          ],
                         },
                       },
                       NotificationType: {
                         type: "string",
+                        enum: ["Command", "Invocation"],
                       },
                     },
                     additionalProperties: false,
@@ -301,6 +312,7 @@ const getMaintenanceWindowTask: AppBlock = {
           },
           CutoffBehavior: {
             type: "string",
+            enum: ["CONTINUE_TASK", "CANCEL_TASK"],
             description:
               "The action to take on tasks when the maintenance window cutoff time is reached.",
           },

@@ -134,6 +134,13 @@ const associateClientVpnTargetNetwork: AppBlock = {
             properties: {
               Code: {
                 type: "string",
+                enum: [
+                  "associating",
+                  "associated",
+                  "association-failed",
+                  "disassociating",
+                  "disassociated",
+                ],
               },
               Message: {
                 type: "string",

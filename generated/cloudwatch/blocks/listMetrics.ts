@@ -68,7 +68,10 @@ const listMetrics: AppBlock = {
           name: "Recently Active",
           description:
             "To filter the results to show only metrics that have had data points published in the past three hours, specify this parameter with a value of PT3H.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["PT3H"],
+          },
           required: false,
         },
         IncludeLinkedAccounts: {

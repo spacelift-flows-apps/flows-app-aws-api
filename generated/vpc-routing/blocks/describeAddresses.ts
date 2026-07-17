@@ -144,6 +144,7 @@ const describeAddresses: AppBlock = {
                 },
                 Domain: {
                   type: "string",
+                  enum: ["vpc", "standard"],
                 },
                 NetworkInterfaceId: {
                   type: "string",
@@ -189,6 +190,7 @@ const describeAddresses: AppBlock = {
                 },
                 ServiceManaged: {
                   type: "string",
+                  enum: ["alb", "nlb", "rnat", "rds"],
                 },
                 InstanceId: {
                   type: "string",

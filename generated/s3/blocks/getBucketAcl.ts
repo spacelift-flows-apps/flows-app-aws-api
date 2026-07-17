@@ -129,6 +129,7 @@ const getBucketAcl: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: ["CanonicalUser", "AmazonCustomerByEmail", "Group"],
                     },
                   },
                   required: ["Type"],
@@ -136,6 +137,13 @@ const getBucketAcl: AppBlock = {
                 },
                 Permission: {
                   type: "string",
+                  enum: [
+                    "FULL_CONTROL",
+                    "WRITE",
+                    "WRITE_ACP",
+                    "READ",
+                    "READ_ACP",
+                  ],
                 },
               },
               additionalProperties: false,

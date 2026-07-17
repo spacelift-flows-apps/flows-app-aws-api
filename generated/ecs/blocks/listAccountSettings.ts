@@ -25,7 +25,22 @@ const listAccountSettings: AppBlock = {
           name: "name",
           description:
             "The name of the account setting you want to list the settings for.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "serviceLongArnFormat",
+              "taskLongArnFormat",
+              "containerInstanceLongArnFormat",
+              "awsvpcTrunking",
+              "containerInsights",
+              "fargateFIPSMode",
+              "tagResourceAuthorization",
+              "fargateTaskRetirementWaitPeriod",
+              "guardDutyActivate",
+              "defaultLogDriverMode",
+              "fargateEventWindows",
+            ],
+          },
           required: false,
         },
         value: {
@@ -127,6 +142,19 @@ const listAccountSettings: AppBlock = {
               properties: {
                 name: {
                   type: "string",
+                  enum: [
+                    "serviceLongArnFormat",
+                    "taskLongArnFormat",
+                    "containerInstanceLongArnFormat",
+                    "awsvpcTrunking",
+                    "containerInsights",
+                    "fargateFIPSMode",
+                    "tagResourceAuthorization",
+                    "fargateTaskRetirementWaitPeriod",
+                    "guardDutyActivate",
+                    "defaultLogDriverMode",
+                    "fargateEventWindows",
+                  ],
                 },
                 value: {
                   type: "string",
@@ -136,6 +164,7 @@ const listAccountSettings: AppBlock = {
                 },
                 type: {
                   type: "string",
+                  enum: ["user", "aws_managed"],
                 },
               },
               additionalProperties: false,

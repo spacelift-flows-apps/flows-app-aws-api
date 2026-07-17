@@ -35,6 +35,20 @@ const describeAutomationExecutions: AppBlock = {
               properties: {
                 Key: {
                   type: "string",
+                  enum: [
+                    "DocumentNamePrefix",
+                    "ExecutionStatus",
+                    "ExecutionId",
+                    "ParentExecutionId",
+                    "CurrentAction",
+                    "StartTimeBefore",
+                    "StartTimeAfter",
+                    "AutomationType",
+                    "TagKey",
+                    "TargetResourceGroup",
+                    "AutomationSubtype",
+                    "OpsItemId",
+                  ],
                 },
                 Values: {
                   type: "array",
@@ -137,6 +151,27 @@ const describeAutomationExecutions: AppBlock = {
                 },
                 AutomationExecutionStatus: {
                   type: "string",
+                  enum: [
+                    "Pending",
+                    "InProgress",
+                    "Waiting",
+                    "Success",
+                    "TimedOut",
+                    "Cancelling",
+                    "Cancelled",
+                    "Failed",
+                    "PendingApproval",
+                    "Approved",
+                    "Rejected",
+                    "Scheduled",
+                    "RunbookInProgress",
+                    "PendingChangeCalendarOverride",
+                    "ChangeCalendarOverrideApproved",
+                    "ChangeCalendarOverrideRejected",
+                    "CompletedWithSuccess",
+                    "CompletedWithFailure",
+                    "Exited",
+                  ],
                 },
                 ExecutionStartTime: {
                   type: "string",
@@ -158,6 +193,7 @@ const describeAutomationExecutions: AppBlock = {
                 },
                 Mode: {
                   type: "string",
+                  enum: ["Auto", "Interactive"],
                 },
                 ParentAutomationExecutionId: {
                   type: "string",
@@ -225,6 +261,7 @@ const describeAutomationExecutions: AppBlock = {
                 },
                 AutomationType: {
                   type: "string",
+                  enum: ["CrossAccount", "Local"],
                 },
                 AlarmConfiguration: {
                   type: "object",
@@ -257,6 +294,7 @@ const describeAutomationExecutions: AppBlock = {
                       },
                       State: {
                         type: "string",
+                        enum: ["UNKNOWN", "ALARM"],
                       },
                     },
                     required: ["Name", "State"],
@@ -268,6 +306,7 @@ const describeAutomationExecutions: AppBlock = {
                 },
                 AutomationSubtype: {
                   type: "string",
+                  enum: ["ChangeRequest", "AccessRequest"],
                 },
                 ScheduledTime: {
                   type: "string",

@@ -117,6 +117,7 @@ const disableLogging: AppBlock = {
           },
           LogDestinationType: {
             type: "string",
+            enum: ["s3", "cloudwatch"],
             description: "The log destination type.",
           },
           LogExports: {

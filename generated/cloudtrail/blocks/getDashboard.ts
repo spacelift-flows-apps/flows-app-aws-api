@@ -94,10 +94,12 @@ const getDashboard: AppBlock = {
           },
           Type: {
             type: "string",
+            enum: ["MANAGED", "CUSTOM"],
             description: "The type of dashboard.",
           },
           Status: {
             type: "string",
+            enum: ["CREATING", "CREATED", "UPDATING", "UPDATED", "DELETING"],
             description: "The status of the dashboard.",
           },
           Widgets: {
@@ -136,6 +138,7 @@ const getDashboard: AppBlock = {
                 properties: {
                   Unit: {
                     type: "string",
+                    enum: ["HOURS", "DAYS"],
                   },
                   Value: {
                     type: "number",
@@ -145,6 +148,7 @@ const getDashboard: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
               TimeOfDay: {
                 type: "string",

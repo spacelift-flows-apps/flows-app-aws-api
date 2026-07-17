@@ -123,6 +123,11 @@ const getBucketLogging: AppBlock = {
                         },
                         Type: {
                           type: "string",
+                          enum: [
+                            "CanonicalUser",
+                            "AmazonCustomerByEmail",
+                            "Group",
+                          ],
                         },
                       },
                       required: ["Type"],
@@ -130,6 +135,7 @@ const getBucketLogging: AppBlock = {
                     },
                     Permission: {
                       type: "string",
+                      enum: ["FULL_CONTROL", "READ", "WRITE"],
                     },
                   },
                   additionalProperties: false,
@@ -151,6 +157,7 @@ const getBucketLogging: AppBlock = {
                     properties: {
                       PartitionDateSource: {
                         type: "string",
+                        enum: ["EventTime", "DeliveryTime"],
                       },
                     },
                     additionalProperties: false,

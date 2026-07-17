@@ -92,6 +92,7 @@ const getConnectionStatus: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["connected", "notconnected"],
             description: "The status of the connection to the managed node.",
           },
         },

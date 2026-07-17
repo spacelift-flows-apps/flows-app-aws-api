@@ -45,12 +45,14 @@ const updateIPSet: AppBlock = {
               properties: {
                 Action: {
                   type: "string",
+                  enum: ["INSERT", "DELETE"],
                 },
                 IPSetDescriptor: {
                   type: "object",
                   properties: {
                     Type: {
                       type: "string",
+                      enum: ["IPV4", "IPV6"],
                     },
                     Value: {
                       type: "string",

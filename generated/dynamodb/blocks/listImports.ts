@@ -110,6 +110,13 @@ const listImports: AppBlock = {
                 },
                 ImportStatus: {
                   type: "string",
+                  enum: [
+                    "IN_PROGRESS",
+                    "COMPLETED",
+                    "CANCELLING",
+                    "CANCELLED",
+                    "FAILED",
+                  ],
                 },
                 TableArn: {
                   type: "string",
@@ -135,6 +142,7 @@ const listImports: AppBlock = {
                 },
                 InputFormat: {
                   type: "string",
+                  enum: ["DYNAMODB_JSON", "ION", "CSV"],
                 },
                 StartTime: {
                   type: "string",

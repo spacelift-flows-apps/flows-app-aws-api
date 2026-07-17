@@ -77,6 +77,13 @@ const describeAffectedEntities: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "IMPAIRED",
+                    "UNIMPAIRED",
+                    "UNKNOWN",
+                    "PENDING",
+                    "RESOLVED",
+                  ],
                 },
               },
             },
@@ -190,6 +197,13 @@ const describeAffectedEntities: AppBlock = {
                 },
                 statusCode: {
                   type: "string",
+                  enum: [
+                    "IMPAIRED",
+                    "UNIMPAIRED",
+                    "UNKNOWN",
+                    "PENDING",
+                    "RESOLVED",
+                  ],
                 },
                 tags: {
                   type: "object",

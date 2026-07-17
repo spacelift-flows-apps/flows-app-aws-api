@@ -54,7 +54,10 @@ const setTypeConfiguration: AppBlock = {
         Type: {
           name: "Type",
           description: "The type of extension.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["RESOURCE", "MODULE", "HOOK"],
+          },
           required: false,
         },
       },

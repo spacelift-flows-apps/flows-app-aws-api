@@ -109,6 +109,20 @@ const simulateCustomPolicy: AppBlock = {
                 },
                 ContextKeyType: {
                   type: "string",
+                  enum: [
+                    "string",
+                    "stringList",
+                    "numeric",
+                    "numericList",
+                    "boolean",
+                    "booleanList",
+                    "ip",
+                    "ipList",
+                    "binary",
+                    "binaryList",
+                    "date",
+                    "dateList",
+                  ],
                 },
               },
               additionalProperties: false,
@@ -207,6 +221,7 @@ const simulateCustomPolicy: AppBlock = {
                 },
                 EvalDecision: {
                   type: "string",
+                  enum: ["allowed", "explicitDeny", "implicitDeny"],
                 },
                 MatchedStatements: {
                   type: "array",
@@ -218,6 +233,15 @@ const simulateCustomPolicy: AppBlock = {
                       },
                       SourcePolicyType: {
                         type: "string",
+                        enum: [
+                          "user",
+                          "group",
+                          "role",
+                          "aws-managed",
+                          "user-managed",
+                          "resource",
+                          "none",
+                        ],
                       },
                       StartPosition: {
                         type: "object",
@@ -279,6 +303,7 @@ const simulateCustomPolicy: AppBlock = {
                       },
                       EvalResourceDecision: {
                         type: "string",
+                        enum: ["allowed", "explicitDeny", "implicitDeny"],
                       },
                       MatchedStatements: {
                         type: "array",

@@ -44,6 +44,7 @@ const batchDescribeTypeConfigurations: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: ["RESOURCE", "MODULE", "HOOK"],
                 },
                 TypeName: {
                   type: "string",
@@ -139,6 +140,7 @@ const batchDescribeTypeConfigurations: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: ["RESOURCE", "MODULE", "HOOK"],
                     },
                     TypeName: {
                       type: "string",
@@ -168,6 +170,7 @@ const batchDescribeTypeConfigurations: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: ["RESOURCE", "MODULE", "HOOK"],
                 },
                 TypeName: {
                   type: "string",

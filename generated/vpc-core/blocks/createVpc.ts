@@ -84,30 +84,39 @@ const createVpc: AppBlock = {
             properties: {
               Mode: {
                 type: "string",
+                enum: ["monitor", "enforce"],
               },
               InternetGatewayExclusion: {
                 type: "string",
+                enum: ["enable", "disable"],
               },
               EgressOnlyInternetGatewayExclusion: {
                 type: "string",
+                enum: ["enable", "disable"],
               },
               NatGatewayExclusion: {
                 type: "string",
+                enum: ["enable", "disable"],
               },
               VirtualPrivateGatewayExclusion: {
                 type: "string",
+                enum: ["enable", "disable"],
               },
               VpcPeeringExclusion: {
                 type: "string",
+                enum: ["enable", "disable"],
               },
               LambdaExclusion: {
                 type: "string",
+                enum: ["enable", "disable"],
               },
               VpcLatticeExclusion: {
                 type: "string",
+                enum: ["enable", "disable"],
               },
               ElasticFileSystemExclusion: {
                 type: "string",
+                enum: ["enable", "disable"],
               },
             },
             required: ["Mode"],
@@ -125,6 +134,115 @@ const createVpc: AppBlock = {
               properties: {
                 ResourceType: {
                   type: "string",
+                  enum: [
+                    "capacity-reservation",
+                    "client-vpn-endpoint",
+                    "customer-gateway",
+                    "carrier-gateway",
+                    "coip-pool",
+                    "declarative-policies-report",
+                    "dedicated-host",
+                    "dhcp-options",
+                    "egress-only-internet-gateway",
+                    "elastic-ip",
+                    "elastic-gpu",
+                    "export-image-task",
+                    "export-instance-task",
+                    "fleet",
+                    "fpga-image",
+                    "host-reservation",
+                    "image",
+                    "image-usage-report",
+                    "import-image-task",
+                    "import-snapshot-task",
+                    "instance",
+                    "instance-event-window",
+                    "internet-gateway",
+                    "ipam",
+                    "ipam-pool",
+                    "ipam-scope",
+                    "ipv4pool-ec2",
+                    "ipv6pool-ec2",
+                    "key-pair",
+                    "launch-template",
+                    "local-gateway",
+                    "local-gateway-route-table",
+                    "local-gateway-virtual-interface",
+                    "local-gateway-virtual-interface-group",
+                    "local-gateway-route-table-vpc-association",
+                    "local-gateway-route-table-virtual-interface-group-association",
+                    "natgateway",
+                    "network-acl",
+                    "network-interface",
+                    "network-insights-analysis",
+                    "network-insights-path",
+                    "network-insights-access-scope",
+                    "network-insights-access-scope-analysis",
+                    "outpost-lag",
+                    "placement-group",
+                    "prefix-list",
+                    "replace-root-volume-task",
+                    "reserved-instances",
+                    "route-table",
+                    "security-group",
+                    "security-group-rule",
+                    "service-link-virtual-interface",
+                    "snapshot",
+                    "spot-fleet-request",
+                    "spot-instances-request",
+                    "subnet",
+                    "subnet-cidr-reservation",
+                    "traffic-mirror-filter",
+                    "traffic-mirror-session",
+                    "traffic-mirror-target",
+                    "transit-gateway",
+                    "transit-gateway-attachment",
+                    "transit-gateway-connect-peer",
+                    "transit-gateway-multicast-domain",
+                    "transit-gateway-policy-table",
+                    "transit-gateway-metering-policy",
+                    "transit-gateway-route-table",
+                    "transit-gateway-route-table-announcement",
+                    "volume",
+                    "vpc",
+                    "vpc-endpoint",
+                    "vpc-endpoint-connection",
+                    "vpc-endpoint-service",
+                    "vpc-endpoint-service-permission",
+                    "vpc-peering-connection",
+                    "vpn-connection",
+                    "vpn-gateway",
+                    "vpc-flow-log",
+                    "capacity-reservation-fleet",
+                    "traffic-mirror-filter-rule",
+                    "vpc-endpoint-connection-device-type",
+                    "verified-access-instance",
+                    "verified-access-group",
+                    "verified-access-endpoint",
+                    "verified-access-policy",
+                    "verified-access-trust-provider",
+                    "vpn-connection-device-type",
+                    "vpc-block-public-access-exclusion",
+                    "vpc-encryption-control",
+                    "route-server",
+                    "route-server-endpoint",
+                    "route-server-peer",
+                    "ipam-resource-discovery",
+                    "ipam-resource-discovery-association",
+                    "instance-connect-endpoint",
+                    "verified-access-endpoint-target",
+                    "ipam-external-resource-verification-token",
+                    "capacity-block",
+                    "mac-modification-task",
+                    "ipam-prefix-list-resolver",
+                    "ipam-policy",
+                    "ipam-prefix-list-resolver-target",
+                    "secondary-interface",
+                    "secondary-network",
+                    "secondary-subnet",
+                    "capacity-manager-data-export",
+                    "vpn-concentrator",
+                  ],
                 },
                 Tags: {
                   type: "array",
@@ -158,7 +276,10 @@ const createVpc: AppBlock = {
           name: "Instance Tenancy",
           description:
             "The tenancy options for instances launched into the VPC.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["default", "dedicated", "host"],
+          },
           required: false,
         },
         AmazonProvidedIpv6CidrBlock: {
@@ -234,6 +355,7 @@ const createVpc: AppBlock = {
               },
               InstanceTenancy: {
                 type: "string",
+                enum: ["default", "dedicated", "host"],
               },
               Ipv6CidrBlockAssociationSet: {
                 type: "array",
@@ -251,6 +373,14 @@ const createVpc: AppBlock = {
                       properties: {
                         State: {
                           type: "string",
+                          enum: [
+                            "associating",
+                            "associated",
+                            "disassociating",
+                            "disassociated",
+                            "failing",
+                            "failed",
+                          ],
                         },
                         StatusMessage: {
                           type: "string",
@@ -266,9 +396,11 @@ const createVpc: AppBlock = {
                     },
                     Ipv6AddressAttribute: {
                       type: "string",
+                      enum: ["public", "private"],
                     },
                     IpSource: {
                       type: "string",
+                      enum: ["amazon", "byoip", "none"],
                     },
                   },
                   additionalProperties: false,
@@ -290,6 +422,14 @@ const createVpc: AppBlock = {
                       properties: {
                         State: {
                           type: "string",
+                          enum: [
+                            "associating",
+                            "associated",
+                            "disassociating",
+                            "disassociated",
+                            "failing",
+                            "failed",
+                          ],
                         },
                         StatusMessage: {
                           type: "string",
@@ -315,9 +455,21 @@ const createVpc: AppBlock = {
                   },
                   Mode: {
                     type: "string",
+                    enum: ["monitor", "enforce"],
                   },
                   State: {
                     type: "string",
+                    enum: [
+                      "enforce-in-progress",
+                      "monitor-in-progress",
+                      "enforce-failed",
+                      "monitor-failed",
+                      "deleting",
+                      "deleted",
+                      "available",
+                      "creating",
+                      "delete-failed",
+                    ],
                   },
                   StateMessage: {
                     type: "string",
@@ -330,6 +482,12 @@ const createVpc: AppBlock = {
                         properties: {
                           State: {
                             type: "string",
+                            enum: [
+                              "enabling",
+                              "enabled",
+                              "disabling",
+                              "disabled",
+                            ],
                           },
                           StateMessage: {
                             type: "string",
@@ -342,6 +500,12 @@ const createVpc: AppBlock = {
                         properties: {
                           State: {
                             type: "string",
+                            enum: [
+                              "enabling",
+                              "enabled",
+                              "disabling",
+                              "disabled",
+                            ],
                           },
                           StateMessage: {
                             type: "string",
@@ -354,6 +518,12 @@ const createVpc: AppBlock = {
                         properties: {
                           State: {
                             type: "string",
+                            enum: [
+                              "enabling",
+                              "enabled",
+                              "disabling",
+                              "disabled",
+                            ],
                           },
                           StateMessage: {
                             type: "string",
@@ -366,6 +536,12 @@ const createVpc: AppBlock = {
                         properties: {
                           State: {
                             type: "string",
+                            enum: [
+                              "enabling",
+                              "enabled",
+                              "disabling",
+                              "disabled",
+                            ],
                           },
                           StateMessage: {
                             type: "string",
@@ -378,6 +554,12 @@ const createVpc: AppBlock = {
                         properties: {
                           State: {
                             type: "string",
+                            enum: [
+                              "enabling",
+                              "enabled",
+                              "disabling",
+                              "disabled",
+                            ],
                           },
                           StateMessage: {
                             type: "string",
@@ -390,6 +572,12 @@ const createVpc: AppBlock = {
                         properties: {
                           State: {
                             type: "string",
+                            enum: [
+                              "enabling",
+                              "enabled",
+                              "disabling",
+                              "disabled",
+                            ],
                           },
                           StateMessage: {
                             type: "string",
@@ -402,6 +590,12 @@ const createVpc: AppBlock = {
                         properties: {
                           State: {
                             type: "string",
+                            enum: [
+                              "enabling",
+                              "enabled",
+                              "disabling",
+                              "disabled",
+                            ],
                           },
                           StateMessage: {
                             type: "string",
@@ -414,6 +608,12 @@ const createVpc: AppBlock = {
                         properties: {
                           State: {
                             type: "string",
+                            enum: [
+                              "enabling",
+                              "enabled",
+                              "disabling",
+                              "disabled",
+                            ],
                           },
                           StateMessage: {
                             type: "string",
@@ -462,6 +662,7 @@ const createVpc: AppBlock = {
                 properties: {
                   InternetGatewayBlockMode: {
                     type: "string",
+                    enum: ["off", "block-bidirectional", "block-ingress"],
                   },
                 },
                 additionalProperties: false,
@@ -471,6 +672,7 @@ const createVpc: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["pending", "available"],
               },
               CidrBlock: {
                 type: "string",

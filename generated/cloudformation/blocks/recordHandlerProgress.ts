@@ -33,13 +33,19 @@ const recordHandlerProgress: AppBlock = {
         OperationStatus: {
           name: "Operation Status",
           description: "Reserved for use by the CloudFormation CLI.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["PENDING", "IN_PROGRESS", "SUCCESS", "FAILED"],
+          },
           required: true,
         },
         CurrentOperationStatus: {
           name: "Current Operation Status",
           description: "Reserved for use by the CloudFormation CLI.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["PENDING", "IN_PROGRESS", "SUCCESS", "FAILED"],
+          },
           required: false,
         },
         StatusMessage: {
@@ -51,7 +57,30 @@ const recordHandlerProgress: AppBlock = {
         ErrorCode: {
           name: "Error Code",
           description: "Reserved for use by the CloudFormation CLI.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "NotUpdatable",
+              "InvalidRequest",
+              "AccessDenied",
+              "InvalidCredentials",
+              "AlreadyExists",
+              "NotFound",
+              "ResourceConflict",
+              "Throttling",
+              "ServiceLimitExceeded",
+              "NotStabilized",
+              "GeneralServiceException",
+              "ServiceInternalError",
+              "NetworkFailure",
+              "InternalFailure",
+              "InvalidTypeConfiguration",
+              "HandlerInternalFailure",
+              "NonCompliant",
+              "Unknown",
+              "UnsupportedTarget",
+            ],
+          },
           required: false,
         },
         ResourceModel: {

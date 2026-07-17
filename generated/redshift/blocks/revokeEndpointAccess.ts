@@ -137,6 +137,7 @@ const revokeEndpointAccess: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["Authorized", "Revoking"],
             description: "The status of the authorization action.",
           },
           AllowedAllVPCs: {

@@ -111,7 +111,10 @@ const createDaemon: AppBlock = {
           name: "propagate Tags",
           description:
             "Specifies whether to propagate the tags from the daemon to the daemon tasks.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["DAEMON", "NONE"],
+          },
           required: false,
         },
         enableECSManagedTags: {
@@ -199,6 +202,7 @@ const createDaemon: AppBlock = {
           },
           status: {
             type: "string",
+            enum: ["ACTIVE", "DELETE_IN_PROGRESS"],
             description: "The status of the daemon.",
           },
           createdAt: {

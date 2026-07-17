@@ -36,7 +36,15 @@ const generateMac: AppBlock = {
         MacAlgorithm: {
           name: "Mac Algorithm",
           description: "The MAC algorithm used in the operation.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "HMAC_SHA_224",
+              "HMAC_SHA_256",
+              "HMAC_SHA_384",
+              "HMAC_SHA_512",
+            ],
+          },
           required: true,
         },
         GrantTokens: {
@@ -121,6 +129,12 @@ const generateMac: AppBlock = {
           },
           MacAlgorithm: {
             type: "string",
+            enum: [
+              "HMAC_SHA_224",
+              "HMAC_SHA_256",
+              "HMAC_SHA_384",
+              "HMAC_SHA_512",
+            ],
             description:
               "The MAC algorithm that was used to generate the HMAC.",
           },

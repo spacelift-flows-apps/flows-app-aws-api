@@ -143,6 +143,13 @@ const describeVpcEndpoints: AppBlock = {
                 },
                 VpcEndpointType: {
                   type: "string",
+                  enum: [
+                    "Interface",
+                    "Gateway",
+                    "GatewayLoadBalancer",
+                    "Resource",
+                    "ServiceNetwork",
+                  ],
                 },
                 VpcId: {
                   type: "string",
@@ -152,6 +159,17 @@ const describeVpcEndpoints: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "PendingAcceptance",
+                    "Pending",
+                    "Available",
+                    "Deleting",
+                    "Deleted",
+                    "Rejected",
+                    "Failed",
+                    "Expired",
+                    "Partial",
+                  ],
                 },
                 PolicyDocument: {
                   type: "string",
@@ -185,12 +203,14 @@ const describeVpcEndpoints: AppBlock = {
                 },
                 IpAddressType: {
                   type: "string",
+                  enum: ["ipv4", "dualstack", "ipv6"],
                 },
                 DnsOptions: {
                   type: "object",
                   properties: {
                     DnsRecordIpType: {
                       type: "string",
+                      enum: ["ipv4", "dualstack", "ipv6", "service-defined"],
                     },
                     PrivateDnsOnlyForInboundResolverEndpoint: {
                       type: "boolean",

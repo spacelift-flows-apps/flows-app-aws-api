@@ -103,6 +103,7 @@ const getQueryResults: AppBlock = {
         properties: {
           queryLanguage: {
             type: "string",
+            enum: ["CWLI", "SQL", "PPL"],
             description: "The query language used for this query.",
           },
           results: {
@@ -153,6 +154,15 @@ const getQueryResults: AppBlock = {
           },
           status: {
             type: "string",
+            enum: [
+              "Scheduled",
+              "Running",
+              "Complete",
+              "Failed",
+              "Cancelled",
+              "Timeout",
+              "Unknown",
+            ],
             description: "The status of the most recent running of the query.",
           },
           encryptionKey: {

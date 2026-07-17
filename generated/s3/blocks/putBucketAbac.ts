@@ -38,7 +38,21 @@ const putBucketAbac: AppBlock = {
           name: "Checksum Algorithm",
           description:
             "Indicates the algorithm that you want Amazon S3 to use to create the checksum.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CRC32",
+              "CRC32C",
+              "SHA1",
+              "SHA256",
+              "CRC64NVME",
+              "SHA512",
+              "MD5",
+              "XXHASH64",
+              "XXHASH3",
+              "XXHASH128",
+            ],
+          },
           required: false,
         },
         ExpectedBucketOwner: {
@@ -56,6 +70,7 @@ const putBucketAbac: AppBlock = {
             properties: {
               Status: {
                 type: "string",
+                enum: ["Enabled", "Disabled"],
               },
             },
             additionalProperties: false,

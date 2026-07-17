@@ -55,6 +55,12 @@ const describeIntegrations: AppBlock = {
               properties: {
                 Name: {
                   type: "string",
+                  enum: [
+                    "integration-arn",
+                    "source-arn",
+                    "source-types",
+                    "status",
+                  ],
                 },
                 Values: {
                   type: "array",
@@ -151,6 +157,15 @@ const describeIntegrations: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "creating",
+                    "active",
+                    "modifying",
+                    "failed",
+                    "deleting",
+                    "syncing",
+                    "needs_attention",
+                  ],
                 },
                 Errors: {
                   type: "array",

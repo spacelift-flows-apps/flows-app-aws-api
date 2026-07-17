@@ -99,6 +99,11 @@ const updateStack: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "CAPABILITY_IAM",
+                "CAPABILITY_NAMED_IAM",
+                "CAPABILITY_AUTO_EXPAND",
+              ],
             },
           },
           required: false,

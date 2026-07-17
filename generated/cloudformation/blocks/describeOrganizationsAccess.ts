@@ -28,7 +28,10 @@ const describeOrganizationsAccess: AppBlock = {
           name: "Call As",
           description:
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SELF", "DELEGATED_ADMIN"],
+          },
           required: false,
         },
       },
@@ -93,6 +96,7 @@ const describeOrganizationsAccess: AppBlock = {
         properties: {
           Status: {
             type: "string",
+            enum: ["ENABLED", "DISABLED", "DISABLED_PERMANENTLY"],
             description: "Presents the status of the OrganizationAccess.",
           },
         },

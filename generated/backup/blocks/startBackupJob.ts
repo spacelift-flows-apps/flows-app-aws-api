@@ -87,6 +87,7 @@ const startBackupJob: AppBlock = {
               },
               DeleteAfterEvent: {
                 type: "string",
+                enum: ["DELETE_AFTER_COPY"],
               },
             },
             additionalProperties: false,
@@ -119,7 +120,10 @@ const startBackupJob: AppBlock = {
           name: "Index",
           description:
             "Include this parameter to enable index creation if your backup job has a resource type that supports backup indexes.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ENABLED", "DISABLED"],
+          },
           required: false,
         },
       },

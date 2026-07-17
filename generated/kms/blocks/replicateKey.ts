@@ -156,9 +156,25 @@ const replicateKey: AppBlock = {
               },
               KeyUsage: {
                 type: "string",
+                enum: [
+                  "SIGN_VERIFY",
+                  "ENCRYPT_DECRYPT",
+                  "GENERATE_VERIFY_MAC",
+                  "KEY_AGREEMENT",
+                ],
               },
               KeyState: {
                 type: "string",
+                enum: [
+                  "Creating",
+                  "Enabled",
+                  "Disabled",
+                  "PendingDeletion",
+                  "PendingImport",
+                  "PendingReplicaDeletion",
+                  "Unavailable",
+                  "Updating",
+                ],
               },
               DeletionDate: {
                 type: "string",
@@ -168,6 +184,12 @@ const replicateKey: AppBlock = {
               },
               Origin: {
                 type: "string",
+                enum: [
+                  "AWS_KMS",
+                  "EXTERNAL",
+                  "AWS_CLOUDHSM",
+                  "EXTERNAL_KEY_STORE",
+                ],
               },
               CustomKeyStoreId: {
                 type: "string",
@@ -177,32 +199,90 @@ const replicateKey: AppBlock = {
               },
               ExpirationModel: {
                 type: "string",
+                enum: ["KEY_MATERIAL_EXPIRES", "KEY_MATERIAL_DOES_NOT_EXPIRE"],
               },
               KeyManager: {
                 type: "string",
+                enum: ["AWS", "CUSTOMER"],
               },
               CustomerMasterKeySpec: {
                 type: "string",
+                enum: [
+                  "RSA_2048",
+                  "RSA_3072",
+                  "RSA_4096",
+                  "ECC_NIST_P256",
+                  "ECC_NIST_P384",
+                  "ECC_NIST_P521",
+                  "ECC_SECG_P256K1",
+                  "SYMMETRIC_DEFAULT",
+                  "HMAC_224",
+                  "HMAC_256",
+                  "HMAC_384",
+                  "HMAC_512",
+                  "SM2",
+                ],
               },
               KeySpec: {
                 type: "string",
+                enum: [
+                  "RSA_2048",
+                  "RSA_3072",
+                  "RSA_4096",
+                  "ECC_NIST_P256",
+                  "ECC_NIST_P384",
+                  "ECC_NIST_P521",
+                  "ECC_SECG_P256K1",
+                  "SYMMETRIC_DEFAULT",
+                  "HMAC_224",
+                  "HMAC_256",
+                  "HMAC_384",
+                  "HMAC_512",
+                  "SM2",
+                  "ML_DSA_44",
+                  "ML_DSA_65",
+                  "ML_DSA_87",
+                  "ECC_NIST_EDWARDS25519",
+                ],
               },
               EncryptionAlgorithms: {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "SYMMETRIC_DEFAULT",
+                    "RSAES_OAEP_SHA_1",
+                    "RSAES_OAEP_SHA_256",
+                    "SM2PKE",
+                  ],
                 },
               },
               SigningAlgorithms: {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "RSASSA_PSS_SHA_256",
+                    "RSASSA_PSS_SHA_384",
+                    "RSASSA_PSS_SHA_512",
+                    "RSASSA_PKCS1_V1_5_SHA_256",
+                    "RSASSA_PKCS1_V1_5_SHA_384",
+                    "RSASSA_PKCS1_V1_5_SHA_512",
+                    "ECDSA_SHA_256",
+                    "ECDSA_SHA_384",
+                    "ECDSA_SHA_512",
+                    "SM2DSA",
+                    "ML_DSA_SHAKE_256",
+                    "ED25519_SHA_512",
+                    "ED25519_PH_SHA_512",
+                  ],
                 },
               },
               KeyAgreementAlgorithms: {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["ECDH"],
                 },
               },
               MultiRegion: {
@@ -213,6 +293,7 @@ const replicateKey: AppBlock = {
                 properties: {
                   MultiRegionKeyType: {
                     type: "string",
+                    enum: ["PRIMARY", "REPLICA"],
                   },
                   PrimaryKey: {
                     type: "object",
@@ -251,6 +332,12 @@ const replicateKey: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "HMAC_SHA_224",
+                    "HMAC_SHA_256",
+                    "HMAC_SHA_384",
+                    "HMAC_SHA_512",
+                  ],
                 },
               },
               XksKeyConfiguration: {

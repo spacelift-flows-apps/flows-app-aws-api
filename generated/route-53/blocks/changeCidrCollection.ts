@@ -50,6 +50,7 @@ const changeCidrCollection: AppBlock = {
                 },
                 Action: {
                   type: "string",
+                  enum: ["PUT", "DELETE_IF_EXISTS"],
                 },
                 CidrList: {
                   type: "array",

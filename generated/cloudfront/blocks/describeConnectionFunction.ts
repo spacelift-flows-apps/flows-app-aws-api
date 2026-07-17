@@ -33,7 +33,10 @@ const describeConnectionFunction: AppBlock = {
         Stage: {
           name: "Stage",
           description: "The connection function's stage.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["DEVELOPMENT", "LIVE"],
+          },
           required: false,
         },
       },
@@ -113,6 +116,7 @@ const describeConnectionFunction: AppBlock = {
                   },
                   Runtime: {
                     type: "string",
+                    enum: ["cloudfront-js-1.0", "cloudfront-js-2.0"],
                   },
                   KeyValueStoreAssociations: {
                     type: "object",
@@ -147,6 +151,7 @@ const describeConnectionFunction: AppBlock = {
               },
               Stage: {
                 type: "string",
+                enum: ["DEVELOPMENT", "LIVE"],
               },
               CreatedTime: {
                 type: "string",

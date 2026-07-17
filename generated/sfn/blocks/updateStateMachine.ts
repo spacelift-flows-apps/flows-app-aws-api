@@ -50,6 +50,7 @@ const updateStateMachine: AppBlock = {
             properties: {
               level: {
                 type: "string",
+                enum: ["ALL", "ERROR", "FATAL", "OFF"],
               },
               includeExecutionData: {
                 type: "boolean",
@@ -119,6 +120,7 @@ const updateStateMachine: AppBlock = {
               },
               type: {
                 type: "string",
+                enum: ["AWS_OWNED_KEY", "CUSTOMER_MANAGED_KMS_KEY"],
               },
             },
             required: ["type"],

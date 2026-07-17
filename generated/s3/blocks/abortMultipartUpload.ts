@@ -46,7 +46,10 @@ const abortMultipartUpload: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         ExpectedBucketOwner: {
@@ -129,6 +132,7 @@ const abortMultipartUpload: AppBlock = {
         properties: {
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },

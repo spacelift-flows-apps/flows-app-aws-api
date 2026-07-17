@@ -156,6 +156,7 @@ const describeIdentityProviderConfig: AppBlock = {
                   },
                   status: {
                     type: "string",
+                    enum: ["CREATING", "DELETING", "ACTIVE"],
                   },
                 },
                 additionalProperties: false,

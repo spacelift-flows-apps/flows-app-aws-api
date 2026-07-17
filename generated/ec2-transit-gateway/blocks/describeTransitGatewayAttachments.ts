@@ -157,12 +157,38 @@ const describeTransitGatewayAttachments: AppBlock = {
                 },
                 ResourceType: {
                   type: "string",
+                  enum: [
+                    "vpc",
+                    "vpn",
+                    "vpn-concentrator",
+                    "direct-connect-gateway",
+                    "connect",
+                    "peering",
+                    "tgw-peering",
+                    "network-function",
+                    "client-vpn",
+                  ],
                 },
                 ResourceId: {
                   type: "string",
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "initiating",
+                    "initiatingRequest",
+                    "pendingAcceptance",
+                    "rollingBack",
+                    "pending",
+                    "available",
+                    "modifying",
+                    "deleting",
+                    "deleted",
+                    "failed",
+                    "rejected",
+                    "rejecting",
+                    "failing",
+                  ],
                 },
                 Association: {
                   type: "object",
@@ -172,6 +198,12 @@ const describeTransitGatewayAttachments: AppBlock = {
                     },
                     State: {
                       type: "string",
+                      enum: [
+                        "associating",
+                        "associated",
+                        "disassociating",
+                        "disassociated",
+                      ],
                     },
                   },
                   additionalProperties: false,

@@ -68,7 +68,10 @@ const createAnycastIpList: AppBlock = {
         IpAddressType: {
           name: "Ip Address Type",
           description: "The IP address type for the Anycast static IP list.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ipv4", "ipv6", "dualstack"],
+          },
           required: false,
         },
         IpamCidrConfigs: {
@@ -91,6 +94,20 @@ const createAnycastIpList: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "provisioned",
+                    "failed-provision",
+                    "provisioning",
+                    "deprovisioned",
+                    "failed-deprovision",
+                    "deprovisioning",
+                    "advertised",
+                    "failed-advertise",
+                    "advertising",
+                    "withdrawn",
+                    "failed-withdraw",
+                    "withdrawing",
+                  ],
                 },
               },
               required: ["Cidr", "IpamPoolArn"],
@@ -174,6 +191,7 @@ const createAnycastIpList: AppBlock = {
               },
               IpAddressType: {
                 type: "string",
+                enum: ["ipv4", "ipv6", "dualstack"],
               },
               IpamConfig: {
                 type: "object",
@@ -197,6 +215,20 @@ const createAnycastIpList: AppBlock = {
                         },
                         Status: {
                           type: "string",
+                          enum: [
+                            "provisioned",
+                            "failed-provision",
+                            "provisioning",
+                            "deprovisioned",
+                            "failed-deprovision",
+                            "deprovisioning",
+                            "advertised",
+                            "failed-advertise",
+                            "advertising",
+                            "withdrawn",
+                            "failed-withdraw",
+                            "withdrawing",
+                          ],
                         },
                       },
                       required: ["Cidr", "IpamPoolArn"],

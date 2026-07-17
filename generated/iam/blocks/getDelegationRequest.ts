@@ -128,6 +128,7 @@ const getDelegationRequest: AppBlock = {
                         },
                         Type: {
                           type: "string",
+                          enum: ["string", "stringList"],
                         },
                       },
                       additionalProperties: false,
@@ -153,6 +154,15 @@ const getDelegationRequest: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "UNASSIGNED",
+                  "ASSIGNED",
+                  "PENDING_APPROVAL",
+                  "FINALIZED",
+                  "ACCEPTED",
+                  "REJECTED",
+                  "EXPIRED",
+                ],
               },
               ExpirationTime: {
                 type: "string",
@@ -191,11 +201,13 @@ const getDelegationRequest: AppBlock = {
           },
           PermissionCheckStatus: {
             type: "string",
+            enum: ["COMPLETE", "IN_PROGRESS", "FAILED"],
             description:
               "The status of the permission check for the delegation request.",
           },
           PermissionCheckResult: {
             type: "string",
+            enum: ["ALLOWED", "DENIED", "UNSURE"],
             description:
               "The result of the permission check, indicating whether the caller has sufficient permissions to cover the requested permissions.",
           },

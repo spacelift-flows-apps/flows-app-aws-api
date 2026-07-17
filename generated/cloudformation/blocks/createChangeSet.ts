@@ -87,6 +87,11 @@ const createChangeSet: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "CAPABILITY_IAM",
+                "CAPABILITY_NAMED_IAM",
+                "CAPABILITY_AUTO_EXPAND",
+              ],
             },
           },
           required: false,
@@ -195,7 +200,10 @@ const createChangeSet: AppBlock = {
         ChangeSetType: {
           name: "Change Set Type",
           description: "The type of change set operation.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["CREATE", "UPDATE", "IMPORT"],
+          },
           required: false,
         },
         ResourcesToImport: {
@@ -240,7 +248,10 @@ const createChangeSet: AppBlock = {
           name: "On Stack Failure",
           description:
             "Determines what action will be taken if stack creation fails.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["DO_NOTHING", "ROLLBACK", "DELETE"],
+          },
           required: false,
         },
         ImportExistingResources: {
@@ -254,7 +265,10 @@ const createChangeSet: AppBlock = {
           name: "Deployment Mode",
           description:
             "Determines how CloudFormation handles configuration drift during deployment.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["REVERT_DRIFT"],
+          },
           required: false,
         },
       },

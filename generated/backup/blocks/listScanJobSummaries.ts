@@ -40,27 +40,48 @@ const listScanJobSummaries: AppBlock = {
           name: "Malware Scanner",
           description:
             "Returns only the scan jobs for the specified malware scanner.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["GUARDDUTY"],
+          },
           required: false,
         },
         ScanResultStatus: {
           name: "Scan Result Status",
           description:
             "Returns only the scan jobs for the specified scan results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["NO_THREATS_FOUND", "THREATS_FOUND"],
+          },
           required: false,
         },
         State: {
           name: "State",
           description:
             "Returns only the scan jobs for the specified scanning job state.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CREATED",
+              "COMPLETED",
+              "COMPLETED_WITH_ISSUES",
+              "RUNNING",
+              "FAILED",
+              "CANCELED",
+              "AGGREGATE_ALL",
+              "ANY",
+            ],
+          },
           required: false,
         },
         AggregationPeriod: {
           name: "Aggregation Period",
           description: "The period for the returned results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ONE_DAY", "SEVEN_DAYS", "FOURTEEN_DAYS"],
+          },
           required: false,
         },
         MaxResults: {
@@ -147,6 +168,16 @@ const listScanJobSummaries: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "CREATED",
+                    "COMPLETED",
+                    "COMPLETED_WITH_ISSUES",
+                    "RUNNING",
+                    "FAILED",
+                    "CANCELED",
+                    "AGGREGATE_ALL",
+                    "ANY",
+                  ],
                 },
                 ResourceType: {
                   type: "string",
@@ -162,9 +193,11 @@ const listScanJobSummaries: AppBlock = {
                 },
                 MalwareScanner: {
                   type: "string",
+                  enum: ["GUARDDUTY"],
                 },
                 ScanResultStatus: {
                   type: "string",
+                  enum: ["NO_THREATS_FOUND", "THREATS_FOUND"],
                 },
               },
               additionalProperties: false,

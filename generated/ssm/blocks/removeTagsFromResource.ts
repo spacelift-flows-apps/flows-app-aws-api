@@ -25,7 +25,20 @@ const removeTagsFromResource: AppBlock = {
           name: "Resource Type",
           description:
             "The type of resource from which you want to remove a tag.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "Document",
+              "ManagedInstance",
+              "MaintenanceWindow",
+              "Parameter",
+              "PatchBaseline",
+              "OpsItem",
+              "OpsMetadata",
+              "Automation",
+              "Association",
+            ],
+          },
           required: true,
         },
         ResourceId: {

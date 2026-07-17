@@ -139,6 +139,7 @@ const modifyCapacityReservation: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: ["provisioned", "pending", "rebalancing", "failed"],
                     },
                     Reason: {
                       type: "string",

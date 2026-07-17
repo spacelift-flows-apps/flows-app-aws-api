@@ -49,6 +49,7 @@ const addTrustStoreRevocations: AppBlock = {
                 },
                 RevocationType: {
                   type: "string",
+                  enum: ["CRL"],
                 },
               },
               additionalProperties: false,
@@ -129,6 +130,7 @@ const addTrustStoreRevocations: AppBlock = {
                 },
                 RevocationType: {
                   type: "string",
+                  enum: ["CRL"],
                 },
                 NumberOfRevokedEntries: {
                   type: "number",

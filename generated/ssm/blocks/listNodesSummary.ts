@@ -38,6 +38,23 @@ const listNodesSummary: AppBlock = {
               properties: {
                 Key: {
                   type: "string",
+                  enum: [
+                    "AgentType",
+                    "AgentVersion",
+                    "ComputerName",
+                    "InstanceId",
+                    "InstanceStatus",
+                    "IpAddress",
+                    "ManagedStatus",
+                    "PlatformName",
+                    "PlatformType",
+                    "PlatformVersion",
+                    "ResourceType",
+                    "OrganizationalUnitId",
+                    "OrganizationalUnitPath",
+                    "Region",
+                    "AccountId",
+                  ],
                 },
                 Values: {
                   type: "array",
@@ -47,6 +64,7 @@ const listNodesSummary: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: ["Equal", "NotEqual", "BeginWith"],
                 },
               },
               required: ["Key", "Values"],
@@ -66,12 +84,22 @@ const listNodesSummary: AppBlock = {
               properties: {
                 AggregatorType: {
                   type: "string",
+                  enum: ["Count"],
                 },
                 TypeName: {
                   type: "string",
+                  enum: ["Instance"],
                 },
                 AttributeName: {
                   type: "string",
+                  enum: [
+                    "AgentVersion",
+                    "PlatformName",
+                    "PlatformType",
+                    "PlatformVersion",
+                    "Region",
+                    "ResourceType",
+                  ],
                 },
                 Aggregators: {
                   type: "array",
@@ -80,12 +108,22 @@ const listNodesSummary: AppBlock = {
                     properties: {
                       AggregatorType: {
                         type: "string",
+                        enum: ["Count"],
                       },
                       TypeName: {
                         type: "string",
+                        enum: ["Instance"],
                       },
                       AttributeName: {
                         type: "string",
+                        enum: [
+                          "AgentVersion",
+                          "PlatformName",
+                          "PlatformType",
+                          "PlatformVersion",
+                          "Region",
+                          "ResourceType",
+                        ],
                       },
                       Aggregators: {
                         type: "array",

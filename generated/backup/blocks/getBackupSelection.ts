@@ -117,6 +117,7 @@ const getBackupSelection: AppBlock = {
                   properties: {
                     ConditionType: {
                       type: "string",
+                      enum: ["STRINGEQUALS"],
                     },
                     ConditionKey: {
                       type: "string",

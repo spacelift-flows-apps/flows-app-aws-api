@@ -186,6 +186,7 @@ const createGlobalCluster: AppBlock = {
               },
               StorageEncryptionType: {
                 type: "string",
+                enum: ["none", "sse-kms", "sse-rds"],
               },
               DeletionProtection: {
                 type: "boolean",
@@ -209,9 +210,17 @@ const createGlobalCluster: AppBlock = {
                     },
                     GlobalWriteForwardingStatus: {
                       type: "string",
+                      enum: [
+                        "enabled",
+                        "disabled",
+                        "enabling",
+                        "disabling",
+                        "unknown",
+                      ],
                     },
                     SynchronizationStatus: {
                       type: "string",
+                      enum: ["connected", "pending-resync"],
                     },
                   },
                   additionalProperties: false,
@@ -225,6 +234,7 @@ const createGlobalCluster: AppBlock = {
                 properties: {
                   Status: {
                     type: "string",
+                    enum: ["pending", "failing-over", "cancelling"],
                   },
                   FromDbClusterArn: {
                     type: "string",

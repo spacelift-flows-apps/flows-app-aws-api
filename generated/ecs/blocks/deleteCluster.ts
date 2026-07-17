@@ -106,6 +106,7 @@ const deleteCluster: AppBlock = {
                       },
                       logging: {
                         type: "string",
+                        enum: ["NONE", "DEFAULT", "OVERRIDE"],
                       },
                       logConfiguration: {
                         type: "object",
@@ -198,6 +199,7 @@ const deleteCluster: AppBlock = {
                   properties: {
                     name: {
                       type: "string",
+                      enum: ["containerInsights"],
                     },
                     value: {
                       type: "string",

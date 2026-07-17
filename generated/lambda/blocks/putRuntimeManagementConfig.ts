@@ -39,7 +39,10 @@ const putRuntimeManagementConfig: AppBlock = {
         UpdateRuntimeOn: {
           name: "Update Runtime On",
           description: "Specify the runtime update mode.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Auto", "Manual", "FunctionUpdate"],
+          },
           required: true,
         },
         RuntimeVersionArn: {
@@ -111,6 +114,7 @@ const putRuntimeManagementConfig: AppBlock = {
         properties: {
           UpdateRuntimeOn: {
             type: "string",
+            enum: ["Auto", "Manual", "FunctionUpdate"],
             description: "The runtime update mode.",
           },
           FunctionArn: {

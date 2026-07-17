@@ -43,6 +43,7 @@ const updateDocumentMetadata: AppBlock = {
             properties: {
               Action: {
                 type: "string",
+                enum: ["SendForReview", "UpdateReview", "Approve", "Reject"],
               },
               Comment: {
                 type: "array",
@@ -51,6 +52,7 @@ const updateDocumentMetadata: AppBlock = {
                   properties: {
                     Type: {
                       type: "string",
+                      enum: ["Comment"],
                     },
                     Content: {
                       type: "string",

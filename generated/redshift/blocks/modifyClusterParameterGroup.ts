@@ -58,6 +58,7 @@ const modifyClusterParameterGroup: AppBlock = {
                 },
                 ApplyType: {
                   type: "string",
+                  enum: ["static", "dynamic"],
                 },
                 IsModifiable: {
                   type: "boolean",

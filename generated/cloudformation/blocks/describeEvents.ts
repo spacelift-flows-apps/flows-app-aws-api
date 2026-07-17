@@ -139,12 +139,28 @@ const describeEvents: AppBlock = {
                 },
                 OperationType: {
                   type: "string",
+                  enum: [
+                    "CREATE_STACK",
+                    "UPDATE_STACK",
+                    "DELETE_STACK",
+                    "CONTINUE_ROLLBACK",
+                    "ROLLBACK",
+                    "CREATE_CHANGESET",
+                  ],
                 },
                 OperationStatus: {
                   type: "string",
+                  enum: ["IN_PROGRESS", "SUCCEEDED", "FAILED"],
                 },
                 EventType: {
                   type: "string",
+                  enum: [
+                    "STACK_EVENT",
+                    "PROGRESS_EVENT",
+                    "VALIDATION_ERROR",
+                    "PROVISIONING_ERROR",
+                    "HOOK_INVOCATION_ERROR",
+                  ],
                 },
                 LogicalResourceId: {
                   type: "string",
@@ -166,6 +182,36 @@ const describeEvents: AppBlock = {
                 },
                 ResourceStatus: {
                   type: "string",
+                  enum: [
+                    "CREATE_IN_PROGRESS",
+                    "CREATE_FAILED",
+                    "CREATE_COMPLETE",
+                    "DELETE_IN_PROGRESS",
+                    "DELETE_FAILED",
+                    "DELETE_COMPLETE",
+                    "DELETE_SKIPPED",
+                    "UPDATE_IN_PROGRESS",
+                    "UPDATE_FAILED",
+                    "UPDATE_COMPLETE",
+                    "IMPORT_FAILED",
+                    "IMPORT_COMPLETE",
+                    "IMPORT_IN_PROGRESS",
+                    "IMPORT_ROLLBACK_IN_PROGRESS",
+                    "IMPORT_ROLLBACK_FAILED",
+                    "IMPORT_ROLLBACK_COMPLETE",
+                    "EXPORT_FAILED",
+                    "EXPORT_COMPLETE",
+                    "EXPORT_IN_PROGRESS",
+                    "EXPORT_ROLLBACK_IN_PROGRESS",
+                    "EXPORT_ROLLBACK_FAILED",
+                    "EXPORT_ROLLBACK_COMPLETE",
+                    "UPDATE_ROLLBACK_IN_PROGRESS",
+                    "UPDATE_ROLLBACK_COMPLETE",
+                    "UPDATE_ROLLBACK_FAILED",
+                    "ROLLBACK_IN_PROGRESS",
+                    "ROLLBACK_COMPLETE",
+                    "ROLLBACK_FAILED",
+                  ],
                 },
                 ResourceStatusReason: {
                   type: "string",
@@ -181,27 +227,38 @@ const describeEvents: AppBlock = {
                 },
                 HookStatus: {
                   type: "string",
+                  enum: [
+                    "HOOK_IN_PROGRESS",
+                    "HOOK_COMPLETE_SUCCEEDED",
+                    "HOOK_COMPLETE_FAILED",
+                    "HOOK_FAILED",
+                  ],
                 },
                 HookStatusReason: {
                   type: "string",
                 },
                 HookInvocationPoint: {
                   type: "string",
+                  enum: ["PRE_PROVISION"],
                 },
                 HookFailureMode: {
                   type: "string",
+                  enum: ["FAIL", "WARN"],
                 },
                 DetailedStatus: {
                   type: "string",
+                  enum: ["CONFIGURATION_COMPLETE", "VALIDATION_FAILED"],
                 },
                 ValidationFailureMode: {
                   type: "string",
+                  enum: ["FAIL", "WARN"],
                 },
                 ValidationName: {
                   type: "string",
                 },
                 ValidationStatus: {
                   type: "string",
+                  enum: ["FAILED", "SKIPPED"],
                 },
                 ValidationStatusReason: {
                   type: "string",

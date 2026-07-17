@@ -41,6 +41,7 @@ const createResourceDataSync: AppBlock = {
               },
               SyncFormat: {
                 type: "string",
+                enum: ["JsonSerDe"],
               },
               Region: {
                 type: "string",

@@ -48,7 +48,10 @@ const listHostedZones: AppBlock = {
         HostedZoneType: {
           name: "Hosted Zone Type",
           description: "(Optional) Specifies if the hosted zone is private.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["PrivateHostedZone"],
+          },
           required: false,
         },
       },
@@ -155,6 +158,16 @@ const listHostedZones: AppBlock = {
                   properties: {
                     AcceleratedRecoveryStatus: {
                       type: "string",
+                      enum: [
+                        "ENABLING",
+                        "ENABLE_FAILED",
+                        "ENABLING_HOSTED_ZONE_LOCKED",
+                        "ENABLED",
+                        "DISABLING",
+                        "DISABLE_FAILED",
+                        "DISABLED",
+                        "DISABLING_HOSTED_ZONE_LOCKED",
+                      ],
                     },
                     FailureReasons: {
                       type: "object",

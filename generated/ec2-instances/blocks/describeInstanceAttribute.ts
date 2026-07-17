@@ -40,7 +40,27 @@ const describeInstanceAttribute: AppBlock = {
         Attribute: {
           name: "Attribute",
           description: "The instance attribute.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "instanceType",
+              "kernel",
+              "ramdisk",
+              "userData",
+              "disableApiTermination",
+              "instanceInitiatedShutdownBehavior",
+              "rootDeviceName",
+              "blockDeviceMapping",
+              "productCodes",
+              "sourceDestCheck",
+              "groupSet",
+              "ebsOptimized",
+              "sriovNetSupport",
+              "enaSupport",
+              "enclaveOptions",
+              "disableApiStop",
+            ],
+          },
           required: true,
         },
       },
@@ -122,6 +142,7 @@ const describeInstanceAttribute: AppBlock = {
                     },
                     Status: {
                       type: "string",
+                      enum: ["attaching", "attached", "detaching", "detached"],
                     },
                     VolumeId: {
                       type: "string",
@@ -246,6 +267,7 @@ const describeInstanceAttribute: AppBlock = {
                 },
                 ProductCodeType: {
                   type: "string",
+                  enum: ["devpay", "marketplace"],
                 },
               },
               additionalProperties: false,

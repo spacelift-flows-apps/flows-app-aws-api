@@ -308,7 +308,10 @@ const modifyDBCluster: AppBlock = {
           name: "Database Insights Mode",
           description:
             "Specifies the mode of Database Insights to enable for the DB cluster.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["standard", "advanced"],
+          },
           required: false,
         },
         EnablePerformanceInsights: {
@@ -397,7 +400,10 @@ const modifyDBCluster: AppBlock = {
         MasterUserAuthenticationType: {
           name: "Master User Authentication Type",
           description: "Specifies the authentication type for the master user.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["password", "iam-db-auth"],
+          },
           required: false,
         },
       },
@@ -550,6 +556,7 @@ const modifyDBCluster: AppBlock = {
               },
               UpgradeRolloutOrder: {
                 type: "string",
+                enum: ["first", "second", "last"],
               },
               ReplicationSourceIdentifier: {
                 type: "string",
@@ -625,6 +632,7 @@ const modifyDBCluster: AppBlock = {
               },
               StorageEncryptionType: {
                 type: "string",
+                enum: ["none", "sse-kms", "sse-rds"],
               },
               KmsKeyId: {
                 type: "string",
@@ -733,6 +741,7 @@ const modifyDBCluster: AppBlock = {
                       },
                       ReplicaMode: {
                         type: "string",
+                        enum: ["open-read-only", "mounted"],
                       },
                     },
                     additionalProperties: false,
@@ -793,6 +802,7 @@ const modifyDBCluster: AppBlock = {
                   },
                   ReplicaMode: {
                     type: "string",
+                    enum: ["open-read-only", "mounted"],
                   },
                 },
                 additionalProperties: false,
@@ -826,9 +836,11 @@ const modifyDBCluster: AppBlock = {
               },
               ActivityStreamMode: {
                 type: "string",
+                enum: ["sync", "async"],
               },
               ActivityStreamStatus: {
                 type: "string",
+                enum: ["stopped", "starting", "started", "stopping"],
               },
               ActivityStreamKmsKeyId: {
                 type: "string",
@@ -895,6 +907,13 @@ const modifyDBCluster: AppBlock = {
               },
               GlobalWriteForwardingStatus: {
                 type: "string",
+                enum: [
+                  "enabled",
+                  "disabled",
+                  "enabling",
+                  "disabling",
+                  "unknown",
+                ],
               },
               GlobalWriteForwardingRequested: {
                 type: "boolean",
@@ -931,6 +950,7 @@ const modifyDBCluster: AppBlock = {
               },
               DatabaseInsightsMode: {
                 type: "string",
+                enum: ["standard", "advanced"],
               },
               PerformanceInsightsEnabled: {
                 type: "boolean",
@@ -961,6 +981,13 @@ const modifyDBCluster: AppBlock = {
               },
               LocalWriteForwardingStatus: {
                 type: "string",
+                enum: [
+                  "enabled",
+                  "disabled",
+                  "enabling",
+                  "disabling",
+                  "requested",
+                ],
               },
               AwsBackupRecoveryPointArn: {
                 type: "string",
@@ -970,6 +997,16 @@ const modifyDBCluster: AppBlock = {
                 properties: {
                   Status: {
                     type: "string",
+                    enum: [
+                      "active",
+                      "not-in-use",
+                      "enabled",
+                      "disabled",
+                      "enabling",
+                      "disabling",
+                      "modifying-max-capacity",
+                      "error",
+                    ],
                   },
                   MinRequiredACU: {
                     type: "number",
@@ -979,6 +1016,7 @@ const modifyDBCluster: AppBlock = {
               },
               ClusterScalabilityType: {
                 type: "string",
+                enum: ["standard", "limitless"],
               },
               CertificateDetails: {
                 type: "object",

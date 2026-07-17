@@ -39,7 +39,10 @@ const listScheduledQueries: AppBlock = {
         state: {
           name: "state",
           description: "Filter scheduled queries by state.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ENABLED", "DISABLED"],
+          },
           required: false,
         },
       },
@@ -117,12 +120,20 @@ const listScheduledQueries: AppBlock = {
                 },
                 state: {
                   type: "string",
+                  enum: ["ENABLED", "DISABLED"],
                 },
                 lastTriggeredTime: {
                   type: "number",
                 },
                 lastExecutionStatus: {
                   type: "string",
+                  enum: [
+                    "Running",
+                    "InvalidQuery",
+                    "Complete",
+                    "Failed",
+                    "Timeout",
+                  ],
                 },
                 scheduleExpression: {
                   type: "string",

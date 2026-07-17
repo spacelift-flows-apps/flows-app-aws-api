@@ -93,11 +93,13 @@ const getSnapshotBlockPublicAccessState: AppBlock = {
         properties: {
           State: {
             type: "string",
+            enum: ["block-all-sharing", "block-new-sharing", "unblocked"],
             description:
               "The current state of block public access for snapshots.",
           },
           ManagedBy: {
             type: "string",
+            enum: ["account", "declarative-policy"],
             description:
               "The entity that manages the state for block public access for snapshots.",
           },

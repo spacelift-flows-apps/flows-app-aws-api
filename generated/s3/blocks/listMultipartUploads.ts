@@ -39,7 +39,10 @@ const listMultipartUploads: AppBlock = {
           name: "Encoding Type",
           description:
             "Encoding type used by Amazon S3 to encode the object keys in the response.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["url"],
+          },
           required: false,
         },
         KeyMarker: {
@@ -80,7 +83,10 @@ const listMultipartUploads: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
       },
@@ -202,6 +208,21 @@ const listMultipartUploads: AppBlock = {
                 },
                 StorageClass: {
                   type: "string",
+                  enum: [
+                    "STANDARD",
+                    "REDUCED_REDUNDANCY",
+                    "STANDARD_IA",
+                    "ONEZONE_IA",
+                    "INTELLIGENT_TIERING",
+                    "GLACIER",
+                    "DEEP_ARCHIVE",
+                    "OUTPOSTS",
+                    "GLACIER_IR",
+                    "SNOW",
+                    "EXPRESS_ONEZONE",
+                    "FSX_OPENZFS",
+                    "FSX_ONTAP",
+                  ],
                 },
                 Owner: {
                   type: "object",
@@ -229,9 +250,22 @@ const listMultipartUploads: AppBlock = {
                 },
                 ChecksumAlgorithm: {
                   type: "string",
+                  enum: [
+                    "CRC32",
+                    "CRC32C",
+                    "SHA1",
+                    "SHA256",
+                    "CRC64NVME",
+                    "SHA512",
+                    "MD5",
+                    "XXHASH64",
+                    "XXHASH3",
+                    "XXHASH128",
+                  ],
                 },
                 ChecksumType: {
                   type: "string",
+                  enum: ["COMPOSITE", "FULL_OBJECT"],
                 },
               },
               additionalProperties: false,
@@ -255,11 +289,13 @@ const listMultipartUploads: AppBlock = {
           },
           EncodingType: {
             type: "string",
+            enum: ["url"],
             description:
               "Encoding type used by Amazon S3 to encode object keys in the response.",
           },
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },

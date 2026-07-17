@@ -59,7 +59,15 @@ const createRepository: AppBlock = {
         imageTagMutability: {
           name: "image Tag Mutability",
           description: "The tag mutability setting for the repository.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "MUTABLE",
+              "IMMUTABLE",
+              "IMMUTABLE_WITH_EXCLUSION",
+              "MUTABLE_WITH_EXCLUSION",
+            ],
+          },
           required: false,
         },
         imageTagMutabilityExclusionFilters: {
@@ -73,6 +81,7 @@ const createRepository: AppBlock = {
               properties: {
                 filterType: {
                   type: "string",
+                  enum: ["WILDCARD"],
                 },
                 filter: {
                   type: "string",
@@ -107,6 +116,7 @@ const createRepository: AppBlock = {
             properties: {
               encryptionType: {
                 type: "string",
+                enum: ["AES256", "KMS", "KMS_DSSE"],
               },
               kmsKey: {
                 type: "string",
@@ -195,6 +205,12 @@ const createRepository: AppBlock = {
               },
               imageTagMutability: {
                 type: "string",
+                enum: [
+                  "MUTABLE",
+                  "IMMUTABLE",
+                  "IMMUTABLE_WITH_EXCLUSION",
+                  "MUTABLE_WITH_EXCLUSION",
+                ],
               },
               imageTagMutabilityExclusionFilters: {
                 type: "array",
@@ -203,6 +219,7 @@ const createRepository: AppBlock = {
                   properties: {
                     filterType: {
                       type: "string",
+                      enum: ["WILDCARD"],
                     },
                     filter: {
                       type: "string",
@@ -226,6 +243,7 @@ const createRepository: AppBlock = {
                 properties: {
                   encryptionType: {
                     type: "string",
+                    enum: ["AES256", "KMS", "KMS_DSSE"],
                   },
                   kmsKey: {
                     type: "string",

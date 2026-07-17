@@ -43,7 +43,10 @@ const getDocument: AppBlock = {
         DocumentFormat: {
           name: "Document Format",
           description: "Returns the document in the specified format.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["YAML", "JSON", "TEXT"],
+          },
           required: false,
         },
       },
@@ -127,6 +130,7 @@ const getDocument: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["Creating", "Active", "Updating", "Deleting", "Failed"],
             description:
               "The status of the SSM document, such as Creating, Active, Updating, Failed, and Deleting.",
           },
@@ -141,10 +145,30 @@ const getDocument: AppBlock = {
           },
           DocumentType: {
             type: "string",
+            enum: [
+              "Command",
+              "Policy",
+              "Automation",
+              "Session",
+              "Package",
+              "ApplicationConfiguration",
+              "ApplicationConfigurationSchema",
+              "DeploymentStrategy",
+              "ChangeCalendar",
+              "Automation.ChangeTemplate",
+              "ProblemAnalysis",
+              "ProblemAnalysisTemplate",
+              "CloudFormation",
+              "ConformancePackTemplate",
+              "QuickSetup",
+              "ManualApprovalPolicy",
+              "AutoApprovalPolicy",
+            ],
             description: "The document type.",
           },
           DocumentFormat: {
             type: "string",
+            enum: ["YAML", "JSON", "TEXT"],
             description: "The document format, either JSON or YAML.",
           },
           Requires: {
@@ -186,6 +210,7 @@ const getDocument: AppBlock = {
                 },
                 HashType: {
                   type: "string",
+                  enum: ["Sha256"],
                 },
                 Url: {
                   type: "string",
@@ -198,6 +223,7 @@ const getDocument: AppBlock = {
           },
           ReviewStatus: {
             type: "string",
+            enum: ["APPROVED", "NOT_REVIEWED", "PENDING", "REJECTED"],
             description:
               "The current review status of a new custom Systems Manager document (SSM document) created by a member of your organization, or of the latest version of an existing SSM document.",
           },

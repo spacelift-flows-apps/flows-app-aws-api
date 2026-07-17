@@ -41,7 +41,15 @@ const describeUsageLimits: AppBlock = {
           name: "Feature Type",
           description:
             "The feature type for which you want to describe usage limits.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "spectrum",
+              "concurrency-scaling",
+              "cross-region-datasharing",
+              "extra-compute-for-automatic-optimization",
+            ],
+          },
           required: false,
         },
         MaxRecords: {
@@ -153,18 +161,27 @@ const describeUsageLimits: AppBlock = {
                 },
                 FeatureType: {
                   type: "string",
+                  enum: [
+                    "spectrum",
+                    "concurrency-scaling",
+                    "cross-region-datasharing",
+                    "extra-compute-for-automatic-optimization",
+                  ],
                 },
                 LimitType: {
                   type: "string",
+                  enum: ["time", "data-scanned"],
                 },
                 Amount: {
                   type: "number",
                 },
                 Period: {
                   type: "string",
+                  enum: ["daily", "weekly", "monthly"],
                 },
                 BreachAction: {
                   type: "string",
+                  enum: ["log", "emit-metric", "disable"],
                 },
                 Tags: {
                   type: "array",

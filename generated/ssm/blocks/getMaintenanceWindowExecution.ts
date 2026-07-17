@@ -105,6 +105,16 @@ const getMaintenanceWindowExecution: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: [
+              "PENDING",
+              "IN_PROGRESS",
+              "SUCCESS",
+              "FAILED",
+              "TIMED_OUT",
+              "CANCELLING",
+              "CANCELLED",
+              "SKIPPED_OVERLAPPING",
+            ],
             description: "The status of the maintenance window execution.",
           },
           StatusDetails: {

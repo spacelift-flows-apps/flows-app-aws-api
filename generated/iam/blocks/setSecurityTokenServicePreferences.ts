@@ -27,7 +27,10 @@ const setSecurityTokenServicePreferences: AppBlock = {
         GlobalEndpointTokenVersion: {
           name: "Global Endpoint Token Version",
           description: "The version of the global endpoint token.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["v1Token", "v2Token"],
+          },
           required: true,
         },
       },

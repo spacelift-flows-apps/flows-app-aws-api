@@ -117,18 +117,22 @@ const deleteTransitGatewayMulticastDomain: AppBlock = {
                 properties: {
                   Igmpv2Support: {
                     type: "string",
+                    enum: ["enable", "disable"],
                   },
                   StaticSourcesSupport: {
                     type: "string",
+                    enum: ["enable", "disable"],
                   },
                   AutoAcceptSharedAssociations: {
                     type: "string",
+                    enum: ["enable", "disable"],
                   },
                 },
                 additionalProperties: false,
               },
               State: {
                 type: "string",
+                enum: ["pending", "available", "deleting", "deleted"],
               },
               CreationTime: {
                 type: "string",

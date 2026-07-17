@@ -38,7 +38,21 @@ const putBucketVersioning: AppBlock = {
           name: "Checksum Algorithm",
           description:
             "Indicates the algorithm used to create the checksum for the request when you use the SDK.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CRC32",
+              "CRC32C",
+              "SHA1",
+              "SHA256",
+              "CRC64NVME",
+              "SHA512",
+              "MD5",
+              "XXHASH64",
+              "XXHASH3",
+              "XXHASH128",
+            ],
+          },
           required: false,
         },
         MFA: {
@@ -56,9 +70,11 @@ const putBucketVersioning: AppBlock = {
             properties: {
               MFADelete: {
                 type: "string",
+                enum: ["Enabled", "Disabled"],
               },
               Status: {
                 type: "string",
+                enum: ["Enabled", "Suspended"],
               },
             },
             additionalProperties: false,

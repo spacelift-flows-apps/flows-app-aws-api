@@ -143,6 +143,12 @@ const describeMaintenanceWindowTasks: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: [
+                    "RUN_COMMAND",
+                    "AUTOMATION",
+                    "STEP_FUNCTIONS",
+                    "LAMBDA",
+                  ],
                 },
                 Targets: {
                   type: "array",
@@ -202,6 +208,7 @@ const describeMaintenanceWindowTasks: AppBlock = {
                 },
                 CutoffBehavior: {
                   type: "string",
+                  enum: ["CONTINUE_TASK", "CANCEL_TASK"],
                 },
                 AlarmConfiguration: {
                   type: "object",

@@ -51,6 +51,7 @@ const modifyIpPools: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["ipv4"],
             },
           },
           required: false,

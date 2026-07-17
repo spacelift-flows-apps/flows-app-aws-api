@@ -38,6 +38,7 @@ const listOpsItemRelatedItems: AppBlock = {
               properties: {
                 Key: {
                   type: "string",
+                  enum: ["ResourceType", "AssociationId", "ResourceUri"],
                 },
                 Values: {
                   type: "array",
@@ -47,6 +48,7 @@ const listOpsItemRelatedItems: AppBlock = {
                 },
                 Operator: {
                   type: "string",
+                  enum: ["Equal"],
                 },
               },
               required: ["Key", "Values", "Operator"],

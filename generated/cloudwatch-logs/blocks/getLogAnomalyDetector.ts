@@ -103,6 +103,14 @@ const getLogAnomalyDetector: AppBlock = {
           },
           evaluationFrequency: {
             type: "string",
+            enum: [
+              "ONE_MIN",
+              "FIVE_MIN",
+              "TEN_MIN",
+              "FIFTEEN_MIN",
+              "THIRTY_MIN",
+              "ONE_HOUR",
+            ],
             description:
               "Specifies how often the anomaly detector runs and look for anomalies.",
           },
@@ -113,6 +121,14 @@ const getLogAnomalyDetector: AppBlock = {
           },
           anomalyDetectorStatus: {
             type: "string",
+            enum: [
+              "INITIALIZING",
+              "TRAINING",
+              "ANALYZING",
+              "FAILED",
+              "DELETED",
+              "PAUSED",
+            ],
             description:
               "Specifies whether the anomaly detector is currently active.",
           },

@@ -130,6 +130,7 @@ const getRecoveryPointIndexDetails: AppBlock = {
           },
           IndexStatus: {
             type: "string",
+            enum: ["PENDING", "ACTIVE", "FAILED", "DELETING"],
             description:
               "This is the current status for the backup index associated with the specified recovery point.",
           },

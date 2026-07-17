@@ -92,6 +92,7 @@ const describeTypeRegistration: AppBlock = {
         properties: {
           ProgressStatus: {
             type: "string",
+            enum: ["COMPLETE", "IN_PROGRESS", "FAILED"],
             description:
               "The current status of the extension registration request.",
           },

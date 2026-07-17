@@ -39,7 +39,10 @@ const describeAlarmsForMetric: AppBlock = {
         Statistic: {
           name: "Statistic",
           description: "The statistic for the metric, other than percentiles.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SampleCount", "Average", "Sum", "Minimum", "Maximum"],
+          },
           required: false,
         },
         ExtendedStatistic: {
@@ -79,7 +82,38 @@ const describeAlarmsForMetric: AppBlock = {
         Unit: {
           name: "Unit",
           description: "The unit for the metric.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "Seconds",
+              "Microseconds",
+              "Milliseconds",
+              "Bytes",
+              "Kilobytes",
+              "Megabytes",
+              "Gigabytes",
+              "Terabytes",
+              "Bits",
+              "Kilobits",
+              "Megabits",
+              "Gigabits",
+              "Terabits",
+              "Percent",
+              "Count",
+              "Bytes/Second",
+              "Kilobytes/Second",
+              "Megabytes/Second",
+              "Gigabytes/Second",
+              "Terabytes/Second",
+              "Bits/Second",
+              "Kilobits/Second",
+              "Megabits/Second",
+              "Gigabits/Second",
+              "Terabits/Second",
+              "Count/Second",
+              "None",
+            ],
+          },
           required: false,
         },
       },
@@ -180,6 +214,7 @@ const describeAlarmsForMetric: AppBlock = {
                 },
                 StateValue: {
                   type: "string",
+                  enum: ["OK", "ALARM", "INSUFFICIENT_DATA"],
                 },
                 StateReason: {
                   type: "string",
@@ -198,6 +233,7 @@ const describeAlarmsForMetric: AppBlock = {
                 },
                 Statistic: {
                   type: "string",
+                  enum: ["SampleCount", "Average", "Sum", "Minimum", "Maximum"],
                 },
                 ExtendedStatistic: {
                   type: "string",
@@ -223,6 +259,35 @@ const describeAlarmsForMetric: AppBlock = {
                 },
                 Unit: {
                   type: "string",
+                  enum: [
+                    "Seconds",
+                    "Microseconds",
+                    "Milliseconds",
+                    "Bytes",
+                    "Kilobytes",
+                    "Megabytes",
+                    "Gigabytes",
+                    "Terabytes",
+                    "Bits",
+                    "Kilobits",
+                    "Megabits",
+                    "Gigabits",
+                    "Terabits",
+                    "Percent",
+                    "Count",
+                    "Bytes/Second",
+                    "Kilobytes/Second",
+                    "Megabytes/Second",
+                    "Gigabytes/Second",
+                    "Terabytes/Second",
+                    "Bits/Second",
+                    "Kilobits/Second",
+                    "Megabits/Second",
+                    "Gigabits/Second",
+                    "Terabits/Second",
+                    "Count/Second",
+                    "None",
+                  ],
                 },
                 EvaluationPeriods: {
                   type: "number",
@@ -235,6 +300,15 @@ const describeAlarmsForMetric: AppBlock = {
                 },
                 ComparisonOperator: {
                   type: "string",
+                  enum: [
+                    "GreaterThanOrEqualToThreshold",
+                    "GreaterThanThreshold",
+                    "LessThanThreshold",
+                    "LessThanOrEqualToThreshold",
+                    "LessThanLowerOrGreaterThanUpperThreshold",
+                    "LessThanLowerThreshold",
+                    "GreaterThanUpperThreshold",
+                  ],
                 },
                 TreatMissingData: {
                   type: "string",
@@ -286,6 +360,11 @@ const describeAlarmsForMetric: AppBlock = {
                 },
                 EvaluationState: {
                   type: "string",
+                  enum: [
+                    "PARTIAL_DATA",
+                    "EVALUATION_FAILURE",
+                    "EVALUATION_ERROR",
+                  ],
                 },
                 StateTransitionedTimestamp: {
                   type: "string",

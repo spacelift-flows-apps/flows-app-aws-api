@@ -112,6 +112,15 @@ const createSizeConstraintSet: AppBlock = {
                       properties: {
                         Type: {
                           type: "string",
+                          enum: [
+                            "URI",
+                            "QUERY_STRING",
+                            "HEADER",
+                            "METHOD",
+                            "BODY",
+                            "SINGLE_QUERY_ARG",
+                            "ALL_QUERY_ARGS",
+                          ],
                         },
                         Data: {
                           type: "string",
@@ -122,9 +131,18 @@ const createSizeConstraintSet: AppBlock = {
                     },
                     TextTransformation: {
                       type: "string",
+                      enum: [
+                        "NONE",
+                        "COMPRESS_WHITE_SPACE",
+                        "HTML_ENTITY_DECODE",
+                        "LOWERCASE",
+                        "CMD_LINE",
+                        "URL_DECODE",
+                      ],
                     },
                     ComparisonOperator: {
                       type: "string",
+                      enum: ["EQ", "NE", "LE", "LT", "GE", "GT"],
                     },
                     Size: {
                       type: "number",

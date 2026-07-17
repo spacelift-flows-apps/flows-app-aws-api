@@ -203,6 +203,7 @@ const describeNetworkInterfaces: AppBlock = {
                     },
                     Status: {
                       type: "string",
+                      enum: ["attaching", "attached", "detaching", "detached"],
                     },
                     EnaSrdSpecification: {
                       type: "object",
@@ -264,6 +265,26 @@ const describeNetworkInterfaces: AppBlock = {
                 },
                 InterfaceType: {
                   type: "string",
+                  enum: [
+                    "interface",
+                    "natGateway",
+                    "efa",
+                    "efa-only",
+                    "trunk",
+                    "load_balancer",
+                    "network_load_balancer",
+                    "vpc_endpoint",
+                    "branch",
+                    "transit_gateway",
+                    "lambda",
+                    "quicksight",
+                    "global_accelerator_managed",
+                    "api_gateway_managed",
+                    "gateway_load_balancer",
+                    "gateway_load_balancer_endpoint",
+                    "iot_rules_managed",
+                    "aws_codestar_connections_managed",
+                  ],
                 },
                 Ipv6Addresses: {
                   type: "array",
@@ -388,6 +409,13 @@ const describeNetworkInterfaces: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "available",
+                    "associated",
+                    "attaching",
+                    "in-use",
+                    "detaching",
+                  ],
                 },
                 SubnetId: {
                   type: "string",

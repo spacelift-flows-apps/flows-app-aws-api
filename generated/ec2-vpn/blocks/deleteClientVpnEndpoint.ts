@@ -97,6 +97,13 @@ const deleteClientVpnEndpoint: AppBlock = {
             properties: {
               Code: {
                 type: "string",
+                enum: [
+                  "pending-associate",
+                  "available",
+                  "deleting",
+                  "deleted",
+                  "pending",
+                ],
               },
               Message: {
                 type: "string",

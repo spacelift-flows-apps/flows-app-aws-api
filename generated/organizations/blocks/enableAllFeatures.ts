@@ -101,6 +101,7 @@ const enableAllFeatures: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: ["ACCOUNT", "ORGANIZATION", "EMAIL"],
                     },
                   },
                   required: ["Id", "Type"],
@@ -109,6 +110,14 @@ const enableAllFeatures: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "REQUESTED",
+                  "OPEN",
+                  "CANCELED",
+                  "ACCEPTED",
+                  "DECLINED",
+                  "EXPIRED",
+                ],
               },
               RequestedTimestamp: {
                 type: "string",
@@ -118,6 +127,13 @@ const enableAllFeatures: AppBlock = {
               },
               Action: {
                 type: "string",
+                enum: [
+                  "INVITE",
+                  "ENABLE_ALL_FEATURES",
+                  "APPROVE_ALL_FEATURES",
+                  "ADD_ORGANIZATIONS_SERVICE_LINKED_ROLE",
+                  "TRANSFER_RESPONSIBILITY",
+                ],
               },
               Resources: {
                 type: "array",
@@ -129,6 +145,22 @@ const enableAllFeatures: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: [
+                        "ACCOUNT",
+                        "ORGANIZATION",
+                        "ORGANIZATION_FEATURE_SET",
+                        "EMAIL",
+                        "MASTER_EMAIL",
+                        "MASTER_NAME",
+                        "NOTES",
+                        "PARENT_HANDSHAKE",
+                        "RESPONSIBILITY_TRANSFER",
+                        "TRANSFER_START_TIMESTAMP",
+                        "TRANSFER_TYPE",
+                        "MANAGEMENT_ACCOUNT",
+                        "MANAGEMENT_EMAIL",
+                        "MANAGEMENT_NAME",
+                      ],
                     },
                     Resources: {
                       type: "array",

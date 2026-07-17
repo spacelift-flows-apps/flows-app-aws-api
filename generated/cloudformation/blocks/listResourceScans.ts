@@ -41,7 +41,10 @@ const listResourceScans: AppBlock = {
           name: "Scan Type Filter",
           description:
             "The scan type that you want to get summary information about.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["FULL", "PARTIAL"],
+          },
           required: false,
         },
       },
@@ -112,6 +115,7 @@ const listResourceScans: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["IN_PROGRESS", "FAILED", "COMPLETE", "EXPIRED"],
                 },
                 StatusReason: {
                   type: "string",
@@ -127,6 +131,7 @@ const listResourceScans: AppBlock = {
                 },
                 ScanType: {
                   type: "string",
+                  enum: ["FULL", "PARTIAL"],
                 },
               },
               additionalProperties: false,

@@ -111,6 +111,7 @@ const deleteInstanceEventWindow: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["creating", "deleting", "active", "deleted"],
               },
             },
             additionalProperties: false,

@@ -140,6 +140,7 @@ const describeMovingAddresses: AppBlock = {
               properties: {
                 MoveStatus: {
                   type: "string",
+                  enum: ["movingToVpc", "restoringToClassic"],
                 },
                 PublicIp: {
                   type: "string",

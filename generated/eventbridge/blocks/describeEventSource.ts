@@ -113,6 +113,7 @@ const describeEventSource: AppBlock = {
           },
           State: {
             type: "string",
+            enum: ["PENDING", "ACTIVE", "DELETED"],
             description: "The state of the event source.",
           },
         },

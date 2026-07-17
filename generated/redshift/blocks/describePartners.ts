@@ -122,6 +122,12 @@ const describePartners: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "Active",
+                    "Inactive",
+                    "RuntimeFailure",
+                    "ConnectionFailure",
+                  ],
                 },
                 StatusMessage: {
                   type: "string",

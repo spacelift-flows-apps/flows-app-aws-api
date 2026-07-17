@@ -124,6 +124,7 @@ const getSAMLProvider: AppBlock = {
           },
           AssertionEncryptionMode: {
             type: "string",
+            enum: ["Required", "Allowed"],
             description:
               "Specifies the encryption setting for the SAML provider.",
           },

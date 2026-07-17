@@ -54,27 +54,39 @@ const putItem: AppBlock = {
           name: "Return Values",
           description:
             "Use ReturnValues if you want to get the item attributes as they appeared before they were updated with the PutItem request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["NONE", "ALL_OLD", "UPDATED_OLD", "ALL_NEW", "UPDATED_NEW"],
+          },
           required: false,
         },
         ReturnConsumedCapacity: {
           name: "Return Consumed Capacity",
           description:
             "Determines the level of detail about either provisioned or on-demand throughput consumption that is returned in the response: INDEXES - The response includes the aggregate ConsumedCapacity for the operation, together with ConsumedCapacity for each table and secondary index that was accessed.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["INDEXES", "TOTAL", "NONE"],
+          },
           required: false,
         },
         ReturnItemCollectionMetrics: {
           name: "Return Item Collection Metrics",
           description:
             "Determines whether item collection metrics are returned.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SIZE", "NONE"],
+          },
           required: false,
         },
         ConditionalOperator: {
           name: "Conditional Operator",
           description: "This is a legacy parameter.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["AND", "OR"],
+          },
           required: false,
         },
         ConditionExpression: {
@@ -112,7 +124,10 @@ const putItem: AppBlock = {
           name: "Return Values On Condition Check Failure",
           description:
             "An optional parameter that returns the item attributes for a PutItem operation that failed a condition check.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ALL_OLD", "NONE"],
+          },
           required: false,
         },
       },

@@ -35,7 +35,10 @@ const listTaskDefinitionFamilies: AppBlock = {
           name: "status",
           description:
             "The task definition family status to filter the ListTaskDefinitionFamilies results with.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ACTIVE", "INACTIVE", "ALL"],
+          },
           required: false,
         },
         nextToken: {

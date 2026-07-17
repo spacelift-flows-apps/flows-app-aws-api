@@ -106,6 +106,7 @@ const listStateMachines: AppBlock = {
                 },
                 type: {
                   type: "string",
+                  enum: ["STANDARD", "EXPRESS"],
                 },
                 creationDate: {
                   type: "string",

@@ -174,6 +174,7 @@ const describeVpcEndpointServices: AppBlock = {
                     properties: {
                       ServiceType: {
                         type: "string",
+                        enum: ["Interface", "Gateway", "GatewayLoadBalancer"],
                       },
                     },
                     additionalProperties: false,
@@ -229,6 +230,7 @@ const describeVpcEndpointServices: AppBlock = {
                 },
                 PayerResponsibility: {
                   type: "string",
+                  enum: ["ServiceOwner"],
                 },
                 Tags: {
                   type: "array",
@@ -247,11 +249,13 @@ const describeVpcEndpointServices: AppBlock = {
                 },
                 PrivateDnsNameVerificationState: {
                   type: "string",
+                  enum: ["pendingVerification", "verified", "failed"],
                 },
                 SupportedIpAddressTypes: {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["ipv4", "ipv6"],
                   },
                 },
               },

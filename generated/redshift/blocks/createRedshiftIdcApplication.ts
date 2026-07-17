@@ -186,7 +186,10 @@ const createRedshiftIdcApplication: AppBlock = {
         ApplicationType: {
           name: "Application Type",
           description: "The type of application being created.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["None", "Lakehouse"],
+          },
           required: false,
         },
         Tags: {
@@ -401,6 +404,7 @@ const createRedshiftIdcApplication: AppBlock = {
               },
               ApplicationType: {
                 type: "string",
+                enum: ["None", "Lakehouse"],
               },
               Tags: {
                 type: "array",

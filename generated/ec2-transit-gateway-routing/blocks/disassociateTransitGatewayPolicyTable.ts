@@ -119,9 +119,26 @@ const disassociateTransitGatewayPolicyTable: AppBlock = {
               },
               ResourceType: {
                 type: "string",
+                enum: [
+                  "vpc",
+                  "vpn",
+                  "vpn-concentrator",
+                  "direct-connect-gateway",
+                  "connect",
+                  "peering",
+                  "tgw-peering",
+                  "network-function",
+                  "client-vpn",
+                ],
               },
               State: {
                 type: "string",
+                enum: [
+                  "associating",
+                  "associated",
+                  "disassociating",
+                  "disassociated",
+                ],
               },
             },
             additionalProperties: false,

@@ -126,6 +126,18 @@ const describeInstanceRefreshes: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "Pending",
+                    "InProgress",
+                    "Successful",
+                    "Failed",
+                    "Cancelling",
+                    "Cancelled",
+                    "RollbackInProgress",
+                    "RollbackFailed",
+                    "RollbackSuccessful",
+                    "Baking",
+                  ],
                 },
                 StatusReason: {
                   type: "string",
@@ -198,9 +210,11 @@ const describeInstanceRefreshes: AppBlock = {
                     },
                     ScaleInProtectedInstances: {
                       type: "string",
+                      enum: ["Refresh", "Ignore", "Wait"],
                     },
                     StandbyInstances: {
                       type: "string",
+                      enum: ["Terminate", "Ignore", "Wait"],
                     },
                     AlarmSpecification: {
                       type: "object",
@@ -310,6 +324,7 @@ const describeInstanceRefreshes: AppBlock = {
                 },
                 Strategy: {
                   type: "string",
+                  enum: ["Rolling", "ReplaceRootVolume"],
                 },
               },
               additionalProperties: false,

@@ -40,7 +40,16 @@ const listImports: AppBlock = {
         ImportStatus: {
           name: "Import Status",
           description: "The status of the import.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "INITIALIZING",
+              "IN_PROGRESS",
+              "FAILED",
+              "STOPPED",
+              "COMPLETED",
+            ],
+          },
           required: false,
         },
         NextToken: {
@@ -118,6 +127,13 @@ const listImports: AppBlock = {
                 },
                 ImportStatus: {
                   type: "string",
+                  enum: [
+                    "INITIALIZING",
+                    "IN_PROGRESS",
+                    "FAILED",
+                    "STOPPED",
+                    "COMPLETED",
+                  ],
                 },
                 Destinations: {
                   type: "array",

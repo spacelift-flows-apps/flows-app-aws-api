@@ -40,7 +40,10 @@ const listAsyncInvokes: AppBlock = {
         statusEquals: {
           name: "status Equals",
           description: "Filter invocations by status.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["InProgress", "Completed", "Failed"],
+          },
           required: false,
         },
         maxResults: {
@@ -60,13 +63,19 @@ const listAsyncInvokes: AppBlock = {
         sortBy: {
           name: "sort By",
           description: "How to sort the response.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SubmissionTime"],
+          },
           required: false,
         },
         sortOrder: {
           name: "sort Order",
           description: "The sorting order for the response.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Ascending", "Descending"],
+          },
           required: false,
         },
       },
@@ -153,6 +162,7 @@ const listAsyncInvokes: AppBlock = {
                 },
                 status: {
                   type: "string",
+                  enum: ["InProgress", "Completed", "Failed"],
                 },
                 failureMessage: {
                   type: "string",

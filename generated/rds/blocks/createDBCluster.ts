@@ -259,6 +259,7 @@ const createDBCluster: AppBlock = {
               },
               ReplicaMode: {
                 type: "string",
+                enum: ["open-read-only", "mounted"],
               },
             },
             additionalProperties: false,
@@ -400,7 +401,10 @@ const createDBCluster: AppBlock = {
           name: "Database Insights Mode",
           description:
             "The mode of Database Insights to enable for the DB cluster.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["standard", "advanced"],
+          },
           required: false,
         },
         EnablePerformanceInsights: {
@@ -434,7 +438,10 @@ const createDBCluster: AppBlock = {
           name: "Cluster Scalability Type",
           description:
             "Specifies the scalability mode of the Aurora DB cluster.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["standard", "limitless"],
+          },
           required: false,
         },
         DBSystemId: {
@@ -513,7 +520,10 @@ const createDBCluster: AppBlock = {
         MasterUserAuthenticationType: {
           name: "Master User Authentication Type",
           description: "Specifies the authentication type for the master user.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["password", "iam-db-auth"],
+          },
           required: false,
         },
         WithExpressConfiguration: {
@@ -673,6 +683,7 @@ const createDBCluster: AppBlock = {
               },
               UpgradeRolloutOrder: {
                 type: "string",
+                enum: ["first", "second", "last"],
               },
               ReplicationSourceIdentifier: {
                 type: "string",
@@ -748,6 +759,7 @@ const createDBCluster: AppBlock = {
               },
               StorageEncryptionType: {
                 type: "string",
+                enum: ["none", "sse-kms", "sse-rds"],
               },
               KmsKeyId: {
                 type: "string",
@@ -856,6 +868,7 @@ const createDBCluster: AppBlock = {
                       },
                       ReplicaMode: {
                         type: "string",
+                        enum: ["open-read-only", "mounted"],
                       },
                     },
                     additionalProperties: false,
@@ -916,6 +929,7 @@ const createDBCluster: AppBlock = {
                   },
                   ReplicaMode: {
                     type: "string",
+                    enum: ["open-read-only", "mounted"],
                   },
                 },
                 additionalProperties: false,
@@ -949,9 +963,11 @@ const createDBCluster: AppBlock = {
               },
               ActivityStreamMode: {
                 type: "string",
+                enum: ["sync", "async"],
               },
               ActivityStreamStatus: {
                 type: "string",
+                enum: ["stopped", "starting", "started", "stopping"],
               },
               ActivityStreamKmsKeyId: {
                 type: "string",
@@ -1018,6 +1034,13 @@ const createDBCluster: AppBlock = {
               },
               GlobalWriteForwardingStatus: {
                 type: "string",
+                enum: [
+                  "enabled",
+                  "disabled",
+                  "enabling",
+                  "disabling",
+                  "unknown",
+                ],
               },
               GlobalWriteForwardingRequested: {
                 type: "boolean",
@@ -1054,6 +1077,7 @@ const createDBCluster: AppBlock = {
               },
               DatabaseInsightsMode: {
                 type: "string",
+                enum: ["standard", "advanced"],
               },
               PerformanceInsightsEnabled: {
                 type: "boolean",
@@ -1084,6 +1108,13 @@ const createDBCluster: AppBlock = {
               },
               LocalWriteForwardingStatus: {
                 type: "string",
+                enum: [
+                  "enabled",
+                  "disabled",
+                  "enabling",
+                  "disabling",
+                  "requested",
+                ],
               },
               AwsBackupRecoveryPointArn: {
                 type: "string",
@@ -1093,6 +1124,16 @@ const createDBCluster: AppBlock = {
                 properties: {
                   Status: {
                     type: "string",
+                    enum: [
+                      "active",
+                      "not-in-use",
+                      "enabled",
+                      "disabled",
+                      "enabling",
+                      "disabling",
+                      "modifying-max-capacity",
+                      "error",
+                    ],
                   },
                   MinRequiredACU: {
                     type: "number",
@@ -1102,6 +1143,7 @@ const createDBCluster: AppBlock = {
               },
               ClusterScalabilityType: {
                 type: "string",
+                enum: ["standard", "limitless"],
               },
               CertificateDetails: {
                 type: "object",

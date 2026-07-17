@@ -37,7 +37,10 @@ const modifyDBProxy: AppBlock = {
           name: "Default Auth Scheme",
           description:
             "The default authentication scheme that the proxy uses for client connections to the proxy and connections from the proxy to the underlying database.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["IAM_AUTH", "NONE"],
+          },
           required: false,
         },
         Auth: {
@@ -56,15 +59,24 @@ const modifyDBProxy: AppBlock = {
                 },
                 AuthScheme: {
                   type: "string",
+                  enum: ["SECRETS"],
                 },
                 SecretArn: {
                   type: "string",
                 },
                 IAMAuth: {
                   type: "string",
+                  enum: ["DISABLED", "REQUIRED", "ENABLED"],
                 },
                 ClientPasswordAuthType: {
                   type: "string",
+                  enum: [
+                    "MYSQL_NATIVE_PASSWORD",
+                    "MYSQL_CACHING_SHA2_PASSWORD",
+                    "POSTGRES_SCRAM_SHA_256",
+                    "POSTGRES_MD5",
+                    "SQL_SERVER_AUTHENTICATION",
+                  ],
                 },
               },
               additionalProperties: false,
@@ -180,6 +192,17 @@ const modifyDBProxy: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: [
+                  "available",
+                  "modifying",
+                  "incompatible-network",
+                  "insufficient-resource-limits",
+                  "creating",
+                  "deleting",
+                  "suspended",
+                  "suspending",
+                  "reactivating",
+                ],
               },
               EngineFamily: {
                 type: "string",
@@ -215,15 +238,24 @@ const modifyDBProxy: AppBlock = {
                     },
                     AuthScheme: {
                       type: "string",
+                      enum: ["SECRETS"],
                     },
                     SecretArn: {
                       type: "string",
                     },
                     IAMAuth: {
                       type: "string",
+                      enum: ["DISABLED", "REQUIRED", "ENABLED"],
                     },
                     ClientPasswordAuthType: {
                       type: "string",
+                      enum: [
+                        "MYSQL_NATIVE_PASSWORD",
+                        "MYSQL_CACHING_SHA2_PASSWORD",
+                        "POSTGRES_SCRAM_SHA_256",
+                        "POSTGRES_MD5",
+                        "SQL_SERVER_AUTHENTICATION",
+                      ],
                     },
                   },
                   additionalProperties: false,
@@ -252,9 +284,11 @@ const modifyDBProxy: AppBlock = {
               },
               EndpointNetworkType: {
                 type: "string",
+                enum: ["IPV4", "IPV6", "DUAL"],
               },
               TargetConnectionNetworkType: {
                 type: "string",
+                enum: ["IPV4", "IPV6"],
               },
             },
             additionalProperties: false,

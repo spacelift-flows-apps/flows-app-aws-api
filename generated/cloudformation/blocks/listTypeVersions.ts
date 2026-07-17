@@ -27,7 +27,10 @@ const listTypeVersions: AppBlock = {
         Type: {
           name: "Type",
           description: "The kind of the extension.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["RESOURCE", "MODULE", "HOOK"],
+          },
           required: false,
         },
         TypeName: {
@@ -61,7 +64,10 @@ const listTypeVersions: AppBlock = {
           name: "Deprecated Status",
           description:
             "The deprecation status of the extension versions that you want to get summary information about.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["LIVE", "DEPRECATED"],
+          },
           required: false,
         },
         PublisherId: {
@@ -135,6 +141,7 @@ const listTypeVersions: AppBlock = {
               properties: {
                 Type: {
                   type: "string",
+                  enum: ["RESOURCE", "MODULE", "HOOK"],
                 },
                 TypeName: {
                   type: "string",

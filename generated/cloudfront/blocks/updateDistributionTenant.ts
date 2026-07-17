@@ -65,6 +65,7 @@ const updateDistributionTenant: AppBlock = {
                 properties: {
                   Action: {
                     type: "string",
+                    enum: ["override", "disable"],
                   },
                   Arn: {
                     type: "string",
@@ -88,6 +89,7 @@ const updateDistributionTenant: AppBlock = {
                 properties: {
                   RestrictionType: {
                     type: "string",
+                    enum: ["blacklist", "whitelist", "none"],
                   },
                   Locations: {
                     type: "array",
@@ -147,12 +149,14 @@ const updateDistributionTenant: AppBlock = {
             properties: {
               ValidationTokenHost: {
                 type: "string",
+                enum: ["cloudfront", "self-hosted"],
               },
               PrimaryDomainName: {
                 type: "string",
               },
               CertificateTransparencyLoggingPreference: {
                 type: "string",
+                enum: ["enabled", "disabled"],
               },
             },
             required: ["ValidationTokenHost"],
@@ -252,6 +256,7 @@ const updateDistributionTenant: AppBlock = {
                     },
                     Status: {
                       type: "string",
+                      enum: ["active", "inactive"],
                     },
                   },
                   required: ["Domain"],
@@ -288,6 +293,7 @@ const updateDistributionTenant: AppBlock = {
                     properties: {
                       Action: {
                         type: "string",
+                        enum: ["override", "disable"],
                       },
                       Arn: {
                         type: "string",
@@ -311,6 +317,7 @@ const updateDistributionTenant: AppBlock = {
                     properties: {
                       RestrictionType: {
                         type: "string",
+                        enum: ["blacklist", "whitelist", "none"],
                       },
                       Locations: {
                         type: "array",

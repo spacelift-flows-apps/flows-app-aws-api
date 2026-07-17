@@ -149,6 +149,7 @@ const describeFastLaunchImages: AppBlock = {
                 },
                 ResourceType: {
                   type: "string",
+                  enum: ["snapshot"],
                 },
                 SnapshotConfiguration: {
                   type: "object",
@@ -182,6 +183,14 @@ const describeFastLaunchImages: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "enabling",
+                    "enabling-failed",
+                    "enabled",
+                    "enabled-failed",
+                    "disabling",
+                    "disabling-failed",
+                  ],
                 },
                 StateTransitionReason: {
                   type: "string",

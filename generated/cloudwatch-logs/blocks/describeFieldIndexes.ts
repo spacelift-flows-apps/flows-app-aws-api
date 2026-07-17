@@ -122,6 +122,7 @@ const describeFieldIndexes: AppBlock = {
                 },
                 type: {
                   type: "string",
+                  enum: ["FACET", "FIELD_INDEX"],
                 },
               },
               additionalProperties: false,

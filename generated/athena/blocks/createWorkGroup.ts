@@ -45,6 +45,7 @@ const createWorkGroup: AppBlock = {
                     properties: {
                       EncryptionOption: {
                         type: "string",
+                        enum: ["SSE_S3", "SSE_KMS", "CSE_KMS"],
                       },
                       KmsKey: {
                         type: "string",
@@ -61,6 +62,7 @@ const createWorkGroup: AppBlock = {
                     properties: {
                       S3AclOption: {
                         type: "string",
+                        enum: ["BUCKET_OWNER_FULL_CONTROL"],
                       },
                     },
                     required: ["S3AclOption"],
@@ -257,6 +259,7 @@ const createWorkGroup: AppBlock = {
                   },
                   AuthenticationType: {
                     type: "string",
+                    enum: ["DIRECTORY_IDENTITY"],
                   },
                 },
                 required: ["EnableS3AccessGrants", "AuthenticationType"],

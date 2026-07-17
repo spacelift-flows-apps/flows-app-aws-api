@@ -44,6 +44,7 @@ const deleteAttributes: AppBlock = {
                 },
                 targetType: {
                   type: "string",
+                  enum: ["container-instance"],
                 },
                 targetId: {
                   type: "string",
@@ -126,6 +127,7 @@ const deleteAttributes: AppBlock = {
                 },
                 targetType: {
                   type: "string",
+                  enum: ["container-instance"],
                 },
                 targetId: {
                   type: "string",

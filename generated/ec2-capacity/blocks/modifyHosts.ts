@@ -25,7 +25,10 @@ const modifyHosts: AppBlock = {
           name: "Host Recovery",
           description:
             "Indicates whether to enable or disable host recovery for the Dedicated Host.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["on", "off"],
+          },
           required: false,
         },
         InstanceType: {
@@ -46,7 +49,10 @@ const modifyHosts: AppBlock = {
           name: "Host Maintenance",
           description:
             "Indicates whether to enable or disable host maintenance for the Dedicated Host.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["on", "off"],
+          },
           required: false,
         },
         HostIds: {
@@ -63,7 +69,10 @@ const modifyHosts: AppBlock = {
         AutoPlacement: {
           name: "Auto Placement",
           description: "Specify whether to enable or disable auto-placement.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["on", "off"],
+          },
           required: false,
         },
       },

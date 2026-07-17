@@ -33,7 +33,10 @@ const modifyInstanceMetadataOptions: AppBlock = {
         HttpTokens: {
           name: "Http Tokens",
           description: "Indicates whether IMDSv2 is required.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["optional", "required"],
+          },
           required: false,
         },
         HttpPutResponseHopLimit: {
@@ -47,7 +50,10 @@ const modifyInstanceMetadataOptions: AppBlock = {
           name: "Http Endpoint",
           description:
             "Enables or disables the HTTP metadata endpoint on your instances.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["disabled", "enabled"],
+          },
           required: false,
         },
         DryRun: {
@@ -61,14 +67,20 @@ const modifyInstanceMetadataOptions: AppBlock = {
           name: "Http Protocol Ipv6",
           description:
             "Enables or disables the IPv6 endpoint for the instance metadata service.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["disabled", "enabled"],
+          },
           required: false,
         },
         InstanceMetadataTags: {
           name: "Instance Metadata Tags",
           description:
             "Set to enabled to allow access to instance tags from the instance metadata.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["disabled", "enabled"],
+          },
           required: false,
         },
       },
@@ -140,21 +152,26 @@ const modifyInstanceMetadataOptions: AppBlock = {
             properties: {
               State: {
                 type: "string",
+                enum: ["pending", "applied"],
               },
               HttpTokens: {
                 type: "string",
+                enum: ["optional", "required"],
               },
               HttpPutResponseHopLimit: {
                 type: "number",
               },
               HttpEndpoint: {
                 type: "string",
+                enum: ["disabled", "enabled"],
               },
               HttpProtocolIpv6: {
                 type: "string",
+                enum: ["disabled", "enabled"],
               },
               InstanceMetadataTags: {
                 type: "string",
+                enum: ["disabled", "enabled"],
               },
             },
             additionalProperties: false,

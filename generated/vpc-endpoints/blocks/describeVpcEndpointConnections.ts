@@ -143,6 +143,17 @@ const describeVpcEndpointConnections: AppBlock = {
                 },
                 VpcEndpointState: {
                   type: "string",
+                  enum: [
+                    "PendingAcceptance",
+                    "Pending",
+                    "Available",
+                    "Deleting",
+                    "Deleted",
+                    "Rejected",
+                    "Failed",
+                    "Expired",
+                    "Partial",
+                  ],
                 },
                 CreationTimestamp: {
                   type: "string",
@@ -176,6 +187,7 @@ const describeVpcEndpointConnections: AppBlock = {
                 },
                 IpAddressType: {
                   type: "string",
+                  enum: ["ipv4", "dualstack", "ipv6"],
                 },
                 VpcEndpointConnectionId: {
                   type: "string",

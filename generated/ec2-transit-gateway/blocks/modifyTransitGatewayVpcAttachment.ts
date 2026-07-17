@@ -60,15 +60,19 @@ const modifyTransitGatewayVpcAttachment: AppBlock = {
             properties: {
               DnsSupport: {
                 type: "string",
+                enum: ["enable", "disable"],
               },
               SecurityGroupReferencingSupport: {
                 type: "string",
+                enum: ["enable", "disable"],
               },
               Ipv6Support: {
                 type: "string",
+                enum: ["enable", "disable"],
               },
               ApplianceModeSupport: {
                 type: "string",
+                enum: ["enable", "disable"],
               },
             },
             additionalProperties: false,
@@ -159,6 +163,21 @@ const modifyTransitGatewayVpcAttachment: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "initiating",
+                  "initiatingRequest",
+                  "pendingAcceptance",
+                  "rollingBack",
+                  "pending",
+                  "available",
+                  "modifying",
+                  "deleting",
+                  "deleted",
+                  "failed",
+                  "rejected",
+                  "rejecting",
+                  "failing",
+                ],
               },
               SubnetIds: {
                 type: "array",
@@ -174,15 +193,19 @@ const modifyTransitGatewayVpcAttachment: AppBlock = {
                 properties: {
                   DnsSupport: {
                     type: "string",
+                    enum: ["enable", "disable"],
                   },
                   SecurityGroupReferencingSupport: {
                     type: "string",
+                    enum: ["enable", "disable"],
                   },
                   Ipv6Support: {
                     type: "string",
+                    enum: ["enable", "disable"],
                   },
                   ApplianceModeSupport: {
                     type: "string",
+                    enum: ["enable", "disable"],
                   },
                 },
                 additionalProperties: false,

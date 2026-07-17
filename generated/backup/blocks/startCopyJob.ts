@@ -74,6 +74,7 @@ const startCopyJob: AppBlock = {
               },
               DeleteAfterEvent: {
                 type: "string",
+                enum: ["DELETE_AFTER_COPY"],
               },
             },
             additionalProperties: false,

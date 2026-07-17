@@ -48,7 +48,15 @@ const getOrganizationsAccessReport: AppBlock = {
         SortKey: {
           name: "Sort Key",
           description: "The key that is used to sort the results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "SERVICE_NAMESPACE_ASCENDING",
+              "SERVICE_NAMESPACE_DESCENDING",
+              "LAST_AUTHENTICATED_TIME_ASCENDING",
+              "LAST_AUTHENTICATED_TIME_DESCENDING",
+            ],
+          },
           required: false,
         },
       },
@@ -113,6 +121,7 @@ const getOrganizationsAccessReport: AppBlock = {
         properties: {
           JobStatus: {
             type: "string",
+            enum: ["IN_PROGRESS", "COMPLETED", "FAILED"],
             description: "The status of the job.",
           },
           JobCreationDate: {

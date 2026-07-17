@@ -128,6 +128,7 @@ const describeTrustStoreRevocations: AppBlock = {
                 },
                 RevocationType: {
                   type: "string",
+                  enum: ["CRL"],
                 },
                 NumberOfRevokedEntries: {
                   type: "number",

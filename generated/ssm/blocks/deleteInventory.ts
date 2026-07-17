@@ -32,7 +32,10 @@ const deleteInventory: AppBlock = {
           name: "Schema Delete Option",
           description:
             "Use the SchemaDeleteOption to delete a custom inventory type (schema).",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["DisableSchema", "DeleteSchema"],
+          },
           required: false,
         },
         DryRun: {

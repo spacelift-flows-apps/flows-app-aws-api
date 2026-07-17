@@ -59,6 +59,7 @@ const createCachePolicy: AppBlock = {
                     properties: {
                       HeaderBehavior: {
                         type: "string",
+                        enum: ["none", "whitelist"],
                       },
                       Headers: {
                         type: "object",
@@ -83,6 +84,7 @@ const createCachePolicy: AppBlock = {
                     properties: {
                       CookieBehavior: {
                         type: "string",
+                        enum: ["none", "whitelist", "allExcept", "all"],
                       },
                       Cookies: {
                         type: "object",
@@ -107,6 +109,7 @@ const createCachePolicy: AppBlock = {
                     properties: {
                       QueryStringBehavior: {
                         type: "string",
+                        enum: ["none", "whitelist", "allExcept", "all"],
                       },
                       QueryStrings: {
                         type: "object",
@@ -240,6 +243,7 @@ const createCachePolicy: AppBlock = {
                         properties: {
                           HeaderBehavior: {
                             type: "string",
+                            enum: ["none", "whitelist"],
                           },
                           Headers: {
                             type: "object",
@@ -259,6 +263,7 @@ const createCachePolicy: AppBlock = {
                         properties: {
                           CookieBehavior: {
                             type: "string",
+                            enum: ["none", "whitelist", "allExcept", "all"],
                           },
                           Cookies: {
                             type: "object",
@@ -278,6 +283,7 @@ const createCachePolicy: AppBlock = {
                         properties: {
                           QueryStringBehavior: {
                             type: "string",
+                            enum: ["none", "whitelist", "allExcept", "all"],
                           },
                           QueryStrings: {
                             type: "object",

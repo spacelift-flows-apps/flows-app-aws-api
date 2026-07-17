@@ -73,14 +73,20 @@ const setSubnets: AppBlock = {
         IpAddressType: {
           name: "Ip Address Type",
           description: "The IP address type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ipv4", "dualstack", "dualstack-without-public-ipv4"],
+          },
           required: false,
         },
         EnablePrefixForIpv6SourceNat: {
           name: "Enable Prefix For Ipv6Source Nat",
           description:
             "[Network Load Balancers with UDP listeners] Indicates whether to use an IPv6 prefix from each subnet for source NAT.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["on", "off"],
+          },
           required: false,
         },
       },
@@ -189,10 +195,12 @@ const setSubnets: AppBlock = {
           },
           IpAddressType: {
             type: "string",
+            enum: ["ipv4", "dualstack", "dualstack-without-public-ipv4"],
             description: "The IP address type.",
           },
           EnablePrefixForIpv6SourceNat: {
             type: "string",
+            enum: ["on", "off"],
             description:
               "[Network Load Balancers] Indicates whether to use an IPv6 prefix from each subnet for source NAT.",
           },

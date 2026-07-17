@@ -44,7 +44,10 @@ const createCapability: AppBlock = {
         type: {
           name: "type",
           description: "The type of capability to create.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ACK", "KRO", "ARGOCD"],
+          },
           required: true,
         },
         roleArn: {
@@ -86,6 +89,7 @@ const createCapability: AppBlock = {
                       properties: {
                         role: {
                           type: "string",
+                          enum: ["ADMIN", "EDITOR", "VIEWER"],
                         },
                         identities: {
                           type: "array",
@@ -133,7 +137,10 @@ const createCapability: AppBlock = {
           name: "delete Propagation Policy",
           description:
             "Specifies how Kubernetes resources managed by the capability should be handled when the capability is deleted.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["RETAIN"],
+          },
           required: true,
         },
       },
@@ -208,12 +215,22 @@ const createCapability: AppBlock = {
               },
               type: {
                 type: "string",
+                enum: ["ACK", "KRO", "ARGOCD"],
               },
               roleArn: {
                 type: "string",
               },
               status: {
                 type: "string",
+                enum: [
+                  "CREATING",
+                  "CREATE_FAILED",
+                  "UPDATING",
+                  "DELETING",
+                  "DELETE_FAILED",
+                  "ACTIVE",
+                  "DEGRADED",
+                ],
               },
               version: {
                 type: "string",
@@ -289,6 +306,7 @@ const createCapability: AppBlock = {
                       properties: {
                         code: {
                           type: "string",
+                          enum: ["AccessDenied", "ClusterUnreachable"],
                         },
                         message: {
                           type: "string",
@@ -308,6 +326,7 @@ const createCapability: AppBlock = {
               },
               deletePropagationPolicy: {
                 type: "string",
+                enum: ["RETAIN"],
               },
             },
             additionalProperties: false,

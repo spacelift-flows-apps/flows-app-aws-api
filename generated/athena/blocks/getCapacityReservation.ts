@@ -96,6 +96,14 @@ const getCapacityReservation: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: [
+                  "PENDING",
+                  "ACTIVE",
+                  "CANCELLING",
+                  "CANCELLED",
+                  "FAILED",
+                  "UPDATE_PENDING",
+                ],
               },
               TargetDpus: {
                 type: "number",
@@ -108,6 +116,7 @@ const getCapacityReservation: AppBlock = {
                 properties: {
                   Status: {
                     type: "string",
+                    enum: ["PENDING", "SUCCEEDED", "FAILED"],
                   },
                   StatusMessage: {
                     type: "string",

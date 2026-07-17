@@ -56,6 +56,7 @@ const updateRecoveryPointLifecycle: AppBlock = {
               },
               DeleteAfterEvent: {
                 type: "string",
+                enum: ["DELETE_AFTER_COPY"],
               },
             },
             additionalProperties: false,
@@ -146,6 +147,7 @@ const updateRecoveryPointLifecycle: AppBlock = {
               },
               DeleteAfterEvent: {
                 type: "string",
+                enum: ["DELETE_AFTER_COPY"],
               },
             },
             additionalProperties: false,

@@ -43,7 +43,10 @@ const reportInstanceStatus: AppBlock = {
         Status: {
           name: "Status",
           description: "The status of all instances listed.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ok", "impaired"],
+          },
           required: true,
         },
         StartTime: {
@@ -68,6 +71,17 @@ const reportInstanceStatus: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "instance-stuck-in-state",
+                "unresponsive",
+                "not-accepting-credentials",
+                "password-not-available",
+                "performance-network",
+                "performance-instance-store",
+                "performance-ebs-volume",
+                "performance-other",
+                "other",
+              ],
             },
           },
           required: true,

@@ -111,6 +111,17 @@ const deleteInstanceConnectEndpoint: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "create-in-progress",
+                  "create-complete",
+                  "create-failed",
+                  "delete-in-progress",
+                  "delete-complete",
+                  "delete-failed",
+                  "update-in-progress",
+                  "update-complete",
+                  "update-failed",
+                ],
               },
               StateMessage: {
                 type: "string",
@@ -165,6 +176,7 @@ const deleteInstanceConnectEndpoint: AppBlock = {
               },
               IpAddressType: {
                 type: "string",
+                enum: ["ipv4", "dualstack", "ipv6"],
               },
               PublicDnsNames: {
                 type: "object",

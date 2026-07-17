@@ -129,9 +129,11 @@ const describeExportTasks: AppBlock = {
                   properties: {
                     ContainerFormat: {
                       type: "string",
+                      enum: ["ova"],
                     },
                     DiskImageFormat: {
                       type: "string",
+                      enum: ["VMDK", "RAW", "VHD"],
                     },
                     S3Bucket: {
                       type: "string",
@@ -150,12 +152,14 @@ const describeExportTasks: AppBlock = {
                     },
                     TargetEnvironment: {
                       type: "string",
+                      enum: ["citrix", "vmware", "microsoft"],
                     },
                   },
                   additionalProperties: false,
                 },
                 State: {
                   type: "string",
+                  enum: ["active", "cancelling", "cancelled", "completed"],
                 },
                 StatusMessage: {
                   type: "string",

@@ -98,6 +98,7 @@ const moveAddressToVpc: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["MoveInProgress", "InVpc", "InClassic"],
             description: "The status of the move of the IP address.",
           },
         },

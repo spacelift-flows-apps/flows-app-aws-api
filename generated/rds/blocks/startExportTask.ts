@@ -205,6 +205,7 @@ const startExportTask: AppBlock = {
           },
           SourceType: {
             type: "string",
+            enum: ["SNAPSHOT", "CLUSTER"],
             description: "The type of source for the export.",
           },
         },

@@ -257,6 +257,17 @@ const describeVpcPeeringConnections: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: [
+                        "initiating-request",
+                        "pending-acceptance",
+                        "active",
+                        "deleted",
+                        "rejected",
+                        "failed",
+                        "expired",
+                        "provisioning",
+                        "deleting",
+                      ],
                     },
                     Message: {
                       type: "string",

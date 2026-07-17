@@ -35,7 +35,10 @@ const modifyLakehouseConfiguration: AppBlock = {
           name: "Lakehouse Registration",
           description:
             "Specifies whether to register or deregister the cluster with Amazon Redshift federated permissions.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Register", "Deregister"],
+          },
           required: false,
         },
         CatalogName: {
@@ -49,7 +52,10 @@ const modifyLakehouseConfiguration: AppBlock = {
           name: "Lakehouse Idc Registration",
           description:
             "Modifies the Amazon Web Services IAM Identity Center trusted identity propagation on a cluster enabled with Amazon Redshift federated permissions.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Associate", "Disassociate"],
+          },
           required: false,
         },
         LakehouseIdcApplicationArn: {

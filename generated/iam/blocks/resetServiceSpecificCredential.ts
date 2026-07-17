@@ -130,6 +130,7 @@ const resetServiceSpecificCredential: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["Active", "Inactive", "Expired"],
               },
             },
             required: [

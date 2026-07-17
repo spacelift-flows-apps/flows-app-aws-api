@@ -356,6 +356,7 @@ const modifyRedshiftIdcApplication: AppBlock = {
               },
               ApplicationType: {
                 type: "string",
+                enum: ["None", "Lakehouse"],
               },
               Tags: {
                 type: "array",

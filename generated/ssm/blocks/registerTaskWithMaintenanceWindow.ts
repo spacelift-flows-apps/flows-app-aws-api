@@ -71,7 +71,10 @@ const registerTaskWithMaintenanceWindow: AppBlock = {
         TaskType: {
           name: "Task Type",
           description: "The type of task being registered.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["RUN_COMMAND", "AUTOMATION", "STEP_FUNCTIONS", "LAMBDA"],
+          },
           required: true,
         },
         TaskParameters: {
@@ -116,6 +119,7 @@ const registerTaskWithMaintenanceWindow: AppBlock = {
                   },
                   DocumentHashType: {
                     type: "string",
+                    enum: ["Sha256", "Sha1"],
                   },
                   DocumentVersion: {
                     type: "string",
@@ -130,10 +134,19 @@ const registerTaskWithMaintenanceWindow: AppBlock = {
                         type: "array",
                         items: {
                           type: "string",
+                          enum: [
+                            "All",
+                            "InProgress",
+                            "Success",
+                            "TimedOut",
+                            "Cancelled",
+                            "Failed",
+                          ],
                         },
                       },
                       NotificationType: {
                         type: "string",
+                        enum: ["Command", "Invocation"],
                       },
                     },
                     additionalProperties: false,
@@ -271,7 +284,10 @@ const registerTaskWithMaintenanceWindow: AppBlock = {
           name: "Cutoff Behavior",
           description:
             "Indicates whether tasks should continue to run after the cutoff time specified in the maintenance windows is reached.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["CONTINUE_TASK", "CANCEL_TASK"],
+          },
           required: false,
         },
         AlarmConfiguration: {

@@ -185,6 +185,7 @@ const deleteService: AppBlock = {
               },
               launchType: {
                 type: "string",
+                enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
               },
               capacityProviderStrategy: {
                 type: "array",
@@ -257,6 +258,7 @@ const deleteService: AppBlock = {
                   },
                   strategy: {
                     type: "string",
+                    enum: ["ROLLING", "BLUE_GREEN", "LINEAR", "CANARY"],
                   },
                   bakeTimeInMinutes: {
                     type: "number",
@@ -356,6 +358,7 @@ const deleteService: AppBlock = {
                     },
                     launchType: {
                       type: "string",
+                      enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                     },
                     capacityProviderStrategy: {
                       type: "array",
@@ -427,12 +430,14 @@ const deleteService: AppBlock = {
                         },
                         unit: {
                           type: "string",
+                          enum: ["PERCENT"],
                         },
                       },
                       additionalProperties: false,
                     },
                     stabilityStatus: {
                       type: "string",
+                      enum: ["STEADY_STATE", "STABILIZING"],
                     },
                     stabilityStatusAt: {
                       type: "string",
@@ -508,6 +513,7 @@ const deleteService: AppBlock = {
                     },
                     launchType: {
                       type: "string",
+                      enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                     },
                     platformVersion: {
                       type: "string",
@@ -533,6 +539,7 @@ const deleteService: AppBlock = {
                     },
                     rolloutState: {
                       type: "string",
+                      enum: ["COMPLETED", "FAILED", "IN_PROGRESS"],
                     },
                     rolloutStateReason: {
                       type: "string",
@@ -677,6 +684,7 @@ const deleteService: AppBlock = {
                   properties: {
                     type: {
                       type: "string",
+                      enum: ["distinctInstance", "memberOf"],
                     },
                     expression: {
                       type: "string",
@@ -692,6 +700,7 @@ const deleteService: AppBlock = {
                   properties: {
                     type: {
                       type: "string",
+                      enum: ["random", "spread", "binpack"],
                     },
                     field: {
                       type: "string",
@@ -720,6 +729,7 @@ const deleteService: AppBlock = {
                       },
                       assignPublicIp: {
                         type: "string",
+                        enum: ["ENABLED", "DISABLED"],
                       },
                     },
                     required: ["subnets"],
@@ -733,12 +743,14 @@ const deleteService: AppBlock = {
               },
               schedulingStrategy: {
                 type: "string",
+                enum: ["REPLICA", "DAEMON"],
               },
               deploymentController: {
                 type: "object",
                 properties: {
                   type: {
                     type: "string",
+                    enum: ["ECS", "CODE_DEPLOY", "EXTERNAL"],
                   },
                 },
                 required: ["type"],
@@ -767,15 +779,18 @@ const deleteService: AppBlock = {
               },
               propagateTags: {
                 type: "string",
+                enum: ["TASK_DEFINITION", "SERVICE", "NONE"],
               },
               enableExecuteCommand: {
                 type: "boolean",
               },
               availabilityZoneRebalancing: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
               resourceManagementType: {
                 type: "string",
+                enum: ["CUSTOMER", "ECS"],
               },
             },
             additionalProperties: false,

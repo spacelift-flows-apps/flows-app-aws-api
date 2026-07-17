@@ -31,6 +31,7 @@ const listOpsItemEvents: AppBlock = {
               properties: {
                 Key: {
                   type: "string",
+                  enum: ["OpsItemId"],
                 },
                 Values: {
                   type: "array",
@@ -40,6 +41,7 @@ const listOpsItemEvents: AppBlock = {
                 },
                 Operator: {
                   type: "string",
+                  enum: ["Equal"],
                 },
               },
               required: ["Key", "Values", "Operator"],

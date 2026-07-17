@@ -150,6 +150,7 @@ const getTransitGatewayPrefixListReferences: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: ["pending", "available", "modifying", "deleting"],
                 },
                 Blackhole: {
                   type: "boolean",
@@ -162,6 +163,17 @@ const getTransitGatewayPrefixListReferences: AppBlock = {
                     },
                     ResourceType: {
                       type: "string",
+                      enum: [
+                        "vpc",
+                        "vpn",
+                        "vpn-concentrator",
+                        "direct-connect-gateway",
+                        "connect",
+                        "peering",
+                        "tgw-peering",
+                        "network-function",
+                        "client-vpn",
+                      ],
                     },
                     ResourceId: {
                       type: "string",

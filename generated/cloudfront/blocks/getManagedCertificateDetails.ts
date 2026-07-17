@@ -98,9 +98,19 @@ const getManagedCertificateDetails: AppBlock = {
               },
               CertificateStatus: {
                 type: "string",
+                enum: [
+                  "pending-validation",
+                  "issued",
+                  "inactive",
+                  "expired",
+                  "validation-timed-out",
+                  "revoked",
+                  "failed",
+                ],
               },
               ValidationTokenHost: {
                 type: "string",
+                enum: ["cloudfront", "self-hosted"],
               },
               ValidationTokenDetails: {
                 type: "array",

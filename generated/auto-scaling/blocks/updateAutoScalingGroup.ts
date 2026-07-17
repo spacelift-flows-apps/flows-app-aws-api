@@ -333,6 +333,7 @@ const updateAutoScalingGroup: AppBlock = {
             properties: {
               CapacityDistributionStrategy: {
                 type: "string",
+                enum: ["balanced-only", "balanced-best-effort"],
               },
             },
             additionalProperties: false,
@@ -350,6 +351,7 @@ const updateAutoScalingGroup: AppBlock = {
               },
               ImpairedZoneHealthCheckBehavior: {
                 type: "string",
+                enum: ["ReplaceUnhealthy", "IgnoreUnhealthy"],
               },
             },
             additionalProperties: false,
@@ -372,6 +374,12 @@ const updateAutoScalingGroup: AppBlock = {
             properties: {
               CapacityReservationPreference: {
                 type: "string",
+                enum: [
+                  "capacity-reservations-only",
+                  "capacity-reservations-first",
+                  "none",
+                  "default",
+                ],
               },
               CapacityReservationTarget: {
                 type: "object",
@@ -408,6 +416,7 @@ const updateAutoScalingGroup: AppBlock = {
                 properties: {
                   TerminateHookAbandon: {
                     type: "string",
+                    enum: ["retain", "terminate"],
                   },
                 },
                 additionalProperties: false,
@@ -421,7 +430,10 @@ const updateAutoScalingGroup: AppBlock = {
           name: "Deletion Protection",
           description:
             "The deletion protection setting for the Auto Scaling group.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["none", "prevent-force-deletion", "prevent-all-deletion"],
+          },
           required: false,
         },
       },

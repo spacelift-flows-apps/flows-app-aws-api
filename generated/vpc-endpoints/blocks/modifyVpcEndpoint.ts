@@ -123,7 +123,10 @@ const modifyVpcEndpoint: AppBlock = {
         IpAddressType: {
           name: "Ip Address Type",
           description: "The IP address type for the endpoint.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ipv4", "dualstack", "ipv6"],
+          },
           required: false,
         },
         DnsOptions: {
@@ -134,6 +137,7 @@ const modifyVpcEndpoint: AppBlock = {
             properties: {
               DnsRecordIpType: {
                 type: "string",
+                enum: ["ipv4", "dualstack", "ipv6", "service-defined"],
               },
               PrivateDnsOnlyForInboundResolverEndpoint: {
                 type: "boolean",

@@ -40,6 +40,13 @@ const listComplianceItems: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: [
+                    "EQUAL",
+                    "NOT_EQUAL",
+                    "BEGIN_WITH",
+                    "LESS_THAN",
+                    "GREATER_THAN",
+                  ],
                 },
               },
               additionalProperties: false,
@@ -163,9 +170,18 @@ const listComplianceItems: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["COMPLIANT", "NON_COMPLIANT"],
                 },
                 Severity: {
                   type: "string",
+                  enum: [
+                    "CRITICAL",
+                    "HIGH",
+                    "MEDIUM",
+                    "LOW",
+                    "INFORMATIONAL",
+                    "UNSPECIFIED",
+                  ],
                 },
                 ExecutionSummary: {
                   type: "object",

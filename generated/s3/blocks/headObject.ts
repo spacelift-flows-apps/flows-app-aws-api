@@ -137,7 +137,10 @@ const headObject: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         PartNumber: {
@@ -156,7 +159,10 @@ const headObject: AppBlock = {
           name: "Checksum Mode",
           description:
             "To retrieve the checksum, this parameter must be enabled.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ENABLED"],
+          },
           required: false,
         },
       },
@@ -249,6 +255,7 @@ const headObject: AppBlock = {
           },
           ArchiveStatus: {
             type: "string",
+            enum: ["ARCHIVE_ACCESS", "DEEP_ARCHIVE_ACCESS"],
             description: "The archive state of the head object.",
           },
           LastModified: {
@@ -311,6 +318,7 @@ const headObject: AppBlock = {
           },
           ChecksumType: {
             type: "string",
+            enum: ["COMPOSITE", "FULL_OBJECT"],
             description:
               "The checksum type, which determines how part-level checksums are combined to create an object-level checksum for multipart objects.",
           },
@@ -368,6 +376,7 @@ const headObject: AppBlock = {
           },
           ServerSideEncryption: {
             type: "string",
+            enum: ["AES256", "aws:fsx", "aws:kms", "aws:kms:dsse"],
             description:
               "The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.",
           },
@@ -400,15 +409,32 @@ const headObject: AppBlock = {
           },
           StorageClass: {
             type: "string",
+            enum: [
+              "STANDARD",
+              "REDUCED_REDUNDANCY",
+              "STANDARD_IA",
+              "ONEZONE_IA",
+              "INTELLIGENT_TIERING",
+              "GLACIER",
+              "DEEP_ARCHIVE",
+              "OUTPOSTS",
+              "GLACIER_IR",
+              "SNOW",
+              "EXPRESS_ONEZONE",
+              "FSX_OPENZFS",
+              "FSX_ONTAP",
+            ],
             description: "Provides storage class information of the object.",
           },
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },
           ReplicationStatus: {
             type: "string",
+            enum: ["COMPLETE", "PENDING", "FAILED", "REPLICA", "COMPLETED"],
             description:
               "Amazon S3 can return this header if your request involves a bucket that is either a source or a destination in a replication rule.",
           },
@@ -423,6 +449,7 @@ const headObject: AppBlock = {
           },
           ObjectLockMode: {
             type: "string",
+            enum: ["GOVERNANCE", "COMPLIANCE"],
             description:
               "The Object Lock mode, if any, that's in effect for this object.",
           },
@@ -433,6 +460,7 @@ const headObject: AppBlock = {
           },
           ObjectLockLegalHoldStatus: {
             type: "string",
+            enum: ["ON", "OFF"],
             description:
               "Specifies whether a legal hold is in effect for this object.",
           },

@@ -54,7 +54,10 @@ const createApiDestination: AppBlock = {
           name: "Http Method",
           description:
             "The method to use for the request to the HTTP invocation endpoint.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["POST", "GET", "HEAD", "OPTIONS", "PUT", "PATCH", "DELETE"],
+          },
           required: true,
         },
         InvocationRateLimitPerSecond: {
@@ -129,6 +132,7 @@ const createApiDestination: AppBlock = {
           },
           ApiDestinationState: {
             type: "string",
+            enum: ["ACTIVE", "INACTIVE"],
             description:
               "The state of the API destination that was created by the request.",
           },

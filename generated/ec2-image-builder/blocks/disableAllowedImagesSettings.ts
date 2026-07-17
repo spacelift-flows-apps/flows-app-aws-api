@@ -93,6 +93,7 @@ const disableAllowedImagesSettings: AppBlock = {
         properties: {
           AllowedImagesSettingsState: {
             type: "string",
+            enum: ["disabled"],
             description:
               "Returns disabled if the request succeeds; otherwise, it returns an error.",
           },

@@ -28,7 +28,22 @@ const putAccountSettingDefault: AppBlock = {
           name: "name",
           description:
             "The resource name for which to modify the account setting.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "serviceLongArnFormat",
+              "taskLongArnFormat",
+              "containerInstanceLongArnFormat",
+              "awsvpcTrunking",
+              "containerInsights",
+              "fargateFIPSMode",
+              "tagResourceAuthorization",
+              "fargateTaskRetirementWaitPeriod",
+              "guardDutyActivate",
+              "defaultLogDriverMode",
+              "fargateEventWindows",
+            ],
+          },
           required: true,
         },
         value: {
@@ -103,6 +118,19 @@ const putAccountSettingDefault: AppBlock = {
             properties: {
               name: {
                 type: "string",
+                enum: [
+                  "serviceLongArnFormat",
+                  "taskLongArnFormat",
+                  "containerInstanceLongArnFormat",
+                  "awsvpcTrunking",
+                  "containerInsights",
+                  "fargateFIPSMode",
+                  "tagResourceAuthorization",
+                  "fargateTaskRetirementWaitPeriod",
+                  "guardDutyActivate",
+                  "defaultLogDriverMode",
+                  "fargateEventWindows",
+                ],
               },
               value: {
                 type: "string",
@@ -112,6 +140,7 @@ const putAccountSettingDefault: AppBlock = {
               },
               type: {
                 type: "string",
+                enum: ["user", "aws_managed"],
               },
             },
             additionalProperties: false,

@@ -195,6 +195,7 @@ const describeCapacityBlockOfferings: AppBlock = {
                 },
                 Tenancy: {
                   type: "string",
+                  enum: ["default", "dedicated"],
                 },
                 UltraserverType: {
                   type: "string",

@@ -127,6 +127,14 @@ const describeDataShares: AppBlock = {
                       },
                       Status: {
                         type: "string",
+                        enum: [
+                          "ACTIVE",
+                          "PENDING_AUTHORIZATION",
+                          "AUTHORIZED",
+                          "DEAUTHORIZED",
+                          "REJECTED",
+                          "AVAILABLE",
+                        ],
                       },
                       ConsumerRegion: {
                         type: "string",
@@ -152,6 +160,7 @@ const describeDataShares: AppBlock = {
                 },
                 DataShareType: {
                   type: "string",
+                  enum: ["INTERNAL"],
                 },
               },
               additionalProperties: false,

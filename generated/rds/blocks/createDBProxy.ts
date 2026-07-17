@@ -30,14 +30,20 @@ const createDBProxy: AppBlock = {
         EngineFamily: {
           name: "Engine Family",
           description: "The kinds of databases that the proxy can connect to.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["MYSQL", "POSTGRESQL", "SQLSERVER"],
+          },
           required: true,
         },
         DefaultAuthScheme: {
           name: "Default Auth Scheme",
           description:
             "The default authentication scheme that the proxy uses for client connections to the proxy and connections from the proxy to the underlying database.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["IAM_AUTH", "NONE"],
+          },
           required: false,
         },
         Auth: {
@@ -56,15 +62,24 @@ const createDBProxy: AppBlock = {
                 },
                 AuthScheme: {
                   type: "string",
+                  enum: ["SECRETS"],
                 },
                 SecretArn: {
                   type: "string",
                 },
                 IAMAuth: {
                   type: "string",
+                  enum: ["DISABLED", "REQUIRED", "ENABLED"],
                 },
                 ClientPasswordAuthType: {
                   type: "string",
+                  enum: [
+                    "MYSQL_NATIVE_PASSWORD",
+                    "MYSQL_CACHING_SHA2_PASSWORD",
+                    "POSTGRES_SCRAM_SHA_256",
+                    "POSTGRES_MD5",
+                    "SQL_SERVER_AUTHENTICATION",
+                  ],
                 },
               },
               additionalProperties: false,
@@ -148,14 +163,20 @@ const createDBProxy: AppBlock = {
         EndpointNetworkType: {
           name: "Endpoint Network Type",
           description: "The network type of the DB proxy endpoint.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["IPV4", "IPV6", "DUAL"],
+          },
           required: false,
         },
         TargetConnectionNetworkType: {
           name: "Target Connection Network Type",
           description:
             "The network type that the proxy uses to connect to the target database.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["IPV4", "IPV6"],
+          },
           required: false,
         },
       },
@@ -227,6 +248,17 @@ const createDBProxy: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: [
+                  "available",
+                  "modifying",
+                  "incompatible-network",
+                  "insufficient-resource-limits",
+                  "creating",
+                  "deleting",
+                  "suspended",
+                  "suspending",
+                  "reactivating",
+                ],
               },
               EngineFamily: {
                 type: "string",
@@ -262,15 +294,24 @@ const createDBProxy: AppBlock = {
                     },
                     AuthScheme: {
                       type: "string",
+                      enum: ["SECRETS"],
                     },
                     SecretArn: {
                       type: "string",
                     },
                     IAMAuth: {
                       type: "string",
+                      enum: ["DISABLED", "REQUIRED", "ENABLED"],
                     },
                     ClientPasswordAuthType: {
                       type: "string",
+                      enum: [
+                        "MYSQL_NATIVE_PASSWORD",
+                        "MYSQL_CACHING_SHA2_PASSWORD",
+                        "POSTGRES_SCRAM_SHA_256",
+                        "POSTGRES_MD5",
+                        "SQL_SERVER_AUTHENTICATION",
+                      ],
                     },
                   },
                   additionalProperties: false,
@@ -299,9 +340,11 @@ const createDBProxy: AppBlock = {
               },
               EndpointNetworkType: {
                 type: "string",
+                enum: ["IPV4", "IPV6", "DUAL"],
               },
               TargetConnectionNetworkType: {
                 type: "string",
+                enum: ["IPV4", "IPV6"],
               },
             },
             additionalProperties: false,

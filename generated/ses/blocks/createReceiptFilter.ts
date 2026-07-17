@@ -36,6 +36,7 @@ const createReceiptFilter: AppBlock = {
                 properties: {
                   Policy: {
                     type: "string",
+                    enum: ["Block", "Allow"],
                   },
                   Cidr: {
                     type: "string",

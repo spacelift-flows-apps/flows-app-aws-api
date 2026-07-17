@@ -33,7 +33,17 @@ const listReplays: AppBlock = {
         State: {
           name: "State",
           description: "The state of the replay.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "STARTING",
+              "RUNNING",
+              "CANCELLING",
+              "COMPLETED",
+              "CANCELLED",
+              "FAILED",
+            ],
+          },
           required: false,
         },
         EventSourceArn: {
@@ -127,6 +137,14 @@ const listReplays: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "STARTING",
+                    "RUNNING",
+                    "CANCELLING",
+                    "COMPLETED",
+                    "CANCELLED",
+                    "FAILED",
+                  ],
                 },
                 StateReason: {
                   type: "string",

@@ -35,6 +35,11 @@ const describeEventAggregates: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "ACTION_REQUIRED",
+                    "ACTION_MAY_BE_REQUIRED",
+                    "INFORMATIONAL",
+                  ],
                 },
               },
               eventArns: {
@@ -128,6 +133,12 @@ const describeEventAggregates: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "issue",
+                    "accountNotification",
+                    "scheduledChange",
+                    "investigation",
+                  ],
                 },
               },
               tags: {
@@ -143,12 +154,14 @@ const describeEventAggregates: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["open", "closed", "upcoming"],
                 },
               },
               personas: {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["OPERATIONS", "SECURITY", "BILLING"],
                 },
               },
             },
@@ -160,7 +173,10 @@ const describeEventAggregates: AppBlock = {
           name: "aggregate Field",
           description:
             "The only currently supported value is eventTypeCategory.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["eventTypeCategory"],
+          },
           required: true,
         },
         maxResults: {

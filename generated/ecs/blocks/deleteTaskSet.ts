@@ -151,6 +151,7 @@ const deleteTaskSet: AppBlock = {
               },
               launchType: {
                 type: "string",
+                enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
               },
               capacityProviderStrategy: {
                 type: "array",
@@ -197,6 +198,7 @@ const deleteTaskSet: AppBlock = {
                       },
                       assignPublicIp: {
                         type: "string",
+                        enum: ["ENABLED", "DISABLED"],
                       },
                     },
                     required: ["subnets"],
@@ -273,12 +275,14 @@ const deleteTaskSet: AppBlock = {
                   },
                   unit: {
                     type: "string",
+                    enum: ["PERCENT"],
                   },
                 },
                 additionalProperties: false,
               },
               stabilityStatus: {
                 type: "string",
+                enum: ["STEADY_STATE", "STABILIZING"],
               },
               stabilityStatusAt: {
                 type: "string",

@@ -43,7 +43,21 @@ const updateBucketMetadataInventoryTableConfiguration: AppBlock = {
           name: "Checksum Algorithm",
           description:
             "The checksum algorithm to use with your inventory table configuration.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CRC32",
+              "CRC32C",
+              "SHA1",
+              "SHA256",
+              "CRC64NVME",
+              "SHA512",
+              "MD5",
+              "XXHASH64",
+              "XXHASH3",
+              "XXHASH128",
+            ],
+          },
           required: false,
         },
         InventoryTableConfiguration: {
@@ -54,12 +68,14 @@ const updateBucketMetadataInventoryTableConfiguration: AppBlock = {
             properties: {
               ConfigurationState: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
               EncryptionConfiguration: {
                 type: "object",
                 properties: {
                   SseAlgorithm: {
                     type: "string",
+                    enum: ["aws:kms", "AES256"],
                   },
                   KmsKeyArn: {
                     type: "string",

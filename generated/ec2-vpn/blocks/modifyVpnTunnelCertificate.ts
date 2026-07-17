@@ -124,6 +124,12 @@ const modifyVpnTunnelCertificate: AppBlock = {
               },
               GatewayAssociationState: {
                 type: "string",
+                enum: [
+                  "associated",
+                  "not-associated",
+                  "associating",
+                  "disassociating",
+                ],
               },
               Options: {
                 type: "object",
@@ -154,6 +160,7 @@ const modifyVpnTunnelCertificate: AppBlock = {
                   },
                   TunnelInsideIpVersion: {
                     type: "string",
+                    enum: ["ipv4", "ipv6"],
                   },
                   TunnelOptions: {
                     type: "array",
@@ -240,6 +247,7 @@ const modifyVpnTunnelCertificate: AppBlock = {
                   },
                   TunnelBandwidth: {
                     type: "string",
+                    enum: ["standard", "large"],
                   },
                 },
                 additionalProperties: false,
@@ -254,9 +262,11 @@ const modifyVpnTunnelCertificate: AppBlock = {
                     },
                     Source: {
                       type: "string",
+                      enum: ["Static"],
                     },
                     State: {
                       type: "string",
+                      enum: ["pending", "available", "deleting", "deleted"],
                     },
                   },
                   additionalProperties: false,
@@ -293,6 +303,7 @@ const modifyVpnTunnelCertificate: AppBlock = {
                     },
                     Status: {
                       type: "string",
+                      enum: ["UP", "DOWN"],
                     },
                     StatusMessage: {
                       type: "string",
@@ -312,12 +323,14 @@ const modifyVpnTunnelCertificate: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["pending", "available", "deleting", "deleted"],
               },
               CustomerGatewayConfiguration: {
                 type: "string",
               },
               Type: {
                 type: "string",
+                enum: ["ipsec.1"],
               },
               CustomerGatewayId: {
                 type: "string",

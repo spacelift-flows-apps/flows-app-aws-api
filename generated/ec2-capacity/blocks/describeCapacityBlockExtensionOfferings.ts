@@ -158,6 +158,7 @@ const describeCapacityBlockExtensionOfferings: AppBlock = {
                 },
                 Tenancy: {
                   type: "string",
+                  enum: ["default", "dedicated"],
                 },
                 ZoneType: {
                   type: "string",

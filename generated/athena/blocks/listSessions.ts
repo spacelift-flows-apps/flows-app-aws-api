@@ -30,7 +30,19 @@ const listSessions: AppBlock = {
         StateFilter: {
           name: "State Filter",
           description: "A filter for a specific session state.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CREATING",
+              "CREATED",
+              "IDLE",
+              "BUSY",
+              "TERMINATING",
+              "TERMINATED",
+              "DEGRADED",
+              "FAILED",
+            ],
+          },
           required: false,
         },
         MaxResults: {
@@ -152,6 +164,16 @@ const listSessions: AppBlock = {
                     },
                     State: {
                       type: "string",
+                      enum: [
+                        "CREATING",
+                        "CREATED",
+                        "IDLE",
+                        "BUSY",
+                        "TERMINATING",
+                        "TERMINATED",
+                        "DEGRADED",
+                        "FAILED",
+                      ],
                     },
                     StateChangeReason: {
                       type: "string",

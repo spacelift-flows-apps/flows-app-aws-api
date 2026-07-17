@@ -47,6 +47,16 @@ const updateConfigurationSetEventDestination: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "send",
+                    "reject",
+                    "bounce",
+                    "complaint",
+                    "delivery",
+                    "open",
+                    "click",
+                    "renderingFailure",
+                  ],
                 },
               },
               KinesisFirehoseDestination: {
@@ -75,6 +85,7 @@ const updateConfigurationSetEventDestination: AppBlock = {
                         },
                         DimensionValueSource: {
                           type: "string",
+                          enum: ["messageTag", "emailHeader", "linkTag"],
                         },
                         DefaultDimensionValue: {
                           type: "string",

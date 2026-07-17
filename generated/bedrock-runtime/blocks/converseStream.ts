@@ -41,6 +41,7 @@ const converseStream: AppBlock = {
               properties: {
                 role: {
                   type: "string",
+                  enum: ["user", "assistant"],
                 },
                 content: {
                   type: "array",
@@ -340,6 +341,7 @@ const converseStream: AppBlock = {
                               properties: {
                                 format: {
                                   type: "string",
+                                  enum: ["png", "jpeg"],
                                 },
                                 source: {
                                   oneOf: [
@@ -377,9 +379,11 @@ const converseStream: AppBlock = {
                       properties: {
                         type: {
                           type: "string",
+                          enum: ["default"],
                         },
                         ttl: {
                           type: "string",
+                          enum: ["5m", "1h"],
                         },
                       },
                       required: ["type"],
@@ -493,9 +497,11 @@ const converseStream: AppBlock = {
                           properties: {
                             type: {
                               type: "string",
+                              enum: ["default"],
                             },
                             ttl: {
                               type: "string",
+                              enum: ["5m", "1h"],
                             },
                           },
                           required: ["type"],
@@ -574,9 +580,11 @@ const converseStream: AppBlock = {
               },
               trace: {
                 type: "string",
+                enum: ["enabled", "disabled", "enabled_full"],
               },
               streamProcessingMode: {
                 type: "string",
+                enum: ["sync", "async"],
               },
             },
             additionalProperties: false,
@@ -632,6 +640,7 @@ const converseStream: AppBlock = {
             properties: {
               latency: {
                 type: "string",
+                enum: ["standard", "optimized"],
               },
             },
             additionalProperties: false,
@@ -647,6 +656,7 @@ const converseStream: AppBlock = {
             properties: {
               type: {
                 type: "string",
+                enum: ["priority", "default", "flex", "reserved"],
               },
             },
             required: ["type"],
@@ -665,6 +675,7 @@ const converseStream: AppBlock = {
                 properties: {
                   type: {
                     type: "string",
+                    enum: ["json_schema"],
                   },
                   structure: {
                     oneOf: [
@@ -770,6 +781,7 @@ const converseStream: AppBlock = {
                     properties: {
                       role: {
                         type: "string",
+                        enum: ["user", "assistant"],
                       },
                     },
                     required: ["role"],
@@ -801,6 +813,7 @@ const converseStream: AppBlock = {
                                   },
                                   type: {
                                     type: "string",
+                                    enum: ["server_tool_use"],
                                   },
                                 },
                                 required: ["toolUseId", "name"],
@@ -824,6 +837,7 @@ const converseStream: AppBlock = {
                                   },
                                   status: {
                                     type: "string",
+                                    enum: ["success", "error"],
                                   },
                                 },
                                 required: ["toolUseId"],
@@ -841,6 +855,7 @@ const converseStream: AppBlock = {
                                 properties: {
                                   format: {
                                     type: "string",
+                                    enum: ["png", "jpeg", "gif", "webp"],
                                   },
                                 },
                                 required: ["format"],
@@ -1122,6 +1137,17 @@ const converseStream: AppBlock = {
                     properties: {
                       stopReason: {
                         type: "string",
+                        enum: [
+                          "end_turn",
+                          "tool_use",
+                          "max_tokens",
+                          "stop_sequence",
+                          "guardrail_intervened",
+                          "content_filtered",
+                          "malformed_model_output",
+                          "malformed_tool_use",
+                          "model_context_window_exceeded",
+                        ],
                       },
                       additionalModelResponseFields: {
                         type: "string",
@@ -1235,6 +1261,7 @@ const converseStream: AppBlock = {
                         properties: {
                           latency: {
                             type: "string",
+                            enum: ["standard", "optimized"],
                           },
                         },
                         additionalProperties: false,
@@ -1244,6 +1271,7 @@ const converseStream: AppBlock = {
                         properties: {
                           type: {
                             type: "string",
+                            enum: ["priority", "default", "flex", "reserved"],
                           },
                         },
                         required: ["type"],

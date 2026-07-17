@@ -40,7 +40,10 @@ const modifyPrivateDnsNameOptions: AppBlock = {
         PrivateDnsHostnameType: {
           name: "Private Dns Hostname Type",
           description: "The type of hostname for EC2 instances.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ip-name", "resource-name"],
+          },
           required: false,
         },
         EnableResourceNameDnsARecord: {

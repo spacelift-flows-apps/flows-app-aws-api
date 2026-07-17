@@ -102,6 +102,7 @@ const getWebACL: AppBlock = {
                 properties: {
                   Type: {
                     type: "string",
+                    enum: ["BLOCK", "ALLOW", "COUNT"],
                   },
                 },
                 required: ["Type"],
@@ -123,6 +124,7 @@ const getWebACL: AppBlock = {
                       properties: {
                         Type: {
                           type: "string",
+                          enum: ["BLOCK", "ALLOW", "COUNT"],
                         },
                       },
                       required: ["Type"],
@@ -133,6 +135,7 @@ const getWebACL: AppBlock = {
                       properties: {
                         Type: {
                           type: "string",
+                          enum: ["NONE", "COUNT"],
                         },
                       },
                       required: ["Type"],
@@ -140,6 +143,7 @@ const getWebACL: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: ["REGULAR", "RATE_BASED", "GROUP"],
                     },
                     ExcludedRules: {
                       type: "array",

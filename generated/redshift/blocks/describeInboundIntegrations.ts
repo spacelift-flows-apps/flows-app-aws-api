@@ -133,6 +133,15 @@ const describeInboundIntegrations: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "creating",
+                    "active",
+                    "modifying",
+                    "failed",
+                    "deleting",
+                    "syncing",
+                    "needs_attention",
+                  ],
                 },
                 Errors: {
                   type: "array",

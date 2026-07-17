@@ -114,9 +114,27 @@ const listChangeSets: AppBlock = {
                 },
                 ExecutionStatus: {
                   type: "string",
+                  enum: [
+                    "UNAVAILABLE",
+                    "AVAILABLE",
+                    "EXECUTE_IN_PROGRESS",
+                    "EXECUTE_COMPLETE",
+                    "EXECUTE_FAILED",
+                    "OBSOLETE",
+                  ],
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "CREATE_PENDING",
+                    "CREATE_IN_PROGRESS",
+                    "CREATE_COMPLETE",
+                    "DELETE_PENDING",
+                    "DELETE_IN_PROGRESS",
+                    "DELETE_COMPLETE",
+                    "DELETE_FAILED",
+                    "FAILED",
+                  ],
                 },
                 StatusReason: {
                   type: "string",

@@ -130,6 +130,10 @@ const describeDBMajorEngineVersions: AppBlock = {
                     properties: {
                       LifecycleSupportName: {
                         type: "string",
+                        enum: [
+                          "open-source-rds-standard-support",
+                          "open-source-rds-extended-support",
+                        ],
                       },
                       LifecycleSupportStartDate: {
                         type: "string",

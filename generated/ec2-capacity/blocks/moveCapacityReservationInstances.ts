@@ -139,12 +139,33 @@ const moveCapacityReservationInstances: AppBlock = {
               },
               InstancePlatform: {
                 type: "string",
+                enum: [
+                  "Linux/UNIX",
+                  "Red Hat Enterprise Linux",
+                  "SUSE Linux",
+                  "Windows",
+                  "Windows with SQL Server",
+                  "Windows with SQL Server Enterprise",
+                  "Windows with SQL Server Standard",
+                  "Windows with SQL Server Web",
+                  "Linux with SQL Server Standard",
+                  "Linux with SQL Server Web",
+                  "Linux with SQL Server Enterprise",
+                  "RHEL with SQL Server Standard",
+                  "RHEL with SQL Server Enterprise",
+                  "RHEL with SQL Server Web",
+                  "RHEL with HA",
+                  "RHEL with HA and SQL Server Standard",
+                  "RHEL with HA and SQL Server Enterprise",
+                  "Ubuntu Pro",
+                ],
               },
               AvailabilityZone: {
                 type: "string",
               },
               Tenancy: {
                 type: "string",
+                enum: ["default", "dedicated"],
               },
               TotalInstanceCount: {
                 type: "number",
@@ -160,6 +181,20 @@ const moveCapacityReservationInstances: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "active",
+                  "expired",
+                  "cancelled",
+                  "pending",
+                  "failed",
+                  "scheduled",
+                  "payment-pending",
+                  "payment-failed",
+                  "assessing",
+                  "delayed",
+                  "unsupported",
+                  "unavailable",
+                ],
               },
               StartDate: {
                 type: "string",
@@ -169,9 +204,11 @@ const moveCapacityReservationInstances: AppBlock = {
               },
               EndDateType: {
                 type: "string",
+                enum: ["unlimited", "limited"],
               },
               InstanceMatchCriteria: {
                 type: "string",
+                enum: ["open", "targeted"],
               },
               CreateDate: {
                 type: "string",
@@ -207,6 +244,7 @@ const moveCapacityReservationInstances: AppBlock = {
                   properties: {
                     AllocationType: {
                       type: "string",
+                      enum: ["used", "future"],
                     },
                     Count: {
                       type: "number",
@@ -228,6 +266,7 @@ const moveCapacityReservationInstances: AppBlock = {
               },
               ReservationType: {
                 type: "string",
+                enum: ["default", "capacity-block"],
               },
               UnusedReservationBillingOwnerId: {
                 type: "string",
@@ -246,6 +285,7 @@ const moveCapacityReservationInstances: AppBlock = {
               },
               DeliveryPreference: {
                 type: "string",
+                enum: ["fixed", "incremental"],
               },
               CapacityBlockId: {
                 type: "string",
@@ -264,12 +304,21 @@ const moveCapacityReservationInstances: AppBlock = {
                   },
                   Status: {
                     type: "string",
+                    enum: [
+                      "pending",
+                      "active",
+                      "updating",
+                      "canceling",
+                      "canceled",
+                      "failed",
+                    ],
                   },
                   InterruptibleCapacityReservationId: {
                     type: "string",
                   },
                   InterruptionType: {
                     type: "string",
+                    enum: ["adhoc"],
                   },
                 },
                 additionalProperties: false,
@@ -282,6 +331,7 @@ const moveCapacityReservationInstances: AppBlock = {
                   },
                   InterruptionType: {
                     type: "string",
+                    enum: ["adhoc"],
                   },
                 },
                 additionalProperties: false,
@@ -310,12 +360,33 @@ const moveCapacityReservationInstances: AppBlock = {
               },
               InstancePlatform: {
                 type: "string",
+                enum: [
+                  "Linux/UNIX",
+                  "Red Hat Enterprise Linux",
+                  "SUSE Linux",
+                  "Windows",
+                  "Windows with SQL Server",
+                  "Windows with SQL Server Enterprise",
+                  "Windows with SQL Server Standard",
+                  "Windows with SQL Server Web",
+                  "Linux with SQL Server Standard",
+                  "Linux with SQL Server Web",
+                  "Linux with SQL Server Enterprise",
+                  "RHEL with SQL Server Standard",
+                  "RHEL with SQL Server Enterprise",
+                  "RHEL with SQL Server Web",
+                  "RHEL with HA",
+                  "RHEL with HA and SQL Server Standard",
+                  "RHEL with HA and SQL Server Enterprise",
+                  "Ubuntu Pro",
+                ],
               },
               AvailabilityZone: {
                 type: "string",
               },
               Tenancy: {
                 type: "string",
+                enum: ["default", "dedicated"],
               },
               TotalInstanceCount: {
                 type: "number",
@@ -331,6 +402,20 @@ const moveCapacityReservationInstances: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "active",
+                  "expired",
+                  "cancelled",
+                  "pending",
+                  "failed",
+                  "scheduled",
+                  "payment-pending",
+                  "payment-failed",
+                  "assessing",
+                  "delayed",
+                  "unsupported",
+                  "unavailable",
+                ],
               },
               StartDate: {
                 type: "string",
@@ -340,9 +425,11 @@ const moveCapacityReservationInstances: AppBlock = {
               },
               EndDateType: {
                 type: "string",
+                enum: ["unlimited", "limited"],
               },
               InstanceMatchCriteria: {
                 type: "string",
+                enum: ["open", "targeted"],
               },
               CreateDate: {
                 type: "string",
@@ -378,6 +465,7 @@ const moveCapacityReservationInstances: AppBlock = {
                   properties: {
                     AllocationType: {
                       type: "string",
+                      enum: ["used", "future"],
                     },
                     Count: {
                       type: "number",
@@ -399,6 +487,7 @@ const moveCapacityReservationInstances: AppBlock = {
               },
               ReservationType: {
                 type: "string",
+                enum: ["default", "capacity-block"],
               },
               UnusedReservationBillingOwnerId: {
                 type: "string",
@@ -417,6 +506,7 @@ const moveCapacityReservationInstances: AppBlock = {
               },
               DeliveryPreference: {
                 type: "string",
+                enum: ["fixed", "incremental"],
               },
               CapacityBlockId: {
                 type: "string",
@@ -435,12 +525,21 @@ const moveCapacityReservationInstances: AppBlock = {
                   },
                   Status: {
                     type: "string",
+                    enum: [
+                      "pending",
+                      "active",
+                      "updating",
+                      "canceling",
+                      "canceled",
+                      "failed",
+                    ],
                   },
                   InterruptibleCapacityReservationId: {
                     type: "string",
                   },
                   InterruptionType: {
                     type: "string",
+                    enum: ["adhoc"],
                   },
                 },
                 additionalProperties: false,
@@ -453,6 +552,7 @@ const moveCapacityReservationInstances: AppBlock = {
                   },
                   InterruptionType: {
                     type: "string",
+                    enum: ["adhoc"],
                   },
                 },
                 additionalProperties: false,

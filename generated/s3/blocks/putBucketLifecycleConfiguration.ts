@@ -37,7 +37,21 @@ const putBucketLifecycleConfiguration: AppBlock = {
           name: "Checksum Algorithm",
           description:
             "Indicates the algorithm used to create the checksum for the request when you use the SDK.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CRC32",
+              "CRC32C",
+              "SHA1",
+              "SHA256",
+              "CRC64NVME",
+              "SHA512",
+              "MD5",
+              "XXHASH64",
+              "XXHASH3",
+              "XXHASH128",
+            ],
+          },
           required: false,
         },
         LifecycleConfiguration: {
@@ -108,6 +122,7 @@ const putBucketLifecycleConfiguration: AppBlock = {
                     },
                     Status: {
                       type: "string",
+                      enum: ["Enabled", "Disabled"],
                     },
                     Transitions: {
                       type: "array",
@@ -175,7 +190,10 @@ const putBucketLifecycleConfiguration: AppBlock = {
           name: "Transition Default Minimum Object Size",
           description:
             "Indicates which default minimum object size behavior is applied to the lifecycle configuration.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["varies_by_storage_class", "all_storage_classes_128K"],
+          },
           required: false,
         },
       },
@@ -242,6 +260,7 @@ const putBucketLifecycleConfiguration: AppBlock = {
         properties: {
           TransitionDefaultMinimumObjectSize: {
             type: "string",
+            enum: ["varies_by_storage_class", "all_storage_classes_128K"],
             description:
               "Indicates which default minimum object size behavior is applied to the lifecycle configuration.",
           },

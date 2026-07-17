@@ -46,18 +46,30 @@ const describeEventTypes: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "issue",
+                    "accountNotification",
+                    "scheduledChange",
+                    "investigation",
+                  ],
                 },
               },
               actionabilities: {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: [
+                    "ACTION_REQUIRED",
+                    "ACTION_MAY_BE_REQUIRED",
+                    "INFORMATIONAL",
+                  ],
                 },
               },
               personas: {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["OPERATIONS", "SECURITY", "BILLING"],
                 },
               },
             },
@@ -156,14 +168,26 @@ const describeEventTypes: AppBlock = {
                 },
                 category: {
                   type: "string",
+                  enum: [
+                    "issue",
+                    "accountNotification",
+                    "scheduledChange",
+                    "investigation",
+                  ],
                 },
                 actionability: {
                   type: "string",
+                  enum: [
+                    "ACTION_REQUIRED",
+                    "ACTION_MAY_BE_REQUIRED",
+                    "INFORMATIONAL",
+                  ],
                 },
                 personas: {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["OPERATIONS", "SECURITY", "BILLING"],
                   },
                 },
               },

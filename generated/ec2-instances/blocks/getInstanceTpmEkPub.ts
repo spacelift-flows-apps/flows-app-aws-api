@@ -31,13 +31,19 @@ const getInstanceTpmEkPub: AppBlock = {
         KeyType: {
           name: "Key Type",
           description: "The required public endorsement key type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["rsa-2048", "ecc-sec-p384"],
+          },
           required: true,
         },
         KeyFormat: {
           name: "Key Format",
           description: "The required public endorsement key format.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["der", "tpmt"],
+          },
           required: true,
         },
         DryRun: {
@@ -111,10 +117,12 @@ const getInstanceTpmEkPub: AppBlock = {
           },
           KeyType: {
             type: "string",
+            enum: ["rsa-2048", "ecc-sec-p384"],
             description: "The public endorsement key type.",
           },
           KeyFormat: {
             type: "string",
+            enum: ["der", "tpmt"],
             description: "The public endorsement key format.",
           },
           KeyValue: {

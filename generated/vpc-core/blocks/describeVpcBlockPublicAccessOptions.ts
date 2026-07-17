@@ -102,9 +102,15 @@ const describeVpcBlockPublicAccessOptions: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "default-state",
+                  "update-in-progress",
+                  "update-complete",
+                ],
               },
               InternetGatewayBlockMode: {
                 type: "string",
+                enum: ["off", "block-bidirectional", "block-ingress"],
               },
               Reason: {
                 type: "string",
@@ -114,9 +120,11 @@ const describeVpcBlockPublicAccessOptions: AppBlock = {
               },
               ManagedBy: {
                 type: "string",
+                enum: ["account", "declarative-policy"],
               },
               ExclusionsAllowed: {
                 type: "string",
+                enum: ["allowed", "not-allowed"],
               },
             },
             additionalProperties: false,

@@ -87,6 +87,7 @@ const getChangeTokenStatus: AppBlock = {
         properties: {
           ChangeTokenStatus: {
             type: "string",
+            enum: ["PROVISIONED", "PENDING", "INSYNC"],
             description: "The status of the change token.",
           },
         },

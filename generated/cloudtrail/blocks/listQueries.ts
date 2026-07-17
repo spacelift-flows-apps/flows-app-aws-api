@@ -62,7 +62,17 @@ const listQueries: AppBlock = {
           name: "Query Status",
           description:
             "The status of queries that you want to return in results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "QUEUED",
+              "RUNNING",
+              "FINISHED",
+              "FAILED",
+              "CANCELLED",
+              "TIMED_OUT",
+            ],
+          },
           required: false,
         },
       },
@@ -138,6 +148,14 @@ const listQueries: AppBlock = {
                 },
                 QueryStatus: {
                   type: "string",
+                  enum: [
+                    "QUEUED",
+                    "RUNNING",
+                    "FINISHED",
+                    "FAILED",
+                    "CANCELLED",
+                    "TIMED_OUT",
+                  ],
                 },
                 CreationTime: {
                   type: "string",

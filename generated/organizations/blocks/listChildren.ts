@@ -35,7 +35,10 @@ const listChildren: AppBlock = {
           name: "Child Type",
           description:
             "Filters the output to include only the specified child type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ACCOUNT", "ORGANIZATIONAL_UNIT"],
+          },
           required: true,
         },
         NextToken: {
@@ -119,6 +122,7 @@ const listChildren: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: ["ACCOUNT", "ORGANIZATIONAL_UNIT"],
                 },
               },
               additionalProperties: false,

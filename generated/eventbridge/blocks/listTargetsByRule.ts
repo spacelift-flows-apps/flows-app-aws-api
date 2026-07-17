@@ -184,6 +184,7 @@ const listTargetsByRule: AppBlock = {
                     },
                     LaunchType: {
                       type: "string",
+                      enum: ["EC2", "FARGATE", "EXTERNAL"],
                     },
                     NetworkConfiguration: {
                       type: "object",
@@ -250,6 +251,7 @@ const listTargetsByRule: AppBlock = {
                     },
                     PropagateTags: {
                       type: "string",
+                      enum: ["TASK_DEFINITION"],
                     },
                     ReferenceId: {
                       type: "string",

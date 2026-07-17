@@ -31,6 +31,17 @@ const listStackRefactors: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "UNAVAILABLE",
+                "AVAILABLE",
+                "OBSOLETE",
+                "EXECUTE_IN_PROGRESS",
+                "EXECUTE_COMPLETE",
+                "EXECUTE_FAILED",
+                "ROLLBACK_IN_PROGRESS",
+                "ROLLBACK_COMPLETE",
+                "ROLLBACK_FAILED",
+              ],
             },
           },
           required: false,
@@ -119,12 +130,31 @@ const listStackRefactors: AppBlock = {
                 },
                 ExecutionStatus: {
                   type: "string",
+                  enum: [
+                    "UNAVAILABLE",
+                    "AVAILABLE",
+                    "OBSOLETE",
+                    "EXECUTE_IN_PROGRESS",
+                    "EXECUTE_COMPLETE",
+                    "EXECUTE_FAILED",
+                    "ROLLBACK_IN_PROGRESS",
+                    "ROLLBACK_COMPLETE",
+                    "ROLLBACK_FAILED",
+                  ],
                 },
                 ExecutionStatusReason: {
                   type: "string",
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "CREATE_IN_PROGRESS",
+                    "CREATE_COMPLETE",
+                    "CREATE_FAILED",
+                    "DELETE_IN_PROGRESS",
+                    "DELETE_COMPLETE",
+                    "DELETE_FAILED",
+                  ],
                 },
                 StatusReason: {
                   type: "string",

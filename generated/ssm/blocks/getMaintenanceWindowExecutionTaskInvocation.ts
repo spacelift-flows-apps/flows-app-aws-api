@@ -123,6 +123,7 @@ const getMaintenanceWindowExecutionTaskInvocation: AppBlock = {
           },
           TaskType: {
             type: "string",
+            enum: ["RUN_COMMAND", "AUTOMATION", "STEP_FUNCTIONS", "LAMBDA"],
             description: "Retrieves the task type for a maintenance window.",
           },
           Parameters: {
@@ -131,6 +132,16 @@ const getMaintenanceWindowExecutionTaskInvocation: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: [
+              "PENDING",
+              "IN_PROGRESS",
+              "SUCCESS",
+              "FAILED",
+              "TIMED_OUT",
+              "CANCELLING",
+              "CANCELLED",
+              "SKIPPED_OVERLAPPING",
+            ],
             description: "The task status for an invocation.",
           },
           StatusDetails: {

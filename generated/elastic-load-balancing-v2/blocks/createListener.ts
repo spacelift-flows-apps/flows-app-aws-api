@@ -34,7 +34,20 @@ const createListener: AppBlock = {
           name: "Protocol",
           description:
             "The protocol for connections from clients to the load balancer.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "HTTP",
+              "HTTPS",
+              "TCP",
+              "TLS",
+              "UDP",
+              "TCP_UDP",
+              "GENEVE",
+              "QUIC",
+              "TCP_QUIC",
+            ],
+          },
           required: false,
         },
         Port: {
@@ -81,6 +94,14 @@ const createListener: AppBlock = {
               properties: {
                 Type: {
                   type: "string",
+                  enum: [
+                    "forward",
+                    "authenticate-oidc",
+                    "authenticate-cognito",
+                    "redirect",
+                    "fixed-response",
+                    "jwt-validation",
+                  ],
                 },
                 TargetGroupArn: {
                   type: "string",
@@ -123,6 +144,7 @@ const createListener: AppBlock = {
                     },
                     OnUnauthenticatedRequest: {
                       type: "string",
+                      enum: ["deny", "allow", "authenticate"],
                     },
                     UseExistingClientSecret: {
                       type: "boolean",
@@ -166,6 +188,7 @@ const createListener: AppBlock = {
                     },
                     OnUnauthenticatedRequest: {
                       type: "string",
+                      enum: ["deny", "allow", "authenticate"],
                     },
                   },
                   required: [
@@ -198,6 +221,7 @@ const createListener: AppBlock = {
                     },
                     StatusCode: {
                       type: "string",
+                      enum: ["HTTP_301", "HTTP_302"],
                     },
                   },
                   required: ["StatusCode"],
@@ -332,9 +356,11 @@ const createListener: AppBlock = {
               },
               TrustStoreAssociationStatus: {
                 type: "string",
+                enum: ["active", "removed"],
               },
               AdvertiseTrustStoreCaNames: {
                 type: "string",
+                enum: ["on", "off"],
               },
             },
             additionalProperties: false,
@@ -415,6 +441,17 @@ const createListener: AppBlock = {
                 },
                 Protocol: {
                   type: "string",
+                  enum: [
+                    "HTTP",
+                    "HTTPS",
+                    "TCP",
+                    "TLS",
+                    "UDP",
+                    "TCP_UDP",
+                    "GENEVE",
+                    "QUIC",
+                    "TCP_QUIC",
+                  ],
                 },
                 Certificates: {
                   type: "array",
@@ -441,6 +478,14 @@ const createListener: AppBlock = {
                     properties: {
                       Type: {
                         type: "string",
+                        enum: [
+                          "forward",
+                          "authenticate-oidc",
+                          "authenticate-cognito",
+                          "redirect",
+                          "fixed-response",
+                          "jwt-validation",
+                        ],
                       },
                       TargetGroupArn: {
                         type: "string",
@@ -558,9 +603,11 @@ const createListener: AppBlock = {
                     },
                     TrustStoreAssociationStatus: {
                       type: "string",
+                      enum: ["active", "removed"],
                     },
                     AdvertiseTrustStoreCaNames: {
                       type: "string",
+                      enum: ["on", "off"],
                     },
                   },
                   additionalProperties: false,

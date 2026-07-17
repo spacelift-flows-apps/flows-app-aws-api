@@ -113,9 +113,17 @@ const listContributorInsights: AppBlock = {
                 },
                 ContributorInsightsStatus: {
                   type: "string",
+                  enum: [
+                    "ENABLING",
+                    "ENABLED",
+                    "DISABLING",
+                    "DISABLED",
+                    "FAILED",
+                  ],
                 },
                 ContributorInsightsMode: {
                   type: "string",
+                  enum: ["ACCESSED_AND_THROTTLED_KEYS", "THROTTLED_KEYS"],
                 },
               },
               additionalProperties: false,

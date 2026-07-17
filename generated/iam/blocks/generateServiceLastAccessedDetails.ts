@@ -34,7 +34,10 @@ const generateServiceLastAccessedDetails: AppBlock = {
         Granularity: {
           name: "Granularity",
           description: "The level of detail that you want to generate.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SERVICE_LEVEL", "ACTION_LEVEL"],
+          },
           required: false,
         },
       },

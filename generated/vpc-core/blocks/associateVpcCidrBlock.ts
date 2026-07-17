@@ -160,6 +160,14 @@ const associateVpcCidrBlock: AppBlock = {
                 properties: {
                   State: {
                     type: "string",
+                    enum: [
+                      "associating",
+                      "associated",
+                      "disassociating",
+                      "disassociated",
+                      "failing",
+                      "failed",
+                    ],
                   },
                   StatusMessage: {
                     type: "string",
@@ -175,9 +183,11 @@ const associateVpcCidrBlock: AppBlock = {
               },
               Ipv6AddressAttribute: {
                 type: "string",
+                enum: ["public", "private"],
               },
               IpSource: {
                 type: "string",
+                enum: ["amazon", "byoip", "none"],
               },
             },
             additionalProperties: false,
@@ -197,6 +207,14 @@ const associateVpcCidrBlock: AppBlock = {
                 properties: {
                   State: {
                     type: "string",
+                    enum: [
+                      "associating",
+                      "associated",
+                      "disassociating",
+                      "disassociated",
+                      "failing",
+                      "failed",
+                    ],
                   },
                   StatusMessage: {
                     type: "string",

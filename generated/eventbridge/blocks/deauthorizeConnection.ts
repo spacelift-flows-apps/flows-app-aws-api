@@ -96,6 +96,17 @@ const deauthorizeConnection: AppBlock = {
           },
           ConnectionState: {
             type: "string",
+            enum: [
+              "CREATING",
+              "UPDATING",
+              "DELETING",
+              "AUTHORIZED",
+              "DEAUTHORIZED",
+              "AUTHORIZING",
+              "DEAUTHORIZING",
+              "ACTIVE",
+              "FAILED_CONNECTIVITY",
+            ],
             description: "The state of the connection.",
           },
           CreationTime: {

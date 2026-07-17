@@ -52,7 +52,10 @@ const importTable: AppBlock = {
         InputFormat: {
           name: "Input Format",
           description: "The format of the source data.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["DYNAMODB_JSON", "ION", "CSV"],
+          },
           required: true,
         },
         InputFormatOptions: {
@@ -86,7 +89,10 @@ const importTable: AppBlock = {
           name: "Input Compression Type",
           description:
             "Type of compression to be used on the input coming from the imported table.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["GZIP", "ZSTD", "NONE"],
+          },
           required: false,
         },
         TableCreationParameters: {
@@ -108,6 +114,7 @@ const importTable: AppBlock = {
                     },
                     AttributeType: {
                       type: "string",
+                      enum: ["S", "N", "B"],
                     },
                   },
                   required: ["AttributeName", "AttributeType"],
@@ -124,6 +131,7 @@ const importTable: AppBlock = {
                     },
                     KeyType: {
                       type: "string",
+                      enum: ["HASH", "RANGE"],
                     },
                   },
                   required: ["AttributeName", "KeyType"],
@@ -132,6 +140,7 @@ const importTable: AppBlock = {
               },
               BillingMode: {
                 type: "string",
+                enum: ["PROVISIONED", "PAY_PER_REQUEST"],
               },
               ProvisionedThroughput: {
                 type: "object",
@@ -166,6 +175,7 @@ const importTable: AppBlock = {
                   },
                   SSEType: {
                     type: "string",
+                    enum: ["AES256", "KMS"],
                   },
                   KMSMasterKeyId: {
                     type: "string",
@@ -198,6 +208,7 @@ const importTable: AppBlock = {
                       properties: {
                         ProjectionType: {
                           type: "string",
+                          enum: ["ALL", "KEYS_ONLY", "INCLUDE"],
                         },
                         NonKeyAttributes: {
                           type: "array",
@@ -320,6 +331,13 @@ const importTable: AppBlock = {
               },
               ImportStatus: {
                 type: "string",
+                enum: [
+                  "IN_PROGRESS",
+                  "COMPLETED",
+                  "CANCELLING",
+                  "CANCELLED",
+                  "FAILED",
+                ],
               },
               TableArn: {
                 type: "string",
@@ -354,6 +372,7 @@ const importTable: AppBlock = {
               },
               InputFormat: {
                 type: "string",
+                enum: ["DYNAMODB_JSON", "ION", "CSV"],
               },
               InputFormatOptions: {
                 type: "object",
@@ -378,6 +397,7 @@ const importTable: AppBlock = {
               },
               InputCompressionType: {
                 type: "string",
+                enum: ["GZIP", "ZSTD", "NONE"],
               },
               TableCreationParameters: {
                 type: "object",
@@ -395,6 +415,7 @@ const importTable: AppBlock = {
                         },
                         AttributeType: {
                           type: "string",
+                          enum: ["S", "N", "B"],
                         },
                       },
                       required: ["AttributeName", "AttributeType"],
@@ -411,6 +432,7 @@ const importTable: AppBlock = {
                         },
                         KeyType: {
                           type: "string",
+                          enum: ["HASH", "RANGE"],
                         },
                       },
                       required: ["AttributeName", "KeyType"],
@@ -419,6 +441,7 @@ const importTable: AppBlock = {
                   },
                   BillingMode: {
                     type: "string",
+                    enum: ["PROVISIONED", "PAY_PER_REQUEST"],
                   },
                   ProvisionedThroughput: {
                     type: "object",
@@ -453,6 +476,7 @@ const importTable: AppBlock = {
                       },
                       SSEType: {
                         type: "string",
+                        enum: ["AES256", "KMS"],
                       },
                       KMSMasterKeyId: {
                         type: "string",

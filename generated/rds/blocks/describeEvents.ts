@@ -32,7 +32,22 @@ const describeEvents: AppBlock = {
         SourceType: {
           name: "Source Type",
           description: "The event source to retrieve events for.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "db-instance",
+              "db-parameter-group",
+              "db-security-group",
+              "db-snapshot",
+              "db-cluster",
+              "db-cluster-snapshot",
+              "custom-engine-version",
+              "db-proxy",
+              "blue-green-deployment",
+              "db-shard-group",
+              "zero-etl",
+            ],
+          },
           required: false,
         },
         StartTime: {
@@ -183,6 +198,19 @@ const describeEvents: AppBlock = {
                 },
                 SourceType: {
                   type: "string",
+                  enum: [
+                    "db-instance",
+                    "db-parameter-group",
+                    "db-security-group",
+                    "db-snapshot",
+                    "db-cluster",
+                    "db-cluster-snapshot",
+                    "custom-engine-version",
+                    "db-proxy",
+                    "blue-green-deployment",
+                    "db-shard-group",
+                    "zero-etl",
+                  ],
                 },
                 Message: {
                   type: "string",

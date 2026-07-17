@@ -40,7 +40,10 @@ const updateSigningCertificate: AppBlock = {
         Status: {
           name: "Status",
           description: "The status you want to assign to the certificate.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Active", "Inactive", "Expired"],
+          },
           required: true,
         },
       },

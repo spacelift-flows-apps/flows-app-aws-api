@@ -46,6 +46,7 @@ const putObjectRetention: AppBlock = {
             properties: {
               Mode: {
                 type: "string",
+                enum: ["GOVERNANCE", "COMPLIANCE"],
               },
               RetainUntilDate: {
                 type: "string",
@@ -59,7 +60,10 @@ const putObjectRetention: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         VersionId: {
@@ -86,7 +90,21 @@ const putObjectRetention: AppBlock = {
           name: "Checksum Algorithm",
           description:
             "Indicates the algorithm used to create the checksum for the object when you use the SDK.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CRC32",
+              "CRC32C",
+              "SHA1",
+              "SHA256",
+              "CRC64NVME",
+              "SHA512",
+              "MD5",
+              "XXHASH64",
+              "XXHASH3",
+              "XXHASH128",
+            ],
+          },
           required: false,
         },
         ExpectedBucketOwner: {
@@ -159,6 +177,7 @@ const putObjectRetention: AppBlock = {
         properties: {
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },

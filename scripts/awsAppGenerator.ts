@@ -989,6 +989,29 @@ export async function serializeAWSResponse(response: any): Promise<any> {
     return cleaned.substring(0, 100) + (cleaned.length > 100 ? "..." : "");
   }
 
+  /**
+   * Extracts the values of a Smithy enum/intEnum shape from its members'
+   * smithy.api#enumValue traits. For string enums, falls back to the member
+   * name when the trait is absent; for intEnums the fallback yields undefined
+   * (and such members are skipped).
+   */
+  private extractEnumValues(
+    shape: SmithyShape,
+    fallback: (memberName: string) => string | undefined,
+  ): (string | number)[] {
+    if (!shape.members) return [];
+
+    const values: (string | number)[] = [];
+    for (const [memberName, member] of Object.entries(shape.members)) {
+      const value =
+        member.traits?.["smithy.api#enumValue"] ?? fallback(memberName);
+      if (value !== undefined) {
+        values.push(value);
+      }
+    }
+    return values;
+  }
+
   private mapSmithyTypeToFlows(
     shape?: SmithyShape,
     service?: ParsedService,
@@ -1007,7 +1030,7 @@ export async function serializeAWSResponse(response: any): Promise<any> {
 
     switch (shape.type) {
       case "string":
-        // Check for enum values
+        // Check for enum values (legacy Smithy 1.0 trait form)
         if (shape.traits?.["smithy.api#enum"]) {
           const enumValues = shape.traits["smithy.api#enum"].map(
             (e: any) => e.value,
@@ -1015,6 +1038,25 @@ export async function serializeAWSResponse(response: any): Promise<any> {
           return { type: "string", enum: enumValues };
         }
         return "string";
+
+      // Modern Smithy dedicated enum shapes. Each member's value comes from the
+      // smithy.api#enumValue trait, falling back to the member name.
+      case "enum": {
+        const enumValues = this.extractEnumValues(
+          shape,
+          (memberName) => memberName,
+        );
+        return enumValues.length > 0
+          ? { type: "string", enum: enumValues }
+          : "string";
+      }
+
+      case "intEnum": {
+        const enumValues = this.extractEnumValues(shape, () => undefined);
+        return enumValues.length > 0
+          ? { type: "number", enum: enumValues }
+          : "number";
+      }
 
       case "integer":
       case "long":

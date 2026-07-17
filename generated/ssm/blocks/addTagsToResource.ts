@@ -24,7 +24,20 @@ const addTagsToResource: AppBlock = {
         ResourceType: {
           name: "Resource Type",
           description: "Specifies the type of resource you are tagging.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "Document",
+              "ManagedInstance",
+              "MaintenanceWindow",
+              "Parameter",
+              "PatchBaseline",
+              "OpsItem",
+              "OpsMetadata",
+              "Automation",
+              "Association",
+            ],
+          },
           required: true,
         },
         ResourceId: {

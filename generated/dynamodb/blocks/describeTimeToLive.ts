@@ -93,6 +93,7 @@ const describeTimeToLive: AppBlock = {
             properties: {
               TimeToLiveStatus: {
                 type: "string",
+                enum: ["ENABLING", "DISABLING", "ENABLED", "DISABLED"],
               },
               AttributeName: {
                 type: "string",

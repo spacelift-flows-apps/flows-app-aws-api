@@ -27,7 +27,16 @@ const getAccountLimit: AppBlock = {
         Type: {
           name: "Type",
           description: "The limit that you want to get.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "MAX_HEALTH_CHECKS_BY_OWNER",
+              "MAX_HOSTED_ZONES_BY_OWNER",
+              "MAX_TRAFFIC_POLICY_INSTANCES_BY_OWNER",
+              "MAX_REUSABLE_DELEGATION_SETS_BY_OWNER",
+              "MAX_TRAFFIC_POLICIES_BY_OWNER",
+            ],
+          },
           required: true,
         },
       },
@@ -93,6 +102,13 @@ const getAccountLimit: AppBlock = {
             properties: {
               Type: {
                 type: "string",
+                enum: [
+                  "MAX_HEALTH_CHECKS_BY_OWNER",
+                  "MAX_HOSTED_ZONES_BY_OWNER",
+                  "MAX_TRAFFIC_POLICY_INSTANCES_BY_OWNER",
+                  "MAX_REUSABLE_DELEGATION_SETS_BY_OWNER",
+                  "MAX_TRAFFIC_POLICIES_BY_OWNER",
+                ],
               },
               Value: {
                 type: "number",

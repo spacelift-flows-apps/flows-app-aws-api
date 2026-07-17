@@ -24,7 +24,24 @@ const describeImageAttribute: AppBlock = {
         Attribute: {
           name: "Attribute",
           description: "The AMI attribute.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "description",
+              "kernel",
+              "ramdisk",
+              "launchPermission",
+              "productCodes",
+              "blockDeviceMapping",
+              "sriovNetSupport",
+              "bootMode",
+              "tpmSupport",
+              "uefiData",
+              "lastLaunchedTime",
+              "imdsSupport",
+              "deregistrationProtection",
+            ],
+          },
           required: true,
         },
         ImageId: {
@@ -223,6 +240,7 @@ const describeImageAttribute: AppBlock = {
                 },
                 Group: {
                   type: "string",
+                  enum: ["all"],
                 },
               },
               additionalProperties: false,
@@ -239,6 +257,7 @@ const describeImageAttribute: AppBlock = {
                 },
                 ProductCodeType: {
                   type: "string",
+                  enum: ["devpay", "marketplace"],
                 },
               },
               additionalProperties: false,
@@ -267,6 +286,15 @@ const describeImageAttribute: AppBlock = {
                     },
                     VolumeType: {
                       type: "string",
+                      enum: [
+                        "standard",
+                        "io1",
+                        "io2",
+                        "gp2",
+                        "sc1",
+                        "st1",
+                        "gp3",
+                      ],
                     },
                     KmsKeyId: {
                       type: "string",

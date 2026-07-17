@@ -106,6 +106,7 @@ const getNotebookMetadata: AppBlock = {
               },
               Type: {
                 type: "string",
+                enum: ["IPYNB"],
               },
               LastModifiedTime: {
                 type: "string",

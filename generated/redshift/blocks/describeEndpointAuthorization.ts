@@ -140,6 +140,7 @@ const describeEndpointAuthorization: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["Authorized", "Revoking"],
                 },
                 AllowedAllVPCs: {
                   type: "boolean",

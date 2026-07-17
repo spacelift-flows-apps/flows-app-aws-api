@@ -112,6 +112,7 @@ const putIndexPolicy: AppBlock = {
               },
               source: {
                 type: "string",
+                enum: ["ACCOUNT", "LOG_GROUP"],
               },
             },
             additionalProperties: false,

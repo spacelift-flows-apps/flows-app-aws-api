@@ -96,6 +96,7 @@ const disableHostedZoneDNSSEC: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["PENDING", "INSYNC"],
               },
               SubmittedAt: {
                 type: "string",

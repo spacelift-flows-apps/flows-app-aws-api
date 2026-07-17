@@ -142,6 +142,7 @@ const getDurableExecution: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["RUNNING", "SUCCEEDED", "FAILED", "TIMED_OUT", "STOPPED"],
             description: "The current status of the durable execution.",
           },
           EndTimestamp: {

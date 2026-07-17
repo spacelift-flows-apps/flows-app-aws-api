@@ -128,6 +128,12 @@ const describeSpotFleetRequests: AppBlock = {
               properties: {
                 ActivityStatus: {
                   type: "string",
+                  enum: [
+                    "error",
+                    "pending_fulfillment",
+                    "pending_termination",
+                    "fulfilled",
+                  ],
                 },
                 CreateTime: {
                   type: "string",
@@ -137,9 +143,17 @@ const describeSpotFleetRequests: AppBlock = {
                   properties: {
                     AllocationStrategy: {
                       type: "string",
+                      enum: [
+                        "lowestPrice",
+                        "diversified",
+                        "capacityOptimized",
+                        "capacityOptimizedPrioritized",
+                        "priceCapacityOptimized",
+                      ],
                     },
                     OnDemandAllocationStrategy: {
                       type: "string",
+                      enum: ["lowestPrice", "prioritized"],
                     },
                     SpotMaintenanceStrategies: {
                       type: "object",
@@ -160,6 +174,7 @@ const describeSpotFleetRequests: AppBlock = {
                     },
                     ExcessCapacityTerminationPolicy: {
                       type: "string",
+                      enum: ["noTermination", "default"],
                     },
                     FulfilledCapacity: {
                       type: "number",
@@ -229,6 +244,7 @@ const describeSpotFleetRequests: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: ["request", "maintain", "instant"],
                     },
                     ValidFrom: {
                       type: "string",
@@ -241,6 +257,7 @@ const describeSpotFleetRequests: AppBlock = {
                     },
                     InstanceInterruptionBehavior: {
                       type: "string",
+                      enum: ["hibernate", "stop", "terminate"],
                     },
                     LoadBalancersConfig: {
                       type: "object",
@@ -270,6 +287,7 @@ const describeSpotFleetRequests: AppBlock = {
                     },
                     TargetCapacityUnitType: {
                       type: "string",
+                      enum: ["vcpu", "memory-mib", "units"],
                     },
                     TagSpecifications: {
                       type: "array",
@@ -291,6 +309,15 @@ const describeSpotFleetRequests: AppBlock = {
                 },
                 SpotFleetRequestState: {
                   type: "string",
+                  enum: [
+                    "submitted",
+                    "active",
+                    "cancelled",
+                    "failed",
+                    "cancelled_running",
+                    "cancelled_terminating",
+                    "modifying",
+                  ],
                 },
                 Tags: {
                   type: "array",

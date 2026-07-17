@@ -42,7 +42,10 @@ const getBucketAccelerateConfiguration: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
       },
@@ -109,10 +112,12 @@ const getBucketAccelerateConfiguration: AppBlock = {
         properties: {
           Status: {
             type: "string",
+            enum: ["Enabled", "Suspended"],
             description: "The accelerate configuration of the bucket.",
           },
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },

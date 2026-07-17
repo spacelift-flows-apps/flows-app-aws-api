@@ -37,7 +37,10 @@ const updateSSHPublicKey: AppBlock = {
         Status: {
           name: "Status",
           description: "The status to assign to the SSH public key.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Active", "Inactive", "Expired"],
+          },
           required: true,
         },
       },

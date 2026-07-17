@@ -40,7 +40,10 @@ const createFunctionUrlConfig: AppBlock = {
           name: "Auth Type",
           description:
             "The type of authentication that your function URL uses.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["NONE", "AWS_IAM"],
+          },
           required: true,
         },
         Cors: {
@@ -89,7 +92,10 @@ const createFunctionUrlConfig: AppBlock = {
           name: "Invoke Mode",
           description:
             "Use one of the following options: BUFFERED – This is the default option.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["BUFFERED", "RESPONSE_STREAM"],
+          },
           required: false,
         },
       },
@@ -160,6 +166,7 @@ const createFunctionUrlConfig: AppBlock = {
           },
           AuthType: {
             type: "string",
+            enum: ["NONE", "AWS_IAM"],
             description:
               "The type of authentication that your function URL uses.",
           },
@@ -208,6 +215,7 @@ const createFunctionUrlConfig: AppBlock = {
           },
           InvokeMode: {
             type: "string",
+            enum: ["BUFFERED", "RESPONSE_STREAM"],
             description:
               "Use one of the following options: BUFFERED – This is the default option.",
           },

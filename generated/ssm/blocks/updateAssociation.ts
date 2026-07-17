@@ -146,13 +146,19 @@ const updateAssociation: AppBlock = {
         ComplianceSeverity: {
           name: "Compliance Severity",
           description: "The severity level to assign to the association.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["CRITICAL", "HIGH", "MEDIUM", "LOW", "UNSPECIFIED"],
+          },
           required: false,
         },
         SyncCompliance: {
           name: "Sync Compliance",
           description: "The mode for generating association compliance.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["AUTO", "MANUAL"],
+          },
           required: false,
         },
         ApplyOnlyAtCronInterval: {
@@ -411,6 +417,7 @@ const updateAssociation: AppBlock = {
                   },
                   Name: {
                     type: "string",
+                    enum: ["Pending", "Success", "Failed"],
                   },
                   Message: {
                     type: "string",
@@ -514,9 +521,11 @@ const updateAssociation: AppBlock = {
               },
               ComplianceSeverity: {
                 type: "string",
+                enum: ["CRITICAL", "HIGH", "MEDIUM", "LOW", "UNSPECIFIED"],
               },
               SyncCompliance: {
                 type: "string",
+                enum: ["AUTO", "MANUAL"],
               },
               ApplyOnlyAtCronInterval: {
                 type: "boolean",
@@ -645,6 +654,7 @@ const updateAssociation: AppBlock = {
                     },
                     State: {
                       type: "string",
+                      enum: ["UNKNOWN", "ALARM"],
                     },
                   },
                   required: ["Name", "State"],

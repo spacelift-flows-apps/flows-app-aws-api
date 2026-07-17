@@ -202,6 +202,7 @@ const createSecret: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["InSync", "Failed", "InProgress"],
                 },
                 StatusMessage: {
                   type: "string",

@@ -46,6 +46,7 @@ const updateRateBasedRule: AppBlock = {
               properties: {
                 Action: {
                   type: "string",
+                  enum: ["INSERT", "DELETE"],
                 },
                 Predicate: {
                   type: "object",
@@ -55,6 +56,15 @@ const updateRateBasedRule: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: [
+                        "IPMatch",
+                        "ByteMatch",
+                        "SqlInjectionMatch",
+                        "GeoMatch",
+                        "SizeConstraint",
+                        "XssMatch",
+                        "RegexMatch",
+                      ],
                     },
                     DataId: {
                       type: "string",

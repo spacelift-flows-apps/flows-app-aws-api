@@ -34,7 +34,19 @@ const listRestoreJobSummaries: AppBlock = {
           name: "State",
           description:
             "This parameter returns the job count for jobs with the specified state.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CREATED",
+              "PENDING",
+              "RUNNING",
+              "ABORTED",
+              "COMPLETED",
+              "FAILED",
+              "AGGREGATE_ALL",
+              "ANY",
+            ],
+          },
           required: false,
         },
         ResourceType: {
@@ -46,7 +58,10 @@ const listRestoreJobSummaries: AppBlock = {
         AggregationPeriod: {
           name: "Aggregation Period",
           description: "The period for the returned results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ONE_DAY", "SEVEN_DAYS", "FOURTEEN_DAYS"],
+          },
           required: false,
         },
         MaxResults: {
@@ -134,6 +149,16 @@ const listRestoreJobSummaries: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "CREATED",
+                    "PENDING",
+                    "RUNNING",
+                    "ABORTED",
+                    "COMPLETED",
+                    "FAILED",
+                    "AGGREGATE_ALL",
+                    "ANY",
+                  ],
                 },
                 ResourceType: {
                   type: "string",

@@ -108,6 +108,7 @@ const listLegalHolds: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["CREATING", "ACTIVE", "CANCELING", "CANCELED"],
                 },
                 Description: {
                   type: "string",

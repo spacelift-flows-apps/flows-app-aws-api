@@ -50,6 +50,7 @@ const listDurableExecutionsByFunction: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["RUNNING", "SUCCEEDED", "FAILED", "TIMED_OUT", "STOPPED"],
             },
           },
           required: false,
@@ -167,6 +168,13 @@ const listDurableExecutionsByFunction: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "RUNNING",
+                    "SUCCEEDED",
+                    "FAILED",
+                    "TIMED_OUT",
+                    "STOPPED",
+                  ],
                 },
                 StartTimestamp: {
                   type: "string",

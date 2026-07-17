@@ -112,6 +112,7 @@ const listParents: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: ["ROOT", "ORGANIZATIONAL_UNIT"],
                 },
               },
               additionalProperties: false,

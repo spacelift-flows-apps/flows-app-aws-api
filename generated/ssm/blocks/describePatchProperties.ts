@@ -24,21 +24,53 @@ const describePatchProperties: AppBlock = {
         OperatingSystem: {
           name: "Operating System",
           description: "The operating system type for which to list patches.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "WINDOWS",
+              "AMAZON_LINUX",
+              "AMAZON_LINUX_2",
+              "AMAZON_LINUX_2022",
+              "UBUNTU",
+              "REDHAT_ENTERPRISE_LINUX",
+              "SUSE",
+              "CENTOS",
+              "ORACLE_LINUX",
+              "DEBIAN",
+              "MACOS",
+              "RASPBIAN",
+              "ROCKY_LINUX",
+              "ALMA_LINUX",
+              "AMAZON_LINUX_2023",
+            ],
+          },
           required: true,
         },
         Property: {
           name: "Property",
           description:
             "The patch property for which you want to view patch details.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "PRODUCT",
+              "PRODUCT_FAMILY",
+              "CLASSIFICATION",
+              "MSRC_SEVERITY",
+              "PRIORITY",
+              "SEVERITY",
+            ],
+          },
           required: true,
         },
         PatchSet: {
           name: "Patch Set",
           description:
             "Indicates whether to list patches for the Windows operating system or for applications released by Microsoft.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["OS", "APPLICATION"],
+          },
           required: false,
         },
         MaxResults: {

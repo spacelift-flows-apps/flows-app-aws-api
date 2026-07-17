@@ -66,6 +66,7 @@ const createDocument: AppBlock = {
               properties: {
                 Key: {
                   type: "string",
+                  enum: ["SourceUrl", "S3FileUrl", "AttachmentReference"],
                 },
                 Values: {
                   type: "array",
@@ -105,13 +106,37 @@ const createDocument: AppBlock = {
         DocumentType: {
           name: "Document Type",
           description: "The type of document to create.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "Command",
+              "Policy",
+              "Automation",
+              "Session",
+              "Package",
+              "ApplicationConfiguration",
+              "ApplicationConfigurationSchema",
+              "DeploymentStrategy",
+              "ChangeCalendar",
+              "Automation.ChangeTemplate",
+              "ProblemAnalysis",
+              "ProblemAnalysisTemplate",
+              "CloudFormation",
+              "ConformancePackTemplate",
+              "QuickSetup",
+              "ManualApprovalPolicy",
+              "AutoApprovalPolicy",
+            ],
+          },
           required: false,
         },
         DocumentFormat: {
           name: "Document Format",
           description: "Specify the document format for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["YAML", "JSON", "TEXT"],
+          },
           required: false,
         },
         TargetType: {
@@ -211,6 +236,7 @@ const createDocument: AppBlock = {
               },
               HashType: {
                 type: "string",
+                enum: ["Sha256", "Sha1"],
               },
               Name: {
                 type: "string",
@@ -229,6 +255,7 @@ const createDocument: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["Creating", "Active", "Updating", "Deleting", "Failed"],
               },
               StatusInformation: {
                 type: "string",
@@ -249,6 +276,7 @@ const createDocument: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: ["String", "StringList"],
                     },
                     Description: {
                       type: "string",
@@ -264,10 +292,30 @@ const createDocument: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["Windows", "Linux", "MacOS"],
                 },
               },
               DocumentType: {
                 type: "string",
+                enum: [
+                  "Command",
+                  "Policy",
+                  "Automation",
+                  "Session",
+                  "Package",
+                  "ApplicationConfiguration",
+                  "ApplicationConfigurationSchema",
+                  "DeploymentStrategy",
+                  "ChangeCalendar",
+                  "Automation.ChangeTemplate",
+                  "ProblemAnalysis",
+                  "ProblemAnalysisTemplate",
+                  "CloudFormation",
+                  "ConformancePackTemplate",
+                  "QuickSetup",
+                  "ManualApprovalPolicy",
+                  "AutoApprovalPolicy",
+                ],
               },
               SchemaVersion: {
                 type: "string",
@@ -280,6 +328,7 @@ const createDocument: AppBlock = {
               },
               DocumentFormat: {
                 type: "string",
+                enum: ["YAML", "JSON", "TEXT"],
               },
               TargetType: {
                 type: "string",
@@ -347,6 +396,7 @@ const createDocument: AppBlock = {
                     },
                     Status: {
                       type: "string",
+                      enum: ["APPROVED", "NOT_REVIEWED", "PENDING", "REJECTED"],
                     },
                     Reviewer: {
                       type: "string",
@@ -363,6 +413,7 @@ const createDocument: AppBlock = {
               },
               ReviewStatus: {
                 type: "string",
+                enum: ["APPROVED", "NOT_REVIEWED", "PENDING", "REJECTED"],
               },
               Category: {
                 type: "array",

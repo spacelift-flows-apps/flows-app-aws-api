@@ -34,7 +34,10 @@ const describeImportTasks: AppBlock = {
         importStatus: {
           name: "import Status",
           description: "Optional filter to list imports by their status.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["IN_PROGRESS", "CANCELLED", "COMPLETED", "FAILED"],
+          },
           required: false,
         },
         importSourceArn: {
@@ -127,6 +130,7 @@ const describeImportTasks: AppBlock = {
                 },
                 importStatus: {
                   type: "string",
+                  enum: ["IN_PROGRESS", "CANCELLED", "COMPLETED", "FAILED"],
                 },
                 importDestinationArn: {
                   type: "string",

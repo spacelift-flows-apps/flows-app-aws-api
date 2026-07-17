@@ -48,7 +48,10 @@ const putWarmPool: AppBlock = {
           name: "Pool State",
           description:
             "Sets the instance state to transition to after the lifecycle actions are complete.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Stopped", "Running", "Hibernated"],
+          },
           required: false,
         },
         InstanceReusePolicy: {

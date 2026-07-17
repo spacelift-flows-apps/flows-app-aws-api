@@ -77,9 +77,11 @@ const describeImages: AppBlock = {
             properties: {
               tagStatus: {
                 type: "string",
+                enum: ["TAGGED", "UNTAGGED", "ANY"],
               },
               imageStatus: {
                 type: "string",
+                enum: ["ACTIVE", "ARCHIVED", "ACTIVATING", "ANY"],
               },
             },
             additionalProperties: false,
@@ -175,6 +177,18 @@ const describeImages: AppBlock = {
                   properties: {
                     status: {
                       type: "string",
+                      enum: [
+                        "IN_PROGRESS",
+                        "COMPLETE",
+                        "FAILED",
+                        "UNSUPPORTED_IMAGE",
+                        "ACTIVE",
+                        "PENDING",
+                        "SCAN_ELIGIBILITY_EXPIRED",
+                        "FINDINGS_UNAVAILABLE",
+                        "LIMIT_EXCEEDED",
+                        "IMAGE_ARCHIVED",
+                      ],
                     },
                     description: {
                       type: "string",
@@ -214,6 +228,7 @@ const describeImages: AppBlock = {
                 },
                 imageStatus: {
                   type: "string",
+                  enum: ["ACTIVE", "ARCHIVED", "ACTIVATING"],
                 },
                 lastArchivedAt: {
                   type: "string",

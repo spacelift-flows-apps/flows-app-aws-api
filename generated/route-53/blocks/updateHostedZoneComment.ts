@@ -139,6 +139,16 @@ const updateHostedZoneComment: AppBlock = {
                 properties: {
                   AcceleratedRecoveryStatus: {
                     type: "string",
+                    enum: [
+                      "ENABLING",
+                      "ENABLE_FAILED",
+                      "ENABLING_HOSTED_ZONE_LOCKED",
+                      "ENABLED",
+                      "DISABLING",
+                      "DISABLE_FAILED",
+                      "DISABLED",
+                      "DISABLING_HOSTED_ZONE_LOCKED",
+                    ],
                   },
                   FailureReasons: {
                     type: "object",

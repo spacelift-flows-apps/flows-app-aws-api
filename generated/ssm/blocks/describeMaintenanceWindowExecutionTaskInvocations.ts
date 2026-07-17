@@ -155,12 +155,28 @@ const describeMaintenanceWindowExecutionTaskInvocations: AppBlock = {
                 },
                 TaskType: {
                   type: "string",
+                  enum: [
+                    "RUN_COMMAND",
+                    "AUTOMATION",
+                    "STEP_FUNCTIONS",
+                    "LAMBDA",
+                  ],
                 },
                 Parameters: {
                   type: "string",
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "PENDING",
+                    "IN_PROGRESS",
+                    "SUCCESS",
+                    "FAILED",
+                    "TIMED_OUT",
+                    "CANCELLING",
+                    "CANCELLED",
+                    "SKIPPED_OVERLAPPING",
+                  ],
                 },
                 StatusDetails: {
                   type: "string",

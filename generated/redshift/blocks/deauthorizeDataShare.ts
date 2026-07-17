@@ -121,6 +121,14 @@ const deauthorizeDataShare: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "ACTIVE",
+                    "PENDING_AUTHORIZATION",
+                    "AUTHORIZED",
+                    "DEAUTHORIZED",
+                    "REJECTED",
+                    "AVAILABLE",
+                  ],
                 },
                 ConsumerRegion: {
                   type: "string",
@@ -150,6 +158,7 @@ const deauthorizeDataShare: AppBlock = {
           },
           DataShareType: {
             type: "string",
+            enum: ["INTERNAL"],
             description:
               "The type of the datashare created by RegisterNamespace.",
           },

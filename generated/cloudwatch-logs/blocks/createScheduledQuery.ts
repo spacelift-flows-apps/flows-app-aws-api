@@ -40,7 +40,10 @@ const createScheduledQuery: AppBlock = {
         queryLanguage: {
           name: "query Language",
           description: "The query language to use for the scheduled query.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["CWLI", "SQL", "PPL"],
+          },
           required: true,
         },
         queryString: {
@@ -135,7 +138,10 @@ const createScheduledQuery: AppBlock = {
         state: {
           name: "state",
           description: "The initial state of the scheduled query.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ENABLED", "DISABLED"],
+          },
           required: false,
         },
         tags: {
@@ -214,6 +220,7 @@ const createScheduledQuery: AppBlock = {
           },
           state: {
             type: "string",
+            enum: ["ENABLED", "DISABLED"],
             description: "The current state of the scheduled query.",
           },
         },

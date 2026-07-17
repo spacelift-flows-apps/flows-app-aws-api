@@ -200,6 +200,14 @@ const updateContainerAgent: AppBlock = {
               },
               agentUpdateStatus: {
                 type: "string",
+                enum: [
+                  "PENDING",
+                  "STAGING",
+                  "STAGED",
+                  "UPDATING",
+                  "UPDATED",
+                  "FAILED",
+                ],
               },
               attributes: {
                 type: "array",
@@ -214,6 +222,7 @@ const updateContainerAgent: AppBlock = {
                     },
                     targetType: {
                       type: "string",
+                      enum: ["container-instance"],
                     },
                     targetId: {
                       type: "string",
@@ -275,6 +284,12 @@ const updateContainerAgent: AppBlock = {
                 properties: {
                   overallStatus: {
                     type: "string",
+                    enum: [
+                      "OK",
+                      "IMPAIRED",
+                      "INSUFFICIENT_DATA",
+                      "INITIALIZING",
+                    ],
                   },
                   details: {
                     type: "array",
@@ -283,9 +298,20 @@ const updateContainerAgent: AppBlock = {
                       properties: {
                         type: {
                           type: "string",
+                          enum: [
+                            "CONTAINER_RUNTIME",
+                            "ACCELERATED_COMPUTE",
+                            "DAEMON",
+                          ],
                         },
                         status: {
                           type: "string",
+                          enum: [
+                            "OK",
+                            "IMPAIRED",
+                            "INSUFFICIENT_DATA",
+                            "INITIALIZING",
+                          ],
                         },
                         statusReason: {
                           type: "string",

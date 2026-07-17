@@ -112,6 +112,7 @@ const listAccessKeys: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["Active", "Inactive", "Expired"],
                 },
                 CreateDate: {
                   type: "string",

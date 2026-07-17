@@ -34,7 +34,10 @@ const putRestoreValidationResult: AppBlock = {
         ValidationStatus: {
           name: "Validation Status",
           description: "The status of your restore validation.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["FAILED", "SUCCESSFUL", "TIMED_OUT", "VALIDATING"],
+          },
           required: true,
         },
         ValidationStatusMessage: {

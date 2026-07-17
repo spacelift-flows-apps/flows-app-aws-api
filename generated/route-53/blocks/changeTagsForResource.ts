@@ -27,7 +27,10 @@ const changeTagsForResource: AppBlock = {
         ResourceType: {
           name: "Resource Type",
           description: "The type of the resource.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["healthcheck", "hostedzone"],
+          },
           required: true,
         },
         ResourceId: {

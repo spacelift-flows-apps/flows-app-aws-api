@@ -104,12 +104,25 @@ const describeGlobalTableSettings: AppBlock = {
                 },
                 ReplicaStatus: {
                   type: "string",
+                  enum: [
+                    "CREATING",
+                    "CREATION_FAILED",
+                    "UPDATING",
+                    "DELETING",
+                    "ACTIVE",
+                    "REGION_DISABLED",
+                    "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                    "ARCHIVING",
+                    "ARCHIVED",
+                    "REPLICATION_NOT_AUTHORIZED",
+                  ],
                 },
                 ReplicaBillingModeSummary: {
                   type: "object",
                   properties: {
                     BillingMode: {
                       type: "string",
+                      enum: ["PROVISIONED", "PAY_PER_REQUEST"],
                     },
                     LastUpdateToPayPerRequestDateTime: {
                       type: "string",
@@ -191,6 +204,7 @@ const describeGlobalTableSettings: AppBlock = {
                       },
                       IndexStatus: {
                         type: "string",
+                        enum: ["CREATING", "UPDATING", "DELETING", "ACTIVE"],
                       },
                       ProvisionedReadCapacityUnits: {
                         type: "number",
@@ -230,6 +244,7 @@ const describeGlobalTableSettings: AppBlock = {
                   properties: {
                     TableClass: {
                       type: "string",
+                      enum: ["STANDARD", "STANDARD_INFREQUENT_ACCESS"],
                     },
                     LastUpdateDateTime: {
                       type: "string",

@@ -35,7 +35,10 @@ const listLogGroups: AppBlock = {
           name: "log Group Class",
           description:
             "Use this parameter to limit the results to only those log groups in the specified log group class.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["STANDARD", "INFREQUENT_ACCESS", "DELIVERY"],
+          },
           required: false,
         },
         includeLinkedAccounts: {
@@ -174,6 +177,7 @@ const listLogGroups: AppBlock = {
                 },
                 logGroupClass: {
                   type: "string",
+                  enum: ["STANDARD", "INFREQUENT_ACCESS", "DELIVERY"],
                 },
               },
               additionalProperties: false,

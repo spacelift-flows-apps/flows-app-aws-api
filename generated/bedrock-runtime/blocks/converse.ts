@@ -41,6 +41,7 @@ const converse: AppBlock = {
               properties: {
                 role: {
                   type: "string",
+                  enum: ["user", "assistant"],
                 },
                 content: {
                   type: "array",
@@ -340,6 +341,7 @@ const converse: AppBlock = {
                               properties: {
                                 format: {
                                   type: "string",
+                                  enum: ["png", "jpeg"],
                                 },
                                 source: {
                                   oneOf: [
@@ -377,9 +379,11 @@ const converse: AppBlock = {
                       properties: {
                         type: {
                           type: "string",
+                          enum: ["default"],
                         },
                         ttl: {
                           type: "string",
+                          enum: ["5m", "1h"],
                         },
                       },
                       required: ["type"],
@@ -493,9 +497,11 @@ const converse: AppBlock = {
                           properties: {
                             type: {
                               type: "string",
+                              enum: ["default"],
                             },
                             ttl: {
                               type: "string",
+                              enum: ["5m", "1h"],
                             },
                           },
                           required: ["type"],
@@ -574,6 +580,7 @@ const converse: AppBlock = {
               },
               trace: {
                 type: "string",
+                enum: ["enabled", "disabled", "enabled_full"],
               },
             },
             additionalProperties: false,
@@ -629,6 +636,7 @@ const converse: AppBlock = {
             properties: {
               latency: {
                 type: "string",
+                enum: ["standard", "optimized"],
               },
             },
             additionalProperties: false,
@@ -644,6 +652,7 @@ const converse: AppBlock = {
             properties: {
               type: {
                 type: "string",
+                enum: ["priority", "default", "flex", "reserved"],
               },
             },
             required: ["type"],
@@ -662,6 +671,7 @@ const converse: AppBlock = {
                 properties: {
                   type: {
                     type: "string",
+                    enum: ["json_schema"],
                   },
                   structure: {
                     oneOf: [
@@ -767,6 +777,7 @@ const converse: AppBlock = {
                     properties: {
                       role: {
                         type: "string",
+                        enum: ["user", "assistant"],
                       },
                       content: {
                         type: "array",
@@ -1020,6 +1031,17 @@ const converse: AppBlock = {
           },
           stopReason: {
             type: "string",
+            enum: [
+              "end_turn",
+              "tool_use",
+              "max_tokens",
+              "stop_sequence",
+              "guardrail_intervened",
+              "content_filtered",
+              "malformed_model_output",
+              "malformed_tool_use",
+              "model_context_window_exceeded",
+            ],
             description: "The reason why the model stopped generating output.",
           },
           usage: {
@@ -1047,6 +1069,7 @@ const converse: AppBlock = {
                   properties: {
                     ttl: {
                       type: "string",
+                      enum: ["5m", "1h"],
                     },
                     inputTokens: {
                       type: "string",
@@ -1127,6 +1150,7 @@ const converse: AppBlock = {
             properties: {
               latency: {
                 type: "string",
+                enum: ["standard", "optimized"],
               },
             },
             additionalProperties: false,
@@ -1137,6 +1161,7 @@ const converse: AppBlock = {
             properties: {
               type: {
                 type: "string",
+                enum: ["priority", "default", "flex", "reserved"],
               },
             },
             required: ["type"],

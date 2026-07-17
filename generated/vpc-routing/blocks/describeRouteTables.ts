@@ -231,9 +231,16 @@ const describeRouteTables: AppBlock = {
                       },
                       Origin: {
                         type: "string",
+                        enum: [
+                          "CreateRouteTable",
+                          "CreateRoute",
+                          "EnableVgwRoutePropagation",
+                          "Advertisement",
+                        ],
                       },
                       State: {
                         type: "string",
+                        enum: ["active", "blackhole", "filtered"],
                       },
                       VpcPeeringConnectionId: {
                         type: "string",

@@ -116,6 +116,16 @@ const getCalculationExecution: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "CREATING",
+                  "CREATED",
+                  "QUEUED",
+                  "RUNNING",
+                  "CANCELING",
+                  "CANCELED",
+                  "COMPLETED",
+                  "FAILED",
+                ],
               },
               StateChangeReason: {
                 type: "string",

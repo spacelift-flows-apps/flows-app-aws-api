@@ -56,7 +56,10 @@ const updateImageStorageClass: AppBlock = {
         targetStorageClass: {
           name: "target Storage Class",
           description: "The target storage class for the image.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["STANDARD", "ARCHIVE"],
+          },
           required: true,
         },
       },
@@ -141,6 +144,7 @@ const updateImageStorageClass: AppBlock = {
           },
           imageStatus: {
             type: "string",
+            enum: ["ACTIVE", "ARCHIVED", "ACTIVATING"],
             description:
               "The current status of the image after the call to UpdateImageStorageClass is complete.",
           },

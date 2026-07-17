@@ -101,6 +101,7 @@ const getIPSet: AppBlock = {
                   properties: {
                     Type: {
                       type: "string",
+                      enum: ["IPV4", "IPV6"],
                     },
                     Value: {
                       type: "string",

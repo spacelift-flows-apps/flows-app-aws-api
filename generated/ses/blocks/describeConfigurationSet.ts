@@ -37,6 +37,12 @@ const describeConfigurationSet: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "eventDestinations",
+                "trackingOptions",
+                "deliveryOptions",
+                "reputationOptions",
+              ],
             },
           },
           required: false,
@@ -128,6 +134,16 @@ const describeConfigurationSet: AppBlock = {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: [
+                      "send",
+                      "reject",
+                      "bounce",
+                      "complaint",
+                      "delivery",
+                      "open",
+                      "click",
+                      "renderingFailure",
+                    ],
                   },
                 },
                 KinesisFirehoseDestination: {
@@ -200,6 +216,7 @@ const describeConfigurationSet: AppBlock = {
             properties: {
               TlsPolicy: {
                 type: "string",
+                enum: ["Require", "Optional"],
               },
             },
             additionalProperties: false,

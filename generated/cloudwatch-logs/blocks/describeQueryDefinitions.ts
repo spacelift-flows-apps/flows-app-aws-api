@@ -27,7 +27,10 @@ const describeQueryDefinitions: AppBlock = {
         queryLanguage: {
           name: "query Language",
           description: "The query language used for this query.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["CWLI", "SQL", "PPL"],
+          },
           required: false,
         },
         queryDefinitionNamePrefix: {
@@ -117,6 +120,7 @@ const describeQueryDefinitions: AppBlock = {
               properties: {
                 queryLanguage: {
                   type: "string",
+                  enum: ["CWLI", "SQL", "PPL"],
                 },
                 queryDefinitionId: {
                   type: "string",

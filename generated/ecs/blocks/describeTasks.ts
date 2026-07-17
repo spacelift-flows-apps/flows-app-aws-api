@@ -47,6 +47,7 @@ const describeTasks: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["TAGS"],
             },
           },
           required: false,
@@ -149,6 +150,7 @@ const describeTasks: AppBlock = {
                       },
                       targetType: {
                         type: "string",
+                        enum: ["container-instance"],
                       },
                       targetId: {
                         type: "string",
@@ -169,6 +171,7 @@ const describeTasks: AppBlock = {
                 },
                 connectivity: {
                   type: "string",
+                  enum: ["CONNECTED", "DISCONNECTED"],
                 },
                 connectivityAt: {
                   type: "string",
@@ -218,6 +221,7 @@ const describeTasks: AppBlock = {
                       },
                       healthStatus: {
                         type: "string",
+                        enum: ["HEALTHY", "UNHEALTHY", "UNKNOWN"],
                       },
                       managedAgents: {
                         type: "array",
@@ -260,6 +264,7 @@ const describeTasks: AppBlock = {
                 },
                 healthStatus: {
                   type: "string",
+                  enum: ["HEALTHY", "UNHEALTHY", "UNKNOWN"],
                 },
                 inferenceAccelerators: {
                   type: "array",
@@ -282,6 +287,7 @@ const describeTasks: AppBlock = {
                 },
                 launchType: {
                   type: "string",
+                  enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
                 },
                 memory: {
                   type: "string",
@@ -362,6 +368,14 @@ const describeTasks: AppBlock = {
                 },
                 stopCode: {
                   type: "string",
+                  enum: [
+                    "TaskFailedToStart",
+                    "EssentialContainerExited",
+                    "UserInitiated",
+                    "ServiceSchedulerInitiated",
+                    "SpotInterruption",
+                    "TerminationNotice",
+                  ],
                 },
                 stoppedAt: {
                   type: "string",

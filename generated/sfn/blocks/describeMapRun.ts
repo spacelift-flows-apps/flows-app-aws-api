@@ -98,6 +98,7 @@ const describeMapRun: AppBlock = {
           },
           status: {
             type: "string",
+            enum: ["RUNNING", "SUCCEEDED", "FAILED", "ABORTED"],
             description: "The current status of the Map Run.",
           },
           startDate: {

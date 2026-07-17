@@ -127,6 +127,14 @@ const getDurableExecutionState: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: [
+                    "EXECUTION",
+                    "CONTEXT",
+                    "STEP",
+                    "WAIT",
+                    "CALLBACK",
+                    "CHAINED_INVOKE",
+                  ],
                 },
                 SubType: {
                   type: "string",
@@ -139,6 +147,16 @@ const getDurableExecutionState: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "STARTED",
+                    "PENDING",
+                    "READY",
+                    "SUCCEEDED",
+                    "FAILED",
+                    "CANCELLED",
+                    "TIMED_OUT",
+                    "STOPPED",
+                  ],
                 },
                 ExecutionDetails: {
                   type: "object",

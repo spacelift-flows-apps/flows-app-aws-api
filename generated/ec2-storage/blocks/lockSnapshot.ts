@@ -38,7 +38,10 @@ const lockSnapshot: AppBlock = {
         LockMode: {
           name: "Lock Mode",
           description: "The mode in which to lock the snapshot.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["compliance", "governance"],
+          },
           required: true,
         },
         CoolOffPeriod: {
@@ -128,6 +131,7 @@ const lockSnapshot: AppBlock = {
           },
           LockState: {
             type: "string",
+            enum: ["compliance", "governance", "compliance-cooloff", "expired"],
             description: "The state of the snapshot lock.",
           },
           LockDuration: {

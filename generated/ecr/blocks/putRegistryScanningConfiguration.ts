@@ -27,7 +27,10 @@ const putRegistryScanningConfiguration: AppBlock = {
         scanType: {
           name: "scan Type",
           description: "The scanning type to set for the registry.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["BASIC", "ENHANCED"],
+          },
           required: false,
         },
         rules: {
@@ -40,6 +43,7 @@ const putRegistryScanningConfiguration: AppBlock = {
               properties: {
                 scanFrequency: {
                   type: "string",
+                  enum: ["SCAN_ON_PUSH", "CONTINUOUS_SCAN", "MANUAL"],
                 },
                 repositoryFilters: {
                   type: "array",
@@ -51,6 +55,7 @@ const putRegistryScanningConfiguration: AppBlock = {
                       },
                       filterType: {
                         type: "string",
+                        enum: ["WILDCARD"],
                       },
                     },
                     required: ["filter", "filterType"],
@@ -129,6 +134,7 @@ const putRegistryScanningConfiguration: AppBlock = {
             properties: {
               scanType: {
                 type: "string",
+                enum: ["BASIC", "ENHANCED"],
               },
               rules: {
                 type: "array",
@@ -137,6 +143,7 @@ const putRegistryScanningConfiguration: AppBlock = {
                   properties: {
                     scanFrequency: {
                       type: "string",
+                      enum: ["SCAN_ON_PUSH", "CONTINUOUS_SCAN", "MANUAL"],
                     },
                     repositoryFilters: {
                       type: "array",

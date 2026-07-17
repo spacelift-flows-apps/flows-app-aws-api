@@ -141,6 +141,16 @@ const describeInstancePatches: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "INSTALLED",
+                    "INSTALLED_OTHER",
+                    "INSTALLED_PENDING_REBOOT",
+                    "INSTALLED_REJECTED",
+                    "MISSING",
+                    "NOT_APPLICABLE",
+                    "FAILED",
+                    "AVAILABLE_SECURITY_UPDATE",
+                  ],
                 },
                 InstalledTime: {
                   type: "string",

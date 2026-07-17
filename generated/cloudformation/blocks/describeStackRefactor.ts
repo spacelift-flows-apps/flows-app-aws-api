@@ -107,6 +107,17 @@ const describeStackRefactor: AppBlock = {
           },
           ExecutionStatus: {
             type: "string",
+            enum: [
+              "UNAVAILABLE",
+              "AVAILABLE",
+              "OBSOLETE",
+              "EXECUTE_IN_PROGRESS",
+              "EXECUTE_COMPLETE",
+              "EXECUTE_FAILED",
+              "ROLLBACK_IN_PROGRESS",
+              "ROLLBACK_COMPLETE",
+              "ROLLBACK_FAILED",
+            ],
             description:
               "The stack refactor execution operation status that's provided after calling the ExecuteStackRefactor action.",
           },
@@ -117,6 +128,14 @@ const describeStackRefactor: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: [
+              "CREATE_IN_PROGRESS",
+              "CREATE_COMPLETE",
+              "CREATE_FAILED",
+              "DELETE_IN_PROGRESS",
+              "DELETE_COMPLETE",
+              "DELETE_FAILED",
+            ],
             description:
               "The stack refactor operation status that's provided after calling the CreateStackRefactor action.",
           },

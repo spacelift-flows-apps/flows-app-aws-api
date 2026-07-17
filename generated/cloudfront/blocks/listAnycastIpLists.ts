@@ -124,6 +124,7 @@ const listAnycastIpLists: AppBlock = {
                     },
                     IpAddressType: {
                       type: "string",
+                      enum: ["ipv4", "ipv6", "dualstack"],
                     },
                     ETag: {
                       type: "string",

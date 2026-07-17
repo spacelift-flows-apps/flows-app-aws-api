@@ -45,7 +45,10 @@ const createStateMachine: AppBlock = {
           name: "type",
           description:
             "Determines whether a Standard or Express state machine is created.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["STANDARD", "EXPRESS"],
+          },
           required: false,
         },
         loggingConfiguration: {
@@ -57,6 +60,7 @@ const createStateMachine: AppBlock = {
             properties: {
               level: {
                 type: "string",
+                enum: ["ALL", "ERROR", "FATAL", "OFF"],
               },
               includeExecutionData: {
                 type: "boolean",
@@ -145,6 +149,7 @@ const createStateMachine: AppBlock = {
               },
               type: {
                 type: "string",
+                enum: ["AWS_OWNED_KEY", "CUSTOMER_MANAGED_KMS_KEY"],
               },
             },
             required: ["type"],

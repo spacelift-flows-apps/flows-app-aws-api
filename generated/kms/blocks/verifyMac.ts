@@ -37,7 +37,15 @@ const verifyMac: AppBlock = {
           name: "Mac Algorithm",
           description:
             "The MAC algorithm that will be used in the verification.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "HMAC_SHA_224",
+              "HMAC_SHA_256",
+              "HMAC_SHA_384",
+              "HMAC_SHA_512",
+            ],
+          },
           required: true,
         },
         Mac: {
@@ -132,6 +140,12 @@ const verifyMac: AppBlock = {
           },
           MacAlgorithm: {
             type: "string",
+            enum: [
+              "HMAC_SHA_224",
+              "HMAC_SHA_256",
+              "HMAC_SHA_384",
+              "HMAC_SHA_512",
+            ],
             description: "The MAC algorithm used in the verification.",
           },
         },

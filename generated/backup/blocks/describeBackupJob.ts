@@ -114,6 +114,7 @@ const describeBackupJob: AppBlock = {
               },
               DeleteAfterEvent: {
                 type: "string",
+                enum: ["DELETE_AFTER_COPY"],
               },
             },
             additionalProperties: false,
@@ -165,6 +166,17 @@ const describeBackupJob: AppBlock = {
           },
           State: {
             type: "string",
+            enum: [
+              "CREATED",
+              "PENDING",
+              "RUNNING",
+              "ABORTING",
+              "ABORTED",
+              "COMPLETED",
+              "FAILED",
+              "EXPIRED",
+              "PARTIAL",
+            ],
             description: "The current state of a backup job.",
           },
           StatusMessage: {

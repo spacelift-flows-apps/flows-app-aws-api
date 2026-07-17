@@ -106,6 +106,27 @@ const getAutomationExecution: AppBlock = {
               },
               AutomationExecutionStatus: {
                 type: "string",
+                enum: [
+                  "Pending",
+                  "InProgress",
+                  "Waiting",
+                  "Success",
+                  "TimedOut",
+                  "Cancelling",
+                  "Cancelled",
+                  "Failed",
+                  "PendingApproval",
+                  "Approved",
+                  "Rejected",
+                  "Scheduled",
+                  "RunbookInProgress",
+                  "PendingChangeCalendarOverride",
+                  "ChangeCalendarOverrideApproved",
+                  "ChangeCalendarOverrideRejected",
+                  "CompletedWithSuccess",
+                  "CompletedWithFailure",
+                  "Exited",
+                ],
               },
               StepExecutions: {
                 type: "array",
@@ -135,6 +156,27 @@ const getAutomationExecution: AppBlock = {
                     },
                     StepStatus: {
                       type: "string",
+                      enum: [
+                        "Pending",
+                        "InProgress",
+                        "Waiting",
+                        "Success",
+                        "TimedOut",
+                        "Cancelling",
+                        "Cancelled",
+                        "Failed",
+                        "PendingApproval",
+                        "Approved",
+                        "Rejected",
+                        "Scheduled",
+                        "RunbookInProgress",
+                        "PendingChangeCalendarOverride",
+                        "ChangeCalendarOverrideApproved",
+                        "ChangeCalendarOverrideRejected",
+                        "CompletedWithSuccess",
+                        "CompletedWithFailure",
+                        "Exited",
+                      ],
                     },
                     ResponseCode: {
                       type: "string",
@@ -316,6 +358,7 @@ const getAutomationExecution: AppBlock = {
               },
               Mode: {
                 type: "string",
+                enum: ["Auto", "Interactive"],
               },
               ParentAutomationExecutionId: {
                 type: "string",
@@ -507,6 +550,7 @@ const getAutomationExecution: AppBlock = {
                     },
                     State: {
                       type: "string",
+                      enum: ["UNKNOWN", "ALARM"],
                     },
                   },
                   required: ["Name", "State"],
@@ -518,6 +562,7 @@ const getAutomationExecution: AppBlock = {
               },
               AutomationSubtype: {
                 type: "string",
+                enum: ["ChangeRequest", "AccessRequest"],
               },
               ScheduledTime: {
                 type: "string",

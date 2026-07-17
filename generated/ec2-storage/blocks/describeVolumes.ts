@@ -179,6 +179,7 @@ const describeVolumes: AppBlock = {
                 },
                 VolumeType: {
                   type: "string",
+                  enum: ["standard", "io1", "io2", "gp2", "sc1", "st1", "gp3"],
                 },
                 FastRestored: {
                   type: "boolean",
@@ -191,6 +192,7 @@ const describeVolumes: AppBlock = {
                 },
                 SseType: {
                   type: "string",
+                  enum: ["sse-ebs", "sse-kms", "none"],
                 },
                 Operator: {
                   type: "object",
@@ -224,6 +226,14 @@ const describeVolumes: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "creating",
+                    "available",
+                    "in-use",
+                    "deleting",
+                    "deleted",
+                    "error",
+                  ],
                 },
                 CreateTime: {
                   type: "string",
@@ -256,6 +266,13 @@ const describeVolumes: AppBlock = {
                       },
                       State: {
                         type: "string",
+                        enum: [
+                          "attaching",
+                          "attached",
+                          "detaching",
+                          "detached",
+                          "busy",
+                        ],
                       },
                       AttachTime: {
                         type: "string",

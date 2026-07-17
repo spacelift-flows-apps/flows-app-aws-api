@@ -133,6 +133,7 @@ const describeHosts: AppBlock = {
               properties: {
                 AutoPlacement: {
                   type: "string",
+                  enum: ["on", "off"],
                 },
                 AvailabilityZone: {
                   type: "string",
@@ -208,6 +209,14 @@ const describeHosts: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "available",
+                    "under-assessment",
+                    "permanent-failure",
+                    "released",
+                    "released-permanent-failure",
+                    "pending",
+                  ],
                 },
                 AllocationTime: {
                   type: "string",
@@ -232,9 +241,11 @@ const describeHosts: AppBlock = {
                 },
                 HostRecovery: {
                   type: "string",
+                  enum: ["on", "off"],
                 },
                 AllowsMultipleInstanceTypes: {
                   type: "string",
+                  enum: ["on", "off"],
                 },
                 OwnerId: {
                   type: "string",
@@ -250,6 +261,7 @@ const describeHosts: AppBlock = {
                 },
                 HostMaintenance: {
                   type: "string",
+                  enum: ["on", "off"],
                 },
                 AssetId: {
                   type: "string",

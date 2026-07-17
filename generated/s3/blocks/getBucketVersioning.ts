@@ -97,10 +97,12 @@ const getBucketVersioning: AppBlock = {
         properties: {
           Status: {
             type: "string",
+            enum: ["Enabled", "Suspended"],
             description: "The versioning state of the bucket.",
           },
           MFADelete: {
             type: "string",
+            enum: ["Enabled", "Disabled"],
             description:
               "Specifies whether MFA delete is enabled in the bucket versioning configuration.",
           },

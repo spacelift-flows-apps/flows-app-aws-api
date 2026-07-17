@@ -41,6 +41,13 @@ const describeClusters: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "ATTACHMENTS",
+                "CONFIGURATIONS",
+                "SETTINGS",
+                "STATISTICS",
+                "TAGS",
+              ],
             },
           },
           required: false,
@@ -125,6 +132,7 @@ const describeClusters: AppBlock = {
                         },
                         logging: {
                           type: "string",
+                          enum: ["NONE", "DEFAULT", "OVERRIDE"],
                         },
                         logConfiguration: {
                           type: "object",
@@ -207,6 +215,7 @@ const describeClusters: AppBlock = {
                     properties: {
                       name: {
                         type: "string",
+                        enum: ["containerInsights"],
                       },
                       value: {
                         type: "string",

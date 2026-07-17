@@ -202,6 +202,13 @@ const startImport: AppBlock = {
           },
           ImportStatus: {
             type: "string",
+            enum: [
+              "INITIALIZING",
+              "IN_PROGRESS",
+              "FAILED",
+              "STOPPED",
+              "COMPLETED",
+            ],
             description:
               "Shows the status of the import after a StartImport request.",
           },

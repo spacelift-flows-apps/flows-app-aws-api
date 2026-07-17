@@ -79,7 +79,10 @@ const putIntegration: AppBlock = {
         integrationType: {
           name: "integration Type",
           description: "The type of integration.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["OPENSEARCH"],
+          },
           required: true,
         },
       },
@@ -146,6 +149,7 @@ const putIntegration: AppBlock = {
           },
           integrationStatus: {
             type: "string",
+            enum: ["PROVISIONING", "ACTIVE", "FAILED"],
             description: "The status of the integration that you just created.",
           },
         },

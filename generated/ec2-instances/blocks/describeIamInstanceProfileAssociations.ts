@@ -157,6 +157,12 @@ const describeIamInstanceProfileAssociations: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "associating",
+                    "associated",
+                    "disassociating",
+                    "disassociated",
+                  ],
                 },
                 Timestamp: {
                   type: "string",

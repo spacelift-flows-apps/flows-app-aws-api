@@ -136,6 +136,17 @@ const describeDBProxies: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "available",
+                    "modifying",
+                    "incompatible-network",
+                    "insufficient-resource-limits",
+                    "creating",
+                    "deleting",
+                    "suspended",
+                    "suspending",
+                    "reactivating",
+                  ],
                 },
                 EngineFamily: {
                   type: "string",
@@ -171,15 +182,24 @@ const describeDBProxies: AppBlock = {
                       },
                       AuthScheme: {
                         type: "string",
+                        enum: ["SECRETS"],
                       },
                       SecretArn: {
                         type: "string",
                       },
                       IAMAuth: {
                         type: "string",
+                        enum: ["DISABLED", "REQUIRED", "ENABLED"],
                       },
                       ClientPasswordAuthType: {
                         type: "string",
+                        enum: [
+                          "MYSQL_NATIVE_PASSWORD",
+                          "MYSQL_CACHING_SHA2_PASSWORD",
+                          "POSTGRES_SCRAM_SHA_256",
+                          "POSTGRES_MD5",
+                          "SQL_SERVER_AUTHENTICATION",
+                        ],
                       },
                     },
                     additionalProperties: false,
@@ -208,9 +228,11 @@ const describeDBProxies: AppBlock = {
                 },
                 EndpointNetworkType: {
                   type: "string",
+                  enum: ["IPV4", "IPV6", "DUAL"],
                 },
                 TargetConnectionNetworkType: {
                   type: "string",
+                  enum: ["IPV4", "IPV6"],
                 },
               },
               additionalProperties: false,

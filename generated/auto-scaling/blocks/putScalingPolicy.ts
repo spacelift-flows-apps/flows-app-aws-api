@@ -126,6 +126,12 @@ const putScalingPolicy: AppBlock = {
                 properties: {
                   PredefinedMetricType: {
                     type: "string",
+                    enum: [
+                      "ASGAverageCPUUtilization",
+                      "ASGAverageNetworkIn",
+                      "ASGAverageNetworkOut",
+                      "ALBRequestCountPerTarget",
+                    ],
                   },
                   ResourceLabel: {
                     type: "string",
@@ -161,6 +167,13 @@ const putScalingPolicy: AppBlock = {
                   },
                   Statistic: {
                     type: "string",
+                    enum: [
+                      "Average",
+                      "Minimum",
+                      "Maximum",
+                      "SampleCount",
+                      "Sum",
+                    ],
                   },
                   Unit: {
                     type: "string",
@@ -245,6 +258,12 @@ const putScalingPolicy: AppBlock = {
                       properties: {
                         PredefinedMetricType: {
                           type: "string",
+                          enum: [
+                            "ASGCPUUtilization",
+                            "ASGNetworkIn",
+                            "ASGNetworkOut",
+                            "ALBRequestCount",
+                          ],
                         },
                         ResourceLabel: {
                           type: "string",
@@ -258,6 +277,12 @@ const putScalingPolicy: AppBlock = {
                       properties: {
                         PredefinedMetricType: {
                           type: "string",
+                          enum: [
+                            "ASGAverageCPUUtilization",
+                            "ASGAverageNetworkIn",
+                            "ASGAverageNetworkOut",
+                            "ALBRequestCountPerTarget",
+                          ],
                         },
                         ResourceLabel: {
                           type: "string",
@@ -271,6 +296,12 @@ const putScalingPolicy: AppBlock = {
                       properties: {
                         PredefinedMetricType: {
                           type: "string",
+                          enum: [
+                            "ASGTotalCPUUtilization",
+                            "ASGTotalNetworkIn",
+                            "ASGTotalNetworkOut",
+                            "ALBTargetGroupRequestCount",
+                          ],
                         },
                         ResourceLabel: {
                           type: "string",
@@ -319,12 +350,14 @@ const putScalingPolicy: AppBlock = {
               },
               Mode: {
                 type: "string",
+                enum: ["ForecastAndScale", "ForecastOnly"],
               },
               SchedulingBufferTime: {
                 type: "number",
               },
               MaxCapacityBreachBehavior: {
                 type: "string",
+                enum: ["HonorMaxCapacity", "IncreaseMaxCapacity"],
               },
               MaxCapacityBuffer: {
                 type: "number",

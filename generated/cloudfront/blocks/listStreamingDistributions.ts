@@ -185,6 +185,12 @@ const listStreamingDistributions: AppBlock = {
                     },
                     PriceClass: {
                       type: "string",
+                      enum: [
+                        "PriceClass_100",
+                        "PriceClass_200",
+                        "PriceClass_All",
+                        "None",
+                      ],
                     },
                     Enabled: {
                       type: "boolean",

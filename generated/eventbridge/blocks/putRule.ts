@@ -43,7 +43,14 @@ const putRule: AppBlock = {
         State: {
           name: "State",
           description: "The state of the rule.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "ENABLED",
+              "DISABLED",
+              "ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS",
+            ],
+          },
           required: false,
         },
         Description: {

@@ -31,7 +31,10 @@ const startActivityStream: AppBlock = {
         Mode: {
           name: "Mode",
           description: "Specifies the mode of the database activity stream.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["sync", "async"],
+          },
           required: true,
         },
         KmsKeyId: {
@@ -125,10 +128,12 @@ const startActivityStream: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["stopped", "starting", "started", "stopping"],
             description: "The status of the database activity stream.",
           },
           Mode: {
             type: "string",
+            enum: ["sync", "async"],
             description: "The mode of the database activity stream.",
           },
           EngineNativeAuditFieldsIncluded: {

@@ -54,6 +54,15 @@ const listSecrets: AppBlock = {
               properties: {
                 Key: {
                   type: "string",
+                  enum: [
+                    "description",
+                    "name",
+                    "tag-key",
+                    "tag-value",
+                    "primary-region",
+                    "owning-service",
+                    "all",
+                  ],
                 },
                 Values: {
                   type: "array",
@@ -70,13 +79,24 @@ const listSecrets: AppBlock = {
         SortOrder: {
           name: "Sort Order",
           description: "Secrets are listed by CreatedDate.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["asc", "desc"],
+          },
           required: false,
         },
         SortBy: {
           name: "Sort By",
           description: "If not specified, secrets are listed by CreatedDate.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "created-date",
+              "last-accessed-date",
+              "last-changed-date",
+              "name",
+            ],
+          },
           required: false,
         },
       },

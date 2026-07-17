@@ -151,6 +151,7 @@ const describeVpcEndpointServiceConfigurations: AppBlock = {
                     properties: {
                       ServiceType: {
                         type: "string",
+                        enum: ["Interface", "Gateway", "GatewayLoadBalancer"],
                       },
                     },
                     additionalProperties: false,
@@ -164,6 +165,13 @@ const describeVpcEndpointServiceConfigurations: AppBlock = {
                 },
                 ServiceState: {
                   type: "string",
+                  enum: [
+                    "Pending",
+                    "Available",
+                    "Deleting",
+                    "Deleted",
+                    "Failed",
+                  ],
                 },
                 AvailabilityZoneIds: {
                   type: "array",
@@ -199,6 +207,7 @@ const describeVpcEndpointServiceConfigurations: AppBlock = {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["ipv4", "ipv6"],
                   },
                 },
                 BaseEndpointDnsNames: {
@@ -215,6 +224,7 @@ const describeVpcEndpointServiceConfigurations: AppBlock = {
                   properties: {
                     State: {
                       type: "string",
+                      enum: ["pendingVerification", "verified", "failed"],
                     },
                     Type: {
                       type: "string",
@@ -230,6 +240,7 @@ const describeVpcEndpointServiceConfigurations: AppBlock = {
                 },
                 PayerResponsibility: {
                   type: "string",
+                  enum: ["ServiceOwner"],
                 },
                 Tags: {
                   type: "array",

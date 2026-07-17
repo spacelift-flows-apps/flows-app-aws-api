@@ -131,6 +131,7 @@ const createRestoreAccessBackupVault: AppBlock = {
           },
           VaultState: {
             type: "string",
+            enum: ["CREATING", "AVAILABLE", "FAILED"],
             description:
               "The current state of the restore access backup vault.",
           },

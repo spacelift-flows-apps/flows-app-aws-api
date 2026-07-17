@@ -175,9 +175,11 @@ const listAssociationVersions: AppBlock = {
                 },
                 ComplianceSeverity: {
                   type: "string",
+                  enum: ["CRITICAL", "HIGH", "MEDIUM", "LOW", "UNSPECIFIED"],
                 },
                 SyncCompliance: {
                   type: "string",
+                  enum: ["AUTO", "MANUAL"],
                 },
                 ApplyOnlyAtCronInterval: {
                   type: "boolean",

@@ -178,6 +178,14 @@ const describeNatGateways: AppBlock = {
                       },
                       Status: {
                         type: "string",
+                        enum: [
+                          "assigning",
+                          "unassigning",
+                          "associating",
+                          "disassociating",
+                          "succeeded",
+                          "failed",
+                        ],
                       },
                       AvailabilityZone: {
                         type: "string",
@@ -215,6 +223,13 @@ const describeNatGateways: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "pending",
+                    "failed",
+                    "available",
+                    "deleting",
+                    "deleted",
+                  ],
                 },
                 SubnetId: {
                   type: "string",
@@ -239,15 +254,19 @@ const describeNatGateways: AppBlock = {
                 },
                 ConnectivityType: {
                   type: "string",
+                  enum: ["private", "public"],
                 },
                 AvailabilityMode: {
                   type: "string",
+                  enum: ["zonal", "regional"],
                 },
                 AutoScalingIps: {
                   type: "string",
+                  enum: ["enabled", "disabled"],
                 },
                 AutoProvisionZones: {
                   type: "string",
+                  enum: ["enabled", "disabled"],
                 },
                 AttachedAppliances: {
                   type: "array",
@@ -256,6 +275,7 @@ const describeNatGateways: AppBlock = {
                     properties: {
                       Type: {
                         type: "string",
+                        enum: ["network-firewall-proxy"],
                       },
                       ApplianceArn: {
                         type: "string",
@@ -265,9 +285,18 @@ const describeNatGateways: AppBlock = {
                       },
                       AttachmentState: {
                         type: "string",
+                        enum: [
+                          "attaching",
+                          "attached",
+                          "detaching",
+                          "detached",
+                          "attach-failed",
+                          "detach-failed",
+                        ],
                       },
                       ModificationState: {
                         type: "string",
+                        enum: ["modifying", "completed", "failed"],
                       },
                       FailureCode: {
                         type: "string",

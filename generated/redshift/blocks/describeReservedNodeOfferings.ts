@@ -152,6 +152,7 @@ const describeReservedNodeOfferings: AppBlock = {
                 },
                 ReservedNodeOfferingType: {
                   type: "string",
+                  enum: ["Regular", "Upgradable"],
                 },
               },
               additionalProperties: false,

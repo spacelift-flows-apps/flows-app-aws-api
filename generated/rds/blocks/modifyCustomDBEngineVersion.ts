@@ -46,7 +46,10 @@ const modifyCustomDBEngineVersion: AppBlock = {
         Status: {
           name: "Status",
           description: "The availability status to be assigned to the CEV.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["available", "inactive", "inactive-except-restore"],
+          },
           required: false,
         },
       },

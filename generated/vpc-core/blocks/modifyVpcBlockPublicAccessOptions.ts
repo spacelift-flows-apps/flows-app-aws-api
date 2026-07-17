@@ -34,7 +34,10 @@ const modifyVpcBlockPublicAccessOptions: AppBlock = {
         InternetGatewayBlockMode: {
           name: "Internet Gateway Block Mode",
           description: "The mode of VPC BPA.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["off", "block-bidirectional", "block-ingress"],
+          },
           required: true,
         },
       },
@@ -108,9 +111,15 @@ const modifyVpcBlockPublicAccessOptions: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "default-state",
+                  "update-in-progress",
+                  "update-complete",
+                ],
               },
               InternetGatewayBlockMode: {
                 type: "string",
+                enum: ["off", "block-bidirectional", "block-ingress"],
               },
               Reason: {
                 type: "string",
@@ -120,9 +129,11 @@ const modifyVpcBlockPublicAccessOptions: AppBlock = {
               },
               ManagedBy: {
                 type: "string",
+                enum: ["account", "declarative-policy"],
               },
               ExclusionsAllowed: {
                 type: "string",
+                enum: ["allowed", "not-allowed"],
               },
             },
             additionalProperties: false,

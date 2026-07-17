@@ -55,7 +55,10 @@ const updatePartnerStatus: AppBlock = {
         Status: {
           name: "Status",
           description: "The value of the updated status.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Active", "Inactive", "RuntimeFailure", "ConnectionFailure"],
+          },
           required: true,
         },
         StatusMessage: {

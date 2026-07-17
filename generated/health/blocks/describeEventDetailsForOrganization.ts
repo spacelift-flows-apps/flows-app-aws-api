@@ -134,6 +134,12 @@ const describeEventDetailsForOrganization: AppBlock = {
                     },
                     eventTypeCategory: {
                       type: "string",
+                      enum: [
+                        "issue",
+                        "accountNotification",
+                        "scheduledChange",
+                        "investigation",
+                      ],
                     },
                     region: {
                       type: "string",
@@ -152,17 +158,25 @@ const describeEventDetailsForOrganization: AppBlock = {
                     },
                     statusCode: {
                       type: "string",
+                      enum: ["open", "closed", "upcoming"],
                     },
                     eventScopeCode: {
                       type: "string",
+                      enum: ["PUBLIC", "ACCOUNT_SPECIFIC", "NONE"],
                     },
                     actionability: {
                       type: "string",
+                      enum: [
+                        "ACTION_REQUIRED",
+                        "ACTION_MAY_BE_REQUIRED",
+                        "INFORMATIONAL",
+                      ],
                     },
                     personas: {
                       type: "array",
                       items: {
                         type: "string",
+                        enum: ["OPERATIONS", "SECURITY", "BILLING"],
                       },
                     },
                   },

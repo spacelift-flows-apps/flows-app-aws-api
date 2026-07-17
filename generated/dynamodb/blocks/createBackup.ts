@@ -105,9 +105,11 @@ const createBackup: AppBlock = {
               },
               BackupStatus: {
                 type: "string",
+                enum: ["CREATING", "DELETED", "AVAILABLE"],
               },
               BackupType: {
                 type: "string",
+                enum: ["USER", "SYSTEM", "AWS_BACKUP"],
               },
               BackupCreationDateTime: {
                 type: "string",

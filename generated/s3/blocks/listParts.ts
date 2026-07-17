@@ -59,7 +59,10 @@ const listParts: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         ExpectedBucketOwner: {
@@ -274,21 +277,50 @@ const listParts: AppBlock = {
           },
           StorageClass: {
             type: "string",
+            enum: [
+              "STANDARD",
+              "REDUCED_REDUNDANCY",
+              "STANDARD_IA",
+              "ONEZONE_IA",
+              "INTELLIGENT_TIERING",
+              "GLACIER",
+              "DEEP_ARCHIVE",
+              "OUTPOSTS",
+              "GLACIER_IR",
+              "SNOW",
+              "EXPRESS_ONEZONE",
+              "FSX_OPENZFS",
+              "FSX_ONTAP",
+            ],
             description:
               "The class of storage used to store the uploaded object.",
           },
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },
           ChecksumAlgorithm: {
             type: "string",
+            enum: [
+              "CRC32",
+              "CRC32C",
+              "SHA1",
+              "SHA256",
+              "CRC64NVME",
+              "SHA512",
+              "MD5",
+              "XXHASH64",
+              "XXHASH3",
+              "XXHASH128",
+            ],
             description:
               "The algorithm that was used to create a checksum of the object.",
           },
           ChecksumType: {
             type: "string",
+            enum: ["COMPOSITE", "FULL_OBJECT"],
             description:
               "The checksum type, which determines how part-level checksums are combined to create an object-level checksum for multipart objects.",
           },

@@ -157,9 +157,11 @@ const listFunctionUrlConfigs: AppBlock = {
                 },
                 AuthType: {
                   type: "string",
+                  enum: ["NONE", "AWS_IAM"],
                 },
                 InvokeMode: {
                   type: "string",
+                  enum: ["BUFFERED", "RESPONSE_STREAM"],
                 },
               },
               required: [

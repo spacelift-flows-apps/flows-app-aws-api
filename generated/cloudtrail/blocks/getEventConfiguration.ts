@@ -108,6 +108,7 @@ const getEventConfiguration: AppBlock = {
           },
           MaxEventSize: {
             type: "string",
+            enum: ["Standard", "Large"],
             description:
               "The maximum allowed size for events stored in the specified event data store.",
           },
@@ -118,6 +119,7 @@ const getEventConfiguration: AppBlock = {
               properties: {
                 Type: {
                   type: "string",
+                  enum: ["TagContext", "RequestContext"],
                 },
                 Equals: {
                   type: "array",
@@ -141,10 +143,12 @@ const getEventConfiguration: AppBlock = {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["API_ACTIVITY", "RESOURCE_ACCESS", "USER_ACTIONS"],
                   },
                 },
                 EventCategory: {
                   type: "string",
+                  enum: ["Data"],
                 },
               },
               required: ["Templates", "EventCategory"],

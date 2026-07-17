@@ -31,6 +31,7 @@ const listDocuments: AppBlock = {
               properties: {
                 key: {
                   type: "string",
+                  enum: ["Name", "Owner", "PlatformTypes", "DocumentType"],
                 },
                 value: {
                   type: "string",
@@ -159,6 +160,7 @@ const listDocuments: AppBlock = {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: ["Windows", "Linux", "MacOS"],
                   },
                 },
                 DocumentVersion: {
@@ -166,12 +168,32 @@ const listDocuments: AppBlock = {
                 },
                 DocumentType: {
                   type: "string",
+                  enum: [
+                    "Command",
+                    "Policy",
+                    "Automation",
+                    "Session",
+                    "Package",
+                    "ApplicationConfiguration",
+                    "ApplicationConfigurationSchema",
+                    "DeploymentStrategy",
+                    "ChangeCalendar",
+                    "Automation.ChangeTemplate",
+                    "ProblemAnalysis",
+                    "ProblemAnalysisTemplate",
+                    "CloudFormation",
+                    "ConformancePackTemplate",
+                    "QuickSetup",
+                    "ManualApprovalPolicy",
+                    "AutoApprovalPolicy",
+                  ],
                 },
                 SchemaVersion: {
                   type: "string",
                 },
                 DocumentFormat: {
                   type: "string",
+                  enum: ["YAML", "JSON", "TEXT"],
                 },
                 TargetType: {
                   type: "string",
@@ -216,6 +238,7 @@ const listDocuments: AppBlock = {
                 },
                 ReviewStatus: {
                   type: "string",
+                  enum: ["APPROVED", "NOT_REVIEWED", "PENDING", "REJECTED"],
                 },
                 Author: {
                   type: "string",

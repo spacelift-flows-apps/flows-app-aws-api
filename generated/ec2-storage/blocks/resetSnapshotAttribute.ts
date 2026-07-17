@@ -24,7 +24,10 @@ const resetSnapshotAttribute: AppBlock = {
         Attribute: {
           name: "Attribute",
           description: "The attribute to reset.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["productCodes", "createVolumePermission"],
+          },
           required: true,
         },
         SnapshotId: {

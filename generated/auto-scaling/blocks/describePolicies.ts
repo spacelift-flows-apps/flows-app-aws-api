@@ -203,6 +203,12 @@ const describePolicies: AppBlock = {
                       properties: {
                         PredefinedMetricType: {
                           type: "string",
+                          enum: [
+                            "ASGAverageCPUUtilization",
+                            "ASGAverageNetworkIn",
+                            "ASGAverageNetworkOut",
+                            "ALBRequestCountPerTarget",
+                          ],
                         },
                         ResourceLabel: {
                           type: "string",
@@ -226,6 +232,13 @@ const describePolicies: AppBlock = {
                         },
                         Statistic: {
                           type: "string",
+                          enum: [
+                            "Average",
+                            "Minimum",
+                            "Maximum",
+                            "SampleCount",
+                            "Sum",
+                          ],
                         },
                         Unit: {
                           type: "string",
@@ -275,12 +288,14 @@ const describePolicies: AppBlock = {
                     },
                     Mode: {
                       type: "string",
+                      enum: ["ForecastAndScale", "ForecastOnly"],
                     },
                     SchedulingBufferTime: {
                       type: "number",
                     },
                     MaxCapacityBreachBehavior: {
                       type: "string",
+                      enum: ["HonorMaxCapacity", "IncreaseMaxCapacity"],
                     },
                     MaxCapacityBuffer: {
                       type: "number",

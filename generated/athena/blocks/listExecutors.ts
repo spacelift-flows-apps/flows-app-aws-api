@@ -30,7 +30,17 @@ const listExecutors: AppBlock = {
         ExecutorStateFilter: {
           name: "Executor State Filter",
           description: "A filter for a specific executor state.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CREATING",
+              "CREATED",
+              "REGISTERED",
+              "TERMINATING",
+              "TERMINATED",
+              "FAILED",
+            ],
+          },
           required: false,
         },
         MaxResults: {
@@ -123,6 +133,7 @@ const listExecutors: AppBlock = {
                 },
                 ExecutorType: {
                   type: "string",
+                  enum: ["COORDINATOR", "GATEWAY", "WORKER"],
                 },
                 StartDateTime: {
                   type: "number",
@@ -132,6 +143,14 @@ const listExecutors: AppBlock = {
                 },
                 ExecutorState: {
                   type: "string",
+                  enum: [
+                    "CREATING",
+                    "CREATED",
+                    "REGISTERED",
+                    "TERMINATING",
+                    "TERMINATED",
+                    "FAILED",
+                  ],
                 },
                 ExecutorSize: {
                   type: "number",

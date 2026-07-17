@@ -131,7 +131,10 @@ const updateEventDataStore: AppBlock = {
           name: "Billing Mode",
           description:
             "You can't change the billing mode from EXTENDABLE_RETENTION_PRICING to FIXED_RETENTION_PRICING.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["EXTENDABLE_RETENTION_PRICING", "FIXED_RETENTION_PRICING"],
+          },
           required: false,
         },
       },
@@ -202,6 +205,14 @@ const updateEventDataStore: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: [
+              "CREATED",
+              "ENABLED",
+              "PENDING_DELETION",
+              "STARTING_INGESTION",
+              "STOPPING_INGESTION",
+              "STOPPED_INGESTION",
+            ],
             description: "The status of an event data store.",
           },
           AdvancedEventSelectors: {
@@ -292,10 +303,12 @@ const updateEventDataStore: AppBlock = {
           },
           BillingMode: {
             type: "string",
+            enum: ["EXTENDABLE_RETENTION_PRICING", "FIXED_RETENTION_PRICING"],
             description: "The billing mode for the event data store.",
           },
           FederationStatus: {
             type: "string",
+            enum: ["ENABLING", "ENABLED", "DISABLING", "DISABLED"],
             description: "Indicates the Lake query federation status.",
           },
           FederationRoleArn: {

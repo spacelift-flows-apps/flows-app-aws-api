@@ -48,7 +48,10 @@ const createGovCloudAccount: AppBlock = {
           name: "Iam User Access To Billing",
           description:
             "If set to ALLOW, the new linked account in the commercial Region enables IAM users to access account billing information if they have the required permissions.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ALLOW", "DENY"],
+          },
           required: false,
         },
         Tags: {
@@ -142,6 +145,7 @@ const createGovCloudAccount: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["IN_PROGRESS", "SUCCEEDED", "FAILED"],
               },
               RequestedTimestamp: {
                 type: "string",
@@ -157,6 +161,23 @@ const createGovCloudAccount: AppBlock = {
               },
               FailureReason: {
                 type: "string",
+                enum: [
+                  "ACCOUNT_LIMIT_EXCEEDED",
+                  "EMAIL_ALREADY_EXISTS",
+                  "INVALID_ADDRESS",
+                  "INVALID_EMAIL",
+                  "CONCURRENT_ACCOUNT_MODIFICATION",
+                  "INTERNAL_FAILURE",
+                  "GOVCLOUD_ACCOUNT_ALREADY_EXISTS",
+                  "MISSING_BUSINESS_VALIDATION",
+                  "FAILED_BUSINESS_VALIDATION",
+                  "PENDING_BUSINESS_VALIDATION",
+                  "INVALID_IDENTITY_FOR_BUSINESS_VALIDATION",
+                  "UNKNOWN_BUSINESS_VALIDATION",
+                  "MISSING_PAYMENT_INSTRUMENT",
+                  "INVALID_PAYMENT_INSTRUMENT",
+                  "UPDATE_EXISTING_RESOURCE_POLICY_WITH_TAGS_NOT_SUPPORTED",
+                ],
               },
             },
             additionalProperties: false,

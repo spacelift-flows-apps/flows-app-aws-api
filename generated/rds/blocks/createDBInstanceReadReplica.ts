@@ -196,7 +196,10 @@ const createDBInstanceReadReplica: AppBlock = {
           name: "Database Insights Mode",
           description:
             "The mode of Database Insights to enable for the read replica.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["standard", "advanced"],
+          },
           required: false,
         },
         EnablePerformanceInsights: {
@@ -317,7 +320,10 @@ const createDBInstanceReadReplica: AppBlock = {
         ReplicaMode: {
           name: "Replica Mode",
           description: "The open mode of the replica database.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["open-read-only", "mounted"],
+          },
           required: false,
         },
         EnableCustomerOwnedIp: {
@@ -673,6 +679,7 @@ const createDBInstanceReadReplica: AppBlock = {
               },
               UpgradeRolloutOrder: {
                 type: "string",
+                enum: ["first", "second", "last"],
               },
               PendingModifiedValues: {
                 type: "object",
@@ -754,6 +761,7 @@ const createDBInstanceReadReplica: AppBlock = {
                   },
                   AutomationMode: {
                     type: "string",
+                    enum: ["full", "all-paused"],
                   },
                   ResumeFullAutomationModeTime: {
                     type: "string",
@@ -830,6 +838,7 @@ const createDBInstanceReadReplica: AppBlock = {
               },
               ReplicaMode: {
                 type: "string",
+                enum: ["open-read-only", "mounted"],
               },
               LicenseModel: {
                 type: "string",
@@ -893,6 +902,7 @@ const createDBInstanceReadReplica: AppBlock = {
               },
               StorageEncryptionType: {
                 type: "string",
+                enum: ["none", "sse-kms", "sse-rds"],
               },
               TdeCredentialArn: {
                 type: "string",
@@ -974,6 +984,7 @@ const createDBInstanceReadReplica: AppBlock = {
               },
               DatabaseInsightsMode: {
                 type: "string",
+                enum: ["standard", "advanced"],
               },
               PerformanceInsightsEnabled: {
                 type: "boolean",
@@ -1061,6 +1072,7 @@ const createDBInstanceReadReplica: AppBlock = {
               },
               AutomationMode: {
                 type: "string",
+                enum: ["full", "all-paused"],
               },
               ResumeFullAutomationModeTime: {
                 type: "string",
@@ -1073,6 +1085,7 @@ const createDBInstanceReadReplica: AppBlock = {
               },
               ActivityStreamStatus: {
                 type: "string",
+                enum: ["stopped", "starting", "started", "stopping"],
               },
               ActivityStreamKmsKeyId: {
                 type: "string",
@@ -1082,6 +1095,7 @@ const createDBInstanceReadReplica: AppBlock = {
               },
               ActivityStreamMode: {
                 type: "string",
+                enum: ["sync", "async"],
               },
               ActivityStreamEngineNativeAuditFieldsIncluded: {
                 type: "boolean",
@@ -1112,6 +1126,12 @@ const createDBInstanceReadReplica: AppBlock = {
               },
               ActivityStreamPolicyStatus: {
                 type: "string",
+                enum: [
+                  "locked",
+                  "unlocked",
+                  "locking-policy",
+                  "unlocking-policy",
+                ],
               },
               CertificateDetails: {
                 type: "object",

@@ -159,6 +159,7 @@ const deleteDBSnapshot: AppBlock = {
               },
               StorageEncryptionType: {
                 type: "string",
+                enum: ["none", "sse-kms", "sse-rds"],
               },
               BackupRetentionPeriod: {
                 type: "number",

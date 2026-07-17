@@ -40,7 +40,10 @@ const listDocumentMetadataHistory: AppBlock = {
           name: "Metadata",
           description:
             "The type of data for which details are being requested.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["DocumentReviews"],
+          },
           required: true,
         },
         NextToken: {
@@ -144,6 +147,7 @@ const listDocumentMetadataHistory: AppBlock = {
                     },
                     ReviewStatus: {
                       type: "string",
+                      enum: ["APPROVED", "NOT_REVIEWED", "PENDING", "REJECTED"],
                     },
                     Comment: {
                       type: "array",

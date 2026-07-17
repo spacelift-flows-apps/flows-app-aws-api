@@ -108,6 +108,16 @@ const listGeneratedTemplates: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "CREATE_PENDING",
+                    "UPDATE_PENDING",
+                    "DELETE_PENDING",
+                    "CREATE_IN_PROGRESS",
+                    "UPDATE_IN_PROGRESS",
+                    "DELETE_IN_PROGRESS",
+                    "FAILED",
+                    "COMPLETE",
+                  ],
                 },
                 StatusReason: {
                   type: "string",

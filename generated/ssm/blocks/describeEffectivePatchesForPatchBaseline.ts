@@ -198,9 +198,23 @@ const describeEffectivePatchesForPatchBaseline: AppBlock = {
                   properties: {
                     DeploymentStatus: {
                       type: "string",
+                      enum: [
+                        "APPROVED",
+                        "PENDING_APPROVAL",
+                        "EXPLICIT_APPROVED",
+                        "EXPLICIT_REJECTED",
+                      ],
                     },
                     ComplianceLevel: {
                       type: "string",
+                      enum: [
+                        "CRITICAL",
+                        "HIGH",
+                        "MEDIUM",
+                        "LOW",
+                        "INFORMATIONAL",
+                        "UNSPECIFIED",
+                      ],
                     },
                     ApprovalDate: {
                       type: "string",

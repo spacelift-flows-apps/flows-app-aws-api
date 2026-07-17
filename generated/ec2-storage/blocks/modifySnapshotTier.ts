@@ -30,7 +30,10 @@ const modifySnapshotTier: AppBlock = {
         StorageTier: {
           name: "Storage Tier",
           description: "The name of the storage tier.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["archive"],
+          },
           required: false,
         },
         DryRun: {

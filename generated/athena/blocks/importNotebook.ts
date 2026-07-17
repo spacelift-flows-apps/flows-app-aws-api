@@ -43,7 +43,10 @@ const importNotebook: AppBlock = {
         Type: {
           name: "Type",
           description: "The notebook content type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["IPYNB"],
+          },
           required: true,
         },
         NotebookS3LocationUri: {

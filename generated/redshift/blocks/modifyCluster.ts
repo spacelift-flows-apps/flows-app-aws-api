@@ -665,6 +665,7 @@ const modifyCluster: AppBlock = {
               },
               SnapshotScheduleState: {
                 type: "string",
+                enum: ["MODIFYING", "ACTIVE", "FAILED"],
               },
               ExpectedNextSnapshotScheduleTime: {
                 type: "string",
@@ -701,9 +702,11 @@ const modifyCluster: AppBlock = {
                 properties: {
                   AquaStatus: {
                     type: "string",
+                    enum: ["enabled", "disabled", "applying"],
                   },
                   AquaConfigurationStatus: {
                     type: "string",
+                    enum: ["enabled", "disabled", "auto"],
                   },
                 },
                 additionalProperties: false,
@@ -719,6 +722,14 @@ const modifyCluster: AppBlock = {
                   },
                   Status: {
                     type: "string",
+                    enum: [
+                      "REQUESTED",
+                      "PENDING",
+                      "IN_PROGRESS",
+                      "RETRYING",
+                      "SUCCEEDED",
+                      "FAILED",
+                    ],
                   },
                   RequestTime: {
                     type: "string",

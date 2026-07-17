@@ -143,6 +143,7 @@ const describeScanJob: AppBlock = {
           },
           MalwareScanner: {
             type: "string",
+            enum: ["GUARDDUTY"],
             description:
               "The scanning engine used for the corresponding scan job.",
           },
@@ -163,6 +164,7 @@ const describeScanJob: AppBlock = {
           },
           ResourceType: {
             type: "string",
+            enum: ["EBS", "EC2", "S3"],
             description:
               "The type of Amazon Web Services Resource to be backed up; for example, an Amazon Elastic Block Store (Amazon EBS) volume.",
           },
@@ -183,6 +185,7 @@ const describeScanJob: AppBlock = {
           },
           ScanMode: {
             type: "string",
+            enum: ["FULL_SCAN", "INCREMENTAL_SCAN"],
             description: "Specifies the scan type used for the scan job.",
           },
           ScanResult: {
@@ -190,6 +193,7 @@ const describeScanJob: AppBlock = {
             properties: {
               ScanResultStatus: {
                 type: "string",
+                enum: ["NO_THREATS_FOUND", "THREATS_FOUND"],
               },
             },
             required: ["ScanResultStatus"],
@@ -204,6 +208,14 @@ const describeScanJob: AppBlock = {
           },
           State: {
             type: "string",
+            enum: [
+              "CANCELED",
+              "COMPLETED",
+              "COMPLETED_WITH_ISSUES",
+              "CREATED",
+              "FAILED",
+              "RUNNING",
+            ],
             description: "The current state of a scan job.",
           },
           StatusMessage: {

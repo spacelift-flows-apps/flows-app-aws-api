@@ -34,14 +34,20 @@ const invokeWithResponseStream: AppBlock = {
           name: "Invocation Type",
           description:
             "Use one of the following options: RequestResponse (default) – Invoke the function synchronously.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["RequestResponse", "DryRun"],
+          },
           required: false,
         },
         LogType: {
           name: "Log Type",
           description:
             "Set to Tail to include the execution log in the response.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["None", "Tail"],
+          },
           required: false,
         },
         ClientContext: {

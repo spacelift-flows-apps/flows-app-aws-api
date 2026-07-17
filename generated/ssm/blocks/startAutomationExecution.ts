@@ -58,7 +58,10 @@ const startAutomationExecution: AppBlock = {
         Mode: {
           name: "Mode",
           description: "The execution mode of the automation.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Auto", "Interactive"],
+          },
           required: false,
         },
         TargetParameterName: {

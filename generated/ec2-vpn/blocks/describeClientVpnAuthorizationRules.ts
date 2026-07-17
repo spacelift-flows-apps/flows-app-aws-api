@@ -158,6 +158,7 @@ const describeClientVpnAuthorizationRules: AppBlock = {
                   properties: {
                     Code: {
                       type: "string",
+                      enum: ["authorizing", "active", "failed", "revoking"],
                     },
                     Message: {
                       type: "string",

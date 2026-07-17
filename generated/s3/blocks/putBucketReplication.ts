@@ -38,7 +38,21 @@ const putBucketReplication: AppBlock = {
           name: "Checksum Algorithm",
           description:
             "Indicates the algorithm used to create the checksum for the request when you use the SDK.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CRC32",
+              "CRC32C",
+              "SHA1",
+              "SHA256",
+              "CRC64NVME",
+              "SHA512",
+              "MD5",
+              "XXHASH64",
+              "XXHASH3",
+              "XXHASH128",
+            ],
+          },
           required: false,
         },
         ReplicationConfiguration: {
@@ -92,6 +106,7 @@ const putBucketReplication: AppBlock = {
                     },
                     Status: {
                       type: "string",
+                      enum: ["Enabled", "Disabled"],
                     },
                     SourceSelectionCriteria: {
                       type: "object",
@@ -120,6 +135,7 @@ const putBucketReplication: AppBlock = {
                       properties: {
                         Status: {
                           type: "string",
+                          enum: ["Enabled", "Disabled"],
                         },
                       },
                       required: ["Status"],
@@ -136,6 +152,21 @@ const putBucketReplication: AppBlock = {
                         },
                         StorageClass: {
                           type: "string",
+                          enum: [
+                            "STANDARD",
+                            "REDUCED_REDUNDANCY",
+                            "STANDARD_IA",
+                            "ONEZONE_IA",
+                            "INTELLIGENT_TIERING",
+                            "GLACIER",
+                            "DEEP_ARCHIVE",
+                            "OUTPOSTS",
+                            "GLACIER_IR",
+                            "SNOW",
+                            "EXPRESS_ONEZONE",
+                            "FSX_OPENZFS",
+                            "FSX_ONTAP",
+                          ],
                         },
                         AccessControlTranslation: {
                           type: "object",
@@ -179,6 +210,7 @@ const putBucketReplication: AppBlock = {
                       properties: {
                         Status: {
                           type: "string",
+                          enum: ["Enabled", "Disabled"],
                         },
                       },
                       additionalProperties: false,

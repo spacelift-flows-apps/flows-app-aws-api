@@ -96,24 +96,29 @@ const getInstanceMetadataDefaults: AppBlock = {
             properties: {
               HttpTokens: {
                 type: "string",
+                enum: ["optional", "required"],
               },
               HttpPutResponseHopLimit: {
                 type: "number",
               },
               HttpEndpoint: {
                 type: "string",
+                enum: ["disabled", "enabled"],
               },
               InstanceMetadataTags: {
                 type: "string",
+                enum: ["disabled", "enabled"],
               },
               ManagedBy: {
                 type: "string",
+                enum: ["account", "declarative-policy"],
               },
               ManagedExceptionMessage: {
                 type: "string",
               },
               HttpTokensEnforced: {
                 type: "string",
+                enum: ["disabled", "enabled"],
               },
             },
             additionalProperties: false,

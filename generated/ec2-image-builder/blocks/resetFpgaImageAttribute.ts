@@ -37,7 +37,10 @@ const resetFpgaImageAttribute: AppBlock = {
         Attribute: {
           name: "Attribute",
           description: "The attribute.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["loadPermission"],
+          },
           required: false,
         },
       },

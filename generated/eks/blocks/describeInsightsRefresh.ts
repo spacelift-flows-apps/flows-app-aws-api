@@ -93,6 +93,7 @@ const describeInsightsRefresh: AppBlock = {
           },
           status: {
             type: "string",
+            enum: ["IN_PROGRESS", "FAILED", "COMPLETED"],
             description:
               "The current status of the insights refresh operation.",
           },

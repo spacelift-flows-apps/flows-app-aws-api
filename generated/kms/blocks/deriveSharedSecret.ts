@@ -32,7 +32,10 @@ const deriveSharedSecret: AppBlock = {
           name: "Key Agreement Algorithm",
           description:
             "Specifies the key agreement algorithm used to derive the shared secret.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ECDH"],
+          },
           required: true,
         },
         PublicKey: {
@@ -68,6 +71,7 @@ const deriveSharedSecret: AppBlock = {
             properties: {
               KeyEncryptionAlgorithm: {
                 type: "string",
+                enum: ["RSAES_OAEP_SHA_256"],
               },
               AttestationDocument: {
                 type: "string",
@@ -152,11 +156,13 @@ const deriveSharedSecret: AppBlock = {
           },
           KeyAgreementAlgorithm: {
             type: "string",
+            enum: ["ECDH"],
             description:
               "Identifies the key agreement algorithm used to derive the shared secret.",
           },
           KeyOrigin: {
             type: "string",
+            enum: ["AWS_KMS", "EXTERNAL", "AWS_CLOUDHSM", "EXTERNAL_KEY_STORE"],
             description:
               "The source of the key material for the specified KMS key.",
           },

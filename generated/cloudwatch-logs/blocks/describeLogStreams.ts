@@ -47,7 +47,10 @@ const describeLogStreams: AppBlock = {
           name: "order By",
           description:
             "If the value is LogStreamName, the results are ordered by log stream name.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["LogStreamName", "LastEventTime"],
+          },
           required: false,
         },
         descending: {

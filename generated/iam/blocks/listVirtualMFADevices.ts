@@ -25,7 +25,10 @@ const listVirtualMFADevices: AppBlock = {
           name: "Assignment Status",
           description:
             "The status (Unassigned or Assigned) of the devices to list.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Assigned", "Unassigned", "Any"],
+          },
           required: false,
         },
         Marker: {
@@ -140,6 +143,7 @@ const listVirtualMFADevices: AppBlock = {
                       properties: {
                         PermissionsBoundaryType: {
                           type: "string",
+                          enum: ["PermissionsBoundaryPolicy"],
                         },
                         PermissionsBoundaryArn: {
                           type: "string",

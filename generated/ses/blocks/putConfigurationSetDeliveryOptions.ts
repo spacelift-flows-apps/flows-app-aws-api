@@ -39,6 +39,7 @@ const putConfigurationSetDeliveryOptions: AppBlock = {
             properties: {
               TlsPolicy: {
                 type: "string",
+                enum: ["Require", "Optional"],
               },
             },
             additionalProperties: false,

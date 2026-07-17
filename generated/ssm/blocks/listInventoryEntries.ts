@@ -54,6 +54,14 @@ const listInventoryEntries: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: [
+                    "Equal",
+                    "NotEqual",
+                    "BeginWith",
+                    "LessThan",
+                    "GreaterThan",
+                    "Exists",
+                  ],
                 },
               },
               required: ["Key", "Values"],

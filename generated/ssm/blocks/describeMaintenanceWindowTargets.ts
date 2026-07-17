@@ -140,6 +140,7 @@ const describeMaintenanceWindowTargets: AppBlock = {
                 },
                 ResourceType: {
                   type: "string",
+                  enum: ["INSTANCE", "RESOURCE_GROUP"],
                 },
                 Targets: {
                   type: "array",

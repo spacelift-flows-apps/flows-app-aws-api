@@ -59,7 +59,10 @@ const deleteStack: AppBlock = {
         DeletionMode: {
           name: "Deletion Mode",
           description: "Specifies the deletion mode for the stack.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["STANDARD", "FORCE_DELETE_STACK"],
+          },
           required: false,
         },
       },

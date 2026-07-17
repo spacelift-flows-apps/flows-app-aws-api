@@ -107,10 +107,16 @@ const describeBackupVault: AppBlock = {
           },
           VaultType: {
             type: "string",
+            enum: [
+              "BACKUP_VAULT",
+              "LOGICALLY_AIR_GAPPED_BACKUP_VAULT",
+              "RESTORE_ACCESS_BACKUP_VAULT",
+            ],
             description: "The type of vault described.",
           },
           VaultState: {
             type: "string",
+            enum: ["CREATING", "AVAILABLE", "FAILED"],
             description: "The current state of the vault.",
           },
           EncryptionKeyArn: {
@@ -176,6 +182,7 @@ const describeBackupVault: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["PENDING", "APPROVED", "FAILED"],
               },
               StatusMessage: {
                 type: "string",
@@ -193,6 +200,7 @@ const describeBackupVault: AppBlock = {
           },
           EncryptionKeyType: {
             type: "string",
+            enum: ["AWS_OWNED_KMS_KEY", "CUSTOMER_MANAGED_KMS_KEY"],
             description:
               "The type of encryption key used for the backup vault.",
           },

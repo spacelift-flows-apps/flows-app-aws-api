@@ -55,7 +55,10 @@ const invokeModelWithResponseStream: AppBlock = {
           name: "trace",
           description:
             "Specifies whether to enable or disable the Bedrock trace.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ENABLED", "DISABLED", "ENABLED_FULL"],
+          },
           required: false,
         },
         guardrailIdentifier: {
@@ -74,14 +77,20 @@ const invokeModelWithResponseStream: AppBlock = {
         performanceConfigLatency: {
           name: "performance Config Latency",
           description: "Model performance settings for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["standard", "optimized"],
+          },
           required: false,
         },
         serviceTier: {
           name: "service Tier",
           description:
             "Specifies the processing tier type used for serving the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["priority", "default", "flex", "reserved"],
+          },
           required: false,
         },
       },
@@ -274,10 +283,12 @@ const invokeModelWithResponseStream: AppBlock = {
           },
           performanceConfigLatency: {
             type: "string",
+            enum: ["standard", "optimized"],
             description: "Model performance settings for the request.",
           },
           serviceTier: {
             type: "string",
+            enum: ["priority", "default", "flex", "reserved"],
             description:
               "Specifies the processing tier type used for serving the request.",
           },

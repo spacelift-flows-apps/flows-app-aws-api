@@ -150,6 +150,7 @@ const detectStackResourceDrift: AppBlock = {
                     },
                     DifferenceType: {
                       type: "string",
+                      enum: ["ADD", "REMOVE", "NOT_EQUAL"],
                     },
                   },
                   required: [
@@ -163,6 +164,14 @@ const detectStackResourceDrift: AppBlock = {
               },
               StackResourceDriftStatus: {
                 type: "string",
+                enum: [
+                  "IN_SYNC",
+                  "MODIFIED",
+                  "DELETED",
+                  "NOT_CHECKED",
+                  "UNKNOWN",
+                  "UNSUPPORTED",
+                ],
               },
               Timestamp: {
                 type: "string",

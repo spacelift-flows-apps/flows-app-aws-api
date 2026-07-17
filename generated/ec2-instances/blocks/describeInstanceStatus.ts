@@ -186,6 +186,13 @@ const describeInstanceStatus: AppBlock = {
                       },
                       Code: {
                         type: "string",
+                        enum: [
+                          "instance-reboot",
+                          "system-reboot",
+                          "system-maintenance",
+                          "instance-retirement",
+                          "instance-stop",
+                        ],
                       },
                       Description: {
                         type: "string",
@@ -214,6 +221,14 @@ const describeInstanceStatus: AppBlock = {
                     },
                     Name: {
                       type: "string",
+                      enum: [
+                        "pending",
+                        "running",
+                        "shutting-down",
+                        "terminated",
+                        "stopping",
+                        "stopped",
+                      ],
                     },
                   },
                   additionalProperties: false,
@@ -235,6 +250,13 @@ const describeInstanceStatus: AppBlock = {
                     },
                     Status: {
                       type: "string",
+                      enum: [
+                        "ok",
+                        "impaired",
+                        "insufficient-data",
+                        "not-applicable",
+                        "initializing",
+                      ],
                     },
                   },
                   additionalProperties: false,
@@ -256,6 +278,13 @@ const describeInstanceStatus: AppBlock = {
                     },
                     Status: {
                       type: "string",
+                      enum: [
+                        "ok",
+                        "impaired",
+                        "insufficient-data",
+                        "not-applicable",
+                        "initializing",
+                      ],
                     },
                   },
                   additionalProperties: false,
@@ -277,6 +306,13 @@ const describeInstanceStatus: AppBlock = {
                     },
                     Status: {
                       type: "string",
+                      enum: [
+                        "ok",
+                        "impaired",
+                        "insufficient-data",
+                        "not-applicable",
+                        "initializing",
+                      ],
                     },
                   },
                   additionalProperties: false,

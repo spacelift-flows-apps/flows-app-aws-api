@@ -32,7 +32,10 @@ const describeFleetHistory: AppBlock = {
         EventType: {
           name: "Event Type",
           description: "The type of events to describe.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["instance-change", "fleet-change", "service-error"],
+          },
           required: false,
         },
         MaxResults: {
@@ -143,6 +146,7 @@ const describeFleetHistory: AppBlock = {
                 },
                 EventType: {
                   type: "string",
+                  enum: ["instance-change", "fleet-change", "service-error"],
                 },
                 Timestamp: {
                   type: "string",

@@ -28,7 +28,10 @@ const enableSnapshotBlockPublicAccess: AppBlock = {
           name: "State",
           description:
             "The mode in which to enable block public access for snapshots for the Region.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["block-all-sharing", "block-new-sharing", "unblocked"],
+          },
           required: true,
         },
         DryRun: {
@@ -100,6 +103,7 @@ const enableSnapshotBlockPublicAccess: AppBlock = {
         properties: {
           State: {
             type: "string",
+            enum: ["block-all-sharing", "block-new-sharing", "unblocked"],
             description:
               "The state of block public access for snapshots for the account and Region.",
           },

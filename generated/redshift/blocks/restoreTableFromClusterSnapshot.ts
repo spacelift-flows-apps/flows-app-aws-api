@@ -152,6 +152,13 @@ const restoreTableFromClusterSnapshot: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: [
+                  "PENDING",
+                  "IN_PROGRESS",
+                  "SUCCEEDED",
+                  "FAILED",
+                  "CANCELED",
+                ],
               },
               Message: {
                 type: "string",

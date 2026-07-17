@@ -136,6 +136,7 @@ const listAssociatedAccessPolicies: AppBlock = {
                   properties: {
                     type: {
                       type: "string",
+                      enum: ["cluster", "namespace"],
                     },
                     namespaces: {
                       type: "array",

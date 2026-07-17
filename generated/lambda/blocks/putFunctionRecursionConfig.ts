@@ -34,7 +34,10 @@ const putFunctionRecursionConfig: AppBlock = {
           name: "Recursive Loop",
           description:
             "If you set your function's recursive loop detection configuration to Allow, Lambda doesn't take any action when it detects your function being invoked as part of a recursive loop.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Allow", "Terminate"],
+          },
           required: true,
         },
       },
@@ -99,6 +102,7 @@ const putFunctionRecursionConfig: AppBlock = {
         properties: {
           RecursiveLoop: {
             type: "string",
+            enum: ["Allow", "Terminate"],
             description:
               "The status of your function's recursive loop detection configuration.",
           },

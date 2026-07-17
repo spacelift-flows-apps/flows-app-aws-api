@@ -161,11 +161,29 @@ const describeChangeSet: AppBlock = {
           },
           ExecutionStatus: {
             type: "string",
+            enum: [
+              "UNAVAILABLE",
+              "AVAILABLE",
+              "EXECUTE_IN_PROGRESS",
+              "EXECUTE_COMPLETE",
+              "EXECUTE_FAILED",
+              "OBSOLETE",
+            ],
             description:
               "If the change set execution status is AVAILABLE, you can execute the change set.",
           },
           Status: {
             type: "string",
+            enum: [
+              "CREATE_PENDING",
+              "CREATE_IN_PROGRESS",
+              "CREATE_COMPLETE",
+              "DELETE_PENDING",
+              "DELETE_IN_PROGRESS",
+              "DELETE_COMPLETE",
+              "DELETE_FAILED",
+              "FAILED",
+            ],
             description:
               "The current status of the change set, such as CREATE_PENDING, CREATE_COMPLETE, or FAILED.",
           },
@@ -175,6 +193,7 @@ const describeChangeSet: AppBlock = {
           },
           StackDriftStatus: {
             type: "string",
+            enum: ["DRIFTED", "IN_SYNC", "UNKNOWN", "NOT_CHECKED"],
             description:
               "The drift status of the stack when the change set was created.",
           },
@@ -217,6 +236,11 @@ const describeChangeSet: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "CAPABILITY_IAM",
+                "CAPABILITY_NAMED_IAM",
+                "CAPABILITY_AUTO_EXPAND",
+              ],
             },
             description:
               "If you execute the change set, the list of capabilities that were explicitly acknowledged when the change set was created.",
@@ -246,6 +270,7 @@ const describeChangeSet: AppBlock = {
               properties: {
                 Type: {
                   type: "string",
+                  enum: ["Resource"],
                 },
                 HookInvocationCount: {
                   type: "number",
@@ -255,9 +280,25 @@ const describeChangeSet: AppBlock = {
                   properties: {
                     PolicyAction: {
                       type: "string",
+                      enum: [
+                        "Delete",
+                        "Retain",
+                        "Snapshot",
+                        "ReplaceAndDelete",
+                        "ReplaceAndRetain",
+                        "ReplaceAndSnapshot",
+                      ],
                     },
                     Action: {
                       type: "string",
+                      enum: [
+                        "Add",
+                        "Modify",
+                        "Remove",
+                        "Import",
+                        "Dynamic",
+                        "SyncWithActual",
+                      ],
                     },
                     LogicalResourceId: {
                       type: "string",
@@ -270,15 +311,33 @@ const describeChangeSet: AppBlock = {
                     },
                     Replacement: {
                       type: "string",
+                      enum: ["True", "False", "Conditional"],
                     },
                     Scope: {
                       type: "array",
                       items: {
                         type: "string",
+                        enum: [
+                          "Properties",
+                          "Metadata",
+                          "CreationPolicy",
+                          "UpdatePolicy",
+                          "DeletionPolicy",
+                          "UpdateReplacePolicy",
+                          "Tags",
+                        ],
                       },
                     },
                     ResourceDriftStatus: {
                       type: "string",
+                      enum: [
+                        "IN_SYNC",
+                        "MODIFIED",
+                        "DELETED",
+                        "NOT_CHECKED",
+                        "UNKNOWN",
+                        "UNSUPPORTED",
+                      ],
                     },
                     ResourceDriftIgnoredAttributes: {
                       type: "array",
@@ -358,6 +417,7 @@ const describeChangeSet: AppBlock = {
           },
           OnStackFailure: {
             type: "string",
+            enum: ["DO_NOTHING", "ROLLBACK", "DELETE"],
             description:
               "Determines what action will be taken if stack creation fails.",
           },
@@ -368,6 +428,7 @@ const describeChangeSet: AppBlock = {
           },
           DeploymentMode: {
             type: "string",
+            enum: ["REVERT_DRIFT"],
             description:
               "The deployment mode specified when the change set was created.",
           },

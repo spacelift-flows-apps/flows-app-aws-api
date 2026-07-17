@@ -91,6 +91,7 @@ const createContinuousDeploymentPolicy: AppBlock = {
                   },
                   Type: {
                     type: "string",
+                    enum: ["SingleWeight", "SingleHeader"],
                   },
                 },
                 required: ["Type"],
@@ -230,6 +231,7 @@ const createContinuousDeploymentPolicy: AppBlock = {
                       },
                       Type: {
                         type: "string",
+                        enum: ["SingleWeight", "SingleHeader"],
                       },
                     },
                     required: ["Type"],

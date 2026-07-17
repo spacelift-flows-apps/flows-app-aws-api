@@ -40,14 +40,20 @@ const batchWriteItem: AppBlock = {
           name: "Return Consumed Capacity",
           description:
             "Determines the level of detail about either provisioned or on-demand throughput consumption that is returned in the response: INDEXES - The response includes the aggregate ConsumedCapacity for the operation, together with ConsumedCapacity for each table and secondary index that was accessed.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["INDEXES", "TOTAL", "NONE"],
+          },
           required: false,
         },
         ReturnItemCollectionMetrics: {
           name: "Return Item Collection Metrics",
           description:
             "Determines whether item collection metrics are returned.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SIZE", "NONE"],
+          },
           required: false,
         },
       },

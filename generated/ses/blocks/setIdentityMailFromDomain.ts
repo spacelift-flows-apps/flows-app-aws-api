@@ -41,7 +41,10 @@ const setIdentityMailFromDomain: AppBlock = {
           name: "Behavior On MX Failure",
           description:
             "The action for Amazon SES to take if it cannot successfully read the required MX record when you send an email.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["UseDefaultValue", "RejectMessage"],
+          },
           required: false,
         },
       },

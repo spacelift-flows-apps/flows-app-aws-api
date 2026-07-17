@@ -130,6 +130,7 @@ const describeTrustStores: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["ACTIVE", "CREATING"],
                 },
                 NumberOfCaCertificates: {
                   type: "number",

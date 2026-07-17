@@ -49,7 +49,10 @@ const generateDataKey: AppBlock = {
         KeySpec: {
           name: "Key Spec",
           description: "Specifies the length of the data key.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["AES_256", "AES_128"],
+          },
           required: false,
         },
         GrantTokens: {
@@ -72,6 +75,7 @@ const generateDataKey: AppBlock = {
             properties: {
               KeyEncryptionAlgorithm: {
                 type: "string",
+                enum: ["RSAES_OAEP_SHA_256"],
               },
               AttestationDocument: {
                 type: "string",

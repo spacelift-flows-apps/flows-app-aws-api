@@ -125,6 +125,7 @@ const listRestoreAccessBackupVaults: AppBlock = {
                 },
                 VaultState: {
                   type: "string",
+                  enum: ["CREATING", "AVAILABLE", "FAILED"],
                 },
                 LatestRevokeRequest: {
                   type: "object",
@@ -134,6 +135,7 @@ const listRestoreAccessBackupVaults: AppBlock = {
                     },
                     Status: {
                       type: "string",
+                      enum: ["PENDING", "FAILED"],
                     },
                     StatusMessage: {
                       type: "string",

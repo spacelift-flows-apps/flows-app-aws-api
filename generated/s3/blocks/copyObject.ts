@@ -27,7 +27,18 @@ const copyObject: AppBlock = {
           name: "ACL",
           description:
             "The canned access control list (ACL) to apply to the object.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "private",
+              "public-read",
+              "public-read-write",
+              "authenticated-read",
+              "aws-exec-read",
+              "bucket-owner-read",
+              "bucket-owner-full-control",
+            ],
+          },
           required: false,
         },
         Bucket: {
@@ -47,7 +58,21 @@ const copyObject: AppBlock = {
           name: "Checksum Algorithm",
           description:
             "Indicates the algorithm that you want Amazon S3 to use to create the checksum for the object.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CRC32",
+              "CRC32C",
+              "SHA1",
+              "SHA256",
+              "CRC64NVME",
+              "SHA512",
+              "MD5",
+              "XXHASH64",
+              "XXHASH3",
+              "XXHASH128",
+            ],
+          },
           required: false,
         },
         ContentDisposition: {
@@ -179,28 +204,54 @@ const copyObject: AppBlock = {
           name: "Metadata Directive",
           description:
             "Specifies whether the metadata is copied from the source object or replaced with metadata that's provided in the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["COPY", "REPLACE"],
+          },
           required: false,
         },
         TaggingDirective: {
           name: "Tagging Directive",
           description:
             "Specifies whether the object tag-set is copied from the source object or replaced with the tag-set that's provided in the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["COPY", "REPLACE"],
+          },
           required: false,
         },
         ServerSideEncryption: {
           name: "Server Side Encryption",
           description:
             "The server-side encryption algorithm used when storing this object in Amazon S3.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["AES256", "aws:fsx", "aws:kms", "aws:kms:dsse"],
+          },
           required: false,
         },
         StorageClass: {
           name: "Storage Class",
           description:
             "If the x-amz-storage-class header is not used, the copied object will be stored in the STANDARD Storage Class by default.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "STANDARD",
+              "REDUCED_REDUNDANCY",
+              "STANDARD_IA",
+              "ONEZONE_IA",
+              "INTELLIGENT_TIERING",
+              "GLACIER",
+              "DEEP_ARCHIVE",
+              "OUTPOSTS",
+              "GLACIER_IR",
+              "SNOW",
+              "EXPRESS_ONEZONE",
+              "FSX_OPENZFS",
+              "FSX_ONTAP",
+            ],
+          },
           required: false,
         },
         WebsiteRedirectLocation: {
@@ -277,7 +328,10 @@ const copyObject: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that they will be charged for the request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         Tagging: {
@@ -291,7 +345,10 @@ const copyObject: AppBlock = {
           name: "Object Lock Mode",
           description:
             "The Object Lock mode that you want to apply to the object copy.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["GOVERNANCE", "COMPLIANCE"],
+          },
           required: false,
         },
         ObjectLockRetainUntilDate: {
@@ -305,7 +362,10 @@ const copyObject: AppBlock = {
           name: "Object Lock Legal Hold Status",
           description:
             "Specifies whether you want to apply a legal hold to the object copy.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ON", "OFF"],
+          },
           required: false,
         },
         ExpectedBucketOwner: {
@@ -401,6 +461,7 @@ const copyObject: AppBlock = {
               },
               ChecksumType: {
                 type: "string",
+                enum: ["COMPOSITE", "FULL_OBJECT"],
               },
               ChecksumCRC32: {
                 type: "string",
@@ -451,6 +512,7 @@ const copyObject: AppBlock = {
           },
           ServerSideEncryption: {
             type: "string",
+            enum: ["AES256", "aws:fsx", "aws:kms", "aws:kms:dsse"],
             description:
               "The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.",
           },
@@ -481,6 +543,7 @@ const copyObject: AppBlock = {
           },
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },

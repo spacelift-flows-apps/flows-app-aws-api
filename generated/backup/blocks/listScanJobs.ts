@@ -52,7 +52,10 @@ const listScanJobs: AppBlock = {
           name: "By Malware Scanner",
           description:
             "Returns only the scan jobs for the specified malware scanner.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["GUARDDUTY"],
+          },
           required: false,
         },
         ByRecoveryPointArn: {
@@ -73,21 +76,37 @@ const listScanJobs: AppBlock = {
           name: "By Resource Type",
           description:
             "Returns restore testing selections by the specified restore testing plan name.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["EBS", "EC2", "S3"],
+          },
           required: false,
         },
         ByScanResultStatus: {
           name: "By Scan Result Status",
           description:
             "Returns only the scan jobs for the specified scan results: THREATS_FOUND NO_THREATS_FOUND",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["NO_THREATS_FOUND", "THREATS_FOUND"],
+          },
           required: false,
         },
         ByState: {
           name: "By State",
           description:
             "Returns only the scan jobs for the specified scanning job state.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CANCELED",
+              "COMPLETED",
+              "COMPLETED_WITH_ISSUES",
+              "CREATED",
+              "FAILED",
+              "RUNNING",
+            ],
+          },
           required: false,
         },
         MaxResults: {
@@ -215,6 +234,7 @@ const listScanJobs: AppBlock = {
                 },
                 MalwareScanner: {
                   type: "string",
+                  enum: ["GUARDDUTY"],
                 },
                 RecoveryPointArn: {
                   type: "string",
@@ -227,6 +247,7 @@ const listScanJobs: AppBlock = {
                 },
                 ResourceType: {
                   type: "string",
+                  enum: ["EBS", "EC2", "S3"],
                 },
                 ScanBaseRecoveryPointArn: {
                   type: "string",
@@ -239,12 +260,14 @@ const listScanJobs: AppBlock = {
                 },
                 ScanMode: {
                   type: "string",
+                  enum: ["FULL_SCAN", "INCREMENTAL_SCAN"],
                 },
                 ScanResult: {
                   type: "object",
                   properties: {
                     ScanResultStatus: {
                       type: "string",
+                      enum: ["NO_THREATS_FOUND", "THREATS_FOUND"],
                     },
                   },
                   required: ["ScanResultStatus"],
@@ -255,6 +278,14 @@ const listScanJobs: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "CANCELED",
+                    "COMPLETED",
+                    "COMPLETED_WITH_ISSUES",
+                    "CREATED",
+                    "FAILED",
+                    "RUNNING",
+                  ],
                 },
                 StatusMessage: {
                   type: "string",

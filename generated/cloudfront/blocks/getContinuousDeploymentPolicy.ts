@@ -159,6 +159,7 @@ const getContinuousDeploymentPolicy: AppBlock = {
                       },
                       Type: {
                         type: "string",
+                        enum: ["SingleWeight", "SingleHeader"],
                       },
                     },
                     required: ["Type"],

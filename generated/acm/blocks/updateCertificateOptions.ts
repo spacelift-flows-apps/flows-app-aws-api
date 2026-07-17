@@ -38,9 +38,11 @@ const updateCertificateOptions: AppBlock = {
             properties: {
               CertificateTransparencyLoggingPreference: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
               Export: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
             },
             additionalProperties: false,

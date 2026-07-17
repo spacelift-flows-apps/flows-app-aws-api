@@ -107,6 +107,7 @@ const listSMSSandboxPhoneNumbers: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["Pending", "Verified"],
                 },
               },
               additionalProperties: false,

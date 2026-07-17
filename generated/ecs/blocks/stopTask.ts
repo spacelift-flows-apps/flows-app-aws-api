@@ -143,6 +143,7 @@ const stopTask: AppBlock = {
                     },
                     targetType: {
                       type: "string",
+                      enum: ["container-instance"],
                     },
                     targetId: {
                       type: "string",
@@ -163,6 +164,7 @@ const stopTask: AppBlock = {
               },
               connectivity: {
                 type: "string",
+                enum: ["CONNECTED", "DISCONNECTED"],
               },
               connectivityAt: {
                 type: "string",
@@ -231,6 +233,7 @@ const stopTask: AppBlock = {
                     },
                     healthStatus: {
                       type: "string",
+                      enum: ["HEALTHY", "UNHEALTHY", "UNKNOWN"],
                     },
                     managedAgents: {
                       type: "array",
@@ -284,6 +287,7 @@ const stopTask: AppBlock = {
               },
               healthStatus: {
                 type: "string",
+                enum: ["HEALTHY", "UNHEALTHY", "UNKNOWN"],
               },
               inferenceAccelerators: {
                 type: "array",
@@ -306,6 +310,7 @@ const stopTask: AppBlock = {
               },
               launchType: {
                 type: "string",
+                enum: ["EC2", "FARGATE", "EXTERNAL", "MANAGED_INSTANCES"],
               },
               memory: {
                 type: "string",
@@ -410,6 +415,14 @@ const stopTask: AppBlock = {
               },
               stopCode: {
                 type: "string",
+                enum: [
+                  "TaskFailedToStart",
+                  "EssentialContainerExited",
+                  "UserInitiated",
+                  "ServiceSchedulerInitiated",
+                  "SpotInterruption",
+                  "TerminationNotice",
+                ],
               },
               stoppedAt: {
                 type: "string",

@@ -46,7 +46,20 @@ const listBackupJobs: AppBlock = {
           name: "By State",
           description:
             "Returns only backup jobs that are in the specified state.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CREATED",
+              "PENDING",
+              "RUNNING",
+              "ABORTING",
+              "ABORTED",
+              "COMPLETED",
+              "FAILED",
+              "EXPIRED",
+              "PARTIAL",
+            ],
+          },
           required: false,
         },
         ByBackupVaultName: {
@@ -219,6 +232,7 @@ const listBackupJobs: AppBlock = {
                     },
                     DeleteAfterEvent: {
                       type: "string",
+                      enum: ["DELETE_AFTER_COPY"],
                     },
                   },
                   additionalProperties: false,
@@ -240,6 +254,17 @@ const listBackupJobs: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "CREATED",
+                    "PENDING",
+                    "RUNNING",
+                    "ABORTING",
+                    "ABORTED",
+                    "COMPLETED",
+                    "FAILED",
+                    "EXPIRED",
+                    "PARTIAL",
+                  ],
                 },
                 StatusMessage: {
                   type: "string",

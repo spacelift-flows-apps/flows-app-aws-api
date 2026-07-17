@@ -102,6 +102,7 @@ const getHumanReadableSummary: AppBlock = {
           },
           SummaryState: {
             type: "string",
+            enum: ["AVAILABLE", "NOT_AVAILABLE", "NOT_SUPPORTED", "FAILED"],
             description: "State of summary generation.",
           },
         },

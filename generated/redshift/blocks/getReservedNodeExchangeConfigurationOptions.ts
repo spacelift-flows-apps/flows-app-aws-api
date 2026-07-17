@@ -27,7 +27,10 @@ const getReservedNodeExchangeConfigurationOptions: AppBlock = {
         ActionType: {
           name: "Action Type",
           description: "The action type of the reserved-node configuration.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["restore-cluster", "resize-cluster"],
+          },
           required: true,
         },
         ClusterIdentifier: {
@@ -178,6 +181,7 @@ const getReservedNodeExchangeConfigurationOptions: AppBlock = {
                     },
                     ReservedNodeOfferingType: {
                       type: "string",
+                      enum: ["Regular", "Upgradable"],
                     },
                   },
                   additionalProperties: false,
@@ -222,6 +226,7 @@ const getReservedNodeExchangeConfigurationOptions: AppBlock = {
                     },
                     ReservedNodeOfferingType: {
                       type: "string",
+                      enum: ["Regular", "Upgradable"],
                     },
                   },
                   additionalProperties: false,

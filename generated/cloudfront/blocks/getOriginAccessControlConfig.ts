@@ -101,12 +101,15 @@ const getOriginAccessControlConfig: AppBlock = {
               },
               SigningProtocol: {
                 type: "string",
+                enum: ["sigv4"],
               },
               SigningBehavior: {
                 type: "string",
+                enum: ["never", "always", "no-override"],
               },
               OriginAccessControlOriginType: {
                 type: "string",
+                enum: ["s3", "mediastore", "mediapackagev2", "lambda"],
               },
             },
             required: [

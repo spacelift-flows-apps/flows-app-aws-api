@@ -111,6 +111,7 @@ const cancelReservedInstancesListing: AppBlock = {
                       },
                       State: {
                         type: "string",
+                        enum: ["available", "sold", "cancelled", "pending"],
                       },
                     },
                     additionalProperties: false,
@@ -126,6 +127,7 @@ const cancelReservedInstancesListing: AppBlock = {
                       },
                       CurrencyCode: {
                         type: "string",
+                        enum: ["USD"],
                       },
                       Price: {
                         type: "number",
@@ -145,6 +147,7 @@ const cancelReservedInstancesListing: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["active", "pending", "cancelled", "closed"],
                 },
                 StatusMessage: {
                   type: "string",

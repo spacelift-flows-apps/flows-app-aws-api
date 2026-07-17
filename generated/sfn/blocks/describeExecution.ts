@@ -32,7 +32,10 @@ const describeExecution: AppBlock = {
           name: "included Data",
           description:
             "If your state machine definition is encrypted with a KMS key, callers must have kms:Decrypt permission to decrypt the definition.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ALL_DATA", "METADATA_ONLY"],
+          },
           required: false,
         },
       },
@@ -109,6 +112,14 @@ const describeExecution: AppBlock = {
           },
           status: {
             type: "string",
+            enum: [
+              "RUNNING",
+              "SUCCEEDED",
+              "FAILED",
+              "TIMED_OUT",
+              "ABORTED",
+              "PENDING_REDRIVE",
+            ],
             description: "The current status of the execution.",
           },
           startDate: {
@@ -189,6 +200,7 @@ const describeExecution: AppBlock = {
           },
           redriveStatus: {
             type: "string",
+            enum: ["REDRIVABLE", "NOT_REDRIVABLE", "REDRIVABLE_BY_MAP_RUN"],
             description:
               "Indicates whether or not an execution can be redriven at a given point in time.",
           },

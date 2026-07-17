@@ -96,6 +96,7 @@ const getQueryExecution: AppBlock = {
               },
               StatementType: {
                 type: "string",
+                enum: ["DDL", "DML", "UTILITY"],
               },
               ManagedQueryResultsConfiguration: {
                 type: "object",
@@ -128,6 +129,7 @@ const getQueryExecution: AppBlock = {
                     properties: {
                       EncryptionOption: {
                         type: "string",
+                        enum: ["SSE_S3", "SSE_KMS", "CSE_KMS"],
                       },
                       KmsKey: {
                         type: "string",
@@ -144,6 +146,7 @@ const getQueryExecution: AppBlock = {
                     properties: {
                       S3AclOption: {
                         type: "string",
+                        enum: ["BUCKET_OWNER_FULL_CONTROL"],
                       },
                     },
                     required: ["S3AclOption"],
@@ -188,6 +191,13 @@ const getQueryExecution: AppBlock = {
                 properties: {
                   State: {
                     type: "string",
+                    enum: [
+                      "QUEUED",
+                      "RUNNING",
+                      "SUCCEEDED",
+                      "FAILED",
+                      "CANCELLED",
+                    ],
                   },
                   StateChangeReason: {
                     type: "string",
@@ -297,6 +307,7 @@ const getQueryExecution: AppBlock = {
                   },
                   AuthenticationType: {
                     type: "string",
+                    enum: ["DIRECTORY_IDENTITY"],
                   },
                 },
                 required: ["EnableS3AccessGrants", "AuthenticationType"],

@@ -143,6 +143,7 @@ const getBucketReplication: AppBlock = {
                     },
                     Status: {
                       type: "string",
+                      enum: ["Enabled", "Disabled"],
                     },
                     SourceSelectionCriteria: {
                       type: "object",
@@ -171,6 +172,7 @@ const getBucketReplication: AppBlock = {
                       properties: {
                         Status: {
                           type: "string",
+                          enum: ["Enabled", "Disabled"],
                         },
                       },
                       required: ["Status"],
@@ -187,6 +189,21 @@ const getBucketReplication: AppBlock = {
                         },
                         StorageClass: {
                           type: "string",
+                          enum: [
+                            "STANDARD",
+                            "REDUCED_REDUNDANCY",
+                            "STANDARD_IA",
+                            "ONEZONE_IA",
+                            "INTELLIGENT_TIERING",
+                            "GLACIER",
+                            "DEEP_ARCHIVE",
+                            "OUTPOSTS",
+                            "GLACIER_IR",
+                            "SNOW",
+                            "EXPRESS_ONEZONE",
+                            "FSX_OPENZFS",
+                            "FSX_ONTAP",
+                          ],
                         },
                         AccessControlTranslation: {
                           type: "object",
@@ -230,6 +247,7 @@ const getBucketReplication: AppBlock = {
                       properties: {
                         Status: {
                           type: "string",
+                          enum: ["Enabled", "Disabled"],
                         },
                       },
                       additionalProperties: false,

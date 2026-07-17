@@ -27,7 +27,10 @@ const listTypeRegistrations: AppBlock = {
         Type: {
           name: "Type",
           description: "The kind of extension.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["RESOURCE", "MODULE", "HOOK"],
+          },
           required: false,
         },
         TypeName: {
@@ -46,7 +49,10 @@ const listTypeRegistrations: AppBlock = {
           name: "Registration Status Filter",
           description:
             "The current status of the extension registration request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["COMPLETE", "IN_PROGRESS", "FAILED"],
+          },
           required: false,
         },
         MaxResults: {

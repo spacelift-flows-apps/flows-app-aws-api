@@ -110,6 +110,7 @@ const uploadSigningCertificate: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["Active", "Inactive", "Expired"],
               },
               UploadDate: {
                 type: "string",

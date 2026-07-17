@@ -40,7 +40,17 @@ const listArchives: AppBlock = {
         State: {
           name: "State",
           description: "The state of the archive.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "ENABLED",
+              "DISABLED",
+              "CREATING",
+              "UPDATING",
+              "CREATE_FAILED",
+              "UPDATE_FAILED",
+            ],
+          },
           required: false,
         },
         NextToken: {
@@ -127,6 +137,14 @@ const listArchives: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "ENABLED",
+                    "DISABLED",
+                    "CREATING",
+                    "UPDATING",
+                    "CREATE_FAILED",
+                    "UPDATE_FAILED",
+                  ],
                 },
                 StateReason: {
                   type: "string",

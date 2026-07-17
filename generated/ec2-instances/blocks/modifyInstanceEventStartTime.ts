@@ -119,6 +119,13 @@ const modifyInstanceEventStartTime: AppBlock = {
               },
               Code: {
                 type: "string",
+                enum: [
+                  "instance-reboot",
+                  "system-reboot",
+                  "system-maintenance",
+                  "instance-retirement",
+                  "instance-stop",
+                ],
               },
               Description: {
                 type: "string",

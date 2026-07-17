@@ -96,6 +96,7 @@ const getExecutionPreview: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: ["Pending", "InProgress", "Success", "Failed"],
             description:
               "The current status of the execution preview operation.",
           },

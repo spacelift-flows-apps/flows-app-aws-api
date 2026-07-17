@@ -69,7 +69,10 @@ const transactGetItems: AppBlock = {
           name: "Return Consumed Capacity",
           description:
             "A value of TOTAL causes consumed capacity information to be returned, and a value of NONE prevents that information from being returned.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["INDEXES", "TOTAL", "NONE"],
+          },
           required: false,
         },
       },

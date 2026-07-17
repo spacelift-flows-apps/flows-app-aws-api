@@ -32,13 +32,19 @@ const listTaskDefinitions: AppBlock = {
           name: "status",
           description:
             "The task definition status to filter the ListTaskDefinitions results with.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ACTIVE", "INACTIVE", "DELETE_IN_PROGRESS"],
+          },
           required: false,
         },
         sort: {
           name: "sort",
           description: "The order to sort the results in.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ASC", "DESC"],
+          },
           required: false,
         },
         nextToken: {

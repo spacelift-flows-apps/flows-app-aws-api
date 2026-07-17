@@ -43,6 +43,7 @@ const createWebACL: AppBlock = {
             properties: {
               Type: {
                 type: "string",
+                enum: ["BLOCK", "ALLOW", "COUNT"],
               },
             },
             required: ["Type"],
@@ -153,6 +154,7 @@ const createWebACL: AppBlock = {
                 properties: {
                   Type: {
                     type: "string",
+                    enum: ["BLOCK", "ALLOW", "COUNT"],
                   },
                 },
                 required: ["Type"],
@@ -174,6 +176,7 @@ const createWebACL: AppBlock = {
                       properties: {
                         Type: {
                           type: "string",
+                          enum: ["BLOCK", "ALLOW", "COUNT"],
                         },
                       },
                       required: ["Type"],
@@ -184,6 +187,7 @@ const createWebACL: AppBlock = {
                       properties: {
                         Type: {
                           type: "string",
+                          enum: ["NONE", "COUNT"],
                         },
                       },
                       required: ["Type"],
@@ -191,6 +195,7 @@ const createWebACL: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: ["REGULAR", "RATE_BASED", "GROUP"],
                     },
                     ExcludedRules: {
                       type: "array",

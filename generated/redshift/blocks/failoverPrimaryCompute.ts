@@ -464,6 +464,7 @@ const failoverPrimaryCompute: AppBlock = {
               },
               SnapshotScheduleState: {
                 type: "string",
+                enum: ["MODIFYING", "ACTIVE", "FAILED"],
               },
               ExpectedNextSnapshotScheduleTime: {
                 type: "string",
@@ -500,9 +501,11 @@ const failoverPrimaryCompute: AppBlock = {
                 properties: {
                   AquaStatus: {
                     type: "string",
+                    enum: ["enabled", "disabled", "applying"],
                   },
                   AquaConfigurationStatus: {
                     type: "string",
+                    enum: ["enabled", "disabled", "auto"],
                   },
                 },
                 additionalProperties: false,
@@ -518,6 +521,14 @@ const failoverPrimaryCompute: AppBlock = {
                   },
                   Status: {
                     type: "string",
+                    enum: [
+                      "REQUESTED",
+                      "PENDING",
+                      "IN_PROGRESS",
+                      "RETRYING",
+                      "SUCCEEDED",
+                      "FAILED",
+                    ],
                   },
                   RequestTime: {
                     type: "string",

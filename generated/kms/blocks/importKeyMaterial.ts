@@ -52,14 +52,20 @@ const importKeyMaterial: AppBlock = {
         ExpirationModel: {
           name: "Expiration Model",
           description: "Specifies whether the key material expires.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["KEY_MATERIAL_EXPIRES", "KEY_MATERIAL_DOES_NOT_EXPIRE"],
+          },
           required: false,
         },
         ImportType: {
           name: "Import Type",
           description:
             "Indicates whether the key material being imported is previously associated with this KMS key or not.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["NEW_KEY_MATERIAL", "EXISTING_KEY_MATERIAL"],
+          },
           required: false,
         },
         KeyMaterialDescription: {

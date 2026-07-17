@@ -102,9 +102,11 @@ const deleteBackup: AppBlock = {
                   },
                   BackupStatus: {
                     type: "string",
+                    enum: ["CREATING", "DELETED", "AVAILABLE"],
                   },
                   BackupType: {
                     type: "string",
+                    enum: ["USER", "SYSTEM", "AWS_BACKUP"],
                   },
                   BackupCreationDateTime: {
                     type: "string",
@@ -147,6 +149,7 @@ const deleteBackup: AppBlock = {
                         },
                         KeyType: {
                           type: "string",
+                          enum: ["HASH", "RANGE"],
                         },
                       },
                       required: ["AttributeName", "KeyType"],
@@ -186,6 +189,7 @@ const deleteBackup: AppBlock = {
                   },
                   BillingMode: {
                     type: "string",
+                    enum: ["PROVISIONED", "PAY_PER_REQUEST"],
                   },
                 },
                 required: [
@@ -273,6 +277,12 @@ const deleteBackup: AppBlock = {
                       },
                       StreamViewType: {
                         type: "string",
+                        enum: [
+                          "NEW_IMAGE",
+                          "OLD_IMAGE",
+                          "NEW_AND_OLD_IMAGES",
+                          "KEYS_ONLY",
+                        ],
                       },
                     },
                     required: ["StreamEnabled"],
@@ -283,6 +293,7 @@ const deleteBackup: AppBlock = {
                     properties: {
                       TimeToLiveStatus: {
                         type: "string",
+                        enum: ["ENABLING", "DISABLING", "ENABLED", "DISABLED"],
                       },
                       AttributeName: {
                         type: "string",
@@ -295,9 +306,17 @@ const deleteBackup: AppBlock = {
                     properties: {
                       Status: {
                         type: "string",
+                        enum: [
+                          "ENABLING",
+                          "ENABLED",
+                          "DISABLING",
+                          "DISABLED",
+                          "UPDATING",
+                        ],
                       },
                       SSEType: {
                         type: "string",
+                        enum: ["AES256", "KMS"],
                       },
                       KMSMasterKeyArn: {
                         type: "string",

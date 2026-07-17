@@ -91,7 +91,10 @@ const createEventSourceMapping: AppBlock = {
         StartingPosition: {
           name: "Starting Position",
           description: "The position in a stream from which to start reading.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["TRIM_HORIZON", "LATEST", "AT_TIMESTAMP"],
+          },
           required: false,
         },
         StartingPositionTimestamp: {
@@ -204,6 +207,16 @@ const createEventSourceMapping: AppBlock = {
               properties: {
                 Type: {
                   type: "string",
+                  enum: [
+                    "BASIC_AUTH",
+                    "VPC_SUBNET",
+                    "VPC_SECURITY_GROUP",
+                    "SASL_SCRAM_512_AUTH",
+                    "SASL_SCRAM_256_AUTH",
+                    "VIRTUAL_HOST",
+                    "CLIENT_CERTIFICATE_TLS_AUTH",
+                    "SERVER_ROOT_CA_CERTIFICATE",
+                  ],
                 },
                 URI: {
                   type: "string",
@@ -240,6 +253,7 @@ const createEventSourceMapping: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["ReportBatchItemFailures"],
             },
           },
           required: false,
@@ -262,6 +276,7 @@ const createEventSourceMapping: AppBlock = {
                   },
                   EventRecordFormat: {
                     type: "string",
+                    enum: ["JSON", "SOURCE"],
                   },
                   AccessConfigs: {
                     type: "array",
@@ -270,6 +285,11 @@ const createEventSourceMapping: AppBlock = {
                       properties: {
                         Type: {
                           type: "string",
+                          enum: [
+                            "BASIC_AUTH",
+                            "CLIENT_CERTIFICATE_TLS_AUTH",
+                            "SERVER_ROOT_CA_CERTIFICATE",
+                          ],
                         },
                         URI: {
                           type: "string",
@@ -285,6 +305,7 @@ const createEventSourceMapping: AppBlock = {
                       properties: {
                         Attribute: {
                           type: "string",
+                          enum: ["KEY", "VALUE"],
                         },
                       },
                       additionalProperties: false,
@@ -316,6 +337,7 @@ const createEventSourceMapping: AppBlock = {
                   },
                   EventRecordFormat: {
                     type: "string",
+                    enum: ["JSON", "SOURCE"],
                   },
                   AccessConfigs: {
                     type: "array",
@@ -324,6 +346,11 @@ const createEventSourceMapping: AppBlock = {
                       properties: {
                         Type: {
                           type: "string",
+                          enum: [
+                            "BASIC_AUTH",
+                            "CLIENT_CERTIFICATE_TLS_AUTH",
+                            "SERVER_ROOT_CA_CERTIFICATE",
+                          ],
                         },
                         URI: {
                           type: "string",
@@ -339,6 +366,7 @@ const createEventSourceMapping: AppBlock = {
                       properties: {
                         Attribute: {
                           type: "string",
+                          enum: ["KEY", "VALUE"],
                         },
                       },
                       additionalProperties: false,
@@ -382,6 +410,7 @@ const createEventSourceMapping: AppBlock = {
               },
               FullDocument: {
                 type: "string",
+                enum: ["UpdateLookup", "Default"],
               },
             },
             additionalProperties: false,
@@ -405,6 +434,7 @@ const createEventSourceMapping: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["EventCount", "ErrorCount", "KafkaMetrics"],
                 },
               },
             },
@@ -421,6 +451,7 @@ const createEventSourceMapping: AppBlock = {
             properties: {
               SystemLogLevel: {
                 type: "string",
+                enum: ["DEBUG", "INFO", "WARN"],
               },
             },
             additionalProperties: false,
@@ -517,6 +548,7 @@ const createEventSourceMapping: AppBlock = {
           },
           StartingPosition: {
             type: "string",
+            enum: ["TRIM_HORIZON", "LATEST", "AT_TIMESTAMP"],
             description:
               "The position in a stream from which to start reading.",
           },
@@ -635,6 +667,16 @@ const createEventSourceMapping: AppBlock = {
               properties: {
                 Type: {
                   type: "string",
+                  enum: [
+                    "BASIC_AUTH",
+                    "VPC_SUBNET",
+                    "VPC_SECURITY_GROUP",
+                    "SASL_SCRAM_512_AUTH",
+                    "SASL_SCRAM_256_AUTH",
+                    "VIRTUAL_HOST",
+                    "CLIENT_CERTIFICATE_TLS_AUTH",
+                    "SERVER_ROOT_CA_CERTIFICATE",
+                  ],
                 },
                 URI: {
                   type: "string",
@@ -683,6 +725,7 @@ const createEventSourceMapping: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["ReportBatchItemFailures"],
             },
             description:
               "(Kinesis, DynamoDB Streams, Amazon MSK, self-managed Apache Kafka, and Amazon SQS) A list of current response type enums applied to the event source mapping.",
@@ -701,6 +744,7 @@ const createEventSourceMapping: AppBlock = {
                   },
                   EventRecordFormat: {
                     type: "string",
+                    enum: ["JSON", "SOURCE"],
                   },
                   AccessConfigs: {
                     type: "array",
@@ -709,6 +753,11 @@ const createEventSourceMapping: AppBlock = {
                       properties: {
                         Type: {
                           type: "string",
+                          enum: [
+                            "BASIC_AUTH",
+                            "CLIENT_CERTIFICATE_TLS_AUTH",
+                            "SERVER_ROOT_CA_CERTIFICATE",
+                          ],
                         },
                         URI: {
                           type: "string",
@@ -724,6 +773,7 @@ const createEventSourceMapping: AppBlock = {
                       properties: {
                         Attribute: {
                           type: "string",
+                          enum: ["KEY", "VALUE"],
                         },
                       },
                       additionalProperties: false,
@@ -751,6 +801,7 @@ const createEventSourceMapping: AppBlock = {
                   },
                   EventRecordFormat: {
                     type: "string",
+                    enum: ["JSON", "SOURCE"],
                   },
                   AccessConfigs: {
                     type: "array",
@@ -759,6 +810,11 @@ const createEventSourceMapping: AppBlock = {
                       properties: {
                         Type: {
                           type: "string",
+                          enum: [
+                            "BASIC_AUTH",
+                            "CLIENT_CERTIFICATE_TLS_AUTH",
+                            "SERVER_ROOT_CA_CERTIFICATE",
+                          ],
                         },
                         URI: {
                           type: "string",
@@ -774,6 +830,7 @@ const createEventSourceMapping: AppBlock = {
                       properties: {
                         Attribute: {
                           type: "string",
+                          enum: ["KEY", "VALUE"],
                         },
                       },
                       additionalProperties: false,
@@ -809,6 +866,7 @@ const createEventSourceMapping: AppBlock = {
               },
               FullDocument: {
                 type: "string",
+                enum: ["UpdateLookup", "Default"],
               },
             },
             additionalProperties: false,
@@ -846,6 +904,7 @@ const createEventSourceMapping: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["EventCount", "ErrorCount", "KafkaMetrics"],
                 },
               },
             },
@@ -857,6 +916,7 @@ const createEventSourceMapping: AppBlock = {
             properties: {
               SystemLogLevel: {
                 type: "string",
+                enum: ["DEBUG", "INFO", "WARN"],
               },
             },
             additionalProperties: false,

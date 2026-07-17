@@ -47,6 +47,7 @@ const describeAssociationExecutionTargets: AppBlock = {
               properties: {
                 Key: {
                   type: "string",
+                  enum: ["Status", "ResourceId", "ResourceType"],
                 },
                 Value: {
                   type: "string",

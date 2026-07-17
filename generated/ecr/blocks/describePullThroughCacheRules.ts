@@ -145,6 +145,17 @@ const describePullThroughCacheRules: AppBlock = {
                 },
                 upstreamRegistry: {
                   type: "string",
+                  enum: [
+                    "ecr",
+                    "ecr-public",
+                    "quay",
+                    "k8s",
+                    "docker-hub",
+                    "github-container-registry",
+                    "azure-container-registry",
+                    "gitlab-container-registry",
+                    "chainguard",
+                  ],
                 },
                 updatedAt: {
                   type: "string",

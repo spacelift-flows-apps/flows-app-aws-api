@@ -44,12 +44,22 @@ const getAwsNetworkPerformanceData: AppBlock = {
                 },
                 Metric: {
                   type: "string",
+                  enum: ["aggregate-latency"],
                 },
                 Statistic: {
                   type: "string",
+                  enum: ["p50"],
                 },
                 Period: {
                   type: "string",
+                  enum: [
+                    "five-minutes",
+                    "fifteen-minutes",
+                    "one-hour",
+                    "three-hours",
+                    "one-day",
+                    "one-week",
+                  ],
                 },
               },
               additionalProperties: false,
@@ -168,12 +178,22 @@ const getAwsNetworkPerformanceData: AppBlock = {
                 },
                 Metric: {
                   type: "string",
+                  enum: ["aggregate-latency"],
                 },
                 Statistic: {
                   type: "string",
+                  enum: ["p50"],
                 },
                 Period: {
                   type: "string",
+                  enum: [
+                    "five-minutes",
+                    "fifteen-minutes",
+                    "one-hour",
+                    "three-hours",
+                    "one-day",
+                    "one-week",
+                  ],
                 },
                 MetricPoints: {
                   type: "array",

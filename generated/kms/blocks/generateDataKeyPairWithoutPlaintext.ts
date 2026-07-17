@@ -47,7 +47,20 @@ const generateDataKeyPairWithoutPlaintext: AppBlock = {
           name: "Key Pair Spec",
           description:
             "Determines the type of data key pair that is generated.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "RSA_2048",
+              "RSA_3072",
+              "RSA_4096",
+              "ECC_NIST_P256",
+              "ECC_NIST_P384",
+              "ECC_NIST_P521",
+              "ECC_SECG_P256K1",
+              "SM2",
+              "ECC_NIST_EDWARDS25519",
+            ],
+          },
           required: true,
         },
         GrantTokens: {
@@ -142,6 +155,17 @@ const generateDataKeyPairWithoutPlaintext: AppBlock = {
           },
           KeyPairSpec: {
             type: "string",
+            enum: [
+              "RSA_2048",
+              "RSA_3072",
+              "RSA_4096",
+              "ECC_NIST_P256",
+              "ECC_NIST_P384",
+              "ECC_NIST_P521",
+              "ECC_SECG_P256K1",
+              "SM2",
+              "ECC_NIST_EDWARDS25519",
+            ],
             description: "The type of data key pair that was generated.",
           },
           KeyMaterialId: {

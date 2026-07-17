@@ -36,7 +36,10 @@ const listRestoreJobsByProtectedResource: AppBlock = {
           name: "By Status",
           description:
             "Returns only restore jobs associated with the specified job status.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["PENDING", "RUNNING", "COMPLETED", "ABORTED", "FAILED"],
+          },
           required: false,
         },
         ByRecoveryPointCreationDateAfter: {
@@ -160,6 +163,13 @@ const listRestoreJobsByProtectedResource: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "PENDING",
+                    "RUNNING",
+                    "COMPLETED",
+                    "ABORTED",
+                    "FAILED",
+                  ],
                 },
                 StatusMessage: {
                   type: "string",
@@ -202,12 +212,14 @@ const listRestoreJobsByProtectedResource: AppBlock = {
                 },
                 ValidationStatus: {
                   type: "string",
+                  enum: ["FAILED", "SUCCESSFUL", "TIMED_OUT", "VALIDATING"],
                 },
                 ValidationStatusMessage: {
                   type: "string",
                 },
                 DeletionStatus: {
                   type: "string",
+                  enum: ["DELETING", "FAILED", "SUCCESSFUL"],
                 },
                 DeletionStatusMessage: {
                   type: "string",

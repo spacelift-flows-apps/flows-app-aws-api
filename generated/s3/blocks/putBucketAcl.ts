@@ -25,7 +25,15 @@ const putBucketAcl: AppBlock = {
         ACL: {
           name: "ACL",
           description: "The canned ACL to apply to the bucket.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "private",
+              "public-read",
+              "public-read-write",
+              "authenticated-read",
+            ],
+          },
           required: false,
         },
         AccessControlPolicy: {
@@ -57,6 +65,11 @@ const putBucketAcl: AppBlock = {
                         },
                         Type: {
                           type: "string",
+                          enum: [
+                            "CanonicalUser",
+                            "AmazonCustomerByEmail",
+                            "Group",
+                          ],
                         },
                       },
                       required: ["Type"],
@@ -64,6 +77,13 @@ const putBucketAcl: AppBlock = {
                     },
                     Permission: {
                       type: "string",
+                      enum: [
+                        "FULL_CONTROL",
+                        "WRITE",
+                        "WRITE_ACP",
+                        "READ",
+                        "READ_ACP",
+                      ],
                     },
                   },
                   additionalProperties: false,
@@ -102,7 +122,21 @@ const putBucketAcl: AppBlock = {
           name: "Checksum Algorithm",
           description:
             "Indicates the algorithm used to create the checksum for the request when you use the SDK.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CRC32",
+              "CRC32C",
+              "SHA1",
+              "SHA256",
+              "CRC64NVME",
+              "SHA512",
+              "MD5",
+              "XXHASH64",
+              "XXHASH3",
+              "XXHASH128",
+            ],
+          },
           required: false,
         },
         GrantFullControl: {

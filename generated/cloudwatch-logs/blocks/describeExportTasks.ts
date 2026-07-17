@@ -33,7 +33,17 @@ const describeExportTasks: AppBlock = {
         statusCode: {
           name: "status Code",
           description: "The status code of the export task.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CANCELLED",
+              "COMPLETED",
+              "FAILED",
+              "PENDING",
+              "PENDING_CANCEL",
+              "RUNNING",
+            ],
+          },
           required: false,
         },
         nextToken: {
@@ -137,6 +147,14 @@ const describeExportTasks: AppBlock = {
                   properties: {
                     code: {
                       type: "string",
+                      enum: [
+                        "CANCELLED",
+                        "COMPLETED",
+                        "FAILED",
+                        "PENDING",
+                        "PENDING_CANCEL",
+                        "RUNNING",
+                      ],
                     },
                     message: {
                       type: "string",

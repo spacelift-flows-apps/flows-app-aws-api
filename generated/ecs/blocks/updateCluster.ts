@@ -37,6 +37,7 @@ const updateCluster: AppBlock = {
               properties: {
                 name: {
                   type: "string",
+                  enum: ["containerInsights"],
                 },
                 value: {
                   type: "string",
@@ -61,6 +62,7 @@ const updateCluster: AppBlock = {
                   },
                   logging: {
                     type: "string",
+                    enum: ["NONE", "DEFAULT", "OVERRIDE"],
                   },
                   logConfiguration: {
                     type: "object",
@@ -197,6 +199,7 @@ const updateCluster: AppBlock = {
                       },
                       logging: {
                         type: "string",
+                        enum: ["NONE", "DEFAULT", "OVERRIDE"],
                       },
                       logConfiguration: {
                         type: "object",
@@ -289,6 +292,7 @@ const updateCluster: AppBlock = {
                   properties: {
                     name: {
                       type: "string",
+                      enum: ["containerInsights"],
                     },
                     value: {
                       type: "string",

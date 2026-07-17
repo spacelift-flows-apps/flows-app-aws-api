@@ -1501,6 +1501,20 @@ const searchCertificates: AppBlock = {
                                         properties: {
                                           ExtendedKeyUsage: {
                                             type: "string",
+                                            enum: [
+                                              "TLS_WEB_SERVER_AUTHENTICATION",
+                                              "TLS_WEB_CLIENT_AUTHENTICATION",
+                                              "CODE_SIGNING",
+                                              "EMAIL_PROTECTION",
+                                              "TIME_STAMPING",
+                                              "OCSP_SIGNING",
+                                              "IPSEC_END_SYSTEM",
+                                              "IPSEC_TUNNEL",
+                                              "IPSEC_USER",
+                                              "ANY",
+                                              "NONE",
+                                              "CUSTOM",
+                                            ],
                                           },
                                         },
                                         required: ["ExtendedKeyUsage"],
@@ -1511,6 +1525,19 @@ const searchCertificates: AppBlock = {
                                         properties: {
                                           KeyUsage: {
                                             type: "string",
+                                            enum: [
+                                              "DIGITAL_SIGNATURE",
+                                              "NON_REPUDIATION",
+                                              "KEY_ENCIPHERMENT",
+                                              "DATA_ENCIPHERMENT",
+                                              "KEY_AGREEMENT",
+                                              "CERTIFICATE_SIGNING",
+                                              "CRL_SIGNING",
+                                              "ENCIPHER_ONLY",
+                                              "DECIPHER_ONLY",
+                                              "ANY",
+                                              "CUSTOM",
+                                            ],
                                           },
                                         },
                                         required: ["KeyUsage"],
@@ -1521,6 +1548,15 @@ const searchCertificates: AppBlock = {
                                         properties: {
                                           KeyAlgorithm: {
                                             type: "string",
+                                            enum: [
+                                              "RSA_1024",
+                                              "RSA_2048",
+                                              "RSA_3072",
+                                              "RSA_4096",
+                                              "EC_prime256v1",
+                                              "EC_secp384r1",
+                                              "EC_secp521r1",
+                                            ],
                                           },
                                         },
                                         required: ["KeyAlgorithm"],
@@ -1582,6 +1618,15 @@ const searchCertificates: AppBlock = {
                                         properties: {
                                           Status: {
                                             type: "string",
+                                            enum: [
+                                              "PENDING_VALIDATION",
+                                              "ISSUED",
+                                              "INACTIVE",
+                                              "EXPIRED",
+                                              "VALIDATION_TIMED_OUT",
+                                              "REVOKED",
+                                              "FAILED",
+                                            ],
                                           },
                                         },
                                         required: ["Status"],
@@ -1592,6 +1637,12 @@ const searchCertificates: AppBlock = {
                                         properties: {
                                           RenewalStatus: {
                                             type: "string",
+                                            enum: [
+                                              "PENDING_AUTO_RENEWAL",
+                                              "PENDING_VALIDATION",
+                                              "SUCCESS",
+                                              "FAILED",
+                                            ],
                                           },
                                         },
                                         required: ["RenewalStatus"],
@@ -1602,6 +1653,11 @@ const searchCertificates: AppBlock = {
                                         properties: {
                                           Type: {
                                             type: "string",
+                                            enum: [
+                                              "IMPORTED",
+                                              "AMAZON_ISSUED",
+                                              "PRIVATE",
+                                            ],
                                           },
                                         },
                                         required: ["Type"],
@@ -1632,6 +1688,7 @@ const searchCertificates: AppBlock = {
                                         properties: {
                                           ExportOption: {
                                             type: "string",
+                                            enum: ["ENABLED", "DISABLED"],
                                           },
                                         },
                                         required: ["ExportOption"],
@@ -1642,6 +1699,7 @@ const searchCertificates: AppBlock = {
                                         properties: {
                                           ManagedBy: {
                                             type: "string",
+                                            enum: ["CLOUDFRONT"],
                                           },
                                         },
                                         required: ["ManagedBy"],
@@ -1652,6 +1710,7 @@ const searchCertificates: AppBlock = {
                                         properties: {
                                           ValidationMethod: {
                                             type: "string",
+                                            enum: ["EMAIL", "DNS", "HTTP"],
                                           },
                                         },
                                         required: ["ValidationMethod"],
@@ -1760,6 +1819,20 @@ const searchCertificates: AppBlock = {
                                 properties: {
                                   ExtendedKeyUsage: {
                                     type: "string",
+                                    enum: [
+                                      "TLS_WEB_SERVER_AUTHENTICATION",
+                                      "TLS_WEB_CLIENT_AUTHENTICATION",
+                                      "CODE_SIGNING",
+                                      "EMAIL_PROTECTION",
+                                      "TIME_STAMPING",
+                                      "OCSP_SIGNING",
+                                      "IPSEC_END_SYSTEM",
+                                      "IPSEC_TUNNEL",
+                                      "IPSEC_USER",
+                                      "ANY",
+                                      "NONE",
+                                      "CUSTOM",
+                                    ],
                                   },
                                 },
                                 required: ["ExtendedKeyUsage"],
@@ -1770,6 +1843,19 @@ const searchCertificates: AppBlock = {
                                 properties: {
                                   KeyUsage: {
                                     type: "string",
+                                    enum: [
+                                      "DIGITAL_SIGNATURE",
+                                      "NON_REPUDIATION",
+                                      "KEY_ENCIPHERMENT",
+                                      "DATA_ENCIPHERMENT",
+                                      "KEY_AGREEMENT",
+                                      "CERTIFICATE_SIGNING",
+                                      "CRL_SIGNING",
+                                      "ENCIPHER_ONLY",
+                                      "DECIPHER_ONLY",
+                                      "ANY",
+                                      "CUSTOM",
+                                    ],
                                   },
                                 },
                                 required: ["KeyUsage"],
@@ -1780,6 +1866,15 @@ const searchCertificates: AppBlock = {
                                 properties: {
                                   KeyAlgorithm: {
                                     type: "string",
+                                    enum: [
+                                      "RSA_1024",
+                                      "RSA_2048",
+                                      "RSA_3072",
+                                      "RSA_4096",
+                                      "EC_prime256v1",
+                                      "EC_secp384r1",
+                                      "EC_secp521r1",
+                                    ],
                                   },
                                 },
                                 required: ["KeyAlgorithm"],
@@ -1849,6 +1944,15 @@ const searchCertificates: AppBlock = {
                                 properties: {
                                   Status: {
                                     type: "string",
+                                    enum: [
+                                      "PENDING_VALIDATION",
+                                      "ISSUED",
+                                      "INACTIVE",
+                                      "EXPIRED",
+                                      "VALIDATION_TIMED_OUT",
+                                      "REVOKED",
+                                      "FAILED",
+                                    ],
                                   },
                                 },
                                 required: ["Status"],
@@ -1859,6 +1963,12 @@ const searchCertificates: AppBlock = {
                                 properties: {
                                   RenewalStatus: {
                                     type: "string",
+                                    enum: [
+                                      "PENDING_AUTO_RENEWAL",
+                                      "PENDING_VALIDATION",
+                                      "SUCCESS",
+                                      "FAILED",
+                                    ],
                                   },
                                 },
                                 required: ["RenewalStatus"],
@@ -1869,6 +1979,11 @@ const searchCertificates: AppBlock = {
                                 properties: {
                                   Type: {
                                     type: "string",
+                                    enum: [
+                                      "IMPORTED",
+                                      "AMAZON_ISSUED",
+                                      "PRIVATE",
+                                    ],
                                   },
                                 },
                                 required: ["Type"],
@@ -1899,6 +2014,7 @@ const searchCertificates: AppBlock = {
                                 properties: {
                                   ExportOption: {
                                     type: "string",
+                                    enum: ["ENABLED", "DISABLED"],
                                   },
                                 },
                                 required: ["ExportOption"],
@@ -1909,6 +2025,7 @@ const searchCertificates: AppBlock = {
                                 properties: {
                                   ManagedBy: {
                                     type: "string",
+                                    enum: ["CLOUDFRONT"],
                                   },
                                 },
                                 required: ["ManagedBy"],
@@ -1919,6 +2036,7 @@ const searchCertificates: AppBlock = {
                                 properties: {
                                   ValidationMethod: {
                                     type: "string",
+                                    enum: ["EMAIL", "DNS", "HTTP"],
                                   },
                                 },
                                 required: ["ValidationMethod"],
@@ -1957,13 +2075,38 @@ const searchCertificates: AppBlock = {
         SortBy: {
           name: "Sort By",
           description: "Specifies the field to sort results by.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CREATED_AT",
+              "NOT_AFTER",
+              "STATUS",
+              "RENEWAL_STATUS",
+              "EXPORTED",
+              "IN_USE",
+              "NOT_BEFORE",
+              "KEY_ALGORITHM",
+              "TYPE",
+              "CERTIFICATE_ARN",
+              "COMMON_NAME",
+              "REVOKED_AT",
+              "RENEWAL_ELIGIBILITY",
+              "ISSUED_AT",
+              "MANAGED_BY",
+              "EXPORT_OPTION",
+              "VALIDATION_METHOD",
+              "IMPORTED_AT",
+            ],
+          },
           required: false,
         },
         SortOrder: {
           name: "Sort Order",
           description: "Specifies the order of sorted results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ASCENDING", "DESCENDING"],
+          },
           required: false,
         },
       },
@@ -2216,15 +2359,51 @@ const searchCertificates: AppBlock = {
                       type: "array",
                       items: {
                         type: "string",
+                        enum: [
+                          "TLS_WEB_SERVER_AUTHENTICATION",
+                          "TLS_WEB_CLIENT_AUTHENTICATION",
+                          "CODE_SIGNING",
+                          "EMAIL_PROTECTION",
+                          "TIME_STAMPING",
+                          "OCSP_SIGNING",
+                          "IPSEC_END_SYSTEM",
+                          "IPSEC_TUNNEL",
+                          "IPSEC_USER",
+                          "ANY",
+                          "NONE",
+                          "CUSTOM",
+                        ],
                       },
                     },
                     KeyAlgorithm: {
                       type: "string",
+                      enum: [
+                        "RSA_1024",
+                        "RSA_2048",
+                        "RSA_3072",
+                        "RSA_4096",
+                        "EC_prime256v1",
+                        "EC_secp384r1",
+                        "EC_secp521r1",
+                      ],
                     },
                     KeyUsages: {
                       type: "array",
                       items: {
                         type: "string",
+                        enum: [
+                          "DIGITAL_SIGNATURE",
+                          "NON_REPUDIATION",
+                          "KEY_ENCIPHERMENT",
+                          "DATA_ENCIPHERMENT",
+                          "KEY_AGREEMENT",
+                          "CERTIFICATE_SIGNING",
+                          "CRL_SIGNING",
+                          "ENCIPHER_ONLY",
+                          "DECIPHER_ONLY",
+                          "ANY",
+                          "CUSTOM",
+                        ],
                       },
                     },
                     SerialNumber: {
@@ -2264,27 +2443,47 @@ const searchCertificates: AppBlock = {
                             },
                             RenewalEligibility: {
                               type: "string",
+                              enum: ["ELIGIBLE", "INELIGIBLE"],
                             },
                             RevokedAt: {
                               type: "string",
                             },
                             Status: {
                               type: "string",
+                              enum: [
+                                "PENDING_VALIDATION",
+                                "ISSUED",
+                                "INACTIVE",
+                                "EXPIRED",
+                                "VALIDATION_TIMED_OUT",
+                                "REVOKED",
+                                "FAILED",
+                              ],
                             },
                             RenewalStatus: {
                               type: "string",
+                              enum: [
+                                "PENDING_AUTO_RENEWAL",
+                                "PENDING_VALIDATION",
+                                "SUCCESS",
+                                "FAILED",
+                              ],
                             },
                             Type: {
                               type: "string",
+                              enum: ["IMPORTED", "AMAZON_ISSUED", "PRIVATE"],
                             },
                             ExportOption: {
                               type: "string",
+                              enum: ["ENABLED", "DISABLED"],
                             },
                             ManagedBy: {
                               type: "string",
+                              enum: ["CLOUDFRONT"],
                             },
                             ValidationMethod: {
                               type: "string",
+                              enum: ["EMAIL", "DNS", "HTTP"],
                             },
                           },
                           additionalProperties: false,

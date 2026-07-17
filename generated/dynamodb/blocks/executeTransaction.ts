@@ -152,6 +152,7 @@ const executeTransaction: AppBlock = {
                 },
                 ReturnValuesOnConditionCheckFailure: {
                   type: "string",
+                  enum: ["ALL_OLD", "NONE"],
                 },
               },
               required: ["Statement"],
@@ -171,7 +172,10 @@ const executeTransaction: AppBlock = {
           name: "Return Consumed Capacity",
           description:
             "Determines the level of detail about either provisioned or on-demand throughput consumption that is returned in the response.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["INDEXES", "TOTAL", "NONE"],
+          },
           required: false,
         },
       },

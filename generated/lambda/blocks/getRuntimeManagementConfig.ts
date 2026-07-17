@@ -98,6 +98,7 @@ const getRuntimeManagementConfig: AppBlock = {
         properties: {
           UpdateRuntimeOn: {
             type: "string",
+            enum: ["Auto", "Manual", "FunctionUpdate"],
             description: "The current runtime update mode of the function.",
           },
           RuntimeVersionArn: {

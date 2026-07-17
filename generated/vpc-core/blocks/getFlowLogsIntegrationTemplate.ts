@@ -61,6 +61,7 @@ const getFlowLogsIntegrationTemplate: AppBlock = {
                     },
                     PartitionLoadFrequency: {
                       type: "string",
+                      enum: ["none", "daily", "weekly", "monthly"],
                     },
                     PartitionStartDate: {
                       type: "string",

@@ -100,6 +100,7 @@ const getBucketAbac: AppBlock = {
             properties: {
               Status: {
                 type: "string",
+                enum: ["Enabled", "Disabled"],
               },
             },
             additionalProperties: false,

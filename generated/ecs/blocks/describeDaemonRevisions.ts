@@ -130,6 +130,7 @@ const describeDaemonRevisions: AppBlock = {
                 },
                 propagateTags: {
                   type: "string",
+                  enum: ["DAEMON", "NONE"],
                 },
                 enableECSManagedTags: {
                   type: "boolean",

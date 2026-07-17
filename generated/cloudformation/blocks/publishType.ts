@@ -27,7 +27,10 @@ const publishType: AppBlock = {
         Type: {
           name: "Type",
           description: "The type of the extension.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["RESOURCE", "MODULE", "HOOK"],
+          },
           required: false,
         },
         Arn: {

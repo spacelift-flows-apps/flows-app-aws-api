@@ -499,6 +499,7 @@ const restoreDBClusterFromS3: AppBlock = {
               },
               UpgradeRolloutOrder: {
                 type: "string",
+                enum: ["first", "second", "last"],
               },
               ReplicationSourceIdentifier: {
                 type: "string",
@@ -574,6 +575,7 @@ const restoreDBClusterFromS3: AppBlock = {
               },
               StorageEncryptionType: {
                 type: "string",
+                enum: ["none", "sse-kms", "sse-rds"],
               },
               KmsKeyId: {
                 type: "string",
@@ -682,6 +684,7 @@ const restoreDBClusterFromS3: AppBlock = {
                       },
                       ReplicaMode: {
                         type: "string",
+                        enum: ["open-read-only", "mounted"],
                       },
                     },
                     additionalProperties: false,
@@ -742,6 +745,7 @@ const restoreDBClusterFromS3: AppBlock = {
                   },
                   ReplicaMode: {
                     type: "string",
+                    enum: ["open-read-only", "mounted"],
                   },
                 },
                 additionalProperties: false,
@@ -775,9 +779,11 @@ const restoreDBClusterFromS3: AppBlock = {
               },
               ActivityStreamMode: {
                 type: "string",
+                enum: ["sync", "async"],
               },
               ActivityStreamStatus: {
                 type: "string",
+                enum: ["stopped", "starting", "started", "stopping"],
               },
               ActivityStreamKmsKeyId: {
                 type: "string",
@@ -844,6 +850,13 @@ const restoreDBClusterFromS3: AppBlock = {
               },
               GlobalWriteForwardingStatus: {
                 type: "string",
+                enum: [
+                  "enabled",
+                  "disabled",
+                  "enabling",
+                  "disabling",
+                  "unknown",
+                ],
               },
               GlobalWriteForwardingRequested: {
                 type: "boolean",
@@ -880,6 +893,7 @@ const restoreDBClusterFromS3: AppBlock = {
               },
               DatabaseInsightsMode: {
                 type: "string",
+                enum: ["standard", "advanced"],
               },
               PerformanceInsightsEnabled: {
                 type: "boolean",
@@ -910,6 +924,13 @@ const restoreDBClusterFromS3: AppBlock = {
               },
               LocalWriteForwardingStatus: {
                 type: "string",
+                enum: [
+                  "enabled",
+                  "disabled",
+                  "enabling",
+                  "disabling",
+                  "requested",
+                ],
               },
               AwsBackupRecoveryPointArn: {
                 type: "string",
@@ -919,6 +940,16 @@ const restoreDBClusterFromS3: AppBlock = {
                 properties: {
                   Status: {
                     type: "string",
+                    enum: [
+                      "active",
+                      "not-in-use",
+                      "enabled",
+                      "disabled",
+                      "enabling",
+                      "disabling",
+                      "modifying-max-capacity",
+                      "error",
+                    ],
                   },
                   MinRequiredACU: {
                     type: "number",
@@ -928,6 +959,7 @@ const restoreDBClusterFromS3: AppBlock = {
               },
               ClusterScalabilityType: {
                 type: "string",
+                enum: ["standard", "limitless"],
               },
               CertificateDetails: {
                 type: "object",

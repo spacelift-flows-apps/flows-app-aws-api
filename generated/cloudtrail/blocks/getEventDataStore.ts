@@ -99,6 +99,14 @@ const getEventDataStore: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: [
+              "CREATED",
+              "ENABLED",
+              "PENDING_DELETION",
+              "STARTING_INGESTION",
+              "STOPPING_INGESTION",
+              "STOPPED_INGESTION",
+            ],
             description: "The status of an event data store.",
           },
           AdvancedEventSelectors: {
@@ -188,10 +196,12 @@ const getEventDataStore: AppBlock = {
           },
           BillingMode: {
             type: "string",
+            enum: ["EXTENDABLE_RETENTION_PRICING", "FIXED_RETENTION_PRICING"],
             description: "The billing mode for the event data store.",
           },
           FederationStatus: {
             type: "string",
+            enum: ["ENABLING", "ENABLED", "DISABLING", "DISABLED"],
             description: "Indicates the Lake query federation status.",
           },
           FederationRoleArn: {

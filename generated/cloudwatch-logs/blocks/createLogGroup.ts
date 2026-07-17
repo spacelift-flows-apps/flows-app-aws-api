@@ -52,7 +52,10 @@ const createLogGroup: AppBlock = {
           name: "log Group Class",
           description:
             "Use this parameter to specify the log group class for this log group.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["STANDARD", "INFREQUENT_ACCESS", "DELIVERY"],
+          },
           required: false,
         },
         deletionProtectionEnabled: {

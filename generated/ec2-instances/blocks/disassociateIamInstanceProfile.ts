@@ -113,6 +113,12 @@ const disassociateIamInstanceProfile: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "associating",
+                  "associated",
+                  "disassociating",
+                  "disassociated",
+                ],
               },
               Timestamp: {
                 type: "string",

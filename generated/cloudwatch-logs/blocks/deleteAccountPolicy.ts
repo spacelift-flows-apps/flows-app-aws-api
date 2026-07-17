@@ -33,7 +33,16 @@ const deleteAccountPolicy: AppBlock = {
         policyType: {
           name: "policy Type",
           description: "The type of policy to delete.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "DATA_PROTECTION_POLICY",
+              "SUBSCRIPTION_FILTER_POLICY",
+              "FIELD_INDEX_POLICY",
+              "TRANSFORMER_POLICY",
+              "METRIC_EXTRACTION_POLICY",
+            ],
+          },
           required: true,
         },
       },

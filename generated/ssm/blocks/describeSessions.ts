@@ -24,7 +24,10 @@ const describeSessions: AppBlock = {
         State: {
           name: "State",
           description: "The session status to retrieve a list of sessions for.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Active", "History"],
+          },
           required: true,
         },
         MaxResults: {
@@ -50,6 +53,15 @@ const describeSessions: AppBlock = {
               properties: {
                 key: {
                   type: "string",
+                  enum: [
+                    "InvokedAfter",
+                    "InvokedBefore",
+                    "Target",
+                    "Owner",
+                    "Status",
+                    "SessionId",
+                    "AccessType",
+                  ],
                 },
                 value: {
                   type: "string",
@@ -132,6 +144,14 @@ const describeSessions: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "Connected",
+                    "Connecting",
+                    "Disconnected",
+                    "Terminated",
+                    "Terminating",
+                    "Failed",
+                  ],
                 },
                 StartDate: {
                   type: "string",
@@ -168,6 +188,7 @@ const describeSessions: AppBlock = {
                 },
                 AccessType: {
                   type: "string",
+                  enum: ["Standard", "JustInTime"],
                 },
               },
               additionalProperties: false,

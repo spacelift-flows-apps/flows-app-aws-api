@@ -94,10 +94,12 @@ const describePublisher: AppBlock = {
           },
           PublisherStatus: {
             type: "string",
+            enum: ["VERIFIED", "UNVERIFIED"],
             description: "Whether the publisher is verified.",
           },
           IdentityProvider: {
             type: "string",
+            enum: ["AWS_Marketplace", "GitHub", "Bitbucket"],
             description:
               "The type of account used as the identity provider when registering this publisher with CloudFormation.",
           },

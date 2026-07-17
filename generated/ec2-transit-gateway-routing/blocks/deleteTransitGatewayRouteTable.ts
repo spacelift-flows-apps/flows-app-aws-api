@@ -108,6 +108,7 @@ const deleteTransitGatewayRouteTable: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["pending", "available", "deleting", "deleted"],
               },
               DefaultAssociationRouteTable: {
                 type: "boolean",

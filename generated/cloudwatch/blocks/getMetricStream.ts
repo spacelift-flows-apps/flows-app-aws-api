@@ -162,6 +162,7 @@ const getMetricStream: AppBlock = {
           },
           OutputFormat: {
             type: "string",
+            enum: ["json", "opentelemetry0.7", "opentelemetry1.0"],
             description: "The output format for the stream.",
           },
           StatisticsConfigurations: {

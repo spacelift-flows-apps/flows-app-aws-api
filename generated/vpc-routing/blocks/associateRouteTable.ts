@@ -120,6 +120,13 @@ const associateRouteTable: AppBlock = {
             properties: {
               State: {
                 type: "string",
+                enum: [
+                  "associating",
+                  "associated",
+                  "disassociating",
+                  "disassociated",
+                  "failed",
+                ],
               },
               StatusMessage: {
                 type: "string",

@@ -46,6 +46,7 @@ const updateByteMatchSet: AppBlock = {
               properties: {
                 Action: {
                   type: "string",
+                  enum: ["INSERT", "DELETE"],
                 },
                 ByteMatchTuple: {
                   type: "object",
@@ -55,6 +56,15 @@ const updateByteMatchSet: AppBlock = {
                       properties: {
                         Type: {
                           type: "string",
+                          enum: [
+                            "URI",
+                            "QUERY_STRING",
+                            "HEADER",
+                            "METHOD",
+                            "BODY",
+                            "SINGLE_QUERY_ARG",
+                            "ALL_QUERY_ARGS",
+                          ],
                         },
                         Data: {
                           type: "string",
@@ -68,9 +78,24 @@ const updateByteMatchSet: AppBlock = {
                     },
                     TextTransformation: {
                       type: "string",
+                      enum: [
+                        "NONE",
+                        "COMPRESS_WHITE_SPACE",
+                        "HTML_ENTITY_DECODE",
+                        "LOWERCASE",
+                        "CMD_LINE",
+                        "URL_DECODE",
+                      ],
                     },
                     PositionalConstraint: {
                       type: "string",
+                      enum: [
+                        "EXACTLY",
+                        "STARTS_WITH",
+                        "ENDS_WITH",
+                        "CONTAINS",
+                        "CONTAINS_WORD",
+                      ],
                     },
                   },
                   required: [

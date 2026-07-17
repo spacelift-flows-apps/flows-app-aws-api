@@ -49,6 +49,7 @@ const importVolume: AppBlock = {
             properties: {
               Format: {
                 type: "string",
+                enum: ["VMDK", "RAW", "VHD"],
               },
               Bytes: {
                 type: "number",
@@ -161,6 +162,7 @@ const importVolume: AppBlock = {
                   },
                   Platform: {
                     type: "string",
+                    enum: ["Windows"],
                   },
                   Volumes: {
                     type: "array",
@@ -233,6 +235,7 @@ const importVolume: AppBlock = {
                       },
                       Format: {
                         type: "string",
+                        enum: ["VMDK", "RAW", "VHD"],
                       },
                       ImportManifestUrl: {
                         type: "string",
@@ -260,6 +263,7 @@ const importVolume: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["active", "cancelling", "cancelled", "completed"],
               },
               StatusMessage: {
                 type: "string",

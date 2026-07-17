@@ -113,6 +113,11 @@ const describeRule: AppBlock = {
           },
           State: {
             type: "string",
+            enum: [
+              "ENABLED",
+              "DISABLED",
+              "ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS",
+            ],
             description: "Specifies whether the rule is enabled or disabled.",
           },
           Description: {

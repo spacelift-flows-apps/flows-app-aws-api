@@ -132,6 +132,7 @@ const registerDaemonTaskDefinition: AppBlock = {
                       },
                       type: {
                         type: "string",
+                        enum: ["s3"],
                       },
                     },
                     required: ["value", "type"],
@@ -195,6 +196,16 @@ const registerDaemonTaskDefinition: AppBlock = {
                   properties: {
                     logDriver: {
                       type: "string",
+                      enum: [
+                        "json-file",
+                        "syslog",
+                        "journald",
+                        "gelf",
+                        "fluentd",
+                        "awslogs",
+                        "splunk",
+                        "awsfirelens",
+                      ],
                     },
                     options: {
                       type: "object",
@@ -223,6 +234,7 @@ const registerDaemonTaskDefinition: AppBlock = {
                   properties: {
                     type: {
                       type: "string",
+                      enum: ["fluentd", "fluentbit"],
                     },
                     options: {
                       type: "object",
@@ -247,6 +259,23 @@ const registerDaemonTaskDefinition: AppBlock = {
                     properties: {
                       name: {
                         type: "string",
+                        enum: [
+                          "core",
+                          "cpu",
+                          "data",
+                          "fsize",
+                          "locks",
+                          "memlock",
+                          "msgqueue",
+                          "nice",
+                          "nofile",
+                          "nproc",
+                          "rss",
+                          "rtprio",
+                          "rttime",
+                          "sigpending",
+                          "stack",
+                        ],
                       },
                       softLimit: {
                         type: "number",
@@ -318,6 +347,7 @@ const registerDaemonTaskDefinition: AppBlock = {
                       },
                       condition: {
                         type: "string",
+                        enum: ["START", "COMPLETE", "SUCCESS", "HEALTHY"],
                       },
                     },
                     required: ["containerName", "condition"],

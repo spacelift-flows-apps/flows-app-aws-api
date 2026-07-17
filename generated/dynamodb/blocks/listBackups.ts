@@ -58,7 +58,10 @@ const listBackups: AppBlock = {
           name: "Backup Type",
           description:
             "The backups from the table specified by BackupType are listed.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["USER", "SYSTEM", "AWS_BACKUP", "ALL"],
+          },
           required: false,
         },
       },
@@ -152,9 +155,11 @@ const listBackups: AppBlock = {
                 },
                 BackupStatus: {
                   type: "string",
+                  enum: ["CREATING", "DELETED", "AVAILABLE"],
                 },
                 BackupType: {
                   type: "string",
+                  enum: ["USER", "SYSTEM", "AWS_BACKUP"],
                 },
                 BackupSizeBytes: {
                   type: "number",

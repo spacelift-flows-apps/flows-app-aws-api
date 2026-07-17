@@ -51,6 +51,7 @@ const describeInstancePatchStatesForPatchGroup: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: ["Equal", "NotEqual", "LessThan", "GreaterThan"],
                 },
               },
               required: ["Key", "Values", "Type"],
@@ -190,12 +191,14 @@ const describeInstancePatchStatesForPatchGroup: AppBlock = {
                 },
                 Operation: {
                   type: "string",
+                  enum: ["Scan", "Install"],
                 },
                 LastNoRebootInstallOperationTime: {
                   type: "string",
                 },
                 RebootOption: {
                   type: "string",
+                  enum: ["RebootIfNeeded", "NoReboot"],
                 },
                 CriticalNonCompliantCount: {
                   type: "number",

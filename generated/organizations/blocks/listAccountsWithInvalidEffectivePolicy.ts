@@ -27,7 +27,22 @@ const listAccountsWithInvalidEffectivePolicy: AppBlock = {
         PolicyType: {
           name: "Policy Type",
           description: "The type of policy that you want information about.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "TAG_POLICY",
+              "BACKUP_POLICY",
+              "AISERVICES_OPT_OUT_POLICY",
+              "CHATBOT_POLICY",
+              "DECLARATIVE_POLICY_EC2",
+              "SECURITYHUB_POLICY",
+              "INSPECTOR_POLICY",
+              "UPGRADE_ROLLOUT_POLICY",
+              "BEDROCK_POLICY",
+              "S3_POLICY",
+              "NETWORK_SECURITY_DIRECTOR_POLICY",
+            ],
+          },
           required: true,
         },
         NextToken: {
@@ -123,9 +138,17 @@ const listAccountsWithInvalidEffectivePolicy: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["ACTIVE", "SUSPENDED", "PENDING_CLOSURE"],
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "PENDING_ACTIVATION",
+                    "ACTIVE",
+                    "SUSPENDED",
+                    "PENDING_CLOSURE",
+                    "CLOSED",
+                  ],
                 },
                 Paths: {
                   type: "array",
@@ -135,6 +158,7 @@ const listAccountsWithInvalidEffectivePolicy: AppBlock = {
                 },
                 JoinedMethod: {
                   type: "string",
+                  enum: ["INVITED", "CREATED"],
                 },
                 JoinedTimestamp: {
                   type: "string",
@@ -147,6 +171,19 @@ const listAccountsWithInvalidEffectivePolicy: AppBlock = {
           },
           PolicyType: {
             type: "string",
+            enum: [
+              "TAG_POLICY",
+              "BACKUP_POLICY",
+              "AISERVICES_OPT_OUT_POLICY",
+              "CHATBOT_POLICY",
+              "DECLARATIVE_POLICY_EC2",
+              "SECURITYHUB_POLICY",
+              "INSPECTOR_POLICY",
+              "UPGRADE_ROLLOUT_POLICY",
+              "BEDROCK_POLICY",
+              "S3_POLICY",
+              "NETWORK_SECURITY_DIRECTOR_POLICY",
+            ],
             description: "The specified policy type.",
           },
           NextToken: {

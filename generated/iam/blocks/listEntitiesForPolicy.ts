@@ -31,7 +31,16 @@ const listEntitiesForPolicy: AppBlock = {
         EntityFilter: {
           name: "Entity Filter",
           description: "The entity type to use for filtering the results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "User",
+              "Role",
+              "Group",
+              "LocalManagedPolicy",
+              "AWSManagedPolicy",
+            ],
+          },
           required: false,
         },
         PathPrefix: {
@@ -44,7 +53,10 @@ const listEntitiesForPolicy: AppBlock = {
           name: "Policy Usage Filter",
           description:
             "The policy usage method to use for filtering the results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["PermissionsPolicy", "PermissionsBoundary"],
+          },
           required: false,
         },
         Marker: {

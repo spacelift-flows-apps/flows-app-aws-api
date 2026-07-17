@@ -223,6 +223,7 @@ const describeVolumeStatus: AppBlock = {
                     },
                     Status: {
                       type: "string",
+                      enum: ["ok", "impaired", "insufficient-data", "warning"],
                     },
                   },
                   additionalProperties: false,
@@ -247,6 +248,7 @@ const describeVolumeStatus: AppBlock = {
                   properties: {
                     InitializationType: {
                       type: "string",
+                      enum: ["default", "provisioned-rate", "volume-copy"],
                     },
                     Progress: {
                       type: "number",

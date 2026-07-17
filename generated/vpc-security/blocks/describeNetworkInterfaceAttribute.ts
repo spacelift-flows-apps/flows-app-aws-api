@@ -40,7 +40,16 @@ const describeNetworkInterfaceAttribute: AppBlock = {
         Attribute: {
           name: "Attribute",
           description: "The attribute of the network interface.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "description",
+              "groupSet",
+              "sourceDestCheck",
+              "attachment",
+              "associatePublicIpAddress",
+            ],
+          },
           required: false,
         },
       },
@@ -129,6 +138,7 @@ const describeNetworkInterfaceAttribute: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["attaching", "attached", "detaching", "detached"],
               },
               EnaSrdSpecification: {
                 type: "object",

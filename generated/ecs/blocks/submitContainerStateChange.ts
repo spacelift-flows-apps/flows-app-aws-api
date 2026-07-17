@@ -88,6 +88,7 @@ const submitContainerStateChange: AppBlock = {
                 },
                 protocol: {
                   type: "string",
+                  enum: ["tcp", "udp"],
                 },
                 containerPortRange: {
                   type: "string",

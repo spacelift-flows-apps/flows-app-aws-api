@@ -112,12 +112,14 @@ const updateContinuousBackups: AppBlock = {
             properties: {
               ContinuousBackupsStatus: {
                 type: "string",
+                enum: ["ENABLED", "DISABLED"],
               },
               PointInTimeRecoveryDescription: {
                 type: "object",
                 properties: {
                   PointInTimeRecoveryStatus: {
                     type: "string",
+                    enum: ["ENABLED", "DISABLED"],
                   },
                   RecoveryPeriodInDays: {
                     type: "number",

@@ -35,7 +35,16 @@ const describeDataSharesForProducer: AppBlock = {
           name: "Status",
           description:
             "An identifier giving the status of a datashare in the producer.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "ACTIVE",
+              "AUTHORIZED",
+              "PENDING_AUTHORIZATION",
+              "DEAUTHORIZED",
+              "REJECTED",
+            ],
+          },
           required: false,
         },
         MaxRecords: {
@@ -136,6 +145,14 @@ const describeDataSharesForProducer: AppBlock = {
                       },
                       Status: {
                         type: "string",
+                        enum: [
+                          "ACTIVE",
+                          "PENDING_AUTHORIZATION",
+                          "AUTHORIZED",
+                          "DEAUTHORIZED",
+                          "REJECTED",
+                          "AVAILABLE",
+                        ],
                       },
                       ConsumerRegion: {
                         type: "string",
@@ -161,6 +178,7 @@ const describeDataSharesForProducer: AppBlock = {
                 },
                 DataShareType: {
                   type: "string",
+                  enum: ["INTERNAL"],
                 },
               },
               additionalProperties: false,

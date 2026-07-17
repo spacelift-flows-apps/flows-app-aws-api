@@ -99,6 +99,7 @@ const getMonitoringSubscription: AppBlock = {
                 properties: {
                   RealtimeMetricsSubscriptionStatus: {
                     type: "string",
+                    enum: ["Enabled", "Disabled"],
                   },
                 },
                 required: ["RealtimeMetricsSubscriptionStatus"],

@@ -96,6 +96,7 @@ const deleteCapacityProvider: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: ["Pending", "Active", "Failed", "Deleting"],
               },
               VpcConfig: {
                 type: "object",
@@ -133,6 +134,7 @@ const deleteCapacityProvider: AppBlock = {
                     type: "array",
                     items: {
                       type: "string",
+                      enum: ["x86_64", "arm64"],
                     },
                   },
                   AllowedInstanceTypes: {
@@ -158,6 +160,7 @@ const deleteCapacityProvider: AppBlock = {
                   },
                   ScalingMode: {
                     type: "string",
+                    enum: ["Auto", "Manual"],
                   },
                   ScalingPolicies: {
                     type: "array",
@@ -166,6 +169,7 @@ const deleteCapacityProvider: AppBlock = {
                       properties: {
                         PredefinedMetricType: {
                           type: "string",
+                          enum: ["LambdaCapacityProviderAverageCPUUtilization"],
                         },
                         TargetValue: {
                           type: "number",

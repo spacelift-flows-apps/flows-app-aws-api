@@ -41,13 +41,19 @@ const enableAwsNetworkPerformanceMetricSubscription: AppBlock = {
         Metric: {
           name: "Metric",
           description: "The metric used for the enabled subscription.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["aggregate-latency"],
+          },
           required: false,
         },
         Statistic: {
           name: "Statistic",
           description: "The statistic used for the enabled subscription.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["p50"],
+          },
           required: false,
         },
         DryRun: {

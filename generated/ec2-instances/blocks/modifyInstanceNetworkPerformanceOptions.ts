@@ -34,7 +34,10 @@ const modifyInstanceNetworkPerformanceOptions: AppBlock = {
           name: "Bandwidth Weighting",
           description:
             "Specify the bandwidth weighting option to boost the associated type of baseline bandwidth, as follows: default This option uses the standard bandwidth configuration for your instance type.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["default", "vpc-1", "ebs-1"],
+          },
           required: true,
         },
         DryRun: {
@@ -111,6 +114,7 @@ const modifyInstanceNetworkPerformanceOptions: AppBlock = {
           },
           BandwidthWeighting: {
             type: "string",
+            enum: ["default", "vpc-1", "ebs-1"],
             description:
               "Contains the updated configuration for bandwidth weighting on the specified instance.",
           },

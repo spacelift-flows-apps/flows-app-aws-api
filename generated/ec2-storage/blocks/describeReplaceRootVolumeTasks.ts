@@ -152,6 +152,14 @@ const describeReplaceRootVolumeTasks: AppBlock = {
                 },
                 TaskState: {
                   type: "string",
+                  enum: [
+                    "pending",
+                    "in-progress",
+                    "failing",
+                    "succeeded",
+                    "failed",
+                    "failed-detached",
+                  ],
                 },
                 StartTime: {
                   type: "string",

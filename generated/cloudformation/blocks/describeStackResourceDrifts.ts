@@ -39,6 +39,14 @@ const describeStackResourceDrifts: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "IN_SYNC",
+                "MODIFIED",
+                "DELETED",
+                "NOT_CHECKED",
+                "UNKNOWN",
+                "UNSUPPORTED",
+              ],
             },
           },
           required: false,
@@ -171,6 +179,7 @@ const describeStackResourceDrifts: AppBlock = {
                       },
                       DifferenceType: {
                         type: "string",
+                        enum: ["ADD", "REMOVE", "NOT_EQUAL"],
                       },
                     },
                     required: [
@@ -184,6 +193,14 @@ const describeStackResourceDrifts: AppBlock = {
                 },
                 StackResourceDriftStatus: {
                   type: "string",
+                  enum: [
+                    "IN_SYNC",
+                    "MODIFIED",
+                    "DELETED",
+                    "NOT_CHECKED",
+                    "UNKNOWN",
+                    "UNSUPPORTED",
+                  ],
                 },
                 Timestamp: {
                   type: "string",

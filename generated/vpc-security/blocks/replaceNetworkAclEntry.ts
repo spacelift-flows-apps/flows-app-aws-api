@@ -50,7 +50,10 @@ const replaceNetworkAclEntry: AppBlock = {
           name: "Rule Action",
           description:
             "Indicates whether to allow or deny the traffic that matches the rule.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["allow", "deny"],
+          },
           required: true,
         },
         Egress: {

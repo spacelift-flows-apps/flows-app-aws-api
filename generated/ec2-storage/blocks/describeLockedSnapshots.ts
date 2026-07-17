@@ -147,6 +147,12 @@ const describeLockedSnapshots: AppBlock = {
                 },
                 LockState: {
                   type: "string",
+                  enum: [
+                    "compliance",
+                    "governance",
+                    "compliance-cooloff",
+                    "expired",
+                  ],
                 },
                 LockDuration: {
                   type: "number",

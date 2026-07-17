@@ -55,7 +55,10 @@ const getTemplateSummary: AppBlock = {
           name: "Call As",
           description:
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SELF", "DELEGATED_ADMIN"],
+          },
           required: false,
         },
         TemplateSummaryConfig: {
@@ -178,6 +181,11 @@ const getTemplateSummary: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "CAPABILITY_IAM",
+                "CAPABILITY_NAMED_IAM",
+                "CAPABILITY_AUTO_EXPAND",
+              ],
             },
             description: "The capabilities found within the template.",
           },

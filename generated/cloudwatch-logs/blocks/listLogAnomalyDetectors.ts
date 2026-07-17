@@ -120,12 +120,28 @@ const listLogAnomalyDetectors: AppBlock = {
                 },
                 evaluationFrequency: {
                   type: "string",
+                  enum: [
+                    "ONE_MIN",
+                    "FIVE_MIN",
+                    "TEN_MIN",
+                    "FIFTEEN_MIN",
+                    "THIRTY_MIN",
+                    "ONE_HOUR",
+                  ],
                 },
                 filterPattern: {
                   type: "string",
                 },
                 anomalyDetectorStatus: {
                   type: "string",
+                  enum: [
+                    "INITIALIZING",
+                    "TRAINING",
+                    "ANALYZING",
+                    "FAILED",
+                    "DELETED",
+                    "PAUSED",
+                  ],
                 },
                 kmsKeyId: {
                   type: "string",

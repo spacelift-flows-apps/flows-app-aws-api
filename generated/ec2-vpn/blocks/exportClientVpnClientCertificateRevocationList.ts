@@ -109,6 +109,7 @@ const exportClientVpnClientCertificateRevocationList: AppBlock = {
             properties: {
               Code: {
                 type: "string",
+                enum: ["pending", "active"],
               },
               Message: {
                 type: "string",

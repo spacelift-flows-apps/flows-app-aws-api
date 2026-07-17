@@ -129,6 +129,7 @@ const describeAssociation: AppBlock = {
                   },
                   Name: {
                     type: "string",
+                    enum: ["Pending", "Success", "Failed"],
                   },
                   Message: {
                     type: "string",
@@ -232,9 +233,11 @@ const describeAssociation: AppBlock = {
               },
               ComplianceSeverity: {
                 type: "string",
+                enum: ["CRITICAL", "HIGH", "MEDIUM", "LOW", "UNSPECIFIED"],
               },
               SyncCompliance: {
                 type: "string",
+                enum: ["AUTO", "MANUAL"],
               },
               ApplyOnlyAtCronInterval: {
                 type: "boolean",
@@ -363,6 +366,7 @@ const describeAssociation: AppBlock = {
                     },
                     State: {
                       type: "string",
+                      enum: ["UNKNOWN", "ALARM"],
                     },
                   },
                   required: ["Name", "State"],

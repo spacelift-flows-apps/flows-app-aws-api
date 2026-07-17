@@ -42,7 +42,10 @@ const updateServiceSpecificCredential: AppBlock = {
           name: "Status",
           description:
             "The status to be assigned to the service-specific credential.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Active", "Inactive", "Expired"],
+          },
           required: true,
         },
       },

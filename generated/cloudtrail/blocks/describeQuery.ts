@@ -123,6 +123,14 @@ const describeQuery: AppBlock = {
           },
           QueryStatus: {
             type: "string",
+            enum: [
+              "QUEUED",
+              "RUNNING",
+              "FINISHED",
+              "FAILED",
+              "CANCELLED",
+              "TIMED_OUT",
+            ],
             description: "The status of a query.",
           },
           QueryStatistics: {
@@ -159,6 +167,17 @@ const describeQuery: AppBlock = {
           },
           DeliveryStatus: {
             type: "string",
+            enum: [
+              "SUCCESS",
+              "FAILED",
+              "FAILED_SIGNING_FILE",
+              "PENDING",
+              "RESOURCE_NOT_FOUND",
+              "ACCESS_DENIED",
+              "ACCESS_DENIED_SIGNING_FILE",
+              "CANCELLED",
+              "UNKNOWN",
+            ],
             description: "The delivery status.",
           },
           Prompt: {

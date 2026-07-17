@@ -30,7 +30,10 @@ const updateDataCatalog: AppBlock = {
         Type: {
           name: "Type",
           description: "Specifies the type of data catalog to update.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["LAMBDA", "GLUE", "HIVE", "FEDERATED"],
+          },
           required: true,
         },
         Description: {

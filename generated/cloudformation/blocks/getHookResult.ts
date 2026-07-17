@@ -95,11 +95,13 @@ const getHookResult: AppBlock = {
           },
           InvocationPoint: {
             type: "string",
+            enum: ["PRE_PROVISION"],
             description:
               "The specific point in the provisioning process where the Hook is invoked.",
           },
           FailureMode: {
             type: "string",
+            enum: ["FAIL", "WARN"],
             description: "The failure mode of the invocation.",
           },
           TypeName: {
@@ -126,6 +128,12 @@ const getHookResult: AppBlock = {
           },
           Status: {
             type: "string",
+            enum: [
+              "HOOK_IN_PROGRESS",
+              "HOOK_COMPLETE_SUCCEEDED",
+              "HOOK_COMPLETE_FAILED",
+              "HOOK_FAILED",
+            ],
             description: "The status of the Hook invocation.",
           },
           HookStatusReason: {
@@ -142,6 +150,7 @@ const getHookResult: AppBlock = {
             properties: {
               TargetType: {
                 type: "string",
+                enum: ["RESOURCE"],
               },
               TargetTypeName: {
                 type: "string",
@@ -151,6 +160,7 @@ const getHookResult: AppBlock = {
               },
               Action: {
                 type: "string",
+                enum: ["CREATE", "UPDATE", "DELETE", "IMPORT"],
               },
             },
             required: ["TargetType", "TargetTypeName", "TargetId", "Action"],
@@ -167,6 +177,7 @@ const getHookResult: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["PASSED", "FAILED", "SKIPPED"],
                 },
                 StatusMessage: {
                   type: "string",
@@ -179,6 +190,7 @@ const getHookResult: AppBlock = {
                 },
                 SeverityLevel: {
                   type: "string",
+                  enum: ["INFORMATIONAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"],
                 },
               },
               additionalProperties: false,

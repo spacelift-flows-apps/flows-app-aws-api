@@ -39,7 +39,10 @@ const createConnection: AppBlock = {
         AuthorizationType: {
           name: "Authorization Type",
           description: "The type of authorization to use for the connection.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["BASIC", "OAUTH_CLIENT_CREDENTIALS", "API_KEY"],
+          },
           required: true,
         },
         AuthParameters: {
@@ -83,6 +86,7 @@ const createConnection: AppBlock = {
                   },
                   HttpMethod: {
                     type: "string",
+                    enum: ["GET", "POST", "PUT"],
                   },
                   OAuthHttpParameters: {
                     type: "object",
@@ -324,6 +328,17 @@ const createConnection: AppBlock = {
           },
           ConnectionState: {
             type: "string",
+            enum: [
+              "CREATING",
+              "UPDATING",
+              "DELETING",
+              "AUTHORIZED",
+              "DEAUTHORIZED",
+              "AUTHORIZING",
+              "DEAUTHORIZING",
+              "ACTIVE",
+              "FAILED_CONNECTIVITY",
+            ],
             description:
               "The state of the connection that was created by the request.",
           },

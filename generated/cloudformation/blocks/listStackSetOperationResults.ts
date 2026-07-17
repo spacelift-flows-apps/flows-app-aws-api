@@ -54,7 +54,10 @@ const listStackSetOperationResults: AppBlock = {
           name: "Call As",
           description:
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SELF", "DELEGATED_ADMIN"],
+          },
           required: false,
         },
         Filters: {
@@ -67,6 +70,7 @@ const listStackSetOperationResults: AppBlock = {
               properties: {
                 Name: {
                   type: "string",
+                  enum: ["OPERATION_RESULT_STATUS"],
                 },
                 Values: {
                   type: "string",
@@ -150,6 +154,13 @@ const listStackSetOperationResults: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: [
+                    "PENDING",
+                    "RUNNING",
+                    "SUCCEEDED",
+                    "FAILED",
+                    "CANCELLED",
+                  ],
                 },
                 StatusReason: {
                   type: "string",
@@ -159,6 +170,7 @@ const listStackSetOperationResults: AppBlock = {
                   properties: {
                     Status: {
                       type: "string",
+                      enum: ["SUCCEEDED", "FAILED", "SKIPPED"],
                     },
                     StatusReason: {
                       type: "string",

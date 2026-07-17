@@ -24,7 +24,10 @@ const modifySnapshotAttribute: AppBlock = {
         Attribute: {
           name: "Attribute",
           description: "The snapshot attribute to modify.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["productCodes", "createVolumePermission"],
+          },
           required: false,
         },
         CreateVolumePermission: {
@@ -44,6 +47,7 @@ const modifySnapshotAttribute: AppBlock = {
                     },
                     Group: {
                       type: "string",
+                      enum: ["all"],
                     },
                   },
                   additionalProperties: false,
@@ -59,6 +63,7 @@ const modifySnapshotAttribute: AppBlock = {
                     },
                     Group: {
                       type: "string",
+                      enum: ["all"],
                     },
                   },
                   additionalProperties: false,
@@ -83,7 +88,10 @@ const modifySnapshotAttribute: AppBlock = {
         OperationType: {
           name: "Operation Type",
           description: "The type of operation to perform to the attribute.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["add", "remove"],
+          },
           required: false,
         },
         SnapshotId: {

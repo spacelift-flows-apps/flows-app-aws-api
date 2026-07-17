@@ -51,6 +51,7 @@ const describeContainerInstances: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["TAGS", "CONTAINER_INSTANCE_HEALTH"],
             },
           },
           required: false,
@@ -220,6 +221,14 @@ const describeContainerInstances: AppBlock = {
                 },
                 agentUpdateStatus: {
                   type: "string",
+                  enum: [
+                    "PENDING",
+                    "STAGING",
+                    "STAGED",
+                    "UPDATING",
+                    "UPDATED",
+                    "FAILED",
+                  ],
                 },
                 attributes: {
                   type: "array",
@@ -234,6 +243,7 @@ const describeContainerInstances: AppBlock = {
                       },
                       targetType: {
                         type: "string",
+                        enum: ["container-instance"],
                       },
                       targetId: {
                         type: "string",
@@ -288,6 +298,12 @@ const describeContainerInstances: AppBlock = {
                   properties: {
                     overallStatus: {
                       type: "string",
+                      enum: [
+                        "OK",
+                        "IMPAIRED",
+                        "INSUFFICIENT_DATA",
+                        "INITIALIZING",
+                      ],
                     },
                     details: {
                       type: "array",

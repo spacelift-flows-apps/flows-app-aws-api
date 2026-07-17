@@ -100,6 +100,7 @@ const getCalendarState: AppBlock = {
         properties: {
           State: {
             type: "string",
+            enum: ["OPEN", "CLOSED"],
             description: "The state of the calendar.",
           },
           AtTime: {

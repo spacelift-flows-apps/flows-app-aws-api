@@ -40,6 +40,13 @@ const listComplianceSummaries: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: [
+                    "EQUAL",
+                    "NOT_EQUAL",
+                    "BEGIN_WITH",
+                    "LESS_THAN",
+                    "GREATER_THAN",
+                  ],
                 },
               },
               additionalProperties: false,

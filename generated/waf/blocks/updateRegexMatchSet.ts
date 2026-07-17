@@ -39,6 +39,7 @@ const updateRegexMatchSet: AppBlock = {
               properties: {
                 Action: {
                   type: "string",
+                  enum: ["INSERT", "DELETE"],
                 },
                 RegexMatchTuple: {
                   type: "object",
@@ -48,6 +49,15 @@ const updateRegexMatchSet: AppBlock = {
                       properties: {
                         Type: {
                           type: "string",
+                          enum: [
+                            "URI",
+                            "QUERY_STRING",
+                            "HEADER",
+                            "METHOD",
+                            "BODY",
+                            "SINGLE_QUERY_ARG",
+                            "ALL_QUERY_ARGS",
+                          ],
                         },
                         Data: {
                           type: "string",
@@ -58,6 +68,14 @@ const updateRegexMatchSet: AppBlock = {
                     },
                     TextTransformation: {
                       type: "string",
+                      enum: [
+                        "NONE",
+                        "COMPRESS_WHITE_SPACE",
+                        "HTML_ENTITY_DECODE",
+                        "LOWERCASE",
+                        "CMD_LINE",
+                        "URL_DECODE",
+                      ],
                     },
                     RegexPatternSetId: {
                       type: "string",

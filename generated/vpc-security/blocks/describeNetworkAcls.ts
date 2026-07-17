@@ -191,6 +191,7 @@ const describeNetworkAcls: AppBlock = {
                       },
                       RuleAction: {
                         type: "string",
+                        enum: ["allow", "deny"],
                       },
                       RuleNumber: {
                         type: "number",

@@ -141,6 +141,7 @@ const describeHostReservations: AppBlock = {
                 },
                 CurrencyCode: {
                   type: "string",
+                  enum: ["USD"],
                 },
                 Duration: {
                   type: "number",
@@ -168,12 +169,26 @@ const describeHostReservations: AppBlock = {
                 },
                 PaymentOption: {
                   type: "string",
+                  enum: ["AllUpfront", "PartialUpfront", "NoUpfront"],
                 },
                 Start: {
                   type: "string",
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "active",
+                    "expired",
+                    "cancelled",
+                    "scheduled",
+                    "pending",
+                    "failed",
+                    "delayed",
+                    "unsupported",
+                    "payment-pending",
+                    "payment-failed",
+                    "retired",
+                  ],
                 },
                 UpfrontPrice: {
                   type: "string",

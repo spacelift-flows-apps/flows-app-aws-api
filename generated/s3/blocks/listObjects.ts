@@ -38,7 +38,10 @@ const listObjects: AppBlock = {
           name: "Encoding Type",
           description:
             "Encoding type used by Amazon S3 to encode the object keys in the response.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["url"],
+          },
           required: false,
         },
         Marker: {
@@ -66,7 +69,10 @@ const listObjects: AppBlock = {
           name: "Request Payer",
           description:
             "Confirms that the requester knows that she or he will be charged for the list objects request.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["requester"],
+          },
           required: false,
         },
         ExpectedBucketOwner: {
@@ -83,6 +89,7 @@ const listObjects: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["RestoreStatus"],
             },
           },
           required: false,
@@ -179,16 +186,44 @@ const listObjects: AppBlock = {
                   type: "array",
                   items: {
                     type: "string",
+                    enum: [
+                      "CRC32",
+                      "CRC32C",
+                      "SHA1",
+                      "SHA256",
+                      "CRC64NVME",
+                      "SHA512",
+                      "MD5",
+                      "XXHASH64",
+                      "XXHASH3",
+                      "XXHASH128",
+                    ],
                   },
                 },
                 ChecksumType: {
                   type: "string",
+                  enum: ["COMPOSITE", "FULL_OBJECT"],
                 },
                 Size: {
                   type: "number",
                 },
                 StorageClass: {
                   type: "string",
+                  enum: [
+                    "STANDARD",
+                    "REDUCED_REDUNDANCY",
+                    "GLACIER",
+                    "STANDARD_IA",
+                    "ONEZONE_IA",
+                    "INTELLIGENT_TIERING",
+                    "DEEP_ARCHIVE",
+                    "OUTPOSTS",
+                    "GLACIER_IR",
+                    "SNOW",
+                    "EXPRESS_ONEZONE",
+                    "FSX_OPENZFS",
+                    "FSX_ONTAP",
+                  ],
                 },
                 Owner: {
                   type: "object",
@@ -253,11 +288,13 @@ const listObjects: AppBlock = {
           },
           EncodingType: {
             type: "string",
+            enum: ["url"],
             description:
               "Encoding type used by Amazon S3 to encode the object keys in the response.",
           },
           RequestCharged: {
             type: "string",
+            enum: ["requester"],
             description:
               "If present, indicates that the requester was successfully charged for the request.",
           },

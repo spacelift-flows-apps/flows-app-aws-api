@@ -162,6 +162,7 @@ const createDelivery: AppBlock = {
               },
               deliveryDestinationType: {
                 type: "string",
+                enum: ["S3", "CWL", "FH", "XRAY"],
               },
               recordFields: {
                 type: "array",

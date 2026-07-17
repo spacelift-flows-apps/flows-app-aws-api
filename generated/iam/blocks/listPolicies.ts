@@ -24,7 +24,10 @@ const listPolicies: AppBlock = {
         Scope: {
           name: "Scope",
           description: "The scope to use for filtering the results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["All", "AWS", "Local"],
+          },
           required: false,
         },
         OnlyAttached: {
@@ -44,7 +47,10 @@ const listPolicies: AppBlock = {
           name: "Policy Usage Filter",
           description:
             "The policy usage method to use for filtering the results.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["PermissionsPolicy", "PermissionsBoundary"],
+          },
           required: false,
         },
         Marker: {

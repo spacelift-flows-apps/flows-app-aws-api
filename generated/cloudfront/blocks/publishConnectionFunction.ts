@@ -114,6 +114,7 @@ const publishConnectionFunction: AppBlock = {
                   },
                   Runtime: {
                     type: "string",
+                    enum: ["cloudfront-js-1.0", "cloudfront-js-2.0"],
                   },
                   KeyValueStoreAssociations: {
                     type: "object",
@@ -148,6 +149,7 @@ const publishConnectionFunction: AppBlock = {
               },
               Stage: {
                 type: "string",
+                enum: ["DEVELOPMENT", "LIVE"],
               },
               CreatedTime: {
                 type: "string",

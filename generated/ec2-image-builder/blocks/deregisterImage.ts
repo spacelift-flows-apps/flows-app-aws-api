@@ -114,6 +114,13 @@ const deregisterImage: AppBlock = {
                 },
                 ReturnCode: {
                   type: "string",
+                  enum: [
+                    "success",
+                    "skipped",
+                    "missing-permissions",
+                    "internal-error",
+                    "client-error",
+                  ],
                 },
               },
               additionalProperties: false,

@@ -27,7 +27,10 @@ const putQueryDefinition: AppBlock = {
         queryLanguage: {
           name: "query Language",
           description: "Specify the query language to use for this query.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["CWLI", "SQL", "PPL"],
+          },
           required: false,
         },
         name: {

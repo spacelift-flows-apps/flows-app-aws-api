@@ -34,13 +34,19 @@ const validateStateMachineDefinition: AppBlock = {
         type: {
           name: "type",
           description: "The target type of state machine for this definition.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["STANDARD", "EXPRESS"],
+          },
           required: false,
         },
         severity: {
           name: "severity",
           description: "Minimum level of diagnostics to return.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ERROR", "WARNING"],
+          },
           required: false,
         },
         maxResults: {
@@ -112,6 +118,7 @@ const validateStateMachineDefinition: AppBlock = {
         properties: {
           result: {
             type: "string",
+            enum: ["OK", "FAIL"],
             description:
               "The result value will be OK when no syntax errors are found, or FAIL if the workflow definition does not pass verification.",
           },
@@ -122,6 +129,7 @@ const validateStateMachineDefinition: AppBlock = {
               properties: {
                 severity: {
                   type: "string",
+                  enum: ["ERROR", "WARNING"],
                 },
                 code: {
                   type: "string",

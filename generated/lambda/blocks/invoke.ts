@@ -31,14 +31,20 @@ const invoke: AppBlock = {
         InvocationType: {
           name: "Invocation Type",
           description: "Choose from the following options.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Event", "RequestResponse", "DryRun"],
+          },
           required: false,
         },
         LogType: {
           name: "Log Type",
           description:
             "Set to Tail to include the execution log in the response.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["None", "Tail"],
+          },
           required: false,
         },
         ClientContext: {

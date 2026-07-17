@@ -34,7 +34,10 @@ const modifyDefaultCreditSpecification: AppBlock = {
         InstanceFamily: {
           name: "Instance Family",
           description: "The instance family.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["t2", "t3", "t3a", "t4g"],
+          },
           required: true,
         },
         CpuCredits: {
@@ -109,6 +112,7 @@ const modifyDefaultCreditSpecification: AppBlock = {
             properties: {
               InstanceFamily: {
                 type: "string",
+                enum: ["t2", "t3", "t3a", "t4g"],
               },
               CpuCredits: {
                 type: "string",

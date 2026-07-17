@@ -31,7 +31,10 @@ const stopServiceDeployment: AppBlock = {
         stopType: {
           name: "stop Type",
           description: "How you want Amazon ECS to stop the service.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ABORT", "ROLLBACK"],
+          },
           required: false,
         },
       },

@@ -152,6 +152,7 @@ const describeAvailabilityZones: AppBlock = {
               properties: {
                 OptInStatus: {
                   type: "string",
+                  enum: ["opt-in-not-required", "opted-in", "not-opted-in"],
                 },
                 Messages: {
                   type: "array",
@@ -218,6 +219,13 @@ const describeAvailabilityZones: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "available",
+                    "information",
+                    "impaired",
+                    "unavailable",
+                    "constrained",
+                  ],
                 },
               },
               additionalProperties: false,

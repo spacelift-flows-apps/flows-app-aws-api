@@ -154,6 +154,15 @@ const listDelegationRequests: AppBlock = {
                 },
                 State: {
                   type: "string",
+                  enum: [
+                    "UNASSIGNED",
+                    "ASSIGNED",
+                    "PENDING_APPROVAL",
+                    "FINALIZED",
+                    "ACCEPTED",
+                    "REJECTED",
+                    "EXPIRED",
+                  ],
                 },
                 ExpirationTime: {
                   type: "string",

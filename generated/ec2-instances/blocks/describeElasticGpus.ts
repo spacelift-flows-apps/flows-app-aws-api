@@ -152,12 +152,14 @@ const describeElasticGpus: AppBlock = {
                   properties: {
                     Status: {
                       type: "string",
+                      enum: ["OK", "IMPAIRED"],
                     },
                   },
                   additionalProperties: false,
                 },
                 ElasticGpuState: {
                   type: "string",
+                  enum: ["ATTACHED"],
                 },
                 InstanceId: {
                   type: "string",

@@ -31,7 +31,10 @@ const listKeyRotations: AppBlock = {
           name: "Include Key Material",
           description:
             "Use this optional parameter to control which key materials associated with this key are listed in the response.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ALL_KEY_MATERIAL", "ROTATIONS_ONLY"],
+          },
           required: false,
         },
         Limit: {
@@ -122,12 +125,23 @@ const listKeyRotations: AppBlock = {
                 },
                 ImportState: {
                   type: "string",
+                  enum: ["IMPORTED", "PENDING_IMPORT"],
                 },
                 KeyMaterialState: {
                   type: "string",
+                  enum: [
+                    "NON_CURRENT",
+                    "CURRENT",
+                    "PENDING_ROTATION",
+                    "PENDING_MULTI_REGION_IMPORT_AND_ROTATION",
+                  ],
                 },
                 ExpirationModel: {
                   type: "string",
+                  enum: [
+                    "KEY_MATERIAL_EXPIRES",
+                    "KEY_MATERIAL_DOES_NOT_EXPIRE",
+                  ],
                 },
                 ValidTo: {
                   type: "string",
@@ -137,6 +151,7 @@ const listKeyRotations: AppBlock = {
                 },
                 RotationType: {
                   type: "string",
+                  enum: ["AUTOMATIC", "ON_DEMAND"],
                 },
               },
               additionalProperties: false,

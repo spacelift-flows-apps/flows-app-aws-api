@@ -126,6 +126,14 @@ const modifyVpcEndpointServicePermissions: AppBlock = {
               properties: {
                 PrincipalType: {
                   type: "string",
+                  enum: [
+                    "All",
+                    "Service",
+                    "OrganizationUnit",
+                    "Account",
+                    "User",
+                    "Role",
+                  ],
                 },
                 Principal: {
                   type: "string",

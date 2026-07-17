@@ -51,7 +51,10 @@ const startSyncExecution: AppBlock = {
           name: "included Data",
           description:
             "If your state machine definition is encrypted with a KMS key, callers must have kms:Decrypt permission to decrypt the definition.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ALL_DATA", "METADATA_ONLY"],
+          },
           required: false,
         },
       },
@@ -137,6 +140,7 @@ const startSyncExecution: AppBlock = {
           },
           status: {
             type: "string",
+            enum: ["SUCCEEDED", "FAILED", "TIMED_OUT"],
             description: "The current status of the execution.",
           },
           error: {

@@ -256,6 +256,7 @@ const describeImportImageTasks: AppBlock = {
                 },
                 BootMode: {
                   type: "string",
+                  enum: ["legacy-bios", "uefi", "uefi-preferred"],
                 },
               },
               additionalProperties: false,

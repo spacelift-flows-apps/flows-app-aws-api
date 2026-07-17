@@ -39,6 +39,7 @@ const listAlarmMuteRules: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["SCHEDULED", "ACTIVE", "EXPIRED"],
             },
           },
           required: false,
@@ -128,6 +129,7 @@ const listAlarmMuteRules: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["SCHEDULED", "ACTIVE", "EXPIRED"],
                 },
                 MuteType: {
                   type: "string",

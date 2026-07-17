@@ -93,6 +93,7 @@ const getRegistryScanningConfiguration: AppBlock = {
             properties: {
               scanType: {
                 type: "string",
+                enum: ["BASIC", "ENHANCED"],
               },
               rules: {
                 type: "array",
@@ -101,6 +102,7 @@ const getRegistryScanningConfiguration: AppBlock = {
                   properties: {
                     scanFrequency: {
                       type: "string",
+                      enum: ["SCAN_ON_PUSH", "CONTINUOUS_SCAN", "MANUAL"],
                     },
                     repositoryFilters: {
                       type: "array",

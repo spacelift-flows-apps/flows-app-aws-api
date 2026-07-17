@@ -61,7 +61,15 @@ const decrypt: AppBlock = {
           name: "Encryption Algorithm",
           description:
             "Specifies the encryption algorithm that will be used to decrypt the ciphertext.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "SYMMETRIC_DEFAULT",
+              "RSAES_OAEP_SHA_1",
+              "RSAES_OAEP_SHA_256",
+              "SM2PKE",
+            ],
+          },
           required: false,
         },
         Recipient: {
@@ -73,6 +81,7 @@ const decrypt: AppBlock = {
             properties: {
               KeyEncryptionAlgorithm: {
                 type: "string",
+                enum: ["RSAES_OAEP_SHA_256"],
               },
               AttestationDocument: {
                 type: "string",
@@ -96,6 +105,7 @@ const decrypt: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["IGNORE_CIPHERTEXT"],
             },
           },
           required: false,
@@ -169,6 +179,12 @@ const decrypt: AppBlock = {
           },
           EncryptionAlgorithm: {
             type: "string",
+            enum: [
+              "SYMMETRIC_DEFAULT",
+              "RSAES_OAEP_SHA_1",
+              "RSAES_OAEP_SHA_256",
+              "SM2PKE",
+            ],
             description:
               "The encryption algorithm that was used to decrypt the ciphertext.",
           },

@@ -98,6 +98,16 @@ const describeTableReplicaAutoScaling: AppBlock = {
               },
               TableStatus: {
                 type: "string",
+                enum: [
+                  "CREATING",
+                  "UPDATING",
+                  "DELETING",
+                  "ACTIVE",
+                  "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                  "ARCHIVING",
+                  "ARCHIVED",
+                  "REPLICATION_NOT_AUTHORIZED",
+                ],
               },
               Replicas: {
                 type: "array",
@@ -166,6 +176,18 @@ const describeTableReplicaAutoScaling: AppBlock = {
                     },
                     ReplicaStatus: {
                       type: "string",
+                      enum: [
+                        "CREATING",
+                        "CREATION_FAILED",
+                        "UPDATING",
+                        "DELETING",
+                        "ACTIVE",
+                        "REGION_DISABLED",
+                        "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                        "ARCHIVING",
+                        "ARCHIVED",
+                        "REPLICATION_NOT_AUTHORIZED",
+                      ],
                     },
                   },
                   additionalProperties: false,

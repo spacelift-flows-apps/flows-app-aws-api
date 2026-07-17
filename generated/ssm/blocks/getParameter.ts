@@ -100,6 +100,7 @@ const getParameter: AppBlock = {
               },
               Type: {
                 type: "string",
+                enum: ["String", "StringList", "SecureString"],
               },
               Value: {
                 type: "string",

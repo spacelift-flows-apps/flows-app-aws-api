@@ -111,9 +111,11 @@ const listStackRefactorActions: AppBlock = {
               properties: {
                 Action: {
                   type: "string",
+                  enum: ["MOVE", "CREATE"],
                 },
                 Entity: {
                   type: "string",
+                  enum: ["RESOURCE", "STACK"],
                 },
                 PhysicalResourceId: {
                   type: "string",
@@ -126,6 +128,7 @@ const listStackRefactorActions: AppBlock = {
                 },
                 Detection: {
                   type: "string",
+                  enum: ["AUTO", "MANUAL"],
                 },
                 DetectionReason: {
                   type: "string",

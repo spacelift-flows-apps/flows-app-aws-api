@@ -127,6 +127,12 @@ const listSourcesForS3TableIntegration: AppBlock = {
                 },
                 status: {
                   type: "string",
+                  enum: [
+                    "ACTIVE",
+                    "UNHEALTHY",
+                    "FAILED",
+                    "DATA_SOURCE_DELETE_IN_PROGRESS",
+                  ],
                 },
                 statusReason: {
                   type: "string",

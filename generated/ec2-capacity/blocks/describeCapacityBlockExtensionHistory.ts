@@ -169,6 +169,11 @@ const describeCapacityBlockExtensionHistory: AppBlock = {
                 },
                 CapacityBlockExtensionStatus: {
                   type: "string",
+                  enum: [
+                    "payment-pending",
+                    "payment-failed",
+                    "payment-succeeded",
+                  ],
                 },
                 CapacityBlockExtensionPurchaseDate: {
                   type: "string",

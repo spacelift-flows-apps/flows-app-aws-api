@@ -35,14 +35,20 @@ const listIntegrations: AppBlock = {
           name: "integration Type",
           description:
             "To limit the results to integrations of a certain type, specify that type here.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["OPENSEARCH"],
+          },
           required: false,
         },
         integrationStatus: {
           name: "integration Status",
           description:
             "To limit the results to integrations with a certain status, specify that status here.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["PROVISIONING", "ACTIVE", "FAILED"],
+          },
           required: false,
         },
       },
@@ -113,9 +119,11 @@ const listIntegrations: AppBlock = {
                 },
                 integrationType: {
                   type: "string",
+                  enum: ["OPENSEARCH"],
                 },
                 integrationStatus: {
                   type: "string",
+                  enum: ["PROVISIONING", "ACTIVE", "FAILED"],
                 },
               },
               additionalProperties: false,

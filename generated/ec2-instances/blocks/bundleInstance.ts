@@ -135,6 +135,15 @@ const bundleInstance: AppBlock = {
               },
               State: {
                 type: "string",
+                enum: [
+                  "pending",
+                  "waiting-for-shutdown",
+                  "bundling",
+                  "storing",
+                  "cancelling",
+                  "complete",
+                  "failed",
+                ],
               },
               StartTime: {
                 type: "string",

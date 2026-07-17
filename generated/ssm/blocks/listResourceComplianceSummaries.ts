@@ -43,6 +43,13 @@ const listResourceComplianceSummaries: AppBlock = {
                 },
                 Type: {
                   type: "string",
+                  enum: [
+                    "EQUAL",
+                    "NOT_EQUAL",
+                    "BEGIN_WITH",
+                    "LESS_THAN",
+                    "GREATER_THAN",
+                  ],
                 },
               },
               additionalProperties: false,
@@ -138,9 +145,18 @@ const listResourceComplianceSummaries: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["COMPLIANT", "NON_COMPLIANT"],
                 },
                 OverallSeverity: {
                   type: "string",
+                  enum: [
+                    "CRITICAL",
+                    "HIGH",
+                    "MEDIUM",
+                    "LOW",
+                    "INFORMATIONAL",
+                    "UNSPECIFIED",
+                  ],
                 },
                 ExecutionSummary: {
                   type: "object",

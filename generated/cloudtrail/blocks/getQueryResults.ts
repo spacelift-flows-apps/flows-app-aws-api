@@ -117,6 +117,14 @@ const getQueryResults: AppBlock = {
         properties: {
           QueryStatus: {
             type: "string",
+            enum: [
+              "QUEUED",
+              "RUNNING",
+              "FINISHED",
+              "FAILED",
+              "CANCELLED",
+              "TIMED_OUT",
+            ],
             description: "The status of the query.",
           },
           QueryStatistics: {

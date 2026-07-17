@@ -34,13 +34,24 @@ const createUsageLimit: AppBlock = {
         FeatureType: {
           name: "Feature Type",
           description: "The Amazon Redshift feature that you want to limit.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "spectrum",
+              "concurrency-scaling",
+              "cross-region-datasharing",
+              "extra-compute-for-automatic-optimization",
+            ],
+          },
           required: true,
         },
         LimitType: {
           name: "Limit Type",
           description: "The type of limit.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["time", "data-scanned"],
+          },
           required: true,
         },
         Amount: {
@@ -52,14 +63,20 @@ const createUsageLimit: AppBlock = {
         Period: {
           name: "Period",
           description: "The time period that the amount applies to.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["daily", "weekly", "monthly"],
+          },
           required: false,
         },
         BreachAction: {
           name: "Breach Action",
           description:
             "The action that Amazon Redshift takes when the limit is reached.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["log", "emit-metric", "disable"],
+          },
           required: false,
         },
         Tags: {
@@ -150,11 +167,18 @@ const createUsageLimit: AppBlock = {
           },
           FeatureType: {
             type: "string",
+            enum: [
+              "spectrum",
+              "concurrency-scaling",
+              "cross-region-datasharing",
+              "extra-compute-for-automatic-optimization",
+            ],
             description:
               "The Amazon Redshift feature to which the limit applies.",
           },
           LimitType: {
             type: "string",
+            enum: ["time", "data-scanned"],
             description: "The type of limit.",
           },
           Amount: {
@@ -163,10 +187,12 @@ const createUsageLimit: AppBlock = {
           },
           Period: {
             type: "string",
+            enum: ["daily", "weekly", "monthly"],
             description: "The time period that the amount applies to.",
           },
           BreachAction: {
             type: "string",
+            enum: ["log", "emit-metric", "disable"],
             description:
               "The action that Amazon Redshift takes when the limit is reached.",
           },

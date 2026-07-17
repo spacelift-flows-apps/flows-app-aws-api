@@ -112,6 +112,7 @@ const describeReceiptRuleSet: AppBlock = {
                 },
                 TlsPolicy: {
                   type: "string",
+                  enum: ["Require", "Optional"],
                 },
                 Recipients: {
                   type: "array",

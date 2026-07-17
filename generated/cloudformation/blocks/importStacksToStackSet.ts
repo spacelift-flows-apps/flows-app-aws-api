@@ -70,6 +70,7 @@ const importStacksToStackSet: AppBlock = {
             properties: {
               RegionConcurrencyType: {
                 type: "string",
+                enum: ["SEQUENTIAL", "PARALLEL"],
               },
               RegionOrder: {
                 type: "array",
@@ -91,6 +92,7 @@ const importStacksToStackSet: AppBlock = {
               },
               ConcurrencyMode: {
                 type: "string",
+                enum: ["STRICT_FAILURE_TOLERANCE", "SOFT_FAILURE_TOLERANCE"],
               },
             },
             additionalProperties: false,
@@ -107,7 +109,10 @@ const importStacksToStackSet: AppBlock = {
         CallAs: {
           name: "Call As",
           description: "By default, SELF is specified.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SELF", "DELEGATED_ADMIN"],
+          },
           required: false,
         },
       },

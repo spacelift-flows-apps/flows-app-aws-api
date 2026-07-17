@@ -107,6 +107,15 @@ const getRateBasedRule: AppBlock = {
                     },
                     Type: {
                       type: "string",
+                      enum: [
+                        "IPMatch",
+                        "ByteMatch",
+                        "SqlInjectionMatch",
+                        "GeoMatch",
+                        "SizeConstraint",
+                        "XssMatch",
+                        "RegexMatch",
+                      ],
                     },
                     DataId: {
                       type: "string",
@@ -118,6 +127,7 @@ const getRateBasedRule: AppBlock = {
               },
               RateKey: {
                 type: "string",
+                enum: ["IP"],
               },
               RateLimit: {
                 type: "number",

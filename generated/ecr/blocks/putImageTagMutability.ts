@@ -38,7 +38,15 @@ const putImageTagMutability: AppBlock = {
         imageTagMutability: {
           name: "image Tag Mutability",
           description: "The tag mutability setting for the repository.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "MUTABLE",
+              "IMMUTABLE",
+              "IMMUTABLE_WITH_EXCLUSION",
+              "MUTABLE_WITH_EXCLUSION",
+            ],
+          },
           required: true,
         },
         imageTagMutabilityExclusionFilters: {
@@ -52,6 +60,7 @@ const putImageTagMutability: AppBlock = {
               properties: {
                 filterType: {
                   type: "string",
+                  enum: ["WILDCARD"],
                 },
                 filter: {
                   type: "string",
@@ -131,6 +140,12 @@ const putImageTagMutability: AppBlock = {
           },
           imageTagMutability: {
             type: "string",
+            enum: [
+              "MUTABLE",
+              "IMMUTABLE",
+              "IMMUTABLE_WITH_EXCLUSION",
+              "MUTABLE_WITH_EXCLUSION",
+            ],
             description: "The image tag mutability setting for the repository.",
           },
           imageTagMutabilityExclusionFilters: {
@@ -140,6 +155,7 @@ const putImageTagMutability: AppBlock = {
               properties: {
                 filterType: {
                   type: "string",
+                  enum: ["WILDCARD"],
                 },
                 filter: {
                   type: "string",

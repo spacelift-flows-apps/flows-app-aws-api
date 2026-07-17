@@ -122,6 +122,7 @@ const putResourcePolicy: AppBlock = {
               },
               policyScope: {
                 type: "string",
+                enum: ["ACCOUNT", "RESOURCE"],
               },
               resourceArn: {
                 type: "string",

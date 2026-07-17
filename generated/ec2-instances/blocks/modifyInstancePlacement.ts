@@ -57,13 +57,19 @@ const modifyInstancePlacement: AppBlock = {
         Tenancy: {
           name: "Tenancy",
           description: "The tenancy for the instance.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["default", "dedicated", "host"],
+          },
           required: false,
         },
         Affinity: {
           name: "Affinity",
           description: "The affinity setting for the instance.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["default", "host"],
+          },
           required: false,
         },
         HostId: {

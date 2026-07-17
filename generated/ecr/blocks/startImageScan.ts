@@ -138,6 +138,18 @@ const startImageScan: AppBlock = {
             properties: {
               status: {
                 type: "string",
+                enum: [
+                  "IN_PROGRESS",
+                  "COMPLETE",
+                  "FAILED",
+                  "UNSUPPORTED_IMAGE",
+                  "ACTIVE",
+                  "PENDING",
+                  "SCAN_ELIGIBILITY_EXPIRED",
+                  "FINDINGS_UNAVAILABLE",
+                  "LIMIT_EXCEEDED",
+                  "IMAGE_ARCHIVED",
+                ],
               },
               description: {
                 type: "string",

@@ -51,7 +51,10 @@ const describeSSLPolicies: AppBlock = {
         LoadBalancerType: {
           name: "Load Balancer Type",
           description: "The type of load balancer.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["application", "network", "gateway"],
+          },
           required: false,
         },
       },

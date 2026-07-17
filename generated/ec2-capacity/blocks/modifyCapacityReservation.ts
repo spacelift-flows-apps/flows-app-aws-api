@@ -48,7 +48,10 @@ const modifyCapacityReservation: AppBlock = {
           name: "End Date Type",
           description:
             "Indicates the way in which the Capacity Reservation ends.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["unlimited", "limited"],
+          },
           required: false,
         },
         Accept: {
@@ -74,7 +77,10 @@ const modifyCapacityReservation: AppBlock = {
           name: "Instance Match Criteria",
           description:
             "The matching criteria (instance eligibility) that you want to use in the modified Capacity Reservation.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["open", "targeted"],
+          },
           required: false,
         },
       },

@@ -158,6 +158,7 @@ const listResourceDataSync: AppBlock = {
                     },
                     SyncFormat: {
                       type: "string",
+                      enum: ["JsonSerDe"],
                     },
                     Region: {
                       type: "string",
@@ -189,6 +190,7 @@ const listResourceDataSync: AppBlock = {
                 },
                 LastStatus: {
                   type: "string",
+                  enum: ["Successful", "Failed", "InProgress"],
                 },
                 SyncCreatedTime: {
                   type: "string",

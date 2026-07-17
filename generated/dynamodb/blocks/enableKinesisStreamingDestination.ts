@@ -45,6 +45,7 @@ const enableKinesisStreamingDestination: AppBlock = {
             properties: {
               ApproximateCreationDateTimePrecision: {
                 type: "string",
+                enum: ["MILLISECOND", "MICROSECOND"],
               },
             },
             additionalProperties: false,
@@ -121,6 +122,14 @@ const enableKinesisStreamingDestination: AppBlock = {
           },
           DestinationStatus: {
             type: "string",
+            enum: [
+              "ENABLING",
+              "ACTIVE",
+              "DISABLING",
+              "DISABLED",
+              "ENABLE_FAILED",
+              "UPDATING",
+            ],
             description: "The current status of the replication.",
           },
           EnableKinesisStreamingConfiguration: {
@@ -128,6 +137,7 @@ const enableKinesisStreamingDestination: AppBlock = {
             properties: {
               ApproximateCreationDateTimePrecision: {
                 type: "string",
+                enum: ["MILLISECOND", "MICROSECOND"],
               },
             },
             additionalProperties: false,

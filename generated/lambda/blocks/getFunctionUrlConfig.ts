@@ -104,6 +104,7 @@ const getFunctionUrlConfig: AppBlock = {
           },
           AuthType: {
             type: "string",
+            enum: ["NONE", "AWS_IAM"],
             description:
               "The type of authentication that your function URL uses.",
           },
@@ -157,6 +158,7 @@ const getFunctionUrlConfig: AppBlock = {
           },
           InvokeMode: {
             type: "string",
+            enum: ["BUFFERED", "RESPONSE_STREAM"],
             description:
               "Use one of the following options: BUFFERED – This is the default option.",
           },

@@ -57,6 +57,7 @@ const updateWorkGroup: AppBlock = {
                     properties: {
                       EncryptionOption: {
                         type: "string",
+                        enum: ["SSE_S3", "SSE_KMS", "CSE_KMS"],
                       },
                       KmsKey: {
                         type: "string",
@@ -79,6 +80,7 @@ const updateWorkGroup: AppBlock = {
                     properties: {
                       S3AclOption: {
                         type: "string",
+                        enum: ["BUCKET_OWNER_FULL_CONTROL"],
                       },
                     },
                     required: ["S3AclOption"],
@@ -169,6 +171,7 @@ const updateWorkGroup: AppBlock = {
                   },
                   AuthenticationType: {
                     type: "string",
+                    enum: ["DIRECTORY_IDENTITY"],
                   },
                 },
                 required: ["EnableS3AccessGrants", "AuthenticationType"],
@@ -285,7 +288,10 @@ const updateWorkGroup: AppBlock = {
           name: "State",
           description:
             "The workgroup state that will be updated for the given workgroup.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["ENABLED", "DISABLED"],
+          },
           required: false,
         },
       },

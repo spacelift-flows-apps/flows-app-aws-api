@@ -122,6 +122,7 @@ const listDaemons: AppBlock = {
                 },
                 status: {
                   type: "string",
+                  enum: ["ACTIVE", "DELETE_IN_PROGRESS"],
                 },
                 createdAt: {
                   type: "string",

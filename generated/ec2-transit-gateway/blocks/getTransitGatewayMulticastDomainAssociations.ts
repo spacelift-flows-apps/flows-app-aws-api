@@ -147,6 +147,17 @@ const getTransitGatewayMulticastDomainAssociations: AppBlock = {
                 },
                 ResourceType: {
                   type: "string",
+                  enum: [
+                    "vpc",
+                    "vpn",
+                    "vpn-concentrator",
+                    "direct-connect-gateway",
+                    "connect",
+                    "peering",
+                    "tgw-peering",
+                    "network-function",
+                    "client-vpn",
+                  ],
                 },
                 ResourceOwnerId: {
                   type: "string",
@@ -159,6 +170,15 @@ const getTransitGatewayMulticastDomainAssociations: AppBlock = {
                     },
                     State: {
                       type: "string",
+                      enum: [
+                        "pendingAcceptance",
+                        "associating",
+                        "associated",
+                        "disassociating",
+                        "disassociated",
+                        "rejected",
+                        "failed",
+                      ],
                     },
                   },
                   additionalProperties: false,

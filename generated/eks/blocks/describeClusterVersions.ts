@@ -65,13 +65,19 @@ const describeClusterVersions: AppBlock = {
         status: {
           name: "status",
           description: "This field is deprecated.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["unsupported", "standard-support", "extended-support"],
+          },
           required: false,
         },
         versionStatus: {
           name: "version Status",
           description: "Filter versions by their current status.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["UNSUPPORTED", "STANDARD_SUPPORT", "EXTENDED_SUPPORT"],
+          },
           required: false,
         },
       },
@@ -164,9 +170,11 @@ const describeClusterVersions: AppBlock = {
                 },
                 status: {
                   type: "string",
+                  enum: ["unsupported", "standard-support", "extended-support"],
                 },
                 versionStatus: {
                   type: "string",
+                  enum: ["UNSUPPORTED", "STANDARD_SUPPORT", "EXTENDED_SUPPORT"],
                 },
                 kubernetesPatchVersion: {
                   type: "string",

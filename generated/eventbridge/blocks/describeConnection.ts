@@ -127,6 +127,17 @@ const describeConnection: AppBlock = {
           },
           ConnectionState: {
             type: "string",
+            enum: [
+              "CREATING",
+              "UPDATING",
+              "DELETING",
+              "AUTHORIZED",
+              "DEAUTHORIZED",
+              "AUTHORIZING",
+              "DEAUTHORIZING",
+              "ACTIVE",
+              "FAILED_CONNECTIVITY",
+            ],
             description: "The state of the connection retrieved.",
           },
           StateReason: {
@@ -136,6 +147,7 @@ const describeConnection: AppBlock = {
           },
           AuthorizationType: {
             type: "string",
+            enum: ["BASIC", "OAUTH_CLIENT_CREDENTIALS", "API_KEY"],
             description:
               "The type of authorization specified for the connection.",
           },
@@ -178,6 +190,7 @@ const describeConnection: AppBlock = {
                   },
                   HttpMethod: {
                     type: "string",
+                    enum: ["GET", "POST", "PUT"],
                   },
                   OAuthHttpParameters: {
                     type: "object",

@@ -24,7 +24,10 @@ const listIdentities: AppBlock = {
         IdentityType: {
           name: "Identity Type",
           description: "The type of the identities to list.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["EmailAddress", "Domain"],
+          },
           required: false,
         },
         NextToken: {

@@ -33,7 +33,10 @@ const updateGlobalTableSettings: AppBlock = {
         GlobalTableBillingMode: {
           name: "Global Table Billing Mode",
           description: "The billing mode of the global table.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["PROVISIONED", "PAY_PER_REQUEST"],
+          },
           required: false,
         },
         GlobalTableProvisionedWriteCapacityUnits: {
@@ -240,6 +243,7 @@ const updateGlobalTableSettings: AppBlock = {
                 },
                 ReplicaTableClass: {
                   type: "string",
+                  enum: ["STANDARD", "STANDARD_INFREQUENT_ACCESS"],
                 },
               },
               required: ["RegionName"],
@@ -322,12 +326,25 @@ const updateGlobalTableSettings: AppBlock = {
                 },
                 ReplicaStatus: {
                   type: "string",
+                  enum: [
+                    "CREATING",
+                    "CREATION_FAILED",
+                    "UPDATING",
+                    "DELETING",
+                    "ACTIVE",
+                    "REGION_DISABLED",
+                    "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                    "ARCHIVING",
+                    "ARCHIVED",
+                    "REPLICATION_NOT_AUTHORIZED",
+                  ],
                 },
                 ReplicaBillingModeSummary: {
                   type: "object",
                   properties: {
                     BillingMode: {
                       type: "string",
+                      enum: ["PROVISIONED", "PAY_PER_REQUEST"],
                     },
                     LastUpdateToPayPerRequestDateTime: {
                       type: "string",
@@ -409,6 +426,7 @@ const updateGlobalTableSettings: AppBlock = {
                       },
                       IndexStatus: {
                         type: "string",
+                        enum: ["CREATING", "UPDATING", "DELETING", "ACTIVE"],
                       },
                       ProvisionedReadCapacityUnits: {
                         type: "number",
@@ -448,6 +466,7 @@ const updateGlobalTableSettings: AppBlock = {
                   properties: {
                     TableClass: {
                       type: "string",
+                      enum: ["STANDARD", "STANDARD_INFREQUENT_ACCESS"],
                     },
                     LastUpdateDateTime: {
                       type: "string",

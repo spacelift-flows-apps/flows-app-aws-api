@@ -93,6 +93,14 @@ const sendBounce: AppBlock = {
                 },
                 BounceType: {
                   type: "string",
+                  enum: [
+                    "DoesNotExist",
+                    "MessageTooLarge",
+                    "ExceededQuota",
+                    "ContentRejected",
+                    "Undefined",
+                    "TemporaryFailure",
+                  ],
                 },
                 RecipientDsnFields: {
                   type: "object",
@@ -102,6 +110,13 @@ const sendBounce: AppBlock = {
                     },
                     Action: {
                       type: "string",
+                      enum: [
+                        "failed",
+                        "delayed",
+                        "delivered",
+                        "relayed",
+                        "expanded",
+                      ],
                     },
                     RemoteMta: {
                       type: "string",

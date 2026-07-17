@@ -214,12 +214,14 @@ const createLaunchConfiguration: AppBlock = {
             properties: {
               HttpTokens: {
                 type: "string",
+                enum: ["optional", "required"],
               },
               HttpPutResponseHopLimit: {
                 type: "number",
               },
               HttpEndpoint: {
                 type: "string",
+                enum: ["disabled", "enabled"],
               },
             },
             additionalProperties: false,

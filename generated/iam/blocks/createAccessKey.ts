@@ -97,6 +97,7 @@ const createAccessKey: AppBlock = {
               },
               Status: {
                 type: "string",
+                enum: ["Active", "Inactive", "Expired"],
               },
               SecretAccessKey: {
                 type: "string",

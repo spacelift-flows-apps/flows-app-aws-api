@@ -41,7 +41,10 @@ const getSpotPlacementScores: AppBlock = {
         TargetCapacityUnitType: {
           name: "Target Capacity Unit Type",
           description: "The unit for the target capacity.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["vcpu", "memory-mib", "units"],
+          },
           required: false,
         },
         SingleAvailabilityZone: {
@@ -73,12 +76,14 @@ const getSpotPlacementScores: AppBlock = {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["i386", "x86_64", "arm64", "x86_64_mac", "arm64_mac"],
                 },
               },
               VirtualizationTypes: {
                 type: "array",
                 items: {
                   type: "string",
+                  enum: ["hvm", "paravirtual"],
                 },
               },
               InstanceRequirements: {
@@ -114,6 +119,7 @@ const getSpotPlacementScores: AppBlock = {
                     type: "array",
                     items: {
                       type: "string",
+                      enum: ["intel", "amd", "amazon-web-services", "apple"],
                     },
                   },
                   MemoryGiBPerVCpu: {
@@ -138,6 +144,7 @@ const getSpotPlacementScores: AppBlock = {
                     type: "array",
                     items: {
                       type: "string",
+                      enum: ["current", "previous"],
                     },
                   },
                   SpotMaxPricePercentageOverLowestPrice: {
@@ -148,9 +155,11 @@ const getSpotPlacementScores: AppBlock = {
                   },
                   BareMetal: {
                     type: "string",
+                    enum: ["included", "required", "excluded"],
                   },
                   BurstablePerformance: {
                     type: "string",
+                    enum: ["included", "required", "excluded"],
                   },
                   RequireHibernateSupport: {
                     type: "boolean",
@@ -169,11 +178,13 @@ const getSpotPlacementScores: AppBlock = {
                   },
                   LocalStorage: {
                     type: "string",
+                    enum: ["included", "required", "excluded"],
                   },
                   LocalStorageTypes: {
                     type: "array",
                     items: {
                       type: "string",
+                      enum: ["hdd", "ssd"],
                     },
                   },
                   TotalLocalStorageGB: {
@@ -204,6 +215,7 @@ const getSpotPlacementScores: AppBlock = {
                     type: "array",
                     items: {
                       type: "string",
+                      enum: ["gpu", "fpga", "inference", "media"],
                     },
                   },
                   AcceleratorCount: {
@@ -222,12 +234,40 @@ const getSpotPlacementScores: AppBlock = {
                     type: "array",
                     items: {
                       type: "string",
+                      enum: [
+                        "amazon-web-services",
+                        "amd",
+                        "nvidia",
+                        "xilinx",
+                        "habana",
+                      ],
                     },
                   },
                   AcceleratorNames: {
                     type: "array",
                     items: {
                       type: "string",
+                      enum: [
+                        "a100",
+                        "inferentia",
+                        "k520",
+                        "k80",
+                        "m60",
+                        "radeon-pro-v520",
+                        "t4",
+                        "vu9p",
+                        "v100",
+                        "a10g",
+                        "h100",
+                        "t4g",
+                        "l40s",
+                        "l4",
+                        "gaudi-hl-205",
+                        "inferentia2",
+                        "trainium",
+                        "trainium2",
+                        "u30",
+                      ],
                     },
                   },
                   AcceleratorTotalMemoryMiB: {

@@ -145,6 +145,7 @@ const describeDeclarativePoliciesReports: AppBlock = {
                 },
                 Status: {
                   type: "string",
+                  enum: ["running", "cancelled", "complete", "error"],
                 },
                 Tags: {
                   type: "array",

@@ -33,7 +33,10 @@ const setAlarmState: AppBlock = {
         StateValue: {
           name: "State Value",
           description: "The value of the state.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["OK", "ALARM", "INSUFFICIENT_DATA"],
+          },
           required: true,
         },
         StateReason: {

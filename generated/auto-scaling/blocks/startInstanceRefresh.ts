@@ -33,7 +33,10 @@ const startInstanceRefresh: AppBlock = {
         Strategy: {
           name: "Strategy",
           description: "The strategy to use for the instance refresh.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["Rolling", "ReplaceRootVolume"],
+          },
           required: false,
         },
         DesiredConfiguration: {
@@ -157,9 +160,11 @@ const startInstanceRefresh: AppBlock = {
               },
               ScaleInProtectedInstances: {
                 type: "string",
+                enum: ["Refresh", "Ignore", "Wait"],
               },
               StandbyInstances: {
                 type: "string",
+                enum: ["Terminate", "Ignore", "Wait"],
               },
               AlarmSpecification: {
                 type: "object",

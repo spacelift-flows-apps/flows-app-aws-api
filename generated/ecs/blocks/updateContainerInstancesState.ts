@@ -47,7 +47,16 @@ const updateContainerInstancesState: AppBlock = {
           name: "status",
           description:
             "The container instance state to update the container instance with.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "ACTIVE",
+              "DRAINING",
+              "REGISTERING",
+              "DEREGISTERING",
+              "REGISTRATION_FAILED",
+            ],
+          },
           required: true,
         },
       },
@@ -215,6 +224,14 @@ const updateContainerInstancesState: AppBlock = {
                 },
                 agentUpdateStatus: {
                   type: "string",
+                  enum: [
+                    "PENDING",
+                    "STAGING",
+                    "STAGED",
+                    "UPDATING",
+                    "UPDATED",
+                    "FAILED",
+                  ],
                 },
                 attributes: {
                   type: "array",
@@ -229,6 +246,7 @@ const updateContainerInstancesState: AppBlock = {
                       },
                       targetType: {
                         type: "string",
+                        enum: ["container-instance"],
                       },
                       targetId: {
                         type: "string",
@@ -283,6 +301,12 @@ const updateContainerInstancesState: AppBlock = {
                   properties: {
                     overallStatus: {
                       type: "string",
+                      enum: [
+                        "OK",
+                        "IMPAIRED",
+                        "INSUFFICIENT_DATA",
+                        "INITIALIZING",
+                      ],
                     },
                     details: {
                       type: "array",

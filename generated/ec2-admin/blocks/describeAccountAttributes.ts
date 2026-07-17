@@ -38,6 +38,7 @@ const describeAccountAttributes: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: ["supported-platforms", "default-vpc"],
             },
           },
           required: false,

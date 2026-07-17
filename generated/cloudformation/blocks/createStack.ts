@@ -135,6 +135,11 @@ const createStack: AppBlock = {
             type: "array",
             items: {
               type: "string",
+              enum: [
+                "CAPABILITY_IAM",
+                "CAPABILITY_NAMED_IAM",
+                "CAPABILITY_AUTO_EXPAND",
+              ],
             },
           },
           required: false,
@@ -162,7 +167,10 @@ const createStack: AppBlock = {
           name: "On Failure",
           description:
             "Determines what action will be taken if stack creation fails.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["DO_NOTHING", "ROLLBACK", "DELETE"],
+          },
           required: false,
         },
         StackPolicyBody: {

@@ -96,7 +96,10 @@ const putMetricStream: AppBlock = {
         OutputFormat: {
           name: "Output Format",
           description: "The output format for the stream.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["json", "opentelemetry0.7", "opentelemetry1.0"],
+          },
           required: true,
         },
         Tags: {

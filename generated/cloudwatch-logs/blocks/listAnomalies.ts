@@ -35,7 +35,10 @@ const listAnomalies: AppBlock = {
           name: "suppression State",
           description:
             "You can specify this parameter if you want to the operation to return only anomalies that are currently either suppressed or unsuppressed.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: ["SUPPRESSED", "UNSUPPRESSED"],
+          },
           required: false,
         },
         limit: {
@@ -145,6 +148,7 @@ const listAnomalies: AppBlock = {
                 },
                 state: {
                   type: "string",
+                  enum: ["Active", "Suppressed", "Baseline"],
                 },
                 histogram: {
                   type: "object",

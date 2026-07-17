@@ -33,7 +33,20 @@ const listConnections: AppBlock = {
         ConnectionState: {
           name: "Connection State",
           description: "The state of the connection.",
-          type: "string",
+          type: {
+            type: "string",
+            enum: [
+              "CREATING",
+              "UPDATING",
+              "DELETING",
+              "AUTHORIZED",
+              "DEAUTHORIZED",
+              "AUTHORIZING",
+              "DEAUTHORIZING",
+              "ACTIVE",
+              "FAILED_CONNECTIVITY",
+            ],
+          },
           required: false,
         },
         NextToken: {
@@ -120,12 +133,24 @@ const listConnections: AppBlock = {
                 },
                 ConnectionState: {
                   type: "string",
+                  enum: [
+                    "CREATING",
+                    "UPDATING",
+                    "DELETING",
+                    "AUTHORIZED",
+                    "DEAUTHORIZED",
+                    "AUTHORIZING",
+                    "DEAUTHORIZING",
+                    "ACTIVE",
+                    "FAILED_CONNECTIVITY",
+                  ],
                 },
                 StateReason: {
                   type: "string",
                 },
                 AuthorizationType: {
                   type: "string",
+                  enum: ["BASIC", "OAUTH_CLIENT_CREDENTIALS", "API_KEY"],
                 },
                 CreationTime: {
                   type: "string",

@@ -61,6 +61,7 @@ const createActivity: AppBlock = {
               },
               type: {
                 type: "string",
+                enum: ["AWS_OWNED_KEY", "CUSTOMER_MANAGED_KMS_KEY"],
               },
             },
             required: ["type"],
